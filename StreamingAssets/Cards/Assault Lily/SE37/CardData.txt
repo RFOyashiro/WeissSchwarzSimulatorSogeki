@@ -1,12 +1,23 @@
+Character: ALL/SE37-P01S
+Name "Legion, Gathering" Riri
+Color R
+Level 0
+Cost 0
+Power 1000
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+*OnPlayFlicker
+*OnPlayGiveOtherPower(2000,Lily)
+EndCard
+
 Character: ALL/SE37-P02S
-Image ALL_SE37_P02S
 Name "Legion, Gathering" Kazuha
 Color B
 Level 0
 Cost 0
 Power 3000
 Trait1 Lily
-Trait2 Hervarar
+Trait2 Hervor
 Auto: OnPlay
 {
 	Question Put 1 card from your hand into your stock?
@@ -31,7 +42,6 @@ Text Auto: When this card becomes reversed in battle, you cannot use "Auto: ENCO
 EndCard
 
 Character: ALL/SE37-P03S
-Image ALL_SE37_P03S
 Name "Legion, Gathering" Kanaho
 Color Y
 Level 2

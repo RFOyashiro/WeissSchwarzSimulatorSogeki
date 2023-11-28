@@ -1271,7 +1271,7 @@ Name Maybe You Would... Cuddle With Me?
 EndCard
 
 Character: ALL/S90-050
-Name "Pajama Party" Lili
+Name "Pajama Party" Riri
 Color R
 Level 1
 Cost 0
@@ -1371,7 +1371,7 @@ Text Auto: [Put 1 card from your hand into your waiting room] When this card att
 EndCard
 
 Character: ALL/S90-053
-Name "Something She Wants to Protect" Lili
+Name "Something She Wants to Protect" Riri
 Color R
 Level 0
 Cost 0
@@ -1531,7 +1531,7 @@ Text Auto: CxCombo [(2) Put 4 cards from your hand into your waiting room, Send 
 EndCard
 
 Character: ALL/S90-058
-Name "Lily of the Season" Lili
+Name "Lily of the Season" Riri
 Color R
 Level 3
 Cost 2
@@ -1617,7 +1617,7 @@ Act:
 {
 
 }
-Text Act:[Rest this card] Choose 1 of your characters with either "Lili" or "Kaede" in its card name, and that character gets +500 power until the end of your opponent's next turn.
+Text Act:[Rest this card] Choose 1 of your characters with either "Riri" or "Kaede" in its card name, and that character gets +500 power until the end of your opponent's next turn.
 EndCard
 
 Character: ALL/S90-061
@@ -1698,7 +1698,7 @@ Text Auto:[Put a «Lily» character from your hand to the waiting room] When thi
 EndCard
 
 Character: ALL/S90-064
-Name "Can't Stop Fruity" Yuyu & Lili & Kaede
+Name "Can't Stop Fruity" Yuyu & Riri & Kaede
 Color R
 Level 1
 Cost 0
@@ -1768,7 +1768,7 @@ Text Act:[Rest this card] Choose 1 of your «Lily» characters, and that charact
 EndCard
 
 Character: ALL/S90-066
-Name "Hitotsuyanagi Corps" Lili
+Name "Hitotsuyanagi Corps" Riri
 Color R
 Level 2
 Cost 1
@@ -1843,7 +1843,7 @@ Text Auto:When this card is placed on the stage from your hand, activate Lunatic
 EndCard
 
 Character: ALL/S90-068
-Name "Excited for Reunion" Lili
+Name "Excited for Reunion" Riri
 Color R
 Level 0
 Cost 0
@@ -1867,7 +1867,7 @@ Text Act: [Put 1 card from your hand into your waiting room, put this card into 
 EndCard 
 
 Character: ALL/S90-069
-Name "Promise Between the Two" Lili
+Name "Promise Between the Two" Riri
 Color R
 Level 0
 Cost 0
@@ -1910,7 +1910,7 @@ Trait2 Hitotsuyanagi Corps
 EndCard
 
 Character: ALL/S90-071
-Name "Beautiful Sisterly Love" Yuyu & Lili
+Name "Beautiful Sisterly Love" Yuyu & Riri
 Color R
 Level 1
 Cost 0
@@ -1920,17 +1920,17 @@ Trait1 Lily
 Trait2 Hitotsuyanagi Corps
 Cont: GiveSelf
 {
-    If StageContains 1 Other && NameEquals "Beautiful Sisterly Love" Yuyu & Lili
+    If StageContains 1 Other && NameEquals "Beautiful Sisterly Love" Yuyu & Riri
     {
         GainPower 5000
         GainSoul 1
     }
 }
-Text Cont:If you have another ""Beautiful Sisterly Love" Yuyu & Lili", this card gets +5000 power and +1 soul.
+Text Cont:If you have another ""Beautiful Sisterly Love" Yuyu & Riri", this card gets +5000 power and +1 soul.
 EndCard
 
 Character: ALL/S90-072
-Name "Comment Decoy Operation!!" Lili
+Name "Comment Decoy Operation!!" Riri
 Color R
 Level 1
 Cost 0
@@ -2026,12 +2026,12 @@ Effect:
 {
     PayCost Discard 2 Any
     {
-        SearchLocationForTargets WaitingRoom 0 4 NameContains Lili && IsCharacter && Compare ThatCardsCost 0 OrLess
+        SearchLocationForTargets WaitingRoom 0 4 NameContains Riri && IsCharacter && Compare ThatCardsCost 0 OrLess
         PlaceOnStage false true true false
     }
     *GiveCharacterPower(3000,Any)
 }
-Text You may discard 2 cards from your hand to the waiting room. If you do, choose up to 4 cost 0 or lower characters with "Lili" in its card name in your waiting room and put them in separate positions on the stage. Choose 1 of your characters, and that character gets +3000 power until end of turn.
+Text You may discard 2 cards from your hand to the waiting room. If you do, choose up to 4 cost 0 or lower characters with "Riri" in its card name in your waiting room and put them in separate positions on the stage. Choose 1 of your characters, and that character gets +3000 power until end of turn.
 EndCard
 
 Climax: ALL/S90-076
@@ -2919,7 +2919,7 @@ EndCard
 
 Character: ALL/S90-P01S
 Image ALL_S90_P01S
-Name "A Blow That Connects Feelings" Yuyu & Lili
+Name "A Blow That Connects Feelings" Yuyu & Riri
 Color B
 Level 2
 Cost 1
@@ -2953,13 +2953,13 @@ Trait1 Lily
 Trait2 Hitotsuyanagi Corps
 Auto: OnAttack
 {
-	If Not StageContains 1 Other && NameContains Lili
+	If Not StageContains 1 Other && NameContains Riri
 	{
 		TargetTop Deck 1
 		MoveCard Clock
 	}
 }
-Text Auto: When this card attacks, if you have no other character with "Lili" in its card name, put the top card of your deck into your clock.
+Text Auto: When this card attacks, if you have no other character with "Riri" in its card name, put the top card of your deck into your clock.
 Auto: OnEndOfAttack
 {
 	If PlayedThisTurn
@@ -3029,8 +3029,93 @@ Quick
 Text Auto: When this card becomes reversed, if the level of this card's battle opponent is higher than your opponent's level, you may put the top card of your opponent's clock into their waiting room. If you do, put that character into your opponent's clock.
 EndCard
 
+Character: ALL/S90-P04
+Name "Hard work in everything" Kazuha
+Color B
+Level 3
+Cost 2
+Power 9500
+Trigger Soul
+Soul 2
+Trait1 Lily
+Trait2 Hervor
+*EarlyPlay2OrLessClimax
+Cont: GiveSelf
+{
+    If MyTurn && Compare Experience 5 OrMore
+    {
+        GainPower 2500
+    }
+}
+Text Cont:EXPERIENCE During your turn, if the total level of cards in your level is 5 or more, this card gets +2500 power.
+Auto: OnAttack
+{
+    If PlayedThisTurn
+    {
+        TargetLocation Stage
+        GainPower 1000
+        GainEffect
+        {
+            Auto: OnOpponentReverse
+            {
+                TargetFacing
+                IfTarget OnStage
+                {
+                    Question Put the opponent character to the bottom of the deck ?
+                    If Yes
+                    {
+                        MoveCardToBottom OpponentDeck
+                    }
+                }
+            }
+            Text Auto:When this card's battle opponent becomes reverse, you may put that character at the bottom of your opponent's deck.
+        }
+    }
+}
+Text Auto:When this card attacks, if that card was played this turn, all your characters get +1000 power and the following ability until end of turn. "Auto:When this card's battle opponent becomes reverse, you may put that character at the bottom of your opponent's deck."
+EndCard
+
+Character: ALL/S90-P05
+Name "The Road of 3 Intersecting Schools" Riri
+Color R
+Level 3
+Cost 2
+Power 10000
+Trigger Soul
+Soul 2
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+Auto: OnPlay
+{
+	*PlayCharacterFromHand(Compare ThatCardsLevel MyLevel OrLess)
+	GainPower 2000
+}
+Text Auto:When this card is placed on the stage from your hand, choose up to 1 character with level equal to or lower than your level in your hand, put it in any position of your stage, it gets +2000 power until end of turn.
+Auto: OnAttack
+{
+    PayCost 3
+    {
+        StockSwap
+    }
+}
+Text Auto:[(3)] When this card attacks, you may pay the cost. If you do, put all of your opponent's stock into waiting room and put the same number of card from your opponent's deck into their stock.
+EndCard
+
+Character: ALL/S90-P06
+Name "The Road of 3 Intersecting Schools" Kazuha
+Color B
+Level 2
+Cost 1
+Power 2500
+Trigger Soul
+Soul 1
+Trait1 Lily
+Trait2 Hervor
+*MemoryBackup
+Backup 3000
+EndCard
+
 Character: ALL/S90-P07
-Image ALL_S90_P07
 Name "The Road of 3 Intersecting Schools" Kanaho
 Color Y
 Level 2
@@ -3050,4 +3135,156 @@ Auto: OnUseThisCardsBackup
 }
 Text Auto: [(2)] When you use this card's "<b>Backup</b>", you may pay the cost. If you do, return all cards from your waiting room to your deck, and shuffle your deck.
 Backup 2500
+EndCard
+
+Character: ALL/S90-P08
+Name "Girls Shining on the Seaside" Riri
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+Cont: GiveSelf
+{
+	SetXToNumberOfCharacters InLocation Backstage && HasTrait Lily
+	MultiplyXValue 1000
+	GainPower X
+}
+Text Cont: This card gets +1000 power for each other <Lily> character on your backstage.
+*OnAttackCheck2ChooseTrigger
+EndCard
+
+Character: ALL/S90-P09
+Name "Girls Shining on the Seaside" Yuyu
+Color R
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+*GainPowerWithEnoughCharacters(2000,2,Lily)
+*HandEncore
+EndCard
+
+Character: ALL/S90-P10
+Name "Girls Shining on the Seaside" Kazuha
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Lily
+Trait2 Hervor
+Auto: OnPlay
+{
+    If StageContains 2 Other && HasTrait Lily
+    {
+        *OptionalDrawDiscard
+    }
+}
+Text Auto:When this card is placed on the stage from your hand, if the number of other <Lily> characters you have is 2 or more, you may draw 1 card. If you do, put 1 card from your hand into waiting room.
+Auto: OnPlay
+{
+    PayCost 1 Clock
+    {
+        SearchLocationForTargets Deck 0 1 Compare ThatCardsCost 0 OrLess && Compare ThatCardsLevel MyLevel OrLess && HasTrait Lily
+        If HasTarget
+        {
+            PlaceOnStage false true true false
+        }
+    }
+}
+Text Auto:[(1) Put the top card of your deck into clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 cost 0 or lower <Lily» character whose level is equal or lower than yours and place it into any position on stage.
+EndCard
+
+Character: ALL/S90-P11
+Name "Girls Shining on the Seaside" Kanaho
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Lily
+Trait2 Gran Eple
+Auto: OnPlay
+{
+    PayCost SendFromWaitingRoom 2 Deck IsCharacter
+    {
+        TargetSelf
+        GainSoul 1
+    }
+}
+Text Auto:[Return 2 characters from your waiting room into your deck] When this card is placed on the stage from your hand, you may pay the cost. If you do, this card gets +1 soul until end of turn.
+Auto: OnPlay
+{
+    PayCost 1 Discard 1 HasTrait Lily
+    {
+        *CheckAndAdd(4)
+    }
+}
+Text Auto:[(1) Put a <Lily» character from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 card among them, add it to your hand and put the remaining in waiting room.
+EndCard
+
+Character: ALL/S90-P12
+Name "Neun Praeludium" Kanaho & Riri & Yuyu & Kazuha
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Lily
+*CannotSideAttack
+*PowerInMiddle(3000)
+EndCard
+
+Character: ALL/S90-P13
+Name "Fresh ♡" Riri & Yuyu & Kazuha & Kanaho
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Lily
+Cont: GiveAll
+{
+    If Other && NameContains "Can't Stop Fruity!"|"Lily of the Season"
+    {
+        GainPower 500
+    }
+}
+Text Cont:All your other characters with ""Can't Stop Fruity!"" or ""Lily of the Season"" in its card name get +500 power.
+Auto: OnPlay
+{
+    PayCost 2
+    {
+        SearchWaitingRoom HasTrait Lily
+    }
+}
+Text Auto:[(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a <Lily» character in your waiting room and return it to your hand.
+EndCard
+
+Character: ALL/S90-P14
+Name "Cherish" Hitotsuyanagi Corps
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+*ClimaxExchange
+EndCard
+
+Character: ALL/S90-P15
+Name "Diverse" Hervor & Gran Eple
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Lily
+*OnPlayTradeClimaxForCharacter(Lily)
 EndCard
