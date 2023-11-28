@@ -3779,7 +3779,7 @@ Trait1 Lily
 EndCard
 
 Character: ALL/S76-P28
-Name “Ultramarine Sky” Kazuha & Ran & Renka & Yo & Chikaru
+Name "Ultramarine Sky" Kazuha & Ran & Renka & Yo & Chikaru
 Color B
 Level 0
 Cost 0
@@ -3801,7 +3801,7 @@ TextText Auto:EXPERIENCE When this card is placed on the stage from your hand, i
 EndCard
 
 Character: ALL/S76-P29
-Name “Red Bond” Riri & Yuyu & Kazuha & Kanaho
+Name "Red Bond" Riri & Yuyu & Kazuha & Kanaho
 Color R
 Level 1
 Cost 0
@@ -3820,7 +3820,7 @@ Text Auto:[(1) Put 1 card from your hand into waiting room] When this card is pl
 EndCard
 
 Character: ALL/S76-P30
-Name “Colorful☆Decoration” Kanaho & Takane & Kureha & Akari & Himeka
+Name "Colorful☆Decoration" Kanaho & Takane & Kureha & Akari & Himeka
 Color Y
 Level 0
 Cost 0
@@ -3836,48 +3836,3 @@ TimesPerTurn 1
 Text Auto: This ability activates up to 1 time per turn. When you use RESONATE, choose 1 of your character and that character gets +1000 power until end of turn.
 *RestGivePower(1000,Any)
 EndCard
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
