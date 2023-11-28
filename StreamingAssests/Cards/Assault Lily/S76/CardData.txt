@@ -199,7 +199,7 @@ EndCard
 
 Character: ALL/S76-T10
 Image ALL_S76_T10
-Name Hitotsuyanagi Lili
+Name Hitotsuyanagi Riri
 Color R
 Level 1
 Cost 0
@@ -259,7 +259,7 @@ EndCard
 
 Character: ALL/S76-T12
 Image ALL_S76_T12
-Name Full of Energy! Lili
+Name Full of Energy! Riri
 Color R
 Level 3
 Cost 2
@@ -517,7 +517,7 @@ EndCard
 
 Character: ALL/S76-T29
 Image ALL_S76_T29
-Name "Guardian Angel Contract" Yuyu & Lili
+Name "Guardian Angel Contract" Yuyu & Riri
 Color R
 Level 0
 Cost 0
@@ -635,7 +635,7 @@ EndCard
 
 Character: ALL/S76-T43
 Image ALL_S76_T43
-Name Yuyu & Lili
+Name Yuyu & Riri
 Color B
 Level 3
 Cost 2
@@ -780,7 +780,7 @@ Text Cont: During your turn, if you have another «Lily» character, this card g
 EndCard
 
 Character: ALL/S76-004
-Name Fun for Lilies, Shenlin
+Name Fun for Riries, Shenlin
 Color G
 Level 0
 Cost 0
@@ -803,7 +803,7 @@ Text Auto:When a climax with a Gold trigger icon is placed on your climax area, 
 EndCard
 
 Character: ALL/S76-005
-Name Fun for Lilies, Tazusa
+Name Fun for Riries, Tazusa
 Color G
 Level 0
 Cost 0
@@ -1469,7 +1469,7 @@ Text Auto: At the beginning of your main phase and your climax phase, you may lo
 EndCard
 
 Character: ALL/S76-035
-Name Memory Of Summer, Lili & Yuyu
+Name Memory Of Summer, Riri & Yuyu
 Color R
 Level 0
 Cost 0
@@ -1522,7 +1522,7 @@ Text Auto:CxCombo When "What is Schutzengel" is placed to your climax area and t
 EndCard
 
 Character: ALL/S76-037
-Name Blooming Dignifiedly, Lili
+Name Blooming Dignifiedly, Riri
 Color R
 Level 3
 Cost 2
@@ -1576,15 +1576,15 @@ Cont: GiveSelf
 			Act: 1 Discard 1 Any SendSelf WaitingRoom
 			{
 				TargetLocation Hand
-				NarrowTargets NameEquals Full of Energy! Lili
+				NarrowTargets NameEquals Full of Energy! Riri
 				FirstTarget
 				Change
 			}
-			Text Act: [(1) Put 1 card from your hand into your waiting room and put this card into your waiting room] Choose up to 1 "Full of Energy! Lili" in your hand, and put it on the stage position that this card was on.
+			Text Act: [(1) Put 1 card from your hand into your waiting room and put this card into your waiting room] Choose up to 1 "Full of Energy! Riri" in your hand, and put it on the stage position that this card was on.
 		}
 	}
 }
-Text Cont: If your level is 2 or higher, this card gains the following ability. "Act: [(1) Put 1 card from your hand into your waiting room and put this card into your waiting room] Choose up to 1 "Full of Energy! Lili" in your hand, and put it on the stage position that this card was on."
+Text Cont: If your level is 2 or higher, this card gains the following ability. "Act: [(1) Put 1 card from your hand into your waiting room and put this card into your waiting room] Choose up to 1 "Full of Energy! Riri" in your hand, and put it on the stage position that this card was on."
 *GlobalPower(500,Lily)
 Act: 2 RestSelf
 {
@@ -1611,7 +1611,7 @@ Text Act:[(1) Put this card in the waiting room] Look at up to 4 cards from the 
 EndCard
 
 Character: ALL/S76-040
-Name Dance on the Battlefield, Lili
+Name Dance on the Battlefield, Riri
 Color R
 Level 1
 Cost 0
@@ -1635,7 +1635,7 @@ Text Auto: When a climax is placed in you climax area, choose 1 of your characte
 EndCard
 
 Character: ALL/S76-041
-Name Fun for Lilies, Lili
+Name Fun for Riries, Riri
 Color R
 Level 2
 Cost 2
@@ -1792,7 +1792,7 @@ Backup 1000
 EndCard
 
 Character: ALL/S76-048
-Name First Battlefield, Lili
+Name First Battlefield, Riri
 Color R
 Level 1
 Cost 0
@@ -1857,7 +1857,7 @@ Auto: OnPlay
     NarrowTargets Not FaceDown
     If HasTarget
     {
-        Question Face down a card in your opponent memory for the turn ?
+        Question Face down a card in your opponent memory until end of turn ?
         If Yes
         {
             ChooseCardsFromTargets 1 1 Any
@@ -1886,7 +1886,7 @@ Text Auto:When this card becomes reverse in battle, Put this card into memory.
 EndCard
 
 Character: ALL/S76-051
-Name Legion Formed, Lili
+Name Legion Formed, Riri
 Color R
 Level 1
 Cost 1
@@ -1938,13 +1938,13 @@ Trait1 Lily
 Trait2 Hitotsuyanagi Corps
 Cont: GiveAll
 {
-    If NameEquals I'm Not Anything Yet, Lili
+    If NameEquals I'm Not Anything Yet, Riri
     {
         GainPower 1000
         GainSoul 1
     }
 }
-Text Cont:All your other "I'm Not Anything Yet, Lili" get +1000 power and +1 soul.
+Text Cont:All your other "I'm Not Anything Yet, Riri" get +1000 power and +1 soul.
 Auto: OnPlay
 {
     PayCost Discard 1 HasTrait Lily
@@ -1958,7 +1958,7 @@ Text Auto:[Put a «Lily» character from hand to the waiting room] When this car
 EndCard
 
 Character: ALL/S76-054
-Name Time to Relax, Lili
+Name Time to Relax, Riri
 Color R
 Level 0
 Cost 0
@@ -2018,7 +2018,7 @@ Text Auto:When this card is placed on the stage from your hand, reveal the top c
 EndCard
 
 Character: ALL/S76-056
-Name I'm Not Anything Yet, Lili
+Name I'm Not Anything Yet, Riri
 Color R
 Level 0
 Cost 0
@@ -2112,7 +2112,7 @@ Backup 3000
 EndCard
 
 Character: ALL/S76-060
-Name Aspiring Sister, Lili
+Name Aspiring Sister, Riri
 Color R
 Level 2
 Cost 1
@@ -2134,7 +2134,7 @@ Text Cont:All your other "Yuyu Shirai" get +1000 power.
 EndCard
 
 Character: ALL/S76-061
-Name To Protect Everyone, Lili
+Name To Protect Everyone, Riri
 Color R
 Level 2
 Cost 1
@@ -2149,7 +2149,7 @@ Auto: OnPlay
     NarrowTargets HasTrait Lily
     SetXValue TargetCount
     MultiplyXValue 1000
-    Gainpower X
+    GainPower X
 }
 Text Auto:When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 1000 times the number of your «Lily» characters.
 Auto: OnOpponentReverse
@@ -2204,7 +2204,7 @@ Effect:
         Burn 4
         Mill 9
         NarrowTargets IsCharacter
-        If TargetsContainsSeparateCardsThatMeetConditions NameContains Lili, NameContains Yuyu, NameContains Kaede, NameContains Fumi, NameContains Tazusa, NameContains Mai, NameContains Shenlin, NameContains Yujia, NameContains Miriam
+        If TargetsContainsSeparateCardsThatMeetConditions NameContains Riri, NameContains Yuyu, NameContains Kaede, NameContains Fumi, NameContains Tazusa, NameContains Mai, NameContains Shenlin, NameContains Yujia, NameContains Miriam
         {
             Repeat 4
             {
@@ -2213,7 +2213,7 @@ Effect:
         }
     }
 }
-Text If you have 5 or more «Lily» characters, deal 4 damage to your opponent and put the top 9 cards of your deck in your waiting room. On those cards, if there are 9 different characters with "Lili", "Yuyu", "Kaede", "Fumi", "Tazusa", "Mai", "Shenlin", "Yujia", and "Miriam" in its card name respectively, deal 2 damage to your opponent 4 times.
+Text If you have 5 or more «Lily» characters, deal 4 damage to your opponent and put the top 9 cards of your deck in your waiting room. On those cards, if there are 9 different characters with "Riri", "Yuyu", "Kaede", "Fumi", "Tazusa", "Mai", "Shenlin", "Yujia", and "Miriam" in its card name respectively, deal 2 damage to your opponent 4 times.
 EndCard
 
 Climax: ALL/S76-064
@@ -2558,13 +2558,13 @@ Trait1 Lily
 Trait2 Hitotsuyanagi Corps
 Auto: OnAttack
 {
-	If Not StageContains 1 Other && NameContains Lili
+	If Not StageContains 1 Other && NameContains Riri
 	{
 		TargetTop Deck 1
 		MoveCard Clock
 	}
 }
-Text Auto: When this card attacks, if you have no other character with "Lili" in its card name, put the top card of your deck into your clock.
+Text Auto: When this card attacks, if you have no other character with "Riri" in its card name, put the top card of your deck into your clock.
 Auto: OnEndOfAttack
 {
 	If PlayedThisTurn
@@ -2800,10 +2800,10 @@ Auto: OnPlay
 {
     PayCost Discard 1 Any
     {
-        SearchDeck NameEquals Hitotsuyanagi Lili
+        SearchDeck NameEquals Hitotsuyanagi Riri
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "Hitotsuyanagi Lili", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "Hitotsuyanagi Riri", reveal it, put it in your hand, and shuffle your deck.
 *RestGivePower(1500,Lily)
 EndCard
 
@@ -3202,7 +3202,7 @@ Text Auto:This ability activates up to once per turn. When this card becomes rev
 EndCard
 
 Character: ALL/S76-105
-Name Holding Hands, Lili
+Name Holding Hands, Riri
 Color R
 Level 1
 Cost 0
@@ -3317,4 +3317,567 @@ Trait2 Hitotsuyanagi Corps
 *PayToExchange(Lily)
 *BlueEarlyPlayBomb
 EndCard
+
+Climax: ALL/S76-P01
+Name Assault Lily BOUQUE
+Color R
+*2SoulClimax
+EndCard
+
+Character: ALL/S76-P02
+Name Endless Battle, Riri & Yuyu
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+*EarlyPlay2OrLessClimax
+*Healer
+EndCard
+
+Character: ALL/S76-P03
+Name Beyond the Gaze, Riri
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Lily
+*OnPlayCheckTopAddDiscard(Lily)
+*OnAttackGivePower(1000,Any)
+EndCard
+
+//P04
+
+Character: ALL/S76-P05
+Name Lily of Yurigaoka, Riri
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+*OnPlayCheckTopAddDiscard(Lily)
+*RedLevel0Bomb
+EndCard
+
+Character: ALL/S76-P06
+Name Beyond the Gaze, Yuyu
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+Auto: StartClimaxPhase
+{
+    *GiveCharacterPower(1000,Lily)
+}
+Text Auto:At the beginning of your climax phase, choose 1 of your «Lily» characters and that character gets +1000 power until end of turn.
+*Act1Rest2SearchBrainstorm(Lily)
+EndCard
+
+Character: ALL/S76-P07
+Name Pretty Flowers, Riri & Yuyu & Kaede
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+Cont: GiveSelf
+{
+    If LocationContainsOrLess Stock 2 Any
+    {
+        GainLevel 1
+        GainPower 1000
+    }
+}
+Text Cont:If you have 2 or less crd in stock, this card gets +1 level and +1000 power.
+EndCard
+
+Character: ALL/S76-P08
+Name Pretty Flowers, Miriam & Fumi & Tazusa
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+Auto: StartOpponentAttackPhase
+{
+    TargetLocation OpponentCenterStage
+    If Compare TargetCount 2 OrLess //If space left in opponent center stage
+    {
+        NarrowTargets CanBeChosen
+        ChooseCharacterFromTargets_Optional Choose a character to move to an empty slot in center stage.
+        MoveToOpenPosition true false
+    }
+}
+Text Auto:At the beginning of your opponent's attack phase, you may choose 1 character in your opponent's center stage and move it to an open position in center stage.
+EndCard
+
+Character: ALL/S76-P09
+Name Pretty Flowers, Shenlin & Yujia & Mai
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+Auto: OnPlay
+{
+    PayCost 1 Clock
+    {
+        *Check3Add1(Any)
+    }
+}
+Text Auto:[(1) Put the top card of your deck into clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 character among them, reveal it to your opponent, add it to your hand and put the remaining cards in your waiting room.
+EndCard
+
+Character: ALL/S76-P10
+Name Touching Hearts, Yuyu & Riri
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+*GainPowerForEachOther(500,Lily)
+EndCard
+
+Character: ALL/S76-P11
+Name Sense of Close Distance, Kaede & Riri
+Color R
+Level 1
+Cost 1
+Trigger Soul
+Power 500
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+*ScryBackup(Lily)
+Backup 2000
+EndCard
+
+Character: ALL/S76-P12
+Name Sense of Moderate Distance, Yuyu & Mai
+Color B
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+Cont: GiveAll
+{
+    If Not MyTurn && Other && HasTrait Lily
+    {
+        GainPower 1000
+    }
+}
+Text Cont:During your opponent's turn, all your other «Lily» characters get +1000 power.
+Auto: OnOtherPlacedOnStageFromHand
+{
+    IfOther HasTrait Lily
+    {
+        PeekTop Deck
+        EndPeek
+    }
+}
+Text Auto:When another of your «Lily» characters is placed on stage from your hand, look at the top card of your deck.
+EndCard
+
+Character: ALL/S76-P13
+Name "Going Out to the Lily Exhibition♪" Riri
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+*GlobalPower(500,Lily)
+Auto: OnOpponentClimaxPlay
+{
+    Question Put this card in stock ?
+    If Yes
+    {
+        TargetSelf
+        MoveCard Stock
+    }
+}
+Text Auto:When your opponent's climax is placed in their climax area, you may put this card in stock.
+EndCard
+
+Character: ALL/S76-P14
+Name "Going Out to the Lily Exhibition♪" Yuyu
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+*CannotSideAttack
+*OnPlayMill2GainPowerForEachCharacter(1000,Lily)
+EndCard
+
+Character: ALL/S76-P15S
+Name GROWING* Tazusa
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+*OnPlayReorderTop2
+*OnAttackMill1PutLevel0OnStage
+EndCard
+
+Character: ALL/S76-P16S
+Name GROWING* Shenlin
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+*OnPlayFlicker
+*OnPlayGiveOtherPower(2000,Lily)
+EndCard
+
+Character: ALL/S76-P17S
+Name GROWING* Yujia
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+Auto: OnPlay
+{
+    Mill 2
+    NarrowTargets IsClimax
+    If HasTarget
+    {
+        TargetLocation OpponentCenterStage
+        NarrowTargets CanBeChosen
+        ChooseCharacterFromTargets Choose a character to give -1000 power.
+        LosePower 1000
+    }
+}
+Text Auto:When this card is placed on the stage from your hand, put the top 2 cards of your deck into waiting room. If any climax has been put into waiting room via this effect, choose a character in your opponent's center stage and that character gets -1000 power until end of turn.
+Auto: OnPlay
+{
+    PayCost 1 Discard 1 Any
+    {
+        SearchWaitingRoom HasTrait Lily
+        *GiveOtherCharacterPower(1000,Lily)
+    }
+}
+Text Auto:[(1) Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Lily» character in your waiting room, return it to your hand, choose 1 of your other «Lily» characters and that character gets +1000 power until end of turn.
+EndCard
+
+Character: ALL/S76-P18S
+Name GROWING* Fumi
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+*OnPlayReorderTop2
+*ClimaxExchange
+EndCard
+
+Character: ALL/S76-P19S
+Name GROWING* Kaede
+Color R
+Level 1
+Cost 0
+Power 2000
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+*BackupBonus1000(Lily)
+Backup 1000
+EndCard
+
+Character: ALL/S76-P20S
+Name GROWING* Yuri
+Color R
+Level 1
+Cost 1
+Power 3500
+Trigger Soul
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+Auto: OnPlay
+{
+    TargetLocation OpponentMemory
+    NarrowTargets Not FaceDown
+    If HasTarget
+    {
+        Question Face down a card in your opponent memory until end of turn ?
+        If Yes
+        {
+            ChooseCardsFromTargets 1 1 Any
+            FlipFaceDown
+            ScheduleEffectForTargets EndOfMyTurn
+            {
+                Effect:
+                {
+                    TargetSelf
+                    FlipFaceUp
+                }
+                Quick
+            }
+        }
+    }
+}
+Text Auto:When this card is placed on the stage from your hand, you may choose a face-up card in your opponent's memory and turn it face-down. If you do, at the end of your turn, turn that card face-up.
+Auto: OnReversed
+{
+    TargetSelf
+    MoveCard Memory
+}
+Quick
+Text Auto:When this card becomes reverse, put this card in memory.
+*EarlyPlayMemoryBomb
+EndCard
+
+Character: ALL/S76-P21S
+Name GROWING* Riri
+Color R
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+*GainPowerWithEnoughCharacters(2000,2,Lily)
+*HandEncore
+EndCard
+
+Character: ALL/S76-P22S
+Name GROWING* Yuyu
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+Auto: OnPlay
+{
+    If StageContains 1 Other && HasTrait Lily
+    {
+        TargetSelf
+        GainPower 2000
+    }
+}
+Quick
+Text Auto:When this card is placed on the stage from your hand, if you have another «Lily» character, this card gets +2000 power until end of turn.
+*GainPowerWhenAttackingLevel2(4500)
+EndCard
+
+Character: ALL/S76-P23S
+Name GROWING* Mai
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+*OnPlayScryToBottom
+*OnPlayGainPowerForEach(500,Lily)
+EndCard
+
+Character: ALL/S76-P24S
+Name GROWING* Miriam
+Color B
+Level 1
+Cost 1
+Power 4500
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+Cont: GiveSelf
+{
+    TargetFacing
+    IfTarget Compare ThatCardsCost 0 OrLess
+    {
+        GainPower 3500
+        GainLevel 1
+    }
+}
+Text Cont:If the cost of the character facing this card is 0 or less, this card gets +3500 power and +1 level.
+*EncoreStepIfNoneRestedPayToRest
+EndCard
+
+Character: ALL/S76-P25
+Name League of Gardens -full bloom-, Yuyu & Riri
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+*OnPlayGiveOtherPower(2000,Lily)
+EndCard
+
+Character: ALL/S76-P26
+Name "Just by Being by Your Side" Yuyu & Riri
+Color R
+Level 2
+Cost 1
+Power 7000
+Trigger Soul
+Soul 1
+Trait1 Lily
+Trait2 Hitotsuyanagi Corps
+*OnPlayGainPowerForEach(1000,Lily)
+Auto: OnOpponentReverse
+{
+    TargetLocation Climax
+    If HasTarget
+    {
+        *OptionalBlindStock
+    }
+}
+Text Auto:When this card's battle opponent becomes reverse, if there is a climax in your climax area, you may put the top card of your deck into stock.
+EndCard
+
+Character: ALL/S76-P27
+Name "Edel Lilie" Kazuha & Yuyu & Riri & Kanaho
+Color R
+Level 2
+Cost 1
+Power 6000
+Trigger Soul
+Soul 1
+Trait1 Lily
+*GlobalPower(1000,Lily)
+*OnPlayScry
+EndCard
+
+Character: ALL/S76-P28
+Name “Ultramarine Sky” Kazuha & Ran & Renka & Yo & Chikaru
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Lily
+Trait2 Hervor
+Auto: OnPlay
+{
+    If Compare Experience 2 OrMore
+    {
+        TargetLocation Stage
+        NarrowTargets Compare ThatCardsLevel 2 OrMore
+        ChooseCharacterFromTargets Choose a character to give +3000 power.
+        GainPower 3000
+    }
+}
+TextText Auto:EXPERIENCE When this card is placed on the stage from your hand, if the total level of the cards in your level is 2 or more, choose 1 of your level 2 or more characters and that character gets +3000 power until end of turn.
+EndCard
+
+Character: ALL/S76-P29
+Name “Red Bond” Riri & Yuyu & Kazuha & Kanaho
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Lily
+Auto: OnPlay
+{
+    PayCost 1 Discard 1 Any
+    {
+        SearchWaitingRoom HasTrait Lily
+        *GiveOtherCharacterPower(1000,Lily)
+    }
+}
+Text Auto:[(1) Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Lily» character in your waiting room, return it to your hand, choose 1 of your other «Lily» characters and that character gets +1000 power until end of turn.
+EndCard
+
+Character: ALL/S76-P30
+Name “Colorful☆Decoration” Kanaho & Takane & Kureha & Akari & Himeka
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Lily
+Trait2 Gran Eple
+Auto: OnUseResonate
+{
+    *GiveCharacterPower(1000,Any)
+}
+TimesPerTurn 1
+Text Auto: This ability activates up to 1 time per turn. When you use RESONATE, choose 1 of your character and that character gets +1000 power until end of turn.
+*RestGivePower(1000,Any)
+EndCard
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
