@@ -3797,7 +3797,7 @@ Auto: OnPlay
         GainPower 3000
     }
 }
-TextText Auto:EXPERIENCE When this card is placed on the stage from your hand, if the total level of the cards in your level is 2 or more, choose 1 of your level 2 or more characters and that character gets +3000 power until end of turn.
+Text Auto:EXPERIENCE When this card is placed on the stage from your hand, if the total level of the cards in your level is 2 or more, choose 1 of your level 2 or more characters and that character gets +3000 power until end of turn.
 EndCard
 
 Character: ALL/S76-P29
