@@ -56,6 +56,6 @@ Auto: OnUseThisCardsBackup
 	TargetBottom OpponentDeck X
 	MoveCard OpponentWaitingRoom
 }
-Text Auto: When you use this card's "<b>Backup</b>", put X cards from the bottom of your opponent's deck into their waiting room. X is equal to the number of your <Lily> characters.
+Text Auto: When you use this card's "<b>Backup</b>", put X cards from the bottom of your opponent's deck into their waiting room. X is equal to the number of your «Lily» characters.
 Backup 3000
 EndCard

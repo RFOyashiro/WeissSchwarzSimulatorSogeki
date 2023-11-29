@@ -916,11 +916,11 @@ Cont: GiveSelf
 				GainSpecialEffect NoEventsOnAttack
 				GainSpecialEffect NoBackupOnAttack
 			}
-			Text Cont: During this card's battle, your opponent cannot play events or "«b»Backup«/b»" from hand.
+			Text Cont: During this card's battle, your opponent cannot play events or "<b>Backup</b>" from hand.
 		}
 	}
 }
-Text Cont: During your turn, if you have 4 or more other «Lily» characters, this card gets +5000 power and the following ability. "Cont: During this card's battle, your opponent cannot play events or "«b»Backup«/b»" from hand."
+Text Cont: During your turn, if you have 4 or more other «Lily» characters, this card gets +5000 power and the following ability. "Cont: During this card's battle, your opponent cannot play events or "<b>Backup</b>" from hand."
 Auto: OnPlay
 {
 	PayCost Discard 1 Any
@@ -1288,7 +1288,7 @@ Auto: OnUseThisCardsBackup
 		MoveCard OpponentClock
 	}
 }
-Text Auto: [Put 2 cards from your hand into your waiting room] When you use this card's "«b»Backup«/b»", you may pay the cost. If you do, put the top card of your opponent's clock into their waiting room and choose 1 of your opponent's characters with level higher than your opponent's level, and put it at the top of their clock.
+Text Auto: [Put 2 cards from your hand into your waiting room] When you use this card's "<b>Backup</b>", you may pay the cost. If you do, put the top card of your opponent's clock into their waiting room and choose 1 of your opponent's characters with level higher than your opponent's level, and put it at the top of their clock.
 Backup 1000
 EndCard
 
@@ -2454,7 +2454,7 @@ Auto: OnUseThisCardsBackup
 		ShuffleLocation Deck
 	}
 }
-Text Auto: [(2)] When you used this card's "«b»Backup«/b»", you may pay the cost. If you do, return all cards from your waiting room to your deck, and shuffle your deck.
+Text Auto: [(2)] When you used this card's "<b>Backup</b>", you may pay the cost. If you do, return all cards from your waiting room to your deck, and shuffle your deck.
 Backup 2500
 EndCard
 
