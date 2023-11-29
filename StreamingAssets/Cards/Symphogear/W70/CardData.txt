@@ -549,7 +549,7 @@ Text Auto:[(1) Put the top card of your deck in clock] When this card is placed 
 Auto: OnAttack
 {
 	TargetLocation Stage
-	NarrowTargets Other && NameContains Kirika | Shriabe
+	NarrowTargets Other && NameContains Kirika|Shirabe
 	ChooseCharacterFromTargets Choose a character to give +1000 power.
 	GainPower 1000
 }

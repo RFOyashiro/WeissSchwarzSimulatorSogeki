@@ -658,7 +658,7 @@ Auto: OnPlay
         NarrowTargets HasTrait Music
         If HasTarget
         {
-            ChooseCardsFromTargets 1 1 HasTrait Gensokyo
+            ChooseCardsFromTargets 1 1 HasTrait Music
             MoveCard Hand
         }
         TargetTop Deck 1
