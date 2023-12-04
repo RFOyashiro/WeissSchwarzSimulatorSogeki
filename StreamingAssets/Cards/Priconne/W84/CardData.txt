@@ -831,7 +831,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:[(1)] When this card attacks, if there is a climax in your climax area, you may pay cost. If you do, for that attack, this card gets +1 level and performs trigger check twice during the trigger step.
+Text Auto:[(1)] When this card attacks, if there is a climax in your climax area, you may pay cost. If you do, during this card's attack, this card gets +1 level and performs trigger check twice during the trigger step.
 EndCard
 
 Character: PRD/W84-035
@@ -1610,14 +1610,14 @@ Trait1 Landosol
 Trait2 Guild
 Auto: OnAttack
 {
-    PayCost Discard 1
+    PayCost Discard 1 Any
     {
         TargetSelf
         GainPower 1000
         GainSpecialEffect DoubleTrigger
     }
 }
-Text Auto:[Put 1 card from hand to the waiting room] When this card attacks, you may pay cost. If you do, during this attack, this card gets +1000 power and performs trigger check twice during the trigger Step.
+Text Auto:[Put 1 card from hand to the waiting room] When this card attacks, you may pay cost. If you do, during this card's attack, this card gets +1000 power and performs trigger check twice during the trigger Step.
 EndCard
 
 Character: PRD/W84-067
@@ -1682,7 +1682,7 @@ Trait2 Guild
 Cont: GiveSelf
 {
     TargetLocation Backstage
-    NarrowTargets HasTrait Landosol
+    NarrowTargets Other && HasTrait Landosol
     SetXValue TargetCount
     MultiplyXValue 1500
     GainPower X
@@ -1747,7 +1747,7 @@ Soul 1
 Trait1 Landosol
 Trait2 Guild
 *OnPlayCheckTopAddDiscard(Landosol)
-Act: 1 SendSelf
+Act: 1 SendSelf WaitingRoom
 {
     *Check4Add1(Landosol)
 }
@@ -1866,12 +1866,11 @@ Effect:
     ChooseCharacterFromTargets Choose a character to give the effect
     GainEffect
     {
-        Cont: Global
+        Cont: GiveSelf
         {
             If Not MyCard
             {
                 CardsInAreaLoseAllNames AllOpponentsCards IsCharacter
-                
             }
         }
     }
@@ -1903,16 +1902,16 @@ Power 1000
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Auto: 
+Combo Little Lyrical Adventure
+Auto: OnSpecificClimaxPlay Little Lyrical Adventure
 {
-
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +1000 power.
+    UntilEndOfOpponentsTurn
+    GainPower 1000
 }
-Text Auto:CxCombo When "Little Lyrical Adventure" is placed to your climax area. choose 1 of your characters, and until the end of your opponent's next turn, that character gets +1000 power.
-Act: 
-{
-
-}
-Text Act:[Rest this card] Choose 1 of your «Landosol» characters, and that character gets +2000 power until end of turn.
+Text Auto:CxCombo When "Little Lyrical Adventure" is placed to your climax area. choose 1 of your characters, and that character gets +1000 power until the end of your opponent's next turn.
+*RestGivePower(2000,Landosol)
 EndCard
 
 Character: PRD/W84-084
@@ -1924,14 +1923,28 @@ Power 1000
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Auto: 
+Auto: OnPlay
 {
-
+    PayCost 1
+    {
+        RevealUpTo Deck 3
+        ChooseCardsFromTargets 1 1 Any
+        If HasTarget
+        {
+            MoveCard Clock
+            SearchWaitingRoom HasTrait Landosol
+        }
+    }
 }
-Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay cost. If you do, look at up to 3 cards from the top of your deck, choose a card among them, place it to your clock, and put the rest into waiting room. If you placed a card to clock in this card matter, choose a «Landosol» character in your waiting room and return it to hand.
-Auto: 
+Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay cost. If you do, look at up to 3 cards from the top of your deck, choose a card among them, place it to your clock, and put the rest into waiting room. If you placed a card to clock with this effect, choose a «Landosol» character in your waiting room and return it to hand.
+Auto: OnOpponentClimaxPlay
 {
-
+    Question Put this card in stock ?
+    If Yes
+    {
+        TargetSelf
+        MoveCard Stock
+    }
 }
 Text Auto:When your opponent's climax is placed on your climax area, you may put this card in your stock.
 EndCard
@@ -1945,16 +1958,33 @@ Power 4000
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Cont: 
+Combo Little Lyrical Adventure
+*GainPowerForEachOther(500,Landosol)
+Auto: OnAttack
 {
-
+    If Climax Little Lyrical Adventure && AllYourCharacters hasTrait Landosol
+    {
+        TargetTop Deck 1
+        Reveal
+        IfTarget Compare ThatCardsLevel 0 OrLess && IsCharacter
+        {
+            MoveCard Stock
+        }
+        Else
+        {
+            MultipleChoiceQuestion Put the card in hand or waiting room ?|Hand|Waiting room|
+            If Answer 0
+            {
+                MoveCard Hand
+            }
+            If Answer 1
+            {
+                MoveCard WaitingRoom
+            }
+        }
+    }
 }
-Text Cont:For each of your other «Landosol» characters, this card gets +500 power.
-Auto: 
-{
-
-}
-Text Auto:CxCombo when this card attacks, if "Little Lyrical Adventure" is in your climax area, and all of your characters are «Landosol», reveal the top card of your deck. If that card is a level 0 or lower character place that card to stock, if it is not then place it in your hand or your waiting room.
+Text Auto:CxCombo when this card attacks, if "Little Lyrical Adventure" is in your climax area, and all of your characters are «Landosol», reveal the top card of your deck. If that card is a level 0 or lower character, put that card to stock. If not, put that card in your hand or waiting room.
 EndCard
 
 Character: PRD/W84-086
@@ -1967,16 +1997,26 @@ Power 10000
 Soul 2
 Trait1 Landosol
 Trait2 Guild
-Auto: 
+Combo Little Lyrical Adventure
+*Healer
+Auto: OnEndOfAttack
 {
-
+    If Climax Little Lyrical Adventure && StageContains 4 Other && HasTrait Landosol
+    {
+        PayCost 2 Discard 1 Any
+        {
+            ChooseNumber 2 3 Choose the burn value.
+            Burn Answer
+            If LastDamageCanceled
+            {
+                SearchLocationForTargets WaitingRoom 0 2 HasTrait Landosol
+                Reorder
+                MoveCard Stock
+            }
+        }
+    }
 }
-Text Auto:When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
-Auto: 
-{
-
-}
-Text Auto:CxCombo [(2) Put 1 card from hand to the waiting room] At the end of this card's attack, if "Little Lyrical Adventure" is in your climax area and the number of other «Landosol» characters you have is 4 or more, you may pay cost. If you do, choose 2 or 3. deal X damage to your opponent, where X equals the chosen number. If that damage is Cancelled, choose up to 2 «Landosol» characters in your waiting room and place them in any order to stock. (damage Cancel can occur)
+Text Auto:CxCombo [(2) Put 1 card from hand to the waiting room] At the end of this card's attack, if "Little Lyrical Adventure" is in your climax area and the number of other «Landosol» characters you have is 4 or more, you may pay cost. If you do, choose 2 or 3. deal X damage to your opponent, where X equals the chosen number. If that damage is Canceled, choose up to 2 «Landosol» characters in your waiting room and place them in any order to stock.
 EndCard
 
 Character: PRD/W84-087
@@ -1988,16 +2028,19 @@ Power 1500
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Auto: 
+Combo Phoenix Sword
+Auto: OnTriggerCheckClimax
 {
-
+    IfOther NameEquals Phoenix Sword
+    {
+        PayCost Discard 1 Any
+        {
+            DrawCard
+        }
+    }
 }
 Text Auto:CxCombo [Put 1 card from hand to the waiting room] When your character's trigger check reveals "Phoenix Sword", you may pay cost. If you do, draw a card.
-Act: 
-{
-
-}
-Text Act:BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 «Landosol» character, reveal it, put it in your hand, and shuffle your deck.
+*Act1RestSelfSearchBrainstorm(Landosol)
 EndCard
 
 Character: PRD/W84-088
@@ -2009,11 +2052,14 @@ Power 2000
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Cont: 
+Cont: Assist
 {
-
+    TargetLocation Level
+    *CountColors
+    MultiplyXValue 500
+    GainPower X
 }
-Text Cont:ASSIST EXPERIENCE All of your cards in front of this card get +X power. X is equal to the number of different colors among the cards in your level times 500.
+Text Cont:ASSIST EXPERIENCE Your characters in front of this card get +X power. X is equal to the number of different colors among the cards in your level times 500.
 EndCard
 
 Character: PRD/W84-089
@@ -2025,11 +2071,21 @@ Power 2000
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Auto: 
+Auto: StartOpponentDrawPhase
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget Compare ThatCardsLevel 1 OrMore
+    {
+        Question return this card to hand ?
+        If Yes
+        {
+            TargetSelf
+            MoveCard Hand
+        }
+    }
 }
-Text Auto:At the beginning of your opponent's draw phase, reveal the top card of your deck. If it's level 1 or higher, you may return this card to your hand. (climax cards are considered level 0 for this card effect. Put the revealed card back where it was)
+Text Auto:At the beginning of your opponent's draw phase, reveal the top card of your deck. If it's level 1 or higher, you may return this card to your hand.
 EndCard
 
 Character: PRD/W84-090
@@ -2042,21 +2098,17 @@ Power 9500
 Soul 2
 Trait1 Landosol
 Trait2 Guild
-Cont: 
+*EarlyPlay2OrLessClimax
+Cont: GiveSelf
 {
-
+    TargetLocation Backstage
+    NarrowTargets Other && HasTrait Landosol
+    SetXValue TargetCount
+    MultiplyXValue 500
+    GainPower X
 }
-Text Cont:If there are 2 or fewer climax cards in your waiting room, this card gets -1 level while in your hand.
-Cont: 
-{
-
-}
-Text Cont:For each of your other «Landosol» characters in the backstage, this card gets +500 power.
-Auto: 
-{
-
-}
-Text Auto:When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+Text Cont:This card gets +500 power for each of your other «Landosol» characters in the backstage.
+*Healer
 EndCard
 
 Character: PRD/W84-091
@@ -2069,14 +2121,17 @@ Power 9500
 Soul 2
 Trait1 Landosol
 Trait2 Guild
-Auto: 
+*OnPlayStockSwap(1)
+Auto: OnAttack
 {
-
-}
-Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay cost. If you do, your opponent places all of their stock in their waiting room, then puts the same number of cards from the top of their deck to stock.
-Auto: 
-{
-
+    PayCost 1 Discard 1 Any
+    {
+        TargetSelf
+        UntilEndOfOpponentsTurn
+        GainPower 2500
+        UntilEndOfOpponentsTurn
+        GainSoul 1
+    }
 }
 Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card attacks, you may pay cost. If you do, this card gets +2500 power and +1 soul until the end of your opponent's next turn.
 EndCard
@@ -2091,16 +2146,29 @@ Power 10000
 Soul 2
 Trait1 Landosol
 Trait2 Guild
-Cont: 
+Combo Power of Princess Knight
+*GlobalPower(1500,Landosol)
+Auto: StartClimaxPhase
 {
-
+    If InLocation CenterStage
+    {
+        PayCost Discard 1 NameEquals Power of Princess Knight
+        {
+            TargetLocation Stage
+            NarrowTargets Other
+            GainPower 1000
+            GainEffect
+            {
+                Auto: OnOpponentReverse
+                {
+                    *OptionalBurn(1)
+                }
+                Text Auto:When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent.
+            }
+        }
+    }
 }
-Text Cont:All your other «Landosol» characters get +1500 power.
-Auto: 
-{
-
-}
-Text Auto:CxCombo [Put a "power of Princess Knight" from hand to the waiting room] At the beginning of your climax phase, if this card is in your center stage you may pay cost. If you do, until end of turn all of your other characters get +1000 power and the following ability. "Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent." (damage Cancel can occur)
+Text Auto:CxCombo [Put a "Power of Princess Knight" from hand to the waiting room] At the beginning of your climax phase, if this card is in your center stage you may pay cost. If you do, all of your other characters get +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent."
 EndCard
 
 Character: PRD/W84-093
@@ -2112,11 +2180,31 @@ Power 2500
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Auto: 
+Combo Princess Strike
+Combo Grim Burst
+Combo For Victory
+Auto: OnReversed
 {
-
+    TargetLocation Level
+    *CountColors
+    If Compare X 2 OrMore
+    {
+        SetXValue 4
+    }
+    Else
+    {
+        SetXValue 3
+    }
+    RevealUpTo Deck X
+    ChooseCardsFromTargets 0 1 NameEquals Princess Strike || NameEquals Grim Burst || NameEquals For Victory
+    If HasTarget
+    {
+        MoveCard Hand
+        Discard 1 Any
+    }
+    PutTheRestIntoTheWaitingRoom
 }
-Text Auto:CxCombo EXPERIENCE When this card is reverse in battle, look at up to X cards from the top of your deck, choose up to 1 "Princess Strike or "Grim Burst" or "For Victory" among them, show it to your opponent, put it in your hand, and put the rest into waiting room. If you put a card into your hand in this card manner, choose a card in your hand and discard it to the waiting room. X is equal to 4 of the number of colors among the cards in your level is 2 or more, otherwise X is equal to 3.
+Text Auto:CxCombo EXPERIENCE When this card becomes reverse in battle, look at up to X cards from the top of your deck, choose up to 1 "Princess Strike", "Grim Burst" or "For Victory" among them, show it to your opponent, put it in your hand, and put the rest into waiting room. If you put a card into your hand via this effect, choose a card in your hand and discard it to the waiting room. X is equal to 4 of the number of colors among the cards in your level is 2 or more, otherwise X is equal to 3.
 EndCard
 
 Character: PRD/W84-094
@@ -2128,9 +2216,13 @@ Power 4000
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Cont: 
+Cont: GiveSelf
 {
-
+    If StageContains 1 other Lost Memory, Yuuki
+    {
+        GainPower 2500
+        GainLevel 1
+    }
 }
 Text Cont:If you have another "Lost Memory, Yuuki", this card gets +1 level and +2500 power.
 EndCard
@@ -2144,16 +2236,26 @@ Power 4500
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Auto: 
+*OnAttackGivePowerForEachOther(500,Landosol)
+Auto: OnAttack
 {
-
+    TargetLocation Stage
+    GainEffect
+    {
+        Auto: OnThisTriggerCheck
+        {
+            IfOther IsClimax
+            {
+                PayCost Discard 1 IsClimax
+                {
+                    SearchWaitingRoom HasTrait Landosol
+                }
+            }
+        }
+        Text Auto:[Put 1 climax from hand to the waiting room] When this card triggers a climax during trigger check, you may pay cost. If you do, choose a «Landosol» character in your waiting room and return it to hand.
+    }
 }
-Text Auto:When this card attacks, choose 1 of your other «Landosol» characters, and that character gets +X power until end of turn. X equals 500 times the number of your other «Landosol» characters.
-Auto: 
-{
-
-}
-Text Auto:When this card attacks, until end of turn all of your characters gets the following ability. "Auto: [Put 1 climax from hand to the waiting room] When this card triggers a climax during trigger check, you may pay cost. If you do, choose a «Landosol» character in your waiting room and return it to hand."
+Text Auto:When this card attacks, all your characters gets the following ability until end of turn. "Auto: [Put 1 climax from hand to the waiting room] When this card triggers a climax during trigger check, you may pay cost. If you do, choose a «Landosol» character in your waiting room and return it to hand."
 EndCard
 
 Character: PRD/W84-096
@@ -2165,16 +2267,17 @@ Power 4500
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Auto: 
+Combo Phoenix Sword
+*OnPlayGainPower(1500)
+Auto: OnAttack
 {
-
+    If Climax Phoenix Sword && StageContains 1 Other HasTrait Landosol
+    {
+        GainSpecialEffect DoubleTrigger
+    }
 }
-Text Auto:When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
-Auto: 
-{
-
-}
-Text Auto:CxCombo When this card attacks, of "Phoenix Sword" is in your climax area and you have another «Landosol» character, for this card attack you trigger twice during trigger check.
+Quick
+Text Auto:CxCombo When this card attacks, of "Phoenix Sword" is in your climax area and you have another «Landosol» character, during this card's attack, this card performs trigger check twice during the trigger step.
 EndCard
 
 Character: PRD/W84-097
@@ -2187,16 +2290,14 @@ Power 2000
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Auto: 
+Auto: OnPlay
 {
-
+    TargetLocation OpponentCenterStage
+    LosePower 500
 }
-Text Auto:When this card is placed on the stage from your hand, all of your opponent's center stage characters get -500 power until end of turn.
-Auto: 
-{
-
-}
-Text Auto:When this card becomes reverse, if the level of the battle opponent of this card is higher than the level of your opponent, you may put that character on the bottom of the deck.
+Quick
+Text Auto:When this card is placed on the stage from your hand, all your opponent's characters in center stage get -500 power until end of turn.
+*BlueEarlyPlayBomb
 EndCard
 
 Character: PRD/W84-098
@@ -2209,14 +2310,20 @@ Power 3000
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Auto: 
+Auto: OnClimaxPlay
 {
-
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +4000 power.
+    UntilEndOfOpponentsTurn
+    GainPower 4000
 }
-Text Auto:When a climax is placed to your climax area, choose 1 of your characters, and until the end of your opponent's next turn that character gets +4000 power.
-Auto: 
+Text Auto:When a climax is placed to your climax area, choose 1 of your characters, and that character gets +4000 power until the end of your opponent's next turn.
+Auto: OnTriggerCheckClimax
 {
-
+    PayCost Discard 1 IsClimax
+    {
+        SearchWaitingRoom IsCharacter
+    }
 }
 Text Auto:[Put 1 climax from your hand to the waiting room] When your character's trigger check reveals a climax card, you may pay cost. If you do, choose a character in your waiting room and return it to your hand.
 EndCard
@@ -2230,14 +2337,16 @@ Power 1500
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Auto: 
+*OnPlayMill2GainPowerForEachCharacter(1000,Landosol)
+Auto: OnReversed
 {
-
-}
-Text Auto:When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room, and this card gets +X power until end of turn. X equals 1000 times the number of «Landosol» characters among those cards.
-Auto: 
-{
-
+    SearchLocationForTargets OpponentClock 1 1 Any
+    If HasTarget
+    {
+        MoveCard OpponentWaitingRoom
+        TargetTop OpponentDeck
+        MoveCard Clock
+    }
 }
 Text Auto:When this card becomes reverse in battle, you may choose a card in your opponent's clock and put it in the waiting room. If you do, your opponent puts the top card of their deck in the clock.
 EndCard
@@ -2251,9 +2360,14 @@ Power 2500
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Auto: 
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchLocationForTargets Deck 0 1 NameEquals Lost Memory, Yuuki
+        PlaceOnStage false true true false
+        ShuffleLocation Deck
+    }
 }
 Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "Lost Memory, Yuuki", put it in any position on the stage, and shuffle your deck.
 EndCard
@@ -2267,14 +2381,22 @@ Power 3500
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Auto: 
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget HasTrait Landosol
+    {
+        *GiveCharacterPower(3000,Any)
+    }
 }
-Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If it is a «Landosol» character, choose 1 of your characters, and that character gets +3000 power until end of turn. (Put the revealed card back where it was)
-Auto: 
+Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If it is a «Landosol» character, choose 1 of your characters, and that character gets +3000 power until end of turn.
+Auto: OnPlay
 {
-
+    PayCost 2
+    {
+        SearchWaitingRoom HasTrait Landosol
+    }
 }
 Text Auto:[(2)] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a «Landosol» character in your waiting room and return it to your hand.
 EndCard
@@ -2289,16 +2411,12 @@ Power 1000
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Auto: 
+Auto: OnUseThisCardsBackup
 {
-
+    Mill 3
 }
 Text Auto:When you use this card's BACKUP, put the top 3 cards of your deck in the waiting room.
-Act: 
-{
-
-}
-Text Act:[Counter] BACKUP 2000, level 1 [(1) Put this card from your hand to the waiting room]
+Backup 2000
 EndCard
 
 Character: PRD/W84-103
@@ -2311,16 +2429,8 @@ Power 2000
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Auto: 
-{
-
-}
-Text Auto:When you use this card's BACKUP, if you have a «Landosol» character, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
-Act: 
-{
-
-}
-Text Act:[Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+*BackupBonus1000(Landosol)
+Backup 2500
 EndCard
 
 Character: PRD/W84-104
@@ -2333,14 +2443,22 @@ Power 4500
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Cont: 
+*LevelAssist
+Cont: GiveSelf
 {
-
-}
-Text Cont:ASSIST Your characters in front of this card get +X power. X equals 500 times level of that character.
-Cont: 
-{
-
+    If Compare MyLevel 3 OrMore
+    {
+        GainEffect
+        {
+            Act: 1 SendSelf WaitingRoom
+            {
+                RememberSlot
+                SearchLocationForTargets WaitingRoom 1 1 NameEquals Spun Bond, Yuuki
+                PlaceOnRememberedSlot
+            }
+            Text Act: [(1) Put this card into the waiting room] Choose a "Spun Bond, Yuuki" in your waiting room and put it in the position this card was in.
+        }
+    }
 }
 Text Cont:If you are level 3 or higher, This gets the following ability. "Act: [(1) Put this card into the waiting room] Choose a "Spun Bond, Yuuki" in your waiting room and put it in the position this card was in."
 EndCard
@@ -2355,14 +2473,14 @@ Power 7000
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Auto: 
+*OnPlayGainPowerForEach(1000,Landosol)
+Auto: OnOpponentReverse
 {
-
-}
-Text Auto:When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 1000 times the number of your «Landosol» characters.
-Auto: 
-{
-
+    TargetLocation Climax
+    If HasTarget
+    {
+        *OptionalBlindStock
+    }
 }
 Text Auto:When this card's battle opponent becomes reverse, if there is a climax in your climax area, you may put the top card of your deck to stock.
 EndCard
@@ -2374,7 +2492,23 @@ Level 1
 Cost 0
 Effect: 
 {
-
+    Repeat 50
+    {
+        RevealExactly Deck 1
+        IfTarget IsClimax
+        {
+            MoveCard Hand
+            EndPeek
+            ShuffleLocation Deck
+            StopLoop
+        }
+        If Compare CardsInDeck 0 OrLess
+        {
+            EndPeek
+            ShuffleLocation Deck
+            StopLoop
+        }
+    }
 }
 Text Reveal cards from the top of your deck until a climax is revealed or all cards in your deck are revealed, put a revealed climax in your hand, return all revealed cards to your deck and shuffle your deck.
 EndCard
@@ -2386,9 +2520,10 @@ Level 1
 Cost 0
 Effect: 
 {
-
+    Mill 2
+    SearchWaitingRoom Compare ThatCardsLevel TotalLevel OrLess && HasTrait Landosol
 }
-Text Put the top 2 cards of your deck in the waiting room, choose up to 1 level X or lower «Landosol» character in your waiting room and return it to your hand. X equals the sum of the levels of the cards put in the waiting room by this card effect. (climax cards are considered level 0 for this card effect)
+Text Put the top 2 cards of your deck in the waiting room, choose up to 1 level X or lower «Landosol» character in your waiting room and return it to your hand. X equals the sum of the levels of the cards put in the waiting room by this card effect.
 EndCard
 
 Climax: PRD/W84-108
@@ -2415,9 +2550,14 @@ Power 5000
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Cont: 
+Cont: GiveSelf
 {
-
+    TargetFacing
+    IfTarget Compare ThatCardsCost 0 OrLess
+    {
+        GainPower 3500
+        GainLevel 1
+    }
 }
 Text Cont:If the cost of the character facing this card is 0 or lower, this card gets +1 level and +3500 power.
 EndCard
@@ -2431,9 +2571,13 @@ Power 2500
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Cont: 
+Cont: GiveSelf
 {
-
+    If LocationContainsOrLess Stock 2 Any
+    {
+        GainPower 1000
+        GainLevel 1
+    }
 }
 Text Cont:If there are 2 or fewer cards in your stock, this card gets +1 level and +1000 power.
 EndCard
@@ -2447,14 +2591,10 @@ Power 1500
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Cont: 
+*GlobalPower(500,Landosol)
+Auto: OnTriggerCheckClimax
 {
-
-}
-Text Cont:All your other «Landosol» characters get +500 power.
-Auto: 
-{
-
+    *GiveCharacterPower(1000,Any)
 }
 Text Auto:When your character's trigger check reveals a climax card, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
@@ -2469,16 +2609,8 @@ Power 2500
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Auto: 
-{
-
-}
-Text Auto:When you use this card's BACKUP, choose 1 of your characters in battle, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, send that character to memory."
-Act: 
-{
-
-}
-Text Act:[Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+*MemoryBackup
+Backup 3000
 EndCard
 
 
