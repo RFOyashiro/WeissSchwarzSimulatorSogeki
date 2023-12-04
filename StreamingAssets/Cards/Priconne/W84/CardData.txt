@@ -2613,4 +2613,333 @@ Trait2 Guild
 Backup 3000
 EndCard
 
+Character: PRD/W84-T01
+Name Guild Formation!, Kokkoro
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Landosol
+Trait2 Guild
+Cont: 
+{
+
+}
+Text Cont:If all your characters are «Landosol», this card gets +1000 power.
+Auto: 
+{
+
+}
+Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, look at up to 3 cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: PRD/W84-T02
+Name Dinner Together, Pecorine
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Landosol
+Trait2 Guild
+Cont: 
+{
+
+}
+Text Cont:ASSIST Your characters in front of this card get +500 power.
+Auto: 
+{
+
+}
+Text Auto:When your climax is placed on your climax area, choose 1 of your characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: PRD/W84-T03
+Name Forest Encounter, Kokkoro
+Color Y
+Level 0
+Cost 0
+Power 4000
+Soul 1
+Trait1 Landosol
+Trait2 Guild
+Cont: 
+{
+
+}
+Text Cont:You cannot play events or BACKUP from hand.
+EndCard
+
+Character: PRD/W84-T04
+Name Guild Solicitation, Kokkoro
+Color Y
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 Landosol
+Trait2 Guild
+Auto: 
+{
+
+}
+Text Auto:When this card attacks, choose 1 of your characters, and that character gets +2500 power until end of turn.
+EndCard
+
+Character: PRD/W84-T05
+Name Guild Formation!, Pecorine
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Landosol
+Trait2 Guild
+Cont: 
+{
+
+}
+Text Cont:If the number of other «Landosol» characters you have is 2 or more, this card gets +1000 power.
+Auto: 
+{
+
+}
+Text Auto:CxCombo When this card's battle opponent becomes reverse, if "It's Name is, Gourmet Guild!" is in your climax area, search your deck for up to 1 «Landosol» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: PRD/W84-T06
+Name Protection from Ameth-sama, Kokkoro
+Color Y
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Landosol
+Trait2 Guild
+EndCard
+
+Character: PRD/W84-T07
+Name Cooking Start, Pecorine
+Color Y
+Level 1
+Cost 1
+Trigger Soul
+Power 1000
+Soul 1
+Trait1 Landosol
+Trait2 Guild
+Act: 
+{
+
+}
+Text Act:[Counter] BACKUP 2500, level 1 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: PRD/W84-T08
+Name First Collection Quest, Kokkoro
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 Landosol
+Trait2 Guild
+Cont: 
+{
+
+}
+Text Cont:ASSIST Your characters in front of this card get +X power. X equals 500 times level of that character.
+Act: 
+{
+
+}
+Text Act:[(1) Rest this card] If you have 2 or fewer cards in your hand, draw a card.
+EndCard
+
+Character: PRD/W84-T09
+Name Perpetually Peckish Stomach, Pecorine
+Color Y
+Level 2
+Cost 2
+Trigger Soul
+Power 7500
+Soul 2
+Trait1 Landosol
+Trait2 Guild
+Auto: 
+{
+
+}
+Text Auto:When this card attacks, this card gets +X power until end of turn. X equals 1000 times the number of your other «Landosol» characters.
+Auto: 
+{
+
+}
+Text Auto:ENCORE [Put a «Landosol» character from your hand to the waiting room]
+EndCard
+
+Character: PRD/W84-T10
+Name Gastronomy Quest, Pecorine
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Landosol
+Trait2 Guild
+Cont: 
+{
+
+}
+Text Cont:If you have another "Secret Menu, Karyl" and "First Collection Quest, Kokkoro", this card gets +2000 power.
+Auto: 
+{
+
+}
+Text Auto:When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+EndCard
+
+Climax: PRD/W84-T11
+Name It's Name is, Gourmet Guild!
+*ChoiceClimax
+EndCard
+
+Climax: PRD/W84-T12
+Name Awakening
+Color Y
+
+EndCard
+
+Character: PRD/W84-T13
+Name Guild Formation!, Yuuki
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Landosol
+Trait2 Guild
+Cont: 
+{
+
+}
+Text Cont:During your turn, all your other "Protection from Ameth-sama, Kokkoro" get +2000 power.
+Auto: 
+{
+
+}
+Text Auto:BOND/"Protection from Ameth-sama, Kokkoro" [(1)]
+EndCard
+
+Character: PRD/W84-T14
+Name Secret Menu, Karyl
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Landosol
+Trait2 Guild
+Act: 
+{
+
+}
+Text Act:[(1)] draw a card, and discard a card from your hand to the waiting room.
+Act: 
+{
+
+}
+Text Act:BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, draw up to 1 card.
+EndCard
+
+Character: PRD/W84-T15
+Name Invitation to a Meal, Karyl
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Landosol
+Trait2 Guild
+Auto: 
+{
+
+}
+Text Auto:At the beginning of your opponent's attack phase, you may choose a character in your opponent's center stage and move it to another open position in the center stage.
+EndCard
+
+Character: PRD/W84-T16
+Name Amazement and Doubt, Karyl
+Color R
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 Landosol
+Trait2 Guild
+Cont: 
+{
+
+}
+Text Cont:For each of your other «Landosol» characters, this card gets +500 power.
+Auto: 
+{
+
+}
+Text Auto:ENCORE [Put the top card of your deck in your clock]
+EndCard
+
+Character: PRD/W84-T17
+Name Dinner Together, Karyl
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 6500
+Soul 1
+Trait1 Landosol
+Trait2 Guild
+Cont: 
+{
+
+}
+Text Cont:For each of your other «Landosol» characters, this card gets +1000 power.
+EndCard
+
+Character: PRD/W84-T18
+Name Guild Formation!, Karyl
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Landosol
+Trait2 Guild
+Auto: 
+{
+
+}
+Text Auto:When this card is placed on the stage from your hand, draw a card, discard a card from your hand to the waiting room, and choose up to 1 of your opponent's characters and return it to hand.
+Auto: 
+{
+
+}
+Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card's battle opponent becomes reverse, you may pay cost. If you do, deal 1 damage to your opponent. (damage Cancel can occur)
+EndCard
+
+Event: PRD/W84-T19
+Name Story that Gets Things Moving
+Color R
+Level 2
+Cost 2
+Effect: 
+{
+
+}
+Text Choose up to 2 characters in your waiting room and return them to your hand.
+EndCard
 
