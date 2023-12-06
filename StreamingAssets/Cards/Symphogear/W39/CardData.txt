@@ -46,7 +46,7 @@ Auto: OnAttack
 Text Auto:CxCombo When this card attacks, if "Glorious Break" is in your climax area, all your <Music> characters get +2000 power and this card gets the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is cancelled, you may deal 1 damage to your opponent."
 Auto: StartMyEncorePhase
 {
-	If Not LocationContains Memory NameEquals Ignite Module
+	If Not LocationContains Memory 1 NameEquals Ignite Module
 	{
 		TargetSelf
 		MoveCard WaitingRoom
@@ -1045,7 +1045,7 @@ Auto: OnAttack
 Text Auto:[Return 2 character cards from your waiting room to the deck, shuffle your deck] When this card attacks, you may pay cost. If you do, this card gets +1000 power until the end of your opponent's next turn.
 Auto: StartMyEncorePhase
 {
-	If Not LocationContains Memory NameEquals Ignite Module
+	If Not LocationContains Memory 1 NameEquals Ignite Module
 	{
 		TargetSelf
 		MoveCard WaitingRoom
@@ -1516,7 +1516,7 @@ Text Cont:If there are 2 or more '"No Need for Sword" Tsubasa' in your waiting r
 *Give4000PowerAtStartOfOpponentsTurn
 Auto: StartMyEncorePhase
 {
-	If Not LocationContains Memory NameEquals Ignite Module
+	If Not LocationContains Memory 1 NameEquals Ignite Module
 	{
 		TargetSelf
 		MoveCard WaitingRoom

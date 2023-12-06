@@ -115,7 +115,14 @@ Auto: OnPlay
     }
 }
 Text Auto:[(1) Discard 2 cards] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for a character with "Hibiki" in its card name and a character with "Miku" in its card name, reveal them, put them in your hand, and shuffle your deck.
-*ClimaxExchange
+Auto: OnSentFromStageToWaitingRoom
+{
+    PayCost 1 Discard 1 IsClimax
+    {
+        SearchWaitingRoom IsClimax
+    }
+}
+Text Auto: [(1) Discard a climax] When this card is placed on the stage from your hand, you may pay the cost, choose a climax in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W52-005

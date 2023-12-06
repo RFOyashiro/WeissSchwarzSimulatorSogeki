@@ -1371,12 +1371,12 @@ Trait2 Weapon
 Combo Highest Good: Rose Cross
 Cont: GiveSelf
 {
-    If LocationContains Level 1 NameEquals Airgatlam || NameEquals Ame-no-Habakiri
+    If LocationContains Level 1 NameEquals Airget-Lamh || NameEquals Ame-no-Habakiri
     {
         GainPower 3000
     }
 }
-Text Cont:EXPERIENCE If "Airgetlam" or "Ame-no-Habakiri" is in your level, this card gets +3000 power.
+Text Cont:EXPERIENCE If "Airget-Lamh" or "Ame-no-Habakiri" is in your level, this card gets +3000 power.
 Auto: OnEndOfAttack
 {
     If Climax Highest Good: Rose Cross && StageContains 1 Other && HasTrait Music
@@ -1631,10 +1631,10 @@ Auto: OnPlay
 {
     PayCost Discard 1 HasTrait Music && IsCharacter
     {
-        SearchDeck NameEquals Airgetlam
+        SearchDeck NameEquals Airget-Lamh
     }
 }
-Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "Airgetlam", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "Airget-Lamh", reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SG/W89-066
@@ -1950,7 +1950,7 @@ Text You cannot play this card from hand if you have 3 or fewer <Music> characte
 EndCard
 
 Event: SG/W89-077
-Name Airgetlam
+Name Airget-Lamh
 Color R
 Level 2
 Cost 1
@@ -2117,12 +2117,12 @@ Trait1 Music
 Trait2 Weapon
 Cont: GiveSelf
 {
-    If LocationContains Level 1 NameEquals Airgatlam | Ame-no-Habakiri
+    If LocationContains Level 1 NameEquals Airget-Lamh | Ame-no-Habakiri
     {
         GainPower 4500
     }
 }
-Text Cont:EXPERIENCE If you have "Airgetlam" or "Ame-no-Habakiri" in your level, this card gets +4500 power.
+Text Cont:EXPERIENCE If you have "Airget-Lamh" or "Ame-no-Habakiri" in your level, this card gets +4500 power.
 *Healer
 Auto: OnAttack
 {
@@ -2130,13 +2130,13 @@ Auto: OnAttack
     {
         TargetTop Deck
         Reveal
-        IfTarget HasTrait Music && IsCharacter || NameEquals Airgatlam | Ame-no-Habakiri
+        IfTarget HasTrait Music && IsCharacter || NameEquals Airget-Lamh | Ame-no-Habakiri
         {
             Burn 1
         }
     }
 }
-Text Auto:[(1)] When this card attacks, you may pay cost. If you do, reveal the top card of your deck, if it is a <Music> character, "Airgetlam" or "Ame-no-Habakiri", deal 1 damage to your opponent.
+Text Auto:[(1)] When this card attacks, you may pay cost. If you do, reveal the top card of your deck, if it is a <Music> character, "Airget-Lamh" or "Ame-no-Habakiri", deal 1 damage to your opponent.
 EndCard
 
 Character: SG/W89-087
