@@ -2931,3 +2931,64 @@ Climax: PRD/W84-T20
 Name Power of Princess Knight
 *RedStockSoul
 EndCard
+
+Character: PRD/W84-P01
+Name To the Next Adventure, Pecorine
+Color Y
+Level 2
+Cost 1
+Power 7500
+Trigger Soul
+Soul 1
+Trait1 Landosol
+Trait2 Guild
+Cont: GiveSelf
+{
+    If Compare Experience 3 OrMore
+    {
+        SetXToNumberOfCharacters Other && HasTrait Landosol
+        MultiplyXValue 500
+        GainPower X
+    }
+}
+Text Cont:EXPERIENCE If the sum of the level of cards in your level is 3 or more, this card gets +500 power for each of your other «Landosol» character.
+Auto: OnAttack
+{
+    If StageContains 2 Other && HasTrait Landosol
+    {
+        GainPower 2000
+    }
+}
+Text Auto:When this card attacks, if the number of other «Landosol» characters you have is 2 or more, this card gets +2000 power until end of turn.
+EndCard
+
+Character: PRD/W84-P02
+Name Back to Everyday Life, Kokkoro
+Color G
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Landosol
+Trait2 Guild
+*OnPlayMill2GainPowerForEachCharacter(1000,Landosol)
+Auto: OnOpponentReverse
+{
+    DrawCard
+    Discard 1 Any
+}
+Text Auto:When this card's battle opponent becomes reverse, draw a card and put 1 card from your hand into waiting room.
+EndCard
+
+Character: PRD/W84-P03
+Name After the Fierce Battle, Karyl
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Landosol
+Trait2 Guild
+*OnPlayReorderTop2
+*OnPlayTradeClimaxForCharacter(Landosol)
+EndCard
