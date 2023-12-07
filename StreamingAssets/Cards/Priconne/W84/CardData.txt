@@ -1311,22 +1311,14 @@ Trait1 Landosol
 Trait2 Guild
 Auto: OnOtherPlacedOnStageFromHand
 {
-    TargetRemembered
-    If Compare TargetCount 1 OrLess
+    IfOther HasTrait Landosol
     {
-        SaveTargets
-        IfOther HasTrait Landosol
-        {
-            TargetSelf
-            GainPower 1000
-            TargetOther
-            AddSavedToCurrentTargets
-            RememberTargets
-        }
-        Else
-        {
-            RefundTimesPerTurn
-        }
+        TargetSelf
+        GainPower 1000
+    }
+    Else
+    {
+        RefundTimesPerTurn
     }
 }
 TimesPerTurn 2
