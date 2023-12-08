@@ -1865,6 +1865,7 @@ Effect:
                 CardsInAreaLoseAllNames AllOpponentsCards IsCharacter
             }
         }
+        Text Cont:All of your opponent's characters in all areas lose their name. They cannot get names.
     }
 }
 Text Choose 1 of your characters, and that character gets the following ability until the next end of your Opponent's turn. "Cont:All of your opponent's characters in all areas lose their name. They cannot get names." 
@@ -1921,6 +1922,7 @@ Auto: OnPlay
     {
         RevealUpTo Deck 3
         ChooseCardsFromTargets 1 1 Any
+        PutTheRestIntoTheWaitingRoom
         If HasTarget
         {
             MoveCard Clock
@@ -1964,7 +1966,7 @@ Auto: OnAttack
         }
         Else
         {
-            MultipleChoiceQuestion Put the card in hand or waiting room ?|Hand|Waiting room|
+            MultipleChoiceQuestion Put the card in hand or waiting room ?|Hand|Waiting room
             If Answer 0
             {
                 MoveCard Hand
