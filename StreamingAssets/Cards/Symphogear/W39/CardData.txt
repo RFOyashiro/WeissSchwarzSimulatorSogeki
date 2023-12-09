@@ -1137,7 +1137,6 @@ Auto: OnUseThisCardsBackup
             ChooseCharacterFromTargets Choose 1 of your Opponent's Characters whose Level is higher than your Opponent and put it in the Waiting Room.
             MoveCard WaitingRoom
         }
-
     }
 }
 Text Auto:[(2) Put a character from your stage in the waiting room] When you use this card's BACKUP, you may pay cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent and put that character in the waiting room.
