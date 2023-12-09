@@ -2,3 +2,6 @@ Series: Princess Connect! Re: Dive
 Folder: Priconne/W84
 Prefix: PRD/W84
 SetName: Princess Connect! Re: Dive
+Folder: Priconne/W100
+Prefix: PRD/W100
+SetName: Princess Connect! Re: Dive Season 2

@@ -1256,7 +1256,7 @@ Auto: OnAttack
         GainPower 1000
     }
 }
-Text Auto:CxCombo EXPERIENCE When this card attacks, if "Grim Burst" is in your climax area and the sum of levels of the cards in your level is 2 or greater, put the top 2 cards of your deck into the waiting room, choose up to 1 level X or lower «Landosol» character in your waiting room, return it to your hand, and until end of turn this card gets +1000 power. X equals the sum of the levels of the cards placed into the waiting room by this card effect. (climax cards are considered level 0)
+Text Auto:CxCombo EXPERIENCE When this card attacks, if "Grim Burst" is in your climax area and the sum of levels of the cards in your level is 2 or greater, put the top 2 cards of your deck into the waiting room, choose up to 1 level X or lower «Landosol» character in your waiting room, return it to your hand, and until end of turn this card gets +1000 power. X equals the sum of the levels of the cards placed into the waiting room by this card effect.
 EndCard
 
 Character: PRD/W84-056
@@ -1856,6 +1856,7 @@ Effect:
 {
     TargetLocation Stage
     ChooseCharacterFromTargets Choose a character to give the effect
+    UntilEndOfOpponentsTurn
     GainEffect
     {
         Cont: GiveSelf
