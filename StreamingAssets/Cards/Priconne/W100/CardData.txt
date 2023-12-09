@@ -1627,7 +1627,7 @@ Cont: GiveSelf
     If StageContains 2 Other && HasTrait Landosol
     {
         GainPower 1500
-        GainPower
+        GainEffect
         {
             *HandEncore
         }
@@ -1929,7 +1929,7 @@ Power 2000
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Auto: 
+Auto: OnPlay
 {
     TargetTop Deck 1
     Reveal

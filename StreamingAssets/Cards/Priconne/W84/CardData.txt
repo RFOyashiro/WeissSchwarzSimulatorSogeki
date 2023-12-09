@@ -1860,10 +1860,7 @@ Effect:
     {
         Cont: GiveSelf
         {
-            If Not MyCard
-            {
-                CardsInAreaLoseAllNames AllOpponentsCards IsCharacter
-            }
+            CardsInAreaLoseAllNames AllOpponentsCards IsCharacter
         }
         Text Cont:All of your opponent's characters in all areas lose their name. They cannot get names.
     }
