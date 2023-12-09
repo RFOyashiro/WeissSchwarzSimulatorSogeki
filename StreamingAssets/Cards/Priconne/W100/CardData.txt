@@ -3071,7 +3071,7 @@ EndCard
 
 Character: PRD/W100-P02
 Name Hikikomori in the Invory Tower, Yuni
-Color Y
+Color G
 Level 1
 Cost 0
 Power 2500
