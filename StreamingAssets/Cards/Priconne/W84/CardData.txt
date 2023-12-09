@@ -321,12 +321,14 @@ Auto: OnOtherSentFromStageToWaitingRoom
                 TargetOther
                 Revive
                 GainPower 3000
+                RememberTargets
                 If MyTurn
                 {
                     ScheduleEffect StartOpponentDrawPhase
                     {
                         Effect:
                         {
+                            TargetRemembered
                             GainPower 3000
                         }
                     }
@@ -337,6 +339,7 @@ Auto: OnOtherSentFromStageToWaitingRoom
                     {
                         Effect:
                         {
+                            TargetRemembered
                             GainPower 3000
                         }
                     }
