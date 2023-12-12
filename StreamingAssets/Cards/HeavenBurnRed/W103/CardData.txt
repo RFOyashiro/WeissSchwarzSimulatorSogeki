@@ -7,16 +7,25 @@ Power 1500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31C
-Auto: 
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget HasTrait Seraph
+    {
+        TargetSelf
+        GainPower 2000
+    }
 }
-Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Seraph» character, this card gets +2000 power until end of turn. (Put the revealed card back where it was)
-Auto: 
+Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Seraph» character, this card gets +2000 power until end of turn.
+Auto: OnSentFromStageToWaitingRoom
 {
-
+    PayCost Discard 1 Any
+    {
+        *Check4Add1Level1OrHigher
+    }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. (climax cards are considered to be level 0 for this card effect)
+Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: HBR/W103-002
@@ -28,14 +37,27 @@ Power 4500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31C
-Cont: 
+Combo Unit 31C
+Cont: GiveSelf
 {
-
+    If MyTurn && StageContains 2 Other && HasTrait Seraph
+    {
+        GainPower 2000
+    }
 }
 Text Cont:During your turn, if the number of other «Seraph» characters you have is 2 or more, this card gets +2000 power.
-Auto: 
+Auto: OnAttack
 {
-
+    If Climax Unit 31C
+    {
+        PayCost Discard 1 Any
+        {
+            Repeat 2
+            {
+                *Check3Add1(Seraph)
+            }
+        }
+    }
 }
 Text Auto:CxCombo [Put 1 card from your hand to the waiting room] When this card attacks, if "Unit 31C" is in your climax area, you may pay cost. If you do, perform the following action twice. "Look at up to 3 cards from the top of your deck and search for up to 1 «Seraph» character, reveal it, put it in your hand, and put the rest into your waiting room."
 EndCard
