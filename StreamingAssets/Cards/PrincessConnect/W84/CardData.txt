@@ -148,6 +148,7 @@ Auto: OnAttack
         IfTarget HasTrait Landosol
         {
             MoveCard Stock
+            TargetSelf
             *GainBounceWhenFrontalAttacked
         }
     }
