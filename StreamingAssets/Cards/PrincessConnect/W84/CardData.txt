@@ -288,16 +288,17 @@ Auto: StartMainPhase
     *ScryToBottom
 }
 Text Auto:At the beginning of your main phase, look at the top card of your deck and put it either on top or bottom of your deck.
-Act: 1 RestSelf
+Act: 1 Rest 2 Any
 {
     Brainstorm 5
+    TargetBrainstormed
     NarrowTargets NameEquals Bond of Sisters || NameEquals Irreplaceable Time
     Repeat TargetCount
     {
         SearchDeck HasTrait Landosol
     }
 }
-Text Act:CxCombo BRAINSTORM [(1) Rest this card] Flip over the top 5 cards of your deck and put them in the waiting room. For each "Bond of Sisters" or "Irreplaceable Time" revealed this way, search your deck for up to 1 «Landosol» character, reveal it, put it in your hand, and shuffle your deck.
+Text Act:CxCombo BRAINSTORM [(1) Rest 2 of your characters] Flip over the top 5 cards of your deck and put them in the waiting room. For each "Bond of Sisters" or "Irreplaceable Time" revealed this way, search your deck for up to 1 «Landosol» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: PRD/W84-011
