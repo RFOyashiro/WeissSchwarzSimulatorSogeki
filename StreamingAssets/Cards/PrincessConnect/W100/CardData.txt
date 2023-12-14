@@ -246,10 +246,10 @@ Power 1000
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-ConditionalTrigger Soul StageContains 1 Other && NameEquals Pecorine, For Somebody
+ConditionalTrigger Soul StageContains 1 Other && NameEquals For Somebody, Pecorine
 Cont: GiveSelfEverywhere
 {
-    If StageContains 1 Other && NameEquals Pecorine, For Somebody
+    If StageContains 1 Other && NameEquals For Somebody, Pecorine
     {
         GainEffect
 		{
@@ -285,7 +285,7 @@ Cont: GiveSelfEverywhere
         }
     }
 }
-Text Cont:If you have another "Pecorine, For Somebody", this card in all zones gets a soul trigger icon and the following 2 abilities. "Auto: [Put 3 «Landosol» character cards from your hand to the waiting room] When you use this card's BACKUP, you may pay cost. If you do, choose a character in battle, and that character gets the following ability until end of turn. 'Cont: This card cannot deal damage to players.'" "Act: BACKUP 1000, Level 0 [Put this card from your hand into your waiting room]"
+Text Cont:If you have another "For Somebody, Pecorine", this card in all zones gets a soul trigger icon and the following 2 abilities. "Auto: [Put 3 «Landosol» character cards from your hand to the waiting room] When you use this card's BACKUP, you may pay cost. If you do, choose a character in battle, and that character gets the following ability until end of turn. 'Cont: This card cannot deal damage to players.'" "Act: BACKUP 1000, Level 0 [Put this card from your hand into your waiting room]"
 EndCard
 
 Character: PRD/W100-010
