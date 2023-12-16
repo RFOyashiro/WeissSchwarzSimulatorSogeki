@@ -72,21 +72,31 @@ Power 9000
 Soul 2
 Trait1 Seraph
 Trait2 Unit 30G
-Cont: 
+*EarlyPlayInClock(Awakening Iris\, Yuina Shirakawa)
+Cont: GiveSelf
 {
-
-}
-Text Cont:If "Awakening Iris, Yuina Shirakawa" is in your clock, this card gets -1 level while in your hand.
-Cont: 
-{
-
+    If StageContains 2 Other && IsColor Yellow
+    {
+        GainPower 1500
+        GainEffect
+        {
+            *HandEncoreTrait(Seraph)
+        }
+    }
 }
 Text Cont:If the number of other YELLOW characters you have is 2 or more, this card gets +1500 power and "Auto: ENCORE [Put a «Seraph» character from your hand to the waiting room]".
-Auto: 
+Auto: OnOpponentReverse
 {
-
+    If PlayedThisTurn && StageContains 2 Other && IsColor Yellow
+    {
+        PayCost Discard 1 Any
+        {
+            Burn 1
+            *OptionalHeal
+        }
+    }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, if the number of other YELLOW characters you have is 2 or more, you may pay cost. If you do, deal 1 damage to your opponent, and put up to 1 card from the top of your clock in the waiting room. (damage Cancel can occur)
+Text Auto:[Put 1 card from your hand to the waiting room] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, if the number of other YELLOW characters you have is 2 or more, you may pay cost. If you do, deal 1 damage to your opponent, and put up to 1 card from the top of your clock in the waiting room.
 EndCard
 
 Character: HBR/W103-004
@@ -98,16 +108,15 @@ Power 500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31C
-Cont: 
+*500Assist
+Auto: OnTriggerCheckClimax
 {
-
+    PayCost Discard 1 IsClimax
+    {
+        *CheckAndAdd(2)
+    }
 }
-Text Cont:All your other «Seraph» characters get +500 power.
-Auto: 
-{
-
-}
-Text Auto:[Put a climax Card from your hand to the waiting room] When your character's trigger check reveals a climax card, you may pay cost. If you do, look at up to 2 cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room.
+Text Auto:[Put a climax from your hand to the waiting room] When your character's trigger check reveals a climax card, you may pay cost. If you do, look at up to 2 cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: HBR/W103-005
