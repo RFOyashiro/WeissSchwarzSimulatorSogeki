@@ -738,6 +738,8 @@ Auto: OnSpecificClimaxPlay Bond of Sisters
     {
         TargetLocation Stage
         NarrowTargets HasTrait Landosol
+        ChooseCharacterFromTargets Choose a character to give the effect.
+        AddSelfToTargets
         GainEffect
         {
             Auto: OnAttack
