@@ -1105,19 +1105,22 @@ Cont: GiveAll
 {
     If Other && NameEquals My Wish, Shiori
     {
-        Auto: OnAttack
+        GainEffect
         {
-            TargetTop Deck 2
-            If Compare TargetCount 2 OrMore
+            Auto: OnAttack
             {
-                Reorder
+                TargetTop Deck 2
+                If Compare TargetCount 2 OrMore
+                {
+                    Reorder
+                }
+                Else
+                {
+                    View
+                }
             }
-            Else
-            {
-                View
-            }
+            Text Auto: When this card attacks, look at up to 2 cards from the top of your deck and put them on top of the deck in any order.
         }
-        Text Auto: When this card attacks, look at up to 2 cards from the top of your deck and put them on top of the deck in any order.
     }
 }
 Text Cont:All your other "My Wish, Shiori" get the following ability. "Auto: When this card attacks, look at up to 2 cards from the top of your deck and put them on top of the deck in any order."
@@ -1264,9 +1267,11 @@ Auto: OnPlay
     SearchLocationForTargets Level 0 1 Any
     If HasTarget
     {
+        SaveTargets
         SearchLocationForTargets WaitingRoom 1 1 Any
         If HasTarget
         {
+            AddSavedToCurrentTargets
             Exchange
         }
     }
