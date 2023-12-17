@@ -1098,26 +1098,34 @@ Combo Relaxing in Casual Wear
 *Healer
 Auto: OnAttack
 {
-	If Climax Relaxing in Casual Wear && StageContains 1 Other && HasTrait Saga
-	{
-		PayCost 1 Discard 1 Any
-		{
-			*OptionalBurn(1)
-			If LastDamageCanceled
-			{
-				*OptionalBurn(2)
-				If LastDamageCanceled
-				{
-					Question_Obvious Put the top 3 card of your opponent's deck in their clock ?
-					If yes
-					{
-						TargetTop OpponentDeck 3
-						MoveCard OpponentClock
-					}
-				}
-			}
-		}
-	}
+    If Climax Relaxing in Casual Wear && StageContains 1 Other && HasTrait Saga
+    {
+        PayCost 1 Discard 1 Any
+        {
+            Question_Obvious Deal 1 damage to your opponent?
+            If Yes
+            {
+                Burn 1
+                If LastDamageCanceled
+                {
+                    Question_Obvious Deal 2 damage to your opponent?
+                    If Yes
+                    {
+                        Burn 2
+                        If LastDamageCanceled
+                        {
+                            Question_Obvious Put the top 3 card of your opponent's deck in their clock ?
+                            If Yes
+                            {
+                                TargetTop OpponentDeck 3
+                                MoveCard OpponentClock
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 Text Auto:CxCombo [(1) Discard 1 card] When this card attacks, if "Relaxing in Casual Wear" is in your climax area and you have another «Saga» character, you may pay cost. If you do, you may deal 1 damage to your opponent. If that damage is cancelled, you may deal 2 damage to your opponent. If that damage is cancelled, you may put the top 3 cards of your opponent's deck in their clock.
 EndCard
