@@ -1745,7 +1745,17 @@ Power 1500
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-*OnPlayCheckTopAddDiscard(Landosol)
+Auto: OnAttack
+{
+    TargetTop Deck 1
+    Reveal
+    IfThatCard IsCharacter && HasTrait Landosol
+    {
+        MoveCard Hand
+        Discard 1 Any
+    }
+}
+Text Auto: When this card attacks, reveal the top card of your deck, if it is a «Landosol» character, add it to your hand and discard 1 card.
 Act: 1 SendSelf WaitingRoom
 {
     *Check4Add1(Landosol)
@@ -2453,7 +2463,10 @@ Cont: GiveSelf
             {
                 RememberSlot
                 SearchLocationForTargets WaitingRoom 1 1 NameEquals Spun Bond, Yuuki
-                PlaceOnRememberedSlot
+                If HasTarget
+                {
+                    PlaceOnRememberedSlot
+                }
             }
             Text Act: [(1) Put this card into the waiting room] Choose a "Spun Bond, Yuuki" in your waiting room and put it in the position this card was in.
         }
