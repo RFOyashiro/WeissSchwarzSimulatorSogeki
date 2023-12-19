@@ -2461,11 +2461,10 @@ Cont: GiveSelf
         {
             Act: 1 SendSelf WaitingRoom
             {
-                RememberSlot
                 SearchLocationForTargets WaitingRoom 1 1 NameEquals Spun Bond, Yuuki
                 If HasTarget
                 {
-                    PlaceOnRememberedSlot
+                    Change
                 }
             }
             Text Act: [(1) Put this card into the waiting room] Choose a "Spun Bond, Yuuki" in your waiting room and put it in the position this card was in.
