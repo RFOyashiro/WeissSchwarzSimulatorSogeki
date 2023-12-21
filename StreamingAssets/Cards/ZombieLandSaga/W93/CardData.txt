@@ -1105,8 +1105,11 @@ Auto: OnAttack
             Question_Obvious Deal 1 damage to your opponent?
             If Yes
             {
+                TargetLocation OpponentDeck
+                SetXValue TargetCount
                 Burn 1
-                If LastDamageCanceled
+                TargetLocation OpponentDeck
+                If Not Compare X TargetCount Exactly && LastDamageCanceled
                 {
                     Question_Obvious Deal 2 damage to your opponent?
                     If Yes
