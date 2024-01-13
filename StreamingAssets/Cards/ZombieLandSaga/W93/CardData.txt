@@ -2758,7 +2758,7 @@ Auto: OnAttack
         IfTarget HasTrait Saga && IsCharacter
         {
             TargetSelf
-            GainPower 1000
+            GainPower 11000
         }
     }
 }
