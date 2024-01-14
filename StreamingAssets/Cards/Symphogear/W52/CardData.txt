@@ -938,58 +938,6 @@ Auto: OnReverseOpponent
 Text Auto:CxCombo When this card's battle opponent becomes reverse, if "A Crisis Never Seen Before" is in your climax area and you have another <Noise> character, choose up to 1 <Noise> character in your waiting room and put it in your stock, choose 1 of your characters, and that character gets +2000 power until the end of your opponent's next turn.
 EndCard
 
-Character: SG/W52-041b
-Name Noise
-Color G
-Level 1
-Cost 0
-Power 3500
-Soul 1
-Trait1 Noise
-Combo A Crisis Never Seen Before
-Army
-*GainPowerForEachOther(500, Noise)
-Auto: OnReverseOpponent
-{
-    If Climax A Crisis Never Seen Before && StageContains 1 Other && HasTrait Noise
-    {
-        SearchLocationForTargets WaitingRoom 0 1 HasTrait Noise
-        MoveCard Stock
-        TargetLocation Stage
-        ChooseCharacterFromTargets Choose a character to give +2000 power.
-        UntilEndOfOpponentsTurn
-        GainPower 2000
-    }
-}
-Text Auto:CxCombo When this card's battle opponent becomes reverse, if "A Crisis Never Seen Before" is in your climax area and you have another <Noise> character, choose up to 1 <Noise> character in your waiting room and put it in your stock, choose 1 of your characters, and that character gets +2000 power until the end of your opponent's next turn.
-EndCard
-
-Character: SG/W52-041c
-Name Noise
-Color G
-Level 1
-Cost 0
-Power 3500
-Soul 1
-Trait1 Noise
-Combo A Crisis Never Seen Before
-Army
-*GainPowerForEachOther(500, Noise)
-Auto: OnReverseOpponent
-{
-    If Climax A Crisis Never Seen Before && StageContains 1 Other && HasTrait Noise
-    {
-        SearchLocationForTargets WaitingRoom 0 1 HasTrait Noise
-        MoveCard Stock
-        TargetLocation Stage
-        ChooseCharacterFromTargets Choose a character to give +2000 power.
-        UntilEndOfOpponentsTurn
-        GainPower 2000
-    }
-}
-Text Auto:CxCombo When this card's battle opponent becomes reverse, if "A Crisis Never Seen Before" is in your climax area and you have another <Noise> character, choose up to 1 <Noise> character in your waiting room and put it in your stock, choose 1 of your characters, and that character gets +2000 power until the end of your opponent's next turn.
-EndCard
-
 Character: SG/W52-042
 Name Leiur Darahim
 Color G

@@ -413,7 +413,7 @@ Auto: OnSpecificClimaxPlay Lightning-Speed Matchup
         ChooseCharacterFromTargets Choose a character to give the effect.
         GainEffect
         {
-            Auto: OnOpponentReverse
+            Auto: OnReverseOpponent
             {
                 Question_Obvious Put the top card of your deck in stock ?
                 If Yes
@@ -423,6 +423,7 @@ Auto: OnSpecificClimaxPlay Lightning-Speed Matchup
                 }
                 SearchWaitingRoom NameEquals "To Protect That Smile" Kanaho || NameEquals "Gran Eple's Winning Strategy" Takane
             }
+            Text Auto: When this card's battle opponent becomes reverse, put up to 1 card from the top of your deck in your stock, choose up to 1 '"To Protect That Smile" Kanaho' or '"Gran Eple's Winning Strategy" Takane' in your waiting room and return it to your hand.
         }
     }
 }
@@ -650,7 +651,7 @@ Cont: GiveSelf
 	{
 		GainEffect
 		{
-			Auto: OnOpponentReverse
+			Auto: OnReverseOpponent
 			{
 				Question Put the top card of your deck into your stock?
 				If Yes
@@ -871,7 +872,7 @@ Auto: OnClimaxPlay
         GainPower 1000
         GainEffect
         {
-            Auto: OnOpponentReverse
+            Auto: OnReverseOpponent
             {
                 If LocationContains OpponentClock 1 Any
                 {
@@ -939,7 +940,7 @@ Soul 1
 Trait1 Lily
 Trait2 Hitotsuyanagi Corps
 *OnAttackGivePower(1000,Any)
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     Question Put this card into memory?
 	If Yes
@@ -1006,7 +1007,7 @@ Auto: OnPlay
 }
 Quick
 Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
 	If LocationContains Climax 1 Any
 	{
@@ -1036,7 +1037,7 @@ Auto: OnClimaxPlay
 }
 Quick
 Text Auto:When your climax is placed on your climax area, this card gets +1500 power until end of turn.
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     If Climax Sweet Memories
     {
@@ -1328,16 +1329,12 @@ Auto: OnPlay
 }
 Quick
 Text Auto:When this card is placed on the stage from your hand, this card gets +4500 power and the following ability until the end of your opponent's next turn. "Cont: During battles involving this card, no player may play BACKUP from hand."
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
 {
-    TargetFacing
-    IfTarget Compare ThatCardsLevel 2 OrMore
-    {
-        SearchWaitingRoom IsCharacter
-        Discard 1 Any
-    }
+    SearchWaitingRoom IsCharacter
+    Discard 1 Any
 }
-Text Auto:When a level 2 or higher battle opponent of this card becomes reverse, choose a character in your waiting room and return it to your hand, and discard a card from your hand to the waiting room.
+Text Auto:When this card's level 2 or higher battle opponent becomes reverse, choose a character in your waiting room and return it to your hand, and discard a card from your hand to the waiting room.
 EndCard
 
 Character: ALL/S90-052
@@ -1444,7 +1441,7 @@ Power 3000
 Soul 1
 Trait1 Lily
 Trait2 Hitotsuyanagi Corps
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
 	If PlayedThisTurn
 	{
@@ -1472,7 +1469,7 @@ Auto: OnUseAct
 {
     GainEffect
     {
-        Auto: OnOpponentReverse
+        Auto: OnReverseOpponent
         {
             PayCost 1
             {
@@ -1507,7 +1504,7 @@ Cont: GiveSelf
 }
 Text Cont: During your turn, this card gets +4000 power.
 *Healer
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
 	If Climax Endless Fighting Days
 	{
@@ -1527,7 +1524,7 @@ Auto: OnOpponentReverse
 		}
 	}
 }
-Text Auto: CxCombo [(2) Put 4 cards from your hand into your waiting room, Send 1 "Endless Fighting Days" from your climax area into your waiting room] When this card's battle opponent becomes reversed, you may pay the cost. If you do, perform the following action 2 times. "Choose up to 1 card in your opponent's waiting room and put it on top of your opponent's deck, and deal 4 damage to your opponent."
+Text Auto: CxCombo [(2) Put 4 cards from your hand into your waiting room, send 1 "Endless Fighting Days" from your climax area into your waiting room] When this card's battle opponent becomes reversed, you may pay the cost. If you do, perform the following action 2 times. "Choose up to 1 card in your opponent's waiting room and put it on top of your opponent's deck, and deal 4 damage to your opponent."
 EndCard
 
 Character: ALL/S90-058
@@ -1747,7 +1744,7 @@ Act: RestSelf
     GainPower 2000
     GainEffect
     {
-        Auto: OnOpponentReverse
+        Auto: OnReverseOpponent
         {
             TargetFacing
             If InLocation OpponentStage
@@ -1786,7 +1783,7 @@ Auto: OnClimaxPlay
         ChooseCharacterFromTargets Choose a character to give the effect.
         GainEffect
         {
-            Auto: OnOpponentReverse
+            Auto: OnReverseOpponent
             {
                 SearchWaitingRoom IsCharacter
             }
@@ -1980,7 +1977,7 @@ Soul 1
 Trait1 Lily
 Trait2 Hitotsuyanagi Corps
 *OnAttackGivePowerForEachOther(500,Lily)
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     TargetFacing
     If OnStage
@@ -2077,7 +2074,7 @@ Act: Rest 2 HasTrait Lily
 	ChooseCharacter InLocation Stage
 	GainEffect
 	{
-		Auto: OnOpponentReverse
+		Auto: OnReverseOpponent
 		{
 			Question Put the top card of your deck into your stock?
 			If Yes
@@ -2141,7 +2138,7 @@ Cont: GiveSelf
 		GainPower 1500
 		GainEffect
 		{
-			Auto: OnOpponentReverse
+			Auto: OnReverseOpponent
 			{
 				PayCost 2
 				{
@@ -2236,7 +2233,7 @@ Cont: GiveSelf
     GainPower X
 }
 Text Cont:This card gets +1000 power for each of your other «Lily» characters in your backstage.
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     If Climax Scenery Seen From the Skies && StageContains 1 Other && HasTrait Lily
     {
@@ -2599,7 +2596,7 @@ Auto: OnSpecificClimaxPlay Feelings That Should Be Expressed
         ChooseCharacterFromTargets Choose a character to give the effect
         GainEffect
         {
-            Auto: OnOpponentReverse
+            Auto: OnReverseOpponent
             {
                 *OptionalHeal
             }
@@ -2839,7 +2836,7 @@ Cont: GiveSelf
 	GainPower X
 }
 Text Cont: This card gets +2000 power for each other «Lily» character on your backstage.
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     If Compare Experience 5 OrMore
     {
@@ -3056,7 +3053,7 @@ Auto: OnAttack
         GainPower 1000
         GainEffect
         {
-            Auto: OnOpponentReverse
+            Auto: OnReverseOpponent
             {
                 TargetFacing
                 IfTarget OnStage

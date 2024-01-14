@@ -178,7 +178,7 @@ Cont: GiveSelf
                 *GiveCharacterPower(1000,Any)
                 GainEffect
                 {
-                    Auto: OnOpponentReverse
+                    Auto: OnReverseOpponent
                     {
                         Question Put that character into stock ?
                         If Yes
@@ -924,7 +924,7 @@ Cont: GiveSelf
     }
 }
 Text Cont:During the turn this card was placed on the stage from your hand, ff this card would attack, you may choose 1 character in your opponent's back stage, and this card frontal attacks that character as the defending character instead.
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     If Climax Mercurius Foundation
     {
@@ -1489,7 +1489,7 @@ Auto: OnPlay
     }
 }
 Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If the revealed card is a «Landosol» character, choose 1 of your opponent's level 3 or lower character, and 1 of your opponent's level 0 or lower character in their waiting room, and swap them. For the turn, the swapped character on stage gets «Pudding».
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     If StageContains 1 Other && HasTrait Landosol
     {
@@ -1517,7 +1517,7 @@ Auto: OnUseAccelerate
     ChooseCharacterFromTargets Choose a character to give the effect.
     GainEffect
     {
-        Auto: OnOpponentReverse
+        Auto: OnReverseOpponent
         {
             PayCost 1
             {
@@ -1797,7 +1797,7 @@ Power 3500
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-Auto: OnOpponentReverse
+Auto: OnOtherOpponentReversed
 {
     *GiveCharacterPower(500,Any)
 }
@@ -2168,7 +2168,7 @@ Auto: StartClimaxPhase
             GainPower 1000
             GainEffect
             {
-                Auto: OnOpponentReverse
+                Auto: OnReverseOpponent
                 {
                     *OptionalBurn(1)
                 }
@@ -2485,7 +2485,7 @@ Soul 1
 Trait1 Landosol
 Trait2 Guild
 *OnPlayGainPowerForEach(1000,Landosol)
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     TargetLocation Climax
     If HasTarget
@@ -2708,7 +2708,7 @@ Trait1 Landosol
 Trait2 Guild
 Combo It's Name is, Gourmet Guild!
 *GainPowerWithEnoughCharacters(1000,2,Landosol)
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     If Climax It's Name is, Gourmet Guild!
     {
@@ -2915,7 +2915,7 @@ Auto: OnPlay
     Bounce
 }
 Text Auto:When this card is placed on the stage from your hand, draw a card, discard a card from your hand to the waiting room, and choose up to 1 of your opponent's characters and return it to hand.
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     PayCost 1 Discard 1 Any
     {
@@ -2983,7 +2983,7 @@ Soul 1
 Trait1 Landosol
 Trait2 Guild
 *OnPlayMill2GainPowerForEachCharacter(1000,Landosol)
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     DrawCard
     Discard 1 Any

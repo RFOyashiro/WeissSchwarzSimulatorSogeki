@@ -81,7 +81,7 @@ Power 5000
 Soul 1
 Trait1 Lily
 Trait2 Hitotsuyanagi Corps
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     If PlayedThisTurn
     {
@@ -117,7 +117,7 @@ Power 7000
 Trait1 Lily
 Trait2 Hitotsuyanagi Corps
 *OnAttackGainPowerForEachOther(1000,Lily)
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
 	TargetLocation Stage
 	NarrowTargets HasTrait Lily
@@ -215,7 +215,7 @@ Cont: GiveSelf
 	}
 }
 Text Cont: If you have 2 or more other «Lily» characters, this card gets +1000 power.
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
 	If Climax Contract with CHARM
 	{
@@ -447,7 +447,7 @@ Auto: OnPlay
 	GainPower X
 }
 Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck into your waiting room, and this card gets +X power until end of turn. X is equal to the number of «Lily» characters revealed x1000.
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
 	TargetLocation Stage
 	AIChoice GainPower 1000
@@ -486,7 +486,7 @@ Cost 0
 Power 5000
 Trait1 Lily
 Trait2 Hitotsuyanagi Corps
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
 	If PlayedThisTurn
 	{
@@ -762,7 +762,7 @@ Cont: GiveSelf
 		GainPower 2500
 		GainEffect
 		{
-			Auto: OnOpponentReverse
+			Auto: OnReverseOpponent
 			{
 				Question Put the battle opponent into your opponent's memory?
 				If Yes
@@ -880,7 +880,7 @@ Trait1 Lily
 Trait2 Alfheim
 Combo Neunwelt Tactic
 *OnPlayGainPower(1500)
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     If Climax Neunwelt Tactic
     {
@@ -956,7 +956,7 @@ Auto: OnPlay
 	GainPower 2000
 }
 Text Auto: When this card is placed on the stage from your hand, choose up to 1 of your opponent's characters and return it to their hand, and this card gets +2000 power until end of turn.
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
 	If Climax True Intention to Conceal
 	{
@@ -1250,7 +1250,7 @@ Cont: GiveSelf
     GainSpecialEffect CannotUseBackup
 }
 Text Cont:You cannot play events or BACKUP from hand.
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     Question Put that character in clock ?
     If Yes
@@ -1309,7 +1309,7 @@ Auto: OnAttack
 		GainPower 1000
 		GainEffect
 		{
-			Auto: OnOpponentReverse
+			Auto: OnReverseOpponent
 			{
 				SearchWaitingRoom IsCharacter
 			}
@@ -1806,7 +1806,7 @@ Act: 1
 	GainPower 1000
 	GainEffect
 	{
-		Auto: OnOpponentReverse
+		Auto: OnReverseOpponent
 		{
 			Question Send the character facing this card on top of your opponent's deck?
 			If Yes
@@ -2152,18 +2152,14 @@ Auto: OnPlay
     GainPower X
 }
 Text Auto:When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 1000 times the number of your «Lily» characters.
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
 {
-    TargetFacing
-    IfTarget Compare ThatCardsLevel 2 OrMore
+    PayCost 1
     {
-        PayCost 1
-        {
-            SearchWaitingRoom IsCharacter
-        }
+        SearchWaitingRoom IsCharacter
     }
 }
-Text Auto:[(1)] When a level 2 or higher battle opponent of this card becomes reverse, you may pay cost. If you do, choose a character in your waiting room and return it to your hand.
+Text Auto:[(1)] When this card's level 2 or higher battle opponent becomes reverse, you may pay cost. If you do, choose a character in your waiting room and return it to your hand.
 EndCard
 
 Event: ALL/S76-062
@@ -2424,7 +2420,7 @@ Auto: OnSpecificClimaxPlay Place to Return
 		ChooseCharacterFromTargets Choose character to give the effect to.
 		GainEffect
 		{
-			Auto: OnOpponentReverse
+			Auto: OnReverseOpponent
 			{
 				SearchDeck HasTrait Lily
 			}
@@ -3754,7 +3750,7 @@ Soul 1
 Trait1 Lily
 Trait2 Hitotsuyanagi Corps
 *OnPlayGainPowerForEach(1000,Lily)
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     TargetLocation Climax
     If HasTarget

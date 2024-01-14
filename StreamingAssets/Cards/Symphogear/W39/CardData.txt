@@ -825,6 +825,7 @@ Auto: OnPlay
 			{
 				*OptionalBlindStock
 			}
+            Text Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock.
 		}
 	}
 }

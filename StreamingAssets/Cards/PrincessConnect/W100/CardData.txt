@@ -444,7 +444,7 @@ Auto: OnAttack
         GainPower 3500
         GainEffect
         {
-            Auto: OnOpponentReverse
+            Auto: OnReverseOpponent
             {
                 TargetFacing
                 If OnStage
@@ -458,6 +458,7 @@ Auto: OnAttack
                     }
                 }
             }
+            Text Auto: When this card's battle opponent becomes reverse, you may put that character in stock. If you do, put the bottom card of your opponent's stock in the waiting room.
         }
     }
 }
@@ -508,7 +509,7 @@ Cont: GiveSelf
         GainPower 500
         GainEffect
         {
-            Auto: OnOpponentReverse
+            Auto: OnReverseOpponent
             {
                 TargetLocation Climax
                 If HasTarget
@@ -577,7 +578,7 @@ Soul 1
 Trait1 Landosol
 Trait2 Guild
 *YellowEarlyPlayBomb
-Auto: OnOpponentReverse
+Auto: OnReversed
 {
     PayCost Discard 2 Any
     {
@@ -727,7 +728,7 @@ Act: 1 RestSelf
     ChooseCharacterFromTargets Choose a character to give the effect.
     GainEffect
     {
-        Auto: OnOpponentReverse
+        Auto: OnReverseOpponent
         {
             *Check4Add1Level1OrHigher
         }
@@ -1000,7 +1001,7 @@ Auto: OnPlay
 }
 Quick
 Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Landosol» character, this card gets +2000 power until end of turn.
-Auto: OnOpponentReverse 
+Auto: OnReverseOpponent 
 {
     TargetFacing
     IfTarget OnStage
@@ -1204,7 +1205,7 @@ Cont: GiveSelf
     GainTrait Cheru
 }
 Text Cont:This card gets +2000 power and «Cheru» for each marker under this card.
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     Question Look at the top card of your deck ?
     If Yes
@@ -1355,7 +1356,7 @@ Trait1 Landosol
 Trait2 Guild
 Combo Ryukyuan Hound's Knuckle Arrow
 *PowerOnMyTurn(3000)
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     *PutCardFromWaitingRoomIntoStock(HasTrait Landosol)
     TargetTop Deck 1
@@ -1772,7 +1773,7 @@ Cont: GiveSelf
     }
 }
 Text Cont:If you have another "Teaching of the Chivalry, Tomo", this card gets +3000 power.
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     If StageContains 1 Other && HasTrait Landosol
     {
@@ -2199,6 +2200,7 @@ Auto: OnSpecificClimaxPlay Carmina! On stage!
             {
                 SearchWaitingRoom HasTrait Landosol
             }
+            Text Auto: When this card's battle opponent becomes reverse, you may choose a «Landosol» character in your waiting room and return it to your hand.
         }
     }
 }
@@ -2254,7 +2256,7 @@ Cont: GiveSelf
     }
 }
 Text Cont:If you have another «Landosol» character, this card gets +3000 power.
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     If StageContains 1 Other && HasTrait Landosol
     {
@@ -2592,7 +2594,7 @@ Auto: OnPlay
 	GainPower 2000
 }
 Text Auto:When this card is placed on the stage from your hand, choose up to 1 character in your hand whose level is equal to or lower than your level and put it in any position on the stage, and this card gets +2000 power until end of turn.
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     If StageContains 2 Other && HasTrait Landosol
     {
@@ -2764,7 +2766,7 @@ Cont: GiveSelf
     }
 }
 Text Cont:If you have another character with "Yuuki" in its card name, this card gets +2500 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
-Auto: OnOpponentReverse
+Auto: OnReverseOpponent
 {
     If MyTurn && StageContains 1 Other && NameContains Yuuki
     {

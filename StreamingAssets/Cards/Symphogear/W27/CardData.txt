@@ -212,18 +212,14 @@ Auto: OnAttack
 	}
 }
 Text Auto:CxCombo When this card attacks, if "Vitalization" is in your climax area, this card gets +X power until end of turn. X is equal to 2000 times the number of <Music> characters you have.
-Auto: OnReverseOpponent
+Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
 {
-	TargetBattleOpponent
-	IfTarget Compare ThatCardsLevel 2 OrMore
-	{
-		PayCost 1
-		{
-			SearchDeck HasTrait Music
-		}
-	}
+    PayCost 1
+    {
+        SearchDeck HasTrait Music
+    }
 }
-Text Auto:[(1)] When this card's battle opponent becomes reverse, if the level of that charater is 2 or higher, you may pay cost. If you do, search your deck for up to 1 <Music> character, reveal it, put it in your hand and shuffle your deck.
+Text Auto:[(1)] When this card's level 2 or higher battle opponent becomes reverse, you may pay cost. If you do, search your deck for up to 1 <Music> character, reveal it, put it in your hand and shuffle your deck.
 EndCard
 
 Character: SG/W27-013

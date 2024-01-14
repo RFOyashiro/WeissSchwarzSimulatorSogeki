@@ -933,20 +933,21 @@ Act: RestSelf
 		{
 		    If Compare CardsInOpponentsClock 1 OrMore
 		    {
-			TargetBattleOpponent
-			IfTarget OnStage
-			{
-			    Question Put the top card of the opponent's clock into the waiting room to put the battle opponent into clock?
-			    If Yes
-			    {
-				TargetTop OpponentClock 1
-				MoveCard OpponentWaitingRoom
-				TargetBattleOpponent
-				MoveCard OpponentClock
-			    }
-			}
+                TargetBattleOpponent
+                IfTarget OnStage
+                {
+                    Question Put the top card of the opponent's clock into the waiting room to put the battle opponent into clock?
+                    If Yes
+                    {
+                    TargetTop OpponentClock 1
+                    MoveCard OpponentWaitingRoom
+                    TargetBattleOpponent
+                    MoveCard OpponentClock
+                    }
+                }
 		    }
 		}
+        Text Auto: When this card's battle opponent becomes reversed, you may put the top card of your opponent's clock into the waiting room. If you do, put that character into your opponent's clock.
 	}
 }
 Text Act:[Rest this card] Choose 1 of your «Saga» characters, it gets +500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reversed, you may put the top card of your opponent's clock into the waiting room. If you do, put that character into your opponent's clock."
@@ -1713,7 +1714,7 @@ Auto: OnReverseOpponent
     Reorder
     EndPeek
 }
-Text Auto:When the Battle Opponent of this becomes Reversed, look at up to 2 cards from the top of your Library, and put them back on top of your Library in any order.
+Text Auto:When this card's battle opponent becomes reverse, look at up to 2 cards from the top of your Library, and put them back on top of your Library in any order.
 EndCard
 
 Character: ZLS/W93-067

@@ -352,7 +352,7 @@ Cont: GiveSelf
                     Burn 1
                 }
             }
-            Text Auto:[Put 3 cards from hand to the waiting room] When this card's battle opponent becomes reverse, you may pay cost. If you do, deal 1 damage to your opponent twice."
+            Text Auto:[Put 3 cards from hand to the waiting room] When this card's battle opponent becomes reverse, you may pay cost. If you do, deal 1 damage to your opponent twice.
         }
     }
 }
@@ -1124,7 +1124,7 @@ Auto: OnDamageNotCanceled
 Text Auto:When this card's damage is not cancel, this card gets +3000 power until end of turn.
 Auto: OnReverseOpponent
 {
-    Question_Obvious Draw a card ?
+    Question_Obvious Draw a card and discard a card ?
     If Yes
     {
         DrawCard
