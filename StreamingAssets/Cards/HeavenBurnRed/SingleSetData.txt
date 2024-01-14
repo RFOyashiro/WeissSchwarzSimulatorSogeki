@@ -1,0 +1,4 @@
+Series: Heaven Burn Red
+Folder: HeavenBurnRed/W103
+Prefix: HBR/W103
+SetName: Heaven Burn Red
