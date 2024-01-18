@@ -1265,15 +1265,18 @@ Trait1 Landosol
 Trait2 Guild
 Auto: OnPlay
 {
-    SearchLocationForTargets Level 0 1 Any
-    If HasTarget
+    If Compare MyLevel 1 OrMore
     {
-        SaveTargets
-        SearchLocationForTargets WaitingRoom 1 1 Any
+        SearchLocationForTargets Level 0 1 Any
         If HasTarget
         {
-            AddSavedToCurrentTargets
-            Exchange
+            SaveTargets
+            SearchLocationForTargets WaitingRoom 1 1 Any
+            If HasTarget
+            {
+                AddSavedToCurrentTargets
+                Exchange
+            }
         }
     }
 }
@@ -1358,12 +1361,15 @@ Combo Ryukyuan Hound's Knuckle Arrow
 *PowerOnMyTurn(3000)
 Auto: OnReverseOpponent
 {
-    *PutCardFromWaitingRoomIntoStock(HasTrait Landosol)
-    TargetTop Deck 1
-    Reveal
-    IfTarget Compare ThatCardsLevel 1 OrMore
+    If Climax Ryukyuan Hound's Knuckle Arrow
     {
-        MoveCard Hand
+        *PutCardFromWaitingRoomIntoStock(HasTrait Landosol)
+        TargetTop Deck 1
+        Reveal
+        IfTarget Compare ThatCardsLevel 1 OrMore
+        {
+            MoveCard Hand
+        }
     }
 }
 Text Auto:CxCombo When this card's battle opponent becomes reverse, if "Ryukyuan Hound's Knuckle Arrow" is in your climax area, choose up to 1 «Landosol» character in your waiting room and put it in your stock, then reveal the top card of your deck. If it's level 1 or higher, put it in your hand.
@@ -1460,7 +1466,7 @@ Trait1 Landosol
 Trait2 Guild
 Cont: Assist
 {
-    If LocationContains Memory 2 NameEquals Pet Golem Rosetta && Compare ThatCardsLevel 3 OrMore
+    If LocationContains Memory 2 NameEquals Pet Golem Rosetta &&& Compare ThatCardsLevel 3 OrMore
     {
         GainPower 2000
     }
