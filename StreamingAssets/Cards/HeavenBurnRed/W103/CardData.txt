@@ -475,7 +475,7 @@ Power 2500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 30G
-*GainPowerWithEnoughCharacters(3000,2,Seraph)
+*GainPowerWithEnoughCharacters(8000,2,Seraph)
 Auto: OnPlay
 {
     UntilEndOfOpponentsTurn
@@ -534,7 +534,7 @@ Power 1500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 30G
-Auto: OnPlay
+Auto: OnAttack
 {
     SetXToNumberOfCharacters HasTrait Seraph && Other
     MultiplyXValue 500
