@@ -108,7 +108,7 @@ Power 500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31C
-*500Assist
+*GlobalPower(500,Serpah)
 Auto: OnTriggerCheckClimax
 {
     PayCost Discard 1 IsClimax
@@ -731,7 +731,7 @@ Auto: OnAttack
     {
         PayCost 2 Discard 1 Any
         {
-            Peek Deck 2
+            Peek OpponentDeck 2
             Message Choose cards to put on top of your deck.
             ChooseCardsFromTargets 0 2 Any
             Reorder
@@ -742,13 +742,14 @@ Auto: OnAttack
             {
                 *HexProof
             }
+            UntilEndOfOpponentsTurn
             GainEffect
             {
                 Cont: GiveFacing
                 {
                     LoseSoul 2
                 }
-                Text Cont: The character facing this card gets -2 soul.
+                Text Cont:The character facing this card gets -2 soul.
             }
         }
     }
@@ -794,8 +795,7 @@ Trait1 Seraph
 Trait2 Unit 31E
 Cont: GiveHand
 {
-    TargetRemembered
-    If Not HasTarget
+    If Not CardNamePlayedThisTurn Ema for the Family
     {
         If NameEquals Ema for the Family
         {
@@ -808,9 +808,6 @@ Auto: OnCustomEvent PlayEmaEvent
 {
     *GiveCharacterPower(1500,Any)
     GainLevel 1
-    TargetOther
-    RememberTargets 
-    //For cont effect above
 }
 TimesPerTurn 1
 Quick
@@ -1201,14 +1198,18 @@ Name Ema for the Family
 Color G
 Level 1
 Cost 1
+Counter
 Effect: 
 {
     SearchLocationForTargets Deck 0 2 IsCharacter && NameContains Ichiko|Niina|Minori|Yotsuha|Isuzu|Muua && WithDifferentNames
+    SaveTargets
     RevealTargets
-    Message Choose a card to put into your opponent's hand.
+    Message Choose a card to put into your opponent's waiting room.
     OpponentChooseCardsFromTargets 1 1 Any
+    MoveCard WaitingRoom
+    RemoveCurrentFromSavedTargets
+    AddSavedToCurrentTargets
     MoveCard Hand
-    PutTheRestIntoTheWaitingRoom
     ShuffleLocation Deck
     TriggerCustomEvent PlayEmaEvent
 }
@@ -1976,14 +1977,17 @@ Power 2000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31B
-Auto: OnPlay
+Auto: OnAttack
 {
-    PayCost 1 Discard 2 Any
+    If PlayedThisTurn
     {
-        SearchLocationForTargets Deck 0 2 HasTrait Seraph
-        Reveal
-        MoveCard Hand
-        ShuffleLocation Deck
+        PayCost 1 Discard 2 Any
+        {
+            SearchLocationForTargets Deck 0 2 HasTrait Seraph
+            Reveal
+            MoveCard Hand
+            ShuffleLocation Deck
+        }
     }
 }
 Text Auto:[(1) Put 2 cards from your hand to the waiting room] During the turn this card is placed on the stage from your hand, when this card attacks, you may pay cost. If you do, search your deck for up to 2 «Seraph» characters, reveal them, put them in your hand, and shuffle your deck.
