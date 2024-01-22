@@ -501,7 +501,7 @@ Act: 1 SendSelf WaitingRoom
     }
 }
 Text Act:[(1) Put this card in the waiting room] Choose up to 1 YELLOW character in your hand whose level is less or equal to your level and put it in the position this card was in.
-Act: SendSelf
+Act: SendSelf WaitingRoom
 {
     TargetLocation Stage
     NarrowTargets IsColor Yellow
@@ -916,19 +916,30 @@ Soul 2
 Trait1 Dragon (KMD)
 Trait2 Machine
 Trait3 Balance
-Cont: 
+Cont: InHand
 {
-
+    If LocationContains Memory 2 NameEquals Raving Bassist, Roche
+    {
+        LoseLevel 1
+    }
 }
 Text Cont:MEMORY If there are 2 or more "Raving Bassist, Roche" in your memory, this card gets -1 level while in your hand.
-Auto: 
+Auto: OnAttack
 {
-
+    Question Put the top card of your deck into waiting room ?
+    If Yes
+    {
+        Mill 1
+        IfTarget HasTrigger Soul || NameEquals Raving Bassist, Roche
+        {
+            Burn 1
+        }
+    }
 }
 Text Auto:When this card attacks, you may put the top card of your deck in the waiting room. If it's either a card with at least 1 soul trigger icon or "Raving Bassist, Roche", deal 1 damage to your opponent. 
-Auto: 
+Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
 {
-
+    *PutCardFromWaitingRoomIntoStock(HasTrait Dragon (KMD))
 }
 Text Auto:When a level 2 or higher battle opponent of this card becomes reversed, you may choose a «Dragon (KMD)» character in your waiting room and put it in your stock.
 EndCard
@@ -942,14 +953,16 @@ Power 500
 Soul 1
 Trait1 Demon
 Trait2 Physical
-Cont: 
+*PowerInMiddle(3000)
+Auto: OnSentFromStageToWaitingRoom
 {
-
-}
-Text Cont:If this card is in the middle position of your center stage, this card gets +3000 power.
-Auto: 
-{
-
+    PayCost 1 SendFromLocationToLocation WaitingRoom Clock false IsCharacter && IsColor Green
+    {
+        RevealUpTo Deck 2
+        ChooseCardsFromTargets IsCharacter && IsColor Green
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
 }
 Text Auto:[(1) Choose a GREEN character in your waiting room and put it on the bottom of your clock] When this card is placed from the stage to the waiting room, you may pay cost. If you do, look at up to 2 cards from the top of your deck and search for up to 2 GREEN characters, reveal them, put them in your hand, and put the rest into your waiting room.
 EndCard
@@ -964,8 +977,12 @@ Soul 1
 Trait1 God
 Trait2 Healer
 Trait3 Attacker
-Auto: 
+Auto: OnPlay|OnSentFromStageToWaitingRoom
 {
+    PayCost Discard 1 IsClimax
+    {
+        SearchWaitingRoom Compare ThatCardsLevel 1 OrMore && IsCharacter
+    }
 
 }
 Text Auto:[Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand or from the stage to the waiting room, you may pay cost. If you do, choose a level 1 or higher character in your waiting room and return it to your hand.
@@ -980,16 +997,23 @@ Power 1000
 Soul 1
 Trait1 God
 Trait2 Healer
-Cont: 
+Cont: GiveSelf
 {
-
+    If Compare MyLevel 2 OrMore
+    {
+        GainEffect
+        {
+            Act: 1 Discard 1 Any SendSelf WaitingRoom
+            {
+                SearchLocationForTargets Hand NameEquals Alexander the Commander
+                Change
+            }
+            Text Act:[(1) Discard a card from your hand into waiting room, put this card into waiting room] Choose up to 1 "Alexander the Commander" in your hand and put that card in the position this card was in.
+        }
+    }
 }
-Text Cont:If you are level 2 or higher, this card gets the following ability. "Act:
-Act: 
-{
-
-}
-Text Act:BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 character in your waiting room and return it to your hand.
+Text Cont:If you are level 2 or higher, this card gets the following ability. "Act:[(1) Discard a card from your hand into waiting room, put this card into waiting room] Choose up to 1 "Alexander the Commander" in your hand and put that card in the position this card was in.""
+*Act1RestSelfSalvageBrainstorm(Any)
 EndCard
 
 Character: PAD/S105-037
@@ -1002,16 +1026,12 @@ Power 2000
 Soul 1
 Trait1 Healer
 Trait2 Attacker
-Auto: 
+Auto: OnUseThisCardsBackup
 {
-
+    *ScryToBottom
 }
 Text Auto:When you use this card's BACKUP, look at the top card of your deck and put it either on top or bottom of the deck.
-Act: 
-{
-
-}
-Text Act:[Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+Backup 2500
 EndCard
 
 Character: PAD/S105-038
@@ -1024,14 +1044,19 @@ Power 4500
 Soul 1
 Trait1 God
 Trait2 Balance
-Auto: 
+*GreenEarlyPlayBomb
+Act: SendSelf BottomOfDeck
 {
-
-}
-Text Auto:When this card becomes reversed, if the level of the battle opponent of this card is higher than the level of the opponent, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock.
-Act: 
-{
-
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            GainSpecialEffect CanAttackBackstage
+        }
+        Text Cont:When this card attacks, you may instead choose a character in your opponent's backstage and have this card frontal attack that character as Defending character.
+    }
 }
 Text Act:[Put this card on the bottom of the deck] Choose 1 of your characters, and that character gets the following ability until end of turn. "Cont: When this card attacks, you may instead choose a character in your opponent's backstage and have this card frontal attack that character as Defending character."
 EndCard
@@ -1047,16 +1072,41 @@ Soul 1
 Trait1 Demon
 Trait2 Physical
 Trait3 Attacker
-Cont: 
+Cont: GiveSelf
 {
-
+    If MyTurn
+    {
+        SetXToNumberOfCharacters InLocation OpponentBackstage
+        MultiplyXValue 3000
+        GainPower X
+    }
 }
-Text Cont:During your turn, for each of your opponent's backstage characters, this card gets +3000 power.
-Auto: 
+Text Cont:During your turn, this card gets +3000 power for each of your opponent's backstage characters.
+Auto: OnAttack
 {
-
+    PayCost Discard 3 IsColor Green
+    {
+        GainPower 2500
+        GainSoul 1
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                TargetFacing
+                IfTarget OnStage
+                {
+                    Question_Obvious Put that character into clock ?
+                    If Yes
+                    {
+                        MoveCard OpponentClock
+                    }
+                }
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may put that character in clock.
+        }
+    }
 }
-Text Auto:[Put 3 GREEN cards from your hand to the waiting room] When this card attacks, you may pay cost. If you do, this card gets +2500 power, +1 soul, and the following ability. "Auto: When this card's battle opponent becomes reverse, you may put that character in clock."
+Text Auto:[Put 3 GREEN cards from your hand to the waiting room] When this card attacks, you may pay cost. If you do, this card gets +2500 power, +1 soul, and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character in clock."
 EndCard
 
 Character: PAD/S105-040
@@ -1067,14 +1117,21 @@ Cost 0
 Power 1000
 Soul 1
 Trait1 Enhance Material
-Act: 
+Act: 1 SendSelf WaitingRoom
 {
-
+    SearchLocationForTargets Hand 0 1 IsCharacter && IsColor Green && Compare ThatCardsLevel MyLevel OrLess
+    If HasTarget
+    {
+        Change
+    }
 }
 Text Act:[(1) Put this card in the waiting room] Choose up to 1 GREEN character in your hand whose level is less or equal to your level and put it in the position this card was in.
-Act: 
+Act: SendSelf WaitingRoom
 {
-
+    TargetLocation Stage
+    NarrowTargets IsColor Green
+    ChooseCharacterFromTargets Choose a character to give +1 soul.
+    GainPower 2000
 }
 Text Act:[Put this card in the waiting room] Choose 1 of your GREEN characters, and that character gets +2000 power until end of turn.
 EndCard
@@ -1088,14 +1145,24 @@ Trigger Soul
 Power 4000
 Soul 1
 Trait1 Healer
-Cont: 
+Cont: Assist
 {
-
+    If IsColor Green
+    {
+        SetXValue ThatCardsLevel
+        MultiplyXValue 500
+        GainPower X
+    }
 }
 Text Cont:ASSIST Your GREEN characters in front of this card get +X power. X equals 500 times level of that character.
-Auto: 
+Auto: OnClimaxPlay
 {
-
+    IfOther HasTrigger Bar
+    {
+        TargetLocation Stage
+        ChooseCharactersFromTargets 0 2 Choose up to 2 characters to give +1500 power.
+        GainPower 1500
+    }
 }
 Text Auto:When your climax with a Bar trigger icon is placed on your climax area, choose up to 2 of your characters, and those characters get +1500 power until end of turn.
 EndCard
@@ -1108,16 +1175,19 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Balance
-Auto: 
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        TargetLocation Clock
+        ChooseCardsFromTargets 1 1 Any
+        MoveCard Hand
+        TargetTop Deck 1
+        MoveCard Clock
+    }
 }
 Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
-Auto: 
-{
-
-}
-Text Auto:[clock] SHIFT level 0
+*ClockShift(0,green)
 EndCard
 
 Character: PAD/S105-043
@@ -1129,14 +1199,23 @@ Power 2000
 Soul 1
 Trait1 Dragon (KMD)
 Trait2 Demon
-Auto: 
+Auto: OnPlay
 {
-
+    PayCost ShuffleFromWaitingRoom 2 HasTrait Dragon (KMD)
+    {
+        TargetLocation OpponentCenterStage
+        NarrowTargets CanBeChosen
+        ChooseCharacterFromTargets Choose a character to give -1000 power.
+        LosePower 1000
+    }
 }
 Text Auto:[Return 2 «Dragon (KMD)» characters from your waiting room to your deck, shuffle your deck] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a character in your opponent's center stage, and that character gets -1000 power until end of turn.
-Auto: 
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchWaitingRoom NameEquals Raving Bassist, Roche
+    }
 }
 Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a "Raving Bassist, Roche" in your waiting room and return it to your hand.
 EndCard
@@ -1150,14 +1229,12 @@ Power 2000
 Soul 1
 Trait1 God
 Trait2 Demon
-Auto: 
+*GreenCost0Bomb
+Act: 1 SendSelf WaitingRoom
 {
-
-}
-Text Auto:When this card becomes reversed, if the cost of the battle opponent of this card is 0 or lower, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock.
-Act: 
-{
-
+    Mill 2
+    SetXValue TotalLevel
+    SearchWaitingRoom IsCharacter && Compare ThatCardsLevel X OrLess
 }
 Text Act:[(1) Put this card in the waiting room] Put the top 2 cards of your deck in the waiting room, choose a level X or lower character in your waiting room and return it to your hand. X equals sum of levels of those cards. 
 EndCard
@@ -1172,14 +1249,23 @@ Soul 1
 Trait1 Attacker
 Trait2 Demon
 Trait3 God
-Cont: 
+Cont: GiveSelf
 {
-
+    If MyTurn && StageContains 2 Other && IsColor Green || Other && HasTrait God
+    {
+        GainPower 2000
+    }
 }
 Text Cont:During your turn, if the number of other GREEN or «God» characters you have is 2 or more, this card gets +2000 power.
-Auto: 
+Auto: OnReverseOpponent
 {
-
+    If PlayedThisTurn
+    {
+        PayCost 1
+        {
+            SearchWaitingRoom IsColor Green && IsCharacter || HasTrait God
+        }
+    }
 }
 Text Auto:[(1)] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay cost. If you do, choose a GREEN or «God» character in your waiting room and return it to your hand.
 EndCard
@@ -1194,16 +1280,19 @@ Soul 1
 Trait1 God
 Trait2 Physical
 Trait3 Demon
-Cont: 
+Cont: GiveSelf
 {
-
+    If StageContains 2 Other && HasTrait God
+    {
+        GainPower 2000
+        GainEffect
+        {
+            *GainPowerWhenAttackingLevel2(6000)
+        }
+    }
 }
 Text Cont:During your turn, if the number of other «God» characters you have is 2 or more, this card gets +2000 power and the following ability. "Auto: When this card attacks, if the character facing this card is level 2, this card gets +6000 power until end of turn."
-Auto: 
-{
-
-}
-Text Auto:[Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a «God» character in your waiting room and return it to your hand.
+*OnPlayTradeClimaxForCharacter(God)
 EndCard
 
 Event: PAD/S105-047
@@ -1213,9 +1302,30 @@ Level 1
 Cost 1
 Effect: 
 {
-
+    Mill 4
+    SetXValue TotalSoulTriggers
+    SearchWaitingRoom HasTrait Dragon (KMD) && Compare ThatCardsLevel X OrLess
+    TargetSelf
+    MoveCard Memory
 }
-Text Put the top 4 cards of your Library in the Waiting Room, choose up to 1 Level X or lower ::Dragon (KMD):: Character in your Waiting Room and return it to your hand. X = # of Soul Trigger Icons among those cards. Send this to Memory.
+Text Put the top 4 cards of your deck in the waiting room, choose up to 1 level X or less «Dragon (KMD)» character in your Waiting Room and return it to your hand. X equals tottal of Soul trigger icons among those cards. Put this card into memory.
+Auto: StartAttackPhase
+{
+    PayCost 1 FlipCardsFaceDown 1 Memory Other && NameEquals Raving Bassist, Roche &&& FlipSelfFaceDown
+    {
+        Peek Deck 6
+		Message Choose 3 cards to put into your waiting room
+		ChooseCardsFromTargets 3 3 Any
+		MoveCard WaitingRoom
+		TargetLocation ScryArea
+		SetXValue TargetCount
+		MoveCard Deck
+		TargetTop Deck X
+		Message Select order to return cards, (first on top)
+		Reorder
+    }
+}
+InMemory
 Text Auto:MEMORY [(1) Turn another face-up "Raving Bassist, Roche" and this card in your memory face-down] If this card is in memory, at the beginning of your attack phase, you may pay cost. If you do, look at up to 6 cards from the top of your deck, choose 3 of them and put them in the waiting room, and put the rest on top of the deck in any order.
 EndCard
 
