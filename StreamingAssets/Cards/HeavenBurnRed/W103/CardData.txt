@@ -421,6 +421,7 @@ Auto: OnEndOfAttack
         Question Put "Ally, Yuina Shirakawa" into memory?
         If Yes
         {
+            TargetSelf
             MoveCard Memory
             ScheduleEffect StartDrawPhase
             {
