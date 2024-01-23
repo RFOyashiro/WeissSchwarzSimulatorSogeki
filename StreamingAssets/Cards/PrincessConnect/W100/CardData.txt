@@ -2163,9 +2163,9 @@ Trait2 Guild
 Combo Wind-Covered Song
 Auto: StartMyEncoreStep
 {
-    If StageContains 1 Other && HasTrait Landosol
+    If Climax Wind-Covered Song && StageContains 1 Other && HasTrait Landosol
     {
-        PayCost SendFromLocationToLocation Climax WaitingRoom 1 NameEquals Wind-Covered Song
+        PayCost SendClimax WaitingRoom
         {
             SearchDeck HasTrait Landosol
         }

@@ -1965,7 +1965,40 @@ Power 5000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31B
+Combo Connecting Feelings
 *PowerOnMyTurn(5000)
+Auto: OnAttack
+{
+    If Climax Connecting Feelings
+    {
+        RevealUpTo Deck 3
+        ChooseCardsFromTargets 0 3 HasTrait Seraph || NameEquals Addicting Music
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+        UntilEndOfOpponentsTurn
+        GainEffect
+        {
+            Cont: Global
+            {
+                If Not MyTurn
+                {
+                    GainSpecialEffect CannotBeReversed
+                }
+            }
+            Text Cont: During your opponent's turn, all characters cannot be reverse.
+        }
+        GainEffect
+        {
+            Auto: StartOpponentEncorePhase
+            {
+                MoveCard Memory
+            }
+            Quick
+            Text Auto: At the beginning of your opponent's encore step, put this card into memory.
+        }
+    }
+}
+Text Auto: CxCombo [Put a «Seraph» character card from your hand to the waiting room] When this card attacks, if "Connecting Feelings" is in your climax area, you may pay cost. If you do, look at up to 3 cards from the top of your deck and choose up to 3 cards that are either «Seraph» characters or "Addicting Music" among them, reveal them, put them in your hand, put the rest into your waiting room, and this card gets the following 2 abilities until the end of your opponent's next turn. "Cont: During your opponent's turn, all characters cannot be reverse." "Auto: At the beginning of your opponent's encore step, put this card into memory."
 EndCard
 
 Character: HBR/W103-085
@@ -2094,17 +2127,17 @@ Cont: GiveSelf
         {
             Act: Discard 1 Any SendSelf WaitingRoom
             {
-                SearchLocationForTargets Hand 1 1 NameEquals Erika Aoi, Kokoro Inspire
+                SearchLocationForTargets Hand 1 1 NameEquals Kokoro Inspire, Erika Aoi
                 If HasTarget
                 {
                     Change
                 }
             }
-            Text Act:[Put a card from your hand to the waiting room, put this card into waiting room] Choose up to 1 'Erika Aoi, Kokoro Inspire' in your hand and put it in the position this card was in.
+            Text Act:[Put a card from your hand to the waiting room, put this card into waiting room] Choose up to 1 'Kokoro Inspire, Erika Aoi' in your hand and put it in the position this card was in.
         }
     }
 }
-Text Cont:If you are level 1 or higher, this card gets the following ability. "Act:[Put a card from your hand to the waiting room, put this card into waiting room] Choose up to 1 'Erika Aoi, Kokoro Inspire' in your hand and put it in the position this card was in."
+Text Cont:If you are level 1 or higher, this card gets the following ability. "Act:[Put a card from your hand to the waiting room, put this card into waiting room] Choose up to 1 'Kokoro Inspire, Erika Aoi' in your hand and put it in the position this card was in."
 Auto: StartOpponentAttackPhase
 {
     If AllYourCharacters HasTrait Seraph

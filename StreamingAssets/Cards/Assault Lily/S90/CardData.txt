@@ -1244,7 +1244,7 @@ Cost 1
 Effect: 
 {
     TargetMyCharacterInBattle
-    If HasTrait Lily
+    IfTarget HasTrait Lily
     {
         Question Return a character in battle to hand ?
         If Yes
@@ -1610,9 +1610,13 @@ Auto: OnSpecificClimaxPlay Angsty Age
     }
 }
 Text Auto:CxCombo [Return this card to hand] When "Angsty Age" is placed on your climax area, if you have another «Lily» character, you may pay cost. If you do, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card attacks, perform trigger check twice during this card attack's trigger Step."
-Act: 
+Act: RestSelf
 {
-
+    TargetLocation Stage
+    NarrowTargets NameContains Riri|Kaede
+    ChooseCharacterFromTargets Choose character to give +500 power.
+    UntilEndOfOpponentsTurn
+    GainPower 500
 }
 Text Act:[Rest this card] Choose 1 of your characters with either "Riri" or "Kaede" in its card name, and that character gets +500 power until the end of your opponent's next turn.
 EndCard
@@ -1942,11 +1946,33 @@ Cont: GiveSelf
         GainLevel 1
         GainEffect
         {
-            Cont:
+            Cont: GiveSelf
             {
                 GainSpecialEffect CannotBeChosen
                 GainSpecialEffect FreeSideAttack
             }
+        }
+        GainEffect
+        {
+            Auto: StartOpponentAttackPhase
+            {
+                If InLocation CenterStage
+                {
+                    PayCost 3 Discard 2 Any
+                    {
+                        TargetFacing
+                        GainEffect
+                        {
+                            Cont: GiveSelf
+                            {
+                                GainSpecialEffect CannotFrontalAttack
+                            }
+                        }
+                        Text Cont: This cannot frontal attack.
+                    }
+                }
+            }
+            Text Auto: [(3) Put 2 cards from your hand to the waiting room] At the beginning of your opponent's attack phase, if this card is in the center stage, you may pay cost. If you do, choose the character facing this card, and that character gets the following ability until end of turn. 'Cont: This cannot frontal attack.'
         }
     }
 }

@@ -790,7 +790,7 @@ Trait1 Lily
 Trait2 Hitotsuyanagi Corps
 Auto: OnClimaxPlay
 {
-    IfOther HasTrigger Gold
+    IfOther HasTrigger Bar
     {
         TargetLocation OpponentCenterStage
         NarrowTargets CanBeChosen
@@ -798,7 +798,7 @@ Auto: OnClimaxPlay
         LosePower 1000
     }
 }
-Text Auto:When a climax with a Gold trigger icon is placed on your climax area, choose 1 of your opponent's center stage characters and until end of turn that character gets -1000 power.
+Text Auto:When a climax with a Bar trigger icon is placed on your climax area, choose 1 of your opponent's center stage characters and until end of turn that character gets -1000 power.
 *Act1RestSelfDraw2Discard1Brainstorm
 EndCard
 
