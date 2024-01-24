@@ -1130,7 +1130,7 @@ Act: SendSelf WaitingRoom
 {
     TargetLocation Stage
     NarrowTargets IsColor Green
-    ChooseCharacterFromTargets Choose a character to give +1 soul.
+    ChooseCharacterFromTargets Choose a character to give +2000 power.
     GainPower 2000
 }
 Text Act:[Put this card in the waiting room] Choose 1 of your GREEN characters, and that character gets +2000 power until end of turn.
@@ -1353,16 +1353,36 @@ Power 1500
 Soul 1
 Trait1 Demon
 Trait2 Attacker
-Cont: 
+Cont: GiveSelf
 {
-
+    If LocationContains Hand 5 Any
+    {
+        GainPower 1500
+    }
 }
 Text Cont:If there are 5 or more cards in your hand, this card gets +1500 power.
-Auto: 
+Auto: StartOpponentAttackPhase
 {
-
+    MultipleChoiceQuestion Choose an effect to perform.\n1:Move this card to an empty center stage middle position.\n2:this card get the following effect: "Auto:[(1)] At the beginning of encore step, if you have no other rested characters in the center stage, you may pay cost. If you do, rest this card."|1|2
+    If Answer 1
+    {
+        TargetLocation MiddleCenterStage
+        If Not HasTarget
+        {
+            TargetSelf
+            MoveCard MiddleCenterStage
+        }
+    }
+    If Answer 2
+    {
+        TargetSelf
+        GainEffect
+        {
+            *EncoreStepIfNoneRestedPayToRest
+        }
+    }
 }
-Text Auto:At the beginning of your opponent's attack phase, you may either move this card to an empty center stage Center position or have this card get the following ability. "Auto: At the beginning of encore step, if you have no other Rested characters in the center stage, you may pay cost. If you do, Rest this card."
+Text Auto:At the beginning of your opponent's attack phase, you may either move this card to an empty center stage middle position or this card gets the following effect. "Auto:[(1)] At the beginning of encore step, if you have no other rested characters in the center stage, you may pay cost. If you do, rest this card."
 EndCard
 
 Character: PAD/S105-052
@@ -1373,14 +1393,46 @@ Cost 0
 Power 4000
 Soul 1
 Trait1 God
-Auto: 
+Combo Blazearm Scarlet Conqueror, Sea Wolf
+Auto: OnAttack
 {
-
+    If StageContains 3 Other
+    {
+        GainPower 2000
+    }
 }
 Text Auto:When this card attacks, if the number of other characters you have is 3 or more, this card gets +2000 power until end of turn.
-Auto: 
+Auto: StartEncoreStep
 {
-
+    If Climax Blazearm Scarlet Conqueror, Sea Wolf && InLocation CenterStage
+    {
+        MultipleChoiceQuestion Choose an effect to perform.\n1:If the the number of colors you have is 4 or more and the character facing this card is reversed, look at up to 3 cards from the top of your deck, choose up to 1 of them and put it in your hand, choose up to 1 of them and put it in your stock, and put the rest into your waiting room.\n2:Choose a level 2 or higher character in your waiting room and return it to your hand.|1|2
+        If Answer 1
+        {
+            If Compare ColorsOnStage 4 OrMore
+            {
+                TargetFacing
+                IfTarget CardPosition Reverse
+                {
+                    Peek Deck 3
+                    SaveTargets
+                    Message Choose a card to put in your hand.
+                    ChooseCardsFromTargets 0 1 Any
+                    MoveCard Hand
+                    RemoveCurrentFromSavedTargets
+                    LoadTargets
+                    Message Choose a card to put in your stock.
+                    ChooseCardsFromTargets 0 1 Any
+                    MoveCard Stock
+                    PutTheRestIntoTheWaitingRoom
+                }            
+            }
+        }
+        If Answer 2
+        {
+            SearchWaitingRoom Compare ThatCardsLevel 2 OrMore && IsCharacter
+        }
+    }
 }
 Text Auto:CxCombo At the beginning of your encore step, if "Blazearm Scarlet Conqueror, Sea Wolf" is in your climax area and this card is in the center stage, choose 1 of the following 2 effects and perform it. "If the the number of colors you have is 4 or more and the character facing this card is reversed, look at up to 3 cards from the top of your deck, choose up to 1 of them and put it in your hand, choose up to 1 of them and put it in your stock, and put the rest into your waiting room." "Choose a level 2 or higher character in your waiting room and return it to your hand."
 EndCard
@@ -1394,14 +1446,28 @@ Power 2000
 Soul 1
 Trait1 Attacker
 Trait2 God
-Auto: 
+Combo Head of the Ministry of Mystics, Mikage
+Auto: OnSpecificClimaxPlay Head of the Ministry of Mystics, Mikage
 {
-
+    If StageContains 2 Other && HasTrait God
+    {
+        *Check4Add1(God)
+    }
 }
 Text Auto:CxCombo When "Head of the Ministry of Mystics, Mikage" is placed on your climax area, if the number of other «God» characters you have is 2 or more, look at up to 4 cards from the top of your deck and search for up to 1 «God» character, reveal it, put it in your hand, and put the rest into your waiting room.
-Auto: 
+Auto: OnTriggerCheckClimax
 {
-
+    IfOther HasTrigger Bar
+    {
+        PayCost Discard 1 Any
+        {
+            TargetLocation Clock
+            ChooseCardsFromTargets 1 1 Any
+            MoveCard Hand
+            TargetTop Deck 1
+            MoveCard Clock
+        }
+    }
 }
 Text Auto:[Put 1 card from hand to the waiting room] When your character's trigger check reveals a climax with a Bar trigger icon, you may pay cost. If you do, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
 EndCard
@@ -1415,14 +1481,16 @@ Power 2000
 Soul 1
 Trait1 Dragon (KMD)
 Trait2 Balance
-Cont: 
+*PowerOnMyTurn(3000)
+Auto: OnPlay
 {
-
-}
-Text Cont:During your turn, this card gets +3000 power.
-Auto: 
-{
-
+    If Compare ColorsOnStage 4 OrMore
+    {
+        PayCost Discard 1 Any
+        {
+            *CheckAndAdd(3)
+        }
+    }
 }
 Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, if the the number of colors you have is 4 or more, you may pay cost. If you do, look at up to 3 cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room.
 EndCard
@@ -1436,16 +1504,29 @@ Power 6000
 Soul 1
 Trait1 Balance
 Trait2 Demon
-Cont: 
+Combo Super Reincarnated Shiva Dragon
+Cont: GiveSelf
 {
-
+    If Compare Experience 2 OrMore
+    {
+        GainPower 1000
+    }
 }
 Text Cont:EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets +1000 power.
-Auto: 
+Auto: StartAttackPhase
 {
-
+    If Climax Super Reincarnated Shiva Dragon && InLocation CenterStage && LocationContainsOrLess Hand 5 Any
+    {
+        PayCost SendClimax WaitingRoom
+        {
+            TargetLocation Stage
+            NarrowTargets Other
+            ChooseCharacterFromTargets Choose a character to stand.
+            Stand
+        }
+    }
 }
-Text Auto:CxCombo [Put a "Super Reincarnated Shiva Dragon" from your climax area in the Waiting room] At the beginning of your attack phase, if this card is in the center stage and there are 5 or fewer cards in your hand, you may pay cost. If you do, choose 1 of your other characters and stand it.
+Text Auto:CxCombo [Put a "Super Reincarnated Shiva Dragon" from your climax area in the waiting room] At the beginning of your attack phase, if this card is in the center stage and there are 5 or fewer cards in your hand, you may pay cost. If you do, choose 1 of your other characters and stand it.
 EndCard
 
 Character: PAD/S105-056
@@ -1458,11 +1539,22 @@ Power 8000
 Soul 1
 Trait1 God
 Trait2 Healer
-Auto: 
+Auto: StartMyEncorePhase
 {
-
+    If PlayedThisTurn && StageContains 3 Other && HasTrait God &&& LocationContainsOrLess Deck 6 Any
+    {
+        Question_Obvious Return all cards from waiting room to your deck ?
+        If Yes
+        {
+            TargetLocation WaitingRoom
+            MoveCard Deck
+            ShuffleLocation Deck
+            UntilEndOfOpponentsTurn
+            *GiveCharacterPower(2500,Any)
+        }
+    }
 }
-Text Auto:During the turn this card is placed on the stage from your hand, at the beginning of your encore step, if the number of other «God» characters and there are 6 or fewer cards in your deck you have is 3 or more, you may return all cards in your waiting room to your deck. If you do, shuffle your deck, choose 1 of your characters, and that character gets +2500 power until the end of your opponent's next turn.
+Text Auto:During the turn this card is placed on the stage from your hand, at the beginning of your encore step, if the number of other «God» characters you have is 3 or more and there are 6 or fewer cards in your deck, you may return all cards in your waiting room to your deck. If you do, shuffle your deck, choose 1 of your characters, and that character gets +2500 power until the end of your opponent's next turn.
 EndCard
 
 Character: PAD/S105-057
@@ -1476,14 +1568,24 @@ Soul 2
 Trait1 Demon
 Trait2 God
 Trait3 Balance
-Auto: 
+*StockHealer
+Auto: OnAttack
 {
-
-}
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, put the top card of your clock in your stock.
-Auto: 
-{
-
+    PayCost 3
+    {
+        TargetLocation Stage
+        NarrowTargets Other
+        ChooseCharacterFromTargets Choose a character to give the effect.
+        GainEffect
+        {
+            Auto: OnDamageCancel
+            {
+                *OptionalBurn(2)
+            }
+            TimesPerTurn 1
+            Text Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 2 damage to your opponent.
+        }
+    }
 }
 Text Auto:[(3)] When this card attacks, you may pay cost. If you do, choose 1 of your other characters, and that character gets the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 2 damage to your opponent." 
 EndCard
@@ -1497,19 +1599,33 @@ Trigger Soul
 Power 10000
 Soul 2
 Trait1 Healer
-Cont: 
+Combo Flaming Wonderbloom Empress, Echidna - Sara
+Cont: GiveSelf
 {
-
+    If Compare Experience 4 OrMore
+    {
+        GainPower 1000
+    }
 }
 Text Cont:EXPERIENCE If the sum of levels of cards in your level is 4 or higher, this card gets +1000 power.
-Auto: 
+Auto: StartAttackPhase
 {
-
+    If Climax Flaming Wonderbloom Empress, Echidna - Sara && LocationContains Level 1 NameEquals Ruka & Mitsuki, Water Shrine Beast Princess
+    {
+        PayCost SendClimax WaitingRoom
+        {
+            Stand
+            MillOpponent 10
+        }
+    }
 }
-Text Auto:CxCombo EXPERIENCE [Put a "Flaming Wonderbloom Empress, Echidna - Sara" from your climax area in the waiting room] At the beginning of your attack phase, if there is a [Chara 058] in your level, you may pay cost. If you do, stand this card, and your opponent puts the top 10 cards of their deck in the waiting room.
-Auto: 
+Text Auto:CxCombo EXPERIENCE [Put a "Flaming Wonderbloom Empress, Echidna - Sara" from your climax area in the waiting room] At the beginning of your attack phase, if there is a 'Ruka & Mitsuki, Water Shrine Beast Princess' in your level, you may pay cost. If you do, stand this card, and your opponent puts the top 10 cards of their deck in the waiting room.
+Auto: OnReverseOpponent
 {
-
+    PayCost 1
+    {
+        Heal
+    }
 }
 Text Auto:[(1)] During your turn, when this card's battle opponent becomes reverse, you may pay cost. If you do, put the top card of your clock in the waiting room.
 EndCard
@@ -1523,16 +1639,17 @@ Power 1500
 Soul 1
 Trait1 God
 Trait2 Dragon (KMD)
-Auto: 
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget Compare ThatCardsLevel 2 OrMore
+    {
+        MoveCard Stock
+    }
 }
 Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If it's level 2 or higher, put it in your stock. 
-Auto: 
-{
-
-}
-Text Auto:[(1) Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a climax in your waiting room and return it to your hand.
+*ClimaxExchange
 EndCard
 
 Character: PAD/S105-060
@@ -1545,16 +1662,20 @@ Soul 1
 Trait1 Dragon (KMD)
 Trait2 Attacker
 Trait3 Healer
-Auto: 
+Auto: OnPlay
 {
-
+    Mill 2
+    NarrowTargets IsClimax
+    If HasTarget
+    {
+        TargetLocation OpponentCenterStage
+        NarrowTargets CanBeChosen && Compare ThatCardsLevel 2 OrLess
+        ChooseCharacterFromTargets Choose a character to put into waiting room.
+        MoveCard WaitingRoom
+    }
 }
 Text Auto:When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is a climax among them, choose a level 2 or lower character in your opponent's center stage and put it in the waiting room.
-Auto: 
-{
-
-}
-Text Auto:When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, you may reverse that character.
+*RedLevel1Bomb
 EndCard
 
 Character: PAD/S105-061
@@ -1567,14 +1688,24 @@ Soul 1
 Trait1 God
 Trait2 Demon
 Trait3 Attacker
-Auto: 
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchLocationForTargets 0 1 WaitingRoom IsCharacter && Compare ThatCardsLevel 0 OrLess
+        If HasTarget
+        {
+            PlaceOnStage false true true false
+        }
+    }
 }
 Text Auto:[Put 1 card from hand to waiting room] When this card is placed from hand to stage, you may pay cost. If you do, choose a level 0 or lower character in your waiting room and place it to any slot on the stage.
-Auto: 
+Auto: OnAttack
 {
-
+    TargetLocation OpponentCenterStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to put give -2000 power.
+    LosePower 2000
 }
 Text Auto:When this card attacks, choose a character in your opponent's center stage, and that character gets -2000 power until end of turn.
 EndCard
@@ -1588,16 +1719,31 @@ Power 4000
 Soul 1
 Trait1 Dragon (KMD)
 Trait2 Attacker
-Cont: 
+Cont: GiveSelf
 {
-
+    If Compare ColorsOnStage 4 OrMore
+    {
+        GainPower 2000
+        GainEffect
+        {
+            *GainPowerWhenAttackingLevel2(6000)
+        }
+    }
 }
 Text Cont:If the the number of colors you have is 4 or more, this card gets +2000 power and the following ability. "Auto: When this card attacks, if the character facing this card is level 2, this card gets +6000 power until end of turn."
-Auto: 
+Auto: OnAttack
 {
-
+    If LocationContains Climax 1 Any
+    {
+        TargetTop Deck 1
+        Reveal
+        IfTarget Compare ThatCardsLevel 1 OrMore
+        {
+            MoveCard Stock
+        }
+    }
 }
-Text Auto:When this card attacks, if there's a climax in your climax area, reveal the top card of your deck. If it's level 1 or higher, put it in your stock. (. Otherwise put the revealed card back where it was)
+Text Auto:When this card attacks, if there's a climax in your climax area, reveal the top card of your deck. If it's level 1 or higher, put it in your stock. 
 EndCard
 
 Character: PAD/S105-063
@@ -1609,14 +1755,20 @@ Trigger Soul
 Power 6500
 Soul 1
 Trait1 Balance
-Cont: 
+Cont: Assist
 {
-
+    If ColorIs Red
+    {
+        GainPower 1500
+    }
 }
 Text Cont:ASSIST Your RED characters in front of this card get +1500 power.
-Act: 
+Act: SendSelf BottomOfDeck
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to move to an open position on stage.
+    MoveToOpenPosition true true
 }
 Text Act:[Put this card on bottom of the deck] Choose 1 of your opponent's characters and move it to another open position on your opponent's stage.
 EndCard
@@ -1631,19 +1783,33 @@ Power 9500
 Soul 2
 Trait1 Dragon (KMD)
 Trait2 Demon
-Cont: 
+Cont: InHand
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets Compare ThatCardsLevel 3 OrMore
+    If HasTarget
+    {
+        LoseLevel 1
+    }
 }
 Text Cont:If your opponent has a level 3 or higher character, this card gets -1 level while in your hand.
-Auto: 
+Auto: StartAttackPhase
 {
-
+    If InLocation CenterStage
+    {
+        *Downgrade
+    }
 }
 Text Auto:At the beginning of your attack phase, if this card is in the center stage, you may choose 1 of your opponent's level 1 or higher characters. If you do, your opponent chooses a level X or lower character in their waiting room and swaps the chosen characters. X equals level of the character you chose this way -1.
-Auto: 
+Auto: OnReverseOpponent
 {
-
+    PayCost Discard 3 IsColor Red
+    {
+        Repeat 2
+        {
+            Burn 1
+        }
+    }
 }
 Text Auto:[Put 3 RED cards from your hand to the waiting room] When this card's battle opponent becomes reverse, you may pay cost. If you do, deal 1 damage to your opponent twice. 
 EndCard
@@ -1656,14 +1822,30 @@ Cost 0
 Power 1000
 Soul 1
 Trait1 Enhance Material
-Act: 
+Act: 1 SendSelf WaitingRoom
 {
-
+    SearchLocationForTargets Hand 0 1 IsCharacter && IsColor Red && Compare ThatCardsLevel MyLevel OrLess
+    If HasTarget
+    {
+        Change
+    }
 }
 Text Act:[(1) Put this card in the waiting room] Choose up to 1 RED character in your hand whose level is less or equal to your level and put it in the position this card was in.
-Act: 
+Act: SendSelf WaitingRoom
 {
-
+    TargetLocation Stage
+    NarrowTargets IsColor Red
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        Auto: OnReverseOpponent
+        {
+            TargetLocation OpponentCenterStage
+            NarrowTargets CanBeChosen && Compare ThatCardsLevel 1 OrLess
+            ChooseCharacterFromTargets Choose a character to move to put into waiting room.
+            MoveCard WaitingRoom
+        }
+    }
 }
 Text Act:[Put this card in the waiting room] Choose 1 of your RED characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may choose a level 1 or lower character in your opponent's center stage and put it in the waiting room."
 EndCard
@@ -1677,14 +1859,21 @@ Power 1000
 Soul 1
 Trait1 Healer
 Trait2 Physical
-Auto: 
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsColor Red
+    {
+        DrawCard
+    }
 }
 Text Auto:[Put a RED card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, draw a card.
-Auto: 
+Auto: OnPlay
 {
-
+    If Compare Experience 2 OrMore
+    {
+        *CheckAndAdd(2)
+        Discard 1 Any
+    }
 }
 Text Auto:EXPERIENCE When this card is placed on the stage from your hand, if the sum of levels of cards in your level is 2 or higher, look at up to 2 cards from the top of your deck, choose up to 1 card and put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
 EndCard
@@ -1698,14 +1887,25 @@ Power 1000
 Soul 1
 Trait1 Demon
 Trait2 God
-Auto: 
+Auto: OnPlay
 {
-
+    *ExchangeCardInLevelWithWaitingRoom(Any, Any)
 }
 Text Auto:When this card is placed on the stage from your hand, you may choose a card in your level and a card in your waiting room and swap them.
-Auto: 
+Auto: OnClimaxPlay 
 {
-
+    PayCost 1 SendSelf Hand
+    {
+        *GiveCharacterPower(1500)
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                SearchWaitingRoom IsCharacter && IsColor Red
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may choose a RED character in your waiting room and return it to your hand.
+        }
+    }
 }
 Text Auto:[(1) Return this card to your hand] When your climax is placed on your climax area, you may pay cost. If you do, choose 1 of your characters, and that character gets +1500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may choose a RED character in your waiting room and return it to your hand."
 EndCard
@@ -1719,16 +1919,12 @@ Power 1500
 Soul 1
 Trait1 Attacker
 Trait2 Machine
-Act: 
+Act: 1 SendSelf WaitingRoom
 {
-
+    *Check4Add1Level1OrHigher
 }
 Text Act:[(1) Put this card in the waiting room] Look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. 
-Act: 
-{
-
-}
-Text Act:[Rest this card] Choose 1 of your characters, and that character gets +1000 power until end of turn.
+*RestGivePower(1000,Any)
 EndCard
 
 Character: PAD/S105-069
@@ -1739,16 +1935,15 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Balance
-Auto: 
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchWaitingRoom NameEquals Spring Orchid Virtue, Xiang Mei
+    }
 }
 Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a "Spring Orchid Virtue, Xiang Mei" in your waiting room and return it to your hand.
-Auto: 
-{
-
-}
-Text Auto:[clock] SHIFT level 0
+*ClockShift(0,red)
 EndCard
 
 Character: PAD/S105-070
@@ -1762,16 +1957,8 @@ Soul 1
 Trait1 God
 Trait2 Dragon (KMD)
 Trait3 Physical
-Auto: 
-{
-
-}
-Text Auto:When you use this card's BACKUP, choose 1 of your characters in battle, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, send that character to memory."
-Act: 
-{
-
-}
-Text Act:[Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+*MemoryBackup
+Backup 3000
 EndCard
 
 Character: PAD/S105-071
@@ -1784,9 +1971,27 @@ Power 6500
 Soul 2
 Trait1 Demon
 Trait2 Physical
-Cont: 
+Cont: GiveSelf
 {
-
+    If Compare Experience 3 OrMore
+    {
+        GainPower 3500
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                If MyTurn
+                {
+                    *ScryToBottom
+                }
+            }
+            Text Auto: During your turn, when this card's battle opponent becomes reverse, look at the top card of your deck and put it either on top of the deck or in the waiting room.
+        }
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
 Text Cont:EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets +3500 power and the following 2 abilities. "Auto: During your turn, when this card's battle opponent becomes reverse, look at the top card of your deck and put it either on top of the deck or in the waiting room." "Auto: ENCORE [Put 1 character from your hand to the waiting room]"
 EndCard
@@ -1796,16 +2001,25 @@ Name Spring Orchid Virtue, Xiang Mei
 Color R
 Level 3
 Cost 1
+Requirement StageContains 1 IsColor Red
+Counter
 Effect: 
 {
-
+    *OptionalHeal
+    *GiveCharacterPower(2000,Any)
+    TargetSelf
+    MoveCard Memory
 }
-Text [Counter] If you don't have a RED Character, you cannot play this from hand. You may put the top card of your Clock in the Waiting Room.
-Text Choose 1 of your Characters, and that Character gains +2000 Power for the turn. Send this to Memory.
-Effect: 
+Text [Counter] If you don't have a RED character, you cannot play this card from hand. You may put the top card of your clock into waiting room.
+Text Choose 1 of your characters, and that character gains +2000 power until end of turn. Send this card to memory.
+Auto: StartMainPhase
 {
-
+    PayCost Discard 1 IsClimax
+    {
+        MoveCard Hand
+    }
 }
+InMemory
 Text Auto:MEMORY [Put 1 climax from your hand to the waiting room] If this card is in memory, at the beginning of your main phase, you may pay cost. If you do, return this card to your hand.
 EndCard
 

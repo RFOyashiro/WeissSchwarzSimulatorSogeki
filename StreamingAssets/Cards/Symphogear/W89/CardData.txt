@@ -803,7 +803,7 @@ Combo Fatal Chains: Star Money
 *GainPowerWithEnoughCharacters(1000,2,Music)
 Auto: StartMyEncorePhase
 {
-    If Climax Fatal Chains: Star Money && InLocation CenterStage && LocationContainsOrLess Hand 5 Any && FacingIsEmptyOrReversed
+    If Climax Fatal Chains: Star Money && InLocation CenterStage && FacingIsEmptyOrReversed && LocationContainsOrLess Hand 5 Any
     {
         SearchWaitingRoom HasTrait Music && IsCharacter
     }
