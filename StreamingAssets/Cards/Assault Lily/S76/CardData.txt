@@ -727,7 +727,7 @@ Auto: OnAttack
         MoveCard OpponentWaitingRoom
 		TargetTop Deck 1
 		Reveal
-		If Compare ThatCardsLevel 1 OrMore
+		IfTarget Compare ThatCardsLevel 1 OrMore
 		{
 			MoveCard Hand
 		}
