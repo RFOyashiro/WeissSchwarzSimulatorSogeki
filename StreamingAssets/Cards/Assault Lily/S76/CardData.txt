@@ -1313,7 +1313,7 @@ Auto: OnAttack
 			{
 				SearchWaitingRoom IsCharacter
 			}
-			Text Auto: When this card's battle opponent becomes reversed, you may choose 1 character in your waiting room and return it to your hand.
+            Text Auto: When this card's battle opponent becomes reversed, you may choose 1 character in your waiting room and return it to your hand.
 		}
 	}
 }
