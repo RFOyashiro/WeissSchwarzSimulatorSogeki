@@ -1268,6 +1268,7 @@ Auto: OnReverseOpponent
     }
 }
 Text Auto:[(1)] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay cost. If you do, choose a GREEN or «God» character in your waiting room and return it to your hand.
+Text <color=red> * This card is part of a 3C1 restriction alongside PAD/S105-T02 and PAD/S105-053 in JP. </color>
 EndCard
 
 Character: PAD/S105-046
@@ -1470,6 +1471,7 @@ Auto: OnTriggerCheckClimax
     }
 }
 Text Auto:[Put 1 card from hand to the waiting room] When your character's trigger check reveals a climax with a Bar trigger icon, you may pay cost. If you do, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
+Text <color=red> * This card is part of a 3C1 restriction alongside PAD/S105-045 and PAD/S105-T02 in JP. </color>
 EndCard
 
 Character: PAD/S105-054
@@ -2735,6 +2737,7 @@ Auto: OnAttack
 Quick
 Text Auto:When this card attacks, perform trigger check twice during this card attack's trigger step. After the 2 trigger checks are made, put the top card of your stock in the waiting room.
 *FreeRunner
+Text <color=red> * This card is part of a 3C1 restriction alongside PAD/S105-045 and PAD/S105-053 in JP. </color>
 EndCard
 
 Character: PAD/S105-T03
