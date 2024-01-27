@@ -291,7 +291,7 @@ Trait1 Music
 *SacrificeToSave(HasTrait Music)
 Text Auto:[Put this card in the waiting room] When your other <Music> character is placed from the stage to the waiting room, if this card is in the back stage, you may pay cost. If you do, put that character rest in the position thsi card was in.
 *RestGivePower(1500,Music)
-Text <color=red> * This card is part of a 4C1 restriction alongside W89-028, W89-034 and W89-054 in JP. </color>
+Text <color=red> * This card is part of a 3C1 restriction alongside W89-028 and W89-034 in JP. </color>
 EndCard
 
 Character: SG/W89-013
@@ -709,7 +709,7 @@ Auto: OnAttack
     }
 }
 Text Auto:CxCombo EXPERIENCE [Put a <Music> character from hand to the waiting room] When this card attacks, if "Polyfilm Scissor Love Dreams" is in your climax area and you have a "Igalima" or "Shul Shagana" in your level, you may pay cost. If you do, deal 2 damage to your opponent.
-Text <color=red> * This card is part of a 4C1 restriction alongside W89-012, W89-034 and W89-054 in JP. </color>
+Text <color=red> * This card is part of a 3C1 restriction alongside W89-012 and W89-034 in JP. </color>
 EndCard
 
 Character: SG/W89-029
@@ -864,7 +864,7 @@ Auto: OnPlay
 }
 Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "Igalima", reveal it, put it in your hand, and shuffle your deck.
 *OnPlayTradeClimaxForCharacter(Music)
-Text <color=red> * This card is part of a 4C1 restriction alongside W89-012, W89-028 and W89-054 in JP. </color>
+Text <color=red> * This card is part of a 3C1 restriction alongside W89-012 and W89-028 in JP. </color>
 EndCard
 
 Character: SG/W89-035
@@ -1355,7 +1355,6 @@ Auto: OnSentFromStageToWaitingRoom
     }
 }
 Text Auto:[(2)] When this card is placed from the stage to the waiting room, you may pay cost. If you do, choose a <Music> character in your waiting room and return it to your hand.
-Text <color=red> * This card is part of a 4C1 restriction alongside W89-012, W89-028 and W89-034 in JP. </color>
 EndCard
 
 Character: SG/W89-055
