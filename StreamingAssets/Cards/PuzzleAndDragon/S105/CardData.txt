@@ -956,7 +956,7 @@ Trait2 Physical
 *PowerInMiddle(3000)
 Auto: OnSentFromStageToWaitingRoom
 {
-    PayCost 1 SendFromLocationToLocation WaitingRoom Clock false IsCharacter && IsColor Green
+    PayCost 1 SendFromLocationToLocation WaitingRoom Clock 1 false IsCharacter && IsColor Green
     {
         RevealUpTo Deck 2
         ChooseCardsFromTargets IsCharacter && IsColor Green
@@ -1896,7 +1896,7 @@ Auto: OnClimaxPlay
 {
     PayCost 1 SendSelf Hand
     {
-        *GiveCharacterPower(1500)
+        *GiveCharacterPower(1500,Any)
         GainEffect
         {
             Auto: OnReverseOpponent
@@ -2374,7 +2374,7 @@ Soul 1
 Trait1 God
 Trait2 Healer
 Trait3 Physical
-*DropSalvage(Any)
+*DropSalvage
 Auto: OnOpponentClimaxPlay
 {
     Question Put this card into stock ?
@@ -2789,14 +2789,24 @@ Power 5500
 Soul 1
 Trait1 Demon
 Trait2 Attacker
-Cont:    
+Combo Zero Dimension Creator, Big Bang"
+*CannotSideAttack
+Auto: OnReverseOpponent
 {
-
-}
-Text Cont:This cannot side attack.
-Auto:
-{
-
+    If Climax Zero Dimension Creator, Big Bang"
+    {
+        RevealUpTo Deck 4
+        ChooseCardsFromTargets 0 2 Compare ThatCardsLevel 1 OrMore
+        RevealTargets
+        PutTheRestIntoTheWaitingRoom
+        Message Choose a card to put in hand. (The other will go in stock)
+        SaveTargets
+        ChooseCardsFromTargets 1 1 Any
+        MoveCard Hand
+        RemoveCurrentFromSavedTargets
+        LoadTargets
+        MoveCard Stock
+    }
 }
 Text Auto:CxCombo When this card's battle opponent becomes reverse, if "Zero Dimension Creator, Big Bang" is in your climax area, look at up to 4 cards from the top of your deck and search for up to 2 level 1 or higher cards, reveal them, choose 1 of them and put it in your hand, choose 1 of them and put it in your stock, and put the rest into your waiting room. 
 EndCard
@@ -2811,16 +2821,15 @@ Power 1000
 Soul 1
 Trait1 Dragon (KMD)
 Trait2 Demon
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    If StageContains 3 Any
+    {
+        *OptionalBlindStock
+    }
 }
 Text Auto:When you use this card's BACKUP, if you have 3 or more characters, you may put the top card of your deck in your stock.
-Act:
-{
-
-}
-Text Act:[Counter] BACKUP 2000, level 1 [(1) Put this card from your hand to the waiting room]
+Backup 2000
 EndCard
 
 Character: PAD/S105-T07
@@ -2834,14 +2843,16 @@ Soul 1
 Trait1 God
 Trait2 Healer
 Trait3 Physical
-Cont:    
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters InLocation OpponentBackstage
+    MultiplyXValue 2500
+    GainPower X
 }
-Text Cont:For each of your opponent's backstage characters, this card gets +2500 power.
-Auto:
+Text Cont:This card gets +2500 power for each of your opponent's backstage characters.
+Auto: OnReverseOpponent
 {
-
+    *GiveCharacterPower(1000,Any)
 }
 Text Auto:When battle opponent of this card is reversed, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
@@ -2856,14 +2867,15 @@ Power 10000
 Soul 2
 Trait1 God
 Trait2 Balance
-Auto:
+*Healer
+Auto: OnAttack
 {
-
-}
-Text Auto:When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
-Auto:
-{
-
+    PayCost 1 Discard 2 Any
+    {
+        MillOpponentBottom 3
+        NarrowTargets Compare ThatCardsLevel 0 OrLess
+        Burn X
+    }
 }
 Text Auto:[(1) Put 2 cards from your hand to the waiting room] When this card attacks, you may pay cost. If you do, put the bottom 3 cards of your opponent's deck in the waiting room, and deal X damage to your opponent. X equals the number of level 0 or lower cards among those cards. 
 EndCard
@@ -2873,9 +2885,15 @@ Name Resonant Vocalist, Ideal
 Color Y
 Level 1
 Cost 0
+Requirement StageContains 2 Any
 Effect: 
 {
-
+    If LocationContains WaitingRoom 2 IsClimax
+    {
+        TargetLocation WaitingRoom
+        NarrowTargets NameEquals Fasca, Great Witch of the Star Jumper
+        SearchWaitingRoom Compare ThatCardsLevel TargetCount OrLess && IsCharacter
+    }
 }
 Text If you have 1 or fewer character, you cannot play this card from hand. If there are 2 or more climax cards in your waiting room, choose a level X or lower character in your waiting room and return it to your hand. X equals the number of "Fasca, Great Witch of the Star Jumper" in your waiting room.
 EndCard
@@ -2894,16 +2912,30 @@ Power 500
 Soul 1
 Trait1 Dragon (KMD)
 Trait2 Demon
-Cont:    
+Cont: GiveAll
 {
-
+    If Other && NameEquals Meteor Volcano Dragon
+    {
+        GainPower 2000
+        GainEffect
+        {
+            Auto: OnReversed
+            {
+                TargetFacing
+                If Not MyTurn && Compare TargetCardsLevel 1 OrLess
+                {
+                    Question_Obvious Reverse that character ?
+                    If Yes
+                    {
+                        Reverse
+                    }
+                }
+            }
+        }
+    }
 }
 Text Cont:All your other "Meteor Volcano Dragon" get +2000 power and the following ability. "Auto: During your opponent's turn, when this card becomes reversed, if the battle opponent of this card is 1 or lower, you may reverse that character."
-Auto:
-{
-
-}
-Text Auto:BOND/"Meteor Volcano Dragon" [Put 1 card from your hand to the waiting room]
+*BondDiscard(Meteor Volcano Dragon)
 EndCard
 
 Character: PAD/S105-T12
@@ -2915,16 +2947,12 @@ Power 500
 Soul 1
 Trait1 God
 Trait2 Dragon (KMD)
-Auto:
+Auto: OnTriggerCheckClimax
 {
-
+    *GiveCharacterPower(1000,Any)
 }
 Text Auto:When your character's trigger check reveals a climax card, choose 1 of your characters, and that character gets +1000 power until end of turn.
-Act:
-{
-
-}
-Text Act:BRAINSTORM [(1) Rest this card] Flip over the top 5 cards of your deck and put them in the waiting room. For each climax revealed this way, draw up to 1 card.
+*Act1RestSelfDrawBrainstorm5
 EndCard
 
 Character: PAD/S105-T13
@@ -2936,14 +2964,23 @@ Power 3000
 Soul 1
 Trait1 Healer
 Trait2 Dragon (KMD)
-Cont:    
+Cont: GiveFacing
 {
-
+    GainEffect
+    {
+        Auto: Encore 2
+        {
+        }
+        Text Auto: ENCORE [(2)]
+    }
 }
 Text Cont:character facing this card gets "Auto: ENCORE [(2)]".
-Auto:
+Auto: OnSentFromStageToWaitingRoom
 {
-
+    PayCost 1 Clock
+    {
+        *Check4Add1Level1OrHigher
+    }
 }
 Text Auto:[(1) Put the top card of your deck in your clock] When this card is placed from the stage to the waiting room, you may pay cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. 
 EndCard
@@ -2957,11 +2994,7 @@ Power 1500
 Soul 1
 Trait1 Attacker
 Trait2 Dragon (KMD)
-Auto:
-{
-
-}
-Text Auto:When this card is placed on the stage from your hand, this card gets +4500 power until end of turn.
+*OnPlayGainPower(4500)
 EndCard
 
 Character: PAD/S105-T15
@@ -2983,16 +3016,8 @@ Power 3500
 Soul 1
 Trait1 Attacker
 Trait2 Physical
-Cont:    
-{
-
-}
-Text Cont:During your turn, this card gets +6000 power.
-Auto:
-{
-
-}
-Text Auto:ENCORE [Put 1 character from your hand to the waiting room]
+*PowerOnMyTurn(6000)
+*HandEncore
 EndCard
 
 Character: PAD/S105-T17
@@ -3006,14 +3031,10 @@ Soul 1
 Trait1 Demon
 Trait2 Attacker
 Trait3 Physical
-Cont:    
+*LevelAssist
+Act: 2 RestSelf
 {
-
-}
-Text Cont:ASSIST Your characters in front of this card get +X power. X equals 500 times level of that character.
-Act:
-{
-
+    SearchWaitingRoom IsCharacter
 }
 Text Act:[(2) Rest this card] Choose a character in your waiting room and return it to your hand.
 EndCard
@@ -3028,14 +3049,20 @@ Power 5000
 Soul 1
 Trait1 Dragon (KMD)
 Trait2 Demon
-Auto:
+Auto: OnAttack
 {
-
+    SetXToNumberOfCharacters InLocation OpponentStage
+    MultiplyXValue 1500
+    GainPower X
 }
+Quick
 Text Auto:When this card attacks, this card gets +X power until end of turn. X equals 1500 times the number of opponent's characters.
-Auto:
+Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
 {
-
+    PayCost 1
+    {
+        SearchWaitingRoom IsCharacter
+    }
 }
 Text Auto:[(1)] When a level 2 or higher battle opponent of this card becomes reversed, you may pay cost. If you do, choose a character in your waiting room and return it to your hand.
 EndCard
@@ -3050,14 +3077,32 @@ Power 10500
 Soul 2
 Trait1 Demon
 Trait2 Balance
-Auto:
+Combo Daybreak Primordial Divinity, Kamimusubi
+Auto: OnPlay
 {
-
+    SearchLocationForTargets Hand 0 1 IsCharacter && Compare ThatCardsLevel MyLevel OrLess
+    If HasTarget
+    {
+        PlaceOnStage false true true false
+        TargetSelf
+        GainPower 2000
+    }
 }
 Text Auto:When this card is placed on the stage from your hand, choose up to 1 character in your hand whose level is equal to or lower than your level and put it in any position on the stage, and this card gets +2000 power until end of turn.
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If Climax Daybreak Primordial Divinity, Kamimusubi
+    {
+        PayCost 2
+        {
+            Burn 2
+            TargetFacing
+            If OnStage
+            {
+                MoveCard OpponentDeck
+            }
+        }
+    }
 }
 Text Auto:CxCombo [(2)] When this card's battle opponent becomes reverse, if "Daybreak Primordial Divinity, Kamimusubi" is in your climax area, you may pay cost. If you do, deal 2 damage to your opponent, and put that character on top of the deck. 
 EndCard
@@ -3070,5 +3115,197 @@ EndCard
 Climax: PAD/S105-T21
 Name Vivacious Drummer, Valeria
 Color R
-
+*2SoulClimax
 EndCard
+
+Character: PAD/S105-101
+Name Ukei's Key Hero, Ferul
+Image pad_s105_101
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Physical 
+Trait2 Attack
+*CannotSideAttack
+Auto: OnDamageDealtByCharacterFacingThisNotCanceled
+{
+    If InBattle
+    {
+        GainPower 1500
+    }
+}
+Quick
+Text Auto:During this card's battle, if the damage you received is not canceled, this card gets +1500 power until end of turn.
+
+Character: PAD/S105-102
+Name Valentine's Night Goddess, Noktaria
+Image pad_s105_102
+Color R
+Level 1
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 God 
+Trait2 Devil
+*EarlyPlayMemoryBomb
+
+Character: PAD/S105-103
+Name Renri's Hidragon Caller, Tsubaki
+Image pad_s105_103
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Dragon (KMD)
+Trait2 Stamina
+Auto: OnPlay
+{
+    Mill 2
+    NarrowTargets IsClimax
+    If HasTarget
+    {
+        PayCost Discard 1 Any
+        {
+            SearchWaitingRoom IsCharacter
+        }
+    }
+}
+Text Auto:[Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, put the top 2 card of your deck into waiting room. If there is a climax among them, you pay the cost. If you do, search your waiting room for up to 1 character and return it to your hand.
+*RedLevel0Bomb
+
+Character: PAD/S105-104
+Name Bright Rainbow Bride, Eskamari
+Image pad_s105_104
+Color Y 
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Machine
+Trait2 God
+*EarlyPlay2OrLessClimax
+*OnPlayCheckX(Any)
+Auto: OnPlay
+{
+    UntilEndOfOpponentsTurn
+    GainPower 1500
+}
+Quick
+Text Auto:When this card is placed on the stage from your hand, this card gets +1500 until the end of your opponent's next turn. 
+
+Character: PAD/S105-105
+Name Great Witch of the Western Mansion, Nere
+Image pad_s105_105
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 3500
+Soul 1
+Trait1 Balance 
+Trait2 Devil
+Auto: OnAttack
+{
+    *GiveCharacterPower(5000,Any)
+}
+Text Auto:When this card attacks, choose 1 of your character and that character gets +5000 power until end of turn.
+
+Character: PAD/S105-P01
+Name Secret Ninja, Blackbird
+Image pad_s105_p01
+Color B
+Level 2 
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Machine 
+Trait2 Balance
+*GainPowerWhenAttackingLevel3(6000)
+Auto: OnReverseOpponent
+{
+    If LocationContains Climax 1 Any
+    {
+        TargetFacing
+        If OnStage
+        {
+            Question Put that character at the bottom of your opponent's deck ?
+            If Yes
+            {
+                MoveCardToBottom OpponentDeck
+            }
+        }
+    }
+}
+Text Auto:When this card's battle opponent becomes reverse, if you have a climax in your climax area, you may put that character at the bottom of your opponent's deck.
+
+Character: PAD/S105-P02
+Name The Original Great Witch, Rafine
+Image pad_s105_p02
+Color R
+Level 3
+Cost 2
+Trigger Soul 
+Power 4500
+Soul 1
+Trait1 Demon
+Trait2 Balance
+*2000Assist
+*Healer
+
+Character: PAD/S105-P03
+Name Frozen Dessert King, Miada
+Image pad_s105_p03
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Healer 
+Trait2 Attack
+Auto: StartOpponentAttackPhase
+{
+    PayCost 1
+    {
+        TargetFacing
+        If HasTarget
+        {
+            SaveTargets
+            TargetLocation OpponentCenterStage
+            NarrowTargets Not InSavedTargets
+            ChooseCharacterFromTargets Choose a character to swap with the character facing this card.
+            AddSavedToCurrentTargets
+            Stand
+            Exchange
+        }   
+    }
+}
+Text Auto:[(1)] At the begining of your opponent's attack phase, you may pay the cost. If you do, choose the character facing this card and another character in your opponent's center stage, stand them and swap them.
+*BlueLevel0Bomb
+
+Character: PAD/S105-P04
+Name First Day of Suzaku Princess, Raylan
+Image pad_s105_p04
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 God
+Trait2 Dragon (KMD)
+Auto: OnPlay
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget Compare ThatCardsLevel 2 OrMore
+    {
+        MoveCard Stock
+    }
+}
+Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is level 2 or higher, put that card into stock.
+*ClimaxExchange
