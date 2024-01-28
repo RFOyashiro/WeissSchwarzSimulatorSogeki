@@ -447,12 +447,12 @@ Auto: OnAttack
     If Climax Silverwing White Conqueror, Daytona && StageContains 4 Other && IsColor Yellow
     {
         MultipleChoiceQuestion Choose an effect to resolve.\n1:Choose up to 1 YELLOW character in your waiting room and return it to your hand, choose up to 1 YELLOW character in your waiting room and put it in your stock.\n2:[(2)] You may pay cost. If you do, deal 1 damage to your opponent, and this card gets +5000 power until end of turn.|1|2
-        If Answer 1
+        If Answer 0
         {
             SearchWaitingRoom IsCharacter && IsColor Yellow
             *PutCardFromWaitingRoomIntoStock(IsCharacter && IsColor Yellow)
         }
-        If Answer 2
+        If Answer 1
         {
             PayCost 2
             {
@@ -658,7 +658,7 @@ Effect:
         Text Cont:Character facing this card gets -3 soul.
     }
 }
-Text [Counter] Choose 1 of your "Ideal, Bonding Colorful Dragon Caller", and that character gets the following ability for hte turn. "Cont:Character facing this card gets -3 soul."
+Text [Counter] Choose 1 of your "Ideal, Bonding Colorful Dragon Caller", and that character gets the following ability for the turn. "Cont:Character facing this card gets -3 soul."
 EndCard
 
 Climax: PAD/S105-023
@@ -728,7 +728,7 @@ Auto: OnEndOfAttack
     If Climax Mega Awoken Goddess of power, Kali
     {
         MultipleChoiceQuestion Choose an effect to resolve.\n1:Choose up to 2 characters in your waiting room and return them to your hand, choose up to 1 level 1 or lower characters in your waiting room and put it in your stock, and this card gets +1000 power until the end of your opponent's next turn.\n2:[(1) Put 1 card from your hand to the waiting room] If you have 2 or more other Charactres, you may pay cost. If you do, stand this card.|1|2
-        If Answer 1
+        If Answer 0
         {
             SearchWaitingRoom IsCharacter
             SearchWaitingRoom IsCharacter
@@ -737,7 +737,7 @@ Auto: OnEndOfAttack
             UntilEndOfOpponentsTurn
             GainPower 1000
         }
-        If Answer 2
+        If Answer 1
         {
             If StageContains 2 Other
             {
@@ -853,14 +853,11 @@ Cont: GiveSelf
 Text Cont:If the number of other characters you have is 2 or more, this card gets BLUE.
 Cont: GiveAll
 {
-    If StageContains 4 Other
+    If Compare ColorsOnStage 4 OrMore && Other
     {
-        If Other
-        {
-            SetXValue ThatCardsLevel
-            MultiplyXValue 500
-            GainPower X
-        }
+        SetXValue ThatCardsLevel
+        MultiplyXValue 500
+        GainPower X
     }
 }
 Text Cont:If the the number of colors you have is 4 or more, all your other characters get +X power. X equals 500 times level of that character.
@@ -891,13 +888,13 @@ Trait2 Dragon (KMD)
 Auto: OnPlay
 {
     MultipleChoiceQuestion Choose an effect to resolve.\n1:Put up to 1 card from the top of your clock in the waiting room, and this card gets +3000 power until end of turn.\n2:Your opponent puts all of their stock in the waiting room, then puts the same number of cards from top of their deck in their stock.|1|2
-    If Answer 1
+    If Answer 0
     {
         *OptionalHeal
         TargetSelf
         GainPower 3000
     }
-    If Answer 2
+    If Answer 1
     {
         StockSwap
     }
@@ -1365,7 +1362,7 @@ Text Cont:If there are 5 or more cards in your hand, this card gets +1500 power.
 Auto: StartOpponentAttackPhase
 {
     MultipleChoiceQuestion Choose an effect to perform.\n1:Move this card to an empty center stage middle position.\n2:this card get the following effect: "Auto:[(1)] At the beginning of encore step, if you have no other rested characters in the center stage, you may pay cost. If you do, rest this card."|1|2
-    If Answer 1
+    If Answer 0
     {
         TargetLocation MiddleCenterStage
         If Not HasTarget
@@ -1374,7 +1371,7 @@ Auto: StartOpponentAttackPhase
             MoveCard MiddleCenterStage
         }
     }
-    If Answer 2
+    If Answer 1
     {
         TargetSelf
         GainEffect
@@ -1408,7 +1405,7 @@ Auto: StartEncoreStep
     If Climax Blazearm Scarlet Conqueror, Sea Wolf && InLocation CenterStage
     {
         MultipleChoiceQuestion Choose an effect to perform.\n1:If the the number of colors you have is 4 or more and the character facing this card is reversed, look at up to 3 cards from the top of your deck, choose up to 1 of them and put it in your hand, choose up to 1 of them and put it in your stock, and put the rest into your waiting room.\n2:Choose a level 2 or higher character in your waiting room and return it to your hand.|1|2
-        If Answer 1
+        If Answer 0
         {
             If Compare ColorsOnStage 4 OrMore
             {
@@ -1429,7 +1426,7 @@ Auto: StartEncoreStep
                 }            
             }
         }
-        If Answer 2
+        If Answer 1
         {
             SearchWaitingRoom Compare ThatCardsLevel 2 OrMore && IsCharacter
         }
