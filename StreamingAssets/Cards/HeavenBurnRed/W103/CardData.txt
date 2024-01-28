@@ -700,7 +700,7 @@ Auto: OnPlay
         If Answer 0
         {
             RevealUpTo Deck 5
-            ChooseCardsFromTargets 0 1 Compare ThatCardsLevel 1 OrMore
+            ChooseCardsFromTargets 0 1 Compare ThatCardsLevel 1 OrLess
             RevealTargets
             MoveCard Hand
             PutTheRestIntoTheWaitingRoom
@@ -1271,8 +1271,11 @@ Auto: OnPlay
 {
     If StageContains 1 Other && HasTrait Seraph
     {
-        *OptionalHeal
-        SearchWaitingRoom HasTrait Seraph
+        PayCost Discard 1 Any
+        {
+            *OptionalHeal
+            SearchWaitingRoom HasTrait Seraph
+        }
     }
 }
 Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, if you have another «Seraph» character, you may pay cost. If you do, you may put the top card of your clock in the waiting room, choose up to 1 «Seraph» character in your waiting room and return it to your hand.
