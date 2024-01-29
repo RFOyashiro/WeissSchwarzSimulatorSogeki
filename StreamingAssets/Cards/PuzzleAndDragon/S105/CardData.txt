@@ -1796,6 +1796,9 @@ Auto: StartAttackPhase
 {
     If InLocation CenterStage
     {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen && Compare ThatCardsLevel 1 OrMore
+        ChooseCharacterFromTargets Choose a character to shrink.
         *Downgrade
     }
 }
