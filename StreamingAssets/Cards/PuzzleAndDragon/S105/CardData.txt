@@ -694,7 +694,7 @@ Auto: OnAttack
         If Yes
         {
             Mill 1
-            IfTarget Compare ThatCardsLevel 1 OrLess
+            IfTarget Compare ThatCardsLevel 0 OrLess && IsCharacter
             {
                 PlaceOnStage false false true false
             }
@@ -2295,7 +2295,8 @@ Auto: OnPlay
     If HasTarget
     {
         MoveCard Hand
-        TargetTop Deck 1
+        TargetLocation Hand
+        ChooseCardsFromTargets 1 1 Any
         MoveCard Clock
     }
 }
