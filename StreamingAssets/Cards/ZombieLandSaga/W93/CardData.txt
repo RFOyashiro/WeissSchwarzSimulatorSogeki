@@ -2708,7 +2708,7 @@ Power 500
 Soul 1
 Trait1 Saga
 Trait2 Music
-Auto: OnOtherPlacedOnStageFromHand
+Auto: OnPlay|OnOtherPlacedOnStageFromHand
 {
     IfOther HasTrait Saga
     {
@@ -2888,7 +2888,11 @@ Power 500
 Soul 1
 Trait1 Saga
 Trait2 Music
-*OnPlayScryToBottom
+Auto: OnAttack
+{
+    *ScryToBottom
+}
+Text When this card attacks, look at the top card of your deck and put it either on top or bottom or your deck.
 *BlueLevel0Bomb
 EndCard
 
