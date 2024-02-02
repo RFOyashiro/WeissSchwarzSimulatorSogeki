@@ -1,0 +1,4 @@
+Series: Project Sekai Colorful Stage!
+Folder: ProjectSekai/S91
+Prefix: PJS/S91
+SetName: Project Sekai Colorful Stage! feat. Hatsune Miku
