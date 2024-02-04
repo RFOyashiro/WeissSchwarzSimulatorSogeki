@@ -1604,19 +1604,30 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 Leo/need
-Cont:
+Combo What Lies Beyond
+Cont: GiveSelf
 {
-
+    If MyTurn && StageContains 2 Other && HasTrait Music
+    {
+        GainPower 2000
+    }
 }
 Text Cont:During your turn, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power.
-Auto:
+Auto: OnSpecificClimaxPlay What Lies Beyond
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchLocationForTargets WaitingRoom 0 1 IsCharacter && Compare ThatCardsCost 0 OrLess
+        PlaceOnStage false true true false
+    }
 }
 Text Auto:CxCombo [Put 1 card from hand to the waiting room] When "What Lies Beyond" is placed on your climax area, you may pay cost. If you do, choose a cost 0 or lower «Music» character in your waiting room and put it in any position on the stage.
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If Climax What Lies Beyond && StageContains 1 Other && HasTrait Music
+    {
+        SearchWaitingRoom HasTrait Music
+    }
 }
 Text Auto:CxCombo When this card's battle opponent becomes reverse, if "What Lies Beyond" is in your climax area and you have another «Music» character, you may choose a «Music» character in your waiting room and return it to your hand.
 EndCard
@@ -1631,21 +1642,34 @@ Power 8000
 Soul 3
 Trait1 Music
 Trait2 25-ji, Nightcord de.
-Cont:
+Combo On the Other side of the Screen...
+Cont: GiveSelf
 {
-
+    If LocationContains Memory 2 HasTrait Music
+    {
+        GainPower 2000
+    }
 }
 Text Cont:MEMORY If there are 2 or more «Music» characters in your memory, this card gets +2000 power.
-Auto:
+*Healer
+Auto: OnAttack
 {
-
+    If Climax On the Other side of the Screen...
+    {
+        PayCost 1
+        {
+            TargetTop Deck 1
+            Reveal
+            IfTarget HasTrait Music
+            {
+                TargetSelf
+                Stand
+            }
+        }
+    }
 }
-Text Auto:When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
-Auto:
-{
-
-}
-Text Auto:CxCombo [(1)] This ability activates up to once per turn. When this card attacks, if "On the Other side of the Screen..." is in your climax area, you may pay cost. If you do, reveal the top card of your deck. If it's a «Music» character, stand this card. (Put the revealed card back where it was)
+TimesPerTurn 1
+Text Auto:CxCombo [(1)] This ability activates up to once per turn. When this card attacks, if "On the Other side of the Screen..." is in your climax area, you may pay cost. If you do, reveal the top card of your deck. If it's a «Music» character, stand this card.
 EndCard
 
 Character: PJS/S91-083
@@ -1658,21 +1682,20 @@ Power 8000
 Soul 2
 Trait1 Music
 Trait2 25-ji, Nightcord de.
-Cont:
+*EarlyPlay4OrMore(Music)
+Cont: GiveSelf
 {
-
-}
-Text Cont:If the number of «Music» characters you have is 4 or more, this card gets -1 level while in your hand.
-Cont:
-{
-
+    If StageContains 2 Other && HasTrait Music
+    {
+        GainPower 2500
+        GainEffect
+        {
+            *HandEncoreTrait(Music)
+        }
+    }
 }
 Text Cont:If the number of other «Music» characters you have is 2 or more, this card gets +2500 power and "Auto: ENCORE [Put a «Music» character from your hand to the waiting room]".
-Auto:
-{
-
-}
-Text Auto:When this card is placed on the stage from your hand, look at up to X cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your «Music» characters.
+*OnPlayCheckX(Music)
 EndCard
 
 Character: PJS/S91-084
@@ -1685,21 +1708,24 @@ Soul 1
 Trait1 Music
 Trait2 Virtual Singer
 Trait3 
-Cont:
+Cont: InHand
 {
-
+    GainSpecialEffect IgnoreColorRequirement
 }
 Text Cont:You may play this card from your hand without meeting the color requirement.
-Auto:
+*OnPlayTradeClimaxForCharacter(Music)
+Auto: OnReceiveDamage
 {
-
+    If InBattle
+    {
+        Question Return this card to your hand ?
+        If Yes
+        {
+            Bounce
+        }
+    }
 }
-Text Auto:[Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
-Auto:
-{
-
-}
-Text Auto:During battles involving this card, if damage you are dealt is canceled, you may return this card to your hand.
+Text Auto:During battles involving this card, if damage you receive is not canceled, you may return this card to your hand.
 EndCard
 
 Character: PJS/S91-085
@@ -1711,14 +1737,27 @@ Power 4000
 Soul 1
 Trait1 Music
 Trait2 25-ji, Nightcord de.
-Cont:
+Combo The Best Angle
+Cont: GiveSelf
 {
-
+    If MyTurn && LocationContains Memory 1 Any
+    {
+        GainPower 3000
+    }
 }
 Text Cont:MEMORY During your turn, if there is a card in your memory, this card gets +3000 power.
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If Climax The Best Angle && StageContains 1 Other && HasTrait Music
+    {
+        PayCost Discard 1 HasTrait Music
+        {
+            SearchLocationForTargets Deck 0 2 HasTrait Music
+            Reveal
+            MoveCard Hand
+            ShuffleLocation Deck
+        }
+    }
 }
 Text Auto:CxCombo [Put a «Music» character from hand to the waiting room] When this card's battle opponent becomes reverse, if "The Best Angle" is in your climax area and you have another «Music» character, you may pay cost. If you do, search your deck for up to 2 «Music» characters, reveal them, put them in your hand, and shuffle your deck.
 EndCard
@@ -1733,14 +1772,23 @@ Soul 1
 Trait1 Music
 Trait2 Virtual Singer
 Trait3 
-Auto:
+Auto: OnPlay
 {
-
+    If StageContains 1 Other && HasTrait Music
+    {
+        GainPower 2000
+    }
 }
 Text Auto:When this card is placed on the stage from your hand, if you have another «Music» character, this card gets +2000 power until end of turn.
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If PlayedThisTurn && Compare ColorsOnStage 4 OrMore
+    {
+        PayCost 1
+        {
+            SearchDeck HasTrait Music
+        }
+    }
 }
 Text Auto:[(1)] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, if the the number of colors among characters on your stage is 4 or more, you may pay cost. If you do, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -1755,19 +1803,41 @@ Power 6000
 Soul 1
 Trait1 Music
 Trait2 25-ji, Nightcord de.
-Cont:
+Combo The "Good Girl" I Am
+*Level3Assist
+Auto: OnSpecificClimaxPlay The "Good Girl" I Am
 {
-
+    If StageContains 1 Other && HasTrait Music
+    {
+        PayCost Discard 1 Any
+        {
+            TargetLocation WaitingRoom
+            MoveCard Deck
+            ShuffleLocation Deck
+            TargetTop Deck 3
+            If Compare TargetCount 2 OrMore
+            {
+                Reorder
+            }
+            Else
+            {
+                View
+            }
+        }
+    }
 }
-Text Cont:ASSIST Your level 3 or higher characters in front of this card get +2000 power.
-Auto:
+Text Auto:CxCombo [Put 1 card from your hand to the waiting room] When "The "Good Girl" I Am" is placed on your climax area, if you have another «Music» character, you may pay cost. If you do, return all cards in your waiting room to the deck, shuffle your deck, look at up to 3 cards from the top of your deck and put them on top of the deck in any order.
+Auto: OnClimaxPlay
 {
-
-}
-Text Auto:CxCombo [Put 1 card from your hand to the waiting room] When "The 'Good Girl' I Am" is placed on your climax area, if you have another «Music» character, you may pay cost. If you do, return all cards in your waiting room to the deck, shuffle your deck, look at up to 3 cards from the top of your deck and put them on top of the deck in any order.
-Auto:
-{
-
+    TargetTop Deck 2
+    If Compare TargetCount 2 OrMore
+    {
+        Reorder
+    }
+    Else
+    {
+        View
+    }
 }
 Text Auto:When your climax is placed on your climax area, look at up to 2 cards from the top of your deck and put them on top of the deck in any order.
 EndCard
@@ -1782,15 +1852,33 @@ Power 10500
 Soul 2
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
-Auto:
+Combo Severed Strings
+Auto: OnPlay
 {
-
+	PayCost Rest 1 Any
+	{
+		OpponentMessage Choose a climax to keep in your waiting room.
+		OpponentSearchLocationForTargets WaitingRoom 1 1 IsClimax
+		ReverseTargets OpponentWaitingRoom
+		MoveCard OpponentDeck
+		ShuffleLocation OpponentDeck
+	}
 }
-Text Auto:[Rest 1 of your standing characters] When this card is placed on the stage from your hand, you may pay cost. If you do, your opponent chooses 1 climax in his or her waiting room, returns all cards in his or her waiting room except the chosen climax to the deck, and shuffles that deck.
-Auto:
+Text Auto:[Rest 1 of your standing characters] When this card is placed on the stage from your hand, you may pay cost. If you do, your opponent chooses 1 climax in their waiting room, returns all cards from their waiting room except the chosen climax to the deck, and shuffle their deck.
+Auto: OnAttack
 {
-
+    If Climax Severed Strings
+    {
+        *CheckTopXOfOpponentDeckSendAny(2)
+        Peek Deck 2
+		If HasTarget
+		{
+			Message Choose cards to put back on top.
+			ChooseCardsFromTargets 0 2 Any
+			MoveCard Deck
+			PutTheRestIntoTheWaitingRoom
+		}
+    }
 }
 Text Auto:CxCombo When this card attacks, if "Severed Strings" is in your climax area, look at up to 2 cards from the top of your opponent's deck, choose up to 2 of them and put them on top of the deck in any order, put the rest in their waiting room, look at up to 2 cards from the top of your deck, choose up to 2 of them and put them on top of your deck in any order, and put the rest into your waiting room.
 EndCard
@@ -1804,14 +1892,21 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 25-ji, Nightcord de.
-Cont:
+*GlobalPower(500,Music)
+Auto: OnTriggerCheckClimax
 {
-
-}
-Text Cont:All your other «Music» characters get +500 power.
-Auto:
-{
-
+    IfOther HasTrigger Gate
+    {
+        If StageContains 2 Other && HasTrait 25-ji, Nightcord de.
+        {
+            PayCost Discard 1 Any
+            {
+                SearchWaitingRoom HasTrait 25-ji, Nightcord de.
+                *GiveCharacterPower(500,Any)
+                GainLevel 1
+            }
+        }
+    }
 }
 Text Auto:[Put 1 card from your hand to the waiting room] When your character's trigger check reveals a climax with a Gate trigger icon, if the number of other «25-ji, Nightcord de.» characters you have is 2 or more, you may pay cost. If you do, choose a «25-ji, Nightcord de.» character in your waiting room and return it to your hand, choose 1 of your characters, and that character gets +1 level and +500 power until end of turn.
 EndCard
@@ -1825,14 +1920,25 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 25-ji, Nightcord de.
-Auto:
+Auto: StartClimaxPhase
 {
-
+    PayCost 2
+    {
+        PayCost Discard 1 IsClimax
+        {
+            TargetSentToPayCost
+        }
+    }
 }
-Text Auto:MEMORY [(2)] At the beginning of your climax phase, If this card is in memory, you may pay cost. If you do, discard up to 1 climax from your hand to the waiting room, then choose a climax in your waiting room that has the same exact trigger icon(s) as the trigger icon(s) of the climax discarded to the waiting room this way and return it to your hand.
-Act:
+InMemory
+Text Auto:MEMORY [(2)] At the beginning of your climax phase, If this card is in memory, you may pay cost. If you do, discard up to 1 climax from your hand to the waiting room, then choose a climax in your waiting room that has the same exact trigger icons as the trigger icons of the climax put into waiting room from this effect and return it to your hand.
+Act: 1 SendSelf Memory
 {
-
+    RevealUpTo Deck 3
+	ChooseCardsFromTargets 0 1 Compare ThatCardsLevel 1 OrMore
+	RevealTargets
+	MoveCard Hand
+	PutTheRestIntoTheWaitingRoom
 }
 Text Act:[(1) Put this card into memory] Look at up to 3 cards from the top of your deck and search for up to 1 level 1 or lower character, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
@@ -1989,7 +2095,7 @@ Auto:
 {
 
 }
-Text Auto:At the beginning of your opponent's draw phase, reveal the top card of your deck. If it's level 1 or higher, you may return this card to your hand. (climax cards are considered level 0 for this card effect. Put the revealed card back where it was)
+Text Auto:At the beginning of your opponent's draw phase, reveal the top card of your deck. If it's level 1 or higher, you may return this card to your hand.
 EndCard
 
 Character: PJS/S91-098
