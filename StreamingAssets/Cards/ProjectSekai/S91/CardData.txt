@@ -1044,16 +1044,26 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Vivid Bad Squad
-Cont:
+*GainPowerWithEnoughCharacters(1500,1,Music)
+Auto: StartOpponentAttackPhase
 {
-
+    TargetFacing
+    If HasTarget
+    {
+        TargetLocation CenterStage
+        If Compare TargetCount 2 OrLess
+        {
+            Question Move this card to an open position in you center stage ?
+            If Yes
+            {
+                TargetSelf
+                MoveToOpenPosition true false
+            }
+        }
+        
+    }
 }
-Text Cont:If you have another «Music» character, this card gets +1500 power.
-Auto:
-{
-
-}
-Text Auto:At the beginning of your opponent's attack phase, if there's a character facing this card, you may move this card to an empty slot in your center stage.
+Text Auto:At the beginning of your opponent's attack phase, if there's a character facing this card, you may move this card to an empty position in your center stage.
 EndCard
 
 Character: PJS/S91-055
@@ -1065,17 +1075,12 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
-Auto:
+Auto: OnOtherOpponentReversed
 {
-
+    *GiveCharacterPower(500,Music)
 }
 Text Auto:When the battle opponent of your other character becomes reversed, choose 1 of your «Music» characters, and that character gets +500 power until end of turn.
-Act:
-{
-
-}
-Text Act:BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 character in your waiting room and return it to your hand.
+*Act1RestSelfSalvageBrainstorm(Any)
 EndCard
 
 Character: PJS/S91-056
@@ -1088,14 +1093,29 @@ Power 9000
 Soul 2
 Trait1 Music
 Trait2 Vivid Bad Squad
-Cont:
+Combo First Breath in a Sekai
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && HasTrait Music
+    {
+        GainPower 1000
+        GainEffect
+        {
+            *HandEncoreTrait(Music)
+        }
+    }
 }
 Text Cont:If you have another «Music» character, this card gets +1000 power and "Auto: ENCORE [Put a «Music» character from hand to the waiting room]".
-Auto:
+Auto: OnAttack
 {
-
+    If Climax First Breath in a Sekai && StageContains 2 Other && HasTrait Music
+    {
+        PayCost 1 Discard 1 Any
+        {
+            Burn 3
+            *OptionalHeal
+        }
+    }
 }
 Text Auto:CxCombo [(1) Put 1 card from hand to the waiting room] When this card attacks, if "First Breath in a Sekai" is in your climax area and the number of other «Music» characters you have is 2 or more, you may pay cost. If you do, deal 3 damage to your opponent, and put up to 1 card from the top of your clock in the waiting room. 
 EndCard
@@ -1109,16 +1129,22 @@ Power 3500
 Soul 1
 Trait1 Music
 Trait2 Vivid Bad Squad
-Auto:
+Combo A Broken Bond
+Auto: OnSpecificClimaxPlay A Broken Bond
 {
-
+    GainPower 2500
+    GainEffect
+    {
+        Auto: OnReverseOpponent
+        {
+            *Check4Add1(Music)
+        }
+        Text Auto: When this card's battle opponent becomes reverse, look at up to 4 cards from the top of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, and put the rest into your waiting room.
+    }
 }
+Quick
 Text Auto:CxCombo When "A Broken Bond" is placed on your climax area, this card gets +2500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, look at up to 4 cards from the top of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, and put the rest into your waiting room."
-Auto:
-{
-
-}
-Text Auto:BOND/"Akito Shinonome, In Order to Exceed 'Rad Weekend'" [Put 1 card from your hand to the waiting room]
+*BondDiscard(In Order to Exceed "Rad Weekend"\, Akito Shinonome)
 EndCard
 
 Character: PJS/S91-058
@@ -1131,16 +1157,21 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Leo/need
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    PayCost 2 Send 1 WaitingRoom Any
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen && EarlyPlay
+        If HasTarget
+        {
+            ChooseCharacterFromTargets Choose 1 of your Opponent's Characters whose Level is higher than your Opponent and put it in the Waiting Room.
+            MoveCard WaitingRoom
+        }
+    }
 }
 Text Auto:[(2) Put 1 character from your stage in the waiting room] When you use this card's BACKUP, you may pay cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent and put it in the waiting room.
-Act:
-{
-
-}
-Text Act:[Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+Backup 2500
 EndCard
 
 Character: PJS/S91-059
@@ -1153,17 +1184,35 @@ Power 5000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
-Cont:
+Cont: InHand
 {
-
+    If LocationContains OpponentWaitingRoom 5 IsClimax
+    {
+        LoseLevel 1
+    }
 }
 Text Cont:If there are 5 or more climax cards in your opponent's waiting room, this card gets -1 level while in your hand.
-Auto:
+Auto: OnPlay
 {
-
+    UntilEndOfOpponentsTurn
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            If Not MyTurn
+            {
+                GainPower 4000
+            }
+        }
+        Text Cont:During your opponent's turn, this card gets +4000 power.
+    }
+    UntilEndOfOpponentsTurn
+    GainEffect
+    {
+        *GreatPerformance
+    }
 }
-Text Auto:When this card is placed on the stage from your hand, this card gets the following 2 abilities until the end of your opponent's next turn. "Cont: During your opponent's turn, this card gets +4000 power." "Cont: BODYGUARD"
+Text Auto:When this card is placed on the stage from your hand, this card gets the following 2 abilities until the end of your opponent's next turn. "Cont:During your opponent's turn, this card gets +4000 power." "Cont:GREAT PERFORMANCE"
 EndCard
 
 Character: PJS/S91-060
@@ -1176,21 +1225,26 @@ Power 500
 Soul 2
 Trait1 Music
 Trait2 Vivid Bad Squad
-Cont:
+*2000Assist
+*StockHealer
+Act: RestSelf
 {
-
-}
-Text Cont:ASSIST Your characters in front of this card get +2000 power.
-Auto:
-{
-
-}
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, put the top card of your clock in your stock.
-Act:
-{
-
+    TargetLocation Stage
+    NarrowTargets With Auto:BOND || With Auto: BOND
+    ChooseCharacterFromTargets Choose a character with BOND to give the effect.
+    GainEffect
+    {
+        Act: SendSelf WaitingRoom
+        {
+            TargetSelf
+            SaveTargets
+            SearchWaitingRoom BondTargetOfSavedTarget
+        }
+        Text Act: [Put this card in the waiting room] Choose a character in your waiting room with a card name specified by BOND on this card and return it to your hand.
+    }
 }
 Text Act:[Rest this card] Choose 1 of your other characters with BOND, and that card gets the following ability until end of turn. "Act: [Put this card in the waiting room] Choose a character in your waiting room with a card name specified by BOND on this card and return it to your hand."
+Text Act: effect of this card unavailable
 EndCard
 
 Character: PJS/S91-061
@@ -1202,16 +1256,8 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Vivid Bad Squad
-Auto:
-{
-
-}
-Text Auto:BOND/"A Timid Animal, Kohane Azusawa" [Put 1 card from your hand to the waiting room]
-Act:
-{
-
-}
-Text Act:BRAINSTORM [(1) Rest 2 of your characters] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 character in your waiting room and return it to your hand.
+*BondDiscard(A Timid Animal\, Kohane Azusawa)
+*Act1Rest2SalvageBrainstorm(Any)
 EndCard
 
 Character: PJS/S91-062
@@ -1223,9 +1269,20 @@ Power 2000
 Soul 1
 Trait1 Music
 Trait2 Leo/need
-Auto:
+Combo Even if the Taste Is the Same
+Combo What Lies Beyond
+Auto: OnSpecificClimaxPlay What Lies Beyond|Even if the Taste Is the Same
 {
-
+    If InLocation CenterStage && LocationContainsOrLess Hand 6 Any &&& StageContains 1 Other && HasTrait Music
+    {
+        *PutCardFromWaitingRoomIntoStock(HasTrait Music)
+        TargetTop Deck 1
+        Reveal
+        IfTarget Compare ThatCardsLevel 0 LessThan
+        {
+            MoveCard Stock
+        }
+    }
 }
 Text Auto:CxCombo When "Even if the Taste Is the Same" or "What Lies Beyond" is placed on your climax area, if this card is in the center stage, there are 6 or fewer cards in your hand, and you have another «Music» character, choose up to 1 «Music» character in your waiting room and put it in your stock, and reveal the top card of your deck. If it's a level 0 or lower character, put it in your stock. 
 EndCard
@@ -1239,16 +1296,19 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Vivid Bad Squad
-Auto:
+Auto: OnOtherFrontalAttacked
 {
-
+    IfOther HasTrait Music
+    {
+        PayCost 1 SendSelf WaitingRoom
+        {
+            TargetOther
+            Bounce
+        }
+    }
 }
 Text Auto:[(1) Put this card in the waiting room] When your other «Music» character is frontal attacked, you may pay cost. If you do, return that character to hand.
-Act:
-{
-
-}
-Text Act:[Counter] BACKUP 1500, level 1 [Put this card from your hand to the waiting room]
+Backup 1500
 EndCard
 
 Character: PJS/S91-064
@@ -1260,16 +1320,20 @@ Power 3500
 Soul 1
 Trait1 Music
 Trait2 Vivid Bad Squad
-Auto:
+Auto: StartClimaxPhase
 {
-
+    TargetLocation Stage
+    NarrowTargets NameEquals Someday, Once Again......, Toya Aoyagi
+    IfTarget PlayedThisTurn
+    {
+        PayCost 1 SendSelf Hand
+        {
+            SearchWaitingRoom HasTrait Music
+        }
+    }
 }
 Text Auto:[(1) Return this card to your hand] During your turn when your other "Someday, Once Again......, Toya Aoyagi" is placed on the stage from your hand, at the beginning of your climax phase, you may pay cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
-Auto:
-{
-
-}
-Text Auto:BOND/"Someday, Once Again......, Toya Aoyagi" [Put 1 card from your hand to the waiting room]
+*BondDiscard(Someday\, Once Again......\, Toya Aoyagi)
 EndCard
 
 Character: PJS/S91-065
@@ -1281,11 +1345,18 @@ Power 5000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
-Auto:
+Auto: OnClimaxPlay
 {
-
+    IfOther HasTrigger Standby
+    {
+        GainPower 1000
+        GainEffect
+        {
+            *OnAttackPay1ToDoubleTrigger
+        }
+    }
 }
+Quick
 Text Auto:When your climax with a standby trigger icon is placed on your climax area, this card gets +1000 power and the following ability until end of turn. "Auto: [(1)] When this card attacks, you may pay cost. If you do, perform trigger check twice during this card attack's trigger Step."
 EndCard
 
@@ -1299,16 +1370,8 @@ Power 7000
 Soul 1
 Trait1 Music
 Trait2 Vivid Bad Squad
-Auto:
-{
-
-}
-Text Auto:When this card attacks, if the level of the character facing this card is 3 or higher, this card gets +6000 power until end of turn.
-Auto:
-{
-
-}
-Text Auto:[(1)] At the beginning of encore step, if you have no other Rested characters in the center stage, you may pay cost. If you do, Rest this card.
+*GainPowerWhenAttackingLevel3(6000)
+*EncoreStepIfNoneRestedPayToRest
 EndCard
 
 Character: PJS/S91-067
@@ -1321,17 +1384,8 @@ Power 6000
 Soul 2
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
-Cont:
-{
-
-}
-Text Cont:For each of your other «Music» characters, this card gets +1000 power.
-Auto:
-{
-
-}
-Text Auto:ENCORE [Put 1 character from your hand to the waiting room]
+*GainPowerForEachOther(1000,Music)
+*HandEncore
 EndCard
 
 Character: PJS/S91-068
@@ -1343,17 +1397,8 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
-Cont:
-{
-
-}
-Text Cont:ASSIST Your characters in front of this card get +500 power.
-Auto:
-{
-
-}
-Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Music» character, put it in your hand and discard a card from your hand to the waiting room. 
+*500Assist
+*CheckTopAddDiscard(Music)
 EndCard
 
 Character: PJS/S91-069
@@ -1365,16 +1410,17 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Vivid Bad Squad
-Auto:
+Auto: OnClimaxPlay
 {
-
+    PayCost SendSelf Hand
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give +1 soul.
+        GainSoul 1
+    }
 }
 Text Auto:[Return this card to hand] When your climax is placed on your climax area, you may pay cost. If you do, choose 1 of your characters, and that character gets +1 soul until end of turn.
-Auto:
-{
-
-}
-Text Auto:BOND/"We Can Do This!, An Shiraishi" [Put 1 card from your hand to the waiting room]
+*BondDiscard(We Can Do This!\, An Shiraishi)
 EndCard
 
 Character: PJS/S91-070
@@ -1386,16 +1432,21 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Vivid Bad Squad
-Auto:
+Combo Top-Notch Service!
+Auto: EndOfMyTurn
 {
-
+    If Climax Top-Notch Service! && StageContains 3 Other && HasTrait Music
+    {
+        Question Swap 2 of your characters ?
+        If Yes
+        {
+            ChooseCharactersFromTargets 2 2 Choose characters to swap
+            Exchange
+        }
+    }
 }
-Text Auto:CxCombo At the end of your turn, if "Top-Notch Service!" is in your climax area and the number of other «Music» characters you have is 3 or more, you may choose 2 of your characters and swap them. (The orientations do not change)
-Act:
-{
-
-}
-Text Act:[Rest this card] Choose 1 of your «Music» characters, and that character gets +1500 power until end of turn.
+Text Auto:CxCombo At the end of your turn, if "Top-Notch Service!" is in your climax area and the number of other «Music» characters you have is 3 or more, you may choose 2 of your characters and swap them.
+*RestGivePower(1500,Music)
 EndCard
 
 Character: PJS/S91-071
@@ -1407,16 +1458,8 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Vivid Bad Squad
-Auto:
-{
-
-}
-Text Auto:When this card is placed on the stage from your hand, look at the top card of your deck and put it either on top of the deck or in the waiting room.
-Auto:
-{
-
-}
-Text Auto:When your other «Music» character attacks, this card gets +1500 power until end of turn.
+*OnPlayScry
+*GainPowerWhenOtherAttacks(1500,Music)
 EndCard
 
 Character: PJS/S91-072
@@ -1428,21 +1471,54 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Leo/need
-Cont:
+Cont: GiveAll
 {
-
+    If MyTurn && HasTrait Music && Other
+    {
+        GainPower 1000
+    }
 }
 Text Cont:During your turn, all your other «Music» characters get +1000 power.
-Cont:
+Cont: GiveSelf
 {
-
+    TargetLocation Marker
+    SaveTargets
+    NarrowTargets IsColor Yellow && Not FaceDown
+    If HasTarget
+    {
+        TargetSelf
+        GainColor Yellow
+    }
+    LoadTargets
+    NarrowTargets IsColor Green && Not FaceDown
+    If HasTarget
+    {
+        TargetSelf
+        GainColor Green
+    }
+    LoadTargets
+    NarrowTargets IsColor Red && Not FaceDown
+    If HasTarget
+    {
+        TargetSelf
+        GainColor Red
+    }
+    LoadTargets
+    NarrowTargets IsColor Blue && Not FaceDown
+    If HasTarget
+    {
+        TargetSelf
+        GainColor Blue
+    }
+    LoadTargets
 }
-Text Cont:This gets all colors of face-up markers under this card.
-Auto:
+Text Cont:This gets all colors of face-up markers underneath this card.
+Auto: OnPlay|OnPlacedOnStageFromWaitingRoom
 {
-
+    SearchLocationForTargets WaitingRoom 0 1 Any
+    Marker_FaceUp
 }
-Text Auto:When this card is placed from hand or waiting room to the stage, you may choose a card in your waiting room and put it face-up under this card as marker.
+Text Auto:When this card is placed from hand or waiting room to the stage, you may choose a card in your waiting room and put it face-up underneath this card as marker.
 EndCard
 
 Character: PJS/S91-073
@@ -1454,17 +1530,8 @@ Power 5000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
-Auto:
-{
-
-}
-Text Auto:When this card is placed on the stage from your hand, all players perform the following action. "If there are 5 or more cards in your memory, choose 4 cards in your memory, and put all cards in your memory other than those chosen this way in the waiting room."
-Auto:
-{
-
-}
-Text Auto:When this card attacks, choose 1 of your other «Music» characters, and that character gets +X power until end of turn. X equals 500 times the number of your other «Music» characters.
+*OnPlayMax4Memory
+*OnAttackGivePowerForEachOther(500,Music)
 EndCard
 
 Character: PJS/S91-074
@@ -1477,14 +1544,14 @@ Power 7500
 Soul 2
 Trait1 Music
 Trait2 Vivid Bad Squad
-Cont:
+Combo Pent-Up Frustration
+*GainPowerWithEnoughCharacters(2000,2,Music)
+Auto: OnAttack
 {
-
-}
-Text Cont:If the number of other «Music» characters you have is 2 or more, this card gets +2000 power.
-Auto:
-{
-
+    If Climax Pent-Up Frustration
+    {
+        *CheckAndAddAll(2,HasTrait Music)
+    }
 }
 Text Auto:CxCombo When this card attacks, if "Pent-Up Frustration" is in your climax area, look at up to 2 cards from the top of your deck and search for up to 2 «Music» characters, reveal them, put them in your hand, and put the rest into your waiting room.
 EndCard
@@ -1496,7 +1563,9 @@ Level 2
 Cost 1
 Effect: 
 {
-
+    SearchWaitingRoom IsCharacter
+    SearchWaitingRoom IsCharacter
+    Discard 1 Any
 }
 Text Choose up to 2 characters in your waiting room and return them to your hand, and discard a card from your hand to the waiting room.
 EndCard
