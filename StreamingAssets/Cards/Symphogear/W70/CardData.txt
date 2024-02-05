@@ -2091,6 +2091,11 @@ Name For Someone
 *BookClimax
 EndCard
 
+Climax: SG/W70-100
+Name Those Who Pursue an Ideal
+*GateClimax
+EndCard
+
 Character: SG/W70-P09
 Name Hibiki, Time of the Decisive Battle
 Color Y
