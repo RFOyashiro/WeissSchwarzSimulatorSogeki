@@ -230,7 +230,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay cost. If you do, choose 1 "Legendary Heisei Idol, Ai Mizuno" in your waiting room and put it in any position of your stage.
+Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 "Legendary Heisei Idol, Ai Mizuno" in your waiting room and put it in any position of your stage.
 EndCard
 
 Character: ZLS/W93-008
@@ -342,7 +342,7 @@ Auto: OnAttack
         GainPower 2000
     }
 }
-Text Auto:RESONATE [Reveal 1 "Revenge on Fate" in your hand] When this card attacks, you may pay cost. If you do, choose up to 2 of your «Saga» characters and those characters get +2000 power until end of turn.
+Text Auto:RESONATE [Reveal 1 "Revenge on Fate" in your hand] When this card attacks, you may pay the cost. If you do, choose up to 2 of your «Saga» characters and those characters get +2000 power until end of turn.
 EndCard
 
 Character: ZLS/W93-012
@@ -388,7 +388,7 @@ Auto: OnPlay
         GainPower 1500
     }
 }
-Text Auto:RESONATE [Discard 1 card, reveal a "Revenge on Fate" in your hand] When this card is placed on the stage from your hand, you may pay cost. If you do, so, return all cards in your waiting room to your deck, shuffle your deck and this card gets +1500 power until end of turn.
+Text Auto:RESONATE [Discard 1 card, reveal a "Revenge on Fate" in your hand] When this card is placed on the stage from your hand, you may pay the cost. If you do, so, return all cards in your waiting room to your deck, shuffle your deck and this card gets +1500 power until end of turn.
 EndCard
 
 Character: ZLS/W93-014
@@ -415,7 +415,7 @@ Auto: OnSpecificClimaxPlay Super Twinkle Star
         }
     }
 }
-Text Auto:CxCombo [Return this card to your hand] When "Super Twinkle Star" is placed in your climax area, if you have another «Saga» character, you may pay cost. If you do, choose a level 0 or lower «Saga» character in your waiting room and put it in any position of your stage.
+Text Auto:CxCombo [Return this card to your hand] When "Super Twinkle Star" is placed in your climax area, if you have another «Saga» character, you may pay the cost. If you do, choose a level 0 or lower «Saga» character in your waiting room and put it in any position of your stage.
 *Act1RestSelfCheck3Add1Brainstorm
 EndCard
 
@@ -436,7 +436,7 @@ Auto: OnPlay
         *CheckAndAdd(3)
     }
 }
-Text Auto:[(1) Discard 1 «Saga» character] When this card is placed on the stage from your hand, you may pay cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 card among them, add it to your hand and put the rest in the waiting room.
+Text Auto:[(1) Discard 1 «Saga» character] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 card among them, add it to your hand and put the rest in the waiting room.
 EndCard
 
 Character: ZLS/W93-016
@@ -604,7 +604,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [Discard 1 card] When this card attacks, if "Spark of the Idol Boom" is in your climax area and you have another «Saga» character, you may pay cost. If you do, choose a «Saga» character in your waiting room, return it to your hand and this card gets the following ability until the end of your opponent's next turn. "Auto:When this card is frontal attacked, you may return this card to your hand."
+Text Auto:CxCombo [Discard 1 card] When this card attacks, if "Spark of the Idol Boom" is in your climax area and you have another «Saga» character, you may pay the cost. If you do, choose a «Saga» character in your waiting room, return it to your hand and this card gets the following ability until the end of your opponent's next turn. "Auto:When this card is frontal attacked, you may return this card to your hand."
 EndCard
 
 Character: ZLS/W93-027
@@ -654,7 +654,7 @@ Auto: OnTriggerCheckClimax
         }
     }
 }
-Text Auto:CxCombo [Discard 1 climax] When your character's trigger check reveals "Spark of the Idol Boom" or "Pretty Bride", you may pay cost. If you do, choose a character in your waiting room, return it to your hand, choose 1 of your characters and that character gets +1000 power until end of turn.
+Text Auto:CxCombo [Discard 1 climax] When your character's trigger check reveals "Spark of the Idol Boom" or "Pretty Bride", you may pay the cost. If you do, choose a character in your waiting room, return it to your hand, choose 1 of your characters and that character gets +1000 power until end of turn.
 EndCard
 
 Character: ZLS/W93-029
@@ -902,7 +902,7 @@ Auto: OnPlay
 		DrawCard
 	}
 }
-Text Auto:[Discard 1 «Saga» character] When this card is placed on the stage from your hand, you may pay cost. If you do, draw a card.
+Text Auto:[Discard 1 «Saga» character] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw a card.
 EndCard
 
 Character: ZLS/W93-038
@@ -1131,7 +1131,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [(1) Discard 1 card] When this card attacks, if "Relaxing in Casual Wear" is in your climax area and you have another «Saga» character, you may pay cost. If you do, you may deal 1 damage to your opponent. If that damage is cancelled, you may deal 2 damage to your opponent. If that damage is cancelled, you may put the top 3 cards of your opponent's deck in their clock.
+Text Auto:CxCombo [(1) Discard 1 card] When this card attacks, if "Relaxing in Casual Wear" is in your climax area and you have another «Saga» character, you may pay the cost. If you do, you may deal 1 damage to your opponent. If that damage is cancelled, you may deal 2 damage to your opponent. If that damage is cancelled, you may put the top 3 cards of your opponent's deck in their clock.
 EndCard
 
 Character: ZLS/W93-048
@@ -1298,7 +1298,7 @@ Auto: OnSpecificClimaxPlay Relaxing in Casual Wear
 		}
 	}
 }
-Text Auto:CxCombo MEMORY EXPERIENCE[(1)] When "Relaxing in Casual Wear" is placed in your climax area, if you have another «Saga» character and you have "Revenge on Fate" in your level zone, you may pay cost. If you do, look at up to the top X cards of your opponent's deck, choose up to X cards among them, put them on top of your opponent's deck in any order and put the rest in your waiting room. X equals to the number of "'Franchouchou' Sakura" in your memory.
+Text Auto:CxCombo MEMORY EXPERIENCE[(1)] When "Relaxing in Casual Wear" is placed in your climax area, if you have another «Saga» character and you have "Revenge on Fate" in your level zone, you may pay the cost. If you do, look at up to the top X cards of your opponent's deck, choose up to X cards among them, put them on top of your opponent's deck in any order and put the rest in your waiting room. X equals to the number of "'Franchouchou' Sakura" in your memory.
 EndCard
 
 Character: ZLS/W93-053
@@ -1436,7 +1436,7 @@ Auto: OnAttack
 		}
 	}
 }
-Text Auto:CxCombo [(2)] When this card attacks, if "Vacationing in Swimsuits" is in your climax area, you may pay cost. If you do, deal 1 damage to your opponent and this card gets +3000 power until the end of your opponent's next turn.
+Text Auto:CxCombo [(2)] When this card attacks, if "Vacationing in Swimsuits" is in your climax area, you may pay the cost. If you do, deal 1 damage to your opponent and this card gets +3000 power until the end of your opponent's next turn.
 EndCard
 
 Character: ZLS/W93-056
@@ -1456,7 +1456,7 @@ Auto: OnSentFromStageToWaitingRoom
 		SearchWaitingRoom NameEquals Revenge on Fate
 	}
 }
-Text Auto:[Discard 1 card] When this card is placed to the waiting room from your stage, you may pay cost. If you do, choose 1 "Revenge on Fate" in your waiting room and return it to your hand.
+Text Auto:[Discard 1 card] When this card is placed to the waiting room from your stage, you may pay the cost. If you do, choose 1 "Revenge on Fate" in your waiting room and return it to your hand.
 EndCard
 
 Character: ZLS/W93-057
@@ -1612,7 +1612,7 @@ Auto: StartMyEncoreStep
 		}
 	}
 }
-Text Auto:CxCombo [Put a "Kagayaite" from your climax area in the waiting room] At the start of your encore step, you may pay cost. If you do, choose a «Saga» character in your waiting room and return it to your hand.
+Text Auto:CxCombo [Put a "Kagayaite" from your climax area in the waiting room] At the start of your encore step, you may pay the cost. If you do, choose a «Saga» character in your waiting room and return it to your hand.
 EndCard
 
 Character: ZLS/W93-062
@@ -2017,7 +2017,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:RESONATE [Reveal 1 "Revenge on Fate" in your hand] When this card attacks, you may pay cost. If you do, choose 1 of the following 2 effects and perform it once. "This card gets +2000 power until end of turn." "You may choose a «Saga» character in your waiting room and return it to your hand. If you do, discard 1 card."
+Text Auto:RESONATE [Reveal 1 "Revenge on Fate" in your hand] When this card attacks, you may pay the cost. If you do, choose 1 of the following 2 effects and perform it once. "This card gets +2000 power until end of turn." "You may choose a «Saga» character in your waiting room and return it to your hand. If you do, discard 1 card."
 EndCard
 
 Character: ZLS/W93-079
@@ -2048,7 +2048,7 @@ Auto: OnPlay
         ShuffleLocation OpponentDeck
     }
 }
-Text Auto:[Rest 1 of your standing characters] When this card is placed on the stage from your hand, you may pay cost. If you do, your opponent chooses 1 climax card in their waiting room, returns all cards in their waiting room except the chosen card to their deck and they shuffle their deck.
+Text Auto:[Rest 1 of your standing characters] When this card is placed on the stage from your hand, you may pay the cost. If you do, your opponent chooses 1 climax card in their waiting room, returns all cards in their waiting room except the chosen card to their deck and they shuffle their deck.
 Auto: OnAttack
 {
     PayCost 1 Discard 1 Any
@@ -2060,7 +2060,7 @@ Auto: OnAttack
         GainSoul 1
     }
 }
-Text Auto:[(1) Discard 1 card] When this card attacks, you may pay cost. If you do, choose up to 3 of your «Saga» characters and those characters get +500 power and +1 soul until end of turn.
+Text Auto:[(1) Discard 1 card] When this card attacks, you may pay the cost. If you do, choose up to 3 of your «Saga» characters and those characters get +500 power and +1 soul until end of turn.
 EndCard
 
 Character: ZLS/W93-080
@@ -2384,7 +2384,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [Discard 1 «Saga» character] When this card attacks, if "Unexpected Errand Running" is in your climax area, the number of other «Saga» characters you have is 2 or more and you have 1 "Revenge on Fate" in the waiting room, you may pay cost. If you do, this card gets +2500 power until end of turn, look at up to the top 2 cards of your deck and choose 1 of the following 2 effects and perform it. "Put those cards in your hand." "Put those cards in the waiting room. If you do, draw up to 2 cards."
+Text Auto:CxCombo [Discard 1 «Saga» character] When this card attacks, if "Unexpected Errand Running" is in your climax area, the number of other «Saga» characters you have is 2 or more and you have 1 "Revenge on Fate" in the waiting room, you may pay the cost. If you do, this card gets +2500 power until end of turn, look at up to the top 2 cards of your deck and choose 1 of the following 2 effects and perform it. "Put those cards in your hand." "Put those cards in the waiting room. If you do, draw up to 2 cards."
 EndCard
 
 Event: ZLS/W93-095
@@ -2530,7 +2530,7 @@ Auto: OnReversed
         *Check3Add1(Any)
     }
 }
-Text Auto:[(1) Put this card in your clock] When this card becomes reverse in battle, you may pay cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 character among them, show it to your opponent, put it in your hand and put the remaining cards in the waiting room.
+Text Auto:[(1) Put this card in your clock] When this card becomes reverse in battle, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 character among them, show it to your opponent, put it in your hand and put the remaining cards in the waiting room.
 EndCard
 
 Character: ZLS/W93-104
@@ -2577,7 +2577,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[Discard 1 card] When this card is placed to the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 climax among them, you may pay cost. If you do, choose a character in your waiting room and return it to your hand.
+Text Auto:[Discard 1 card] When this card is placed to the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 climax among them, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
 EndCard
 
 Character: ZLS/W93-106
@@ -2763,7 +2763,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:[(2)] When this card attacks, you may pay cost. If you do, reveal the top card of your deck. If that card is a <Saga> character, this card gets +11000 power until end of turn.
+Text Auto:[(2)] When this card attacks, you may pay the cost. If you do, reveal the top card of your deck. If that card is a <Saga> character, this card gets +11000 power until end of turn.
 EndCard
 
 Character: ZLS/W93-T04
@@ -3021,7 +3021,7 @@ Auto: OnPlay
         *Check4Add1(Saga)
     }
 }
-Text Auto:[Discard 1 card] When this card is placed on the stage from your hand, you may pay cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 <Saga> character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto:[Discard 1 card] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 <Saga> character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: ZLS/W93-T16

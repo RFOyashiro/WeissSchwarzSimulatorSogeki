@@ -197,7 +197,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo [(1)] When this card attacks, if "Do Not Give Up Living!" is in your climax area, you may pay cost. If so, all of your characters gain +1 soul until end of turn.
+Text Auto: CxCombo [(1)] When this card attacks, if "Do Not Give Up Living!" is in your climax area, you may pay the cost. If so, all of your characters gain +1 soul until end of turn.
 EndCard
 
 Character: SG/W19-011
@@ -567,7 +567,7 @@ Auto: OnAttack
 		GainPower 2500
 	}
 }
-Text Auto: [Rest 1 of your other center stage standing GREEN characters] When this card attacks, you may pay the cost. If you do, put the top card of your deck into your stock and all of your characters gain +1 level and +2500 power until the end of your opponent's turn.
+Text Auto: [Rest 1 of your other center stage standing Green characters] When this card attacks, you may pay the cost. If you do, put the top card of your deck into your stock and all of your characters gain +1 level and +2500 power until the end of your opponent's turn.
 EndCard
 
 Character: SG/W19-033

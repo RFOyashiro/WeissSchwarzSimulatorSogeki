@@ -25,7 +25,7 @@ Auto: OnSentFromStageToWaitingRoom
         *Check4Add1Level1OrHigher
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: HBR/W103-002
@@ -59,7 +59,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [Put 1 card from your hand to the waiting room] When this card attacks, if "Unit 31C" is in your climax area, you may pay cost. If you do, perform the following action twice. "Look at up to 3 cards from the top of your deck and search for up to 1 «Seraph» character, reveal it, put it in your hand, and put the rest into your waiting room."
+Text Auto:CxCombo [Put 1 card from your hand to the waiting room] When this card attacks, if "Unit 31C" is in your climax area, you may pay the cost. If you do, perform the following action twice. "Look at up to 3 cards from the top of your deck and search for up to 1 «Seraph» character, reveal it, put it in your hand, and put the rest into your waiting room."
 EndCard
 
 Character: HBR/W103-003
@@ -84,7 +84,7 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont:If the number of other YELLOW characters you have is 2 or more, this card gets +1500 power and "Auto: ENCORE [Put a «Seraph» character from your hand to the waiting room]".
+Text Cont:If the number of other Yellow characters you have is 2 or more, this card gets +1500 power and "Auto: ENCORE [Put a «Seraph» character from your hand to the waiting room]".
 Auto: OnReverseOpponent
 {
     If PlayedThisTurn && StageContains 2 Other && IsColor Yellow
@@ -96,7 +96,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, if the number of other YELLOW characters you have is 2 or more, you may pay cost. If you do, deal 1 damage to your opponent, and put up to 1 card from the top of your clock in the waiting room.
+Text Auto:[Put 1 card from your hand to the waiting room] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, if the number of other Yellow characters you have is 2 or more, you may pay the cost. If you do, deal 1 damage to your opponent, and put up to 1 card from the top of your clock in the waiting room.
 EndCard
 
 Character: HBR/W103-004
@@ -116,7 +116,7 @@ Auto: OnTriggerCheckClimax
         *CheckAndAdd(2)
     }
 }
-Text Auto:[Put a climax from your hand to the waiting room] When your character's trigger check reveals a climax card, you may pay cost. If you do, look at up to 2 cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room.
+Text Auto:[Put a climax from your hand to the waiting room] When your character's trigger check reveals a climax card, you may pay the cost. If you do, look at up to 2 cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: HBR/W103-005
@@ -220,7 +220,7 @@ Auto: OnPlay
         SearchWaitingRoom Compare ThatCardsLevel TargetCardsLevel OrLess && IsCharacter
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, reveal the top card of your deck, choose a level X or lower character in your waiting room and return it to your hand. X equals level of the card revealed this way.
+Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck, choose a level X or lower character in your waiting room and return it to your hand. X equals level of the card revealed this way.
 EndCard
 
 Character: HBR/W103-009
@@ -290,7 +290,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[(2)] When this card is placed on the stage from your hand, if the number of other «Seraph» characters you have is 2 or more, you may pay cost. If you do, choose up to 2 "Mixed Ninjutsu Melee, Adelheid Kanzaki" in your waiting room and put them in separate positions on the stage.
+Text Auto:[(2)] When this card is placed on the stage from your hand, if the number of other «Seraph» characters you have is 2 or more, you may pay the cost. If you do, choose up to 2 "Mixed Ninjutsu Melee, Adelheid Kanzaki" in your waiting room and put them in separate positions on the stage.
 EndCard
 
 Character: HBR/W103-011
@@ -359,7 +359,7 @@ Auto: OnSpecificClimaxPlay Dreaming from Now On
         }
     }
 }
-Text Auto:CxCombo [Put 1 card from your hand to the waiting room, put a "Hoping for the Spirit of Fertility, Satomi Kura" from your center stage in the waiting room] When "Dreaming from Now On" is placed on your climax area, if this card is in the center stage and you have another «Seraph» character, put all your opponent's characters in the waiting room and you may pay cost. If you do, deal 1 damage to your opponent. If you don't pay the cost, put all your other characters in the waiting room, and perform the following action 3 times. "deal 1 damage to your opponent."
+Text Auto:CxCombo [Put 1 card from your hand to the waiting room, put a "Hoping for the Spirit of Fertility, Satomi Kura" from your center stage in the waiting room] When "Dreaming from Now On" is placed on your climax area, if this card is in the center stage and you have another «Seraph» character, put all your opponent's characters in the waiting room and you may pay the cost. If you do, deal 1 damage to your opponent. If you don't pay the cost, put all your other characters in the waiting room, and perform the following action 3 times. "deal 1 damage to your opponent."
 EndCard
 
 Character: HBR/W103-013
@@ -462,7 +462,7 @@ Auto: OnTriggerCheckClimax
         }
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When your character's trigger check reveals a climax with a Wind trigger icon, you may pay cost. If you do, choose a character in your waiting room and return it to your hand.
+Text Auto:[Put 1 card from your hand to the waiting room] When your character's trigger check reveals a climax with a Wind trigger icon, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
 *RestGivePower(1500,Seraph)
 EndCard
 
@@ -711,7 +711,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay cost. If you do, choose 1 of the following effects and perform it. "Look at up to 5 cards from the top of your deck and choose up to 1 level 1 or lower character among them, reveal it, put it in your hand, and put the rest into your waiting room." "Search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck."
+Text Auto:[(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of the following effects and perform it. "Look at up to 5 cards from the top of your deck and choose up to 1 level 1 or lower character among them, reveal it, put it in your hand, and put the rest into your waiting room." "Search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck."
 EndCard
 
 Character: HBR/W103-030
@@ -755,7 +755,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [(2) Put 1 card from your hand to the waiting room] When this card attacks, if "Tiny Tears, Forgotten Memories" is in your climax area, you may pay cost. If you do, look at up to 2 cards from the top of your deck, choose up to 2 cards among them and put them on top of your deck in any order, put the rest into your waiting room, and this card gets the following 2 abilities until the end of your opponent's next turn. "Cont: This cannot be chosen as target of opponent's effects." "Cont: The character facing this card gets -2 soul."
+Text Auto:CxCombo [(2) Put 1 card from your hand to the waiting room] When this card attacks, if "Tiny Tears, Forgotten Memories" is in your climax area, you may pay the cost. If you do, look at up to 2 cards from the top of your deck, choose up to 2 cards among them and put them on top of your deck in any order, put the rest into your waiting room, and this card gets the following 2 abilities until the end of your opponent's next turn. "Cont: This cannot be chosen as target of opponent's effects." "Cont: The character facing this card gets -2 soul."
 EndCard
 
 Character: HBR/W103-031
@@ -782,7 +782,7 @@ Auto: StartClimaxPhase
         }
     }
 }
-Text Auto:RESONATE [Reveal an "Eternal Merciful Guardian, Ichiko Ohshima" from your hand] At the beginning of your climax phase, if you have another «Seraph» character, you may pay cost. If you do, this card gets +2000 power and the following ability until end of turn. "Auto: [(1)] When this card attacks, you may pay cost. If you do, perform trigger check twice during this card attack's trigger Step."
+Text Auto:RESONATE [Reveal an "Eternal Merciful Guardian, Ichiko Ohshima" from your hand] At the beginning of your climax phase, if you have another «Seraph» character, you may pay the cost. If you do, this card gets +2000 power and the following ability until end of turn. "Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform trigger check twice during this card attack's trigger Step."
 EndCard
 
 Character: HBR/W103-032
@@ -874,7 +874,7 @@ Auto: StartMainPhase
         Stand
     }
 }
-Text Auto:RESONATE [Reveal an "Eternal Merciful Guardian, Ichiko Ohshima" from your hand] At the beginning of your main phase, you may pay cost. If you do, stand this card.
+Text Auto:RESONATE [Reveal an "Eternal Merciful Guardian, Ichiko Ohshima" from your hand] At the beginning of your main phase, you may pay the cost. If you do, stand this card.
 Act: RestSelf
 {
     TargetLocation Stage
@@ -931,7 +931,7 @@ Auto: OnPlay
         SearchDeck NameEquals Eternal Merciful Guardian, Ichiko Ohshima
     }
 }
-Text Auto:[Put a «Seraph» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "Eternal Merciful Guardian, Ichiko Ohshima", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put a «Seraph» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Eternal Merciful Guardian, Ichiko Ohshima", reveal it, put it in your hand, and shuffle your deck.
 *OnPlayTradeClimaxForCharacter(Seraph)
 EndCard
 
@@ -994,7 +994,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:[(1)] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay cost. If you do, reveal the top 2 cards of your deck, your opponent chooses a character or an event among those cards and put it in your hand, then put the rest into your waiting room.
+Text Auto:[(1)] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, reveal the top 2 cards of your deck, your opponent chooses a character or an event among those cards and put it in your hand, then put the rest into your waiting room.
 EndCard
 
 Character: HBR/W103-039
@@ -1089,7 +1089,7 @@ Auto: OnPlay
         GainSpecialEffect FreeSideAttack
 	}
 }
-Text Auto:[Return 2 characters from your waiting room to your deck, shuffle your deck] When this card is placed on the stage from your hand, you may pay cost. If you do, this character's soul does not decrease by side attacking until end of turn.
+Text Auto:[Return 2 characters from your waiting room to your deck, shuffle your deck] When this card is placed on the stage from your hand, you may pay the cost. If you do, this character's soul does not decrease by side attacking until end of turn.
 EndCard
 
 Character: HBR/W103-043
@@ -1126,7 +1126,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[Put 1 of your other «Seraph» characters from the stage in the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, reveal the top card of your deck. If it's either a «Seraph» character or "Ema for the Family", put it in your hand.
+Text Auto:[Put 1 of your other «Seraph» characters from the stage in the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck. If it's either a «Seraph» character or "Ema for the Family", put it in your hand.
 Auto: StartClimaxPhase
 {
     PayCost Resonate Eternal Merciful Guardian, Ichiko Ohshima
@@ -1135,7 +1135,7 @@ Auto: StartClimaxPhase
         GainPower 4000
     }
 }
-Text Auto:RESONATE [Reveal an "Eternal Merciful Guardian, Ichiko Ohshima" from your hand] At the beginning of your climax phase, you may pay cost. If you do, this card gets +4000 power until end of turn.
+Text Auto:RESONATE [Reveal an "Eternal Merciful Guardian, Ichiko Ohshima" from your hand] At the beginning of your climax phase, you may pay the cost. If you do, this card gets +4000 power until end of turn.
 EndCard
 
 Character: HBR/W103-045
@@ -1184,7 +1184,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:RESONATE [Reveal an "Eternal Merciful Guardian, Ichiko Ohshima" from your hand] If you are level 2 or lower, when this card is placed on the stage from your hand, you may pay cost. If you don't, put this card in the waiting room.
+Text Auto:RESONATE [Reveal an "Eternal Merciful Guardian, Ichiko Ohshima" from your hand] If you are level 2 or lower, when this card is placed on the stage from your hand, you may pay the cost. If you don't, put this card in the waiting room.
 Auto: OnPlay
 {
     *OptionalHeal
@@ -1278,7 +1278,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, if you have another «Seraph» character, you may pay cost. If you do, you may put the top card of your clock in the waiting room, choose up to 1 «Seraph» character in your waiting room and return it to your hand.
+Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, if you have another «Seraph» character, you may pay the cost. If you do, you may put the top card of your clock in the waiting room, choose up to 1 «Seraph» character in your waiting room and return it to your hand.
 EndCard
 
 Character: HBR/W103-054
@@ -1315,7 +1315,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo ACCELERATE [(2) Put 2 cards from your hand to the waiting room, put the top card of your deck in your clock] When this card attacks, if "Unit 31A" is in your climax area and there are 5 or fewer cards in your clock, you may pay cost. If you do, this card gets +2000 power until end of turn, and perform both of the following effects once each in any order. "deal 1 damage to your opponent." "deal 2 damage to your opponent."
+Text Auto:CxCombo ACCELERATE [(2) Put 2 cards from your hand to the waiting room, put the top card of your deck in your clock] When this card attacks, if "Unit 31A" is in your climax area and there are 5 or fewer cards in your clock, you may pay the cost. If you do, this card gets +2000 power until end of turn, and perform both of the following effects once each in any order. "deal 1 damage to your opponent." "deal 2 damage to your opponent."
 EndCard
 
 Character: HBR/W103-055
@@ -1336,7 +1336,7 @@ Auto: OnPlay
         Discard 1 Any
     }
 }
-Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, draw up to 2 cards, and discard a card from your hand to the waiting room.
+Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw up to 2 cards, and discard a card from your hand to the waiting room.
 EndCard
 
 Character: HBR/W103-056
@@ -1370,7 +1370,7 @@ Auto: OnSpecificClimaxPlay Advance Chibi Operation Under-140
         }
     }
 }
-Text Auto:CxCombo [Return this card to your hand] When "Advance Chibi Operation Under-140" is placed on your climax area, if you have another «Seraph» character, you may pay cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 «Seraph» character, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto:CxCombo [Return this card to your hand] When "Advance Chibi Operation Under-140" is placed on your climax area, if you have another «Seraph» character, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 «Seraph» character, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: HBR/W103-058
@@ -1419,7 +1419,7 @@ Auto: OnUseAccelerate
     }
 }
 TimesPerTurn 1
-Text Auto:[Put 1 card from your hand to the waiting room] This ability activates up to once per turn. When you use ACCELERATE, you may pay cost. If you do, put the top card of your clock in the waiting room.
+Text Auto:[Put 1 card from your hand to the waiting room] This ability activates up to once per turn. When you use ACCELERATE, you may pay the cost. If you do, put the top card of your clock in the waiting room.
 Auto: OnSpecificClimaxPlay Unit 31A
 {
     If StageContains 2 Other && HasTrait Seraph
@@ -1472,7 +1472,7 @@ Auto: OnUseThisCardsBackup
         GainPower 1000
     }
 }
-Text Auto:ACCELERATE [(1) Put the top card of your deck in your clock, put a character from your stage in the waiting room] When you use this card's BACKUP, you may pay cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of the opponent, put it in the waiting room, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
+Text Auto:ACCELERATE [(1) Put the top card of your deck in your clock, put a character from your stage in the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of the opponent, put it in the waiting room, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
 Backup 2000
 EndCard
 
@@ -1509,7 +1509,7 @@ Auto: StartClimaxPhase
         *Exchange2OfOpponentsCharacters
     }
 }
-Text Auto:[(1) Put 1 character from your hand to the waiting room] At the beginning of your climax phase, you may pay cost. If you do, choose 2 of your opponent's characters, stand and swap them.
+Text Auto:[(1) Put 1 character from your hand to the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose 2 of your opponent's characters, stand and swap them.
 EndCard
 
 Character: HBR/W103-064
@@ -1553,7 +1553,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[Put a «Seraph» character from your hand to the waiting room] When this card is placed on the stage from your hand, if you have another «Seraph» character, you may pay cost. If you do, search your deck for up to 1 character with ACCELERATE, reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put a «Seraph» character from your hand to the waiting room] When this card is placed on the stage from your hand, if you have another «Seraph» character, you may pay the cost. If you do, search your deck for up to 1 character with ACCELERATE, reveal it, put it in your hand, and shuffle your deck.
 *OnAttackGivePower(1500,Seraph)
 EndCard
 
@@ -1620,7 +1620,7 @@ Auto: OnClimaxPlay
         *Check4Add1(Seraph)
     }
 }
-Text Auto:[(1)] When your climax is placed on your climax area, you may pay cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 «Seraph» character, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto:[(1)] When your climax is placed on your climax area, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 «Seraph» character, reveal it, put it in your hand, and put the rest into your waiting room.
 Auto: OnOtherFrontalAttacked
 {
     IfOther HasTrait Seraph
@@ -1635,7 +1635,7 @@ Auto: OnOtherFrontalAttacked
         }
     }
 }
-Text Auto:[(1) Put this card in the waiting room] When your other «Seraph» character is frontal attacked, you may pay cost. If you do, return that character to your hand.
+Text Auto:[(1) Put this card in the waiting room] When your other «Seraph» character is frontal attacked, you may pay the cost. If you do, return that character to your hand.
 EndCard
 
 Character: HBR/W103-069
@@ -1673,7 +1673,7 @@ Auto: PlacedBy Unit 31F
         }
     }
 }
-Text Auto:CxCombo [(1) Put a "Unit 31F" from your climax area to the waiting room] During your climax phase, when this card is placed to the stage by the effect of "Unit 31F", you may pay cost. If you do, stand this card, and all your characters get +1 soul until end of turn.
+Text Auto:CxCombo [(1) Put a "Unit 31F" from your climax area to the waiting room] During your climax phase, when this card is placed to the stage by the effect of "Unit 31F", you may pay the cost. If you do, stand this card, and all your characters get +1 soul until end of turn.
 EndCard
 
 Character: HBR/W103-070
@@ -1846,7 +1846,7 @@ Auto: StartClimaxPhase
         }
     }
 }
-Text Auto:ACCELERATE [Put the top card of your deck in your clock] At the beginning of your climax phase, you may pay cost. If you do, this card gets +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, look at up to 4 cards from the top of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room."
+Text Auto:ACCELERATE [Put the top card of your deck in your clock] At the beginning of your climax phase, you may pay the cost. If you do, this card gets +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, look at up to 4 cards from the top of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room."
 EndCard
 
 Character: HBR/W103-076
@@ -1956,7 +1956,7 @@ Auto: OnOtherFrontalAttacked
 		}
 	}
 }
-Text Auto:[(1) Put this card in the waiting room] When your other «Seraph» character is frontal attacked, you may pay cost. If you do, return that character to your hand.
+Text Auto:[(1) Put this card in the waiting room] When your other «Seraph» character is frontal attacked, you may pay the cost. If you do, return that character to your hand.
 EndCard
 
 Character: HBR/W103-084
@@ -2002,7 +2002,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo [Put a «Seraph» character card from your hand to the waiting room] When this card attacks, if "Connecting Feelings" is in your climax area, you may pay cost. If you do, look at up to 3 cards from the top of your deck and choose up to 3 cards that are either «Seraph» characters or "Addicting Music" among them, reveal them, put them in your hand, put the rest into your waiting room, and this card gets the following 2 abilities until the end of your opponent's next turn. "Cont: During your opponent's turn, all characters cannot be reverse." "Auto: At the beginning of your opponent's encore step, put this card into memory."
+Text Auto: CxCombo [Put a «Seraph» character card from your hand to the waiting room] When this card attacks, if "Connecting Feelings" is in your climax area, you may pay the cost. If you do, look at up to 3 cards from the top of your deck and choose up to 3 cards that are either «Seraph» characters or "Addicting Music" among them, reveal them, put them in your hand, put the rest into your waiting room, and this card gets the following 2 abilities until the end of your opponent's next turn. "Cont: During your opponent's turn, all characters cannot be reverse." "Auto: At the beginning of your opponent's encore step, put this card into memory."
 EndCard
 
 Character: HBR/W103-085
@@ -2027,7 +2027,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:[(1) Put 2 cards from your hand to the waiting room] During the turn this card is placed on the stage from your hand, when this card attacks, you may pay cost. If you do, search your deck for up to 2 «Seraph» characters, reveal them, put them in your hand, and shuffle your deck.
+Text Auto:[(1) Put 2 cards from your hand to the waiting room] During the turn this card is placed on the stage from your hand, when this card attacks, you may pay the cost. If you do, search your deck for up to 2 «Seraph» characters, reveal them, put them in your hand, and shuffle your deck.
 EndCard
 
 Character: HBR/W103-086
@@ -2074,7 +2074,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:MEMORY [(1) Put 1 card from your hand to the waiting room] When this card attacks, if "Kokoro Inspire, Erika Aoi" is in your memory, you may pay cost. If you do, deal 1 damage to your opponent.
+Text Auto:MEMORY [(1) Put 1 card from your hand to the waiting room] When this card attacks, if "Kokoro Inspire, Erika Aoi" is in your memory, you may pay the cost. If you do, deal 1 damage to your opponent.
 EndCard
 
 Character: HBR/W103-088
@@ -2111,7 +2111,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [(1) Put 1 card from your hand to the waiting room] When this card attacks, if "Unit 31B" is in your climax area, you may pay cost. If you do, put the top 11 cards of your deck in the waiting room, deal X damage to your opponent, and this card gets +1000 power until end of turn. X equals the number of soul trigger icons among those cards.
+Text Auto:CxCombo [(1) Put 1 card from your hand to the waiting room] When this card attacks, if "Unit 31B" is in your climax area, you may pay the cost. If you do, put the top 11 cards of your deck in the waiting room, deal X damage to your opponent, and this card gets +1000 power until end of turn. X equals the number of soul trigger icons among those cards.
 EndCard
 
 Character: HBR/W103-089
@@ -2256,7 +2256,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[Rest 3 of your characters] If you are level 2 or lower, when this card is placed on the stage from your hand, you may pay cost. If you don't, put this card in the waiting room.
+Text Auto:[Rest 3 of your characters] If you are level 2 or lower, when this card is placed on the stage from your hand, you may pay the cost. If you don't, put this card in the waiting room.
 Auto: OnPlay
 {
     If StageContains 4 Other && HasTrait Seraph
@@ -2419,7 +2419,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:[Put all cards in your stock in the waiting room] When this card attacks, you may pay cost. If exactly 1 card is put in the waiting room for the cost of this card ability, this card gets +3000 power until end of turn. If exactly 2 cards are put in the waiting room for the cost of this card ability, choose a character in your waiting room and return it to your hand. If 3 or more cards are put in the waiting room for the cost of this card ability, deal 1 damage to your opponent.
+Text Auto:[Put all cards in your stock in the waiting room] When this card attacks, you may pay the cost. If exactly 1 card is put in the waiting room for the cost of this card ability, this card gets +3000 power until end of turn. If exactly 2 cards are put in the waiting room for the cost of this card ability, choose a character in your waiting room and return it to your hand. If 3 or more cards are put in the waiting room for the cost of this card ability, deal 1 damage to your opponent.
 EndCard
 
 Event: HBR/W103-101
@@ -2514,7 +2514,7 @@ Auto: StartClimaxPhase
         }
     }
 }
-Text Auto:ACCELERATE [Put the top card of your deck in your clock] At the beginning of your climax phase, you may pay cost. If you do, this card gets +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, search your deck for up to 1 «Seraph» character, reveal it, put it in your hand, and shuffle your deck."
+Text Auto:ACCELERATE [Put the top card of your deck in your clock] At the beginning of your climax phase, you may pay the cost. If you do, this card gets +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, search your deck for up to 1 «Seraph» character, reveal it, put it in your hand, and shuffle your deck."
 EndCard
 
 Character: HBR/W103-P03
@@ -2612,7 +2612,7 @@ Auto: OnPlay
         *GiveOtherCharacterPower(1000,Seraph)
     }
 }
-Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a «Seraph» character in your waiting room and return it to your hand, choose 1 of your other «Seraph» characters, and that character gets +1000 power until end of turn.
+Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Seraph» character in your waiting room and return it to your hand, choose 1 of your other «Seraph» characters, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: HBR/W103-T04
@@ -2671,7 +2671,7 @@ Auto: OnPlay
         SearchDeck HasTrait Seraph
     }
 }
-Text Auto:ACCELERATE [(1) Put a «Seraph» character from your waiting room on the bottom of your clock] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 «Seraph» character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto:ACCELERATE [(1) Put a «Seraph» character from your waiting room on the bottom of your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Seraph» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: HBR/W103-T08
@@ -2929,7 +2929,7 @@ Trait2 Unit 31A
 Auto: OnPlay
 {
     GainPower 1500
-    MultipleChoiceQuestion Choose and effect to resolve.\n1:Look at up to the top X cards of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your «Seraph» characters.\n2:[Put 1 card from your hand to the waiting room] you may pay cost. If you do, put the top card of your clock in your stock.|1|2
+    MultipleChoiceQuestion Choose and effect to resolve.\n1:Look at up to the top X cards of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your «Seraph» characters.\n2:[Put 1 card from your hand to the waiting room] you may pay the cost. If you do, put the top card of your clock in your stock.|1|2
     If Answer 0
     {
         SetXToNumberOfCharacters HasTrait Seraph
@@ -2944,6 +2944,6 @@ Auto: OnPlay
 		}
     }
 }
-Text Auto:When this card is played on the stage from your hand, this card gets +1500 power until end of turn, and perform 1 of the following 2 effects of your choice. "Look at up to the top X cards of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your «Seraph» characters." "[Put 1 card from your hand to the waiting room] you may pay cost. If you do, put the top card of your clock in your stock."
+Text Auto:When this card is played on the stage from your hand, this card gets +1500 power until end of turn, and perform 1 of the following 2 effects of your choice. "Look at up to the top X cards of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your «Seraph» characters." "[Put 1 card from your hand to the waiting room] you may pay the cost. If you do, put the top card of your clock in your stock."
 EndCard
 

@@ -14,7 +14,7 @@ Auto: OnPlay
         SearchDeck IsCharacter && Compare ThatCardsLevel 1 OrLess
     }
 }
-Text Auto:[(1) Put a «Music» character from your waiting room on the bottom of your clock] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[(1) Put a «Music» character from your waiting room on the bottom of your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: PJS/S91-002
@@ -67,7 +67,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [(2) Put 1 card from hand to the waiting room] When this card attacks, if "Greetings From a Kigurumi" is your climax area and the number of other «Wonderlands x Showtime» characters you have is 2 or more, you may pay cost. If you do, 1 damage to your opponent twice, and this card gets +3000 power until end of turn. 
+Text Auto:CxCombo [(2) Put 1 card from hand to the waiting room] When this card attacks, if "Greetings From a Kigurumi" is your climax area and the number of other «Wonderlands x Showtime» characters you have is 2 or more, you may pay the cost. If you do, 1 damage to your opponent twice, and this card gets +3000 power until end of turn. 
 EndCard
 
 Character: PJS/S91-004
@@ -153,7 +153,7 @@ Auto: OnTriggerCheckClimax
         }
     }
 }
-Text Auto:[(1)] When your character's trigger check reveals a climax with a Choice trigger icon, you may pay cost. If you do, draw a card.
+Text Auto:[(1)] When your character's trigger check reveals a climax with a Choice trigger icon, you may pay the cost. If you do, draw a card.
 EndCard
 
 Character: PJS/S91-008
@@ -212,7 +212,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:MEMORY [(2)] When this card attacks, if there are 3 or more cards in your memory, you may pay cost. If you do, deal 1 damage to your opponent. 
+Text Auto:MEMORY [(2)] When this card attacks, if there are 3 or more cards in your memory, you may pay the cost. If you do, deal 1 damage to your opponent. 
 EndCard
 
 Character: PJS/S91-010
@@ -359,7 +359,7 @@ Auto: StartMyEncoreStep
         }
     }
 }
-Text Auto:CxCombo [(1) Put this card in the waiting room] At the beginning of your encore step, if "100 Things I Want to Do" or "Lingering Melodies" is in your climax area, this card is in the center stage, and the number of other «Music» characters you have is 2 or more, you may pay cost. If you do, choose up to 1 «Music» in your waiting room and return it to your hand, choose up to 1 character in your hand and put it in the position this card was in.
+Text Auto:CxCombo [(1) Put this card in the waiting room] At the beginning of your encore step, if "100 Things I Want to Do" or "Lingering Melodies" is in your climax area, this card is in the center stage, and the number of other «Music» characters you have is 2 or more, you may pay the cost. If you do, choose up to 1 «Music» in your waiting room and return it to your hand, choose up to 1 character in your hand and put it in the position this card was in.
 EndCard
 
 Character: PJS/S91-016
@@ -483,7 +483,7 @@ Auto: OnPlay
         SearchWaitingRoom NameEquals Tell Me About Everyone's Christmas|Wonder Christmas!
     }
 }
-Text Auto:[Put a «Music» character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose either a "Tell Me About Everyone's Christmas" or "Wonder Christmas!" in your waiting room and return it to your hand.
+Text Auto:[Put a «Music» character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose either a "Tell Me About Everyone's Christmas" or "Wonder Christmas!" in your waiting room and return it to your hand.
 Auto: OnUseEvent
 {
     GainPower 2000
@@ -607,7 +607,7 @@ Auto: OnReversed
         SearchDeck HasTrait Music
     }
 }
-Text Auto:[(1) Put 1 card from hand to the waiting room, put this card into memory] When this card becomes reversed in battle, you may pay cost. If you do, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[(1) Put 1 card from hand to the waiting room, put this card into memory] When this card becomes reversed in battle, you may pay the cost. If you do, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: PJS/S91-031
@@ -641,7 +641,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [Put 1 card from hand to the waiting room] When this card attacks, if "Resolve on the Night Before the Concert" is in your climax area and you have another «Music» character, you may pay cost. If you do, look at up to 4 cards from the top of your deck and search up to 2 «Music» characters, reveal them, put them in your hand, and put the rest into your waiting room.
+Text Auto:CxCombo [Put 1 card from hand to the waiting room] When this card attacks, if "Resolve on the Night Before the Concert" is in your climax area and you have another «Music» character, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search up to 2 «Music» characters, reveal them, put them in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: PJS/S91-032
@@ -730,7 +730,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo MEMORY [(2)] When this card attacks, if "The Me Who Isn't an Idol" is in your climax area, there are 2 or more «Music» characters in your memory, and all your characters are «MORE MORE JUMP!», you may pay cost. If you do, look at up to 3 cards from the top of your opponent's deck, choose up to 3 of them and put them on top of the deck in any order, put the rest into your waiting room, and this card gets +4000 power until end of turn.
+Text Auto:CxCombo MEMORY [(2)] When this card attacks, if "The Me Who Isn't an Idol" is in your climax area, there are 2 or more «Music» characters in your memory, and all your characters are «MORE MORE JUMP!», you may pay the cost. If you do, look at up to 3 cards from the top of your opponent's deck, choose up to 3 of them and put them on top of the deck in any order, put the rest into your waiting room, and this card gets +4000 power until end of turn.
 EndCard
 
 Character: PJS/S91-036
@@ -758,7 +758,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:CxCombo [(2) Put 1 card from hand to the waiting room] When this card's battle opponent becomes reverse, if "Lingering Melodies" is in your climax area, you may pay cost. If you do, look at up to 5 cards from the bottom of your opponent's deck, choose up to 2 climax cards and put them in clock, and put the rest into your waiting room.
+Text Auto:CxCombo [(2) Put 1 card from hand to the waiting room] When this card's battle opponent becomes reverse, if "Lingering Melodies" is in your climax area, you may pay the cost. If you do, look at up to 5 cards from the bottom of your opponent's deck, choose up to 2 climax cards and put them in clock, and put the rest into your waiting room.
 EndCard
 
 Character: PJS/S91-037
@@ -989,7 +989,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:CxCombo [(1) Put an "In a Grand Occasion" from your climax area in the waiting room] When this card's battle opponent becomes reverse, you may pay cost. If you do, look at up to 4 cards from the top of your deck and search for up to 4 «Music» characters, reveal them, put them in your hand, put the rest into your waiting room, and this card gets the following ability until the end of your opponent's next turn. "Auto: When this card is frontal attacked, you may return this card to your hand."
+Text Auto:CxCombo [(1) Put an "In a Grand Occasion" from your climax area in the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 4 «Music» characters, reveal them, put them in your hand, put the rest into your waiting room, and this card gets the following ability until the end of your opponent's next turn. "Auto: When this card is frontal attacked, you may return this card to your hand."
 EndCard
 
 Character: PJS/S91-048
@@ -1117,7 +1117,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [(1) Put 1 card from hand to the waiting room] When this card attacks, if "First Breath in a Sekai" is in your climax area and the number of other «Music» characters you have is 2 or more, you may pay cost. If you do, deal 3 damage to your opponent, and put up to 1 card from the top of your clock in the waiting room. 
+Text Auto:CxCombo [(1) Put 1 card from hand to the waiting room] When this card attacks, if "First Breath in a Sekai" is in your climax area and the number of other «Music» characters you have is 2 or more, you may pay the cost. If you do, deal 3 damage to your opponent, and put up to 1 card from the top of your clock in the waiting room. 
 EndCard
 
 Character: PJS/S91-057
@@ -1170,7 +1170,7 @@ Auto: OnUseThisCardsBackup
         }
     }
 }
-Text Auto:[(2) Put 1 character from your stage in the waiting room] When you use this card's BACKUP, you may pay cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent and put it in the waiting room.
+Text Auto:[(2) Put 1 character from your stage in the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent and put it in the waiting room.
 Backup 2500
 EndCard
 
@@ -1307,7 +1307,7 @@ Auto: OnOtherFrontalAttacked
         }
     }
 }
-Text Auto:[(1) Put this card in the waiting room] When your other «Music» character is frontal attacked, you may pay cost. If you do, return that character to hand.
+Text Auto:[(1) Put this card in the waiting room] When your other «Music» character is frontal attacked, you may pay the cost. If you do, return that character to hand.
 Backup 1500
 EndCard
 
@@ -1332,7 +1332,7 @@ Auto: StartClimaxPhase
         }
     }
 }
-Text Auto:[(1) Return this card to your hand] During your turn when your other "Someday, Once Again......, Toya Aoyagi" is placed on the stage from your hand, at the beginning of your climax phase, you may pay cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
+Text Auto:[(1) Return this card to your hand] During your turn when your other "Someday, Once Again......, Toya Aoyagi" is placed on the stage from your hand, at the beginning of your climax phase, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
 *BondDiscard(Someday\, Once Again......\, Toya Aoyagi)
 EndCard
 
@@ -1357,7 +1357,7 @@ Auto: OnClimaxPlay
     }
 }
 Quick
-Text Auto:When your climax with a standby trigger icon is placed on your climax area, this card gets +1000 power and the following ability until end of turn. "Auto: [(1)] When this card attacks, you may pay cost. If you do, perform trigger check twice during this card attack's trigger Step."
+Text Auto:When your climax with a standby trigger icon is placed on your climax area, this card gets +1000 power and the following ability until end of turn. "Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform trigger check twice during this card attack's trigger Step."
 EndCard
 
 Character: PJS/S91-066
@@ -1419,7 +1419,7 @@ Auto: OnClimaxPlay
         GainSoul 1
     }
 }
-Text Auto:[Return this card to hand] When your climax is placed on your climax area, you may pay cost. If you do, choose 1 of your characters, and that character gets +1 soul until end of turn.
+Text Auto:[Return this card to hand] When your climax is placed on your climax area, you may pay the cost. If you do, choose 1 of your characters, and that character gets +1 soul until end of turn.
 *BondDiscard(We Can Do This!\, An Shiraishi)
 EndCard
 
@@ -1621,7 +1621,7 @@ Auto: OnSpecificClimaxPlay What Lies Beyond
         PlaceOnStage false true true false
     }
 }
-Text Auto:CxCombo [Put 1 card from hand to the waiting room] When "What Lies Beyond" is placed on your climax area, you may pay cost. If you do, choose a cost 0 or lower «Music» character in your waiting room and put it in any position on the stage.
+Text Auto:CxCombo [Put 1 card from hand to the waiting room] When "What Lies Beyond" is placed on your climax area, you may pay the cost. If you do, choose a cost 0 or lower «Music» character in your waiting room and put it in any position on the stage.
 Auto: OnReverseOpponent
 {
     If Climax What Lies Beyond && StageContains 1 Other && HasTrait Music
@@ -1669,7 +1669,7 @@ Auto: OnAttack
     }
 }
 TimesPerTurn 1
-Text Auto:CxCombo [(1)] This ability activates up to once per turn. When this card attacks, if "On the Other side of the Screen..." is in your climax area, you may pay cost. If you do, reveal the top card of your deck. If it's a «Music» character, stand this card.
+Text Auto:CxCombo [(1)] This ability activates up to once per turn. When this card attacks, if "On the Other side of the Screen..." is in your climax area, you may pay the cost. If you do, reveal the top card of your deck. If it's a «Music» character, stand this card.
 EndCard
 
 Character: PJS/S91-083
@@ -1759,7 +1759,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:CxCombo [Put a «Music» character from hand to the waiting room] When this card's battle opponent becomes reverse, if "The Best Angle" is in your climax area and you have another «Music» character, you may pay cost. If you do, search your deck for up to 2 «Music» characters, reveal them, put them in your hand, and shuffle your deck.
+Text Auto:CxCombo [Put a «Music» character from hand to the waiting room] When this card's battle opponent becomes reverse, if "The Best Angle" is in your climax area and you have another «Music» character, you may pay the cost. If you do, search your deck for up to 2 «Music» characters, reveal them, put them in your hand, and shuffle your deck.
 EndCard
 
 Character: PJS/S91-086
@@ -1790,7 +1790,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:[(1)] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, if the the number of colors among characters on your stage is 4 or more, you may pay cost. If you do, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[(1)] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, if the the number of colors among characters on your stage is 4 or more, you may pay the cost. If you do, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: PJS/S91-087
@@ -1826,7 +1826,7 @@ Auto: OnSpecificClimaxPlay The "Good Girl" I Am
         }
     }
 }
-Text Auto:CxCombo [Put 1 card from your hand to the waiting room] When "The "Good Girl" I Am" is placed on your climax area, if you have another «Music» character, you may pay cost. If you do, return all cards in your waiting room to the deck, shuffle your deck, look at up to 3 cards from the top of your deck and put them on top of the deck in any order.
+Text Auto:CxCombo [Put 1 card from your hand to the waiting room] When "The "Good Girl" I Am" is placed on your climax area, if you have another «Music» character, you may pay the cost. If you do, return all cards in your waiting room to the deck, shuffle your deck, look at up to 3 cards from the top of your deck and put them on top of the deck in any order.
 Auto: OnClimaxPlay
 {
     TargetTop Deck 2
@@ -1864,7 +1864,7 @@ Auto: OnPlay
 		ShuffleLocation OpponentDeck
 	}
 }
-Text Auto:[Rest 1 of your standing characters] When this card is placed on the stage from your hand, you may pay cost. If you do, your opponent chooses 1 climax in their waiting room, returns all cards from their waiting room except the chosen climax to the deck, and shuffle their deck.
+Text Auto:[Rest 1 of your standing characters] When this card is placed on the stage from your hand, you may pay the cost. If you do, your opponent chooses 1 climax in their waiting room, returns all cards from their waiting room except the chosen climax to the deck, and shuffle their deck.
 Auto: OnAttack
 {
     If Climax Severed Strings
@@ -1908,7 +1908,7 @@ Auto: OnTriggerCheckClimax
         }
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When your character's trigger check reveals a climax with a Gate trigger icon, if the number of other «25-ji, Nightcord de.» characters you have is 2 or more, you may pay cost. If you do, choose a «25-ji, Nightcord de.» character in your waiting room and return it to your hand, choose 1 of your characters, and that character gets +1 level and +500 power until end of turn.
+Text Auto:[Put 1 card from your hand to the waiting room] When your character's trigger check reveals a climax with a Gate trigger icon, if the number of other «25-ji, Nightcord de.» characters you have is 2 or more, you may pay the cost. If you do, choose a «25-ji, Nightcord de.» character in your waiting room and return it to your hand, choose 1 of your characters, and that character gets +1 level and +500 power until end of turn.
 EndCard
 
 Character: PJS/S91-090
@@ -1931,7 +1931,7 @@ Auto: StartClimaxPhase
     }
 }
 InMemory
-Text Auto:MEMORY [(2)] At the beginning of your climax phase, If this card is in memory, you may pay cost. If you do, discard up to 1 climax from your hand to the waiting room, then choose a climax in your waiting room that has the same exact trigger icons as the trigger icons of the climax put into waiting room from this effect and return it to your hand.
+Text Auto:MEMORY [(2)] At the beginning of your climax phase, If this card is in memory, you may pay the cost. If you do, discard up to 1 climax from your hand to the waiting room, then choose a climax in your waiting room that has the same exact trigger icons as the trigger icons of the climax put into waiting room from this effect and return it to your hand.
 Act: 1 SendSelf Memory
 {
     RevealUpTo Deck 3
@@ -2485,7 +2485,7 @@ Auto: OnReverseOpponent
         *ScryToBottom
     }
 }
-Text Auto:[(3) Put 1 card from your hand to the waiting room] When this card's battle opponent becomes reverse, you may pay cost. If you do, deal 2 damage to your opponent, look at the top card of your deck, and put it either on top or bottom of your deck. 
+Text Auto:[(3) Put 1 card from your hand to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 2 damage to your opponent, look at the top card of your deck, and put it either on top or bottom of your deck. 
 EndCard
 
 Event: PJS/S91-T14
@@ -2674,7 +2674,7 @@ Auto: OnPlay
         SearchWaitingRoom HasTrait Music
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
+Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
 EndCard
 
 Character: PJS/S91-T25
@@ -2724,7 +2724,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card attacks, if you have another «Music» character, you may pay cost. If you do, look at up to 2 cards from the top of your opponent's deck, choose up to 2 of them and put them on top of the deck in any order, and put the rest into your waiting room.
+Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card attacks, if you have another «Music» character, you may pay the cost. If you do, look at up to 2 cards from the top of your opponent's deck, choose up to 2 of them and put them on top of the deck in any order, and put the rest into your waiting room.
 EndCard
 
 Character: PJS/S91-T27
@@ -2762,7 +2762,7 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont:If the number of other «Music» characters you have is 2 or more, this card gets +1000 power and the following ability. "Auto: [Put 2 cards from your hand to the waiting room] When this card's battle opponent becomes reverse, you may pay cost. If you do, put that battle opponent in clock."
+Text Cont:If the number of other «Music» characters you have is 2 or more, this card gets +1000 power and the following ability. "Auto: [Put 2 cards from your hand to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, put that battle opponent in clock."
 Auto: OnPlay
 {
     SearchWaitingRoom HasTrait Music
@@ -2860,7 +2860,7 @@ Auto: OnPlay
         *GiveOtherCharacterPower(1000,Music)
     }
 }
-Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a «Music» character in your waiting room and return it to your hand, choose 1 of your other «Music» characters, and that character gets +1000 power until end of turn.
+Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand, choose 1 of your other «Music» characters, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: PJS/S91-T35
@@ -3040,7 +3040,7 @@ Auto: OnAttack
         Burn 1
     }
 }
-Text Auto:[(2) Put 1 card from your hand to the waiting room] When this card attacks, you may pay cost. If you do, deal 1 damage to your opponent. 
+Text Auto:[(2) Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, deal 1 damage to your opponent. 
 EndCard
 
 Climax: PJS/S91-T45
@@ -3110,7 +3110,7 @@ Auto:
 {
 
 }
-Text Auto:[(1)] At the beginning of the encore step, if you have no other Rested characters in the center stage, you may pay cost. If you do, Rest this card.
+Text Auto:[(1)] At the beginning of the encore step, if you have no other Rested characters in the center stage, you may pay the cost. If you do, Rest this card.
 EndCard
 
 Character: PJS/S91-T49
@@ -3131,7 +3131,7 @@ Auto:
 {
 
 }
-Text Auto:[Rest 2 of your standing characters] When this card is placed on the stage from your hand, you may pay cost. If you do, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
+Text Auto:[Rest 2 of your standing characters] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
 EndCard
 
 Character: PJS/S91-T50
@@ -3223,7 +3223,7 @@ Auto:
 {
 
 }
-Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "Recruiting Troupe Members!", reveal it, put it in your hand, shuffle your deck, choose 1 of your characters, and that character gets +2000 power until end of turn.
+Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Recruiting Troupe Members!", reveal it, put it in your hand, shuffle your deck, choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: PJS/S91-T55
@@ -3373,7 +3373,7 @@ Auto:
 {
 
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. 
+Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. 
 EndCard
 
 Character: PJS/S91-T64
@@ -3394,7 +3394,7 @@ Auto:
 {
 
 }
-Text Auto:[(1) Put this card in your waiting room] When your other «Music» character is placed from the stage to the waiting room, if this card is in the backstage, you may pay cost. If you do, put that character Rested in the position it was in, and that character gets +3000 power until the end of the next turn.
+Text Auto:[(1) Put this card in your waiting room] When your other «Music» character is placed from the stage to the waiting room, if this card is in the backstage, you may pay the cost. If you do, put that character Rested in the position it was in, and that character gets +3000 power until the end of the next turn.
 EndCard
 
 Character: PJS/S91-T65
@@ -3450,7 +3450,7 @@ Auto:
 {
 
 }
-Text Auto:[(2)] When this card is placed from the stage to the waiting room, you may pay cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
+Text Auto:[(2)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
 EndCard
 
 Character: PJS/S91-T68
@@ -3547,7 +3547,7 @@ Auto:
 {
 
 }
-Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card attacks, you may pay cost. If you do, this card gets +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent." 
+Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, this card gets +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent." 
 EndCard
 
 Event: PJS/S91-T73

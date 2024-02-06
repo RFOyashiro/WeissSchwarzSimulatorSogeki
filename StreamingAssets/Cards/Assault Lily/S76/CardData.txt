@@ -92,7 +92,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:[Rest another of your «Lily» characters] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay cost. If you do, put the top card of your deck in your stock.
+Text Auto:[Rest another of your «Lily» characters] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, put the top card of your deck in your stock.
 EndCard
 
 Character: ALL/S76-T05
@@ -1122,7 +1122,7 @@ Auto: OnPlay
         SearchWaitingRoom NameEquals I Want You to Feel That | Neunwelt Tactic
     }
 }
-Text Auto:CxCombo [Put a "Neunwelt Tactic" or "I Want You to Feel That" from your hand to your waiting room] When this card is placed on the stage from your hand you may pay cost. If you do, choose a "Neunwelt Tactic" or "I Want You to Feel That" from your waiting room and return it to your hand.
+Text Auto:CxCombo [Put a "Neunwelt Tactic" or "I Want You to Feel That" from your hand to your waiting room] When this card is placed on the stage from your hand you may pay the cost. If you do, choose a "Neunwelt Tactic" or "I Want You to Feel That" from your waiting room and return it to your hand.
 EndCard
 
 Character: ALL/S76-018
@@ -1218,7 +1218,7 @@ Auto: OnPlay
         MoveCard Clock
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a «Lily» character in your clock and return it to your hand, and put the top card of your deck in your clock.
+Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Lily» character in your clock and return it to your hand, and put the top card of your deck in your clock.
 EndCard
 
 Character: ALL/S76-022
@@ -1232,7 +1232,7 @@ Trait1 Lily
 Trait2 Hitotsuyanagi Corps
 *OnPlayScry
 *SacrificeToSave(Any)
-Text Auto:[Put this card in the waiting room] When your other character is placed from the stage to the waiting room, if this card is in the backstage, you may pay cost. If you do, put that character Rested in the position it was in.
+Text Auto:[Put this card in the waiting room] When your other character is placed from the stage to the waiting room, if this card is in the backstage, you may pay the cost. If you do, put that character Rested in the position it was in.
 EndCard
 
 Character: ALL/S76-023
@@ -1736,7 +1736,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [(2)] When this card attacks, if "I Want You to Feel That" is in your climax area, and you have 4 or more other «Lily» characters, you may pay cost. If you do, deal 4 damage to your opponent.
+Text Auto:CxCombo [(2)] When this card attacks, if "I Want You to Feel That" is in your climax area, and you have 4 or more other «Lily» characters, you may pay the cost. If you do, deal 4 damage to your opponent.
 EndCard
 
 Character: ALL/S76-045
@@ -1838,7 +1838,7 @@ Auto: OnSentFromStageToWaitingRoom
         SearchWaitingRoom HasTrait Lily
     }
 }
-Text Auto:[(2)] When this card is placed from the stage to the waiting room, you may pay cost. If you do, choose a «Lily» character in your waiting room and return it to your hand.
+Text Auto:[(2)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a «Lily» character in your waiting room and return it to your hand.
 EndCard
 
 Character: ALL/S76-050
@@ -1954,7 +1954,7 @@ Auto: OnPlay
         SearchWaitingRoom Compare TargetCardsLevel ThatCardsLevel OrLess && IsCharacter
     }
 }
-Text Auto:[Put a «Lily» character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, reveal the top card of your deck, choose a level X or lower character in your waiting room and return it to hand. X equals the level of the revealed card.
+Text Auto:[Put a «Lily» character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck, choose a level X or lower character in your waiting room and return it to hand. X equals the level of the revealed card.
 EndCard
 
 Character: ALL/S76-054
@@ -2050,7 +2050,7 @@ Auto: OnSpecificClimaxPlay I am Honored! I am Happy!
         }
     }
 }
-Text Auto:CxCombo [Return this card to your hand] When "I am Honored! I am Happy!" is placed in your climax area, you may pay cost. If you do, reveal the top card of your deck. If that card is a «Lily» character, put it in your hand.
+Text Auto:CxCombo [Return this card to your hand] When "I am Honored! I am Happy!" is placed in your climax area, you may pay the cost. If you do, reveal the top card of your deck. If that card is a «Lily» character, put it in your hand.
 *RestGivePower(2000,Any)
 EndCard
 
@@ -2159,7 +2159,7 @@ Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
         SearchWaitingRoom IsCharacter
     }
 }
-Text Auto:[(1)] When this card's level 2 or higher battle opponent becomes reverse, you may pay cost. If you do, choose a character in your waiting room and return it to your hand.
+Text Auto:[(1)] When this card's level 2 or higher battle opponent becomes reverse, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
 EndCard
 
 Event: ALL/S76-062
@@ -2341,7 +2341,7 @@ Auto: OnEndOfAttack
         }
     }
 }
-Text Auto:CxCombo [(1)] At the end of this card's attack, if "Come Over Here" is in your climax area, you may pay cost. If you do, look at the top card of your deck, put it on the top or bottom of your deck, deal 3 damage to your opponent, and this card does not stand during your next stand phase.
+Text Auto:CxCombo [(1)] At the end of this card's attack, if "Come Over Here" is in your climax area, you may pay the cost. If you do, look at the top card of your deck, put it on the top or bottom of your deck, deal 3 damage to your opponent, and this card does not stand during your next stand phase.
 EndCard
 
 Character: ALL/S76-071
@@ -2385,7 +2385,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, put the top 2 cards of your deck into the waiting room. If there is a climax among them, you may pay cost. If you do, search your deck for up to 1 «Lily» character, show it to your opponent, put it in your hand, and Shuffle your deck.
+Text Auto:[Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, put the top 2 cards of your deck into the waiting room. If there is a climax among them, you may pay the cost. If you do, search your deck for up to 1 «Lily» character, show it to your opponent, put it in your hand, and Shuffle your deck.
 Auto: StartClimaxPhase
 {
     If InLocation CenterStage
@@ -2396,7 +2396,7 @@ Auto: StartClimaxPhase
         }
     }
 }
-Text Auto:RESONATE [Reveal a "Blooming Dignifiedly, Miriam" in your hand] At the beginning of your climax phase, if this card is in your center stage, you may pay cost. If you do, choose 1 of your other characters, and that character gets +2000 power until end of turn.
+Text Auto:RESONATE [Reveal a "Blooming Dignifiedly, Miriam" in your hand] At the beginning of your climax phase, if this card is in your center stage, you may pay the cost. If you do, choose 1 of your other characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: ALL/S76-073
@@ -2494,7 +2494,7 @@ Auto: StartClimaxPhase
         *GiveOtherCharacterPower(2000,Any)
     }
 }
-Text Auto:RESONATE [Reveal a "Blooming Dignifiedly, Miriam" in your hand] At the beginning of your climax phase, you may pay cost. If you do, this card gets +2000 power until end of turn.
+Text Auto:RESONATE [Reveal a "Blooming Dignifiedly, Miriam" in your hand] At the beginning of your climax phase, you may pay the cost. If you do, this card gets +2000 power until end of turn.
 EndCard
 
 Character: ALL/S76-077
@@ -2598,7 +2598,7 @@ Auto: StartOpponentAttackPhase
         }
     }
 }
-Text Auto:RESONATE [Reveal a "Blooming Dignifiedly, Miriam" from your hand] At the beginning of your opponent's attack phase, you may pay cost. If you do, move this card to an open position in your center stage.
+Text Auto:RESONATE [Reveal a "Blooming Dignifiedly, Miriam" from your hand] At the beginning of your opponent's attack phase, you may pay the cost. If you do, move this card to an open position in your center stage.
 EndCard
 
 Character: ALL/S76-080
@@ -2624,7 +2624,7 @@ Auto: StartOpponentAttackPhase
         }
     }
 }
-Text Auto:[(1)] At the beginning of your opponent's attack phase, you may pay cost. If you do, choose 1 of your characters with "Yuyu" in its card name and this card, stand and swap them.
+Text Auto:[(1)] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your characters with "Yuyu" in its card name and this card, stand and swap them.
 Auto: OnReversed
 {
     If Not MyTurn
@@ -2647,7 +2647,7 @@ Auto: OnReversed
         }
     }
 }
-Text Auto:[(1)] During your opponent's turn, when this card becomes reverse in battle, you may pay cost. If you do, rest this card, and at the beginning of your next encore step, put this card into memory.
+Text Auto:[(1)] During your opponent's turn, when this card becomes reverse in battle, you may pay the cost. If you do, rest this card, and at the beginning of your next encore step, put this card into memory.
 EndCard
 
 Character: ALL/S76-081
@@ -2679,7 +2679,7 @@ Auto: OnPlay
         ShuffleLocation Deck
     }
 }
-Text Auto:[(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 cost 0 or lower «Lily» character that is your level or lower, place it in any position on the stage, and shuffle your deck.
+Text Auto:[(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 cost 0 or lower «Lily» character that is your level or lower, place it in any position on the stage, and shuffle your deck.
 EndCard
 
 Character: ALL/S76-082
@@ -2698,7 +2698,7 @@ Auto: OnPlay
         SearchWaitingRoom IsCharacter && Compare ThatCardsLevel 2 OrMore
     }
 }
-Text Auto:CxCombo [Put a "Come Over Here" from hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a level 2 or higher character in your waiting room and return it to your hand.
+Text Auto:CxCombo [Put a "Come Over Here" from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a level 2 or higher character in your waiting room and return it to your hand.
 Act: 1 Resonate Blooming Dignifiedly, Miriam &&& RestSelf
 {
     *Check3Add1(Lily)
@@ -2799,7 +2799,7 @@ Auto: OnPlay
         SearchDeck NameEquals Hitotsuyanagi Riri
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "Hitotsuyanagi Riri", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Hitotsuyanagi Riri", reveal it, put it in your hand, and shuffle your deck.
 *RestGivePower(1500,Lily)
 EndCard
 
@@ -2889,7 +2889,7 @@ Auto: OnPlay
         SearchDeck NameEquals To Schild for a Schutzengel
     }
 }
-Text Auto:[Put a «Lily» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "To Schild for a Schutzengel", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put a «Lily» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "To Schild for a Schutzengel", reveal it, put it in your hand, and shuffle your deck.
 Auto: OnAttack
 {
     Question Put the top card of your deck in waiting room ?
@@ -2933,7 +2933,7 @@ Auto: OnAttack
         Bounce
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card attacks, you may pay cost. If you do, choose 1 of your other «Lily» characters and return it to your hand.
+Text Auto:[Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, choose 1 of your other «Lily» characters and return it to your hand.
 EndCard
 
 Character: ALL/S76-092
@@ -3161,7 +3161,7 @@ Text Auto:When this card attacks, this card gets +X power until end of turn. X e
 Auto: Encore Discard 1 IsColor Green
 {
 }
-Text Auto:ENCORE [Put a GREEN card from your hand to the waiting room]
+Text Auto:ENCORE [Put a Green card from your hand to the waiting room]
 EndCard
 
 Character: ALL/S76-104

@@ -68,7 +68,7 @@ Auto: OnDamageCancel
 	}
 }
 TimesPerTurn 1
-Text Auto:[(1)] This ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when the damage dealt by this card is Cancelled, you may pay cost. If you do, put the top 4 cards of your deck in the waiting room. If at least 1 card put in the waiting room via this effect is either a character with "Hibiki" or "Miku" in its card name or a YELLOW event, choose 1 of your other ::Music:: characters, and that character gets +1 soul until end of turn. If at least 2 cards put in the waiting room via this effect are either a character with "Hibiki" or "Miku" in its card name or a YELLOW event, deal 1 damage to your opponent. If at least 3 cards put in the waiting room via this effect are either a character with "Hibiki" or "Miku" in its card name or a YELLOW event, deal 1 damage to your opponent.
+Text Auto:[(1)] This ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when the damage dealt by this card is Cancelled, you may pay the cost. If you do, put the top 4 cards of your deck in the waiting room. If at least 1 card put in the waiting room via this effect is either a character with "Hibiki" or "Miku" in its card name or a YELLOW event, choose 1 of your other ::Music:: characters, and that character gets +1 soul until end of turn. If at least 2 cards put in the waiting room via this effect are either a character with "Hibiki" or "Miku" in its card name or a YELLOW event, deal 1 damage to your opponent. If at least 3 cards put in the waiting room via this effect are either a character with "Hibiki" or "Miku" in its card name or a YELLOW event, deal 1 damage to your opponent.
 EndCard
 
 Character: SG/W52-003
@@ -87,7 +87,7 @@ Auto: OnPlay
         SearchWaitingRoom HasTrait Music
     }
 }
-Text Auto:[Discard 1 climax] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a ::Music:: character in your waiting room and return it to your hand.
+Text Auto:[Discard 1 climax] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a ::Music:: character in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W52-004
@@ -114,7 +114,7 @@ Auto: OnPlay
         ShuffleLocation Deck
     }
 }
-Text Auto:[(1) Discard 2 cards] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for a character with "Hibiki" in its card name and a character with "Miku" in its card name, reveal them, put them in your hand, and shuffle your deck.
+Text Auto:[(1) Discard 2 cards] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for a character with "Hibiki" in its card name and a character with "Miku" in its card name, reveal them, put them in your hand, and shuffle your deck.
 Auto: OnSentFromStageToWaitingRoom
 {
     PayCost 1 Discard 1 IsClimax
@@ -209,7 +209,7 @@ Auto: StartEncorePhase
         }
     }
 }
-Text Auto:[Discard 1 card, put a '"Garyuu: Gekisoushouda: power" Hibiki' from your stage and this card in the waiting room] At the beginning of your opponent's Encore Step, if there's a marker underneath this card, you may pay cost. If you do, choose up to 1 '"Garyuu: Daichishintoukei: Knowledge" Hibiki' and up to 1 "Miku in Casual Outfit" in your waiting room and put them in separate positions on the stage.
+Text Auto:[Discard 1 card, put a '"Garyuu: Gekisoushouda: power" Hibiki' from your stage and this card in the waiting room] At the beginning of your opponent's Encore Step, if there's a marker underneath this card, you may pay the cost. If you do, choose up to 1 '"Garyuu: Daichishintoukei: Knowledge" Hibiki' and up to 1 "Miku in Casual Outfit" in your waiting room and put them in separate positions on the stage.
 EndCard
 
 Character: SG/W52-008
@@ -245,7 +245,7 @@ Auto: OnSpecificClimaxPlay Garyuu: Moukoshoukyaku
         SearchWaitingRoom HasTrait Music
     }
 }
-Text Auto:CxCombo [(1)] When "Garyuu: Moukoshoukyaku" is placed on your climax area, you may pay cost. If you do, choose a <Music> character in your waiting room and return it to your hand.
+Text Auto:CxCombo [(1)] When "Garyuu: Moukoshoukyaku" is placed on your climax area, you may pay the cost. If you do, choose a <Music> character in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W52-009
@@ -303,7 +303,7 @@ Auto: OnFrontalAttacked
     }
 }
 Quick
-Text Auto:[(2) Return this card to your hand] When this card is frontal attacked, you may pay cost. If you do, choose up to 1 '"Magical Words" Hibiki' in your hand and put it in the position this card was in as Defending character.
+Text Auto:[(2) Return this card to your hand] When this card is frontal attacked, you may pay the cost. If you do, choose up to 1 '"Magical Words" Hibiki' in your hand and put it in the position this card was in as Defending character.
 EndCard
 
 Character: SG/W52-011
@@ -322,7 +322,7 @@ Auto: OnPlay
         SearchWaitingRoom NameEquals Gungnir
     }
 }
-Text Auto:[Discard 1 card] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a "Gungnir" in your waiting room and return it to your hand.
+Text Auto:[Discard 1 card] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Gungnir" in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W52-012
@@ -391,7 +391,7 @@ Auto: OnSpecificClimaxPlay Garyuu: Daichishintoukei
         }
     }
 }
-Text Auto:CxCombo [(1)] When "Garyuu: Daichishintoukei" is placed on your climax area, if this card is in the center stage, you may pay cost. If you do, choose up to 1 <Music> character in your waiting room and return it to your hand, and all your other characters get +1 soul until end of turn.
+Text Auto:CxCombo [(1)] When "Garyuu: Daichishintoukei" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, choose up to 1 <Music> character in your waiting room and return it to your hand, and all your other characters get +1 soul until end of turn.
 EndCard
 
 Event: SG/W52-016
@@ -632,7 +632,7 @@ Auto: OnPlay
         PlaceOnStage false true true false
     }
 }
-Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a '"Gamma Shiki: Manjikasha: Technique" Shirabe' in your waiting room and put it in any position on the stage.
+Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a '"Gamma Shiki: Manjikasha: Technique" Shirabe' in your waiting room and put it in any position on the stage.
 EndCard
 
 Character: SG/W52-028
@@ -672,7 +672,7 @@ Auto: OnPlay
         MoveCard Clock
     }
 }
-Text Auto:[Discard 1 card] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a <Music> character in your clock, return it to your hand, and put the top card of your deck in your clock.
+Text Auto:[Discard 1 card] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a <Music> character in your clock, return it to your hand, and put the top card of your deck in your clock.
 EndCard
 
 Character: SG/W52-030
@@ -785,7 +785,7 @@ Auto: OnAttack
         Burn X
     }
 }
-Text Auto:[(4)] When this card attacks, you may pay cost. If you do, choose up to 4 of your other <Noise> characters, put them in the waiting room, and deal X damage to your opponent. X is equal to the number of characters you put in the waiting room by this card effect.
+Text Auto:[(4)] When this card attacks, you may pay the cost. If you do, choose up to 4 of your other <Noise> characters, put them in the waiting room, and deal X damage to your opponent. X is equal to the number of characters you put in the waiting room by this card effect.
 EndCard
 
 Character: SG/W52-035
@@ -820,7 +820,7 @@ Auto: OnOtherPlacedOnStageFromHand
         }
     }
 }
-Text Auto:[Rest 1 of your other characters and this card] When your other '"Genshi: Aladdin: Dexterity" Kirika' is placed on the stage from your hand, if this card is stand, you may pay cost. If you do, choose a <Music> character in your waiting room and put it in your stock.
+Text Auto:[Rest 1 of your other characters and this card] When your other '"Genshi: Aladdin: Dexterity" Kirika' is placed on the stage from your hand, if this card is stand, you may pay the cost. If you do, choose a <Music> character in your waiting room and put it in your stock.
 *BondDiscard("Genshi: Aladdin: Dexterity" Kirika)
 EndCard
 
@@ -872,7 +872,7 @@ Auto: OnAttack
         Bounce
     }
 }
-Text Auto:[Discard 1 card] When this card attacks, you may pay cost. If you do, choose 1 of your other <Science> characters and return it to your hand.
+Text Auto:[Discard 1 card] When this card attacks, you may pay the cost. If you do, choose 1 of your other <Science> characters and return it to your hand.
 EndCard
 
 Character: SG/W52-039
@@ -996,7 +996,7 @@ Auto: OnPlay
         SearchWaitingRoom HasTrait Alchemy
     }
 }
-Text Auto:[(2)] When this card is placed on the stage from your hand, you may pay cost. If you do, choose an <Alchemy> character in your waiting room and return it to your hand.
+Text Auto:[(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose an <Alchemy> character in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W52-044
@@ -1188,7 +1188,7 @@ Auto: OnSpecificClimaxPlay ULTIMATE COMET
         }
     }
 }
-Text Auto:CxCombo [Discard 1 card] When "ULTIMATE COMET" is placed on your climax area, if this card is in the center stage, you may pay cost. If you do, choose an '"Ao no Issen: Meppa: Heart" Tsubasa' in your level and a <Music> character on your stage and swap them, choose 1 of your other characters and this card, and they get +2000 power until end of turn.
+Text Auto:CxCombo [Discard 1 card] When "ULTIMATE COMET" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, choose an '"Ao no Issen: Meppa: Heart" Tsubasa' in your level and a <Music> character on your stage and swap them, choose 1 of your other characters and this card, and they get +2000 power until end of turn.
 Auto: StartOpponentDrawPhase
 {
     If InLocation CenterStage
@@ -1230,7 +1230,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [(1) Discard 1 card] When this card attacks, if "EMPRESS REBELLION" is in your climax area and you have another '"Airget-Lamh" Serena', you may pay cost. If you do, deal 4 damage to your opponent.
+Text Auto:CxCombo [(1) Discard 1 card] When this card attacks, if "EMPRESS REBELLION" is in your climax area and you have another '"Airget-Lamh" Serena', you may pay the cost. If you do, deal 4 damage to your opponent.
 EndCard
 
 Character: SG/W52-055
@@ -1310,7 +1310,7 @@ Auto: OnPlay
         SearchWaitingRoom NameEquals Ichaival
     }
 }
-Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay cost. If you do, choose an "Ichaival" in your waiting room and return it to your hand.
+Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose an "Ichaival" in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W52-058
@@ -1331,7 +1331,7 @@ Auto: OnPlay
         SearchWaitingRoom NameContains Maria|Serena
     }
 }
-Text Auto:[Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a character in your waiting room with either "Maria" or "Serena" in its card name and return it to your hand.
+Text Auto:[Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a character in your waiting room with either "Maria" or "Serena" in its card name and return it to your hand.
 Act: RestSelf
 {
     TargetLocation Stage
@@ -1385,7 +1385,7 @@ Auto: OnAttack
         Burn 3
     }
 }
-Text Auto:[(3) Discard 2 cards] When this card attacks, you may pay cost. If you do, deal 3 damage to your opponent.
+Text Auto:[(3) Discard 2 cards] When this card attacks, you may pay the cost. If you do, deal 3 damage to your opponent.
 Auto: Encore Discard 1 IsColor Red
 {
 }
@@ -1544,7 +1544,7 @@ Auto: StartMyEncoreStep
     	}
     }
 }
-Text Auto:CHANGE [Put this card in the waiting room] At the beginning of your encore step, if this card is rest, you may pay cost. If you do, choose up to 1 '"Bond With Kouhai" Chris' in your hand and put it in the position this card was in.
+Text Auto:CHANGE [Put this card in the waiting room] At the beginning of your encore step, if this card is rest, you may pay the cost. If you do, choose up to 1 '"Bond With Kouhai" Chris' in your hand and put it in the position this card was in.
 EndCard
 
 Character: SG/W52-067
@@ -1586,7 +1586,7 @@ Auto: OnPlay
         SearchDeck NameEquals "Self Brilliance" Maria
     }
 }
-Text Auto:[Discard 1 <Music> character] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 '"Self Brilliance" Maria', reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Discard 1 <Music> character] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 '"Self Brilliance" Maria', reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SG/W52-068
@@ -1676,7 +1676,7 @@ Auto: OnPlay
         SearchDeck IsCharacter && Compare ThatCardsLevel 1 OrLess
     }
 }
-Text Auto:[(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
 *OnAttackGiveOtherPower(1000,Music)
 EndCard
 
@@ -1703,7 +1703,7 @@ Auto: OnSpecificClimaxPlay GIGA ZEPPELIN
         }
     }
 }
-Text Auto:CxCombo [Put the top card of your deck in your clock] When "GIGA ZEPPELIN" is placed on your climax area, if this card is in the center stage, you may pay cost. If you do, choose 1 of your other characters and stand it, and this card gets +1000 power until end of turn.
+Text Auto:CxCombo [Put the top card of your deck in your clock] When "GIGA ZEPPELIN" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, choose 1 of your other characters and stand it, and this card gets +1000 power until end of turn.
 EndCard
 
 Character: SG/W52-073
@@ -1726,7 +1726,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:[Discard 1 card] When this card attacks, if the number of other <Music> characters you have is 2 or more, you may pay cost. If you do, choose an "Airget-Lamh" in your waiting room and return it to your hand.
+Text Auto:[Discard 1 card] When this card attacks, if the number of other <Music> characters you have is 2 or more, you may pay the cost. If you do, choose an "Airget-Lamh" in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W52-074
@@ -1873,7 +1873,7 @@ Auto: OnReverseOpponent
 		Burn 1
 	}
 }
-Text Auto:[(1) Discard 1 card] When this card's battle opponent becomes reverse, you may pay cost. If you do, deal 1 damage to your opponent.
+Text Auto:[(1) Discard 1 card] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 1 damage to your opponent.
 EndCard
 
 Character: SG/W52-084
@@ -1919,7 +1919,7 @@ Auto: OnPlay
 		SearchDeck NameEquals Ignite Module
 	}
 }
-Text Auto:[Discard 1 <Music> character] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "Ignite Module", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Discard 1 <Music> character] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Ignite Module", reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SG/W52-086
@@ -2026,7 +2026,7 @@ Auto: OnReverseOpponent
 		}
 	}
 }
-Text Auto:[Put a <Music> character card from your hand to the waiting room] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay cost. If you do, search your deck for up to 1 "Ame-no-Habakiri", reveal it, put it in your hand, shuffle your deck, choose 1 of your other characters, and that character gets +3000 power until end of turn.
+Text Auto:[Put a <Music> character card from your hand to the waiting room] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, search your deck for up to 1 "Ame-no-Habakiri", reveal it, put it in your hand, shuffle your deck, choose 1 of your other characters, and that character gets +3000 power until end of turn.
 EndCard
 
 Character: SG/W52-090
@@ -2141,7 +2141,7 @@ Auto: OnReversed
 		}
 	}
 }
-Text Auto:[(1)] During your opponent's turn, when this card becomes reverse in battle, you may pay cost. If you do, rest this card and, at the beginning of your next encore step, put this card in the waiting room.
+Text Auto:[(1)] During your opponent's turn, when this card becomes reverse in battle, you may pay the cost. If you do, rest this card and, at the beginning of your next encore step, put this card in the waiting room.
 EndCard
 
 Character: SG/W52-094

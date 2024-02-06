@@ -87,7 +87,7 @@ Auto: OnPlay
 		SearchWaitingRoom NameEquals Gungnir
 	}
 }
-Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a "Gungnir" in your waiting room and return it to your hand.
+Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Gungnir" in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W27-006
@@ -219,7 +219,7 @@ Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
         SearchDeck HasTrait Music
     }
 }
-Text Auto:[(1)] When this card's level 2 or higher battle opponent becomes reverse, you may pay cost. If you do, search your deck for up to 1 <Music> character, reveal it, put it in your hand and shuffle your deck.
+Text Auto:[(1)] When this card's level 2 or higher battle opponent becomes reverse, you may pay the cost. If you do, search your deck for up to 1 <Music> character, reveal it, put it in your hand and shuffle your deck.
 EndCard
 
 Character: SG/W27-013
@@ -577,7 +577,7 @@ Auto: OnAttack
 		}
 	}
 }
-Text Auto:CxCombo [(1)] When this card attacks, if "Final Oppression: Neverland" is in your climax area, you may pay cost. If you do, this card gets +1000 power and the following ability until end of turn. "Auto:When this card's battle opponent become reversed, if that character's level is 2 or more, you may put that character in clock."
+Text Auto:CxCombo [(1)] When this card attacks, if "Final Oppression: Neverland" is in your climax area, you may pay the cost. If you do, this card gets +1000 power and the following ability until end of turn. "Auto:When this card's battle opponent become reversed, if that character's level is 2 or more, you may put that character in clock."
 EndCard
 
 Character: SG/W27-034
@@ -673,7 +673,7 @@ Auto: OnPlay
 		SearchDeck NameEquals NephilimNova | Noise | Solomon's Cane
 	}
 }
-Text Auto:[(2)] When this card is placed on the stage from your hand, you may pay cost. If you do, search your library for up to 1 of either "Nephilim Nova", "Noise", or "Solomon's Cane", reveal it and put it in your hand. Shuffle your deck.
+Text Auto:[(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your library for up to 1 of either "Nephilim Nova", "Noise", or "Solomon's Cane", reveal it and put it in your hand. Shuffle your deck.
 EndCard
 
 Character: SG/W27-038
@@ -917,7 +917,7 @@ Auto: OnAttack
 		}
 	}
 }
-Text Auto:CxCombo [(1)] When this card attacks, if "HORIZON†SPEAR" is in your climax area, you may pay cost. If you do, choose a character in your waiting room and return it to your hand.
+Text Auto:CxCombo [(1)] When this card attacks, if "HORIZON†SPEAR" is in your climax area, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W27-052
@@ -938,7 +938,7 @@ Auto: OnPlay
 		SearchWaitingRoom NameEquals Ichaival
 	}
 }
-Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay cost. If you do, choose an "Ichaival" in your waiting room and return it to your hand.
+Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose an "Ichaival" in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W27-053
@@ -981,7 +981,7 @@ Auto: OnReverseOpponent
 		}
 	}
 }
-Text Auto:[(1)] During your turn, when this card's battle opponent becomes reverse, you may pay cost. If you do, choose a character whose level is 2 or lower in your opponent's center stage and put it on top of their deck.
+Text Auto:[(1)] During your turn, when this card's battle opponent becomes reverse, you may pay the cost. If you do, choose a character whose level is 2 or lower in your opponent's center stage and put it on top of their deck.
 EndCard
 
 Character: SG/W27-054
@@ -1013,7 +1013,7 @@ Auto: OnAttack
 		}
 	}
 }
-Text Auto:CxCombo [(2)] When this card attacks, if "Declaration of War" is in your climax area, you may pay cost. If you do, choose a character whose level is 3 or lower in your opponent's center stage and put it on top of their deck.
+Text Auto:CxCombo [(2)] When this card attacks, if "Declaration of War" is in your climax area, you may pay the cost. If you do, choose a character whose level is 3 or lower in your opponent's center stage and put it on top of their deck.
 EndCard
 
 Character: SG/W27-055
@@ -1113,17 +1113,17 @@ Power 8500
 Soul 2
 Trait1 Music
 Trait2 Weapon
-Combo RED HOT BLAZE
+Combo Red HOT BLAZE
 Auto: OnAttack
 {
-	If Climax RED HOT BLAZE && StageContains 4 NameContains Chris && Other
+	If Climax Red HOT BLAZE && StageContains 4 NameContains Chris && Other
 	{
 		SearchWaitingRoom IsCharacter
 		TargetSelf
 		GainPower 3000
 	}
 }
-Text Auto:CxCombo When this card attacks, if "RED HOT BLAZE" is in your climax area and the number of other characters with "Chris" in its card name you have is 4 or more, choose a character in your waiting room and return it to your hand and this card gets +3000 power until end of turn.
+Text Auto:CxCombo When this card attacks, if "Red HOT BLAZE" is in your climax area and the number of other characters with "Chris" in its card name you have is 4 or more, choose a character in your waiting room and return it to your hand and this card gets +3000 power until end of turn.
 EndCard
 
 Character: SG/W27-061
@@ -1176,7 +1176,7 @@ Auto: OnPlay
 		SearchWaitingRoom HasTrait Music
 	}
 }
-Text Auto:[(2)] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a <Music> character in your waiting room and return it to your hand.
+Text Auto:[(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a <Music> character in your waiting room and return it to your hand.
 *ClockShift(0,red)
 EndCard
 
@@ -1216,7 +1216,7 @@ Auto: StartClimaxPhase
 		*ChangeWaitingRoom("Fine Reincarnate" Maria)
 	}
 }
-Text Auto:CHANGE [(2) Discard 1 card, put this card in waiting room] At the beginning of your climax phase, you may pay cost. If you do, choose a '"Fine Reincarnate" Maria' in your waiting room and put it in the position this card was in.
+Text Auto:CHANGE [(2) Discard 1 card, put this card in waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose a '"Fine Reincarnate" Maria' in your waiting room and put it in the position this card was in.
 EndCard
 
 Character: SG/W27-066
@@ -1251,7 +1251,7 @@ Auto: OnOtherAttacked
 		}
 	}
 }
-Text Auto:[Put this in the Waiting Room] When your other character with "Maria" in its card name is frontal attacked, you may pay cost. If you do, choose 1 of your characters in battle, and that character gets +1500 power until end of turn.
+Text Auto:[Put this in the Waiting Room] When your other character with "Maria" in its card name is frontal attacked, you may pay the cost. If you do, choose 1 of your characters in battle, and that character gets +1500 power until end of turn.
 EndCard
 
 Character: SG/W27-068
@@ -1310,7 +1310,7 @@ Auto: OnAttack
 		}
 	}
 }
-Text Auto:CxCombo [(1)] When this card attacks, if "Key of Babylonia" is in your climax area, you may pay cost. If you do, choose 1 of your opponent's level 0 or lower characters, put that character in waiting room and this card gets +2000 power until end of turn.
+Text Auto:CxCombo [(1)] When this card attacks, if "Key of Babylonia" is in your climax area, you may pay the cost. If you do, choose 1 of your opponent's level 0 or lower characters, put that character in waiting room and this card gets +2000 power until end of turn.
 EndCard
 
 Character: SG/W27-071
@@ -1415,7 +1415,7 @@ Name Key of Babylonia
 EndCard
 
 Climax: SG/W27-080
-Name RED HOT BLAZE
+Name Red HOT BLAZE
 Color R
 *DrawClimax
 EndCard
@@ -1445,7 +1445,7 @@ Auto: OnPlay
 		SearchWaitingRoom NameEquals Ame-no-Habakiri
 	}
 }
-Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay cost. If you do, choose an "Ame-no-Habakiri" in your waiting room and return it to your hand.
+Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose an "Ame-no-Habakiri" in your waiting room and return it to your hand.
 *ClockShift(1,blue)
 EndCard
 
@@ -1478,7 +1478,7 @@ Auto: OnAttack
 		}
 	}
 }
-Text Auto:CxCombo [(1)] When this card attacks, if "Thousand Falling Tears" is in your climax area, you may pay cost. If you do, draw a card, and this card gets +3000 power until the end of your opponent's next turn.
+Text Auto:CxCombo [(1)] When this card attacks, if "Thousand Falling Tears" is in your climax area, you may pay the cost. If you do, draw a card, and this card gets +3000 power until the end of your opponent's next turn.
 EndCard
 
 Character: SG/W27-083
@@ -1620,7 +1620,7 @@ Auto: OnAttack
 		}
 	}
 }
-Text Auto:CxCombo [(1)] When this card attacks, if "Flash of the Cavalry Blade" is in your climax area and the number of other characters with "Tsubasa" in its card name you have is 4 or more, you may pay cost. If you do, choose 1 of your opponent's level 1 or lower characters and put it on the bottom of the deck.
+Text Auto:CxCombo [(1)] When this card attacks, if "Flash of the Cavalry Blade" is in your climax area and the number of other characters with "Tsubasa" in its card name you have is 4 or more, you may pay the cost. If you do, choose 1 of your opponent's level 1 or lower characters and put it on the bottom of the deck.
 EndCard
 
 Character: SG/W27-090

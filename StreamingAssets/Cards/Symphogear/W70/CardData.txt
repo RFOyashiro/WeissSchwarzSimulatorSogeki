@@ -16,7 +16,7 @@ Auto: StartClimaxPhase
 		GainSoul 1
 	}
 }
-Text Auto:RESONATE [Reveal a 'Kirika, New battle' in your hand] At the beginning of your climax phase, you may pay cost. If you do, this card gets +1 soul until end of turn.
+Text Auto:RESONATE [Reveal a 'Kirika, New battle' in your hand] At the beginning of your climax phase, you may pay the cost. If you do, this card gets +1 soul until end of turn.
 EndCard
 
 Character: SG/W70-002
@@ -49,7 +49,7 @@ Auto: OnAttack
 		}
 	}
 }
-Text Auto:CxCombo [(4)] When this card attacks, if "Testament" is in your climax area and the number of other <Music> characters you have is 4 or more, you may pay cost. If you do, deal 1 damage to your opponent, and until end of turn this card gets the following ability. "Auto: When this card's battle opponent becomes reverse, perform the following action twice. 'Deal 1 damage to your opponent.'"
+Text Auto:CxCombo [(4)] When this card attacks, if "Testament" is in your climax area and the number of other <Music> characters you have is 4 or more, you may pay the cost. If you do, deal 1 damage to your opponent, and until end of turn this card gets the following ability. "Auto: When this card's battle opponent becomes reverse, perform the following action twice. 'Deal 1 damage to your opponent.'"
 EndCard
 
 Character: SG/W70-003
@@ -82,7 +82,7 @@ Auto: OnReverseOpponent
 		}
 	}
 }
-Text Auto:[(1) Rest 1 of your other characters with "Hibiki" or "Miku" in its card name] During the turn this card was placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay cost. If you do, search your deck for a character with "Hibiki" or "Miku" in its card name, show it to your opponent, put it in your hand, and shuffle your deck.
+Text Auto:[(1) Rest 1 of your other characters with "Hibiki" or "Miku" in its card name] During the turn this card was placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, search your deck for a character with "Hibiki" or "Miku" in its card name, show it to your opponent, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SG/W70-005
@@ -134,7 +134,7 @@ Auto: OnUseThisCardsBackup
 
     }
 }
-Text Auto:[(2) Put a character from your stage in the waiting room] When you use this card's BACKUP, you may pay cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent and put it in the waiting room.
+Text Auto:[(2) Put a character from your stage in the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent and put it in the waiting room.
 Backup 2500
 EndCard
 
@@ -166,7 +166,7 @@ Auto: OnPlay
 		SearchWaitingRoom NameEquals Hibiki, New Battle || NameEquals Kirika, New Battle
 	}
 }
-Text Auto:[Discard 1 <Music> character] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a "Hibiki, New battle" or "Kirika, New battle" from your waiting room and return it to hand.
+Text Auto:[Discard 1 <Music> character] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Hibiki, New battle" or "Kirika, New battle" from your waiting room and return it to hand.
 *OnAttackGivePower(1500,Music)
 EndCard
 
@@ -274,7 +274,7 @@ Auto: OnAttack
 		}
 	}
 }
-Text Auto:CxCombo [(1)] When this card attacks, if "Loving Duo Shout" is in your climax area, you may pay cost. If you do, your other characters get the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to hand."
+Text Auto:CxCombo [(1)] When this card attacks, if "Loving Duo Shout" is in your climax area, you may pay the cost. If you do, your other characters get the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to hand."
 EndCard
 
 Character: SG/W70-013
@@ -526,7 +526,7 @@ Auto: OnClimaxPlay
 		*Check4Add1(Music)
 	}
 }
-Text Auto:[(1)] When a climax is placed on your climax area, you may pay cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 <Music> character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto:[(1)] When a climax is placed on your climax area, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 <Music> character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: SG/W70-027
@@ -545,7 +545,7 @@ Auto: OnPlay
 		SearchDeck NameContains Kirika|Shirabe
 	}
 }
-Text Auto:[(1) Put the top card of your deck in clock] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 character with "Kirika" or "Shirabe" in its card name, show it to your opponent, put it in your hand, and shuffle your deck.
+Text Auto:[(1) Put the top card of your deck in clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with "Kirika" or "Shirabe" in its card name, show it to your opponent, put it in your hand, and shuffle your deck.
 Auto: OnAttack
 {
 	TargetLocation Stage
@@ -615,7 +615,7 @@ Auto: OnAttack
 		GainSpecialEffect DoubleTrigger
 	}
 }
-Text Auto:RESONATE [(1) Reveal a 'Tsubasa, New battle' in your hand] When this card attacks, you may pay cost. If you do, perform trigger check twice during this card's trigger step.
+Text Auto:RESONATE [(1) Reveal a 'Tsubasa, New battle' in your hand] When this card attacks, you may pay the cost. If you do, perform trigger check twice during this card's trigger step.
 EndCard
 
 Character: SG/W70-031
@@ -658,7 +658,7 @@ Auto: OnPlay
 		}
 	}
 }
-Text Auto:RESONATE [Reveal a 'Hibiki, New battle' in your hand] When this card is placed on the stage from your hand, you may pay cost. If you do, choose 1 of your characters with "Hibiki" or "Kirika" in its card name, and that character gets +3000 power and the following ability until end of turn . "Cont: This card cannot be chosen by your opponent's effects."
+Text Auto:RESONATE [Reveal a 'Hibiki, New battle' in your hand] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your characters with "Hibiki" or "Kirika" in its card name, and that character gets +3000 power and the following ability until end of turn . "Cont: This card cannot be chosen by your opponent's effects."
 EndCard
 
 Character: SG/W70-033
@@ -712,7 +712,7 @@ Auto: OnPlay
 		}
 	}
 }
-Text Auto:[Put the top card of your deck in your clock] When this card is placed from the stage to the waiting room, you may pay cost. If you do, reveal the top card of your deck. If that card is a <Music> character, put it in your hand.
+Text Auto:[Put the top card of your deck in your clock] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, reveal the top card of your deck. If that card is a <Music> character, put it in your hand.
 EndCard
 
 Character: SG/W70-036
@@ -774,7 +774,7 @@ Auto: OnUseThisCardsBackup
         }
 	}
 }
-Text Auto:[Put 2 cards from your hand to the waiting room] When you use this card's BACKUP, you may pay cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
+Text Auto:[Put 2 cards from your hand to the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
 Backup 2500
 EndCard
 
@@ -902,7 +902,7 @@ Auto: OnPlay
 		}
 	}
 }
-Text Auto:[(1)] When this card is placed on the stage from your hand, if you have another <Alchemy> or <Noise> character, you may pay cost. If you do, choose up to 2 level 0 or less <Alchemy> or <Noise> characters in your waiting room and place them into separate slots on the stage.
+Text Auto:[(1)] When this card is placed on the stage from your hand, if you have another <Alchemy> or <Noise> character, you may pay the cost. If you do, choose up to 2 level 0 or less <Alchemy> or <Noise> characters in your waiting room and place them into separate slots on the stage.
 *GainPowerWhenAttackingLevel3(6000)
 EndCard
 
@@ -985,7 +985,7 @@ Auto: StartClimaxPhase
         }
     }
 }
-Text Auto:RESONATE [Reveal a 'Chris, power to Connect' in your hand] At the beginning of your climax phase, you may pay cost. If you do, look at up to the top 2 cards of your deck, and place them back on top of your deck in any order.
+Text Auto:RESONATE [Reveal a 'Chris, power to Connect' in your hand] At the beginning of your climax phase, you may pay the cost. If you do, look at up to the top 2 cards of your deck, and place them back on top of your deck in any order.
 EndCard
 
 Character: SG/W70-050
@@ -1020,7 +1020,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [(2) Discard 1 card] When this card attacks, if "QUEEN's INFERNO" is in your climax area, you may pay cost. If you do, deal 3 damage to your opponent, and this card gets +1000 power until end of turn.
+Text Auto:CxCombo [(2) Discard 1 card] When this card attacks, if "QUEEN's INFERNO" is in your climax area, you may pay the cost. If you do, deal 3 damage to your opponent, and this card gets +1000 power until end of turn.
 EndCard
 
 Character: SG/W70-051
@@ -1063,7 +1063,7 @@ Auto: OnPlay
         GainPower 3000
     }
 }
-Text Auto:[(1) Put the top card of your deck to clock, discard 2 cards from hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for a character with "Tsubasa" in its card name and a character with "Maria" in its card name, show them to your opponent, put them in your hand, shuffle your deck, and this card gets +3000 power until end of turn.
+Text Auto:[(1) Put the top card of your deck to clock, discard 2 cards from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for a character with "Tsubasa" in its card name and a character with "Maria" in its card name, show them to your opponent, put them in your hand, shuffle your deck, and this card gets +3000 power until end of turn.
 EndCard
 
 Character: SG/W70-053
@@ -1147,7 +1147,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:RESONATE [Reveal a 'Maria, Collecting Thoughts' in your hand] When this card is placed form hand to the stage, you may pay cost. If you do, this card gets +1000 power and the following ability until end of turn. "Auto:When this card's battle opponent becomes reverse, you may put it on top of your opponent's deck."
+Text Auto:RESONATE [Reveal a 'Maria, Collecting Thoughts' in your hand] When this card is placed form hand to the stage, you may pay the cost. If you do, this card gets +1000 power and the following ability until end of turn. "Auto:When this card's battle opponent becomes reverse, you may put it on top of your opponent's deck."
 EndCard
 
 Character: SG/W70-056
@@ -1169,7 +1169,7 @@ Auto: OnPlay
     	PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto:[(1) Put a card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 among them, put it in your hand, and put the rest into your waiting room.
+Text Auto:[(1) Put a card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 among them, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: SG/W70-057
@@ -1188,7 +1188,7 @@ Auto: OnPlay
         SearchWaitingRoom NameEquals Chris, Power to Connect || NameEquals Maria, Collection Thoughts
     }
 }
-Text Auto:[Put a <Music> character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a "Chris, Power to Connect" or "Maria, Collecting Thoughts" in your waiting room and return it to hand.
+Text Auto:[Put a <Music> character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Chris, Power to Connect" or "Maria, Collecting Thoughts" in your waiting room and return it to hand.
 Act: Discard 1 Any SendSelf WaitingRoom
 {
     SearchWaitingRoom NameContains Chris|Maria
@@ -1275,7 +1275,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [(1)] When this card attacks, if "Change the Future" is in your climax area, you may pay cost. If you do, choose 1 of your opponent's characters whose level is 1 or lower and put it in their waiting room.
+Text Auto:CxCombo [(1)] When this card attacks, if "Change the Future" is in your climax area, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is 1 or lower and put it in their waiting room.
 EndCard
 
 Character: SG/W70-062
@@ -1475,7 +1475,7 @@ Auto: OnAttacked
         GainPower 2000
     }
 }
-Text Auto:RESONATE [(2) Reveal a 'Shirabe, Endless Struggle' in your hand] When this card is attacked, you may pay cost. If you do, choose yhe character facing this card, that character gets -2 soul and this card character gets +2000 power until end of turn.
+Text Auto:RESONATE [(2) Reveal a 'Shirabe, Endless Struggle' in your hand] When this card is attacked, you may pay the cost. If you do, choose yhe character facing this card, that character gets -2 soul and this card character gets +2000 power until end of turn.
 EndCard
 
 Character: SG/W70-073
@@ -1546,7 +1546,7 @@ Auto: OnPlay
         SearchWaitingRoom NameEquals Tsubasa, New Battle || NameEquals Shirabe, Endless Struggle
     }
 }
-Text Auto:[Put a <Music> character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a "Tsubasa, New battle" or "Shirabe, Endless Struggle" from your waiting room and return it to hand.
+Text Auto:[Put a <Music> character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Tsubasa, New battle" or "Shirabe, Endless Struggle" from your waiting room and return it to hand.
 Auto: OnPlay
 {
     PayCost 1 Discard 1 Any
@@ -1554,7 +1554,7 @@ Auto: OnPlay
         SearchDeck NameContains Tsubasa | Shirabe
     }
 }
-Text Auto:[(1) Put a card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 character with "Tsubasa" or "Shirabe" in its card name, show it to your opponent, put it in your hand, and shuffle your deck.
+Text Auto:[(1) Put a card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with "Tsubasa" or "Shirabe" in its card name, show it to your opponent, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SG/W70-076
@@ -1681,7 +1681,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a "Saint-Germain & Prelati & Cagliostro" in your waiting room and place it to any slot on the stage.
+Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Saint-Germain & Prelati & Cagliostro" in your waiting room and place it to any slot on the stage.
 Auto: OnReverseOpponent
 {
     If Climax Those Who Pursue an Ideal && LocationContains Memory 2 HasTrait Alchemy
@@ -1694,7 +1694,7 @@ Auto: OnReverseOpponent
     }
 }
 TimesPerTurn 1
-Text Auto:CxCombo MEMORY [(2) Put a card from hand to the waiting room] This ability activates up to once per turn. When this card's battle opponent becomes reverse, if "Those Who Pursue an Ideal" is in your climax area, and the number of <Alchemy> characters in memory you have is 2 or more, you may pay cost. If you do, Stand this card.
+Text Auto:CxCombo MEMORY [(2) Put a card from hand to the waiting room] This ability activates up to once per turn. When this card's battle opponent becomes reverse, if "Those Who Pursue an Ideal" is in your climax area, and the number of <Alchemy> characters in memory you have is 2 or more, you may pay the cost. If you do, Stand this card.
 EndCard
 
 Character: SG/W70-081
@@ -1733,7 +1733,7 @@ Auto: OnSentFromStageToWaitingRoom
         PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto:[(1) Put the top card of your deck in your clock] When this card is placed from the stage to the waiting room, you may pay cost. If you do, look at up to 3 cards from the top of your deck, choose up to 1 character from among them, show it to your opponent, put it in your hand, and put the rest into your waiting room.
+Text Auto:[(1) Put the top card of your deck in your clock] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 3 cards from the top of your deck, choose up to 1 character from among them, show it to your opponent, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: SG/W70-082
@@ -2058,7 +2058,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [(1)] When this card attacks, if "Fuugetsu-no-Shissou" is in your climax area, you may pay cost. If you do, deal 1 damage to your opponent.
+Text Auto:CxCombo [(1)] When this card attacks, if "Fuugetsu-no-Shissou" is in your climax area, you may pay the cost. If you do, deal 1 damage to your opponent.
 EndCard
 
 Event: SG/W70-097

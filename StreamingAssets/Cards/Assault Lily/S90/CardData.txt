@@ -263,7 +263,7 @@ Auto: OnPlay
         BlockOpponentEvents
     }
 }
-Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay cost. If you do, this card gets +1000 power until end of turn, and your opponent cannot play events from hand until the end of your opponent's next turn.
+Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, this card gets +1000 power until end of turn, and your opponent cannot play events from hand until the end of your opponent's next turn.
 EndCard
 
 Character: ALL/S90-010
@@ -383,7 +383,7 @@ Auto: StartClimaxPhase
         GainPower 4000
     }
 }
-Text Auto:RESONATE [Reveal a ""Gran Eple's Winning Strategy" Takane" from your hand] At the beginning of your climax phase, you may pay cost. If you do, this card gets +4000 power until end of turn.
+Text Auto:RESONATE [Reveal a ""Gran Eple's Winning Strategy" Takane" from your hand] At the beginning of your climax phase, you may pay the cost. If you do, this card gets +4000 power until end of turn.
 EndCard
 
 Character: ALL/S90-015
@@ -989,7 +989,7 @@ Auto: OnClimaxPlay
         SearchWaitingRoom NameEquals Welcome to the Profound World of Dolls!
     }
 }
-Text Auto:[(1)] When a climax is placed to your climax area, you may pay cost. If you do, choose a "Welcome to the Profound World of Dolls!" in your waiting room and return it to hand.
+Text Auto:[(1)] When a climax is placed to your climax area, you may pay the cost. If you do, choose a "Welcome to the Profound World of Dolls!" in your waiting room and return it to hand.
 EndCard
 
 Character: ALL/S90-039
@@ -1073,7 +1073,7 @@ Auto: OnSpecificClimaxPlay Sweet Memories
         }
     }
 }
-Text Auto:CxCombo [Put this card in the waiting room] When "Sweet Memories" is placed on your climax area, you may pay cost. If you do, choose up to 1 ""Elegant Sniper" Yujia" in your hand and put it in the position this card was in.
+Text Auto:CxCombo [Put this card in the waiting room] When "Sweet Memories" is placed on your climax area, you may pay the cost. If you do, choose up to 1 ""Elegant Sniper" Yujia" in your hand and put it in the position this card was in.
 EndCard
 
 Character: ALL/S90-042
@@ -1109,7 +1109,7 @@ Auto: OnTriggerCheckClimax
         }
     }
 }
-Text Auto:[Put 1 card from hand to the waiting room] When your character's trigger check reveals a climax with a Bar trigger icon, you may pay cost. If you do, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
+Text Auto:[Put 1 card from hand to the waiting room] When your character's trigger check reveals a climax with a Bar trigger icon, you may pay the cost. If you do, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
 EndCard
 
 Character: ALL/S90-043
@@ -1138,10 +1138,10 @@ Auto: OnAttack
                 SearchWaitingRoom HasTrait Lily
             }
         }
-        Text Auto: [Put 1 climax from hand to the waiting room] When the trigger check of this card reveals a climax, you may pay cost. If you do, choose a «Lily» character in your waiting room and return it to your hand.
+        Text Auto: [Put 1 climax from hand to the waiting room] When the trigger check of this card reveals a climax, you may pay the cost. If you do, choose a «Lily» character in your waiting room and return it to your hand.
     }
 }
-Text Auto: When this card attacks, all your characters gets the following ability until end of turn. "Auto: [Put 1 climax from hand to the waiting room] When the trigger check of this card reveals a climax, you may pay cost. If you do, choose a «Lily» character in your waiting room and return it to your hand."
+Text Auto: When this card attacks, all your characters gets the following ability until end of turn. "Auto: [Put 1 climax from hand to the waiting room] When the trigger check of this card reveals a climax, you may pay the cost. If you do, choose a «Lily» character in your waiting room and return it to your hand."
 EndCard
 
 Character: ALL/S90-044
@@ -1171,7 +1171,7 @@ Auto: StartOpponentAttackPhase
         }
     }
 }
-Text Auto:[Put 1 climax from hand to the waiting room] At the beginning of your opponent's attack phase, you may pay cost. If you do, choose 1 of your other «Lily» characters and this card, stand and swap them, and that character gets +1000 power until end of turn.
+Text Auto:[Put 1 climax from hand to the waiting room] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your other «Lily» characters and this card, stand and swap them, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: ALL/S90-045
@@ -1225,7 +1225,7 @@ Auto: OnPlay
         SearchDeck NameEquals In the Sun
     }
 }
-Text Auto:[Put a «Lily» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "In the Sun", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put a «Lily» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "In the Sun", reveal it, put it in your hand, and shuffle your deck.
 Auto: OnAttack
 {
     TargetLocation OpponentCenterStage
@@ -1476,12 +1476,12 @@ Auto: OnUseAct
                 SearchWaitingRoom IsCharacter
             }
         }
-        Text Auto: [(1)] When this card's battle opponent becomes reverse, you may pay cost. If you do, choose a character in your waiting room and return it to your hand.
+        Text Auto: [(1)] When this card's battle opponent becomes reverse, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
     }
 }
 Quick
 TimesPerTurn 1
-Text Auto:This ability activates up to once per turn. When you use an Act: ability, this card gets the following ability until end of turn. "Auto: [(1)] When this card's battle opponent becomes reverse, you may pay cost. If you do, choose a character in your waiting room and return it to your hand."
+Text Auto:This ability activates up to once per turn. When you use an Act: ability, this card gets the following ability until end of turn. "Auto: [(1)] When this card's battle opponent becomes reverse, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand."
 EndCard
 
 Character: ALL/S90-057
@@ -1576,7 +1576,7 @@ Auto: OnTriggerCheckClimax
         }
     }
 }
-Text Auto:When your character's trigger check reveals a climax with a Book trigger icon, choose 1 of your «Lily» characters, and that character gets +1000 power and the following ability until end of turn. "Auto: When this card attacks, you may pay cost. If you do, perform trigger check twice during this card attack's trigger Step."
+Text Auto:When your character's trigger check reveals a climax with a Book trigger icon, choose 1 of your «Lily» characters, and that character gets +1000 power and the following ability until end of turn. "Auto: When this card attacks, you may pay the cost. If you do, perform trigger check twice during this card attack's trigger Step."
 EndCard
 
 Character: ALL/S90-060
@@ -1609,7 +1609,7 @@ Auto: OnSpecificClimaxPlay Angsty Age
         }
     }
 }
-Text Auto:CxCombo [Return this card to hand] When "Angsty Age" is placed on your climax area, if you have another «Lily» character, you may pay cost. If you do, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card attacks, perform trigger check twice during this card attack's trigger Step."
+Text Auto:CxCombo [Return this card to hand] When "Angsty Age" is placed on your climax area, if you have another «Lily» character, you may pay the cost. If you do, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card attacks, perform trigger check twice during this card attack's trigger Step."
 Act: RestSelf
 {
     TargetLocation Stage
@@ -1642,7 +1642,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:CxCombo [(1) Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, if you have another "Blooming Dignifiedly, Miriam", you may pay cost. If you do, choose up to 1 "Come Over Here" in your waiting room and return it to your hand, choose 1 of your characters, and that character gets +2000 power until end of turn.
+Text Auto:CxCombo [(1) Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, if you have another "Blooming Dignifiedly, Miriam", you may pay the cost. If you do, choose up to 1 "Come Over Here" in your waiting room and return it to your hand, choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: ALL/S90-062
@@ -1695,7 +1695,7 @@ Auto: OnPlay
         SearchDeck NameEquals Blooming Dignifiedly, Kaede
     }
 }
-Text Auto:[Put a «Lily» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "Blooming Dignifiedly, Kaede", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put a «Lily» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Blooming Dignifiedly, Kaede", reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: ALL/S90-064
@@ -1726,7 +1726,7 @@ Auto: OnOtherFrontalAttacked
         }
     }
 }
-Text Auto:[Put 1 card from hand to the waiting room, put this card in the waiting room] When your other «Lily» character is frontal attacked, you may pay cost. If you do, choose 1 of your characters in battle, and that character gets +3000 power until end of turn.
+Text Auto:[Put 1 card from hand to the waiting room, put this card in the waiting room] When your other «Lily» character is frontal attacked, you may pay the cost. If you do, choose 1 of your characters in battle, and that character gets +3000 power until end of turn.
 EndCard
 
 Character: ALL/S90-065
@@ -1795,7 +1795,7 @@ Auto: OnClimaxPlay
         }
     }
 }
-Text Auto:[(1)] When your climax is placed on your climax area, you may pay cost. If you do, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand."
+Text Auto:[(1)] When your climax is placed on your climax area, you may pay the cost. If you do, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand."
 Auto: StartOpponentAttackPhase
 {
     PayCost 1 Discard 1 Any
@@ -1805,7 +1805,7 @@ Auto: StartOpponentAttackPhase
         GainPower 1500
     }
 }
-Text Auto:[(1) Put 1 card from your hand to the waiting room] At the beginning of your opponent's attack phase, you may pay cost. If you do, activate Charisma.\nREPLAY Charisma: All your «Lily» characters get +1500 power until end of turn.
+Text Auto:[(1) Put 1 card from your hand to the waiting room] At the beginning of your opponent's attack phase, you may pay the cost. If you do, activate Charisma.\nREPLAY Charisma: All your «Lily» characters get +1500 power until end of turn.
 EndCard
 
 Character: ALL/S90-067
@@ -1894,7 +1894,7 @@ Auto: OnSentFromStageToWaitingRoom
         PlaceOnStage false true true true
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay cost. If you do, choose a "Blooming Dignifiedly, Yuyu" in your waiting room and put it rested in any position on the stage.
+Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a "Blooming Dignifiedly, Yuyu" in your waiting room and put it rested in any position on the stage.
 EndCard
 
 Character: ALL/S90-070
@@ -1972,11 +1972,11 @@ Cont: GiveSelf
                     }
                 }
             }
-            Text Auto: [(3) Put 2 cards from your hand to the waiting room] At the beginning of your opponent's attack phase, if this card is in the center stage, you may pay cost. If you do, choose the character facing this card, and that character gets the following ability until end of turn. 'Cont: This cannot frontal attack.'
+            Text Auto: [(3) Put 2 cards from your hand to the waiting room] At the beginning of your opponent's attack phase, if this card is in the center stage, you may pay the cost. If you do, choose the character facing this card, and that character gets the following ability until end of turn. 'Cont: This cannot frontal attack.'
         }
     }
 }
-Text Cont:If there's a marker under this card, this card gets +1 level and the following 2 abilities. "Cont: This cannot be chosen as target of opponent's effects and this card's soul does not decrease by side attacking." "Auto: [(3) Put 2 cards from your hand to the waiting room] At the beginning of your opponent's attack phase, if this card is in the center stage, you may pay cost. If you do, choose the character facing this card, and that character gets the following ability until end of turn. 'Cont: This cannot frontal attack.'"
+Text Cont:If there's a marker under this card, this card gets +1 level and the following 2 abilities. "Cont: This cannot be chosen as target of opponent's effects and this card's soul does not decrease by side attacking." "Auto: [(3) Put 2 cards from your hand to the waiting room] At the beginning of your opponent's attack phase, if this card is in the center stage, you may pay the cost. If you do, choose the character facing this card, and that character gets the following ability until end of turn. 'Cont: This cannot frontal attack.'"
 Auto: OnPlay
 {
     TargetTop Deck 1
@@ -2270,7 +2270,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:CxCombo [Put 1 card from hand to the waiting room] When this card's battle opponent becomes reverse, if "Scenery Seen From the Skies" is in your climax area and you have another «Lily» character, you may pay cost. If you do, choose up to 2 «Lily» characters in your waiting room and return them to hand.
+Text Auto:CxCombo [Put 1 card from hand to the waiting room] When this card's battle opponent becomes reverse, if "Scenery Seen From the Skies" is in your climax area and you have another «Lily» character, you may pay the cost. If you do, choose up to 2 «Lily» characters in your waiting room and return them to hand.
 EndCard
 
 Character: ALL/S90-085
@@ -2323,7 +2323,7 @@ Auto: OnUseThisCardsBackup
         LoseSoul 1
     }
 }
-Text Auto:[(1) Put 1 character from your stage in the waiting room] When you use this card's BACKUP, you may pay cost. If you do, choose 1 of your opponent's level 2 or higher characters, and that character gets -1 soul until end of turn.
+Text Auto:[(1) Put 1 character from your stage in the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's level 2 or higher characters, and that character gets -1 soul until end of turn.
 Backup 2500
 EndCard
 
@@ -2821,7 +2821,7 @@ Auto: OnAttack
         *OptionalDrawDiscard
     }
 }
-Text Auto:When this card attacks, if there's a BLUE climax in your climax area, you may draw a card. If you do, discard a card from your hand to the waiting room.
+Text Auto:When this card attacks, if there's a Blue climax in your climax area, you may draw a card. If you do, discard a card from your hand to the waiting room.
 EndCard
 
 Character: ALL/S90-103

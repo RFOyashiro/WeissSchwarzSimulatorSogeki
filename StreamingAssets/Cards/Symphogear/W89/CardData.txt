@@ -14,7 +14,7 @@ Auto: OnReversed
         SearchDeck HasTrait Music
     }
 }
-Text Auto:[(1) Put the top card of your deck to clock] When this card becomes reverse in battle, you may pay cost. If you do, search your deck for up to 1 <Music> character, show it to your opponent, put it in your hand, and shuffle your deck.
+Text Auto:[(1) Put the top card of your deck to clock] When this card becomes reverse in battle, you may pay the cost. If you do, search your deck for up to 1 <Music> character, show it to your opponent, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SG/W89-002
@@ -81,7 +81,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CX COMBO [(1) Put a card from hand to the waiting room] When this card attacks, if "METANOIA" is in your climax area, you may pay cost. If you do, until end of turn this card gets the following ability. "Auto: This ability activates up to once per turn. When this card's damage is cancelled, you may deal 3 damage to your opponent. If that damage is cancelled, you may deal 1 damage to your opponent."
+Text Auto:CX COMBO [(1) Put a card from hand to the waiting room] When this card attacks, if "METANOIA" is in your climax area, you may pay the cost. If you do, until end of turn this card gets the following ability. "Auto: This ability activates up to once per turn. When this card's damage is cancelled, you may deal 3 damage to your opponent. If that damage is cancelled, you may deal 1 damage to your opponent."
 EndCard
 
 Character: SG/W89-004
@@ -130,7 +130,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[Put a card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a level 0 or lower "Autoscorer Phara" from your waiting room, place it to any slot on the stage, and until the end of your opponent's next turn this card gets +1 level.
+Text Auto:[Put a card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a level 0 or lower "Autoscorer Phara" from your waiting room, place it to any slot on the stage, and until the end of your opponent's next turn this card gets +1 level.
 Auto: OnReversed
 {
     PayCost 1 Clock SendSelf Memory
@@ -138,7 +138,7 @@ Auto: OnReversed
         SearchWaitingRoom HasTrait Alchemy && IsCharacter
     }
 }
-Text Auto:[(1) Put the top card of your deck in your clock, Put this card into memory] When this card becomes reverse in battle, you may pay cost. If you do, choose an <Alchemy> character in your waiting room and return it to your hand.
+Text Auto:[(1) Put the top card of your deck in your clock, Put this card into memory] When this card becomes reverse in battle, you may pay the cost. If you do, choose an <Alchemy> character in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W89-006
@@ -163,7 +163,7 @@ Auto: OnPlay
         PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto:[Put a <Music> character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, reveal the top 2 cards of your deck, your opponent choose a character or an event among them, put that card to your hand, and put the rest into the waiting room.
+Text Auto:[Put a <Music> character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top 2 cards of your deck, your opponent choose a character or an event among them, put that card to your hand, and put the rest into the waiting room.
 Auto: OnPlay
 {
     PayCost Discard 1 HasTrait Music && IsCharacter
@@ -171,7 +171,7 @@ Auto: OnPlay
         SearchDeck NameEquals Gungnir
     }
 }
-Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "Gungnir", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Gungnir", reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SG/W89-007
@@ -289,7 +289,7 @@ Power 1500
 Soul 1
 Trait1 Music
 *SacrificeToSave(HasTrait Music)
-Text Auto:[Put this card in the waiting room] When your other <Music> character is placed from the stage to the waiting room, if this card is in the back stage, you may pay cost. If you do, put that character rest in the position thsi card was in.
+Text Auto:[Put this card in the waiting room] When your other <Music> character is placed from the stage to the waiting room, if this card is in the back stage, you may pay the cost. If you do, put that character rest in the position thsi card was in.
 *RestGivePower(1500,Music)
 Text <color=red> * This card is part of a 3C1 restriction alongside W89-028 and W89-034 in JP. </color>
 EndCard
@@ -340,7 +340,7 @@ Cont: GiveSelf
                     GainSpecialEffect AdditionalTrigger
                 }
             }
-            Text Auto:[(1) Put a card from hand to the waiting room] When this card attacks you may pay cost. If you do, perform trigger check 3 times during this card attack's trigger step.
+            Text Auto:[(1) Put a card from hand to the waiting room] When this card attacks you may pay the cost. If you do, perform trigger check 3 times during this card attack's trigger step.
         }
         GainEffect
         {
@@ -352,11 +352,11 @@ Cont: GiveSelf
                     Burn 1
                 }
             }
-            Text Auto:[Put 3 cards from hand to the waiting room] When this card's battle opponent becomes reverse, you may pay cost. If you do, deal 1 damage to your opponent twice.
+            Text Auto:[Put 3 cards from hand to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 1 damage to your opponent twice.
         }
     }
 }
-Text Cont:EXPERIENCE If the sum of levels of cards in your level is 5 or more and you have no other characters, this card gets +12000 power and the following 3 abilities. "Cont:During battles involving this card, your opponent may not play events or BACKUP from hand." "Auto:[(1) Put a card from hand to the waiting room] When this card attacks you may pay cost. If you do, perform trigger check 3 times during this card attack's trigger step." "Auto:[Put 3 cards from hand to the waiting room] When this card's battle opponent becomes reverse, you may pay cost. If you do, deal 1 damage to your opponent twice."
+Text Cont:EXPERIENCE If the sum of levels of cards in your level is 5 or more and you have no other characters, this card gets +12000 power and the following 3 abilities. "Cont:During battles involving this card, your opponent may not play events or BACKUP from hand." "Auto:[(1) Put a card from hand to the waiting room] When this card attacks you may pay the cost. If you do, perform trigger check 3 times during this card attack's trigger step." "Auto:[Put 3 cards from hand to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 1 damage to your opponent twice."
 Act: Send 1 WaitingRoom Any
 {
     *GiveCharacterPower(1500,Any)
@@ -553,7 +553,7 @@ Auto: OnUseEvent
     }
 }
 TimesPerTurn 1
-Text Auto:[(1)] This ability activates up to once per turn. When you play a "Gungnir", you may pay cost. If you do, choose a <Music> character in your waiting room and return it to your hand.
+Text Auto:[(1)] This ability activates up to once per turn. When you play a "Gungnir", you may pay the cost. If you do, choose a <Music> character in your waiting room and return it to your hand.
 *OnAttackGainPowerForEachOther(1000,Music)
 EndCard
 
@@ -708,7 +708,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo EXPERIENCE [Put a <Music> character from hand to the waiting room] When this card attacks, if "Polyfilm Scissor Love Dreams" is in your climax area and you have a "Igalima" or "Shul Shagana" in your level, you may pay cost. If you do, deal 2 damage to your opponent.
+Text Auto:CxCombo EXPERIENCE [Put a <Music> character from hand to the waiting room] When this card attacks, if "Polyfilm Scissor Love Dreams" is in your climax area and you have a "Igalima" or "Shul Shagana" in your level, you may pay the cost. If you do, deal 2 damage to your opponent.
 Text <color=red> * This card is part of a 3C1 restriction alongside W89-012 and W89-034 in JP. </color>
 EndCard
 
@@ -764,7 +764,7 @@ Auto: OnTriggerCheckClimax
         }
     }
 }
-Text Auto:[Put a card from hand to the waiting room] When your character's trigger check reveals a climax with a Bar trigger icon, you may pay cost. If you do, look at up to 2 cards from the top of your deck, choose up to 1 among them, put it in your hand, and put the rest into the waiting room.
+Text Auto:[Put a card from hand to the waiting room] When your character's trigger check reveals a climax with a Bar trigger icon, you may pay the cost. If you do, look at up to 2 cards from the top of your deck, choose up to 1 among them, put it in your hand, and put the rest into the waiting room.
 EndCard
 
 Character: SG/W89-031
@@ -835,7 +835,7 @@ Auto: OnTriggerCheckClimax
         }
     }
 }
-Text Auto:[Put a card from hand to the waiting room] When your character's trigger check reveals a climax with a Bar trigger icon, you may pay cost. If you do, look at up to 2 cards from the top of your deck, choose up to 1 among them, put it in your hand, and put the rest into the waiting room.
+Text Auto:[Put a card from hand to the waiting room] When your character's trigger check reveals a climax with a Bar trigger icon, you may pay the cost. If you do, look at up to 2 cards from the top of your deck, choose up to 1 among them, put it in your hand, and put the rest into the waiting room.
 Act: RestSelf
 {
     If LocationContains Level 1 NameEquals Igalima | Shul Shagana
@@ -862,7 +862,7 @@ Auto: OnPlay
         SearchDeck NameEquals Igalima
     }
 }
-Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "Igalima", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Igalima", reveal it, put it in your hand, and shuffle your deck.
 *OnPlayTradeClimaxForCharacter(Music)
 Text <color=red> * This card is part of a 3C1 restriction alongside W89-012 and W89-028 in JP. </color>
 EndCard
@@ -883,7 +883,7 @@ Auto: OnPlay
         SearchDeck NameEquals Shul Shagana
     }
 }
-Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "Shul Shagana", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Shul Shagana", reveal it, put it in your hand, and shuffle your deck.
 Auto: OnAttack
 {
     TargetTop Deck
@@ -919,7 +919,7 @@ Auto: OnPlay
          }
      }
 }
-Text Auto:[Put a card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a "Autoscorer Leiur" in your waiting room, place it into any position on your stage, and this card gets +1 level until the end of your opponent's next turn.
+Text Auto:[Put a card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Autoscorer Leiur" in your waiting room, place it into any position on your stage, and this card gets +1 level until the end of your opponent's next turn.
 Auto: OnReversed
 {
     PayCost 1
@@ -928,7 +928,7 @@ Auto: OnReversed
         MoveCard Memory
     }
 }
-Text Auto:[(1)] When this card becomes reverse in battle, you may pay cost. If you do, put this card into memory.
+Text Auto:[(1)] When this card becomes reverse in battle, you may pay the cost. If you do, put this card into memory.
 EndCard
 
 Character: SG/W89-037
@@ -1104,7 +1104,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[(2)] When this card is placed on the stage from your hand, you may pay cost. If you do, choose 1 of your opponent's characters and return it to their hand.
+Text Auto:[(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your opponent's characters and return it to their hand.
 EndCard
 
 Character: SG/W89-044
@@ -1173,7 +1173,7 @@ Auto: OnReversed
         SearchWaitingRoom NameEquals Kirika, Pleasant Melody
     }
 }
-Text Auto:[(1)] When this card becomes reverse in battle, you may pay cost. If you do, choose a "Kirika, Pleasant Melody" in your waiting room and return it to hand.
+Text Auto:[(1)] When this card becomes reverse in battle, you may pay the cost. If you do, choose a "Kirika, Pleasant Melody" in your waiting room and return it to hand.
 EndCard
 
 Character: SG/W89-047
@@ -1346,7 +1346,7 @@ Auto: OnSentFromStageToWaitingRoom
         *Check4Add1Level1OrHigher
     }
 }
-Text Auto:[Put a card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto:[Put a card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room.
 Auto: OnSentFromStageToWaitingRoom
 {
     PayCost 2
@@ -1354,7 +1354,7 @@ Auto: OnSentFromStageToWaitingRoom
         SearchWaitingRoom HasTrait Music && IsCharacter
     }
 }
-Text Auto:[(2)] When this card is placed from the stage to the waiting room, you may pay cost. If you do, choose a <Music> character in your waiting room and return it to your hand.
+Text Auto:[(2)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a <Music> character in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W89-055
@@ -1395,7 +1395,7 @@ Auto: OnEndOfAttack
     }
 }
 TimesPerTurn 1
-Text Auto:CX COMBO [(1) Put a <Music> character from hand to the waiting room] This ability activates up to once per turn. At the end of this card's attack, If "Highest Good: Rose Cross" is in your climax area and you have another <Music> character, you may pay cost. If you do, choose either 1 of your other "Tsubasa, Resurrected Phoenix" or this card, stand that card, and that card gets the following 2 abilities until end of turn. "Cont: During this card's battle, your opponent may not use BACKUP from hand." "Cont: This cannot be chosen by your opponent's abilities."
+Text Auto:CX COMBO [(1) Put a <Music> character from hand to the waiting room] This ability activates up to once per turn. At the end of this card's attack, If "Highest Good: Rose Cross" is in your climax area and you have another <Music> character, you may pay the cost. If you do, choose either 1 of your other "Tsubasa, Resurrected Phoenix" or this card, stand that card, and that card gets the following 2 abilities until end of turn. "Cont: During this card's battle, your opponent may not use BACKUP from hand." "Cont: This cannot be chosen by your opponent's abilities."
 EndCard
 
 Character: SG/W89-056
@@ -1420,7 +1420,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:EXPERIENCE [(1) Put a card from hand to the waiting room] When this card attacks, if you have "Ichaival" in your level, you may pay cost. If you do, deal 1 damage to your opponent.
+Text Auto:EXPERIENCE [(1) Put a card from hand to the waiting room] When this card attacks, if you have "Ichaival" in your level, you may pay the cost. If you do, deal 1 damage to your opponent.
 EndCard
 
 Character: SG/W89-057
@@ -1440,7 +1440,7 @@ Auto: OnClimaxPlay
         *Check4Add1Level1OrHigher
     }
 }
-Text Auto:[(1)] When a climax is placed on your climax area, you may pay cost. If you do, look at up to 4 cards from the top of your deck, choose up to 1 level 1 or higher card among them, show it to your opponent, put it in your hand, and put the rest into the waiting room.
+Text Auto:[(1)] When a climax is placed on your climax area, you may pay the cost. If you do, look at up to 4 cards from the top of your deck, choose up to 1 level 1 or higher card among them, show it to your opponent, put it in your hand, and put the rest into the waiting room.
 EndCard
 
 Character: SG/W89-058
@@ -1467,7 +1467,7 @@ Auto: OnSentFromStageToWaitingRoom
         SearchDeck HasTrait Music && IsCharacter
     }
 }
-Text Auto:[(2)] When this card is placed from stage to the waiting room, you may pay cost. If you do, search your deck for up to 1 <Music> character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[(2)] When this card is placed from stage to the waiting room, you may pay the cost. If you do, search your deck for up to 1 <Music> character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SG/W89-059
@@ -1588,7 +1588,7 @@ Auto: OnPlay
         SearchDeck NameEquals Ichaival
     }
 }
-Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "Ichaival", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Ichaival", reveal it, put it in your hand, and shuffle your deck.
 Auto: OnAttack
 {
     TargetTop Deck
@@ -1625,7 +1625,7 @@ Auto: OnPlay
         PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto:[Put a <Music> character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, reveal the top 2 cards of your deck, your opponent choose a character or an event among them, put that card to your hand, and put the rest into the waiting room.
+Text Auto:[Put a <Music> character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top 2 cards of your deck, your opponent choose a character or an event among them, put that card to your hand, and put the rest into the waiting room.
 Auto: OnPlay
 {
     PayCost Discard 1 HasTrait Music && IsCharacter
@@ -1633,7 +1633,7 @@ Auto: OnPlay
         SearchDeck NameEquals Airget-Lamh
     }
 }
-Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "Airget-Lamh", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Airget-Lamh", reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SG/W89-066
@@ -1763,7 +1763,7 @@ Auto: OnSpecificClimaxPlay HORNET PISTOLS
         }
     }
 }
-Text Auto:CxCombo [Rest this card] When "HORNET PISTOLS" is placed to your climax area, you may pay cost. If you do, choose a <Music> character in your waiting room and put it to your stock.
+Text Auto:CxCombo [Rest this card] When "HORNET PISTOLS" is placed to your climax area, you may pay the cost. If you do, choose a <Music> character in your waiting room and put it to your stock.
 EndCard
 
 Character: SG/W89-071
@@ -2041,7 +2041,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:CxCombo [Put a <Music> character from hand to the waiting room] When this card's battle opponent becomes reverse, if "The Value of Those Who Should Be Protected" is in your climax area and you have another <Music> character, you may pay cost. If you do, search your deck for up to 2 <Music> characters, show them to your opponent, put them in your hand, and Shuffle your deck.
+Text Auto:CxCombo [Put a <Music> character from hand to the waiting room] When this card's battle opponent becomes reverse, if "The Value of Those Who Should Be Protected" is in your climax area and you have another <Music> character, you may pay the cost. If you do, search your deck for up to 2 <Music> characters, show them to your opponent, put them in your hand, and Shuffle your deck.
 EndCard
 
 Character: SG/W89-083
@@ -2075,7 +2075,7 @@ Auto: OnPlay
         SearchDeck NameEquals Ame-no-Habakiri
     }
 }
-Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "Ame-no-Habakiri", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Ame-no-Habakiri", reveal it, put it in your hand, and shuffle your deck.
 *OnPlayTradeClimaxForCharacter(Music)
 EndCard
 
@@ -2135,7 +2135,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:[(1)] When this card attacks, you may pay cost. If you do, reveal the top card of your deck, if it is a <Music> character, "Airget-Lamh" or "Ame-no-Habakiri", deal 1 damage to your opponent.
+Text Auto:[(1)] When this card attacks, you may pay the cost. If you do, reveal the top card of your deck, if it is a <Music> character, "Airget-Lamh" or "Ame-no-Habakiri", deal 1 damage to your opponent.
 EndCard
 
 Character: SG/W89-087
@@ -2167,7 +2167,7 @@ Auto: OnReversed
         DrawCard
     }
 }
-Text Auto:[(1) Put a card from your hand to the waiting room, put this card into memory] When this card becomes reverse in battle, you may pay cost. If you do, draw a card.
+Text Auto:[(1) Put a card from your hand to the waiting room, put this card into memory] When this card becomes reverse in battle, you may pay the cost. If you do, draw a card.
 *Act1Rest2SearchBrainstorm(Alchemy)
 EndCard
 
@@ -2204,7 +2204,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[Put a card from your hand to the waiting room] When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there's at least 1 climax card among them, you may pay cost. If you do, choose a character in your waiting room and return it to your hand.
+Text Auto:[Put a card from your hand to the waiting room] When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there's at least 1 climax card among them, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
 Auto: OnSpecificClimaxPlay Awakening Heartbeat
 {
     RememberSlot
@@ -2217,7 +2217,7 @@ Auto: OnSpecificClimaxPlay Awakening Heartbeat
         }
     }
 }
-Text Auto:CxCombo [Put this card in the waiting room] When "Awakening Heartbeat" is placed on your climax area, you may pay cost. If you do, choose up to 1 "Carol, Overwhelming power" in your hand and put it in the position this card was in.
+Text Auto:CxCombo [Put this card in the waiting room] When "Awakening Heartbeat" is placed on your climax area, you may pay the cost. If you do, choose up to 1 "Carol, Overwhelming power" in your hand and put it in the position this card was in.
 EndCard
 
 Character: SG/W89-091
@@ -2344,7 +2344,7 @@ Auto: StartOpponentAttackPhase
         }
     }
 }
-Text Auto:[Discard a "Millaarc, Noble Red" and a "Elsa, Noble Red" to the waiting room, put this card in the waiting room] At the beginning of your opponent's attack phase, you may pay cost. If you do, choose 1 of your opponent's characters and rest it.
+Text Auto:[Discard a "Millaarc, Noble Red" and a "Elsa, Noble Red" to the waiting room, put this card in the waiting room] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your opponent's characters and rest it.
 EndCard
 
 Event: SG/W89-097
