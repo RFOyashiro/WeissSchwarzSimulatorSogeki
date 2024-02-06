@@ -1952,16 +1952,22 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 25-ji, Nightcord de.
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    UntilEndOfOpponentsTurn
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            GainSpecialEffect CannotBeReversedByAutoEffects
+        }
+        Text Cont: This cannot be reversed by effects of Auto: abilities of your opponent's characters.
+    }
 }
 Text Auto:When this card is placed from the hand to the stage, choose 1 of your characters, and that character gets the following ability until the end of your opponent's next turn. "Cont: This cannot be reversed by effects of Auto: abilities of your opponent's characters."
-Act:
-{
-
-}
-Text Act:BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
+*Act1RestSelfSearchBrainstorm(Music)
 EndCard
 
 Character: PJS/S91-092
@@ -1973,16 +1979,17 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 Leo/need
-Cont:
+Cont: GiveSelf
 {
-
+    If Not MyTurn
+    {
+        SetXToNumberOfCharacters Other && HasTrait Music && InLocation Backstage
+        MultiplyXValue 1000
+        GainPower X
+    }
 }
-Text Cont:During your opponent's turn, for each of your other «Music» characters in the backstage, this card gets +1000 power.
-Auto:
-{
-
-}
-Text Auto:When this card attacks, choose 1 of your other «Music» characters, and that character gets +X power until end of turn. X equals 500 times the number of your other «Music» characters.
+Text Cont:During your opponent's turn, this card gets +1000 power for each of your other «Music» characters in the backstage.
+*OnAttackGivePowerForEachOther(500,Music)
 EndCard
 
 Character: PJS/S91-093
@@ -1996,19 +2003,35 @@ Soul 1
 Trait1 Music
 Trait2 Virtual Singer
 Trait3 
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare ColorsOnStage 4 OrMore
+    {
+        GainPower 6000
+    }
 }
 Text Cont:If the the number of colors among characters on your stage is 4 or more, this card gets +6000 power.
-Auto:
+Auto: OnPlay
 {
+    If StageContains 2 Other && HasTrait Leo/need
+    {
+        Question_Obvious Draw 2 cards and discard 2 cards ?
+        If Yes
+        {
+            DrawCard
+            DrawCard
+            Discard 2 Any
+        }
 
+    }
 }
 Text Auto:When this card is placed on the stage from your hand, if the number of other «Leo/need» characters you have is 2 or more, you may draw 2 cards. If you do, discard 2 cards from your hand to the waiting room.
-Auto:
+Auto: OnPlay
 {
-
+    If StageContains 4 Other && HasTrait Leo/need
+    {
+        *PutCardFromWaitingRoomIntoStock(HasTrait Leo/need)
+    }
 }
 Text Auto:When this card is placed on the stage from your hand, if the number of other «Leo/need» characters you have is 4 or more, you may choose a «Leo/need» character in your waiting room and put it in your stock.
 EndCard
@@ -2023,16 +2046,8 @@ Power 5000
 Soul 2
 Trait1 Music
 Trait2 25-ji, Nightcord de.
-Auto:
-{
-
-}
-Text Auto:When this card becomes reversed, if the level of the battle opponent of this card is higher than the level of your opponent, you may put that character on the bottom of the deck.
-Auto:
-{
-
-}
-Text Auto:ENCORE [Put a «Music» character from your hand to the waiting room]
+*BlueEarlyPlayBomb
+*HandEncoreTrait(Music)
 EndCard
 
 Character: PJS/S91-095
@@ -2044,14 +2059,21 @@ Power 4000
 Soul 1
 Trait1 Music
 Trait2 25-ji, Nightcord de.
-Cont:
+*GainPowerForEachOther(500,Music)
+Auto: OnAttack
 {
-
-}
-Text Cont:For each of your other «Music» characters, this card gets +500 power.
-Auto:
-{
-
+    If StageContains 2 Other && HasTrait Music
+    {
+        Peek Deck 2
+        If HasTarget
+        {
+            Message Choose a card to put back on top. 
+            AIChoice If Not IsClimax
+            ChooseCardsFromTargets 1 1 Any
+            MoveCard Deck
+            PutTheRestIntoTheWaitingRoom
+        }
+    }
 }
 Text Auto:When this card attacks, if the number of other «Music» characters you have is 2 or more, look at up to 2 cards from the top of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room.
 EndCard
@@ -2065,16 +2087,8 @@ Power 2000
 Soul 1
 Trait1 Music
 Trait2 25-ji, Nightcord de.
-Auto:
-{
-
-}
-Text Auto:When you use this card's BACKUP, if you have a «Music» character, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
-Act:
-{
-
-}
-Text Act:[Counter] BACKUP 1000, level 1 [Put this card from your hand to the waiting room]
+*BackupBonus1000(Music)
+Backup 1000
 EndCard
 
 Character: PJS/S91-097
@@ -2086,14 +2100,20 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 25-ji, Nightcord de.
-Cont:
+*GainPowerWithEnoughCharacters(1000,2,Music)
+Auto: StartOpponentDrawPhase
 {
-
-}
-Text Cont:If the number of other «Music» characters you have is 2 or more, this card gets +1000 power.
-Auto:
-{
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget Compare ThatCardsLevel 1 OrMore
+    {
+        Question Return this card to your hand ?
+        If Yes
+        {
+            TargetSelf
+            Bounce
+        }
+    }
 }
 Text Auto:At the beginning of your opponent's draw phase, reveal the top card of your deck. If it's level 1 or higher, you may return this card to your hand.
 EndCard
@@ -2107,16 +2127,17 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Leo/need
-Auto:
+Auto: OnPlay
 {
-
+    Mill 2
+    NarrowTargets IsClimax
+    If HasTarget
+    {
+        *GiveCharacterPower(1500,Any)
+    }
 }
 Text Auto:When this card is placed on the stage from your hand, put the top 2 cards of your deck in your waiting room. If there were at least 1 climax among them, choose 1 of your characters, and that character gets +1500 power until end of turn.
-Auto:
-{
-
-}
-Text Auto:When this card is placed on the stage from your hand, choose 1 of your «Music» characters, and that character gets +1500 power until end of turn.
+*OnPlayGivePower(1500,Music)
 EndCard
 
 Character: PJS/S91-099
@@ -2129,14 +2150,13 @@ Soul 1
 Trait1 Music
 Trait2 Virtual Singer
 Trait3 
-Cont:
+*GlobalPower(500,Music)
+Act: RestSelf
 {
-
-}
-Text Cont:All your other «Music» characters get +500 power.
-Act:
-{
-
+    *GiveCharacterPower(1000,Any)
+    GainLevel 1
+    TargetSelf
+    DontStand
 }
 Text Act:[Rest this card] Choose 1 of your characters, and that character gets +1 level and +1000 power until end of turn. This does not stand during your next stand phase.
 EndCard
@@ -2150,14 +2170,23 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 25-ji, Nightcord de.
-Auto:
+Combo Uncompromising Obsession
+Auto: OnPlay
 {
-
+    If StageContains 1 Other && HasTrait Music
+    {
+        GainPower 2000
+    }
 }
+Quick
 Text Auto:When this card is placed on the stage from your hand, if you have another «Music» character, this card gets +2000 power until end of turn.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Uncompromising Obsession && StageContains 1 Other && HasTrait Music
+    {
+        GainPower 1000
+        *GainBounceWhenFrontalAttacked
+    }
 }
 Text Auto:CxCombo When this card attacks, if "Uncompromising Obsession" is in your climax area and you have another «Music» characters, this card gets +1000 power until end of turn, and this card gets the following ability until the end of your opponent's next turn. "Auto: When this card is frontal attacked, you may return this card to your hand."
 EndCard
@@ -2167,11 +2196,18 @@ Name Let's Sing Together!
 Color B
 Level 2
 Cost 3
+Counter
 Effect: 
 {
-
+    If StageContains 5 HasTrait Music
+    {
+        TargetBattleOpponent
+		NarrowTargets CanBeChosen
+		GainSpecialEffect CannotDealDamage
+    }
+    *GiveCharacterPower(1500,Any)
 }
-Text If the number of «Music» characters you have is 5 or more, choose a character in battle, and that character gets the following ability until end of turn. "Cont: This cannot deal damage to players." Choose 1 of your characters, and that character gets +1500 power until end of turn.
+Text [Counter] If the number of «Music» characters you have is 5 or more, choose a character in battle, and that character gets the following ability until end of turn. "Cont: This cannot deal damage to players."\nChoose 1 of your characters, and that character gets +1500 power until end of turn.
 EndCard
 
 Event: PJS/S91-102
@@ -2181,9 +2217,11 @@ Level 2
 Cost 1
 Effect: 
 {
-
+    SearchDeck IsClimax
+    UntilEndOfOpponentsTurn
+    *GiveCharacterPower(2000,Any)
 }
-Text Search your deck for up to 1 climax card, reveal it, put it in your hand, shuffle your deck, choose 1 of your «Music» characters, and that character gets +2000 power until the end of your opponent's next turn.
+Text Search your deck for up to 1 climax, reveal it, put it in your hand, shuffle your deck, choose 1 of your «Music» characters, and that character gets +2000 power until the end of your opponent's next turn.
 EndCard
 
 Climax: PJS/S91-103
@@ -2216,4 +2254,1321 @@ Name What Lies Beyond
 *GateClimax
 EndCard
 
+Character: PJS/S91-T01
+Name Leo/need, Saki Tenma
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Leo/need
+*PowerOnMyTurn(1000)
+*FreeRunner
+EndCard
 
+Character: PJS/S91-T02
+Name Leo/need, Shiho Hinomori
+Color G
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Music
+Trait2 Leo/need
+*CannotSideAttack
+*DropSearch(Music)
+EndCard
+
+Character: PJS/S91-T03
+Name Full of Energy!, Kagamine Rin
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+*GiveNamePower(Full of Energy!\, Kagamine Len,1000)
+*Bond1(Full of Energy!\, Kagamine Len)
+EndCard
+
+Character: PJS/S91-T04
+Name Cool Beauty, Megurine Luka
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Act: 1
+{
+    DrawCard
+    Discard 1 Any
+}
+Text Act:[(1)] Draw a card, and discard a card from your hand to the waiting room.
+*Act1RestSelfDrawBrainstorm5
+EndCard
+
+Character: PJS/S91-T05
+Name Full of Energy!, Kagamine Len
+Color R
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+EndCard
+
+Character: PJS/S91-T06
+Name Leo/need, Honami Mochizuki
+Color R
+Level 1
+Cost 1
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Leo/need
+*LevelAssistTrait(Music)
+Auto: OnTriggerCheck
+{
+    IfOther HasTrigger Soul
+    {
+        *GiveCharacterPower(1000,Any)
+    }
+}
+Text Auto:When your character's trigger check reveals a card with a soul trigger icon, choose 1 of your characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: PJS/S91-T07
+Name Breezy Azure Rhythm, KAITO
+Color R
+Level 2
+Cost 1
+Power 6000
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Cont: GiveSelf
+{
+    SetXToNumberOfCharacters HasTrait Music && InLocation Backstage
+    MultiplyXValue 2500
+    GainPower X
+}
+Text Cont:This card gets +2500 power for each of your other backstage «Music» characters.
+EndCard
+
+Climax: PJS/S91-T08
+Name Virtual Singer
+Color R
+Trigger DoubleSoul
+Auto: OnPlay
+{
+    *PutCardFromWaitingRoomIntoStock(IsCharacter && Compare ThatCardsLevel 1 OrMore)
+    TargetLocation Stage
+    GainSoul 1
+}
+Text Auto: When this card is placed in your climax area, choose up to 1 level 1 or lower character in waiting room, put it into your stock, and all your characters get +1 soul for the turn.
+EndCard
+
+Character: PJS/S91-T09
+Name Crimson Speedy Rhythm, MEIKO
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Cont: GiveSelf
+{
+    If LocationContainsOrLess Stock 2 Any
+    {
+        GainPower 1500
+    }
+}
+Text Cont:If there are 2 or fewer cards in your stock, this card gets +1500 power.
+EndCard
+
+Character: PJS/S91-T10
+Name Classroom Sekai, Hatsune Miku
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Combo Leo/need
+Auto: OnAttack
+{
+    If StageContains 2 Other && HasTrait Music
+    {
+        GainPower 2000
+    }
+}
+Quick
+Text Auto:When this card attacks, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn. 
+Auto: OnReverseOpponent
+{
+    If Climax Leo/need
+    {
+        *Check4Add1(Music)
+        *GiveCharacterPower(2000,Any)
+    }
+}
+Text Auto:CxCombo When this card's battle opponent becomes reverse, if "Leo/need" is in your climax area, look at up to 4 cards from the top of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: PJS/S91-T11
+Name Songstress Known to Everyone, Hatsune Miku
+Color B
+Level 1
+Cost 1
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Backup 2500
+EndCard
+
+Character: PJS/S91-T12
+Name Not an Unreachable Distance, Megurine Luka
+Color B
+Level 3
+Cost 2
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+*Healer
+Auto: OnPlay
+{
+    If StageContains 4 Other && HasTrait Music
+    {
+        *PutCardFromWaitingRoomIntoStock(HasTrait Music)
+    }
+}
+Text Auto:When this card is placed on the stage from your hand, if the number of other «Music» characters you have is 4 or more, you may choose a «Music» character in your waiting room and put it in your stock.
+EndCard
+
+Character: PJS/S91-T13
+Name Leo/need, Ichika Hoshino
+Color B
+Level 3
+Cost 2
+Power 10500
+Soul 2
+Trait1 Music
+Trait2 Leo/need
+Auto: OnPlay
+{
+	*PlayCharacterFromHand(Compare ThatCardsLevel MyLevel OrLess)
+	GainPower 2000
+}
+Text Auto:When this card is placed on the stage from your hand, choose up to 1 character in your hand whose level is equal to or lower than your level and put it in any position on the stage, and this card gets +2000 power until end of turn.
+Auto: OnReverseOpponent
+{
+    PayCost 3 Discard 1 Any
+    {
+        Burn 2
+        *ScryToBottom
+    }
+}
+Text Auto:[(3) Put 1 card from your hand to the waiting room] When this card's battle opponent becomes reverse, you may pay cost. If you do, deal 2 damage to your opponent, look at the top card of your deck, and put it either on top or bottom of your deck. 
+EndCard
+
+Event: PJS/S91-T14
+Name Guiding Hand
+Color B
+Level 1
+Cost 0
+Effect: 
+{
+	Mill 2
+	SetXValue TotalLevel
+	SearchWaitingRoom HasTrait Music && Compare ThatCardsLevel X OrLess
+}
+Text Put the top 2 cards of your deck in the waiting room, choose up to 1 level X or lower «Music» character in your waiting room and return it to your hand. X equals sum of levels of the cards put in the waiting room by this card effect.
+EndCard
+
+Climax: PJS/S91-T15
+Name Leo/need
+*DrawClimax
+EndCard
+
+Character: PJS/S91-T16
+Name Full of Energy!, Kagamine Rin
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+*GiveNamePower(Full of Energy!\, Kagamine Len,1000)
+*Bond1(Full of Energy!\, Kagamine Len)
+EndCard
+
+Character: PJS/S91-T17
+Name Cool Beauty, Megurine Luka
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Act: 1
+{
+    DrawCard
+    Discard 1 Any
+}
+Text Act:[(1)] Draw a card, and discard a card from your hand to the waiting room.
+*Act1RestSelfDrawBrainstorm5
+EndCard
+
+Character: PJS/S91-T18
+Name Cute Pose~, Kagamine Rin
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+*OnAttackGivePower(1500,Music)
+Auto: StartOpponentAttackPhase
+{
+	PayCost 1
+	{
+		TargetLocation Backstage
+		If Compare TargetCount 1 OrLess
+		{
+			TargetSelf
+			MoveToOpenPosition False True
+		}
+	}
+}
+Text Auto: [(1)] At the start of your opponent's attack phase, you may pay the cost. If you do, move this card to an empty position in your backstage.
+EndCard
+
+Character: PJS/S91-T19
+Name Crimson Speedy Rhythm, MEIKO
+Color G
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Cont: GiveSelf
+{
+    If LocationContainsOrLess Stock 2 Any
+    {
+        GainPower 1500
+    }
+}
+Text Cont:If there are 2 or fewer cards in your stock, this card gets +1500 power.
+EndCard
+
+Character: PJS/S91-T20
+Name MORE MORE JUMP!, Airi Momoi
+Color G
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 More More Jump!
+*ClimaxExchange
+EndCard
+
+Character: PJS/S91-T21
+Name Stage Sekai, Hatsune Miku
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Combo MORE MORE JUMP!
+Auto: OnAttack
+{
+    If StageContains 2 Other && HasTrait Music
+    {
+        GainPower 2000
+    }
+}
+Quick
+Text Auto:When this card attacks, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn. 
+Auto: OnReverseOpponent
+{
+    If Climax MORE MORE JUMP!
+    {
+        *Check4Add1(Music)
+        *GiveCharacterPower(2000,Any)
+    }
+}
+Text Auto:CxCombo When this card's battle opponent becomes reverse, if "MORE MORE JUMP!" is in your climax area, look at up to 4 cards from the top of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: PJS/S91-T22
+Name Full of Energy!, Kagamine Len
+Color G
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+EndCard
+
+Character: PJS/S91-T23
+Name Songstress Known to Everyone, Hatsune Miku
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+*BackupBonus1000(Music)
+Backup 2500
+EndCard
+
+Character: PJS/S91-T24
+Name MORE MORE JUMP!, Shizuku Hinomori
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 3500
+Soul 1
+Trait1 Music
+Trait2 More More Jump!
+*LevelAssist
+Auto: OnPlay
+{
+    PayCost Discard 1 Any
+    {
+        SearchWaitingRoom HasTrait Music
+    }
+}
+Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
+EndCard
+
+Character: PJS/S91-T25
+Name Breezy Azure Rhythm, KAITO
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 6000
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Cont: GiveSelf
+{
+    SetXToNumberOfCharacters HasTrait Music && InLocation Backstage
+    MultiplyXValue 2500
+    GainPower X
+}
+Text Cont:This card gets +2500 power for each of your other backstage «Music» characters.
+EndCard
+
+Character: PJS/S91-T26
+Name MORE MORE JUMP!, Haruka Kiritani
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Music
+Trait2 More More Jump!
+Auto: OnPlay
+{
+    *OptionalHeal
+    TargetSelf
+    GainPower 1500
+}
+Text Auto:When this card is placed on the stage from your hand, put up to 1 card from the top of your clock in the waiting room, and this card gets +1500 power until end of turn.
+Auto: OnAttack
+{
+    If StageContains 1 Other && HasTrait Music
+    {
+        PayCost 1 Discard 1 Any
+        {
+            *CheckTopXOfOpponentDeckSendAny(2)
+        }
+    }
+}
+Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card attacks, if you have another «Music» character, you may pay cost. If you do, look at up to 2 cards from the top of your opponent's deck, choose up to 2 of them and put them on top of the deck in any order, and put the rest into your waiting room.
+EndCard
+
+Character: PJS/S91-T27
+Name MORE MORE JUMP!, Minori Hanasato
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Music
+Trait2 More More Jump!
+Cont: GiveSelf
+{
+    If StageContains 2 Other && HasTrait Music
+    {
+        GainPower 1000
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                PayCost Discard 2 Any
+                {
+                    TargetFacing
+                    IfTarget OnStage
+                    {
+                        Question_Obvious Put that character into clock ?
+                        If Yes
+                        {
+                            MoveCard OpponentClock
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+Text Cont:If the number of other «Music» characters you have is 2 or more, this card gets +1000 power and the following ability. "Auto: [Put 2 cards from your hand to the waiting room] When this card's battle opponent becomes reverse, you may pay cost. If you do, put that battle opponent in clock."
+Auto: OnPlay
+{
+    SearchWaitingRoom HasTrait Music
+}
+Text Auto:When this card is placed on the stage from your hand, you may choose a «Music» character in your waiting room and return it to your hand.
+EndCard
+
+Event: PJS/S91-T28
+Name Shining Stage
+Color G
+Level 1
+Cost 0
+Effect: 
+{
+    DrawCard
+    Discard 1 Any
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        Auto: OnSentFromStageToWaitingRoom
+        {
+            RememberSlot
+            Question_Obvious Put this card back on stage ?
+            If Yes
+            {
+                PlaceOnRememberedSlot
+                RestSelf
+            }
+        }
+    }
+}
+Text [Counter] Draw a card, and discard a card from your hand to the waiting room. Choose 1 of your «Music» characters, and until end of turn, that character gets the following ability. "Auto: When this card is placed from stage to the waiting room, you may put this card rest in the position this card was in."
+EndCard
+
+Climax: PJS/S91-T29
+Name Virtual Singer
+Color G
+Trigger DoubleSoul
+Auto: OnPlay
+{
+    *PutCardFromWaitingRoomIntoStock(IsCharacter && Compare ThatCardsLevel 1 OrMore)
+    TargetLocation Stage
+    GainSoul 1
+}
+Text Auto: When this card is placed in your climax area, choose up to 1 level 1 or lower character in waiting room, put it into your stock, and all your characters get +1 soul for the turn.
+EndCard
+
+Climax: PJS/S91-T30
+Name MORE MORE JUMP!
+*BarClimax
+EndCard
+
+Character: PJS/S91-T33
+Name Better to Have Spoken Earlier, Kagamine Len
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+*500Assist
+Act: 1 SendSelf WaitingRoom
+{
+    *Check4Add1(Music)
+}
+Text Act:[(1) Put this card in the waiting room] Look at up to 4 cards from the top of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: PJS/S91-T34
+Name Vivid BAD SQUAD, Toya Aoyagi
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Vivid Bad Squad
+Auto: OnPlay
+{
+    Question Put the top 3 card of your deck into waiting room ?
+    If Yes
+    {
+        Mill 3
+    }
+}
+Text Auto:When this card is placed on the stage from your hand, you may put the top 3 cards of your deck in the waiting room.
+Auto: OnPlay
+{
+    PayCost 1 Discard 1 Any
+    {
+        SearchWaitingRoom IsCharacter
+        *GiveOtherCharacterPower(1000,Music)
+    }
+}
+Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a «Music» character in your waiting room and return it to your hand, choose 1 of your other «Music» characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: PJS/S91-T35
+Name Crimson Speedy Rhythm, MEIKO
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Cont: GiveSelf
+{
+    If LocationContainsOrLess Stock 2 Any
+    {
+        GainPower 1500
+    }
+}
+Text Cont:If there are 2 or fewer cards in your stock, this card gets +1500 power.
+EndCard
+
+Character: PJS/S91-T36
+Name Street Sekai, Hatsune Miku
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Combo Vivid BAD SQUAD
+Auto: OnAttack
+{
+    If StageContains 2 Other && HasTrait Music
+    {
+        GainPower 2000
+    }
+}
+Quick
+Text Auto:When this card attacks, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn. 
+Auto: OnReverseOpponent
+{
+    If Climax Vivid BAD SQUAD
+    {
+        *Check4Add1(Music)
+        *GiveCharacterPower(2000,Any)
+    }
+}
+Text Auto:CxCombo When this card's battle opponent becomes reverse, if "Vivid BAD SQUAD" is in your climax area, look at up to 4 cards from the top of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: PJS/S91-T37
+Name Full of Energy!, Kagamine Len
+Color R
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+EndCard
+
+Character: PJS/S91-T38
+Name Vivid BAD SQUAD, Kohane Azusawa
+Color R
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 Music
+Trait2 Vivid Bad Squad
+*GainPowerWithEnoughCharacters(2000,2,Music)
+*HandEncore
+EndCard
+
+Character: PJS/S91-T39
+Name Songstress Known to Everyone, Hatsune Miku
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+*MemoryBackup
+Backup 3000
+EndCard
+
+Character: PJS/S91-T40
+Name Here. It Is Ready, MEIKO
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+*GlobalPower(1000,Music)
+Act: 1 Rest 2 Any
+{
+    Mill 2
+	SetXValue TotalLevel
+	SearchWaitingRoom IsCharacter && Compare ThatCardsLevel X OrLess
+}
+Text Act:[(1) Rest 2 of your characters] Put the top 2 cards of your deck in the waiting room, and choose a level X or lower «Music» character in your waiting room and return it to your hand. X equals sum of levels of the cards put in the waiting room by this card effect.
+EndCard
+
+Character: PJS/S91-T42
+Name Vivid BAD SQUAD, An Shiraishi
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Music
+Trait2 Vivid Bad Squad
+Cont: GiveSelf
+{
+    If StageContains 2 Other && HasTrait Music
+    {
+        GainPower 1500
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                TargetTop Deck 2
+                If Compare TargetCount 2 OrMore
+                {
+                    Reorder
+                }
+                Else
+                {
+                    View
+                }
+            }
+            Text Auto: When this card's battle opponent becomes reverse, look at up to 2 cards from the top of your deck and put them on top of the deck in any order.
+        }
+    }
+}
+Text Cont:If the number of other «Music» characters you have is 2 or more, this card gets +1500 power and the following ability. "Auto: When this card's battle opponent becomes reverse, look at up to 2 cards from the top of your deck and put them on top of the deck in any order."
+*Healer
+EndCard
+
+Character: PJS/S91-T43
+Name Vivid BAD SQUAD, Akito Shinonome
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Vivid Bad Squad
+Cont: GiveAll
+{
+    IfOwner InLocation CenterStage
+    {
+        If Other && HasTrait Music
+        {
+            GainPower 1500
+        }
+    }
+}
+Text Cont:If this card is in the center stage, all your «Music» characters get +1500 power.
+Auto: OnAttack
+{
+    PayCost 2 Discard 1 Any
+    {
+        Burn 1
+    }
+}
+Text Auto:[(2) Put 1 card from your hand to the waiting room] When this card attacks, you may pay cost. If you do, deal 1 damage to your opponent. 
+EndCard
+
+Climax: PJS/S91-T45
+Name Vivid BAD SQUAD
+*DoorClimax
+EndCard
+
+Character: PJS/S91-T46
+Name Full of Energy!, Kagamine Rin
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Cont:
+{
+
+}
+Text Cont:All your other "Full of Energy!, Kagamine Len" get +1000 power.
+Auto:
+{
+
+}
+Text Auto:BOND/"Full of Energy!, Kagamine Len" [(1)]
+EndCard
+
+Character: PJS/S91-T47
+Name Cool Beauty, Megurine Luka
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Act:
+{
+
+}
+Text Act:[(1)] draw a card, and discard a card from your hand to the waiting room.
+Act:
+{
+
+}
+Text Act:BRAINSTORM [(1) Rest this card] Flip over the top 5 cards of your deck and put them in the waiting room. For each climax revealed this way, draw up to 1 card.
+EndCard
+
+Character: PJS/S91-T48
+Name Wonderlands x Showtime, Tsukasa Tenma
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Wonderlands x Showtime
+Auto:
+{
+
+}
+Text Auto:When this card becomes reversed, if the level of the battle opponent of this card is 0 or lower, you may put that character in stock. If you do, put the bottom card of your opponent's stock in the waiting room.
+Auto:
+{
+
+}
+Text Auto:[(1)] At the beginning of the encore step, if you have no other Rested characters in the center stage, you may pay cost. If you do, Rest this card.
+EndCard
+
+Character: PJS/S91-T49
+Name Wonderlands x Showtime, Rui Kamishiro
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Wonderlands x Showtime
+Auto:
+{
+
+}
+Text Auto:At the beginning of your climax phase, choose 1 of your «TRAIT» characters, and that character gets +1000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto:[Rest 2 of your standing characters] When this card is placed on the stage from your hand, you may pay cost. If you do, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
+EndCard
+
+Character: PJS/S91-T50
+Name Crimson Speedy Rhythm, MEIKO
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Cont:
+{
+
+}
+Text Cont:If there are 2 or fewer cards in your stock, this card gets +1500 power.
+EndCard
+
+Character: PJS/S91-T51
+Name Wonderland Sekai, Hatsune Miku
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Auto:
+{
+
+}
+Text Auto:When this card attacks, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn.  Auto: CxCombo When this card's battle opponent becomes reverse, if "Wonderlands x Showtime" is in your climax area, look at up to 4 cards from the top of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: PJS/S91-T52
+Name Full of Energy!, Kagamine Len
+Color Y
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+EndCard
+
+Character: PJS/S91-T53
+Name Songstress Known to Everyone, Hatsune Miku
+Color Y
+Level 1
+Cost 1
+Trigger Soul
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Auto:
+{
+
+}
+Text Auto:When you use BACKUP of this card, if all your characters are «TRAIT», you may put the top card of your deck in stock.
+Act:
+{
+
+}
+Text Act:[Counter] BACKUP 2000, level 1 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: PJS/S91-T54
+Name Troupe Leader Is Hard Work!, KAITO
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Cont:
+{
+
+}
+Text Cont:ASSIST Your characters in front of this card get +X power. X equals 500 times level of that character.
+Auto:
+{
+
+}
+Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, search your deck for up to 1 "Recruiting Troupe Members!", reveal it, put it in your hand, shuffle your deck, choose 1 of your characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: PJS/S91-T55
+Name Breezy Azure Rhythm, KAITO
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 6000
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Cont:
+{
+
+}
+Text Cont:For each of your other backstage «Music» characters, this card gets +2500 power.
+EndCard
+
+Character: PJS/S91-T56
+Name Wonderlands x Showtime, Emu Ootori
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Music
+Trait2 Wonderlands x Showtime
+Auto:
+{
+
+}
+Text Auto:When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+Auto:
+{
+
+}
+Text Auto:When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 1000 times the number of your «Music» characters.
+EndCard
+
+Character: PJS/S91-T57
+Name Wonderlands x Showtime, Nene Kusanagi
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Wonderlands x Showtime
+Auto:
+{
+
+}
+Text Auto:When this card is placed on the stage from your hand, draw up to 1 card, choose 1 of your opponent's characters, and that character gets the following ability until end of turn. "Cont: During battles involving this card, you cannot play events or BACKUP from hand."
+Auto:
+{
+
+}
+Text Auto:When this card is placed on the stage from your hand, if the number of other «Music» characters you have is 4 or more, you may choose a «Music» character in your waiting room and put it in your stock.
+EndCard
+
+Event: PJS/S91-T58
+Name Recruiting Troupe Members!
+Color Y
+Level 3
+Cost 3
+Effect: 
+{
+
+}
+Text When this card's battle opponent becomes reverse, deal 3 damage to your opponent, choose 1 of your characters, and that character gets +1000 power and +1 soul until end of turn." 
+EndCard
+
+Climax: PJS/S91-T59
+Name Virtual Singer
+Color Y
+
+EndCard
+
+Climax: PJS/S91-T60
+Name Wonderlands x Showtime
+*ChoiceClimax
+EndCard
+
+Character: PJS/S91-T61
+Name Full of Energy!, Kagamine Rin
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Cont:
+{
+
+}
+Text Cont:All your other "Full of Energy!, Kagamine Len" get +1000 power.
+Auto:
+{
+
+}
+Text Auto:BOND/"Full of Energy!, Kagamine Len" [(1)]
+EndCard
+
+Character: PJS/S91-T62
+Name Cool Beauty, Megurine Luka
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Act:
+{
+
+}
+Text Act:[(1)] draw a card, and discard a card from your hand to the waiting room.
+Act:
+{
+
+}
+Text Act:BRAINSTORM [(1) Rest this card] Flip over the top 5 cards of your deck and put them in the waiting room. For each climax revealed this way, draw up to 1 card.
+EndCard
+
+Character: PJS/S91-T63
+Name 25-ji, Nightcord de., Kanade Yoisaki
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 25-ji, Nightcord de.
+Auto:
+{
+
+}
+Text Auto:When this card is placed from the stage to the waiting room, look at the top card of your deck and put it either on top or bottom of the deck.
+Auto:
+{
+
+}
+Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. 
+EndCard
+
+Character: PJS/S91-T64
+Name 25-ji, Nightcord de., Mizuki Akiyama
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 25-ji, Nightcord de.
+Auto:
+{
+
+}
+Text Auto:When your character's trigger check reveals a climax card, choose 1 of your characters, and that character gets +2000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto:[(1) Put this card in your waiting room] When your other «Music» character is placed from the stage to the waiting room, if this card is in the backstage, you may pay cost. If you do, put that character Rested in the position it was in, and that character gets +3000 power until the end of the next turn.
+EndCard
+
+Character: PJS/S91-T65
+Name Crimson Speedy Rhythm, MEIKO
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Cont:
+{
+
+}
+Text Cont:If there are 2 or fewer cards in your stock, this card gets +1500 power.
+EndCard
+
+Character: PJS/S91-T66
+Name Empty Sekai, Hatsune Miku
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Auto:
+{
+
+}
+Text Auto:When this card attacks, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn.  Auto: CxCombo When this card's battle opponent becomes reverse, if "25-ji, Nightcord de." is in your climax area, look at up to 4 cards from the top of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: PJS/S91-T67
+Name Going to Meet Them, Hatsune Miku
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Auto:
+{
+
+}
+Text Auto:When your other «Music» character attacks, this card gets +1000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto:[(2)] When this card is placed from the stage to the waiting room, you may pay cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
+EndCard
+
+Character: PJS/S91-T68
+Name Full of Energy!, Kagamine Len
+Color B
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+EndCard
+
+Character: PJS/S91-T69
+Name Songstress Known to Everyone, Hatsune Miku
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Auto:
+{
+
+}
+Text Auto:When you use this card's BACKUP, look at the top card of your deck and put it either on top or bottom of the deck.
+Act:
+{
+
+}
+Text Act:[Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: PJS/S91-T70
+Name Breezy Azure Rhythm, KAITO
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 6000
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 
+Cont:
+{
+
+}
+Text Cont:For each of your other backstage «Music» characters, this card gets +2500 power.
+EndCard
+
+Character: PJS/S91-T71
+Name 25-ji, Nightcord de., Mafuyu Asahina
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 4500
+Soul 2
+Trait1 Music
+Trait2 25-ji, Nightcord de.
+Cont:
+{
+
+}
+Text Cont:ASSIST Your characters in front of this card get +2000 power.
+Auto:
+{
+
+}
+Text Auto:When this card is placed on the stage from your hand, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: PJS/S91-T72
+Name 25-ji, Nightcord de., Ena Shinonome
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 25-ji, Nightcord de.
+Auto:
+{
+
+}
+Text Auto:When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+Auto:
+{
+
+}
+Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card attacks, you may pay cost. If you do, this card gets +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent." 
+EndCard
+
+Event: PJS/S91-T73
+Name Lookout Gae
+Color B
+Level 2
+Cost 1
+Effect: 
+{
+
+}
+Text Search your deck for up to 2 «Music» characters, reveal them, put them in your hand, discard a card from your hand to the waiting room, and shuffle your deck.
+EndCard
+
+Climax: PJS/S91-T74
+Name Virtual Singer
+Color B
+
+EndCard
+
+Climax: PJS/S91-T75
+Name 25-ji, Nightcord de.
+*BookClimax
+EndCard
