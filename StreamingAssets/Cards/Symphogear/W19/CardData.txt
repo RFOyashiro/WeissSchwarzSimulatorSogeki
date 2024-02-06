@@ -34,7 +34,7 @@ Auto: OnAttack
 		GainPower 1500
 	}
 }
-Text Auto: CxCombo When this card attacks, if "I Have Something to Protect!" is in your climax area, search your deck for up to 1 <Music> character, reveal it, and put it into your hand and this card gains +1500 power until the end of your opponent's turn.
+Text Auto: CxCombo When this card attacks, if "I Have Something to Protect!" is in your climax area, search your deck for up to 1 «Music> character, reveal it, and put it into your hand and this card gains +1500 power until the end of your opponent's turn.
 EndCard
 
 Character: SG/W19-003
@@ -168,7 +168,7 @@ Auto: OnPlay
         MoveCard Clock
     }
 }
-Text Auto: When this card is placed on stage from your hand, reveal the top card of your deck. If that card is not a <Music> character, put it into your clock
+Text Auto: When this card is placed on stage from your hand, reveal the top card of your deck. If that card is not a «Music> character, put it into your clock
 EndCard
 
 Character: SG/W19-010
@@ -343,7 +343,7 @@ Effect:
 		Text Auto: When this card's battle opponent becomes reversed, you may put that character into your opponent's stock.
 	}
 }
-Text Counter: Choose 1 of your <Music> characters and that character gains +4000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reversed, you may put that character into your opponent's stock."
+Text Counter: Choose 1 of your «Music> characters and that character gains +4000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reversed, you may put that character into your opponent's stock."
 EndCard
 
 Event: SG/W19-021
@@ -383,7 +383,7 @@ Effect:
 	TargetSelf
 	MoveCard Memory
 }
-Text Choose 2 of your standing characters with "Hibiki" in it's card name, and rest them. If 2 characters are rested this way, search your deck for up to 2 <Music> characters, add them to your hand, and discard a card. Send this card to your memory
+Text Choose 2 of your standing characters with "Hibiki" in it's card name, and rest them. If 2 characters are rested this way, search your deck for up to 2 «Music> characters, add them to your hand, and discard a card. Send this card to your memory
 EndCard
 
 Climax: SG/W19-023
@@ -541,7 +541,7 @@ Cont: Assist
 		GainPower 500
 	}
 }
-Text Cont: ASSIST All your <Music> characters in front of this card gains +1 level and +500 power.
+Text Cont: ASSIST All your «Music> characters in front of this card gains +1 level and +500 power.
 *ClockShift(1,green)
 EndCard
 
@@ -892,7 +892,7 @@ Auto: OnPlay
 		SearchWaitingRoom HasTrait Music && IsCharacter
 	}
 }
-Text Auto: [Put a card from your hand into your clock] When this card is placed on stage from your hand, you may pay the cost. If you do, choose a <Music> character in your waiting room and return it to your hand.
+Text Auto: [Put a card from your hand into your clock] When this card is placed on stage from your hand, you may pay the cost. If you do, choose a «Music> character in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W19-055
@@ -974,7 +974,7 @@ Auto: OnUseEvent
 }
 Quick
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When you play an event, if you have 2 or more other <Music> characters, this card gains +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reversed, you may put that character on top of your opponent's deck."
+Text Auto: This ability activates up to once per turn. When you play an event, if you have 2 or more other «Music> characters, this card gains +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reversed, you may put that character on top of your opponent's deck."
 EndCard
 
 Character: SG/W19-058
@@ -1056,7 +1056,7 @@ Auto: OnPlay
 		}
 	}
 }
-Text Auto: [(1)] When this card is placed on stage from your hand, you may pay the cost. If you do, choose 1 of your other <Music> characters and that character gains the following ability until end of turn. "Auto: When this card becomes reversed, if the level of this card's battle opponent is lower than or equal to the level of this card, you may reverse that character."
+Text Auto: [(1)] When this card is placed on stage from your hand, you may pay the cost. If you do, choose 1 of your other «Music> characters and that character gains the following ability until end of turn. "Auto: When this card becomes reversed, if the level of this card's battle opponent is lower than or equal to the level of this card, you may reverse that character."
 EndCard
 
 Character: SG/W19-062
@@ -1217,7 +1217,7 @@ Effect:
 		Text Auto: [(1)] When this card's battle opponent becomes reversed, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
 	}
 }
-Text Choose up to 2 of your <Music> characters and those characters gain +2500 power and the following ability until end of turn. "Auto: [(1)] When this card's battle opponent becomes reversed, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand."
+Text Choose up to 2 of your «Music> characters and those characters gain +2500 power and the following ability until end of turn. "Auto: [(1)] When this card's battle opponent becomes reversed, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand."
 EndCard
 
 Event: SG/W19-072
@@ -1264,7 +1264,7 @@ Cont: GiveAll
 		GainPower 500
 	}
 }
-Text Cont: During your opponent's turn, all of your other <Music> characters gain +500 power.
+Text Cont: During your opponent's turn, all of your other «Music> characters gain +500 power.
 *Act1SalvageBrainstorm(Any)
 EndCard
 
@@ -1284,7 +1284,7 @@ Auto: OnPlay
 		*OptionalBlindStock
 	}
 }
-Text Auto: When this card is placed on stage from your hand, if you have 4 or more other <Music> characters, you may put the top card of your deck into your stock.
+Text Auto: When this card is placed on stage from your hand, if you have 4 or more other «Music> characters, you may put the top card of your deck into your stock.
 EndCard
 
 Character: SG/W19-078
@@ -1412,7 +1412,7 @@ Act: Rest 2 Any
 	GainPower 500
 	GainLevel 1
 }
-Text Act: [Rest 2 of your characters] Choose 1 of your <Music> characters and that character gains +1 level and +500 power until end of turn.
+Text Act: [Rest 2 of your characters] Choose 1 of your «Music> characters and that character gains +1 level and +500 power until end of turn.
 EndCard
 
 Character: SG/W19-084
@@ -1585,7 +1585,7 @@ Cont: GiveSelf
 		GainPower X
 	}
 }
-Text Cont: During your opponent's turn, this card gains +500 power for each of your other <Music> characters.
+Text Cont: During your opponent's turn, this card gains +500 power for each of your other «Music> characters.
 EndCard
 
 Character: SG/W19-094
@@ -1655,7 +1655,7 @@ Effect:
 		GainPower 1000
 	}
 }
-Text You may discard a <Music> character. If you do, draw up to 2 cards, choose 1 of your characters and that character gains +1000 power until end of turn.
+Text You may discard a «Music> character. If you do, draw up to 2 cards, choose 1 of your characters and that character gains +1000 power until end of turn.
 EndCard
 
 Climax: SG/W19-098
@@ -1689,7 +1689,7 @@ Auto: OnSentFromStageToWaitingRoom
 		SearchDeck HasTrait Music && IsCharacter
 	}
 }
-Text Auto: [(1) Put the top card of your deck into your clock] When this card is sent from your stage to your waiting room, you may pay the cost. If you do, search your deck for up to 1 <Music> character and add it to your hand.
+Text Auto: [(1) Put the top card of your deck into your clock] When this card is sent from your stage to your waiting room, you may pay the cost. If you do, search your deck for up to 1 «Music> character and add it to your hand.
 EndCard
 
 Character: SG/W19-102
@@ -1732,7 +1732,7 @@ Act: Rest 2 HasTrait Music
 	GainLevel 1
 	GainPower 1000
 }
-Text Act: [Rest 2 of your <Music> characters] Choose 1 of your characters and that character gains +1 level and +1000 power until end of turn.
+Text Act: [Rest 2 of your «Music> characters] Choose 1 of your characters and that character gains +1 level and +1000 power until end of turn.
 EndCard
 
 Character: SG/W19-104
@@ -1775,7 +1775,7 @@ Auto: OnAttack
 		GainPower 1000
 	}
 }
-Text Auto: [(1)] When this card attacks, you may pay the cost. If you do, choose 1 of your <Music> characters and that character gains +1000 power until the end of your opponent's turn.
+Text Auto: [(1)] When this card attacks, you may pay the cost. If you do, choose 1 of your «Music> characters and that character gains +1000 power until the end of your opponent's turn.
 EndCard
 
 Climax: SG/W19-106

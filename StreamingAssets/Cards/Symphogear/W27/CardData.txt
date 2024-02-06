@@ -50,7 +50,7 @@ Act: 1 Rest 1 HasTrait Music && Other
 	GainPower 1500
 	GainLevel 1
 }
-Text Act:[(1) Rest 1 of your other <Music> character] Choose 1 of your <Music> characters and that character gets +1 level and +1500 power until end of turn.
+Text Act:[(1) Rest 1 of your other «Music» character] Choose 1 of your «Music» characters and that character gets +1 level and +1500 power until end of turn.
 EndCard
 
 Character: SG/W27-004
@@ -106,7 +106,7 @@ Act: 1 Rest 2 HasTrait Music
 	ChooseCharacterFromTargets Choose an opponent's character to put in stock.
 	MoveCard Stock
 }
-Text Act:[(1) Rest 2 of your <Music> characters] Choose 1 of your opponent's character whose level is 0 or less and put that character in stock.
+Text Act:[(1) Rest 2 of your «Music» characters] Choose 1 of your opponent's character whose level is 0 or less and put that character in stock.
 EndCard
 
 Character: SG/W27-007
@@ -211,7 +211,7 @@ Auto: OnAttack
 		GainPower X
 	}
 }
-Text Auto:CxCombo When this card attacks, if "Vitalization" is in your climax area, this card gets +X power until end of turn. X is equal to 2000 times the number of <Music> characters you have.
+Text Auto:CxCombo When this card attacks, if "Vitalization" is in your climax area, this card gets +X power until end of turn. X is equal to 2000 times the number of «Music» characters you have.
 Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
 {
     PayCost 1
@@ -219,7 +219,7 @@ Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
         SearchDeck HasTrait Music
     }
 }
-Text Auto:[(1)] When this card's level 2 or higher battle opponent becomes reverse, you may pay the cost. If you do, search your deck for up to 1 <Music> character, reveal it, put it in your hand and shuffle your deck.
+Text Auto:[(1)] When this card's level 2 or higher battle opponent becomes reverse, you may pay the cost. If you do, search your deck for up to 1 «Music» character, reveal it, put it in your hand and shuffle your deck.
 EndCard
 
 Character: SG/W27-013
@@ -451,7 +451,7 @@ Effect:
 		SearchDeck HasTrait Music
 	}
 }
-Text Choose 2 of your standing characters and rest them. If you do, search your deck for up to 1 <Music> character, reveal it and put it in your hand. Shuffle your deck.
+Text Choose 2 of your standing characters and rest them. If you do, search your deck for up to 1 «Music» character, reveal it and put it in your hand. Shuffle your deck.
 EndCard
 
 Event: SG/W27-026
@@ -611,7 +611,7 @@ Auto: OnPlay
 {
 	SearchDeck HasTrait Music
 }
-Text Auto:When this card is placed on the stage from your hand, search your deck for up to 1 <Music> character, reveal it and put it in your hand. Shuffle your deck.
+Text Auto:When this card is placed on the stage from your hand, search your deck for up to 1 «Music» character, reveal it and put it in your hand. Shuffle your deck.
 EndCard
 
 Character: SG/W27-035
@@ -1032,7 +1032,7 @@ Auto: OnUseThisCardsBackup
 		Mill 3
 	}
 }
-Text Auto:When you use this card's BACKUP, if the number of <Music> characters you have is 3 or more, put the top 3 cards of your deck in the waiting room.
+Text Auto:When you use this card's BACKUP, if the number of «Music» characters you have is 3 or more, put the top 3 cards of your deck in the waiting room.
 Backup 1000
 EndCard
 
@@ -1085,7 +1085,7 @@ Auto: OnPlay
         MoveCard Clock
     }
 }
-Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is not a <Music> character, put that card in clock.
+Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is not a «Music» character, put that card in clock.
 *HandEncore
 EndCard
 
@@ -1176,7 +1176,7 @@ Auto: OnPlay
 		SearchWaitingRoom HasTrait Music
 	}
 }
-Text Auto:[(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a <Music> character in your waiting room and return it to your hand.
+Text Auto:[(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
 *ClockShift(0,red)
 EndCard
 
@@ -1268,7 +1268,7 @@ Act: Rest 1 HasTrait Music
 	TargetSelf
 	GainPower 1000
 }
-Text Act:[Rest 1 of your <Music> characters] This gets +1000 power until end of turn.
+Text Act:[Rest 1 of your «Music» characters] This gets +1000 power until end of turn.
 EndCard
 
 Character: SG/W27-069
@@ -1566,7 +1566,7 @@ Act: Rest 2 HasTrait Music
 	GainLevel 1
 	GainPower 2000
 }
-Text Act:[Rest 2 of your <Music> characters] This gets +1 level and +2000 power until end of turn.
+Text Act:[Rest 2 of your «Music» characters] This gets +1 level and +2000 power until end of turn.
 EndCard
 
 Character: SG/W27-088
@@ -1590,7 +1590,7 @@ Cont: GiveSelf
 		GainPower X
 	}
 }
-Text Cont:During your opponent's turn, this card gets +500 power for each of your other <Music> characters.
+Text Cont:During your opponent's turn, this card gets +500 power for each of your other «Music» characters.
 EndCard
 
 Character: SG/W27-089

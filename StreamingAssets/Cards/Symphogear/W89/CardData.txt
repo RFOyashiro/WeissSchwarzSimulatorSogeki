@@ -14,7 +14,7 @@ Auto: OnReversed
         SearchDeck HasTrait Music
     }
 }
-Text Auto:[(1) Put the top card of your deck to clock] When this card becomes reverse in battle, you may pay the cost. If you do, search your deck for up to 1 <Music> character, show it to your opponent, put it in your hand, and shuffle your deck.
+Text Auto:[(1) Put the top card of your deck to clock] When this card becomes reverse in battle, you may pay the cost. If you do, search your deck for up to 1 «Music» character, show it to your opponent, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SG/W89-002
@@ -30,7 +30,7 @@ Auto: OnAttack
 {
 	If Climax Courage to Bloom && StageContains 2 Other && HasTrait Music
 	{
-		MultipleChoiceQuestion Choose an effect.\n1: Look at up to 4 cards from the top of your deck, choose up to 1 <Music> character among them, show it to your opponent, put it in your hand, and put the remaining cards into the waiting room.\n2: Perform trigger check twice during this card attack's trigger step.|1|2
+		MultipleChoiceQuestion Choose an effect.\n1: Look at up to 4 cards from the top of your deck, choose up to 1 «Music» character among them, show it to your opponent, put it in your hand, and put the remaining cards into the waiting room.\n2: Perform trigger check twice during this card attack's trigger step.|1|2
 		If Answer 0
 		{
 			RevealUpTo Deck 4
@@ -45,7 +45,7 @@ Auto: OnAttack
 		}
 	}
 }
-Text Auto:CX COMBO When this card attacks, if "Courage to Bloom" is in your climax area and the number of other <Music> characters you have is 2 or more, choose and perform 1 of the following 2 effects. "Look at up to 4 cards from the top of your deck, choose up to 1 <Music> character among them, show it to your opponent, put it in your hand, and put the remaining cards into the waiting room." "Perform trigger check twice during this card attack's trigger step."
+Text Auto:CX COMBO When this card attacks, if "Courage to Bloom" is in your climax area and the number of other «Music» characters you have is 2 or more, choose and perform 1 of the following 2 effects. "Look at up to 4 cards from the top of your deck, choose up to 1 «Music» character among them, show it to your opponent, put it in your hand, and put the remaining cards into the waiting room." "Perform trigger check twice during this card attack's trigger step."
 EndCard
 
 Character: SG/W89-003
@@ -105,7 +105,7 @@ Act: 1 RestSelf
         *GiveCharacterPower(1000,Any)
     }
 }
-Text Act:BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax card with a Choice trigger icon revealed this way, search your deck for up to 1 <Music> character, reveal it, put it in your hand, shuffle your deck, choose 1 character, and that character gets +1000 power until end of turn.
+Text Act:BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax card with a Choice trigger icon revealed this way, search your deck for up to 1 «Music» character, reveal it, put it in your hand, shuffle your deck, choose 1 character, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: SG/W89-005
@@ -163,7 +163,7 @@ Auto: OnPlay
         PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto:[Put a <Music> character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top 2 cards of your deck, your opponent choose a character or an event among them, put that card to your hand, and put the rest into the waiting room.
+Text Auto:[Put a «Music» character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top 2 cards of your deck, your opponent choose a character or an event among them, put that card to your hand, and put the rest into the waiting room.
 Auto: OnPlay
 {
     PayCost Discard 1 HasTrait Music && IsCharacter
@@ -171,7 +171,7 @@ Auto: OnPlay
         SearchDeck NameEquals Gungnir
     }
 }
-Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Gungnir", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put a «Music» character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Gungnir", reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SG/W89-007
@@ -289,7 +289,7 @@ Power 1500
 Soul 1
 Trait1 Music
 *SacrificeToSave(HasTrait Music)
-Text Auto:[Put this card in the waiting room] When your other <Music> character is placed from the stage to the waiting room, if this card is in the back stage, you may pay the cost. If you do, put that character rest in the position thsi card was in.
+Text Auto:[Put this card in the waiting room] When your other «Music» character is placed from the stage to the waiting room, if this card is in the back stage, you may pay the cost. If you do, put that character rest in the position thsi card was in.
 *RestGivePower(1500,Music)
 Text <color=red> * This card is part of a 3C1 restriction alongside W89-028 and W89-034 in JP. </color>
 EndCard
@@ -441,7 +441,7 @@ Auto: OnPlay
         GainPower 2000
     }
 }
-Text Auto:When this card is placed on the stage from your hand, if you have another <Music> character, this card gets +2000 power until end of turn.
+Text Auto:When this card is placed on the stage from your hand, if you have another «Music» character, this card gets +2000 power until end of turn.
 Auto: OnReverseOpponent
 {
     If Climax In the Ferris Wheel
@@ -453,7 +453,7 @@ Auto: OnReverseOpponent
         *GiveCharacterPower(1000,Any)
     }
 }
-Text Auto:CxCombo When this card's battle opponent becomes reverse, if "In the Ferris Wheel" is in your climax area, put up to 3 cards from the top of your deck into your waiting room, choose up to 1 level X or lower <Music> character in your waiting room, put it in your hand, choose 1 of your characters and that character gets +1000 power until end of turn. X equals the number of <Music> characters placed in the waiting room by this card's effect.
+Text Auto:CxCombo When this card's battle opponent becomes reverse, if "In the Ferris Wheel" is in your climax area, put up to 3 cards from the top of your deck into your waiting room, choose up to 1 level X or lower «Music» character in your waiting room, put it in your hand, choose 1 of your characters and that character gets +1000 power until end of turn. X equals the number of «Music» characters placed in the waiting room by this card's effect.
 EndCard
 
 Character: SG/W89-019
@@ -471,7 +471,7 @@ Cont: GiveAll
         GainPower 1000
     }
 }
-Text Cont:During your opponent's turn, all your other <Music> characters get +1000 power.
+Text Cont:During your opponent's turn, all your other «Music» characters get +1000 power.
 Auto: StartClimaxPhase
 {
     If StageContains 4 HasTrait Music
@@ -482,7 +482,7 @@ Auto: StartClimaxPhase
     }
 }
 Alarm
-Text Auto:ALARM If this card is on top of your clock and the number of <Music> characters you have is 4 or more, at the beginning of your climax phase, draw up to 2 cards, and discard 2 cards from your hand to the waiting room.
+Text Auto:ALARM If this card is on top of your clock and the number of «Music» characters you have is 4 or more, at the beginning of your climax phase, draw up to 2 cards, and discard 2 cards from your hand to the waiting room.
 EndCard
 
 Character: SG/W89-020
@@ -537,7 +537,7 @@ Auto: OnPlay
         MoveCard Stock
     }
 }
-Text Auto:When this card is placed on the stage from your hand, if the number of other <Music> characters you have is 4 or more, you may choose a <Music> character in your waiting room and put it in your stock.
+Text Auto:When this card is placed on the stage from your hand, if the number of other «Music» characters you have is 4 or more, you may choose a «Music» character in your waiting room and put it in your stock.
 Auto: OnUseEvent
 {
     IfOther NameEquals Gungnir
@@ -553,7 +553,7 @@ Auto: OnUseEvent
     }
 }
 TimesPerTurn 1
-Text Auto:[(1)] This ability activates up to once per turn. When you play a "Gungnir", you may pay the cost. If you do, choose a <Music> character in your waiting room and return it to your hand.
+Text Auto:[(1)] This ability activates up to once per turn. When you play a "Gungnir", you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
 *OnAttackGainPowerForEachOther(1000,Music)
 EndCard
 
@@ -596,7 +596,7 @@ Effect:
         MoveCard WaitingRoom
     }
 }
-Text You cannot play this card from hand if you have 3 or fewer <Music> characters. You may choose 1 of your stand "Hibiki, Holy Chant" and put it into memory. If you do, choose a character with "Hibiki" in its card name in your hand, place it into any position on your stage, and at the beginning of your climax phase, choose a "Hibiki, Holy Chant" in memory and return it to hand. You may choose a card in your level and place it in the waiting room. If you do, place this card in your level.
+Text You cannot play this card from hand if you have 3 or fewer «Music» characters. You may choose 1 of your stand "Hibiki, Holy Chant" and put it into memory. If you do, choose a character with "Hibiki" in its card name in your hand, place it into any position on your stage, and at the beginning of your climax phase, choose a "Hibiki, Holy Chant" in memory and return it to hand. You may choose a card in your level and place it in the waiting room. If you do, place this card in your level.
 EndCard
 
 Climax: SG/W89-024
@@ -645,7 +645,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:When this card is placed on the stage from your hand, if you have another <Music> character, choose and perform 1 of the following 2 effects. "You may put the top card of your clock in your waiting room." "You may put the top card of your stock into the waiting room. If you do, draw a card, choose up to 1 'Kirika, Amalgam' or 'Shirabe, Amalgam' from hand and place it to any position on your stage."
+Text Auto:When this card is placed on the stage from your hand, if you have another «Music» character, choose and perform 1 of the following 2 effects. "You may put the top card of your clock in your waiting room." "You may put the top card of your stock into the waiting room. If you do, draw a card, choose up to 1 'Kirika, Amalgam' or 'Shirabe, Amalgam' from hand and place it to any position on your stage."
 Auto: OnAttack
 {
     If Climax Polyfilm Scissor Love Dreams
@@ -697,7 +697,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:When this card is placed on the stage from your hand, if you have another <Music> character, choose and perform 1 of the following 2 effects. "You may put the top card of your clock in your waiting room." "You may put the top card of your stock into the waiting room. If you do, draw a card, choose up to 1 'Kirika, Amalgam' or 'Shirabe, Amalgam' from hand and place it to any position on your stage."
+Text Auto:When this card is placed on the stage from your hand, if you have another «Music» character, choose and perform 1 of the following 2 effects. "You may put the top card of your clock in your waiting room." "You may put the top card of your stock into the waiting room. If you do, draw a card, choose up to 1 'Kirika, Amalgam' or 'Shirabe, Amalgam' from hand and place it to any position on your stage."
 Auto: OnAttack
 {
     If Climax Polyfilm Scissor Love Dreams && LocationContains Level 1 NameEquals Igalima | Shul Shagana
@@ -708,7 +708,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo EXPERIENCE [Put a <Music> character from hand to the waiting room] When this card attacks, if "Polyfilm Scissor Love Dreams" is in your climax area and you have a "Igalima" or "Shul Shagana" in your level, you may pay the cost. If you do, deal 2 damage to your opponent.
+Text Auto:CxCombo EXPERIENCE [Put a «Music» character from hand to the waiting room] When this card attacks, if "Polyfilm Scissor Love Dreams" is in your climax area and you have a "Igalima" or "Shul Shagana" in your level, you may pay the cost. If you do, deal 2 damage to your opponent.
 Text <color=red> * This card is part of a 3C1 restriction alongside W89-012 and W89-034 in JP. </color>
 EndCard
 
@@ -738,7 +738,7 @@ Auto: StartOpponentDrawPhase
 		}
 	}
 }
-Text Auto:At the beginning of your opponent's draw phase, if you have another <Music> character, reveal the top card of your deck. If that card is level 1 or higher, you may return that card to your deck. If you do, shuffle your deck and draw a card.
+Text Auto:At the beginning of your opponent's draw phase, if you have another «Music» character, reveal the top card of your deck. If that card is level 1 or higher, you may return that card to your deck. If you do, shuffle your deck and draw a card.
 EndCard
 
 Character: SG/W89-030
@@ -808,7 +808,7 @@ Auto: StartMyEncorePhase
         SearchWaitingRoom HasTrait Music && IsCharacter
     }
 }
-Text Auto:CxCombo At the beginning of your encore step, if "Fatal Chains: Star Money" is in your climax area, this card is in your center stage, you have 5 or less cards in hand, and either there is no character facing this card or the character facing this card is reverse, you may choose a <Music> character in your waiting room and return it to your hand.
+Text Auto:CxCombo At the beginning of your encore step, if "Fatal Chains: Star Money" is in your climax area, this card is in your center stage, you have 5 or less cards in hand, and either there is no character facing this card or the character facing this card is reverse, you may choose a «Music» character in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W89-033
@@ -862,7 +862,7 @@ Auto: OnPlay
         SearchDeck NameEquals Igalima
     }
 }
-Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Igalima", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put a «Music» character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Igalima", reveal it, put it in your hand, and shuffle your deck.
 *OnPlayTradeClimaxForCharacter(Music)
 Text <color=red> * This card is part of a 3C1 restriction alongside W89-012 and W89-028 in JP. </color>
 EndCard
@@ -883,7 +883,7 @@ Auto: OnPlay
         SearchDeck NameEquals Shul Shagana
     }
 }
-Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Shul Shagana", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put a «Music» character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Shul Shagana", reveal it, put it in your hand, and shuffle your deck.
 Auto: OnAttack
 {
     TargetTop Deck
@@ -894,7 +894,7 @@ Auto: OnAttack
         Discard 1 Any
     }
 }
-Text Auto:When this card attacks, reveal the top card of your deck. If it's a <Music> character, put it in your hand and discard a card from your hand to the waiting room.
+Text Auto:When this card attacks, reveal the top card of your deck. If it's a «Music» character, put it in your hand and discard a card from your hand to the waiting room.
 EndCard
 
 Character: SG/W89-036
@@ -952,7 +952,7 @@ Auto: OnSentFromStageToWaitingRoom
         Discard 1 Any
     }
 }
-Text Auto:When this card is placed from the stage to the waiting room, reveal up to 3 cards from the top of your deck. If you reveal 1 or more cards this way, choose up to 1 <Music> characters among them, put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
+Text Auto:When this card is placed from the stage to the waiting room, reveal up to 3 cards from the top of your deck. If you reveal 1 or more cards this way, choose up to 1 «Music» characters among them, put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
 EndCard
 
 Character: SG/W89-038
@@ -1033,7 +1033,7 @@ Cont: GiveSelf
         GainPower X
     }
 }
-Text Cont:During your turn, this card gets +2000 power for each other <Music> character you have.
+Text Cont:During your turn, this card gets +2000 power for each other «Music» character you have.
 Auto: OnPlay
 {
     If StageContains 4 Other && HasTrait Music
@@ -1042,7 +1042,7 @@ Auto: OnPlay
         MoveCard Stock
     }
 }
-Text Auto:When this card is placed on the stage from your hand, if the number of other <Music> characters you have is 4 or more, you may choose a <Music> character in your waiting room and put it in your stock.
+Text Auto:When this card is placed on the stage from your hand, if the number of other «Music» characters you have is 4 or more, you may choose a «Music» character in your waiting room and put it in your stock.
 EndCard
 
 Character: SG/W89-042
@@ -1078,7 +1078,7 @@ Act: Rest 1 Other && CardPosition Stand
         MoveCard Stock
     }
 }
-Text Act:[Rest 1 of your other <Music> characters] If this card is stand, put this card in stock.
+Text Act:[Rest 1 of your other «Music» characters] If this card is stand, put this card in stock.
 EndCard
 
 Character: SG/W89-043
@@ -1275,7 +1275,7 @@ Effect:
         MoveCard WaitingRoom
     }
 }
-Text You cannot play this card from hand if you have 3 or fewer <Music> characters. You may choose 1 of your Standing "Kirika, Holy Chant" and Send it to memory. If you do, choose a character with "Kirika" in its card name in your hand, place it to any position on your stage, and at the beginning of your climax phase, choose a "Kirika, Holy Chant" in memory and return it to hand. You may choose a card in your level and place it in the waiting room. If you do, place this card in your level.
+Text You cannot play this card from hand if you have 3 or fewer «Music» characters. You may choose 1 of your Standing "Kirika, Holy Chant" and Send it to memory. If you do, choose a character with "Kirika" in its card name in your hand, place it to any position on your stage, and at the beginning of your climax phase, choose a "Kirika, Holy Chant" in memory and return it to hand. You may choose a card in your level and place it in the waiting room. If you do, place this card in your level.
 EndCard
 
 Event: SG/W89-051
@@ -1317,7 +1317,7 @@ Effect:
         MoveCard WaitingRoom
     }
 }
-Text You cannot play this card from hand if you have 3 or fewer <Music> characters. You may choose 1 of your Standing "Shirabe, Holy Chant" and Send it to memory. If you do, choose a character with "Shirabe" in its card name in your hand, place it to any position on your stage, and at the beginning of your climax phase, choose a "Shirabe, Holy Chant" in memory and return it to hand. You may choose a card in your level and place it in the waiting room. If you do, place this card in your level.
+Text You cannot play this card from hand if you have 3 or fewer «Music» characters. You may choose 1 of your Standing "Shirabe, Holy Chant" and Send it to memory. If you do, choose a character with "Shirabe" in its card name in your hand, place it to any position on your stage, and at the beginning of your climax phase, choose a "Shirabe, Holy Chant" in memory and return it to hand. You may choose a card in your level and place it in the waiting room. If you do, place this card in your level.
 EndCard
 
 Climax: SG/W89-052
@@ -1354,7 +1354,7 @@ Auto: OnSentFromStageToWaitingRoom
         SearchWaitingRoom HasTrait Music && IsCharacter
     }
 }
-Text Auto:[(2)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a <Music> character in your waiting room and return it to your hand.
+Text Auto:[(2)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W89-055
@@ -1395,7 +1395,7 @@ Auto: OnEndOfAttack
     }
 }
 TimesPerTurn 1
-Text Auto:CX COMBO [(1) Put a <Music> character from hand to the waiting room] This ability activates up to once per turn. At the end of this card's attack, If "Highest Good: Rose Cross" is in your climax area and you have another <Music> character, you may pay the cost. If you do, choose either 1 of your other "Tsubasa, Resurrected Phoenix" or this card, stand that card, and that card gets the following 2 abilities until end of turn. "Cont: During this card's battle, your opponent may not use BACKUP from hand." "Cont: This cannot be chosen by your opponent's abilities."
+Text Auto:CX COMBO [(1) Put a «Music» character from hand to the waiting room] This ability activates up to once per turn. At the end of this card's attack, If "Highest Good: Rose Cross" is in your climax area and you have another «Music» character, you may pay the cost. If you do, choose either 1 of your other "Tsubasa, Resurrected Phoenix" or this card, stand that card, and that card gets the following 2 abilities until end of turn. "Cont: During this card's battle, your opponent may not use BACKUP from hand." "Cont: This cannot be chosen by your opponent's abilities."
 EndCard
 
 Character: SG/W89-056
@@ -1459,7 +1459,7 @@ Auto: OnPlay
         *OptionalDrawDiscard
     }
 }
-Text Auto:When this card is placed on the stage from your hand, if the number of other <Music> characters you have is 2 or more, you may draw a card. If you do, discard a card from your hand to the waiting room.
+Text Auto:When this card is placed on the stage from your hand, if the number of other «Music» characters you have is 2 or more, you may draw a card. If you do, discard a card from your hand to the waiting room.
 Auto: OnSentFromStageToWaitingRoom
 {
     PayCost 2
@@ -1467,7 +1467,7 @@ Auto: OnSentFromStageToWaitingRoom
         SearchDeck HasTrait Music && IsCharacter
     }
 }
-Text Auto:[(2)] When this card is placed from stage to the waiting room, you may pay the cost. If you do, search your deck for up to 1 <Music> character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[(2)] When this card is placed from stage to the waiting room, you may pay the cost. If you do, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SG/W89-059
@@ -1588,7 +1588,7 @@ Auto: OnPlay
         SearchDeck NameEquals Ichaival
     }
 }
-Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Ichaival", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put a «Music» character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Ichaival", reveal it, put it in your hand, and shuffle your deck.
 Auto: OnAttack
 {
     TargetTop Deck
@@ -1599,7 +1599,7 @@ Auto: OnAttack
         Discard 1 Any
     }
 }
-Text Auto:When this card attacks, reveal the top card of your deck. If it's a <Music> character, put it in your hand and discard a card from your hand to the waiting room.
+Text Auto:When this card attacks, reveal the top card of your deck. If it's a «Music» character, put it in your hand and discard a card from your hand to the waiting room.
 EndCard
 
 Character: SG/W89-065
@@ -1625,7 +1625,7 @@ Auto: OnPlay
         PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto:[Put a <Music> character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top 2 cards of your deck, your opponent choose a character or an event among them, put that card to your hand, and put the rest into the waiting room.
+Text Auto:[Put a «Music» character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top 2 cards of your deck, your opponent choose a character or an event among them, put that card to your hand, and put the rest into the waiting room.
 Auto: OnPlay
 {
     PayCost Discard 1 HasTrait Music && IsCharacter
@@ -1633,7 +1633,7 @@ Auto: OnPlay
         SearchDeck NameEquals Airget-Lamh
     }
 }
-Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Airget-Lamh", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put a «Music» character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Airget-Lamh", reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SG/W89-066
@@ -1715,7 +1715,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:CxCombo [(1) Put a "De Re Metallica" from climax area to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, look at up to 4 cards from the top of your deck, choose up to 4 <Music> characters or "Ichaival" among them, show them to your opponent, put them in your hand, put the rest into waiting room, and this card gets the following ability until the end of your opponent's next turn. "Auto: When this card is frontal attacked, you may return it to your hand."
+Text Auto:CxCombo [(1) Put a "De Re Metallica" from climax area to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, look at up to 4 cards from the top of your deck, choose up to 4 «Music» characters or "Ichaival" among them, show them to your opponent, put them in your hand, put the rest into waiting room, and this card gets the following ability until the end of your opponent's next turn. "Auto: When this card is frontal attacked, you may return it to your hand."
 EndCard
 
 Character: SG/W89-069
@@ -1763,7 +1763,7 @@ Auto: OnSpecificClimaxPlay HORNET PISTOLS
         }
     }
 }
-Text Auto:CxCombo [Rest this card] When "HORNET PISTOLS" is placed to your climax area, you may pay the cost. If you do, choose a <Music> character in your waiting room and put it to your stock.
+Text Auto:CxCombo [Rest this card] When "HORNET PISTOLS" is placed to your climax area, you may pay the cost. If you do, choose a «Music» character in your waiting room and put it to your stock.
 EndCard
 
 Character: SG/W89-071
@@ -1893,7 +1893,7 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont:If you have another <Music> character, this card gets +1500 power and the following 2 abilities. "Auto: When this card attacks, look at up to 2 cards from the top of your deck, choose 1 card among them, put it on top of your deck, and put the rest into waiting room." "Auto: ENCORE [Put a character from hand to the waiting room]"
+Text Cont:If you have another «Music» character, this card gets +1500 power and the following 2 abilities. "Auto: When this card attacks, look at up to 2 cards from the top of your deck, choose 1 card among them, put it on top of your deck, and put the rest into waiting room." "Auto: ENCORE [Put a character from hand to the waiting room]"
 Auto: OnThisTriggerCheck
 {
     IfOther HasTrigger Soul
@@ -1945,7 +1945,7 @@ Effect:
         MoveCard WaitingRoom
     }
 }
-Text You cannot play this card from hand if you have 3 or fewer <Music> characters. You may choose 1 of your Standing "Chris, Holy Chant" and Send it to memory. If you do, choose a character with "Chris" in its card name in your hand, place it to any position on your stage, and at the beginning of your climax phase, choose a "Chris, Holy Chant" in memory and return it to hand. You may choose a card in your level and place it in the waiting room. If you do, place this card in your level.
+Text You cannot play this card from hand if you have 3 or fewer «Music» characters. You may choose 1 of your Standing "Chris, Holy Chant" and Send it to memory. If you do, choose a character with "Chris" in its card name in your hand, place it to any position on your stage, and at the beginning of your climax phase, choose a "Chris, Holy Chant" in memory and return it to hand. You may choose a card in your level and place it in the waiting room. If you do, place this card in your level.
 EndCard
 
 Event: SG/W89-077
@@ -1987,7 +1987,7 @@ Effect:
         MoveCard WaitingRoom
     }
 }
-Text You cannot play this card from hand if you have 3 or fewer <Music> characters. You may choose 1 of your Standing "Maria, Holy Chant" and Send it to memory. If you do, choose a character with "Maria" in its card name in your hand, place it to any position on your stage, and at the beginning of your climax phase, choose a "Maria, Holy Chant" in memory and return it to hand. You may choose a card in your level and place it in the waiting room. If you do, place this card in your level.
+Text You cannot play this card from hand if you have 3 or fewer «Music» characters. You may choose 1 of your Standing "Maria, Holy Chant" and Send it to memory. If you do, choose a character with "Maria" in its card name in your hand, place it to any position on your stage, and at the beginning of your climax phase, choose a "Maria, Holy Chant" in memory and return it to hand. You may choose a card in your level and place it in the waiting room. If you do, place this card in your level.
 EndCard
 
 Climax: SG/W89-078
@@ -2027,7 +2027,7 @@ Cont: GiveSelf
         GainPower 1500
     }
 }
-Text Cont:During your turn, if you have another <Music> character, this card gets +1500 power.
+Text Cont:During your turn, if you have another «Music» character, this card gets +1500 power.
 Auto: OnReverseOpponent
 {
     If Climax The Value of Those Who Should Be Protected && StageContains 1 Other && HasTrait Music
@@ -2041,7 +2041,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:CxCombo [Put a <Music> character from hand to the waiting room] When this card's battle opponent becomes reverse, if "The Value of Those Who Should Be Protected" is in your climax area and you have another <Music> character, you may pay the cost. If you do, search your deck for up to 2 <Music> characters, show them to your opponent, put them in your hand, and Shuffle your deck.
+Text Auto:CxCombo [Put a «Music» character from hand to the waiting room] When this card's battle opponent becomes reverse, if "The Value of Those Who Should Be Protected" is in your climax area and you have another «Music» character, you may pay the cost. If you do, search your deck for up to 2 «Music» characters, show them to your opponent, put them in your hand, and Shuffle your deck.
 EndCard
 
 Character: SG/W89-083
@@ -2075,7 +2075,7 @@ Auto: OnPlay
         SearchDeck NameEquals Ame-no-Habakiri
     }
 }
-Text Auto:[Put a <Music> character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Ame-no-Habakiri", reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[Put a «Music» character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Ame-no-Habakiri", reveal it, put it in your hand, and shuffle your deck.
 *OnPlayTradeClimaxForCharacter(Music)
 EndCard
 
@@ -2100,7 +2100,7 @@ Auto: StartMyEncorePhase
         ShuffleLocation Deck
     }
 }
-Text Auto:CxCombo At the beginning of your encore step, If "Chaos Flame Wrath Slash" is in your climax area, this card is in your center stage, you have another <Music> character, and either there is no character facing this card or the character facing this card is reverse, search your deck for up to 2 <Music> characters, show them to your opponent, place them to your stock in any order, and Shuffle your deck.
+Text Auto:CxCombo At the beginning of your encore step, If "Chaos Flame Wrath Slash" is in your climax area, this card is in your center stage, you have another «Music» character, and either there is no character facing this card or the character facing this card is reverse, search your deck for up to 2 «Music» characters, show them to your opponent, place them to your stock in any order, and Shuffle your deck.
 *BlueEarlyPlayBomb
 EndCard
 
@@ -2135,7 +2135,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:[(1)] When this card attacks, you may pay the cost. If you do, reveal the top card of your deck, if it is a <Music> character, "Airget-Lamh" or "Ame-no-Habakiri", deal 1 damage to your opponent.
+Text Auto:[(1)] When this card attacks, you may pay the cost. If you do, reveal the top card of your deck, if it is a «Music» character, "Airget-Lamh" or "Ame-no-Habakiri", deal 1 damage to your opponent.
 EndCard
 
 Character: SG/W89-087
@@ -2297,7 +2297,7 @@ Auto: StartClimaxPhase
         }
     }
 }
-Text Auto:At the beginning of your climax phase, if you have another <Music> character, this card gets 1 of the following 2 abilities of your choice until the end of your opponent's next turn. "Auto: When this card's battle opponent becomes reverse, choose 1 of your other characters, Rest it, and move it to an open position in your back stage." "Auto: At the beginning of your opponent's attack phase, you may move this card to an open position in your center stage."
+Text Auto:At the beginning of your climax phase, if you have another «Music» character, this card gets 1 of the following 2 abilities of your choice until the end of your opponent's next turn. "Auto: When this card's battle opponent becomes reverse, choose 1 of your other characters, Rest it, and move it to an open position in your back stage." "Auto: At the beginning of your opponent's attack phase, you may move this card to an open position in your center stage."
 EndCard
 
 Character: SG/W89-095
@@ -2317,7 +2317,7 @@ Auto: OnUseThisCardsBackup
     SetXValue TargetCount
     MillOpponent X
 }
-Text Auto:When you use this card's BACKUP, put X cards from the bottom of your opponent's deck into the waiting room. X equals the number of your <Music> characters.
+Text Auto:When you use this card's BACKUP, put X cards from the bottom of your opponent's deck into the waiting room. X equals the number of your «Music» characters.
 Backup 3000
 EndCard
 
@@ -2386,7 +2386,7 @@ Effect:
         MoveCard WaitingRoom
     }
 }
-Text You cannot play this card from hand if you have 3 or fewer <Music> characters. You may choose 1 of your Standing "Tsubasa, Holy Chant" and Send it to memory. If you do, choose a character with "Tsubasa" in its card name in your hand, place it to any position on your stage, and at the beginning of your climax phase, choose a "Tsubasa, Holy Chant" in memory and return it to hand. You may choose a card in your level and place it in the waiting room. If you do, place this card in your level.
+Text You cannot play this card from hand if you have 3 or fewer «Music» characters. You may choose 1 of your Standing "Tsubasa, Holy Chant" and Send it to memory. If you do, choose a character with "Tsubasa" in its card name in your hand, place it to any position on your stage, and at the beginning of your climax phase, choose a "Tsubasa, Holy Chant" in memory and return it to hand. You may choose a card in your level and place it in the waiting room. If you do, place this card in your level.
 EndCard
 
 Climax: SG/W89-098
@@ -2422,7 +2422,7 @@ Act: 1
         BlockOpponentEncore
     }
 }
-Text Act:[(1)] If the number of other <Music> characters you have is 2 or more, this card gets +1000 power and your opponent cannot use "ENCORE" until end of turn.
+Text Act:[(1)] If the number of other «Music» characters you have is 2 or more, this card gets +1000 power and your opponent cannot use "ENCORE" until end of turn.
 EndCard
 
 Character: SG/W89-109
@@ -2439,7 +2439,7 @@ Act: Rest 2 Any
 {
     *GiveCharacterPower(2000,Music)
 }
-Text Act:[Rest 2 of your characters] Choose 1 of your <Music> characters, and that character gets +2000 power until end of turn.
+Text Act:[Rest 2 of your characters] Choose 1 of your «Music» characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: SG/W89-110

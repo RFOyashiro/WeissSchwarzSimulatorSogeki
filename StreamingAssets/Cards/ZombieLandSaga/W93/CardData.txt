@@ -2403,7 +2403,7 @@ Effect:
         GainSpecialEffect CannotDealDamage
     }
 }
-Text [Counter] If you don't have a ::Saga:: Character, this card cannot be played from hand. You may choose a Climax from your hand and place it in the Waiting Room. If so, choose a Character in Battle, and for the turn that Character gains the following ability. "Cont:This card cannot deal damage to players."
+Text [Counter] If you don't have a «Saga» Character, this card cannot be played from hand. You may choose a Climax from your hand and place it in the Waiting Room. If so, choose a Character in Battle, and for the turn that Character gains the following ability. "Cont:This card cannot deal damage to players."
 EndCard
 
 Event: ZLS/W93-096
@@ -2416,7 +2416,7 @@ Effect:
 {
     SearchWaitingRoom IsEvent
 }
-Text If you don't have a ::Saga:: character, this card cannot be played from hand. Choose 1 event in your waiting room and return it to your hand.
+Text If you don't have a «Saga» character, this card cannot be played from hand. Choose 1 event in your waiting room and return it to your hand.
 EndCard
 
 Climax: ZLS/W93-097
@@ -2655,7 +2655,7 @@ Cont: GiveSelf
         GainPower 2000
     }
 }
-Text Cont: During your turn, if all your characters are <Saga>, this card gets +2000 power.
+Text Cont: During your turn, if all your characters are «Saga», this card gets +2000 power.
 EndCard
 
 Character: ZLS/W93-P02
@@ -2696,7 +2696,7 @@ Auto: StartMainPhase
         }
     }
 }
-Text: [Discard 1 "Revenge on Fate"] At the beginning of your main phase, if all your characters are <Saga> you may pay the cost, if you do, choose a <Saga> character in your waiting room and return it to your hand.
+Text: [Discard 1 "Revenge on Fate"] At the beginning of your main phase, if all your characters are «Saga» you may pay the cost, if you do, choose a «Saga» character in your waiting room and return it to your hand.
 EndCard
 
 Character: ZLS/W93-T01
@@ -2716,7 +2716,7 @@ Auto: OnPlay|OnOtherPlacedOnStageFromHand
         EndPeek
     }
 }
-Text Auto:When your other <Saga> character or this card is placed on the stage from your hand, you may look at the top card of your deck.
+Text Auto:When your other «Saga» character or this card is placed on the stage from your hand, you may look at the top card of your deck.
 *Act1RestSelfDrawBrainstorm5
 EndCard
 
@@ -2763,7 +2763,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:[(2)] When this card attacks, you may pay the cost. If you do, reveal the top card of your deck. If that card is a <Saga> character, this card gets +11000 power until end of turn.
+Text Auto:[(2)] When this card attacks, you may pay the cost. If you do, reveal the top card of your deck. If that card is a «Saga» character, this card gets +11000 power until end of turn.
 EndCard
 
 Character: ZLS/W93-T04
@@ -2788,7 +2788,7 @@ Auto: OnUseThisCardsBackup
         }
     }
 }
-Text Auto:When you use this card's BACKUP, if all your characters are <Saga>, you may put the top card of your deck in stock.
+Text Auto:When you use this card's BACKUP, if all your characters are «Saga», you may put the top card of your deck in stock.
 Backup 2000
 EndCard
 
@@ -2822,7 +2822,7 @@ Cont: GiveSelf
         GainPower 4000
     }
 }
-Text Cont:During your turn, if the number of other <Saga> characters you have is 2 or more, this card gets +4000 power.
+Text Cont:During your turn, if the number of other «Saga» characters you have is 2 or more, this card gets +4000 power.
 Auto: OnPlay
 {
     If StageContains 4 Other && HasTrait Saga
@@ -2835,7 +2835,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:When this card is placed on the stage from your hand, if the number of other <Saga> characters you have is 4 or more, you may put the top card of your deck in your stock.
+Text Auto:When this card is placed on the stage from your hand, if the number of other «Saga» characters you have is 4 or more, you may put the top card of your deck in your stock.
 EndCard
 
 Character: ZLS/W93-T07
@@ -2855,7 +2855,7 @@ Cont: GiveSelf
         GainPower 2000
     }
 }
-Text Cont:During your turn, if the number of other <Saga> characters you have is 2 or more, this card gets +2000 power.
+Text Cont:During your turn, if the number of other «Saga» characters you have is 2 or more, this card gets +2000 power.
 Auto: OnThisTriggerCheck
 {
     IfOther HasTrigger Soul
@@ -2983,7 +2983,7 @@ Power 4500
 Soul 1
 Trait1 Saga
 Trait2 Music
-Combo  Yume o Te ni, Modoreru Basho mo Nai Hibi o
+Combo Yume o Te ni, Modoreru Basho mo Nai Hibi o
 Cont: GiveSelf
 {
     TargetLocation Backstage
@@ -2992,15 +2992,15 @@ Cont: GiveSelf
     MultiplyXValue 500
     GainPower X
 }
-Text Cont:This card gets +500 power for each of your other ::Saga:: characters in backstage.
+Text Cont:This card gets +500 power for each of your other «Saga» characters in backstage.
 Auto: OnAttack
 {
-    If Climax  Yume o Te ni, Modoreru Basho mo Nai Hibi o && StageContains 1 Other && HasTrait Saga
+    If Climax Yume o Te ni, Modoreru Basho mo Nai Hibi o && StageContains 1 Other && HasTrait Saga
     {
         *Check4Add1(Saga)
     }
 }
-Text Auto:CxCombo When this card attacks, if " Yume o Te ni, Modoreru Basho mo Nai Hibi o" is in your climax area and you have another <Saga> character, look at up to the top 4 cards from of your deck, choose up to 1 <Saga> character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto:CxCombo When this card attacks, if "Yume o Te ni, Modoreru Basho mo Nai Hibi o" is in your climax area and you have another «Saga» character, look at up to the top 4 cards from of your deck, choose up to 1 «Saga» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: ZLS/W93-T15
@@ -3021,7 +3021,7 @@ Auto: OnPlay
         *Check4Add1(Saga)
     }
 }
-Text Auto:[Discard 1 card] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 <Saga> character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto:[Discard 1 card] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Saga» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: ZLS/W93-T16
@@ -3065,7 +3065,7 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont:If the number of other <Saga> characters you have is 2 or more, this card gets +1500 power and the following ability. "Auto: When this card is placed from the stage to the waiting room, discard a card from your hand to the waiting room. If you do, return this card to hand."
+Text Cont:If the number of other «Saga» characters you have is 2 or more, this card gets +1500 power and the following ability. "Auto: When this card is placed from the stage to the waiting room, discard a card from your hand to the waiting room. If you do, return this card to hand."
 *Healer
 EndCard
 
@@ -3077,16 +3077,16 @@ Cost 1
 Effect: 
 {
     RevealUpTo Deck 3
-    Message Choose up to 3 <Saga> characters.
+    Message Choose up to 3 «Saga» characters.
     ChooseCardsFromTargets 0 3 HasTrait Saga && IsCharacter
     MoveCard Hand
     PutTheRestIntoTheWaitingRoom
 }
-Text Look at up to the top 3 cards of your deck, choose up to 3 <Saga> characters among them, reveal them, put them in your hand, and put the rest into your waiting room.
+Text Look at up to the top 3 cards of your deck, choose up to 3 «Saga» characters among them, reveal them, put them in your hand, and put the rest into your waiting room.
 EndCard
 
 Climax: ZLS/W93-T19
-Name  Yume o Te ni, Modoreru Basho mo Nai Hibi o
+Name Yume o Te ni, Modoreru Basho mo Nai Hibi o
 *GateClimax
 EndCard
 

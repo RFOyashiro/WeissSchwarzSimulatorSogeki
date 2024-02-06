@@ -15,7 +15,7 @@ Auto: OnReverseOpponent
 		SearchDeck HasTrait Music
 	}
 }
-Text Auto:CxCombo When this card's battle opponent becomes reverse, if "Gungnir, Again" is in your climax area, search your deck for up to 1 <Music> character, reveal it, put it in your hand and shuffle your deck.
+Text Auto:CxCombo When this card's battle opponent becomes reverse, if "Gungnir, Again" is in your climax area, search your deck for up to 1 «Music» character, reveal it, put it in your hand and shuffle your deck.
 EndCard
 
 Character: SG/W39-002
@@ -43,7 +43,7 @@ Auto: OnAttack
 		}
 	}
 }
-Text Auto:CxCombo When this card attacks, if "Glorious Break" is in your climax area, all your <Music> characters get +2000 power and this card gets the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is cancelled, you may deal 1 damage to your opponent."
+Text Auto:CxCombo When this card attacks, if "Glorious Break" is in your climax area, all your «Music» characters get +2000 power and this card gets the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is cancelled, you may deal 1 damage to your opponent."
 Auto: StartMyEncorePhase
 {
 	If Not LocationContains Memory 1 NameEquals Ignite Module
@@ -109,7 +109,7 @@ Auto: OnPlay
 		GainPower 2000
 	}
 }
-Text Auto:When this card is placed on the stage from your hand, if the number of other <Music> characters you have is 2 or more, this card gets +2000 power until end of turn.
+Text Auto:When this card is placed on the stage from your hand, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn.
 EndCard
 
 Character: SG/W39-006
@@ -140,7 +140,7 @@ Act: 1 Rest 1 Other && HasTrait Music
 	ChooseCharacterFromTargets Choose a character to give +1 soul for the turn
 	GainSoul 1
 }
-Text Act:[(1) Rest 1 of your other <Music> characters] Choose 1 of your <Music> characters and that character gets +1 soul until end of turn.
+Text Act:[(1) Rest 1 of your other «Music» characters] Choose 1 of your «Music» characters and that character gets +1 soul until end of turn.
 EndCard
 
 Character: SG/W39-008
@@ -159,7 +159,7 @@ Cont: Assist
 	    GainLevel 1
     }
 }
-Text Cont:ASSIST Your <Music> characters in front of this card get +1 level and +500 power.
+Text Cont:ASSIST Your «Music» characters in front of this card get +1 level and +500 power.
 Auto: OnPlay
 {
 	TargetTop Deck 1
@@ -189,7 +189,7 @@ Auto: OnAttack
 	GainLevel 1
 	GainPower 1000
 }
-Text Auto:When this card attacks, choose 1 of your <Music> characters, and that character gets +1 level and +1000 power until end of turn.
+Text Auto:When this card attacks, choose 1 of your «Music» characters, and that character gets +1 level and +1000 power until end of turn.
 *HandEncore
 EndCard
 
@@ -387,7 +387,7 @@ Effect:
 	TargetSelf
 	MoveCard Memory
 }
-Text Look at up to the top 4 cards of your deck, choose up to 1 <Music> character among them, reveal it, put it in your hand, and put the rest into your waiting room. Choose 1 of your characters, and that character gets +2000 power until end of turn. Put this card into memory.
+Text Look at up to the top 4 cards of your deck, choose up to 1 «Music» character among them, reveal it, put it in your hand, and put the rest into your waiting room. Choose 1 of your characters, and that character gets +2000 power until end of turn. Put this card into memory.
 EndCard
 
 Event: SG/W39-021
@@ -484,7 +484,7 @@ Cont: Assist
 		}
 	}
 }
-Text Cont:ASSIST Your <Music> characters in front of this card get +2000 power and the following ability. "Auto: When this card's battle opponent becomes reverse, you may send that character to memory."
+Text Cont:ASSIST Your «Music» characters in front of this card get +2000 power and the following ability. "Auto: When this card's battle opponent becomes reverse, you may send that character to memory."
 *Healer
 EndCard
 
@@ -582,7 +582,7 @@ Act: Rest 1 HasTrait Music
 	TargetSelf
 	GainPower 1000
 }
-Text Act:[Rest 1 of your <Music> characters] This gets +1000 power until end of turn.
+Text Act:[Rest 1 of your «Music» characters] This gets +1000 power until end of turn.
 EndCard
 
 Character: SG/W39-030
@@ -702,7 +702,7 @@ Auto: OnPlay
 		SearchDeck HasTrait Music
 	}
 }
-Text Auto:[(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 <Music> character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SG/W39-036
@@ -731,7 +731,7 @@ Auto: OnAttack
 		}
 	}
 }
-Text Auto:CxCombo When this card attacks, if "The Unchanged Pair" is in your climax area, reveal the top card of your deck. If it's a <Music> character, put it in your hand and this card gets +6000 power until end of turn.
+Text Auto:CxCombo When this card attacks, if "The Unchanged Pair" is in your climax area, reveal the top card of your deck. If it's a «Music» character, put it in your hand and this card gets +6000 power until end of turn.
 EndCard
 
 Character: SG/W39-037
@@ -1034,7 +1034,7 @@ Auto: OnPlay|PlacedBy CHANGE
         *OptionalBurn(1)
     }
 }
-Text Auto:When this card is placed on the stage from your hand or by CHANGE, reveal the top card of your deck. If that card is a <Music> character, you may deal 1 damage to your opponent.
+Text Auto:When this card is placed on the stage from your hand or by CHANGE, reveal the top card of your deck. If that card is a «Music» character, you may deal 1 damage to your opponent.
 Auto: OnAttack
 {
     PayCost ShuffleFromWaitingRoom 2 IsCharacter
@@ -1075,7 +1075,7 @@ Auto: OnOtherReversed
         GainPower 500
     }
 }
-Text Auto:When your other <Music> character becomes reversed in battle, choose 1 of your characters, it gets +POWER power until end of turn.
+Text Auto:When your other «Music» character becomes reversed in battle, choose 1 of your characters, it gets +POWER power until end of turn.
 EndCard
 
 Character: SG/W39-054
@@ -1114,7 +1114,7 @@ Act: Rest 1 HasTrait Music
     TargetSelf
     GainPower 1000
 }
-Text Act:[Rest 1 of your <Music> characters] This gets +1000 power until end of turn.
+Text Act:[Rest 1 of your «Music» characters] This gets +1000 power until end of turn.
 EndCard
 
 Character: SG/W39-056
@@ -1211,7 +1211,7 @@ Auto: OnPlay
         SearchWaitingRoom HasTrait Music
     }
 }
-Text Auto:[Discard 1 climax] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a <Music> character in your waiting room and return it to your hand.
+Text Auto:[Discard 1 climax] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W39-060
@@ -1255,7 +1255,7 @@ Auto: OnPlay
         Discard 1 Any
     }
 }
-Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is a <Music> character, put it in your hand and discard a card from your hand to the waiting room.
+Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is a «Music» character, put it in your hand and discard a card from your hand to the waiting room.
 Auto: StartClimaxPhase
 {
     PayCost Discard 2 HasTrait Music &&& SendSelf WaitingRoom
@@ -1263,7 +1263,7 @@ Auto: StartClimaxPhase
         *ChangeWaitingRoom("Self Brilliance" Maria)
     }
 }
-Text Auto:CHANGE [Discard 2 <Music> characters, put this card in the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose 1 '"Self Brilliance" Maria' in your waiting room and put it in the position this card was in.
+Text Auto:CHANGE [Discard 2 «Music» characters, put this card in the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose 1 '"Self Brilliance" Maria' in your waiting room and put it in the position this card was in.
 EndCard
 
 Character: SG/W39-062
@@ -1284,7 +1284,7 @@ Auto: OnPlay
         GainPower 3000
     }
 }
-Text Auto:When this card is placed on the stage from your hand, if the number of other <Music> characters you have is 4 or more, this card gets +3000 power until end of turn.
+Text Auto:When this card is placed on the stage from your hand, if the number of other «Music» characters you have is 4 or more, this card gets +3000 power until end of turn.
 EndCard
 
 Character: SG/W39-063
@@ -1352,7 +1352,7 @@ Auto: OnSpecificClimaxPlay Fine Even When I Am Around
         }
     }
 }
-Text Auto:CxCombo [(2)] When "Fine Even When I Am Around" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower <Music> character, put it in any position on the stage, and shuffle your deck.
+Text Auto:CxCombo [(2)] When "Fine Even When I Am Around" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower «Music» character, put it in any position on the stage, and shuffle your deck.
 *OnAttackGainPowerForEachOther(500,Music)
 
 Character: SG/W39-067
@@ -1438,7 +1438,7 @@ Effect:
     TargetSelf
     MoveCard Memory
 }
-Text Choose up to 2 <Music> characters in your waiting room, return them to your hand, and discard a card from your hand to the waiting room. Put this card into memory.
+Text Choose up to 2 «Music» characters in your waiting room, return them to your hand, and discard a card from your hand to the waiting room. Put this card into memory.
 EndCard
 
 Event: SG/W39-071
@@ -1574,7 +1574,7 @@ Cont: Assist
         GainLevel 1
     }
 }
-Text Cont:ASSIST Your <Music> characters in front of this card get +1 level and +500 power.
+Text Cont:ASSIST Your «Music» characters in front of this card get +1 level and +500 power.
 *Act1RestSelfDrawBrainstorm
 EndCard
 
@@ -1852,7 +1852,7 @@ Cont: GiveSelf
         GainPower 500
     }
 }
-Text Cont:During your opponent's turn, this card gets +500 power for each of your other <Music> characters.
+Text Cont:During your opponent's turn, this card gets +500 power for each of your other «Music» characters.
 Auto: OnAttack
 {
     If Climax Furinkazan Gekkou
@@ -1903,7 +1903,7 @@ Effect:
     TargetSelf
     MoveCard Memory
 }
-Text [Counter] If you have no <Music> characters, you cannot play this card from your hand. Choose 1 of your characters, and that character gets +2500 power until end of turn. Put this card into memory.
+Text [Counter] If you have no «Music» characters, you cannot play this card from your hand. Choose 1 of your characters, and that character gets +2500 power until end of turn. Put this card into memory.
 EndCard
 
 Event: SG/W39-096
@@ -1970,7 +1970,7 @@ Auto: OnAttack
      GainPower 1000
      GainLevel 1
 }
-Text Auto:When this card attacks, choose 1 of your <Music> characters, and that character gets +1 level and +1000 power until end of turn.
+Text Auto:When this card attacks, choose 1 of your «Music» characters, and that character gets +1 level and +1000 power until end of turn.
 *HandEncore
 EndCard
 
@@ -2011,5 +2011,5 @@ Auto: OnPlay
         SearchWaitingRoom HasTrait Music
     }
 }
-Text Auto:[Discard 1 climax] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a <Music> character in your waiting room and return it to your hand.
+Text Auto:[Discard 1 climax] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
 EndCard
