@@ -27,7 +27,7 @@ Cost 2
 Trigger Soul
 Power 8500
 Soul 2
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Healer
 Trait3 Attacker
 Combo Overjoyed Ash Phantom Demon, Ilmina
@@ -68,7 +68,7 @@ Cost 2
 Trigger Soul
 Power 10000
 Soul 2
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Balance
 Combo Super Reincarnated Ra Dragon
 Auto: OnPlay
@@ -121,25 +121,25 @@ Level 0
 Cost 0
 Power 1500
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Healer
 Cont: GiveAll
 {
-    If Other && HasTrait Dragon (KMD) || IsColor Yellow
+    If Other && HasTrait Dragon || IsColor Yellow
     {
         GainPower 500
     }
 }
-Text Cont:All your other YELLOW or «Dragon (KMD)» characters get +500 power.
+Text Cont:All your other YELLOW or «Dragon» characters get +500 power.
 Act: RestSelf
 {
     TargetLocation Stage
-    NarrowTargets HasTrait Dragon (KMD) || IsColor Yellow
+    NarrowTargets HasTrait Dragon || IsColor Yellow
     ChooseCharacterFromTargets Choose a character to give +500 power until end of your opponent's next turn.
     UntilEndOfOpponentsTurn
     GainPower 500
 }
-Text Act:[Rest this card] Choose 1 of your YELLOW or «Dragon (KMD)» characters, and that character gets +500 power until the end of your opponent's next turn.
+Text Act:[Rest this card] Choose 1 of your YELLOW or «Dragon» characters, and that character gets +500 power until the end of your opponent's next turn.
 EndCard
 
 Character: PAD/S105-005
@@ -149,7 +149,7 @@ Level 0
 Cost 0
 Power 2000
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Attacker
 Trait3 Physical
 *OnPlayScryToBottom
@@ -161,11 +161,11 @@ Act: 1 RestSelf
         SetXValue BrainstormedClimax
         Repeat X
         {
-            SearchWaitingRoom IsCharacter && IsColor Yellow || HasTrait Dragon (KMD)
+            SearchWaitingRoom IsCharacter && IsColor Yellow || HasTrait Dragon
         }
     }
 }
-Text Act:BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 YELLOW or «Dragon (KMD)» character in your waiting room and return it to your hand.
+Text Act:BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 YELLOW or «Dragon» character in your waiting room and return it to your hand.
 EndCard
 
 Character: PAD/S105-006
@@ -176,7 +176,7 @@ Cost 1
 Trigger Soul
 Power 3000
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Combo Super Reincarnated Ra Dragon
 Cont: GiveSelf
 {
@@ -289,7 +289,7 @@ Cost 0
 Trigger Soul
 Power 500
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Machine
 Trait3 God
 Auto: OnUseThisCardsBackup
@@ -356,7 +356,7 @@ Cost 1
 Trigger Soul
 Power 4000
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Balance
 Cont: Assist
 {
@@ -538,7 +538,7 @@ Level 1
 Cost 0
 Power 4000
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 *OnPlayGainPower(3000)
 Auto: OnDamageDealtByCharacterFacingThisCanceled
 {
@@ -619,7 +619,7 @@ Cost 1
 Trigger Soul
 Power 5000
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Demon
 Trait3 God
 Auto: OnPlay
@@ -683,7 +683,7 @@ Level 0
 Cost 0
 Power 1000
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Machine
 Auto: OnAttack
 {
@@ -884,7 +884,7 @@ Trigger Soul
 Power 10000
 Soul 2
 Trait1 Healer
-Trait2 Dragon (KMD)
+Trait2 Dragon
 Auto: OnPlay
 {
     MultipleChoiceQuestion Choose an effect to resolve.\n1:Put up to 1 card from the top of your clock in the waiting room, and this card gets +3000 power until end of turn.\n2:Your opponent puts all of their stock in the waiting room, then puts the same number of cards from top of their deck in their stock.|1|2
@@ -910,7 +910,7 @@ Cost 2
 Trigger Soul
 Power 10000
 Soul 2
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Machine
 Trait3 Balance
 Cont: InHand
@@ -936,9 +936,9 @@ Auto: OnAttack
 Text Auto:When this card attacks, you may put the top card of your deck in the waiting room. If it's either a card with at least 1 soul trigger icon or "Raving Bassist, Roche", deal 1 damage to your opponent. 
 Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
 {
-    *PutCardFromWaitingRoomIntoStock(HasTrait Dragon (KMD))
+    *PutCardFromWaitingRoomIntoStock(HasTrait Dragon)
 }
-Text Auto:When a level 2 or higher battle opponent of this card becomes reversed, you may choose a «Dragon (KMD)» character in your waiting room and put it in your stock.
+Text Auto:When a level 2 or higher battle opponent of this card becomes reversed, you may choose a «Dragon» character in your waiting room and put it in your stock.
 EndCard
 
 Character: PAD/S105-034
@@ -1194,11 +1194,11 @@ Level 0
 Cost 0
 Power 2000
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Demon
 Auto: OnPlay
 {
-    PayCost ShuffleFromWaitingRoom 2 HasTrait Dragon (KMD)
+    PayCost ShuffleFromWaitingRoom 2 HasTrait Dragon
     {
         TargetLocation OpponentCenterStage
         NarrowTargets CanBeChosen
@@ -1206,7 +1206,7 @@ Auto: OnPlay
         LosePower 1000
     }
 }
-Text Auto:[Return 2 «Dragon (KMD)» characters from your waiting room to your deck, shuffle your deck] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a character in your opponent's center stage, and that character gets -1000 power until end of turn.
+Text Auto:[Return 2 «Dragon» characters from your waiting room to your deck, shuffle your deck] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a character in your opponent's center stage, and that character gets -1000 power until end of turn.
 Auto: OnPlay
 {
     PayCost Discard 1 Any
@@ -1302,11 +1302,11 @@ Effect:
 {
     Mill 4
     SetXValue TotalSoulTriggers
-    SearchWaitingRoom HasTrait Dragon (KMD) && Compare ThatCardsLevel X OrLess
+    SearchWaitingRoom HasTrait Dragon && Compare ThatCardsLevel X OrLess
     TargetSelf
     MoveCard Memory
 }
-Text Put the top 4 cards of your deck in the waiting room, choose up to 1 level X or less «Dragon (KMD)» character in your Waiting Room and return it to your hand. X equals tottal of Soul trigger icons among those cards. Put this card into memory.
+Text Put the top 4 cards of your deck in the waiting room, choose up to 1 level X or less «Dragon» character in your Waiting Room and return it to your hand. X equals tottal of Soul trigger icons among those cards. Put this card into memory.
 Auto: StartAttackPhase
 {
     PayCost 1 FlipCardsFaceDown 1 Memory Other && NameEquals Raving Bassist, Roche &&& FlipSelfFaceDown
@@ -1478,7 +1478,7 @@ Level 1
 Cost 0
 Power 2000
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Balance
 *PowerOnMyTurn(3000)
 Auto: OnPlay
@@ -1637,7 +1637,7 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 God
-Trait2 Dragon (KMD)
+Trait2 Dragon
 Auto: OnPlay
 {
     TargetTop Deck 1
@@ -1658,7 +1658,7 @@ Level 1
 Cost 0
 Power 500
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Attacker
 Trait3 Healer
 Auto: OnPlay
@@ -1716,7 +1716,7 @@ Level 1
 Cost 0
 Power 4000
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Attacker
 Cont: GiveSelf
 {
@@ -1780,7 +1780,7 @@ Cost 2
 Trigger Soul
 Power 9500
 Soul 2
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Demon
 Cont: InHand
 {
@@ -1957,7 +1957,7 @@ Trigger Soul
 Power 2500
 Soul 1
 Trait1 God
-Trait2 Dragon (KMD)
+Trait2 Dragon
 Trait3 Physical
 *MemoryBackup
 Backup 3000
@@ -2083,7 +2083,7 @@ Trigger Soul
 Power 3000
 Soul 1
 Trait1 Healer
-Trait2 Dragon (KMD)
+Trait2 Dragon
 Combo Floating Draconic Songstress on Euphonium, Mariel
 Cont: GiveSelf
 {
@@ -2142,7 +2142,7 @@ Level 0
 Cost 0
 Power 500
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Physical
 Trait3 Machine
 Auto: OnPlay
@@ -2170,7 +2170,7 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 God
-Trait2 Dragon (KMD)
+Trait2 Dragon
 Cont: GiveSelf
 {
     If MyTurn && LocationContainsOrLess Stock 3 Any
@@ -2290,7 +2290,7 @@ Cost 0
 Power 500
 Soul 1
 Trait1 God
-Trait2 Dragon (KMD)
+Trait2 Dragon
 Auto: OnPlay
 {
     TargetLocation Clock
@@ -2355,16 +2355,16 @@ Level 0
 Cost 0
 Power 1500
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Machine
 Auto: OnReversed
 {
     PayCost 1 Discard 1 Any SendSelf Memory
     {
-        SearchDeck HasTrait Dragon (KMD)
+        SearchDeck HasTrait Dragon
     }
 }
-Text Auto:[(1) Put 1 card from your hand to waiting room, put this card into memory] When this card becomes reversed in battle, you may pay cost. If you do, search your deck for up to 1 «Dragon (KMD)» character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto:[(1) Put 1 card from your hand to waiting room, put this card into memory] When this card becomes reversed in battle, you may pay cost. If you do, search your deck for up to 1 «Dragon» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: PAD/S105-087
@@ -2396,19 +2396,19 @@ Level 1
 Cost 0
 Power 4500
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Demon
 Trait3 Attacker
 Auto: OnAttack
 {
     TargetLocation Stage
-    NarrowTargets IsColor Blue || HasTrait Dragon (KMD)
-    SetXToNumberOfCharacters IsColor Blue || HasTrait Dragon (KMD)
+    NarrowTargets IsColor Blue || HasTrait Dragon
+    SetXToNumberOfCharacters IsColor Blue || HasTrait Dragon
     MultiplyXValue 500
     ChooseCharacterFromTargets Choose a charcter to give +X power.
     GainPower X
 }
-Text Auto:When this card attacks, choose 1 of your other BLUE or «Dragon (KMD)» characters, and that character gets +X power until end of turn. X equals 500 times the number of your other BLUE or «Dragon (KMD)» characters.
+Text Auto:When this card attacks, choose 1 of your other BLUE or «Dragon» characters, and that character gets +X power until end of turn. X equals 500 times the number of your other BLUE or «Dragon» characters.
 Auto: OnAttack
 {
     TargetLocation Stage
@@ -2436,7 +2436,7 @@ Cost 1
 Trigger Soul
 Power 4500
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Auto: OnPlay
 {
     TargetTop Deck 1
@@ -2459,7 +2459,7 @@ Cost 1
 Trigger Soul
 Power 1500
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Auto: OnUseThisCardsBackup
 {
     SetXToNumberOfCharacters InLocation OpponentStage
@@ -2530,7 +2530,7 @@ Level 1
 Cost 0
 Power 3000
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Demon
 Cont: GiveSelf
 {
@@ -2707,7 +2707,7 @@ Level 0
 Cost 0
 Power 500
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 *RestGivePower(2500,Any)
 EndCard
 
@@ -2718,7 +2718,7 @@ Level 0
 Cost 0
 Power 1500
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Machine
 Trait3 God
 Auto: OnAttack
@@ -2748,7 +2748,7 @@ Level 0
 Cost 0
 Power 1500
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Attacker
 Auto: OnPlay
 {
@@ -2823,7 +2823,7 @@ Cost 1
 Trigger Soul
 Power 1000
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Demon
 Auto: OnUseThisCardsBackup
 {
@@ -2914,7 +2914,7 @@ Level 0
 Cost 0
 Power 500
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Demon
 Cont: GiveAll
 {
@@ -2950,7 +2950,7 @@ Cost 0
 Power 500
 Soul 1
 Trait1 God
-Trait2 Dragon (KMD)
+Trait2 Dragon
 Auto: OnTriggerCheckClimax
 {
     *GiveCharacterPower(1000,Any)
@@ -2967,7 +2967,7 @@ Cost 0
 Power 3000
 Soul 1
 Trait1 Healer
-Trait2 Dragon (KMD)
+Trait2 Dragon
 Cont: GiveFacing
 {
     GainEffect
@@ -2997,7 +2997,7 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Attacker
-Trait2 Dragon (KMD)
+Trait2 Dragon
 *OnPlayGainPower(4500)
 EndCard
 
@@ -3008,7 +3008,7 @@ Level 1
 Cost 0
 Power 5500
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 EndCard
 
 Character: PAD/S105-T16
@@ -3051,7 +3051,7 @@ Cost 1
 Trigger Soul
 Power 5000
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Demon
 Auto: OnAttack
 {
@@ -3164,7 +3164,7 @@ Level 0
 Cost 0
 Power 1500
 Soul 1
-Trait1 Dragon (KMD)
+Trait1 Dragon
 Trait2 Stamina
 Auto: OnPlay
 {
@@ -3301,7 +3301,7 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 God
-Trait2 Dragon (KMD)
+Trait2 Dragon
 Auto: OnPlay
 {
     TargetTop Deck 1
