@@ -104,9 +104,16 @@ Trait2 Virtual Singer
 Trait3 Wonderlands x Showtime
 Auto: StartClimaxPhase
 {
-    OpponentPay 2
+    If LocationContains OpponentStock 2 Any
     {
-        GainSpecialEffect CannotFrontalAttack
+        OpponentQuestion Pay 2 stock to give that character the effect ?
+        If Yes
+        {
+            TargetTop OpponentStock 2
+            MoveCard WaitingRoom
+            TargetSelf
+            GainSpecialEffect CannotFrontalAttack
+        }
     }
 }
 Text Auto:At the beginning of your climax phase, your opponent may put the top 2 cards of their stock in the waiting room. If they do, this card cannot frontal attack until end of turn.
@@ -492,7 +499,7 @@ Auto: OnUseEvent
 {
     GainPower 2000
 }
-TimesPerTurn
+TimesPerTurn 1
 Quick
 Text Auto:This ability activates up to once per turn. When you play an event, this card gets +2000 power until end of turn.
 EndCard
@@ -709,7 +716,7 @@ Cont: GiveSelf
     }
 }
 Text Cont:If your opponent has 3 or fewer characters, this card gets +1000 power.
-*MoveOtherToBackstageOnReverse(Music)
+*MoveOtherWithTraitToBackstageOnReverse(Music)
 EndCard
 
 Character: PJS/S91-035
@@ -912,7 +919,7 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 More More Jump!
-*OnPlayGivePower(1000)
+*OnPlayGivePower(1000,Any)
 Act: 1 SendSelf Memory
 {
     *Check4Add1(MORE MORE JUMP!)
@@ -1013,6 +1020,9 @@ Trait2 More More Jump!
 Cont: GiveSelf
 {
     If StageContains 1 Other && Compare ThatCardsLevel 3 OrMore
+    {
+        GainPower 4000
+    }
 }
 Text Cont:If you have another level 3 or higher character, this card gets +4000 power.
 *GainPowerWithEnoughCharacters(3000,2,Music)
@@ -1411,7 +1421,7 @@ Trait1 Music
 Trait2 Virtual Singer
 Trait3 Vivid BAD SQUAD
 *500Assist
-*CheckTopAddDiscard(Music)
+*OnPlayCheckTopAddDiscard(Music)
 EndCard
 
 Character: PJS/S91-069
@@ -1531,7 +1541,7 @@ Auto: OnPlay|OnPlacedOnStageFromWaitingRoom
     SearchLocationForTargets WaitingRoom 0 1 Any
     Marker_FaceUp
 }
-Text Auto:When this card is placed from hand or waiting room to the stage, you may choose a card in your waiting room and put it face-up underneath this card as marker.
+Text Auto:When this card is placed on the stage from your hand or waiting room, you may choose a card in your waiting room and put it face-up underneath this card as marker.
 EndCard
 
 Character: PJS/S91-073
@@ -2580,7 +2590,7 @@ EndCard
 
 Climax: PJS/S91-T15
 Name Leo/need
-*DrawClimax
+*BookClimax
 EndCard
 
 Character: PJS/S91-T16
@@ -2855,12 +2865,10 @@ Effect:
     {
         Auto: OnSentFromStageToWaitingRoom
         {
-            RememberSlot
             Question_Obvious Put this card back on stage ?
             If Yes
             {
-                PlaceOnRememberedSlot
-                RestSelf
+                Revive
             }
         }
     }
@@ -3477,7 +3485,7 @@ Trait1 Music
 Trait2 25-ji, Nightcord de.
 Auto: OnTriggerCheckClimax
 {
-    *GiveCharacterPower(2000)
+    *GiveCharacterPower(2000,Any)
 }
 Text Auto:When your character's trigger check reveals a climax card, choose 1 of your characters, and that character gets +2000 power until end of turn.
 Auto: OnOtherSentFromStageToWaitingRoom
@@ -3719,4 +3727,689 @@ EndCard
 Climax: PJS/S91-T75
 Name 25-ji, Nightcord de.
 *BookClimax
+EndCard
+
+Character: PJS/S91-P01
+Name Unveiling to Everyone, Hatsune Miku
+Color G
+Level 1
+Cost 0
+Power 6000
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 MORE MORE JUMP!
+Cont: GiveFacing
+{
+    GainSoul 2
+} 
+Text Cont:The character in front of this card gets +2 souls.
+Auto: OnReverseOpponent
+{
+    DrawCard
+    Discard 1 Any
+}
+Text Auto:When this card's battle opponent becomes reverse, draw 1 card and put 1 card from your hand into waiting room.
+EndCard
+
+Character: PJS/S91-P02
+Name Smile of the Strong, Hatsune Miku
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 Vivid BAD SQUAD
+*PowerOnMyTurn(1000)
+Auto: OnPlay
+{
+    Peek OpponentDeck 2
+    EndPeek
+} 
+Text Auto:When this card is placed on the stage from your hand, look at up to the top 2 cards of your opponent's deck and put them back in the same order.
+EndCard
+
+Climax: PJS/S91-P03
+Name Project Sekai COLORFUL LIVE 1st -Link-
+*BookClimax
+EndCard
+
+Character: PJS/S91-P04
+Name Kanade Tomos Sora/Rebirth
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 25-ji, Nightcord de.
+Auto: OnPlay
+{
+    If LocationContainsOrLess Memory 2 Any &&& StageContains 2 Other && HasTrait 25-ji, Nightcord de.
+    {
+        SearchLocationForTargets WaitingRoom 0 1 Compare ThatCardsLevel 0 OrLess && HasTrait 25-ji, Nightcord de.
+        MoveCard Memory
+    }
+}
+Text Auto:When this card is placed on the stage from your hand, if you have 2 or less cards in memory and the number of other «25-ji, Nightcord de.» you have is 2 or more, you may choose a level 0 or less «25-ji, Nightcord de.» character and put that card into memory.
+EndCard
+
+Character: PJS/S91-P05
+Name From Tokyo/Ryusei no Pulse
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Leo/need
+Cont: GiveSelf
+{
+    If MyTurn && StageContains 1 Other && HasTrait Leo/need
+    {
+        GainPower 1500
+    }
+} 
+Text Cont:During your turn, if you have another «Leo/need» character, this card gets +1500 power.
+Auto: OnPlay
+{
+    PayCost Discard 1 HasTrait Leo/need
+    {
+        SearchDeck NameEquals The Ever Shining Social Butterfly, Saki Tenma
+    }
+}
+Text Auto:[Put 1 «Leo/need» character from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "The Ever Shining Social Butterfly, Saki Tenma", reveal it, add it to your hand and shuffle your deck.
+EndCard
+
+Character: PJS/S91-P06
+Name Beat Eater/Awake Now
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Vivid BAD SQUAD
+Auto: OnPlay
+{
+    RevealUpTo Deck 3
+    ChooseCardsFromTargets 0 1 With Auto:BOND || With Auto: BOND
+    If HasTarget
+    {
+        Reveal
+        MoveCard Hand
+        Discard 1 Any
+    }
+    PutTheRestIntoTheWaitingRoom
+}
+Text Auto:When this card is placed on the stage from your hand, look at up to the top 3 cards of your deck, choose up to 1 character with BOND, reveal it and add it to your hand. If you added a card to your hand, put a card from your hand into waiting room.
+Auto: StartClimaxPhase
+{
+    If StageContains 2 Other && HasTrait Vivid BAD SQUAD
+    {
+        *Scry
+    }
+}
+Text Auto:At the begining of you climax phase, if the number of other «Vivid BAD SQUAD» characters you have is 2 or more, look at the top card of your deck and put it either on top of your deck or into waiting room
+EndCard
+
+Character: PJS/S91-P07
+Name Aino Material/Ice Drop
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 MORE MORE JUMP!
+*EarlyPlay2OrLessClimax
+Auto: OnPlay
+{
+    If StageContains 2 Other && HasTrait MORE MORE JUMP!
+    {
+        SearchLocationForTargets Clock 0 1 IsCharacter
+        MoveCard Memory
+    }
+} 
+Text Auto:When this card is placed on the stage from your hand, if the number of other «MORE MORE JUMP!» characters you have is 2 or more, you may choose 1 character in your clock and put it into memory.
+EndCard
+
+Character: PJS/S91-P08
+Name Tondemo Wonders/Glory Steady Go!
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Wonderlands x Showtime
+Auto: OnReversed
+{
+    If LocationContainsOrLess Memory 2 Any
+    {
+        PayCost 1 Clock SendSelf Memory
+        {
+            RevealUpTo Deck 2
+            ChooseCardsFromTargets 0 2 HasTrait Wonderlands x Showtime || ColorIs Yellow && IsEvent
+            Reveal
+            MoveCard Hand
+            PutTheRestIntoTheWaitingRoom
+        }
+    }
+}
+Text Auto:[(1) Put the top card of your deck into clock, put this card into memory] When this card becomes reverse in battle, if you have 2 or less cards in memory, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 2 «Wonderlands x Showtime» characters or Yellow events among them, add them to your hand and put the rest into waiting room.
+EndCard
+
+Character: PJS/S91-P09
+Name Mirai/Flyer!
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Vivid BAD SQUAD
+Auto: OnPlay
+{
+    Question Put the top 3 cards of your deck into waiting room ?
+    If Yes
+    {
+        Mill 3
+    }
+}
+Text Auto:When this card is placed on the stage from your hand, you may put the top 3 cards of your deck into waiting room.
+Auto: OnPlay
+{
+    PayCost Discard 1 Any
+    {
+        SearchWaitingRoom HasTrait Music
+        *GiveOtherCharacterPower(1000,Music)
+    }
+}
+Text Auto:[(1) Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 1 «Music» character in your waiting room, return it to your hand, choose 1 of your other «Music» charcter and that character gets +1000 power until end of turn.
+EndCard
+
+Character: PJS/S91-P10
+Name Lower/Trichologe
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 25-ji, Nightcord de.
+*Healer
+Auto: OnAttack
+{
+    PayCost 1 Discard 1 Any
+    {
+        GainPower 2000
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                *OptionalBurn(1)
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent.
+        }
+    }
+}
+Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, this card gets +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent." 
+EndCard
+
+Character: PJS/S91-P11
+Name Showtime Ruler/Nikkori ^^ Research Team Theme
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Wonderlands x Showtime
+Auto: StartClimaxPhase
+{
+    *GiveCharacterPower(1000,Music)
+}
+Text Auto:At the begining of your climax phase, choose 1 of your «Music» charcter and that character gets +1000 power until end of turn.
+Auto: OnPlay
+{
+    PayCost Rest 2 Any
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give the effect.
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                *OptionalBlindStock
+            }
+            Text Auto:When this card's battle opponent becomes reverse, you may put the top card of your deck into stock.
+        }
+    }
+}
+Text Auto:[Rest 2 or your standing characters] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your character and that character gets the following effect until end of turn. "Auto:When this card's battle opponent becomes reverse, you may put the top card of your deck into stock."
+EndCard
+
+Character: PJS/S91-P12
+Name World Wide Wonder/Meta Mori Ribbon
+Color G
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 MORE MORE JUMP!
+*ClimaxExchange 
+EndCard
+
+Character: PJS/S91-P13
+Name STAGE OF SEKAI/Peaky Peaky
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10500
+Soul 2
+Trait1 Music
+Trait2 Leo/need
+Auto: OnPlay
+{
+	*PlayCharacterFromHand(Compare ThatCardsLevel MyLevel OrLess)
+	GainPower 2000
+}
+Text Auto:When this card is placed on the stage from your hand, choose up to 1 character in your hand whose level is equal to or lower than your level and put it in any position on the stage, and this card gets +2000 power until end of turn.
+Auto: OnReverseOpponent
+{
+    PayCost 3 Discard 1 Any
+    {
+        Burn 2
+        *ScryToBottom
+    }
+}
+Text Auto:[(3) Put 1 card from your hand into waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 2 damage to your opponent, look at the top card of your deck and put it either on top or bottom of your deck.
+EndCard
+
+Character: PJS/S91-P14
+Name Nomad/Bug
+Color B
+Level 1
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 25-ji, Nightcord de.
+*BackupBonus1000(Music)
+Backup 1000
+EndCard
+
+Character: PJS/S91-P15
+Name Moonlight/Machi
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Vivid BAD SQUAD
+*OnPlayMax4Memory
+*OnAttackGivePowerForEachOther(500,Music)
+EndCard
+
+Character: PJS/S91-P16
+Name Custom Made/Tera Tera
+Color R
+Level 1
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Leo/need
+Cont: GiveAll
+{
+    If MyTurn && HasTrait Music && Other
+    {
+        GainPower 1000
+    }
+}
+Text Cont:During your turn, all your other «Music» characters get +1000 power.
+Cont: GiveSelf
+{
+    TargetLocation Marker
+    SaveTargets
+    NarrowTargets IsColor Yellow && Not FaceDown
+    If HasTarget
+    {
+        TargetSelf
+        GainColor Yellow
+    }
+    LoadTargets
+    NarrowTargets IsColor Green && Not FaceDown
+    If HasTarget
+    {
+        TargetSelf
+        GainColor Green
+    }
+    LoadTargets
+    NarrowTargets IsColor Red && Not FaceDown
+    If HasTarget
+    {
+        TargetSelf
+        GainColor Red
+    }
+    LoadTargets
+    NarrowTargets IsColor Blue && Not FaceDown
+    If HasTarget
+    {
+        TargetSelf
+        GainColor Blue
+    }
+    LoadTargets
+}
+Text Cont:This gets all colors of face-up markers underneath this card.
+Auto: OnPlay|OnPlacedOnStageFromWaitingRoom
+{
+    SearchLocationForTargets WaitingRoom 0 1 Any
+    Marker_FaceUp
+}
+Text Auto:When this card is placed on the stage from your hand or waiting room, you may choose a card in your waiting room and put it face-up underneath this card as marker.
+EndCard
+
+Character: PJS/S91-P17
+Name If/Parasol Cider
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 MORE MORE JUMP!
+*OnPlayGivePower(1500,Music)
+*OnAttackGivePower(1500,Music)
+EndCard
+
+Character: PJS/S91-P18
+Name 88☆彡/Starry Sky Melody
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Wonderlands x Showtime
+Auto: OnAttack
+{
+    TargetLocation Stage
+    NarrowTargets Other && HasTrait Music
+    ChooseCharacterFromTargets Choose a character to give +1500 power and the effect.
+    GainPower 1500
+    GainEffect
+    {
+        *HandEncore
+    }
+}
+Text Auto:When this card attacks, choose 1 of your other «Music» character and that character gets +1500 power and the following ability for the turn. "Auto:ENCORE [Put a character from your hand into waiting room]"
+EndCard
+
+Climax: PJS/S91-P19
+Name Project Sekai Creators Festa 2023
+*BookClimax
+EndCard
+
+Character: PJS/S91-P20
+Name Fan the Hollow/Suspended Death
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Music
+Trait2 Vivid BAD SQUAD
+Cont: GiveSelf
+{
+    If StageContains 2 Other && HasTrait Music
+    {
+        GainPower 1500
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                TargetTop Deck 2
+                If Compare TargetCount 2 OrMore
+                {
+                    Reorder
+                }
+                Else
+                {
+                    View
+                }
+            }
+            Text Auto:When this card's battle opponent becomes reverse, look at up to the top 2 cards of your deck and put them on top of your deck in any order.
+        }
+    }
+}
+Text Cont:If the number of other «Music» characters you have is 2 or more, this card gets +1500 power and the following ability. "Auto:When this card's battle opponent becomes reverse, look at up to the top 2 cards of your deck and put them on top of your deck in any order."
+*Healer
+EndCard
+
+Character: PJS/S91-P21
+Name Voices/the WALL
+Color G
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Music
+Trait2 Leo/need
+*CannotSideAttack
+*DropSearch(Music)
+EndCard
+
+Character: PJS/S91-P22
+Name DREAM PLACE/Float Planner
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Music
+Trait2 MORE MORE JUMP!
+Auto: OnPlay
+{
+    *OptionalHeal
+    TargetSelf
+    GainPower 1500
+}
+Text Auto:When this card id placed on the stage from your hand, you may put the top card of your clock into waiting room and this card gets +1500 power until end of turn.
+Auto: OnAttack
+{
+    If StageContains 1 Other && HasTrait Music
+    {
+        PayCost 1 Discard 1 Any
+        {
+            *CheckTopXOfOpponentDeckSendAny(2)
+        }
+    }
+}
+Text Auto:[(1) put 1 card from your hand into waiting room] When this card attacks, you may pay the cost. If you do, look at up to the top 2 cards of your opponent's deck, choose up to 2 cards among them, place them on top of your opponent's deck in any order and put the rest into waiting room.
+EndCard
+
+Character: PJS/S91-P23
+Name Give Me Your Night/It's Me
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 25-ji, Nightcord de.
+Auto: OnTriggerCheckClimax
+{
+    *GiveCharacterPower(2000,Any)
+}
+Text Auto:When your character's trigger check reveals a climax card, choose 1 of your characters, and that character gets +2000 power until end of turn.
+Auto: OnOtherSentFromStageToWaitingRoom
+{
+    IfOther HasTrait Music
+    {
+        If InLocation Backstage
+        {
+            PayCost 1 SendSelf WaitingRoom
+            {
+                TargetOther
+                Revive
+                GainPower 3000
+                RememberTargets
+                If MyTurn
+                {
+                    ScheduleEffect StartOpponentDrawPhase
+                    {
+                        Effect:
+                        {
+                            TargetRemembered
+                            GainPower 3000
+                        }
+                    }
+                }
+                Else
+                {
+                    ScheduleEffect StartDrawPhase
+                    {
+                        Effect:
+                        {
+                            TargetRemembered
+                            GainPower 3000
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+Text Auto:[(1) Put this card in your waiting room] When your other «Music» character is placed from the stage to the waiting room, if this card is in the backstage, you may pay the cost. If you do, put that character Rested in the position it was in, and that character gets +3000 power until the end of the next turn.
+EndCard
+
+Character: PJS/S91-P24
+Name What Kind of Ending Do You Want?/Starry Sky Orchestra
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 1000
+Soul 2
+Trait1 Music
+Trait2 Wonderlands x Showtime
+Auto: OnPlay
+{
+    *OptionalDraw
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            If InBattle
+            {
+                GainSpecialEffect CannotUseEvents
+                GainSpecialEffect CannotUseBackup
+            }
+        }
+        Text Cont: During battles involving this card, you cannot play events or BACKUP from hand.
+    }
+}
+Text Auto:When this card is placed on the stage from your hand, draw up to 1 card, choose 1 of your opponent's characters, and that character gets the following ability until end of turn. "Cont: During battles involving this card, you cannot play events or BACKUP from hand."
+Auto: OnPlay
+{
+    If StageContains 4 Other && HasTrait Music
+    {
+        *PutCardFromWaitingRoomIntoStock(HasTrait Music)
+    }
+}
+Text Auto:When this card is placed on the stage from your hand, if the number of other «Music» characters you have is 4 or more, you may choose a «Music» character in your waiting room and put it in your stock.
+EndCard
+
+Character: PJS/S91-P25
+Name Sheep Ga Ippiki/Descent
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Vivid BAD SQUAD
+*DropSearch(Music)
+Auto: OnAttack
+{
+    *Scry
+}
+Text Auto:When this card attacks, look at the top card of your deck and put it either on top of your deck or into waiting room.
+EndCard
+
+Character: PJS/S91-P26
+Name Samsa/Kitty
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 25-ji, Nightcord de.
+*ClimaxExchange
+EndCard
+
+Character: PJS/S91-P27
+Name Flyway/Aioi
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Leo/need
+*RedLevel0Bomb
+Act: 1 SendSelf WaitingRoom
+{
+    *Check4Add1(Music)
+}
+Text Act:[(1) Put this card into waiting room] Look at up to 4 cards from the top of your deck, search for up to 1 «Music» character, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: PJS/S91-P28
+Name I am, we are/Momoiro no Kagi
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 MORE MORE JUMP!
+*OnPlayTradeClimaxForCharacter(Music) 
+Auto: OnDamageCanceled
+{
+    Question Put this card into stock ?
+    If Yes
+    {
+        MoveCard Stock
+    }
+}
+Text Auto:When this card's damage is canceled, you may put this card into your stock.
+EndCard
+
+Character: PJS/S91-P29
+Name Mr. Showtime/Hakoniwano Coral
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Wonderlands x Showtime
+*PowerOnMyTurn(1000)
+*FreeRunner
 EndCard
