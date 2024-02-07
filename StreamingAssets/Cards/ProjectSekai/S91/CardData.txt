@@ -1970,6 +1970,7 @@ Auto: StartClimaxPhase
                                     Else 
                                     {
                                         IfTarget HasTrigger Shot
+                                        {
                                             SearchWaitingRoom HasTrigger Shot && IsClimax
                                         }
                                         Else 
