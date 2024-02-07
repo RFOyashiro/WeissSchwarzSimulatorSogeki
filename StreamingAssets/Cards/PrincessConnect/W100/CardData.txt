@@ -1558,9 +1558,8 @@ Soul 1
 Trait1 Landosol
 Act: 3 SendSelf WaitingRoom
 {
-    RememberSlot
     SearchLocationForTargets WaitingRoom 1 1 HasTrait Landosol && Compare ThatCardsLevel MyLevel OrLess
-    PlaceOnRememberedSlot
+    Change
 }
 Text Act:[(3) Put this card in the waiting room] Choose a «Landosol» character in your waiting room whose level is equal to or lower than your level and put it in the position this card was in.
 *Act1RestSelfSalvageBrainstorm(Landosol)
