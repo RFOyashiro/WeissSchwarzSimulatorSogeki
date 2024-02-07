@@ -79,6 +79,7 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
+Trait3 Wonderlands x Showtime
 *GainPowerWithEnoughCharacters(2000,2,Music)
 Auto: OnThisTriggerCheck
 {
@@ -100,7 +101,7 @@ Power 4000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
+Trait3 Wonderlands x Showtime
 Auto: StartClimaxPhase
 {
     OpponentPay 2
@@ -142,6 +143,7 @@ Power 5000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
+Trait3 Wonderlands x Showtime
 *GlobalPower(1000,Music)
 Auto: OnTriggerCheckClimax
 {
@@ -166,7 +168,7 @@ Power 7000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
+Trait3 Wonderlands x Showtime
 Auto: OnAttack
 {
     TargetFacing
@@ -271,6 +273,7 @@ Power 3500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
+Trait3 Wonderlands x Showtime
 *GainPowerForEachOther(500,Music)
 *GainPowerWhenAttackingLevel2(6000)
 EndCard
@@ -431,6 +434,7 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
+Trait3 Wonderlands x Showtime
 *OnPlayScryToBottom
 Auto: OnAttack
 {
@@ -653,6 +657,7 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
+Trait3 MORE MORE JUMP!
 Auto: OnTriggerCheckClimax
 {
     IfOther HasTrigger Bar
@@ -675,6 +680,7 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
+Trait3 MORE MORE JUMP!
 *LevelAssist
 Act: RestSelf
 {
@@ -829,6 +835,7 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
+Trait3 MORE MORE JUMP!
 *OnAttackGivePowerForEachOther(500,Music)
 Auto: OnAttack
 {
@@ -922,6 +929,7 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
+Trait3 MORE MORE JUMP!
 *OnPlayGivePower(1500,Music)
 *OnAttackGivePower(1500,Music)
 EndCard
@@ -1043,7 +1051,7 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Music
-Trait2 Vivid Bad Squad
+Trait2 Vivid BAD SQUAD
 *GainPowerWithEnoughCharacters(1500,1,Music)
 Auto: StartOpponentAttackPhase
 {
@@ -1075,6 +1083,7 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
+Trait3 Vivid BAD SQUAD
 Auto: OnOtherOpponentReversed
 {
     *GiveCharacterPower(500,Music)
@@ -1092,7 +1101,7 @@ Trigger Soul
 Power 9000
 Soul 2
 Trait1 Music
-Trait2 Vivid Bad Squad
+Trait2 Vivid BAD SQUAD
 Combo First Breath in a Sekai
 Cont: GiveSelf
 {
@@ -1128,7 +1137,7 @@ Cost 0
 Power 3500
 Soul 1
 Trait1 Music
-Trait2 Vivid Bad Squad
+Trait2 Vivid BAD SQUAD
 Combo A Broken Bond
 Auto: OnSpecificClimaxPlay A Broken Bond
 {
@@ -1184,6 +1193,7 @@ Power 5000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
+Trait3 Vivid BAD SQUAD
 Cont: InHand
 {
     If LocationContains OpponentWaitingRoom 5 IsClimax
@@ -1224,7 +1234,7 @@ Trigger Soul
 Power 500
 Soul 2
 Trait1 Music
-Trait2 Vivid Bad Squad
+Trait2 Vivid BAD SQUAD
 *2000Assist
 *StockHealer
 Act: RestSelf
@@ -1255,7 +1265,7 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Music
-Trait2 Vivid Bad Squad
+Trait2 Vivid BAD SQUAD
 *BondDiscard(A Timid Animal\, Kohane Azusawa)
 *Act1Rest2SalvageBrainstorm(Any)
 EndCard
@@ -1295,7 +1305,7 @@ Cost 0
 Power 1000
 Soul 1
 Trait1 Music
-Trait2 Vivid Bad Squad
+Trait2 Vivid BAD SQUAD
 Auto: OnOtherFrontalAttacked
 {
     IfOther HasTrait Music
@@ -1319,7 +1329,7 @@ Cost 0
 Power 3500
 Soul 1
 Trait1 Music
-Trait2 Vivid Bad Squad
+Trait2 Vivid BAD SQUAD
 Auto: StartClimaxPhase
 {
     TargetLocation Stage
@@ -1345,6 +1355,7 @@ Power 5000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
+Trait3 Vivid BAD SQUAD
 Auto: OnClimaxPlay
 {
     IfOther HasTrigger Standby
@@ -1369,7 +1380,7 @@ Trigger Soul
 Power 7000
 Soul 1
 Trait1 Music
-Trait2 Vivid Bad Squad
+Trait2 Vivid BAD SQUAD
 *GainPowerWhenAttackingLevel3(6000)
 *EncoreStepIfNoneRestedPayToRest
 EndCard
@@ -1384,6 +1395,7 @@ Power 6000
 Soul 2
 Trait1 Music
 Trait2 Virtual Singer
+Trait3 Vivid BAD SQUAD
 *GainPowerForEachOther(1000,Music)
 *HandEncore
 EndCard
@@ -1397,6 +1409,7 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
+Trait3 Vivid BAD SQUAD
 *500Assist
 *CheckTopAddDiscard(Music)
 EndCard
@@ -1409,7 +1422,7 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Music
-Trait2 Vivid Bad Squad
+Trait2 Vivid BAD SQUAD
 Auto: OnClimaxPlay
 {
     PayCost SendSelf Hand
@@ -1431,7 +1444,7 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Music
-Trait2 Vivid Bad Squad
+Trait2 Vivid BAD SQUAD
 Combo Top-Notch Service!
 Auto: EndOfMyTurn
 {
@@ -1457,7 +1470,7 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Music
-Trait2 Vivid Bad Squad
+Trait2 Vivid BAD SQUAD
 *OnPlayScry
 *GainPowerWhenOtherAttacks(1500,Music)
 EndCard
@@ -1530,6 +1543,7 @@ Power 5000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
+Trait3 Vivid BAD SQUAD
 *OnPlayMax4Memory
 *OnAttackGivePowerForEachOther(500,Music)
 EndCard
@@ -1543,7 +1557,7 @@ Trigger Soul
 Power 7500
 Soul 2
 Trait1 Music
-Trait2 Vivid Bad Squad
+Trait2 Vivid BAD SQUAD
 Combo Pent-Up Frustration
 *GainPowerWithEnoughCharacters(2000,2,Music)
 Auto: OnAttack
@@ -1707,7 +1721,7 @@ Power 3500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
+Trait3 Leo/need
 Cont: InHand
 {
     GainSpecialEffect IgnoreColorRequirement
@@ -1771,7 +1785,7 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
+Trait3 Leo/need
 Auto: OnPlay
 {
     If StageContains 1 Other && HasTrait Music
@@ -1852,6 +1866,7 @@ Power 10500
 Soul 2
 Trait1 Music
 Trait2 Virtual Singer
+Trait3 25-ji, Nightcord de.
 Combo Severed Strings
 Auto: OnPlay
 {
@@ -2069,7 +2084,7 @@ Power 4000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
+Trait3 Leo/need
 Cont: GiveSelf
 {
     If Compare ColorsOnStage 4 OrMore
@@ -2216,7 +2231,7 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
+Trait3 Leo/need
 *GlobalPower(500,Music)
 Act: RestSelf
 {
@@ -2356,7 +2371,6 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 *GiveNamePower(Full of Energy!\, Kagamine Len,1000)
 *Bond1(Full of Energy!\, Kagamine Len)
 EndCard
@@ -2370,7 +2384,6 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 Act: 1
 {
     DrawCard
@@ -2389,7 +2402,6 @@ Power 5500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 EndCard
 
 Character: PJS/S91-T06
@@ -2421,7 +2433,6 @@ Power 6000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 Cont: GiveSelf
 {
     SetXToNumberOfCharacters HasTrait Music && InLocation Backstage
@@ -2453,7 +2464,6 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 Cont: GiveSelf
 {
     If LocationContainsOrLess Stock 2 Any
@@ -2473,7 +2483,7 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
+Trait3 Leo/need
 Combo Leo/need
 Auto: OnAttack
 {
@@ -2504,7 +2514,6 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 Backup 2500
 EndCard
 
@@ -2517,7 +2526,7 @@ Power 10000
 Soul 2
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
+Trait3 Leo/need
 *Healer
 Auto: OnPlay
 {
@@ -2583,7 +2592,6 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 *GiveNamePower(Full of Energy!\, Kagamine Len,1000)
 *Bond1(Full of Energy!\, Kagamine Len)
 EndCard
@@ -2597,7 +2605,6 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 Act: 1
 {
     DrawCard
@@ -2616,7 +2623,7 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
+Trait3 MORE MORE JUMP!
 *OnAttackGivePower(1500,Music)
 Auto: StartOpponentAttackPhase
 {
@@ -2642,7 +2649,6 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 Cont: GiveSelf
 {
     If LocationContainsOrLess Stock 2 Any
@@ -2674,7 +2680,7 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
+Trait3 MORE MORE JUMP!
 Combo MORE MORE JUMP!
 Auto: OnAttack
 {
@@ -2705,7 +2711,6 @@ Power 5500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 EndCard
 
 Character: PJS/S91-T23
@@ -2718,7 +2723,6 @@ Power 2000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 *BackupBonus1000(Music)
 Backup 2500
 EndCard
@@ -2754,7 +2758,6 @@ Power 6000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 Cont: GiveSelf
 {
     SetXToNumberOfCharacters HasTrait Music && InLocation Backstage
@@ -2892,7 +2895,7 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
+Trait3 Vivid BAD SQUAD
 *500Assist
 Act: 1 SendSelf WaitingRoom
 {
@@ -2909,7 +2912,7 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Music
-Trait2 Vivid Bad Squad
+Trait2 Vivid BAD SQUAD
 Auto: OnPlay
 {
     Question Put the top 3 card of your deck into waiting room ?
@@ -2939,7 +2942,6 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 Cont: GiveSelf
 {
     If LocationContainsOrLess Stock 2 Any
@@ -2959,7 +2961,7 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
+Trait3 Vivid BAD SQUAD
 Combo Vivid BAD SQUAD
 Auto: OnAttack
 {
@@ -2990,7 +2992,6 @@ Power 5500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 EndCard
 
 Character: PJS/S91-T38
@@ -3001,7 +3002,7 @@ Cost 1
 Power 5500
 Soul 1
 Trait1 Music
-Trait2 Vivid Bad Squad
+Trait2 Vivid BAD SQUAD
 *GainPowerWithEnoughCharacters(2000,2,Music)
 *HandEncore
 EndCard
@@ -3016,7 +3017,6 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 *MemoryBackup
 Backup 3000
 EndCard
@@ -3031,7 +3031,7 @@ Power 5000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
+Trait3 Vivid BAD SQUAD
 *GlobalPower(1000,Music)
 Act: 1 Rest 2 Any
 {
@@ -3051,7 +3051,7 @@ Trigger Soul
 Power 9500
 Soul 2
 Trait1 Music
-Trait2 Vivid Bad Squad
+Trait2 Vivid BAD SQUAD
 Cont: GiveSelf
 {
     If StageContains 2 Other && HasTrait Music
@@ -3088,7 +3088,7 @@ Trigger Soul
 Power 10000
 Soul 2
 Trait1 Music
-Trait2 Vivid Bad Squad
+Trait2 Vivid BAD SQUAD
 Cont: GiveAll
 {
     IfOwner InLocation CenterStage
@@ -3124,7 +3124,6 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 *GiveNamePower(Full of Energy!\, Kagamine Len,1000)
 *Bond1(Full of Energy!\, Kagamine Len)
 EndCard
@@ -3138,7 +3137,6 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 Act: 1
 {
     DrawCard
@@ -3203,7 +3201,6 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 Cont: GiveSelf
 {
     If LocationContainsOrLess Stock 2 Any
@@ -3223,7 +3220,7 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
+Trait3 Wonderlands x Showtime
 Combo Wonderlands x Showtime
 Auto: OnAttack
 {
@@ -3254,7 +3251,6 @@ Power 5500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 EndCard
 
 Character: PJS/S91-T53
@@ -3267,7 +3263,6 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 Auto: OnUseThisCardsBackup
 {
     If AllYourCharacters HasTrait Music
@@ -3289,7 +3284,7 @@ Power 5000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
+Trait3 Wonderlands x Showtime
 *LevelAssist
 Auto: OnPlay
 {
@@ -3312,7 +3307,6 @@ Power 6000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 Cont: GiveSelf
 {
     SetXToNumberOfCharacters HasTrait Music && InLocation Backstage
@@ -3426,7 +3420,6 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 *GiveNamePower(Full of Energy!\, Kagamine Len,1000)
 *Bond1(Full of Energy!\, Kagamine Len)
 EndCard
@@ -3440,7 +3433,6 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 Act: 1
 {
     DrawCard
@@ -3538,7 +3530,6 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 Cont: GiveSelf
 {
     If LocationContainsOrLess Stock 2 Any
@@ -3558,7 +3549,7 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
+Trait3 25-ji, Nightcord de.
 Combo 25-ji, Nightcord de.
 Auto: OnAttack
 {
@@ -3589,7 +3580,7 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
+Trait3 25-ji, Nightcord de.
 *GainPowerWhenOtherAttacks(1000,Music)
 Auto: OnSentFromStageToWaitingRoom
 {
@@ -3610,7 +3601,6 @@ Power 5500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 EndCard
 
 Character: PJS/S91-T69
@@ -3623,7 +3613,6 @@ Power 2000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 Auto: OnUseThisCardsBackup
 {
     *ScryToBottom
@@ -3642,7 +3631,6 @@ Power 6000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 
 Cont: GiveSelf
 {
     SetXToNumberOfCharacters HasTrait Music && InLocation Backstage
