@@ -122,7 +122,7 @@ Auto: OnSentFromStageToWaitingRoom
         SearchWaitingRoom IsClimax
     }
 }
-Text Auto: [(1) Discard a climax] When this card is placed on the stage from your hand, you may pay the cost, choose a climax in your waiting room and return it to your hand.
+Text Auto: [(1) Discard a climax] When this card is placed in your waiting room from stage, you may pay the cost, choose a climax in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W52-005
