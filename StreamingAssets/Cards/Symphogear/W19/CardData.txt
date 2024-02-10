@@ -629,7 +629,7 @@ Power 6500
 Trait1 Noise
 Cont: Alarm
 {
-	SetXValue CardsInStocks
+	SetXValue CardsInStock
 	MultiplyXValue 500
 	TargetLocation Stage
 	NarrowTargets NameEquals Noise (Episode 4)
