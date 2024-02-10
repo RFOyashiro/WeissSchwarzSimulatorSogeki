@@ -19,7 +19,7 @@ Auto: OnAttack
 		GainSoul 1
 	}
 }
-Text Auto:When this card attacks, if the number of other ::Music:: characters you have is 4 or more, choose 1 of your characters, and that character gets +2500 power and +1 soul until end of turn.
+Text Auto: When this card attacks, if the number of other ::Music:: characters you have is 4 or more, choose 1 of your characters, and that character gets +2500 power and +1 soul until end of turn.
 EndCard
 
 Character: SG/W52-002
@@ -38,7 +38,7 @@ Cont: GiveSelf
 		GainPower 1000
 	}
 }
-Text Cont:If all your Characters are ::Music::, this gains +1000 Power.
+Text Cont: If all your Characters are ::Music::, this gains +1000 Power.
 Auto: OnDamageCancel
 {
 	If PlayedThisTurn
@@ -68,7 +68,7 @@ Auto: OnDamageCancel
 	}
 }
 TimesPerTurn 1
-Text Auto:[(1)] This ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when the damage dealt by this card is Cancelled, you may pay the cost. If you do, put the top 4 cards of your deck in the waiting room. If at least 1 card put in the waiting room via this effect is either a character with "Hibiki" or "Miku" in its card name or a YELLOW event, choose 1 of your other ::Music:: characters, and that character gets +1 soul until end of turn. If at least 2 cards put in the waiting room via this effect are either a character with "Hibiki" or "Miku" in its card name or a YELLOW event, deal 1 damage to your opponent. If at least 3 cards put in the waiting room via this effect are either a character with "Hibiki" or "Miku" in its card name or a YELLOW event, deal 1 damage to your opponent.
+Text Auto: [(1)] This ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when the damage dealt by this card is Cancelled, you may pay the cost. If you do, put the top 4 cards of your deck in the waiting room. If at least 1 card put in the waiting room via this effect is either a character with "Hibiki" or "Miku" in its card name or a YELLOW event, choose 1 of your other ::Music:: characters, and that character gets +1 soul until end of turn. If at least 2 cards put in the waiting room via this effect are either a character with "Hibiki" or "Miku" in its card name or a YELLOW event, deal 1 damage to your opponent. If at least 3 cards put in the waiting room via this effect are either a character with "Hibiki" or "Miku" in its card name or a YELLOW event, deal 1 damage to your opponent.
 EndCard
 
 Character: SG/W52-003
@@ -87,7 +87,7 @@ Auto: OnPlay
         SearchWaitingRoom HasTrait Music
     }
 }
-Text Auto:[Discard 1 climax] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a ::Music:: character in your waiting room and return it to your hand.
+Text Auto: [Discard 1 climax] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a ::Music:: character in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W52-004
@@ -114,7 +114,7 @@ Auto: OnPlay
         ShuffleLocation Deck
     }
 }
-Text Auto:[(1) Discard 2 cards] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for a character with "Hibiki" in its card name and a character with "Miku" in its card name, reveal them, put them in your hand, and shuffle your deck.
+Text Auto: [(1) Discard 2 cards] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for a character with "Hibiki" in its card name and a character with "Miku" in its card name, reveal them, put them in your hand, and shuffle your deck.
 Auto: OnSentFromStageToWaitingRoom
 {
     PayCost 1 Discard 1 IsClimax
@@ -161,7 +161,7 @@ Auto: OnCardSentFromWaitingRoomToHand|OnOpponentCardSentFromWaitingRoomToHand
 	}
 }
 Quick
-Text Auto:During attack phase, when your character or your opponent's character is returned from the waiting room to hand, all characters controlled by that player get -3 soul until end of turn.
+Text Auto: During attack phase, when your character or your opponent's character is returned from the waiting room to hand, all characters controlled by that player get -3 soul until end of turn.
 *Act1Rest2SearchBrainstorm(Music)
 EndCard
 
@@ -182,7 +182,7 @@ Auto: OnAttack
         GainPower 2000
     }
 }
-Text Auto:When this card attacks, if the number of other ::Music:: characters you have is 2 or more, this card gets +2000 power until end of turn.
+Text Auto: When this card attacks, if the number of other ::Music:: characters you have is 2 or more, this card gets +2000 power until end of turn.
 Auto: OnReverseOpponent
 {
     If Climax Senkou && Not HasMarker
@@ -193,7 +193,7 @@ Auto: OnReverseOpponent
         MarkerTargetsUnderSavedTarget_FaceDown
     }
 }
-Text Auto:CxCombo When this card's battle opponent becomes reverse, if "Senkou" is in your climax area and there are no markers under this card, you may choose a ::Music:: character in your waiting room and put it face-down underneath this card as marker.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Senkou" is in your climax area and there are no markers under this card, you may choose a ::Music:: character in your waiting room and put it face-down underneath this card as marker.
 Auto: StartEncorePhase
 {
     If Not MyTurn && HasMarker
@@ -209,7 +209,7 @@ Auto: StartEncorePhase
         }
     }
 }
-Text Auto:[Discard 1 card, put a '"Garyuu: Gekisoushouda: power" Hibiki' from your stage and this card in the waiting room] At the beginning of your opponent's Encore Step, if there's a marker underneath this card, you may pay the cost. If you do, choose up to 1 '"Garyuu: Daichishintoukei: Knowledge" Hibiki' and up to 1 "Miku in Casual Outfit" in your waiting room and put them in separate positions on the stage.
+Text Auto: [Discard 1 card, put a '"Garyuu: Gekisoushouda: power" Hibiki' from your stage and this card in the waiting room] At the beginning of your opponent's Encore Step, if there's a marker underneath this card, you may pay the cost. If you do, choose up to 1 '"Garyuu: Daichishintoukei: Knowledge" Hibiki' and up to 1 "Miku in Casual Outfit" in your waiting room and put them in separate positions on the stage.
 EndCard
 
 Character: SG/W52-008
@@ -228,7 +228,7 @@ Cont: GiveAll
         GainPower 500
     }
 }
-Text Cont:All your other characters with either "Hibiki" or "Miku" in its card name get +500 power.
+Text Cont: All your other characters with either "Hibiki" or "Miku" in its card name get +500 power.
 Auto: OnPlay
 {
     Question_Obvious Do you want to mill 3 ?
@@ -237,7 +237,7 @@ Auto: OnPlay
         Mill 3
     }
 }
-Text Auto:When this is placed from hand to the Stage, you may put the top 3 cards of your Library in the Waiting Room.
+Text Auto: When this is placed from hand to the Stage, you may put the top 3 cards of your Library in the Waiting Room.
 Auto: OnSpecificClimaxPlay Garyuu: Moukoshoukyaku
 {
     PayCost 1
@@ -245,7 +245,7 @@ Auto: OnSpecificClimaxPlay Garyuu: Moukoshoukyaku
         SearchWaitingRoom HasTrait Music
     }
 }
-Text Auto:CxCombo [(1)] When "Garyuu: Moukoshoukyaku" is placed on your climax area, you may pay the cost. If you do, choose a <Music> character in your waiting room and return it to your hand.
+Text Auto: CxCombo [(1)] When "Garyuu: Moukoshoukyaku" is placed on your climax area, you may pay the cost. If you do, choose a <Music> character in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W52-009
@@ -289,7 +289,7 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont:MEMORY If "Ignite Module" is in your memory, this card gets the following ability. "Cont: If the number of other <Music> characters you have is 2 or more, this card gets +4500 power. If not, this card gets -1500 power."
+Text Cont: MEMORY If "Ignite Module" is in your memory, this card gets the following ability. "Cont: If the number of other <Music> characters you have is 2 or more, this card gets +4500 power. If not, this card gets -1500 power."
 Auto: OnFrontalAttacked
 {
     TargetSelf
@@ -303,7 +303,7 @@ Auto: OnFrontalAttacked
     }
 }
 Quick
-Text Auto:[(2) Return this card to your hand] When this card is frontal attacked, you may pay the cost. If you do, choose up to 1 '"Magical Words" Hibiki' in your hand and put it in the position this card was in as Defending character.
+Text Auto: [(2) Return this card to your hand] When this card is frontal attacked, you may pay the cost. If you do, choose up to 1 '"Magical Words" Hibiki' in your hand and put it in the position this card was in as Defending character.
 EndCard
 
 Character: SG/W52-011
@@ -322,7 +322,7 @@ Auto: OnPlay
         SearchWaitingRoom NameEquals Gungnir
     }
 }
-Text Auto:[Discard 1 card] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Gungnir" in your waiting room and return it to your hand.
+Text Auto: [Discard 1 card] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Gungnir" in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W52-012
@@ -364,7 +364,7 @@ Act: RestSelf
     ChooseCharacterFromTargets Choose a character to give +1 level.
     GainLevel 1
 }
-Text Act:[Rest this card] Choose 1 of your characters, and that character gets +1 level until end of turn.
+Text Act: [Rest this card] Choose 1 of your characters, and that character gets +1 level until end of turn.
 EndCard
 
 Character: SG/W52-015
@@ -391,7 +391,7 @@ Auto: OnSpecificClimaxPlay Garyuu: Daichishintoukei
         }
     }
 }
-Text Auto:CxCombo [(1)] When "Garyuu: Daichishintoukei" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, choose up to 1 <Music> character in your waiting room and return it to your hand, and all your other characters get +1 soul until end of turn.
+Text Auto: CxCombo [(1)] When "Garyuu: Daichishintoukei" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, choose up to 1 <Music> character in your waiting room and return it to your hand, and all your other characters get +1 soul until end of turn.
 EndCard
 
 Event: SG/W52-016
@@ -473,7 +473,7 @@ Auto: OnReverseOpponent
         GainLevel 1
     }
 }
-Text Auto:CxCombo When this card's battle opponent becomes reverse, if "Rekkuu: Alice" is in your climax area, choose up to 1 character with "Kirika" or "Shirabe" in its card name or 1 "Memorial Service Death" in your waiting room, return it to your hand, choose 1 of your other characters, and that character gets +1 level and +500 power until end of turn.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Rekkuu: Alice" is in your climax area, choose up to 1 character with "Kirika" or "Shirabe" in its card name or 1 "Memorial Service Death" in your waiting room, return it to your hand, choose 1 of your other characters, and that character gets +1 level and +500 power until end of turn.
 EndCard
 
 Character: SG/W52-022
@@ -492,7 +492,7 @@ Auto: OnPlay|PlacedBy "Igalima" Kirika
 {
     *OptionalHeal
 }
-Text Auto:When this card is placed on the stage from your hand or by effect of Auto: ability of your '"Igalima" Kirika', you may put the top card of your clock in the waiting room.
+Text Auto: When this card is placed on the stage from your hand or by effect of Auto: ability of your '"Igalima" Kirika', you may put the top card of your clock in the waiting room.
 Auto: OnAttack
 {
     If Climax Gamma Shiki: Manjikasha
@@ -511,7 +511,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo When this card attacks, if "Gamma Shiki: Manjikasha" is in your climax area, choose 1 of your other <Music> characters and this card, and they get the following ability until the end of your opponent's next turn. "Cont: character facing this card gets -1 soul."
+Text Auto: CxCombo When this card attacks, if "Gamma Shiki: Manjikasha" is in your climax area, choose 1 of your other <Music> characters and this card, and they get the following ability until the end of your opponent's next turn. "Cont: character facing this card gets -1 soul."
 EndCard
 
 Character: SG/W52-023
@@ -531,7 +531,7 @@ Act: 1
     ChooseCharacterFromTargets Choose a character to put in Waiting Room.
     MoveCard OpponentWaitingRoom
 }
-Text Act:[(1)] Choose a level 0 or lower character in your opponent's center stage and put it in the waiting room.
+Text Act: [(1)] Choose a level 0 or lower character in your opponent's center stage and put it in the waiting room.
 EndCard
 
 Character: SG/W52-024
@@ -548,7 +548,7 @@ Cont: GiveAll
     GainSpecialEffect CannotUseEvents
     GainSpecialEffect CannotUseBackup
 }
-Text Cont:You cannot play Events or BACKUP from hand.
+Text Cont: You cannot play Events or BACKUP from hand.
 EndCard
 
 Character: SG/W52-025
@@ -571,7 +571,7 @@ Auto: OnPlay
         MoveCard Stock
     }
 }
-Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is level 1 or lower, put it in your stock.
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is level 1 or lower, put it in your stock.
 EndCard
 
 Character: SG/W52-026
@@ -609,7 +609,7 @@ Cont: GiveSelf
 		}
 	}
 }
-Text Cont:MEMORY If you have "Autoscorer Leiur", "Autoscorer Phara", "Autoscorer Micha", and "Autoscorer Galie" in memory, this card gets +2500 power and the following ability. "Auto: During your turn, when this card's battle opponent becomes reverse, you may put that character in clock."
+Text Cont: MEMORY If you have "Autoscorer Leiur", "Autoscorer Phara", "Autoscorer Micha", and "Autoscorer Galie" in memory, this card gets +2500 power and the following ability. "Auto: During your turn, when this card's battle opponent becomes reverse, you may put that character in clock."
 *OnPlayDraw2Discard1
 EndCard
 
@@ -632,7 +632,7 @@ Auto: OnPlay
         PlaceOnStage false true true false
     }
 }
-Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a '"Gamma Shiki: Manjikasha: Technique" Shirabe' in your waiting room and put it in any position on the stage.
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a '"Gamma Shiki: Manjikasha: Technique" Shirabe' in your waiting room and put it in any position on the stage.
 EndCard
 
 Character: SG/W52-028
@@ -672,7 +672,7 @@ Auto: OnPlay
         MoveCard Clock
     }
 }
-Text Auto:[Discard 1 card] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a <Music> character in your clock, return it to your hand, and put the top card of your deck in your clock.
+Text Auto: [Discard 1 card] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a <Music> character in your clock, return it to your hand, and put the top card of your deck in your clock.
 EndCard
 
 Character: SG/W52-030
@@ -692,7 +692,7 @@ Cont: GiveSelf
         GainSpecialEffect CannotFrontalAttack
     }
 }
-Text Cont:If the level of the character facing this card is higher than the level of this card, this card cannot frontal attack.
+Text Cont: If the level of the character facing this card is higher than the level of this card, this card cannot frontal attack.
 *ClimaxExchange
 EndCard
 
@@ -731,12 +731,12 @@ Cont: Assist
         }
     }
 }
-Text Cont:ASSIST Your characters in front of this card with "Carol" in its card name get +1000 power and "Auto: ENCORE [Put a character card from your hand to the waiting room]".
+Text Cont: ASSIST Your characters in front of this card with "Carol" in its card name get +1000 power and "Auto: ENCORE [Put a character card from your hand to the waiting room]".
 Act: 2 RestSelf
 {
     SearchDeck HasTrait Alchemy
 }
-Text Act:[(2) Rest this card] Search your deck for up to 1 <Alchemy> character, reveal it, put it in your hand, and shuffle your deck.
+Text Act: [(2) Rest this card] Search your deck for up to 1 <Alchemy> character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SG/W52-033
@@ -768,12 +768,12 @@ Cont: GiveSelf
         GainPower 8000
     }
 }
-Text Cont:If you have no other characters, this card gets +8000 power.
+Text Cont: If you have no other characters, this card gets +8000 power.
 Cont: GiveSelf
 {
     GainSpecialEffect GreatPerformance
 }
-Text Cont:GREAT PERFORMANCE
+Text Cont: GREAT PERFORMANCE
 Auto: OnAttack
 {
     PayCost 4
@@ -785,7 +785,7 @@ Auto: OnAttack
         Burn X
     }
 }
-Text Auto:[(4)] When this card attacks, you may pay the cost. If you do, choose up to 4 of your other <Noise> characters, put them in the waiting room, and deal X damage to your opponent. X is equal to the number of characters you put in the waiting room by this card effect.
+Text Auto: [(4)] When this card attacks, you may pay the cost. If you do, choose up to 4 of your other <Noise> characters, put them in the waiting room, and deal X damage to your opponent. X is equal to the number of characters you put in the waiting room by this card effect.
 EndCard
 
 Character: SG/W52-035
@@ -820,7 +820,7 @@ Auto: OnOtherPlacedOnStageFromHand
         }
     }
 }
-Text Auto:[Rest 1 of your other characters and this card] When your other '"Genshi: Aladdin: Dexterity" Kirika' is placed on the stage from your hand, if this card is stand, you may pay the cost. If you do, choose a <Music> character in your waiting room and put it in your stock.
+Text Auto: [Rest 1 of your other characters and this card] When your other '"Genshi: Aladdin: Dexterity" Kirika' is placed on the stage from your hand, if this card is stand, you may pay the cost. If you do, choose a <Music> character in your waiting room and put it in your stock.
 *BondDiscard("Genshi: Aladdin: Dexterity" Kirika)
 EndCard
 
@@ -843,7 +843,7 @@ Auto: OnPlay
         Discard 1 Any
     }
 }
-Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is a character with either "Maria", "Serena", "Kirika", or "Shirabe" in its card name, put it in your hand and discard a card from your hand to the waiting room.
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is a character with either "Maria", "Serena", "Kirika", or "Shirabe" in its card name, put it in your hand and discard a card from your hand to the waiting room.
 Act: RestSelf
 {
     TargetLocation Stage
@@ -851,7 +851,7 @@ Act: RestSelf
     ChooseCharacterFromTargets Choose a character to give +1000 power.
     GainPower 1000
 }
-Text Act:[Rest this card] Choose 1 of your characters with either "Maria", "Serena", "Kirika", or "Shirabe" in its card name, and that character gets +1000 power until end of turn.
+Text Act: [Rest this card] Choose 1 of your characters with either "Maria", "Serena", "Kirika", or "Shirabe" in its card name, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: SG/W52-038
@@ -872,7 +872,7 @@ Auto: OnAttack
         Bounce
     }
 }
-Text Auto:[Discard 1 card] When this card attacks, you may pay the cost. If you do, choose 1 of your other <Science> characters and return it to your hand.
+Text Auto: [Discard 1 card] When this card attacks, you may pay the cost. If you do, choose 1 of your other <Science> characters and return it to your hand.
 EndCard
 
 Character: SG/W52-039
@@ -901,7 +901,7 @@ Cont: GiveSelf
         GainSpecialEffect CannotAttack
     }
 }
-Text Cont:If you have 1 or less cards in your clock, this card cannot attack.
+Text Cont: If you have 1 or less cards in your clock, this card cannot attack.
 Auto: OnPlay
 {
     TargetLocation OpponentCenterStage
@@ -909,7 +909,7 @@ Auto: OnPlay
     ChooseCharacterFromTargets Choose a character to put in waiting room
     MoveCard OpponentWaitingRoom
 }
-Text Auto:When this card is placed on the stage from your hand, you may choose a level 0 or lower <Music> character in your opponent's center stage and put it in the waiting room.
+Text Auto: When this card is placed on the stage from your hand, you may choose a level 0 or lower <Music> character in your opponent's center stage and put it in the waiting room.
 EndCard
 
 Character: SG/W52-041a
@@ -935,7 +935,7 @@ Auto: OnReverseOpponent
         GainPower 2000
     }
 }
-Text Auto:CxCombo When this card's battle opponent becomes reverse, if "A Crisis Never Seen Before" is in your climax area and you have another <Noise> character, choose up to 1 <Noise> character in your waiting room and put it in your stock, choose 1 of your characters, and that character gets +2000 power until the end of your opponent's next turn.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "A Crisis Never Seen Before" is in your climax area and you have another <Noise> character, choose up to 1 <Noise> character in your waiting room and put it in your stock, choose 1 of your characters, and that character gets +2000 power until the end of your opponent's next turn.
 EndCard
 
 Character: SG/W52-042
@@ -977,7 +977,7 @@ Act: 1
         Text Auto: When this card becomes reverse, if the level of the battle opponent of this card is equal to or lower than the level of this card, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock.
     }
 }
-Text Act:[(1)] Choose 1 of your <Alchemy> characters, and that character gets the following ability until end of turn. "Auto: When this card becomes reverse, if the level of the battle opponent of this card is equal to or lower than the level of this card, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock."
+Text Act: [(1)] Choose 1 of your <Alchemy> characters, and that character gets the following ability until end of turn. "Auto: When this card becomes reverse, if the level of the battle opponent of this card is equal to or lower than the level of this card, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock."
 EndCard
 
 Character: SG/W52-043
@@ -996,7 +996,7 @@ Auto: OnPlay
         SearchWaitingRoom HasTrait Alchemy
     }
 }
-Text Auto:[(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose an <Alchemy> character in your waiting room and return it to your hand.
+Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose an <Alchemy> character in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W52-044
@@ -1015,7 +1015,7 @@ Cont: GiveSelf
         LosePower 2000
     }
 }
-Text Cont:If you don't have another '"Fuubatsu: Pinocchio: Heart" Kirika', this card gets -2000 power.
+Text Cont: If you don't have another '"Fuubatsu: Pinocchio: Heart" Kirika', this card gets -2000 power.
 EndCard
 
 Character: SG/W52-045
@@ -1033,7 +1033,7 @@ Auto: OnUseThisCardsBackup
     SearchLocationForTargets WaitingRoom 0 1 NameContains Autoscorer
     MoveCard Memory
 }
-Text Auto:When you use this card's BACKUP, you may choose a character in your waiting room with "Autoscorer" in its card name and put it in memory.
+Text Auto: When you use this card's BACKUP, you may choose a character in your waiting room with "Autoscorer" in its card name and put it in memory.
 Backup 1500
 EndCard
 
@@ -1053,7 +1053,7 @@ Cont: GiveSelf
         LosePower 3000
     }
 }
-Text Cont:If you don't have another '"Hijou Sigma Shiki: Kingetsurin IGNITE: Technique" Shirabe', this card gets -3000 power.
+Text Cont: If you don't have another '"Hijou Sigma Shiki: Kingetsurin IGNITE: Technique" Shirabe', this card gets -3000 power.
 *GiveNamePower(1000,"Hijou Sigma Shiki: Kingetsurin IGNITE: Technique" Shirabe)
 EndCard
 
@@ -1144,7 +1144,7 @@ Auto: OnSpecificClimaxPlay BILLION MAIDEN
         Text Auto: When this card's battle opponent becomes reverse, look at up to the top 4 cards of your deck, choose up to 1 <Music> character among them, reveal it, put it in your hand, and put the rest into your waiting room.
     }
 }
-Text Auto:CxCombo When "BILLION MAIDEN" is placed on your climax area, choose 1 of your other characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, look at up to the top 4 cards of your deck, choose up to 1 <Music> character among them, reveal it, put it in your hand, and put the rest into your waiting room."
+Text Auto: CxCombo When "BILLION MAIDEN" is placed on your climax area, choose 1 of your other characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, look at up to the top 4 cards of your deck, choose up to 1 <Music> character among them, reveal it, put it in your hand, and put the rest into your waiting room."
 *Act1Rest2SalvageBrainstorm(Any)
 EndCard
 
@@ -1188,7 +1188,7 @@ Auto: OnSpecificClimaxPlay ULTIMATE COMET
         }
     }
 }
-Text Auto:CxCombo [Discard 1 card] When "ULTIMATE COMET" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, choose an '"Ao no Issen: Meppa: Heart" Tsubasa' in your level and a <Music> character on your stage and swap them, choose 1 of your other characters and this card, and they get +2000 power until end of turn.
+Text Auto: CxCombo [Discard 1 card] When "ULTIMATE COMET" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, choose an '"Ao no Issen: Meppa: Heart" Tsubasa' in your level and a <Music> character on your stage and swap them, choose 1 of your other characters and this card, and they get +2000 power until end of turn.
 Auto: StartOpponentDrawPhase
 {
     If InLocation CenterStage
@@ -1198,7 +1198,7 @@ Auto: StartOpponentDrawPhase
         GainPower 2000
     }
 }
-Text Auto:At the beginning of your opponent's draw phase, if this card is in the center stage, choose up to 2 of your characters, and they get +2000 power until end of turn.
+Text Auto: At the beginning of your opponent's draw phase, if this card is in the center stage, choose up to 2 of your characters, and they get +2000 power until end of turn.
 EndCard
 
 Character: SG/W52-054
@@ -1219,7 +1219,7 @@ Auto: OnPlay
     TargetSelf
     GainPower 1000
 }
-Text Auto:When this card is placed on the stage from your hand, choose up to 1 '"Airget-Lamh" Serena' in your waiting room and return it to your hand, and this card gets +1000 power until end of turn.
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 '"Airget-Lamh" Serena' in your waiting room and return it to your hand, and this card gets +1000 power until end of turn.
 Auto: OnAttack
 {
     If Climax EMPRESS REBELLION && StageContains 1 Other && Name Equals "Airget-Lamh" Serena
@@ -1230,7 +1230,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [(1) Discard 1 card] When this card attacks, if "EMPRESS REBELLION" is in your climax area and you have another '"Airget-Lamh" Serena', you may pay the cost. If you do, deal 4 damage to your opponent.
+Text Auto: CxCombo [(1) Discard 1 card] When this card attacks, if "EMPRESS REBELLION" is in your climax area and you have another '"Airget-Lamh" Serena', you may pay the cost. If you do, deal 4 damage to your opponent.
 EndCard
 
 Character: SG/W52-055
@@ -1249,7 +1249,7 @@ Auto: StartClimaxPhase
     ChooseCharacterFromTargets Choose a character to give +1000 power.
     GainPower 1000
 }
-Text Auto:At the beginning of your climax phase, choose 1 of your characters with either "Maria" or "Serena" in its card name, and that character gets +1000 power until end of turn.
+Text Auto: At the beginning of your climax phase, choose 1 of your characters with either "Maria" or "Serena" in its card name, and that character gets +1000 power until end of turn.
 *Act1Rest2SalvageBrainstorm(Any)
 EndCard
 
@@ -1272,7 +1272,7 @@ Auto: OnPlay
         GainPower 3000
     }
 }
-Text Auto:When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there were at least 1 climax card among them, this card gets +3000 power until end of turn.
+Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there were at least 1 climax card among them, this card gets +3000 power until end of turn.
 *RedLevel0Bomb
 EndCard
 
@@ -1293,7 +1293,7 @@ Cont: Assist
         GainLevel 1
     }
 }
-Text Cont:ASSIST Your <Music> characters in front of this card get +1 level and +500 power.
+Text Cont: ASSIST Your <Music> characters in front of this card get +1 level and +500 power.
 Auto: OnPlay
 {
     Question_Obvious Do you want to mill 3 ?
@@ -1302,7 +1302,7 @@ Auto: OnPlay
         Mill 3
     }
 }
-Text Auto:When this card is placed on the stage from your hand, you may put the top 3 cards of your deck in the waiting room.
+Text Auto: When this card is placed on the stage from your hand, you may put the top 3 cards of your deck in the waiting room.
 Auto: OnPlay
 {
     PayCost 1
@@ -1310,7 +1310,7 @@ Auto: OnPlay
         SearchWaitingRoom NameEquals Ichaival
     }
 }
-Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose an "Ichaival" in your waiting room and return it to your hand.
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose an "Ichaival" in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W52-058
@@ -1331,14 +1331,14 @@ Auto: OnPlay
         SearchWaitingRoom NameContains Maria|Serena
     }
 }
-Text Auto:[Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a character in your waiting room with either "Maria" or "Serena" in its card name and return it to your hand.
+Text Auto: [Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a character in your waiting room with either "Maria" or "Serena" in its card name and return it to your hand.
 Act: RestSelf
 {
     TargetLocation Stage
     ChooseCharacterFromTargets Choose a character to give +1 level.
     GainLevel 1
 }
-Text Act:[Rest this card] Choose 1 of your characters, and that character gets +1 level until end of turn.
+Text Act: [Rest this card] Choose 1 of your characters, and that character gets +1 level until end of turn.
 EndCard
 
 Character: SG/W52-059
@@ -1359,7 +1359,7 @@ Cont: GiveSelf
         GainPower 1000
     }
 }
-Text Cont:If all your characters are <Music>, this card gets +1000 power.
+Text Cont: If all your characters are <Music>, this card gets +1000 power.
 *Healer
 EndCard
 
@@ -1377,7 +1377,7 @@ Cont: GiveFacing
 {
     LoseSoul 1
 }
-Text Cont:The character facing this card gets -1 soul.
+Text Cont: The character facing this card gets -1 soul.
 Auto: OnAttack
 {
     PayCost 3 Discard 2 Any
@@ -1385,11 +1385,11 @@ Auto: OnAttack
         Burn 3
     }
 }
-Text Auto:[(3) Discard 2 cards] When this card attacks, you may pay the cost. If you do, deal 3 damage to your opponent.
+Text Auto: [(3) Discard 2 cards] When this card attacks, you may pay the cost. If you do, deal 3 damage to your opponent.
 Auto: Encore Discard 1 IsColor Red
 {
 }
-Text Auto:ENCORE [Discard 1 RED card]
+Text Auto: ENCORE [Discard 1 RED card]
 EndCard
 
 Character: SG/W52-061
@@ -1409,7 +1409,7 @@ Auto: OnReverseOpponent
     Rest
     MoveToOpenPosition false true
 }
-Text Auto:When this card's battle opponent becomes reverse, choose 1 of your other RED characters, rest it, and move it to an open position in the back stage.
+Text Auto: When this card's battle opponent becomes reverse, choose 1 of your other RED characters, rest it, and move it to an open position in the back stage.
 EndCard
 
 Character: SG/W52-062
@@ -1428,7 +1428,7 @@ Cont: GiveSelf
         GainPower 1500
     }
 }
-Text Cont:If there are 2 or fewer cards in your stock, this card gets +1500 power.
+Text Cont: If there are 2 or fewer cards in your stock, this card gets +1500 power.
 EndCard
 
 Character: SG/W52-063
@@ -1445,12 +1445,12 @@ Auto: OnReversed
     TargetSelf
     MoveCardToBottom Deck
 }
-Text Auto:When this card becomes reverse in battle, put this card on the bottom of your deck.
+Text Auto: When this card becomes reverse in battle, put this card on the bottom of your deck.
 Auto: OnReversed
 {
     BlockEncore
 }
-Text Auto:When this card becomes reverse in battle, you cannot use "Auto: ENCORE" until end of turn.
+Text Auto: When this card becomes reverse in battle, you cannot use "Auto: ENCORE" until end of turn.
 EndCard
 
 Character: SG/W52-064
@@ -1469,7 +1469,7 @@ Cont: GiveSelf
         GainPower 2000
     }
 }
-Text Cont:If all your characters have either "Maria" or "Serena" in its card name, this card gets +2000 power.
+Text Cont: If all your characters have either "Maria" or "Serena" in its card name, this card gets +2000 power.
 EndCard
 
 Character: SG/W52-065
@@ -1488,12 +1488,12 @@ Cont: GiveSelf
         GainPower 1500
     }
 }
-Text Cont:EXPERIENCE If '"Ao no Issen: Meppa: Heart" Tsubasa' is in your level, this card gets +1500 power.
+Text Cont: EXPERIENCE If '"Ao no Issen: Meppa: Heart" Tsubasa' is in your level, this card gets +1500 power.
 Auto: OnReversed
 {
     BlockEncore
 }
-Text Auto:When this card becomes reverse in battle, you cannot use "Auto: ENCORE" until end of turn.
+Text Auto: When this card becomes reverse in battle, you cannot use "Auto: ENCORE" until end of turn.
 EndCard
 
 Character: SG/W52-066
@@ -1527,7 +1527,7 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont:MEMORY If "Ignite Module" is in your memory, this card gets the following ability. "Cont: If the number of other <Music> characters you have is 2 or more, this card gets +4500 power. If not, this card gets -1500 power."
+Text Cont: MEMORY If "Ignite Module" is in your memory, this card gets the following ability. "Cont: If the number of other <Music> characters you have is 2 or more, this card gets +4500 power. If not, this card gets -1500 power."
 Auto: StartMyEncoreStep
 {
     If CardPosition Rest
@@ -1544,7 +1544,7 @@ Auto: StartMyEncoreStep
     	}
     }
 }
-Text Auto:CHANGE [Put this card in the waiting room] At the beginning of your encore step, if this card is rest, you may pay the cost. If you do, choose up to 1 '"Bond With Kouhai" Chris' in your hand and put it in the position this card was in.
+Text Auto: CHANGE [Put this card in the waiting room] At the beginning of your encore step, if this card is rest, you may pay the cost. If you do, choose up to 1 '"Bond With Kouhai" Chris' in your hand and put it in the position this card was in.
 EndCard
 
 Character: SG/W52-067
@@ -1578,7 +1578,7 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont:MEMORY If "Ignite Module" is in your memory, this card gets the following ability. "Cont: If the number of other <Music> characters you have is 2 or more, this card gets +4500 power. If not, this card gets -1500 power."
+Text Cont: MEMORY If "Ignite Module" is in your memory, this card gets the following ability. "Cont: If the number of other <Music> characters you have is 2 or more, this card gets +4500 power. If not, this card gets -1500 power."
 Auto: OnPlay
 {
     PayCost Discard 1 HasTrait Music
@@ -1586,7 +1586,7 @@ Auto: OnPlay
         SearchDeck NameEquals "Self Brilliance" Maria
     }
 }
-Text Auto:[Discard 1 <Music> character] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 '"Self Brilliance" Maria', reveal it, put it in your hand, and shuffle your deck.
+Text Auto: [Discard 1 <Music> character] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 '"Self Brilliance" Maria', reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SG/W52-068
@@ -1606,7 +1606,7 @@ Cont: GiveAll
         GainPower 500
     }
 }
-Text Cont:All your other '"Ten no Gekirin: power" Tsubasa' get +1 level and +500 power.
+Text Cont: All your other '"Ten no Gekirin: power" Tsubasa' get +1 level and +500 power.
 *BondClock("Ten no Gekirin: Power" Tsubasa)
 EndCard
 
@@ -1626,7 +1626,7 @@ Cont: GiveSelf
 		GainPower 1500
 	}
 }
-Text Cont:If you have 1 or less other characters, this card gets +1500 power.
+Text Cont: If you have 1 or less other characters, this card gets +1500 power.
 Auto: OnReverseOpponent
 {
     If StageContainsOrLess 1 Other
@@ -1639,7 +1639,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:When this card's battle opponent becomes reverse, if you have 1 or less other characters, you may choose a character in your waiting room and return it to your hand. If you do, discard a card from your hand to the waiting room.
+Text Auto: When this card's battle opponent becomes reverse, if you have 1 or less other characters, you may choose a character in your waiting room and return it to your hand. If you do, discard a card from your hand to the waiting room.
 EndCard
 
 Character: SG/W52-070
@@ -1657,7 +1657,7 @@ Auto: OnOtherOpponentReversed
     GainPower 2000
 }
 TimesPerTurn 1
-Text Auto:This ability activates up to once per turn. When the battle opponent of your other <Music> character becomes reverse, this card gets +2000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When the battle opponent of your other <Music> character becomes reverse, this card gets +2000 power until end of turn.
 EndCard
 
 Character: SG/W52-071
@@ -1676,7 +1676,7 @@ Auto: OnPlay
         SearchDeck IsCharacter && Compare ThatCardsLevel 1 OrLess
     }
 }
-Text Auto:[(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
 *OnAttackGiveOtherPower(1000,Music)
 EndCard
 
@@ -1703,7 +1703,7 @@ Auto: OnSpecificClimaxPlay GIGA ZEPPELIN
         }
     }
 }
-Text Auto:CxCombo [Put the top card of your deck in your clock] When "GIGA ZEPPELIN" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, choose 1 of your other characters and stand it, and this card gets +1000 power until end of turn.
+Text Auto: CxCombo [Put the top card of your deck in your clock] When "GIGA ZEPPELIN" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, choose 1 of your other characters and stand it, and this card gets +1000 power until end of turn.
 EndCard
 
 Character: SG/W52-073
@@ -1726,7 +1726,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:[Discard 1 card] When this card attacks, if the number of other <Music> characters you have is 2 or more, you may pay the cost. If you do, choose an "Airget-Lamh" in your waiting room and return it to your hand.
+Text Auto: [Discard 1 card] When this card attacks, if the number of other <Music> characters you have is 2 or more, you may pay the cost. If you do, choose an "Airget-Lamh" in your waiting room and return it to your hand.
 EndCard
 
 Character: SG/W52-074
@@ -1759,7 +1759,7 @@ Auto: OnPlay
          MoveCard Stock
      }
 }
-Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is level 1 or lower, put that card in your stock.
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is level 1 or lower, put that card in your stock.
 *RedEarlyPlayBomb
 EndCard
 
@@ -1860,12 +1860,12 @@ Cont: GiveSelf
 		}
 	}
 }
-Text Cont:If the number of other <Music> characters you have is 2 or more, this card gets +1500 power and the following ability. "Auto: When this card's battle opponent becomes reverse, you may put that character in memory."
+Text Cont: If the number of other <Music> characters you have is 2 or more, this card gets +1500 power and the following ability. "Auto: When this card's battle opponent becomes reverse, you may put that character in memory."
 Auto: OnPlay|PlacedBy "ULTIMATE COMET: Technique" Kanade
 {
 	*OptionalHeal
 }
-Text Auto:When this card is placed on the stage from your hand or by effect of Auto: ability of your '"ULTIMATE COMET: Technique" Kanade' to the stage, you may put the top card of your clock in the waiting room.
+Text Auto: When this card is placed on the stage from your hand or by effect of Auto: ability of your '"ULTIMATE COMET: Technique" Kanade' to the stage, you may put the top card of your clock in the waiting room.
 Auto: OnReverseOpponent
 {
 	PayCost 1 Discard 1 Any
@@ -1873,7 +1873,7 @@ Auto: OnReverseOpponent
 		Burn 1
 	}
 }
-Text Auto:[(1) Discard 1 card] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 1 damage to your opponent.
+Text Auto: [(1) Discard 1 card] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 1 damage to your opponent.
 EndCard
 
 Character: SG/W52-084
@@ -1900,7 +1900,7 @@ Auto: OnPlay
 		}
 	}
 }
-Text Auto:When this card is placed on the stage from your hand, your may reveal up to 3 cards from the top of your deck. If you reveal 1 or more card this way, choose up to 1 character among them with either "Tsubasa" or "Kanade" in its card name, put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
+Text Auto: When this card is placed on the stage from your hand, your may reveal up to 3 cards from the top of your deck. If you reveal 1 or more card this way, choose up to 1 character among them with either "Tsubasa" or "Kanade" in its card name, put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
 EndCard
 
 Character: SG/W52-085
@@ -1919,7 +1919,7 @@ Auto: OnPlay
 		SearchDeck NameEquals Ignite Module
 	}
 }
-Text Auto:[Discard 1 <Music> character] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Ignite Module", reveal it, put it in your hand, and shuffle your deck.
+Text Auto: [Discard 1 <Music> character] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Ignite Module", reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SG/W52-086
@@ -1949,7 +1949,7 @@ Cont: GiveSelf
 {
 	LoseLevel 1
 }
-Text Cont:This card gets -1 level while on the stage.
+Text Cont: This card gets -1 level while on the stage.
 Auto: OnReverseOpponent
 {
 	If Climax Ten no Gekirin
@@ -1961,7 +1961,7 @@ Auto: OnReverseOpponent
 		*GiveCharacterPower(2000,Any)
 	}
 }
-Text Auto:CxCombo When this card's battle opponent becomes reverse, if "Ten no Gekirin" is in your climax area, look at up to 4 cards from the top of your deck and search for up to 1 character with either "Tsubasa" or "Kanade" in its card name, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Ten no Gekirin" is in your climax area, look at up to 4 cards from the top of your deck and search for up to 1 character with either "Tsubasa" or "Kanade" in its card name, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: SG/W52-088
@@ -1983,7 +1983,7 @@ Auto: OnPlay
 	TargetSelf
 	GainPower X
 }
-Text Auto:When this card is placed on the stage from your hand, put the top 2 cards of your deck and put them in the waiting room, and this card gets +X power until end of turn. X is equal to 1000 times the number of characters that are either BLUE or <Music> among them.
+Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck and put them in the waiting room, and this card gets +X power until end of turn. X is equal to 1000 times the number of characters that are either BLUE or <Music> among them.
 Auto: OnOpponentLevelUp
 {
 	If Climax Fuurinkazan
@@ -1994,7 +1994,7 @@ Auto: OnOpponentLevelUp
         PutTheRestIntoTheWaitingRoom
 	}
 }
-Text Auto:CxCombo When your opponent levels-up, if "Fuurinkazan" is in your climax area, look at up to 4 cards from the top of your deck and search for up to 1 character that is either BLUE or <Music>, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: CxCombo When your opponent levels-up, if "Fuurinkazan" is in your climax area, look at up to 4 cards from the top of your deck and search for up to 1 character that is either BLUE or <Music>, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: SG/W52-089
@@ -2014,7 +2014,7 @@ Auto: OnPlay
 		GainPower 2000
 	}
 }
-Text Auto:When this card is placed on the stage from your hand, if you have another <Music> character, this card gets +2000 power until end of turn.
+Text Auto: When this card is placed on the stage from your hand, if you have another <Music> character, this card gets +2000 power until end of turn.
 Auto: OnReverseOpponent
 {
 	If PlayedThisTurn
@@ -2026,7 +2026,7 @@ Auto: OnReverseOpponent
 		}
 	}
 }
-Text Auto:[Put a <Music> character card from your hand to the waiting room] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, search your deck for up to 1 "Ame-no-Habakiri", reveal it, put it in your hand, shuffle your deck, choose 1 of your other characters, and that character gets +3000 power until end of turn.
+Text Auto: [Put a <Music> character card from your hand to the waiting room] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, search your deck for up to 1 "Ame-no-Habakiri", reveal it, put it in your hand, shuffle your deck, choose 1 of your other characters, and that character gets +3000 power until end of turn.
 EndCard
 
 Character: SG/W52-090
@@ -2060,14 +2060,14 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont:MEMORY If "Ignite Module" is in your memory, this card gets the following ability. "Cont: If the number of other <Music> characters you have is 2 or more, this card gets +4500 power. If not, this card gets -1500 power."
+Text Cont: MEMORY If "Ignite Module" is in your memory, this card gets the following ability. "Cont: If the number of other <Music> characters you have is 2 or more, this card gets +4500 power. If not, this card gets -1500 power."
 Auto: OnPlay
 {
 	SearchLocationForTargets Deck 0 1 NameEquals "No Need for Sword" Tsubasa
 	MoveCard WaitingRoom
 	ShuffleLocation Deck
 }
-Text Auto:When this card is placed on the stage from your hand, search your deck for up to 1 '"No Need for Sword" Tsubasa' and put it in the waiting room, and shuffle your deck.
+Text Auto: When this card is placed on the stage from your hand, search your deck for up to 1 '"No Need for Sword" Tsubasa' and put it in the waiting room, and shuffle your deck.
 EndCard
 
 Character: SG/W52-091
@@ -2109,7 +2109,7 @@ Act: Rest 2 HasTrait Music
 		}
 	}
 }
-Text Act:[Rest 2 of your <Music> characters] Choose a card in your level and a card in your waiting room and swap them.
+Text Act: [Rest 2 of your <Music> characters] Choose a card in your level and a card in your waiting room and swap them.
 EndCard
 
 Character: SG/W52-093
@@ -2141,7 +2141,7 @@ Auto: OnReversed
 		}
 	}
 }
-Text Auto:[(1)] During your opponent's turn, when this card becomes reverse in battle, you may pay the cost. If you do, rest this card and, at the beginning of your next encore step, put this card in the waiting room.
+Text Auto: [(1)] During your opponent's turn, when this card becomes reverse in battle, you may pay the cost. If you do, rest this card and, at the beginning of your next encore step, put this card in the waiting room.
 EndCard
 
 Character: SG/W52-094
@@ -2161,7 +2161,7 @@ Cont: GiveAll
 		GainPower 2000
 	}
 }
-Text Cont:During your opponent's turn, all your other "Elfnein, Girl Who Looks Like Carol" get +2000 power.
+Text Cont: During your opponent's turn, all your other "Elfnein, Girl Who Looks Like Carol" get +2000 power.
 EndCard
 
 Character: SG/W52-095
@@ -2177,7 +2177,7 @@ Act: 2 RestSelf
 {
 	SearchDeck HasTrait Music
 }
-Text Act:[(2) Rest this card] Search your deck for up to 1 <Music> character, reveal it, put it in your hand, and shuffle your deck.
+Text Act: [(2) Rest this card] Search your deck for up to 1 <Music> character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SG/W52-096
@@ -2271,7 +2271,7 @@ Auto: OnPlay
         GainPower X
     }
 }
-Text Auto:When this card is placed on the stage from your hand, choose 1 of your other <Music> characters, and that character gets +X power until end of turn. X is equal to 500 times the number of your other <Music> characters.
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your other <Music> characters, and that character gets +X power until end of turn. X is equal to 500 times the number of your other <Music> characters.
 EndCard
 
 Character: SG/W52-102
@@ -2304,7 +2304,7 @@ Cont: GiveSelf
         GainSpecialEffect CannotBeReversed
     }
 }
-Text Cont:If the cost of the character facing this card is 0 or lower, this card cannot be reverse.
+Text Cont: If the cost of the character facing this card is 0 or lower, this card cannot be reverse.
 EndCard
 
 Character: SG/W52-104
@@ -2338,7 +2338,7 @@ Cont: GiveAll
         }
     }
 }
-Text Cont:If you have another '"Unlimit" Kirika', all your other <Music> characters get +500 power.
+Text Cont: If you have another '"Unlimit" Kirika', all your other <Music> characters get +500 power.
 EndCard
 
 Character: SG/W52-106
@@ -2357,6 +2357,6 @@ Cont: GiveSelf
         GainPower 2000
     }
 }
-Text Cont:If you have another '"Unlimit" Shirabe', this card gets +2000 power.
+Text Cont: If you have another '"Unlimit" Shirabe', this card gets +2000 power.
 EndCard
 

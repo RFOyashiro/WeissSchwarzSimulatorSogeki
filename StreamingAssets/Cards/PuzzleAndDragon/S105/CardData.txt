@@ -15,7 +15,7 @@ Auto: OnPlay
         SearchDeck IsCharacter && Compare ThatCardsLevel 1 OrLess
     }
 }
-Text Auto:[Put 1 card from your hand in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto: [Put 1 card from your hand in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
 *OnAttackGivePower(1500,Any)
 EndCard
 
@@ -39,7 +39,7 @@ Cont: GiveSelf
         GainColor Red
     }
 }
-Text Cont:If the number of other characters you have is 2 or more, this card gets +1500 and Red color.
+Text Cont: If the number of other characters you have is 2 or more, this card gets +1500 and Red color.
 *Healer
 Auto: OnAttack
 {
@@ -57,7 +57,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo When this card attacks, if "Overjoyed Ash Phantom Demon, Ilmina" is in your climax area and the the number of colors you have is 4 or more, choose up to 1 "Colorful Dragon Caller's Son, Artura" in your waiting room and return it to your hand, this card gets +1500 power until the end of your opponent's next turn, and perform the following action. "[(2) Put 1 card from your hand to the waiting room] You may pay the cost. If you do, deal 2 damage to your opponent." 
+Text Auto: CxCombo When this card attacks, if "Overjoyed Ash Phantom Demon, Ilmina" is in your climax area and the the number of colors you have is 4 or more, choose up to 1 "Colorful Dragon Caller's Son, Artura" in your waiting room and return it to your hand, this card gets +1500 power until the end of your opponent's next turn, and perform the following action. "[(2) Put 1 card from your hand to the waiting room] You may pay the cost. If you do, deal 2 damage to your opponent." 
 EndCard
 
 Character: PAD/S105-003
@@ -82,7 +82,7 @@ Auto: OnPlay
 		MoveCardToBottom Deck
 	}
 }
-Text Auto:When this card is placed on the stage from your hand, you may choose a character in your clock and put it on the bottom of the deck.
+Text Auto: When this card is placed on the stage from your hand, you may choose a character in your clock and put it on the bottom of the deck.
 Auto: OnAttack
 {
     If Climax Super Reincarnated Ra Dragon
@@ -110,7 +110,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [(1) Put 1 card from your hand to the waiting room] When this card attacks, if "Super Reincarnated Ra Dragon" is in your climax area, you may pay the cost. If you do, put the top 7 cards of your deck in the waiting room. If there are 3 or more cards with a soul trigger icon among them, deal 4 damage to your opponent. If there are 4 or more cards with a soul trigger icon among them, choose up to 3 cards in your opponent's waiting room, return them to the deck, and your opponent shuffles their deck. If there are 6 or more cards with a soul trigger icon among them, deal 4 damage to your opponent 
+Text Auto: CxCombo [(1) Put 1 card from your hand to the waiting room] When this card attacks, if "Super Reincarnated Ra Dragon" is in your climax area, you may pay the cost. If you do, put the top 7 cards of your deck in the waiting room. If there are 3 or more cards with a soul trigger icon among them, deal 4 damage to your opponent. If there are 4 or more cards with a soul trigger icon among them, choose up to 3 cards in your opponent's waiting room, return them to the deck, and your opponent shuffles their deck. If there are 6 or more cards with a soul trigger icon among them, deal 4 damage to your opponent 
 Text <color=red> * This card is limited to 1 copy in the JP format. </color>
 EndCard
 
@@ -130,7 +130,7 @@ Cont: GiveAll
         GainPower 500
     }
 }
-Text Cont:All your other Yellow or «Dragon» characters get +500 power.
+Text Cont: All your other Yellow or «Dragon» characters get +500 power.
 Act: RestSelf
 {
     TargetLocation Stage
@@ -139,7 +139,7 @@ Act: RestSelf
     UntilEndOfOpponentsTurn
     GainPower 500
 }
-Text Act:[Rest this card] Choose 1 of your Yellow or «Dragon» characters, and that character gets +500 power until the end of your opponent's next turn.
+Text Act: [Rest this card] Choose 1 of your Yellow or «Dragon» characters, and that character gets +500 power until the end of your opponent's next turn.
 EndCard
 
 Character: PAD/S105-005
@@ -165,7 +165,7 @@ Act: 1 RestSelf
         }
     }
 }
-Text Act:BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 Yellow or «Dragon» character in your waiting room and return it to your hand.
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 Yellow or «Dragon» character in your waiting room and return it to your hand.
 EndCard
 
 Character: PAD/S105-006
@@ -182,7 +182,7 @@ Cont: GiveSelf
 {
     AddToOtherCardsTriggerIcon Soul NameEquals Super Reincarnated Ra Dragon
 }
-Text Cont:CxCombo Your other "Super Reincarnated Ra Dragon" in all your zones get a soul trigger icon.
+Text Cont: CxCombo Your other "Super Reincarnated Ra Dragon" in all your zones get a soul trigger icon.
 *LevelAssist
 Act: RestSelf
 {
@@ -195,7 +195,7 @@ Act: RestSelf
         GainPower 2000
     }
 }
-Text Act:[Rest this card] Reveal the top card of your deck. If that card has at least 1 soul trigger icon, choose up to 2 of your characters, and those characters get +2000 power until end of turn. 
+Text Act: [Rest this card] Reveal the top card of your deck. If that card has at least 1 soul trigger icon, choose up to 2 of your characters, and those characters get +2000 power until end of turn. 
 EndCard
 
 Character: PAD/S105-007
@@ -217,7 +217,7 @@ Cont: InHand
         LoseLevel 1
     }
 }
-Text Cont:If the the number of colors you have is 4 or more, this card gets -1 level while in your hand.
+Text Cont: If the the number of colors you have is 4 or more, this card gets -1 level while in your hand.
 Cont: GiveSelf
 {
     If StageContains 3 Other
@@ -229,7 +229,7 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont:If the number of other characters you have is 3 or more, this card gets +3500 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
+Text Cont: If the number of other characters you have is 3 or more, this card gets +3500 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
 *Healer
 EndCard
 
@@ -249,7 +249,7 @@ Cont: GiveSelf
         GainLevel 1
     }
 }
-Text Cont:If you have 1 or fewer other character, this card gets +1 level and +2500 power.
+Text Cont: If you have 1 or fewer other character, this card gets +1 level and +2500 power.
 EndCard
 
 Character: PAD/S105-009
@@ -268,7 +268,7 @@ Cont: GiveSelf
         GainSoul 1
     }
 }
-Text Cont:If this card is in the middle position of your center stage, this card gets +1 soul.
+Text Cont: If this card is in the middle position of your center stage, this card gets +1 soul.
 Auto: OnPlay
 {
     RevealUpTo Deck 3
@@ -278,7 +278,7 @@ Auto: OnPlay
         Discard 1 Any
     }
 }
-Text Auto:When this card is placed from the stage to the waiting room, you may reveal up to 3 cards from the top of your deck. If you reveal at least 1 card this way, choose up to 1 Yellow character among them, put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
+Text Auto: When this card is placed from the stage to the waiting room, you may reveal up to 3 cards from the top of your deck. If you reveal at least 1 card this way, choose up to 1 Yellow character among them, put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
 EndCard
 
 Character: PAD/S105-010
@@ -310,7 +310,7 @@ Auto: OnUseThisCardsBackup
         }
 	}
 }
-Text Auto:[Put 2 cards from your hand to the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in stock. If you do, put the bottom card of your opponent's stock in the waiting room.
+Text Auto: [Put 2 cards from your hand to the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in stock. If you do, put the bottom card of your opponent's stock in the waiting room.
 Backup 1000
 EndCard
 
@@ -333,7 +333,7 @@ Cont: GiveSelf
         GainPower X
     }
 }
-Text Cont:During your turn, this card gets +1000 power for each of your other Yellow characters.
+Text Cont: During your turn, this card gets +1000 power for each of your other Yellow characters.
 Auto: OnPlay
 {
     PayCost ShuffleFromWaitingRoom 2 IsCharacter
@@ -345,7 +345,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[Return 2 characters from your waiting room to the deck, shuffle your deck] When this card is placed on the stage from your hand, you may pay the cost. If you do, this card gets +1000 power and the following ability until end of turn. "Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform trigger check twice during this card attack's trigger Step."
+Text Auto: [Return 2 characters from your waiting room to the deck, shuffle your deck] When this card is placed on the stage from your hand, you may pay the cost. If you do, this card gets +1000 power and the following ability until end of turn. "Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform trigger check twice during this card attack's trigger Step."
 EndCard
 
 Character: PAD/S105-012
@@ -367,7 +367,7 @@ Cont: Assist
         GainPower X
     }
 }
-Text Cont:ASSIST Your Yellow characters in front of this card get +X power. X equals 500 times level of that character.
+Text Cont: ASSIST Your Yellow characters in front of this card get +X power. X equals 500 times level of that character.
 Auto: OnPlay
 {
     If StageContains 4 Other && IsColor Yellow
@@ -375,7 +375,7 @@ Auto: OnPlay
         *PutCardFromWaitingRoomIntoStock(IsCharacter && IsColor Yellow)
     }
 }
-Text Auto:When this card is placed on the stage from your hand, if the number of other Yellow characters you have is 4 or more, you may choose a Yellow character in your waiting room and put it in your stock.
+Text Auto: When this card is placed on the stage from your hand, if the number of other Yellow characters you have is 4 or more, you may choose a Yellow character in your waiting room and put it in your stock.
 Auto: OnTriggerCheckClimax
 {
     IfOther HasTrigger Choice
@@ -386,7 +386,7 @@ Auto: OnTriggerCheckClimax
         GainPower 1000
     }
 }
-Text Auto:When your character's trigger check reveals a climax with a Choice trigger icon, choose 1 of your characters, and that character gets +1000 power until the end of your opponent's next turn.
+Text Auto: When your character's trigger check reveals a climax with a Choice trigger icon, choose 1 of your characters, and that character gets +1000 power until the end of your opponent's next turn.
 EndCard
 
 Character: PAD/S105-013
@@ -411,7 +411,7 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont:During your turn, if the the number of colors you have is 4 or more, this card gets +6000 power.
+Text Cont: During your turn, if the the number of colors you have is 4 or more, this card gets +6000 power.
 Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrHigher
 {
     TargetLocation Stage
@@ -421,7 +421,7 @@ Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrHigher
         *OptionalDraw
     }
 }
-Text Auto:When a level 2 or higher battle opponent of this card becomes reversed, if the the number of colors you have is 4 or more, draw up to 1 card.
+Text Auto: When a level 2 or higher battle opponent of this card becomes reversed, if the the number of colors you have is 4 or more, draw up to 1 card.
 EndCard
 
 Character: PAD/S105-014
@@ -441,7 +441,7 @@ Cont: GiveSelf
     MultiplyXValue 1000
     GainPower X
 }
-Text Cont:This card gets +1000 power for each of your other "Brigid, Sacred Flame Bride".
+Text Cont: This card gets +1000 power for each of your other "Brigid, Sacred Flame Bride".
 Auto: OnAttack
 {
     If Climax Silverwing White Conqueror, Daytona && StageContains 4 Other && IsColor Yellow
@@ -462,7 +462,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo When this card attacks, if "Silverwing White Conqueror, Daytona" is in your climax area and the number of other Yellow characters you have is 4 or more, choose 1 of the following 2 effects and perform it. "Choose up to 1 Yellow character in your waiting room and return it to your hand, choose up to 1 Yellow character in your waiting room and put it in your stock." "[(2)] You may pay the cost. If you do, deal 1 damage to your opponent, and this card gets +5000 power until end of turn." 
+Text Auto: CxCombo When this card attacks, if "Silverwing White Conqueror, Daytona" is in your climax area and the number of other Yellow characters you have is 4 or more, choose 1 of the following 2 effects and perform it. "Choose up to 1 Yellow character in your waiting room and return it to your hand, choose up to 1 Yellow character in your waiting room and put it in your stock." "[(2)] You may pay the cost. If you do, deal 1 damage to your opponent, and this card gets +5000 power until end of turn." 
 EndCard
 
 Character: PAD/S105-015
@@ -480,7 +480,7 @@ Auto: OnPlay
         *CheckAndAdd(3)
     }
 }
-Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to 3 cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room.
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to 3 cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room.
 *ClockShift(0,yellow)
 EndCard
 
@@ -500,7 +500,7 @@ Act: 1 SendSelf WaitingRoom
         Change
     }
 }
-Text Act:[(1) Put this card in the waiting room] Choose up to 1 Yellow character in your hand whose level is less or equal to your level and put it in the position this card was in.
+Text Act: [(1) Put this card in the waiting room] Choose up to 1 Yellow character in your hand whose level is less or equal to your level and put it in the position this card was in.
 Act: SendSelf WaitingRoom
 {
     TargetLocation Stage
@@ -508,7 +508,7 @@ Act: SendSelf WaitingRoom
     ChooseCharacterFromTargets Choose a character to give +1 soul.
     GainSoul 1
 }
-Text Act:[Put this card in the waiting room] Choose 1 of your Yellow characters, and that character gets +1 soul until end of turn.
+Text Act: [Put this card in the waiting room] Choose 1 of your Yellow characters, and that character gets +1 soul until end of turn.
 EndCard
 
 Character: PAD/S105-017
@@ -528,7 +528,7 @@ Auto: OnPlay
 	ChooseCardFromTargets 0 1 Any
 	MoveCard Stock
 }
-Text Auto:When this card is placed on the stage from your hand, you may choose a card in your hand and put it in your stock.
+Text Auto: When this card is placed on the stage from your hand, you may choose a card in your hand and put it in your stock.
 EndCard
 
 Character: PAD/S105-018
@@ -548,7 +548,7 @@ Auto: OnDamageDealtByCharacterFacingThisCanceled
         MoveCard Hand
     }
 }
-Text Auto:During battles involving this card, when damage taken by you is canceled, you may return this card to your hand.
+Text Auto: During battles involving this card, when damage taken by you is canceled, you may return this card to your hand.
 EndCard
 
 Character: PAD/S105-019
@@ -567,7 +567,7 @@ Cont: GiveSelf
         GainPower 2000
     }
 }
-Text Cont:During your turn, if the number of other Yellow or «God» characters you have is 2 or more, this card gets +2000 power.
+Text Cont: During your turn, if the number of other Yellow or «God» characters you have is 2 or more, this card gets +2000 power.
 Auto: OnReverseOpponent
 {
     If PlayedThisTurn
@@ -578,7 +578,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:[(1) Rest 1 of your other standing Yellow or «God» characters] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, search your deck for up to 1 Yellow or «God» character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto: [(1) Rest 1 of your other standing Yellow or «God» characters] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, search your deck for up to 1 Yellow or «God» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: PAD/S105-020
@@ -607,7 +607,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[Put 3 Yellow cards from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 3 of your characters, and those characters get +2000 power and the following ability until the end of your opponent's next turn. "Cont: This cannot be chosen as target of opponent's effects."
+Text Auto: [Put 3 Yellow cards from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 3 of your characters, and those characters get +2000 power and the following ability until the end of your opponent's next turn. "Cont: This cannot be chosen as target of opponent's effects."
 *YellowEarlyPlayBomb
 EndCard
 
@@ -628,7 +628,7 @@ Auto: OnPlay
     ChooseCharactersFromTargets 0 2 Choose up to 3 characters to give +1500 power.
     GainPower 1500
 }
-Text Auto:When this card is placed on the stage from your hand, choose up to 2 of your characters, and those characters get +1500 power until end of turn.
+Text Auto: When this card is placed on the stage from your hand, choose up to 2 of your characters, and those characters get +1500 power until end of turn.
 Act: SendSelf BottomOfDeck
 {
     TargetLocation OpponentStage
@@ -636,7 +636,7 @@ Act: SendSelf BottomOfDeck
     ChooseCharacterFromTargets Choose a character to bounce.
     Bounce
 }
-Text Act:[Put this card on the bottom of the deck] Choose 1 of your opponent's characters and return it to their hand.
+Text Act: [Put this card on the bottom of the deck] Choose 1 of your opponent's characters and return it to their hand.
 EndCard
 
 Event: PAD/S105-022
@@ -655,7 +655,7 @@ Effect:
         {
             LoseSoul 3
         }
-        Text Cont:Character facing this card gets -3 soul.
+        Text Cont: Character facing this card gets -3 soul.
     }
 }
 Text [Counter] Choose 1 of your "Ideal, Bonding Colorful Dragon Caller", and that character gets the following ability for the turn. "Cont:Character facing this card gets -3 soul."
@@ -701,7 +701,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:When this card attacks, if there isn't another character in your backstage, you may put the top card of your deck in the waiting room. If it's a level 0 or lower character, put that character in any position in the backstage.
+Text Auto: When this card attacks, if there isn't another character in your backstage, you may put the top card of your deck in the waiting room. If it's a level 0 or lower character, put that character in any position in the backstage.
 Auto: OnSentFromStageToWaitingRoom
 {
     PayCost Discard 1 Any
@@ -709,7 +709,7 @@ Auto: OnSentFromStageToWaitingRoom
         *Check4Add1Level1OrHigher
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. 
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. 
 EndCard
 
 Character: PAD/S105-027
@@ -750,7 +750,7 @@ Auto: OnEndOfAttack
         }
     }
 }
-Text Auto:CxCombo This ability activates up to once per turn. At the end of this card's attack, if "Mega Awoken Goddess of power, Kali" is in your climax area, choose 1 of the following 2 effects and perform it. "Choose up to 2 characters in your waiting room and return them to your hand, choose up to 1 level 1 or lower characters in your waiting room and put it in your stock, and this card gets +1000 power until the end of your opponent's next turn." "[(1) Put 1 card from your hand to the waiting room] If you have 2 or more other characters, you may pay the cost. If you do, stand this card."
+Text Auto: CxCombo This ability activates up to once per turn. At the end of this card's attack, if "Mega Awoken Goddess of power, Kali" is in your climax area, choose 1 of the following 2 effects and perform it. "Choose up to 2 characters in your waiting room and return them to your hand, choose up to 1 level 1 or lower characters in your waiting room and put it in your stock, and this card gets +1000 power until the end of your opponent's next turn." "[(1) Put 1 card from your hand to the waiting room] If you have 2 or more other characters, you may pay the cost. If you do, stand this card."
 EndCard
 
 Character: PAD/S105-028
@@ -769,7 +769,7 @@ Cont: GiveSelf
         GainColor Yellow
     }
 }
-Text Cont:If the number of other characters you have is 2 or more, this card gets Yellow.
+Text Cont: If the number of other characters you have is 2 or more, this card gets Yellow.
 Auto: StartClimaxPhase
 {
     If Compare ColorsOnStage 4 OrMore
@@ -777,7 +777,7 @@ Auto: StartClimaxPhase
         *GiveCharacterPower(1500,Any)
     }
 }
-Text Auto:At the beginning of your climax phase, if the the number of colors you have is 4 or more, choose 1 of your characters, and that character gets +1500 power until end of turn.
+Text Auto: At the beginning of your climax phase, if the the number of colors you have is 4 or more, choose 1 of your characters, and that character gets +1500 power until end of turn.
 *RestGivePower(1000,Any)
 EndCard
 
@@ -805,7 +805,7 @@ Auto: OnSpecificClimaxPlay Drillspear Jade Conqueror, Nautilus
         *GainBounceWhenFrontalAttacked
     }
 }
-Text Auto:CxCombo When "Drillspear Jade Conqueror, Nautilus" is placed on your climax area, if the number of other characters you have is 2 or more, this card gets the following 2 abilities until the end of your opponent's next turn. "Auto: When this card attacks, look at up to 2 cards from the top of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room." "Auto: When this card is frontal attacked, you may return this card to your hand."
+Text Auto: CxCombo When "Drillspear Jade Conqueror, Nautilus" is placed on your climax area, if the number of other characters you have is 2 or more, this card gets the following 2 abilities until the end of your opponent's next turn. "Auto: When this card attacks, look at up to 2 cards from the top of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room." "Auto: When this card is frontal attacked, you may return this card to your hand."
 EndCard
 
 Character: PAD/S105-030
@@ -831,7 +831,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:When this card attacks, if there is a climax with a Bar trigger icon in your climax area, reveal the top card of your deck. If it's level 1 or higher, perform trigger check twice during that attack's trigger Step.
+Text Auto: When this card attacks, if there is a climax with a Bar trigger icon in your climax area, reveal the top card of your deck. If it's level 1 or higher, perform trigger check twice during that attack's trigger Step.
 EndCard
 
 Character: PAD/S105-031
@@ -850,7 +850,7 @@ Cont: GiveSelf
         GainColor Blue
     }
 }
-Text Cont:If the number of other characters you have is 2 or more, this card gets Blue.
+Text Cont: If the number of other characters you have is 2 or more, this card gets Blue.
 Cont: GiveAll
 {
     If Compare ColorsOnStage 4 OrMore && Other
@@ -860,7 +860,7 @@ Cont: GiveAll
         GainPower X
     }
 }
-Text Cont:If the the number of colors you have is 4 or more, all your other characters get +X power. X equals 500 times level of that character.
+Text Cont: If the the number of colors you have is 4 or more, all your other characters get +X power. X equals 500 times level of that character.
 Act: 1 RestSelf
 {
     If Compare ColorsOnStage 4 OrMore
@@ -872,7 +872,7 @@ Act: 1 RestSelf
         MoveCard Clock
     }
 }
-Text Act:[(1) Rest this card] If the the number of colors you have is 4 or more, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
+Text Act: [(1) Rest this card] If the the number of colors you have is 4 or more, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
 EndCard
 
 Character: PAD/S105-032
@@ -899,7 +899,7 @@ Auto: OnPlay
         StockSwap
     }
 }
-Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of the following 2 effects and perform it. "Put up to 1 card from the top of your clock in the waiting room, and this card gets +3000 power until end of turn." "Your opponent puts all of their stock in the waiting room, then puts the same number of cards from top of their deck in their stock."
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of the following 2 effects and perform it. "Put up to 1 card from the top of your clock in the waiting room, and this card gets +3000 power until end of turn." "Your opponent puts all of their stock in the waiting room, then puts the same number of cards from top of their deck in their stock."
 EndCard
 
 Character: PAD/S105-033
@@ -920,7 +920,7 @@ Cont: InHand
         LoseLevel 1
     }
 }
-Text Cont:MEMORY If there are 2 or more "Raving Bassist, Roche" in your memory, this card gets -1 level while in your hand.
+Text Cont: MEMORY If there are 2 or more "Raving Bassist, Roche" in your memory, this card gets -1 level while in your hand.
 Auto: OnAttack
 {
     Question Put the top card of your deck into waiting room ?
@@ -933,12 +933,12 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:When this card attacks, you may put the top card of your deck in the waiting room. If it's either a card with at least 1 soul trigger icon or "Raving Bassist, Roche", deal 1 damage to your opponent. 
+Text Auto: When this card attacks, you may put the top card of your deck in the waiting room. If it's either a card with at least 1 soul trigger icon or "Raving Bassist, Roche", deal 1 damage to your opponent. 
 Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
 {
     *PutCardFromWaitingRoomIntoStock(HasTrait Dragon)
 }
-Text Auto:When a level 2 or higher battle opponent of this card becomes reversed, you may choose a «Dragon» character in your waiting room and put it in your stock.
+Text Auto: When a level 2 or higher battle opponent of this card becomes reversed, you may choose a «Dragon» character in your waiting room and put it in your stock.
 EndCard
 
 Character: PAD/S105-034
@@ -961,7 +961,7 @@ Auto: OnSentFromStageToWaitingRoom
         PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto:[(1) Choose a Green character in your waiting room and put it on the bottom of your clock] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 2 cards from the top of your deck and search for up to 2 Green characters, reveal them, put them in your hand, and put the rest into your waiting room.
+Text Auto: [(1) Choose a Green character in your waiting room and put it on the bottom of your clock] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 2 cards from the top of your deck and search for up to 2 Green characters, reveal them, put them in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: PAD/S105-035
@@ -982,7 +982,7 @@ Auto: OnPlay|OnSentFromStageToWaitingRoom
     }
 
 }
-Text Auto:[Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand or from the stage to the waiting room, you may pay the cost. If you do, choose a level 1 or higher character in your waiting room and return it to your hand.
+Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand or from the stage to the waiting room, you may pay the cost. If you do, choose a level 1 or higher character in your waiting room and return it to your hand.
 EndCard
 
 Character: PAD/S105-036
@@ -1005,11 +1005,11 @@ Cont: GiveSelf
                 SearchLocationForTargets Hand NameEquals Alexander the Commander
                 Change
             }
-            Text Act:[(1) Discard a card from your hand into waiting room, put this card into waiting room] Choose up to 1 "Alexander the Commander" in your hand and put that card in the position this card was in.
+            Text Act: [(1) Discard a card from your hand into waiting room, put this card into waiting room] Choose up to 1 "Alexander the Commander" in your hand and put that card in the position this card was in.
         }
     }
 }
-Text Cont:If you are level 2 or higher, this card gets the following ability. "Act:[(1) Discard a card from your hand into waiting room, put this card into waiting room] Choose up to 1 "Alexander the Commander" in your hand and put that card in the position this card was in.""
+Text Cont: If you are level 2 or higher, this card gets the following ability. "Act:[(1) Discard a card from your hand into waiting room, put this card into waiting room] Choose up to 1 "Alexander the Commander" in your hand and put that card in the position this card was in.""
 *Act1RestSelfSalvageBrainstorm(Any)
 EndCard
 
@@ -1027,7 +1027,7 @@ Auto: OnUseThisCardsBackup
 {
     *ScryToBottom
 }
-Text Auto:When you use this card's BACKUP, look at the top card of your deck and put it either on top or bottom of the deck.
+Text Auto: When you use this card's BACKUP, look at the top card of your deck and put it either on top or bottom of the deck.
 Backup 2500
 EndCard
 
@@ -1052,10 +1052,10 @@ Act: SendSelf BottomOfDeck
         {
             GainSpecialEffect CanAttackBackstage
         }
-        Text Cont:When this card attacks, you may instead choose a character in your opponent's backstage and have this card frontal attack that character as Defending character.
+        Text Cont: When this card attacks, you may instead choose a character in your opponent's backstage and have this card frontal attack that character as Defending character.
     }
 }
-Text Act:[Put this card on the bottom of the deck] Choose 1 of your characters, and that character gets the following ability until end of turn. "Cont: When this card attacks, you may instead choose a character in your opponent's backstage and have this card frontal attack that character as Defending character."
+Text Act: [Put this card on the bottom of the deck] Choose 1 of your characters, and that character gets the following ability until end of turn. "Cont: When this card attacks, you may instead choose a character in your opponent's backstage and have this card frontal attack that character as Defending character."
 EndCard
 
 Character: PAD/S105-039
@@ -1078,7 +1078,7 @@ Cont: GiveSelf
         GainPower X
     }
 }
-Text Cont:During your turn, this card gets +3000 power for each of your opponent's backstage characters.
+Text Cont: During your turn, this card gets +3000 power for each of your opponent's backstage characters.
 Auto: OnAttack
 {
     PayCost Discard 3 IsColor Green
@@ -1103,7 +1103,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:[Put 3 Green cards from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, this card gets +2500 power, +1 soul, and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character in clock."
+Text Auto: [Put 3 Green cards from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, this card gets +2500 power, +1 soul, and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character in clock."
 EndCard
 
 Character: PAD/S105-040
@@ -1122,7 +1122,7 @@ Act: 1 SendSelf WaitingRoom
         Change
     }
 }
-Text Act:[(1) Put this card in the waiting room] Choose up to 1 Green character in your hand whose level is less or equal to your level and put it in the position this card was in.
+Text Act: [(1) Put this card in the waiting room] Choose up to 1 Green character in your hand whose level is less or equal to your level and put it in the position this card was in.
 Act: SendSelf WaitingRoom
 {
     TargetLocation Stage
@@ -1130,7 +1130,7 @@ Act: SendSelf WaitingRoom
     ChooseCharacterFromTargets Choose a character to give +2000 power.
     GainPower 2000
 }
-Text Act:[Put this card in the waiting room] Choose 1 of your Green characters, and that character gets +2000 power until end of turn.
+Text Act: [Put this card in the waiting room] Choose 1 of your Green characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: PAD/S105-041
@@ -1151,7 +1151,7 @@ Cont: Assist
         GainPower X
     }
 }
-Text Cont:ASSIST Your Green characters in front of this card get +X power. X equals 500 times level of that character.
+Text Cont: ASSIST Your Green characters in front of this card get +X power. X equals 500 times level of that character.
 Auto: OnClimaxPlay
 {
     IfOther HasTrigger Bar
@@ -1161,7 +1161,7 @@ Auto: OnClimaxPlay
         GainPower 1500
     }
 }
-Text Auto:When your climax with a Bar trigger icon is placed on your climax area, choose up to 2 of your characters, and those characters get +1500 power until end of turn.
+Text Auto: When your climax with a Bar trigger icon is placed on your climax area, choose up to 2 of your characters, and those characters get +1500 power until end of turn.
 EndCard
 
 Character: PAD/S105-042
@@ -1183,7 +1183,7 @@ Auto: OnPlay
         MoveCard Clock
     }
 }
-Text Auto:[(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
 *ClockShift(0,green)
 EndCard
 
@@ -1206,7 +1206,7 @@ Auto: OnPlay
         LosePower 1000
     }
 }
-Text Auto:[Return 2 «Dragon» characters from your waiting room to your deck, shuffle your deck] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a character in your opponent's center stage, and that character gets -1000 power until end of turn.
+Text Auto: [Return 2 «Dragon» characters from your waiting room to your deck, shuffle your deck] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a character in your opponent's center stage, and that character gets -1000 power until end of turn.
 Auto: OnPlay
 {
     PayCost Discard 1 Any
@@ -1214,7 +1214,7 @@ Auto: OnPlay
         SearchWaitingRoom NameEquals Raving Bassist, Roche
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Raving Bassist, Roche" in your waiting room and return it to your hand.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Raving Bassist, Roche" in your waiting room and return it to your hand.
 EndCard
 
 Character: PAD/S105-044
@@ -1233,7 +1233,7 @@ Act: 1 SendSelf WaitingRoom
     SetXValue TotalLevel
     SearchWaitingRoom IsCharacter && Compare ThatCardsLevel X OrLess
 }
-Text Act:[(1) Put this card in the waiting room] Put the top 2 cards of your deck in the waiting room, choose a level X or lower character in your waiting room and return it to your hand. X equals sum of levels of those cards. 
+Text Act: [(1) Put this card in the waiting room] Put the top 2 cards of your deck in the waiting room, choose a level X or lower character in your waiting room and return it to your hand. X equals sum of levels of those cards. 
 EndCard
 
 Character: PAD/S105-045
@@ -1253,7 +1253,7 @@ Cont: GiveSelf
         GainPower 2000
     }
 }
-Text Cont:During your turn, if the number of other Green or «God» characters you have is 2 or more, this card gets +2000 power.
+Text Cont: During your turn, if the number of other Green or «God» characters you have is 2 or more, this card gets +2000 power.
 Auto: OnReverseOpponent
 {
     If PlayedThisTurn
@@ -1264,7 +1264,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:[(1)] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, choose a Green or «God» character in your waiting room and return it to your hand.
+Text Auto: [(1)] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, choose a Green or «God» character in your waiting room and return it to your hand.
 Text <color=red> * This card is part of a 3C1 restriction alongside PAD/S105-T02 and PAD/S105-053 in JP. </color>
 EndCard
 
@@ -1289,7 +1289,7 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont:During your turn, if the number of other «God» characters you have is 2 or more, this card gets +2000 power and the following ability. "Auto: When this card attacks, if the character facing this card is level 2, this card gets +6000 power until end of turn."
+Text Cont: During your turn, if the number of other «God» characters you have is 2 or more, this card gets +2000 power and the following ability. "Auto: When this card attacks, if the character facing this card is level 2, this card gets +6000 power until end of turn."
 *OnPlayTradeClimaxForCharacter(God)
 EndCard
 
@@ -1324,7 +1324,7 @@ Auto: StartAttackPhase
     }
 }
 InMemory
-Text Auto:MEMORY [(1) Turn another face-up "Raving Bassist, Roche" and this card in your memory face-down] If this card is in memory, at the beginning of your attack phase, you may pay the cost. If you do, look at up to 6 cards from the top of your deck, choose 3 of them and put them in the waiting room, and put the rest on top of the deck in any order.
+Text Auto: MEMORY [(1) Turn another face-up "Raving Bassist, Roche" and this card in your memory face-down] If this card is in memory, at the beginning of your attack phase, you may pay the cost. If you do, look at up to 6 cards from the top of your deck, choose 3 of them and put them in the waiting room, and put the rest on top of the deck in any order.
 EndCard
 
 Climax: PAD/S105-048
@@ -1358,7 +1358,7 @@ Cont: GiveSelf
         GainPower 1500
     }
 }
-Text Cont:If there are 5 or more cards in your hand, this card gets +1500 power.
+Text Cont: If there are 5 or more cards in your hand, this card gets +1500 power.
 Auto: StartOpponentAttackPhase
 {
     MultipleChoiceQuestion Choose an effect to perform.\n1:Move this card to an empty center stage middle position.\n2:this card get the following effect: "Auto:[(1)] At the beginning of encore step, if you have no other rested characters in the center stage, you may pay the cost. If you do, rest this card."|1|2
@@ -1380,7 +1380,7 @@ Auto: StartOpponentAttackPhase
         }
     }
 }
-Text Auto:At the beginning of your opponent's attack phase, you may either move this card to an empty center stage middle position or this card gets the following effect. "Auto:[(1)] At the beginning of encore step, if you have no other rested characters in the center stage, you may pay the cost. If you do, rest this card."
+Text Auto: At the beginning of your opponent's attack phase, you may either move this card to an empty center stage middle position or this card gets the following effect. "Auto:[(1)] At the beginning of encore step, if you have no other rested characters in the center stage, you may pay the cost. If you do, rest this card."
 EndCard
 
 Character: PAD/S105-052
@@ -1399,7 +1399,7 @@ Auto: OnAttack
         GainPower 2000
     }
 }
-Text Auto:When this card attacks, if the number of other characters you have is 3 or more, this card gets +2000 power until end of turn.
+Text Auto: When this card attacks, if the number of other characters you have is 3 or more, this card gets +2000 power until end of turn.
 Auto: StartEncoreStep
 {
     If Climax Blazearm Scarlet Conqueror, Sea Wolf && InLocation CenterStage
@@ -1432,7 +1432,7 @@ Auto: StartEncoreStep
         }
     }
 }
-Text Auto:CxCombo At the beginning of your encore step, if "Blazearm Scarlet Conqueror, Sea Wolf" is in your climax area and this card is in the center stage, choose 1 of the following 2 effects and perform it. "If the the number of colors you have is 4 or more and the character facing this card is reversed, look at up to 3 cards from the top of your deck, choose up to 1 of them and put it in your hand, choose up to 1 of them and put it in your stock, and put the rest into your waiting room." "Choose a level 2 or higher character in your waiting room and return it to your hand."
+Text Auto: CxCombo At the beginning of your encore step, if "Blazearm Scarlet Conqueror, Sea Wolf" is in your climax area and this card is in the center stage, choose 1 of the following 2 effects and perform it. "If the the number of colors you have is 4 or more and the character facing this card is reversed, look at up to 3 cards from the top of your deck, choose up to 1 of them and put it in your hand, choose up to 1 of them and put it in your stock, and put the rest into your waiting room." "Choose a level 2 or higher character in your waiting room and return it to your hand."
 EndCard
 
 Character: PAD/S105-053
@@ -1452,7 +1452,7 @@ Auto: OnSpecificClimaxPlay Head of the Ministry of Mystics, Mikage
         *Check4Add1(God)
     }
 }
-Text Auto:CxCombo When "Head of the Ministry of Mystics, Mikage" is placed on your climax area, if the number of other «God» characters you have is 2 or more, look at up to 4 cards from the top of your deck and search for up to 1 «God» character, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: CxCombo When "Head of the Ministry of Mystics, Mikage" is placed on your climax area, if the number of other «God» characters you have is 2 or more, look at up to 4 cards from the top of your deck and search for up to 1 «God» character, reveal it, put it in your hand, and put the rest into your waiting room.
 Auto: OnTriggerCheckClimax
 {
     IfOther HasTrigger Bar
@@ -1467,7 +1467,7 @@ Auto: OnTriggerCheckClimax
         }
     }
 }
-Text Auto:[Put 1 card from hand to the waiting room] When your character's trigger check reveals a climax with a Bar trigger icon, you may pay the cost. If you do, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
+Text Auto: [Put 1 card from hand to the waiting room] When your character's trigger check reveals a climax with a Bar trigger icon, you may pay the cost. If you do, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
 Text <color=red> * This card is part of a 3C1 restriction alongside PAD/S105-045 and PAD/S105-T02 in JP. </color>
 EndCard
 
@@ -1491,7 +1491,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, if the the number of colors you have is 4 or more, you may pay the cost. If you do, look at up to 3 cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, if the the number of colors you have is 4 or more, you may pay the cost. If you do, look at up to 3 cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: PAD/S105-055
@@ -1511,7 +1511,7 @@ Cont: GiveSelf
         GainPower 1000
     }
 }
-Text Cont:EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets +1000 power.
+Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets +1000 power.
 Auto: StartAttackPhase
 {
     If Climax Super Reincarnated Shiva Dragon && InLocation CenterStage && LocationContainsOrLess Hand 5 Any
@@ -1525,7 +1525,7 @@ Auto: StartAttackPhase
         }
     }
 }
-Text Auto:CxCombo [Put a "Super Reincarnated Shiva Dragon" from your climax area in the waiting room] At the beginning of your attack phase, if this card is in the center stage and there are 5 or fewer cards in your hand, you may pay the cost. If you do, choose 1 of your other characters and stand it.
+Text Auto: CxCombo [Put a "Super Reincarnated Shiva Dragon" from your climax area in the waiting room] At the beginning of your attack phase, if this card is in the center stage and there are 5 or fewer cards in your hand, you may pay the cost. If you do, choose 1 of your other characters and stand it.
 EndCard
 
 Character: PAD/S105-056
@@ -1553,7 +1553,7 @@ Auto: StartMyEncorePhase
         }
     }
 }
-Text Auto:During the turn this card is placed on the stage from your hand, at the beginning of your encore step, if the number of other «God» characters you have is 3 or more and there are 6 or fewer cards in your deck, you may return all cards in your waiting room to your deck. If you do, shuffle your deck, choose 1 of your characters, and that character gets +2500 power until the end of your opponent's next turn.
+Text Auto: During the turn this card is placed on the stage from your hand, at the beginning of your encore step, if the number of other «God» characters you have is 3 or more and there are 6 or fewer cards in your deck, you may return all cards in your waiting room to your deck. If you do, shuffle your deck, choose 1 of your characters, and that character gets +2500 power until the end of your opponent's next turn.
 EndCard
 
 Character: PAD/S105-057
@@ -1586,7 +1586,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:[(3)] When this card attacks, you may pay the cost. If you do, choose 1 of your other characters, and that character gets the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 2 damage to your opponent." 
+Text Auto: [(3)] When this card attacks, you may pay the cost. If you do, choose 1 of your other characters, and that character gets the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 2 damage to your opponent." 
 EndCard
 
 Character: PAD/S105-058
@@ -1606,7 +1606,7 @@ Cont: GiveSelf
         GainPower 1000
     }
 }
-Text Cont:EXPERIENCE If the sum of levels of cards in your level is 4 or higher, this card gets +1000 power.
+Text Cont: EXPERIENCE If the sum of levels of cards in your level is 4 or higher, this card gets +1000 power.
 Auto: StartAttackPhase
 {
     If Climax Flaming Wonderbloom Empress, Echidna - Sara && LocationContains Level 1 NameEquals Ruka & Mitsuki, Water Shrine Beast Princess
@@ -1618,7 +1618,7 @@ Auto: StartAttackPhase
         }
     }
 }
-Text Auto:CxCombo EXPERIENCE [Put a "Flaming Wonderbloom Empress, Echidna - Sara" from your climax area in the waiting room] At the beginning of your attack phase, if there is a 'Ruka & Mitsuki, Water Shrine Beast Princess' in your level, you may pay the cost. If you do, stand this card, and your opponent puts the top 10 cards of their deck in the waiting room.
+Text Auto: CxCombo EXPERIENCE [Put a "Flaming Wonderbloom Empress, Echidna - Sara" from your climax area in the waiting room] At the beginning of your attack phase, if there is a 'Ruka & Mitsuki, Water Shrine Beast Princess' in your level, you may pay the cost. If you do, stand this card, and your opponent puts the top 10 cards of their deck in the waiting room.
 Auto: OnReverseOpponent
 {
     PayCost 1
@@ -1626,7 +1626,7 @@ Auto: OnReverseOpponent
         Heal
     }
 }
-Text Auto:[(1)] During your turn, when this card's battle opponent becomes reverse, you may pay the cost. If you do, put the top card of your clock in the waiting room.
+Text Auto: [(1)] During your turn, when this card's battle opponent becomes reverse, you may pay the cost. If you do, put the top card of your clock in the waiting room.
 EndCard
 
 Character: PAD/S105-059
@@ -1647,7 +1647,7 @@ Auto: OnPlay
         MoveCard Stock
     }
 }
-Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If it's level 2 or higher, put it in your stock. 
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's level 2 or higher, put it in your stock. 
 *ClimaxExchange
 EndCard
 
@@ -1673,7 +1673,7 @@ Auto: OnPlay
         MoveCard WaitingRoom
     }
 }
-Text Auto:When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is a climax among them, choose a level 2 or lower character in your opponent's center stage and put it in the waiting room.
+Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is a climax among them, choose a level 2 or lower character in your opponent's center stage and put it in the waiting room.
 *RedLevel1Bomb
 EndCard
 
@@ -1698,7 +1698,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[Put 1 card from hand to waiting room] When this card is placed from hand to stage, you may pay the cost. If you do, choose a level 0 or lower character in your waiting room and place it to any slot on the stage.
+Text Auto: [Put 1 card from hand to waiting room] When this card is placed from hand to stage, you may pay the cost. If you do, choose a level 0 or lower character in your waiting room and place it to any slot on the stage.
 Auto: OnAttack
 {
     TargetLocation OpponentCenterStage
@@ -1706,7 +1706,7 @@ Auto: OnAttack
     ChooseCharacterFromTargets Choose a character to put give -2000 power.
     LosePower 2000
 }
-Text Auto:When this card attacks, choose a character in your opponent's center stage, and that character gets -2000 power until end of turn.
+Text Auto: When this card attacks, choose a character in your opponent's center stage, and that character gets -2000 power until end of turn.
 EndCard
 
 Character: PAD/S105-062
@@ -1729,7 +1729,7 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont:If the the number of colors you have is 4 or more, this card gets +2000 power and the following ability. "Auto: When this card attacks, if the character facing this card is level 2, this card gets +6000 power until end of turn."
+Text Cont: If the the number of colors you have is 4 or more, this card gets +2000 power and the following ability. "Auto: When this card attacks, if the character facing this card is level 2, this card gets +6000 power until end of turn."
 Auto: OnAttack
 {
     If LocationContains Climax 1 Any
@@ -1742,7 +1742,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:When this card attacks, if there's a climax in your climax area, reveal the top card of your deck. If it's level 1 or higher, put it in your stock. 
+Text Auto: When this card attacks, if there's a climax in your climax area, reveal the top card of your deck. If it's level 1 or higher, put it in your stock. 
 EndCard
 
 Character: PAD/S105-063
@@ -1761,7 +1761,7 @@ Cont: Assist
         GainPower 1500
     }
 }
-Text Cont:ASSIST Your Red characters in front of this card get +1500 power.
+Text Cont: ASSIST Your Red characters in front of this card get +1500 power.
 Act: SendSelf BottomOfDeck
 {
     TargetLocation OpponentStage
@@ -1769,7 +1769,7 @@ Act: SendSelf BottomOfDeck
     ChooseCharacterFromTargets Choose a character to move to an open position on stage.
     MoveToOpenPosition true true
 }
-Text Act:[Put this card on bottom of the deck] Choose 1 of your opponent's characters and move it to another open position on your opponent's stage.
+Text Act: [Put this card on bottom of the deck] Choose 1 of your opponent's characters and move it to another open position on your opponent's stage.
 EndCard
 
 Character: PAD/S105-064
@@ -1791,7 +1791,7 @@ Cont: InHand
         LoseLevel 1
     }
 }
-Text Cont:If your opponent has a level 3 or higher character, this card gets -1 level while in your hand.
+Text Cont: If your opponent has a level 3 or higher character, this card gets -1 level while in your hand.
 Auto: StartAttackPhase
 {
     If InLocation CenterStage
@@ -1802,7 +1802,7 @@ Auto: StartAttackPhase
         *Downgrade
     }
 }
-Text Auto:At the beginning of your attack phase, if this card is in the center stage, you may choose 1 of your opponent's level 1 or higher characters. If you do, your opponent chooses a level X or lower character in their waiting room and swaps the chosen characters. X equals level of the character you chose this way -1.
+Text Auto: At the beginning of your attack phase, if this card is in the center stage, you may choose 1 of your opponent's level 1 or higher characters. If you do, your opponent chooses a level X or lower character in their waiting room and swaps the chosen characters. X equals level of the character you chose this way -1.
 Auto: OnReverseOpponent
 {
     PayCost Discard 3 IsColor Red
@@ -1813,7 +1813,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:[Put 3 Red cards from your hand to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 1 damage to your opponent twice. 
+Text Auto: [Put 3 Red cards from your hand to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 1 damage to your opponent twice. 
 EndCard
 
 Character: PAD/S105-065
@@ -1832,7 +1832,7 @@ Act: 1 SendSelf WaitingRoom
         Change
     }
 }
-Text Act:[(1) Put this card in the waiting room] Choose up to 1 Red character in your hand whose level is less or equal to your level and put it in the position this card was in.
+Text Act: [(1) Put this card in the waiting room] Choose up to 1 Red character in your hand whose level is less or equal to your level and put it in the position this card was in.
 Act: SendSelf WaitingRoom
 {
     TargetLocation Stage
@@ -1849,7 +1849,7 @@ Act: SendSelf WaitingRoom
         }
     }
 }
-Text Act:[Put this card in the waiting room] Choose 1 of your Red characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may choose a level 1 or lower character in your opponent's center stage and put it in the waiting room."
+Text Act: [Put this card in the waiting room] Choose 1 of your Red characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may choose a level 1 or lower character in your opponent's center stage and put it in the waiting room."
 EndCard
 
 Character: PAD/S105-066
@@ -1868,7 +1868,7 @@ Auto: OnPlay
         DrawCard
     }
 }
-Text Auto:[Put a Red card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw a card.
+Text Auto: [Put a Red card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw a card.
 Auto: OnPlay
 {
     If Compare Experience 2 OrMore
@@ -1877,7 +1877,7 @@ Auto: OnPlay
         Discard 1 Any
     }
 }
-Text Auto:EXPERIENCE When this card is placed on the stage from your hand, if the sum of levels of cards in your level is 2 or higher, look at up to 2 cards from the top of your deck, choose up to 1 card and put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
+Text Auto: EXPERIENCE When this card is placed on the stage from your hand, if the sum of levels of cards in your level is 2 or higher, look at up to 2 cards from the top of your deck, choose up to 1 card and put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
 EndCard
 
 Character: PAD/S105-067
@@ -1893,7 +1893,7 @@ Auto: OnPlay
 {
     *ExchangeCardInLevelWithWaitingRoom(Any, Any)
 }
-Text Auto:When this card is placed on the stage from your hand, you may choose a card in your level and a card in your waiting room and swap them.
+Text Auto: When this card is placed on the stage from your hand, you may choose a card in your level and a card in your waiting room and swap them.
 Auto: OnClimaxPlay 
 {
     PayCost 1 SendSelf Hand
@@ -1909,7 +1909,7 @@ Auto: OnClimaxPlay
         }
     }
 }
-Text Auto:[(1) Return this card to your hand] When your climax is placed on your climax area, you may pay the cost. If you do, choose 1 of your characters, and that character gets +1500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may choose a Red character in your waiting room and return it to your hand."
+Text Auto: [(1) Return this card to your hand] When your climax is placed on your climax area, you may pay the cost. If you do, choose 1 of your characters, and that character gets +1500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may choose a Red character in your waiting room and return it to your hand."
 EndCard
 
 Character: PAD/S105-068
@@ -1925,7 +1925,7 @@ Act: 1 SendSelf WaitingRoom
 {
     *Check4Add1Level1OrHigher
 }
-Text Act:[(1) Put this card in the waiting room] Look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. 
+Text Act: [(1) Put this card in the waiting room] Look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. 
 *RestGivePower(1000,Any)
 EndCard
 
@@ -1944,7 +1944,7 @@ Auto: OnPlay
         SearchWaitingRoom NameEquals Spring Orchid Virtue, Xiang Mei
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Spring Orchid Virtue, Xiang Mei" in your waiting room and return it to your hand.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Spring Orchid Virtue, Xiang Mei" in your waiting room and return it to your hand.
 *ClockShift(0,red)
 EndCard
 
@@ -1995,7 +1995,7 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont:EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets +3500 power and the following 2 abilities. "Auto: During your turn, when this card's battle opponent becomes reverse, look at the top card of your deck and put it either on top of the deck or in the waiting room." "Auto: ENCORE [Put 1 character from your hand to the waiting room]"
+Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets +3500 power and the following 2 abilities. "Auto: During your turn, when this card's battle opponent becomes reverse, look at the top card of your deck and put it either on top of the deck or in the waiting room." "Auto: ENCORE [Put 1 character from your hand to the waiting room]"
 EndCard
 
 Event: PAD/S105-072
@@ -2022,7 +2022,7 @@ Auto: StartMainPhase
     }
 }
 InMemory
-Text Auto:MEMORY [Put 1 climax from your hand to the waiting room] If this card is in memory, at the beginning of your main phase, you may pay the cost. If you do, return this card to your hand.
+Text Auto: MEMORY [Put 1 climax from your hand to the waiting room] If this card is in memory, at the beginning of your main phase, you may pay the cost. If you do, return this card to your hand.
 EndCard
 
 Climax: PAD/S105-073
@@ -2070,7 +2070,7 @@ Auto: OnClimaxPlay
         }
     }
 }
-Text Auto:When your climax is placed on your climax area, you may choose 1 of your characters without markers and put this card face-up underneath that character as marker. If you do, that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
+Text Auto: When your climax is placed on your climax area, you may choose 1 of your characters without markers and put this card face-up underneath that character as marker. If you do, that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
 *Act1RestSelfSalvageBrainstorm(Any)
 EndCard
 
@@ -2092,7 +2092,7 @@ Cont: GiveSelf
         GainPower 3000
     }
 }
-Text Cont:During your turn, if the number of other characters you have is 2 or more, this card gets +3000 power.
+Text Cont: During your turn, if the number of other characters you have is 2 or more, this card gets +3000 power.
 Auto: OnAttack
 {
     If Climax Floating Draconic Songstress on Euphonium, Mariel && StageContains 3 Other
@@ -2111,7 +2111,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo When this card attacks, if "Floating Draconic Songstress on Euphonium, Mariel" is in your climax area and the number of other characters you have is 3 or more, reveal the top card of your deck, choose a level X or lower character in your waiting room and return it to your hand. If X is 2 or higher, put up to 1 card from the bottom of your deck in your stock. X equals level of the card revealed this way. 
+Text Auto: CxCombo When this card attacks, if "Floating Draconic Songstress on Euphonium, Mariel" is in your climax area and the number of other characters you have is 3 or more, reveal the top card of your deck, choose a level X or lower character in your waiting room and return it to your hand. If X is 2 or higher, put up to 1 card from the bottom of your deck in your stock. X equals level of the card revealed this way. 
 EndCard
 
 Character: PAD/S105-078
@@ -2131,7 +2131,7 @@ Cont: GiveSelf
     MultiplyXValue 1500
     GainPower X
 }
-Text Cont:This card gets +1500 power for each of your opponent's backstage characters.
+Text Cont: This card gets +1500 power for each of your opponent's backstage characters.
 *Healer
 EndCard
 
@@ -2159,7 +2159,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck, choose a level X or lower character in your waiting room and return it to your hand. If the revealed card has at least 1 soul trigger icon, this card gets +2000 power until end of turn. X equals level of the card revealed this way. 
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck, choose a level X or lower character in your waiting room and return it to your hand. If the revealed card has at least 1 soul trigger icon, this card gets +2000 power until end of turn. X equals level of the card revealed this way. 
 EndCard
 
 Character: PAD/S105-080
@@ -2178,7 +2178,7 @@ Cont: GiveSelf
         GainPower 2000
     }
 }
-Text Cont:During your turn, if there are 3 or fewer cards in your stock, this card gets +2000 power.
+Text Cont: During your turn, if there are 3 or fewer cards in your stock, this card gets +2000 power.
 *MoveOtherToBackstageOnReverse
 EndCard
 
@@ -2197,7 +2197,7 @@ Auto: OnAttack
     MultiplyXValue 1000
     GainPower X    
 }
-Text Auto:When this card attacks, this card gets +X power until end of turn. X equals 1000 times the number of your other Blue characters.
+Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 1000 times the number of your other Blue characters.
 Auto: OnSentFromStageToWaitingRoom
 {
     PayCost Discard 1 Any
@@ -2209,7 +2209,7 @@ Auto: OnSentFromStageToWaitingRoom
         PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 Blue character, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 Blue character, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: PAD/S105-082
@@ -2231,7 +2231,7 @@ Cont: GiveSelf
         GainSoul 1
     }
 }
-Text Cont:During your turn, if the number of other characters you have is 3 or more, this card gets +4000 power and +1 soul.
+Text Cont: During your turn, if the number of other characters you have is 3 or more, this card gets +4000 power and +1 soul.
 Auto: OnDamageCanceled
 {
     If Climax Greatsword Cobalt Conqueror, Royal Oak && StageContains 3 Other
@@ -2243,7 +2243,7 @@ Auto: OnDamageCanceled
     }
 }
 TimesPerTurn 1
-Text Auto:CxCombo This ability activates up to once per turn. When damage dealt by this card is canceled, if "Greatsword Cobalt Conqueror, Royal Oak" is in your climax area and the number of other characters you have is 3 or more, put up to 1 card from the top of your clock in the waiting room, choose up to 1 character in your waiting room and return it to your hand, and this card gets +1000 power until end of turn.
+Text Auto: CxCombo This ability activates up to once per turn. When damage dealt by this card is canceled, if "Greatsword Cobalt Conqueror, Royal Oak" is in your climax area and the number of other characters you have is 3 or more, put up to 1 card from the top of your clock in the waiting room, choose up to 1 character in your waiting room and return it to your hand, and this card gets +1000 power until end of turn.
 EndCard
 
 Character: PAD/S105-083
@@ -2279,7 +2279,7 @@ Auto: OnSpecificClimaxPlay Thousand-Armed Dragon, Senkyo
         }
     }
 }
-Text Auto:CxCombo [Put 3 Blue cards from your hand to the waiting room] When "Thousand-Armed Dragon, Senkyo" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, choose 1 of your other characters and this card, and those characters get the following ability until end of turn. "Auto: This ability activates up to once per turn. When damage dealt by this card is canceled, you may deal 3 damage to your opponent." 
+Text Auto: CxCombo [Put 3 Blue cards from your hand to the waiting room] When "Thousand-Armed Dragon, Senkyo" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, choose 1 of your other characters and this card, and those characters get the following ability until end of turn. "Auto: This ability activates up to once per turn. When damage dealt by this card is canceled, you may deal 3 damage to your opponent." 
 EndCard
 
 Character: PAD/S105-084
@@ -2303,7 +2303,7 @@ Auto: OnPlay
         MoveCard Clock
     }
 }
-Text Auto:When this card is placed on the stage from your hand, you may choose a card in your clock and return it to your hand. If you do, put a card from your hand in your clock.
+Text Auto: When this card is placed on the stage from your hand, you may choose a card in your clock and return it to your hand. If you do, put a card from your hand in your clock.
 Act: 1 RestSelf
 {
     If Compare ColorsOnStage 4 OrMore
@@ -2320,7 +2320,7 @@ Act: 1 RestSelf
 		}
     }
 }
-Text Act:BRAINSTORM [(1) Rest this card] If the the number of colors you have is 4 or more, flip over the top 5 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 character in your waiting room and return it to your hand, choose 1 of your characters, and that character gets +1000 power until end of turn.
+Text Act: BRAINSTORM [(1) Rest this card] If the the number of colors you have is 4 or more, flip over the top 5 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 character in your waiting room and return it to your hand, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: PAD/S105-085
@@ -2339,13 +2339,13 @@ Auto: StartClimaxPhase
     ChooseCharacterFromTargets Choose a charcter to give +1000 power.
     GainPower 1000
 }
-Text Auto:At the beginning of your climax phase, choose 1 of your Blue or «God» characters, and that character gets +1000 power until end of turn.
+Text Auto: At the beginning of your climax phase, choose 1 of your Blue or «God» characters, and that character gets +1000 power until end of turn.
 Auto: OnClimaxPlay
 {
     *GiveCharacterPower(1000,Any)
     GainSoul 1
 }
-Text Auto:When your climax is placed on your climax area, choose 1 of your characters, and that character gets +1000 power and +1 soul until end of turn.
+Text Auto: When your climax is placed on your climax area, choose 1 of your characters, and that character gets +1000 power and +1 soul until end of turn.
 EndCard
 
 Character: PAD/S105-086
@@ -2364,7 +2364,7 @@ Auto: OnReversed
         SearchDeck HasTrait Dragon
     }
 }
-Text Auto:[(1) Put 1 card from your hand to waiting room, put this card into memory] When this card becomes reversed in battle, you may pay the cost. If you do, search your deck for up to 1 «Dragon» character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto: [(1) Put 1 card from your hand to waiting room, put this card into memory] When this card becomes reversed in battle, you may pay the cost. If you do, search your deck for up to 1 «Dragon» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: PAD/S105-087
@@ -2386,7 +2386,7 @@ Auto: OnOpponentClimaxPlay
         MoveCard Stock
     }
 }
-Text Auto:When your opponent's climax is placed on your climax area, you may put this card in your stock.
+Text Auto: When your opponent's climax is placed on your climax area, you may put this card in your stock.
 EndCard
 
 Character: PAD/S105-088
@@ -2408,7 +2408,7 @@ Auto: OnAttack
     ChooseCharacterFromTargets Choose a charcter to give +X power.
     GainPower X
 }
-Text Auto:When this card attacks, choose 1 of your other Blue or «Dragon» characters, and that character gets +X power until end of turn. X equals 500 times the number of your other Blue or «Dragon» characters.
+Text Auto: When this card attacks, choose 1 of your other Blue or «Dragon» characters, and that character gets +X power until end of turn. X equals 500 times the number of your other Blue or «Dragon» characters.
 Auto: OnAttack
 {
     TargetLocation Stage
@@ -2425,7 +2425,7 @@ Auto: OnAttack
     }
 }
 Quick
-Text Auto:When this card attacks, all your characters get the following ability until end of turn. "Auto: When the trigger check of this card reveals a climax with a Gate trigger icon, you may draw a card. If you do, discard a card from your hand to the waiting room."
+Text Auto: When this card attacks, all your characters get the following ability until end of turn. "Auto: When the trigger check of this card reveals a climax with a Gate trigger icon, you may draw a card. If you do, discard a card from your hand to the waiting room."
 EndCard
 
 Character: PAD/S105-089
@@ -2446,7 +2446,7 @@ Auto: OnPlay
         MoveCard Stock
     }
 }
-Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If it's level 1 or lower, put it in your stock.
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's level 1 or lower, put it in your stock.
 *OnPlayFlicker
 *BlueEarlyPlayBomb
 EndCard
@@ -2466,7 +2466,7 @@ Auto: OnUseThisCardsBackup
     TargetBottom OpponentDeck X
     MoveCard WaitingRoom
 }
-Text Auto:When you use this card's BACKUP, put the bottom X cards of your opponent's deck in the waiting room. X equals the number of your opponent's characters.
+Text Auto: When you use this card's BACKUP, put the bottom X cards of your opponent's deck in the waiting room. X equals the number of your opponent's characters.
 Backup 3000
 EndCard
 
@@ -2486,7 +2486,7 @@ Act: 1 SendSelf WaitingRoom
         Change
     }
 }
-Text Act:[(1) Put this card in the waiting room] Choose up to 1 Blue character in your hand whose level is less or equal to your level and put it in the position this card was in.
+Text Act: [(1) Put this card in the waiting room] Choose up to 1 Blue character in your hand whose level is less or equal to your level and put it in the position this card was in.
 Act: SendSelf WaitingRoom
 {
     TargetLocation Stage
@@ -2501,7 +2501,7 @@ Act: SendSelf WaitingRoom
         Text Cont: This card's soul does not decrease during side attack.
     }
 }
-Text Act:[Put this card in the waiting room] Choose 1 of your Blue characters, and that character gets the following ability until end of turn. "Cont: This card's soul does not decrease during side attack."
+Text Act: [Put this card in the waiting room] Choose 1 of your Blue characters, and that character gets the following ability until end of turn. "Cont: This card's soul does not decrease during side attack."
 EndCard
 
 Character: PAD/S105-092
@@ -2519,7 +2519,7 @@ Auto: OnPlay
         SearchWaitingRoom NameEquals Dark Gleam Divine Queen, Hera
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Dark Gleam Divine Queen, Hera" in your waiting room and return it to your hand.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Dark Gleam Divine Queen, Hera" in your waiting room and return it to your hand.
 *ClockShift(0,blue)
 EndCard
 
@@ -2538,12 +2538,12 @@ Cont: GiveSelf
     MultiplyXValue 2000
     GainPower X
 }
-Text Cont:This card gets +2000 power for each of your opponent's backstage characters.
+Text Cont: This card gets +2000 power for each of your opponent's backstage characters.
 Act: Discard 1 Any SendSelf BottomOfDeck
 {
     SearchWaitingRoom IsCharacter
 }
-Text Act:[Put 1 card from your hand to the waiting room, put this card on the bottom of the deck] Choose a character in your waiting room and return it to your hand.
+Text Act: [Put 1 card from your hand to the waiting room, put this card on the bottom of the deck] Choose a character in your waiting room and return it to your hand.
 EndCard
 
 Character: PAD/S105-094
@@ -2556,7 +2556,7 @@ Power 3000
 Soul 1
 Trait1 Demon
 ConditionalTrigger Gate LocationContains Climax 1 HasTrigger Gate
-Text Cont:If there is a climax with a Gate trigger icon in your climax area, this card gets [Gate trigger] trigger icon while in any zone.
+Text Cont: If there is a climax with a Gate trigger icon in your climax area, this card gets [Gate trigger] trigger icon while in any zone.
 Cont: Assist
 {
     If IsColor Blue
@@ -2566,7 +2566,7 @@ Cont: Assist
         GainPower X
     }
 }
-Text Cont:ASSIST Your Blue characters in front of this card get +X power. X equals 500 times level of that character.
+Text Cont: ASSIST Your Blue characters in front of this card get +X power. X equals 500 times level of that character.
 Auto: OnClimaxPlay
 {
     IfOther HasTrigger Gate
@@ -2577,7 +2577,7 @@ Auto: OnClimaxPlay
         LosePower 1000
     }
 }
-Text Auto:When your climax with a Gate trigger icon is placed on your climax area, choose a character in your opponent's center stage, and that character gets -1000 power until end of turn.
+Text Auto: When your climax with a Gate trigger icon is placed on your climax area, choose a character in your opponent's center stage, and that character gets -1000 power until end of turn.
 EndCard
 
 Character: PAD/S105-095
@@ -2600,7 +2600,7 @@ Auto: OnTriggerCheckClimax
     ChooseCharacterFromTargets Choose a character to give +1 soul.
     GainSoul 1
 }
-Text Auto:When your character's trigger check reveals a climax card, look at up to 2 cards from the top of your deck, put them on top of the deck in any order, choose 1 of your characters, and that character gets +1 soul until end of turn.
+Text Auto: When your character's trigger check reveals a climax card, look at up to 2 cards from the top of your deck, put them on top of the deck in any order, choose 1 of your characters, and that character gets +1 soul until end of turn.
 EndCard
 
 Character: PAD/S105-096
@@ -2619,7 +2619,7 @@ Cont: InHand
         LoseLevel 1
     }
 }
-Text Cont:If the number of Blue or «God» characters you have is 4 or more, this card gets -1 level while in your hand.
+Text Cont: If the number of Blue or «God» characters you have is 4 or more, this card gets -1 level while in your hand.
 Auto: OnOpponentUseEvent|OnOpponentUsesAct
 {
     If MyTurn && InLocation CenterStage
@@ -2628,7 +2628,7 @@ Auto: OnOpponentUseEvent|OnOpponentUsesAct
         MoveCard OpponentWaitingRoom
     }
 }
-Text Auto:During your turn, when your opponent uses an event or BACKUP, if this card is in the center stage, your opponent puts the top card of their stock in the waiting room.
+Text Auto: During your turn, when your opponent uses an event or BACKUP, if this card is in the center stage, your opponent puts the top card of their stock in the waiting room.
 Auto: OnPlay
 {
     UntilEndOfOpponentsTurn
@@ -2653,7 +2653,7 @@ Auto: OnPlay
         Text Auto: When this card or this card's battle opponent becomes reverse, that character cannot use 'Auto: ENCORE' until end of turn.
     }
 }
-Text Auto:When this card is placed on the stage from your hand, this card gets +4500 power and the following ability until the end of your opponent's next turn. "Auto: When this card or this card's battle opponent becomes reverse, that character cannot use 'Auto: ENCORE' until end of turn." 
+Text Auto: When this card is placed on the stage from your hand, this card gets +4500 power and the following ability until the end of your opponent's next turn. "Auto: When this card or this card's battle opponent becomes reverse, that character cannot use 'Auto: ENCORE' until end of turn." 
 EndCard
 
 Event: PAD/S105-097
@@ -2682,7 +2682,7 @@ Auto: StartEncoreStep
     }
 }
 InMemory
-Text Auto:MEMORY [(2) Put 2 other "Dark Gleam Divine Queen, Hera" and this card from your memory in the waiting room] If this card is in memory, at the beginning of your encore step, you may pay the cost. If you do, deal 2 damage to your opponent. 
+Text Auto: MEMORY [(2) Put 2 other "Dark Gleam Divine Queen, Hera" and this card from your memory in the waiting room] If this card is in memory, at the beginning of your encore step, you may pay the cost. If you do, deal 2 damage to your opponent. 
 EndCard
 
 Climax: PAD/S105-098
@@ -2736,7 +2736,7 @@ Auto: OnAttack
     }
 }
 Quick
-Text Auto:When this card attacks, perform trigger check twice during this card attack's trigger step. After the 2 trigger checks are made, put the top card of your stock in the waiting room.
+Text Auto: When this card attacks, perform trigger check twice during this card attack's trigger step. After the 2 trigger checks are made, put the top card of your stock in the waiting room.
 *FreeRunner
 Text <color=red> * This card is part of a 3C1 restriction alongside PAD/S105-045 and PAD/S105-053 in JP. </color>
 EndCard
@@ -2758,7 +2758,7 @@ Auto: OnPlay
         Mill 3
     }
 }
-Text Auto:When this card is placed on the stage from your hand, you may put the top 3 cards of your deck in the waiting room.
+Text Auto: When this card is placed on the stage from your hand, you may put the top 3 cards of your deck in the waiting room.
 *OnAttackGivePowerTimesSoul
 EndCard
 
@@ -2781,7 +2781,7 @@ Auto: OnReversed
         Rest
     }
 }
-Text Auto:This ability activates up to once per turn. When this card becomes reversed in battle, reveal the top card of your deck. If it's level 2 or higher, you may rest this card. 
+Text Auto: This ability activates up to once per turn. When this card becomes reversed in battle, reveal the top card of your deck. If it's level 2 or higher, you may rest this card. 
 EndCard
 
 Character: PAD/S105-T05
@@ -2812,7 +2812,7 @@ Auto: OnReverseOpponent
         MoveCard Stock
     }
 }
-Text Auto:CxCombo When this card's battle opponent becomes reverse, if "Zero Dimension Creator, Big Bang" is in your climax area, look at up to 4 cards from the top of your deck and search for up to 2 level 1 or higher cards, reveal them, choose 1 of them and put it in your hand, choose 1 of them and put it in your stock, and put the rest into your waiting room. 
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Zero Dimension Creator, Big Bang" is in your climax area, look at up to 4 cards from the top of your deck and search for up to 2 level 1 or higher cards, reveal them, choose 1 of them and put it in your hand, choose 1 of them and put it in your stock, and put the rest into your waiting room. 
 EndCard
 
 Character: PAD/S105-T06
@@ -2832,7 +2832,7 @@ Auto: OnUseThisCardsBackup
         *OptionalBlindStock
     }
 }
-Text Auto:When you use this card's BACKUP, if you have 3 or more characters, you may put the top card of your deck in your stock.
+Text Auto: When you use this card's BACKUP, if you have 3 or more characters, you may put the top card of your deck in your stock.
 Backup 2000
 EndCard
 
@@ -2853,12 +2853,12 @@ Cont: GiveSelf
     MultiplyXValue 2500
     GainPower X
 }
-Text Cont:This card gets +2500 power for each of your opponent's backstage characters.
+Text Cont: This card gets +2500 power for each of your opponent's backstage characters.
 Auto: OnReverseOpponent
 {
     *GiveCharacterPower(1000,Any)
 }
-Text Auto:When battle opponent of this card is reversed, choose 1 of your characters, and that character gets +1000 power until end of turn.
+Text Auto: When battle opponent of this card is reversed, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: PAD/S105-T08
@@ -2881,7 +2881,7 @@ Auto: OnAttack
         Burn X
     }
 }
-Text Auto:[(1) Put 2 cards from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, put the bottom 3 cards of your opponent's deck in the waiting room, and deal X damage to your opponent. X equals the number of level 0 or lower cards among those cards. 
+Text Auto: [(1) Put 2 cards from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, put the bottom 3 cards of your opponent's deck in the waiting room, and deal X damage to your opponent. X equals the number of level 0 or lower cards among those cards. 
 EndCard
 
 Event: PAD/S105-T09
@@ -2938,7 +2938,7 @@ Cont: GiveAll
         }
     }
 }
-Text Cont:All your other "Meteor Volcano Dragon" get +2000 power and the following ability. "Auto: During your opponent's turn, when this card becomes reversed, if the battle opponent of this card is 1 or lower, you may reverse that character."
+Text Cont: All your other "Meteor Volcano Dragon" get +2000 power and the following ability. "Auto: During your opponent's turn, when this card becomes reversed, if the battle opponent of this card is 1 or lower, you may reverse that character."
 *BondDiscard(Meteor Volcano Dragon)
 EndCard
 
@@ -2955,7 +2955,7 @@ Auto: OnTriggerCheckClimax
 {
     *GiveCharacterPower(1000,Any)
 }
-Text Auto:When your character's trigger check reveals a climax card, choose 1 of your characters, and that character gets +1000 power until end of turn.
+Text Auto: When your character's trigger check reveals a climax card, choose 1 of your characters, and that character gets +1000 power until end of turn.
 *Act1RestSelfDrawBrainstorm5
 EndCard
 
@@ -2978,7 +2978,7 @@ Cont: GiveFacing
         Text Auto: ENCORE [(2)]
     }
 }
-Text Cont:character facing this card gets "Auto: ENCORE [(2)]".
+Text Cont: character facing this card gets "Auto: ENCORE [(2)]".
 Auto: OnSentFromStageToWaitingRoom
 {
     PayCost 1 Clock
@@ -2986,7 +2986,7 @@ Auto: OnSentFromStageToWaitingRoom
         *Check4Add1Level1OrHigher
     }
 }
-Text Auto:[(1) Put the top card of your deck in your clock] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. 
+Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. 
 EndCard
 
 Character: PAD/S105-T14
@@ -3040,7 +3040,7 @@ Act: 2 RestSelf
 {
     SearchWaitingRoom IsCharacter
 }
-Text Act:[(2) Rest this card] Choose a character in your waiting room and return it to your hand.
+Text Act: [(2) Rest this card] Choose a character in your waiting room and return it to your hand.
 EndCard
 
 Character: PAD/S105-T18
@@ -3060,7 +3060,7 @@ Auto: OnAttack
     GainPower X
 }
 Quick
-Text Auto:When this card attacks, this card gets +X power until end of turn. X equals 1500 times the number of opponent's characters.
+Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 1500 times the number of opponent's characters.
 Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
 {
     PayCost 1
@@ -3068,7 +3068,7 @@ Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
         SearchWaitingRoom IsCharacter
     }
 }
-Text Auto:[(1)] When a level 2 or higher battle opponent of this card becomes reversed, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
+Text Auto: [(1)] When a level 2 or higher battle opponent of this card becomes reversed, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
 EndCard
 
 Character: PAD/S105-T19
@@ -3092,7 +3092,7 @@ Auto: OnPlay
         GainPower 2000
     }
 }
-Text Auto:When this card is placed on the stage from your hand, choose up to 1 character in your hand whose level is equal to or lower than your level and put it in any position on the stage, and this card gets +2000 power until end of turn.
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 character in your hand whose level is equal to or lower than your level and put it in any position on the stage, and this card gets +2000 power until end of turn.
 Auto: OnReverseOpponent
 {
     If Climax Daybreak Primordial Divinity, Kamimusubi
@@ -3108,7 +3108,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:CxCombo [(2)] When this card's battle opponent becomes reverse, if "Daybreak Primordial Divinity, Kamimusubi" is in your climax area, you may pay the cost. If you do, deal 2 damage to your opponent, and put that character on top of the deck. 
+Text Auto: CxCombo [(2)] When this card's battle opponent becomes reverse, if "Daybreak Primordial Divinity, Kamimusubi" is in your climax area, you may pay the cost. If you do, deal 2 damage to your opponent, and put that character on top of the deck. 
 EndCard
 
 Climax: PAD/S105-T20
@@ -3141,7 +3141,7 @@ Auto: OnDamageDealtByCharacterFacingThisNotCanceled
     }
 }
 Quick
-Text Auto:During this card's battle, if the damage you received is not canceled, this card gets +1500 power until end of turn.
+Text Auto: During this card's battle, if the damage you received is not canceled, this card gets +1500 power until end of turn.
 
 Character: PAD/S105-102
 Name Valentine's Night Goddess, Noktaria
@@ -3178,7 +3178,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, put the top 2 card of your deck into waiting room. If there is a climax among them, you pay the cost. If you do, search your waiting room for up to 1 character and return it to your hand.
+Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, put the top 2 card of your deck into waiting room. If there is a climax among them, you pay the cost. If you do, search your waiting room for up to 1 character and return it to your hand.
 *RedLevel0Bomb
 
 Character: PAD/S105-104
@@ -3200,7 +3200,7 @@ Auto: OnPlay
     GainPower 1500
 }
 Quick
-Text Auto:When this card is placed on the stage from your hand, this card gets +1500 until the end of your opponent's next turn. 
+Text Auto: When this card is placed on the stage from your hand, this card gets +1500 until the end of your opponent's next turn. 
 
 Character: PAD/S105-105
 Name Great Witch of the Western Mansion, Nere
@@ -3217,7 +3217,7 @@ Auto: OnAttack
 {
     *GiveCharacterPower(5000,Any)
 }
-Text Auto:When this card attacks, choose 1 of your character and that character gets +5000 power until end of turn.
+Text Auto: When this card attacks, choose 1 of your character and that character gets +5000 power until end of turn.
 
 Character: PAD/S105-P01
 Name Secret Ninja, Blackbird
@@ -3246,7 +3246,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:When this card's battle opponent becomes reverse, if you have a climax in your climax area, you may put that character at the bottom of your opponent's deck.
+Text Auto: When this card's battle opponent becomes reverse, if you have a climax in your climax area, you may put that character at the bottom of your opponent's deck.
 
 Character: PAD/S105-P02
 Name The Original Great Witch, Rafine
@@ -3289,7 +3289,7 @@ Auto: StartOpponentAttackPhase
         }   
     }
 }
-Text Auto:[(1)] At the begining of your opponent's attack phase, you may pay the cost. If you do, choose the character facing this card and another character in your opponent's center stage, stand them and swap them.
+Text Auto: [(1)] At the begining of your opponent's attack phase, you may pay the cost. If you do, choose the character facing this card and another character in your opponent's center stage, stand them and swap them.
 *BlueLevel0Bomb
 
 Character: PAD/S105-P04
@@ -3311,5 +3311,5 @@ Auto: OnPlay
         MoveCard Stock
     }
 }
-Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is level 2 or higher, put that card into stock.
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is level 2 or higher, put that card into stock.
 *ClimaxExchange

@@ -54,7 +54,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:CxCombo When this card's battle opponent becomes reversed, if "Do You Dislike Windy Days?" is in your climax area and the number of other «Saga» characters you have is 2 or more, perform each of the following abilities 1 time in any order. "Look at up to the top 4 cards of your deck, choose up to 1 «Saga» character or 1 'Revenge of Fate' among them, show it to your opponent, add it to your hand and put the rest in the waiting room." "You may choose 1 of your opponent's level 1 or higher characters. If you do, your opponent chooses 1 level X or lower character in their waiting room, and exchanges them. X is equal to the level of the character you chose -1."
+Text Auto: CxCombo When this card's battle opponent becomes reversed, if "Do You Dislike Windy Days?" is in your climax area and the number of other «Saga» characters you have is 2 or more, perform each of the following abilities 1 time in any order. "Look at up to the top 4 cards of your deck, choose up to 1 «Saga» character or 1 'Revenge of Fate' among them, show it to your opponent, add it to your hand and put the rest in the waiting room." "You may choose 1 of your opponent's level 1 or higher characters. If you do, your opponent chooses 1 level X or lower character in their waiting room, and exchanges them. X is equal to the level of the character you chose -1."
 EndCard
 
 Character: ZLS/W93-003
@@ -74,7 +74,7 @@ Cont: GiveSelf
     MultiplyXValue 1000
     GainPower X
 }
-Text Cont:This card gets +1000 power for each of your other «Saga» characters in your backstage.
+Text Cont: This card gets +1000 power for each of your other «Saga» characters in your backstage.
 Auto: OnPlay
 {
     MultipleChoiceQuestion Choose 1 effect to resolve.\n1: Draw up to 1 card, choose up to 1 cost 1 or lower character in your hand and put it in any position of your stage.\n2: Put the top card of your clock into the waiting room.\n3:All your characters get +3000 power until end of turn.\n4: None|1|2|3|4
@@ -100,7 +100,7 @@ Auto: OnPlay
     {
     }
 }
-Text Auto:When this card is placed on the stage from your hand, you may perform 1 of the following abilities 1 time. "Draw up to 1 card, choose up to 1 cost 1 or lower character in your hand and put it in any position of your stage." "Put the top card of your clock into the waiting room." "All your characters get +3000 power until end of turn."
+Text Auto: When this card is placed on the stage from your hand, you may perform 1 of the following abilities 1 time. "Draw up to 1 card, choose up to 1 cost 1 or lower character in your hand and put it in any position of your stage." "Put the top card of your clock into the waiting room." "All your characters get +3000 power until end of turn."
 EndCard
 
 Character: ZLS/W93-004
@@ -123,7 +123,7 @@ Auto: OnReversed
 		Discard 1 Any
 	}
 }
-Text Auto:When this card becomes reversed in battle, you may reveal up to 3 cards from the top of your deck. If you reveal 1 or more cards, choose up to 1 «Saga» character from among them, put it into your hand, put the rest into your waiting room, choose 1 card in your hand, and put it into your waiting room.
+Text Auto: When this card becomes reversed in battle, you may reveal up to 3 cards from the top of your deck. If you reveal 1 or more cards, choose up to 1 «Saga» character from among them, put it into your hand, put the rest into your waiting room, choose 1 card in your hand, and put it into your waiting room.
 EndCard
 
 Character: ZLS/W93-005
@@ -150,7 +150,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:CxCombo When this card's battle opponent becomes reversed, if "Perfect Smile" is in your climax area and the number of card in your stock is 5 or less, look at up to the top 4 cards of your deck, choose up to 1 «Saga» character among them, show it to your opponent, add it to your hand, put the rest into your waiting room and reveal the top card of your deck. If that card is level 1 or higher, add it to your hand.
+Text Auto: CxCombo When this card's battle opponent becomes reversed, if "Perfect Smile" is in your climax area and the number of card in your stock is 5 or less, look at up to the top 4 cards of your deck, choose up to 1 «Saga» character among them, show it to your opponent, add it to your hand, put the rest into your waiting room and reveal the top card of your deck. If that card is level 1 or higher, add it to your hand.
 EndCard
 
 Character: ZLS/W93-006
@@ -180,7 +180,7 @@ Auto: OnPlay
         GainPower 3000
     }
 }
-Text Auto:EXPERIENCE When this card is placed on the stage from your hand, if "Revenge on Fate" is in your level zone and you have another «Saga» character, draw up to 2 cards, discard 2 cards, put up to 1 card from the top of your deck into your stock and this card gets +3000 power until end of turn.
+Text Auto: EXPERIENCE When this card is placed on the stage from your hand, if "Revenge on Fate" is in your level zone and you have another «Saga» character, draw up to 2 cards, discard 2 cards, put up to 1 card from the top of your deck into your stock and this card gets +3000 power until end of turn.
 Auto: OnEndOfAttack
 {
     If Climax What Is This... && StageContains 1 Other && HasTrait Saga
@@ -193,7 +193,7 @@ Auto: OnEndOfAttack
     }
 }
 TimesPerTurn 1
-Text Auto:CxCombo RESONATE [(2) Discard a card, reveal 1 "Revenge on Fate" in your hand] This ability activates up to 1 time per turn. At the end of this card's attack, if "What Is This..." is in your climax area and you have another «Saga» character, you may pay the cost. If you do, stand this card.
+Text Auto: CxCombo RESONATE [(2) Discard a card, reveal 1 "Revenge on Fate" in your hand] This ability activates up to 1 time per turn. At the end of this card's attack, if "What Is This..." is in your climax area and you have another «Saga» character, you may pay the cost. If you do, stand this card.
 EndCard
 
 Character: ZLS/W93-007
@@ -215,7 +215,7 @@ Cont: GiveSelf
         GainSpecialEffect NoEventsOnAttack
     }
 }
-Text Cont:During your turn, if the number of other «Saga» characters you have is 4 or more, this card gets +5000 power and the following ability. "Cont:During battles involving this card, your opponent cannot play events or "BACKUP" from their hand."
+Text Cont: During your turn, if the number of other «Saga» characters you have is 4 or more, this card gets +5000 power and the following ability. "Cont:During battles involving this card, your opponent cannot play events or "BACKUP" from their hand."
 Auto: OnPlay
 {
     PayCost 1
@@ -230,7 +230,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 "Legendary Heisei Idol, Ai Mizuno" in your waiting room and put it in any position of your stage.
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 "Legendary Heisei Idol, Ai Mizuno" in your waiting room and put it in any position of your stage.
 EndCard
 
 Character: ZLS/W93-008
@@ -249,14 +249,14 @@ Cont: Assist
         *HexProof
     }
 }
-Text Cont:ASSIST Your characters in front of this get the following ability "Cont:This card cannot be chosen by your opponent's effects."
+Text Cont: ASSIST Your characters in front of this get the following ability "Cont:This card cannot be chosen by your opponent's effects."
 Act: RestSelf
 {
     TargetLocation Stage
     ChooseCharacterFromTargets Choose a character to give +1000 power.
     GainPower 1000
 }
-Text Act:[Rest this card] Choose 1 of your characters, it gets +1000 power until end of turn.
+Text Act: [Rest this card] Choose 1 of your characters, it gets +1000 power until end of turn.
 EndCard
 
 Character: ZLS/W93-009
@@ -274,7 +274,7 @@ Auto: OnOtherOpponentReversed
     ChooseCharacterFromTargets Choose a character to give +500 power.
     GainPower 500
 }
-Text Auto:When the battle opponent of your other characters becomes reverse, choose 1 of your characters and that character gets +500 power until end of turn.
+Text Auto: When the battle opponent of your other characters becomes reverse, choose 1 of your characters and that character gets +500 power until end of turn.
 Act: 1 RestSelf
 {
     Brainstorm 4
@@ -307,7 +307,7 @@ Auto: OnPlay
     }
 }
 Quick
-Text Auto:When this card is placed on the stage from your hand, if you have another «Saga» character, this card gets +2000 power until end of turn.
+Text Auto: When this card is placed on the stage from your hand, if you have another «Saga» character, this card gets +2000 power until end of turn.
 Auto: OnAttack
 {
     TargetFacing
@@ -342,7 +342,7 @@ Auto: OnAttack
         GainPower 2000
     }
 }
-Text Auto:RESONATE [Reveal 1 "Revenge on Fate" in your hand] When this card attacks, you may pay the cost. If you do, choose up to 2 of your «Saga» characters and those characters get +2000 power until end of turn.
+Text Auto: RESONATE [Reveal 1 "Revenge on Fate" in your hand] When this card attacks, you may pay the cost. If you do, choose up to 2 of your «Saga» characters and those characters get +2000 power until end of turn.
 EndCard
 
 Character: ZLS/W93-012
@@ -376,7 +376,7 @@ Cont: GiveSelf
         GainPower 10000
     }
 }
-Text Cont:MEMORY During your turn, if "Revenge on Fate" is in your memory, this card gets +10000 power.
+Text Cont: MEMORY During your turn, if "Revenge on Fate" is in your memory, this card gets +10000 power.
 Auto: OnPlay
 {
     PayCost Discard 1 Any Resonate Revenge on Fate
@@ -388,7 +388,7 @@ Auto: OnPlay
         GainPower 1500
     }
 }
-Text Auto:RESONATE [Discard 1 card, reveal a "Revenge on Fate" in your hand] When this card is placed on the stage from your hand, you may pay the cost. If you do, so, return all cards in your waiting room to your deck, shuffle your deck and this card gets +1500 power until end of turn.
+Text Auto: RESONATE [Discard 1 card, reveal a "Revenge on Fate" in your hand] When this card is placed on the stage from your hand, you may pay the cost. If you do, so, return all cards in your waiting room to your deck, shuffle your deck and this card gets +1500 power until end of turn.
 EndCard
 
 Character: ZLS/W93-014
@@ -415,7 +415,7 @@ Auto: OnSpecificClimaxPlay Super Twinkle Star
         }
     }
 }
-Text Auto:CxCombo [Return this card to your hand] When "Super Twinkle Star" is placed in your climax area, if you have another «Saga» character, you may pay the cost. If you do, choose a level 0 or lower «Saga» character in your waiting room and put it in any position of your stage.
+Text Auto: CxCombo [Return this card to your hand] When "Super Twinkle Star" is placed in your climax area, if you have another «Saga» character, you may pay the cost. If you do, choose a level 0 or lower «Saga» character in your waiting room and put it in any position of your stage.
 *Act1RestSelfCheck3Add1Brainstorm
 EndCard
 
@@ -436,7 +436,7 @@ Auto: OnPlay
         *CheckAndAdd(3)
     }
 }
-Text Auto:[(1) Discard 1 «Saga» character] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 card among them, add it to your hand and put the rest in the waiting room.
+Text Auto: [(1) Discard 1 «Saga» character] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 card among them, add it to your hand and put the rest in the waiting room.
 EndCard
 
 Character: ZLS/W93-016
@@ -457,7 +457,7 @@ Auto: OnReversed
         MoveCard Hand
     }
 }
-Text Auto:When this card becomes reversed in battle, reveal the top card of your deck. If that card is a level 0 or lower character, add it to your hand.
+Text Auto: When this card becomes reversed in battle, reveal the top card of your deck. If that card is a level 0 or lower character, add it to your hand.
 EndCard
 
 Character: ZLS/W93-017
@@ -478,7 +478,7 @@ Auto: OnPlay
         MoveCard Stock
     }
 }
-Text Auto:When this is placed on stage from your hand, if the number of other «Saga» characters you have is 4 or more, you may choose a «Saga» character in your waiting room and put it in your stock.
+Text Auto: When this is placed on stage from your hand, if the number of other «Saga» characters you have is 4 or more, you may choose a «Saga» character in your waiting room and put it in your stock.
 Auto: OnAttack
 {
     If StageContains 2 Other && HasTrait Saga
@@ -487,7 +487,7 @@ Auto: OnAttack
         GainPower 2000
     }
 }
-Text Auto:When this card attacks, if the number of other «Saga» characters you have is 2 or more, this card gets +2000 power until end of turn.
+Text Auto: When this card attacks, if the number of other «Saga» characters you have is 2 or more, this card gets +2000 power until end of turn.
 EndCard
 
 Character: ZLS/W93-018
@@ -578,7 +578,7 @@ Act: 1 SendSelf WaitingRoom
 {
     *Check4Add1(Saga)
 }
-Text Act:[(1) Put this card in the waiting room] Look at up to 4 cards from the top of your deck, choose 1 «Saga» character to add to your hand and put the rest into the waiting room
+Text Act: [(1) Put this card in the waiting room] Look at up to 4 cards from the top of your deck, choose 1 «Saga» character to add to your hand and put the rest into the waiting room
 EndCard
 
 Character: ZLS/W93-026
@@ -604,7 +604,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [Discard 1 card] When this card attacks, if "Spark of the Idol Boom" is in your climax area and you have another «Saga» character, you may pay the cost. If you do, choose a «Saga» character in your waiting room, return it to your hand and this card gets the following ability until the end of your opponent's next turn. "Auto:When this card is frontal attacked, you may return this card to your hand."
+Text Auto: CxCombo [Discard 1 card] When this card attacks, if "Spark of the Idol Boom" is in your climax area and you have another «Saga» character, you may pay the cost. If you do, choose a «Saga» character in your waiting room, return it to your hand and this card gets the following ability until the end of your opponent's next turn. "Auto:When this card is frontal attacked, you may return this card to your hand."
 EndCard
 
 Character: ZLS/W93-027
@@ -654,7 +654,7 @@ Auto: OnTriggerCheckClimax
         }
     }
 }
-Text Auto:CxCombo [Discard 1 climax] When your character's trigger check reveals "Spark of the Idol Boom" or "Pretty Bride", you may pay the cost. If you do, choose a character in your waiting room, return it to your hand, choose 1 of your characters and that character gets +1000 power until end of turn.
+Text Auto: CxCombo [Discard 1 climax] When your character's trigger check reveals "Spark of the Idol Boom" or "Pretty Bride", you may pay the cost. If you do, choose a character in your waiting room, return it to your hand, choose 1 of your characters and that character gets +1000 power until end of turn.
 EndCard
 
 Character: ZLS/W93-029
@@ -685,7 +685,7 @@ Act: RestSelf
         View
     }
 }
-Text Act:[Rest this card] Look at up to 2 cards from the top of your deck and return them in any order.
+Text Act: [Rest this card] Look at up to 2 cards from the top of your deck and return them in any order.
 EndCard
 
 Character: ZLS/W93-030
@@ -708,7 +708,7 @@ Auto: OnPlay
         Marker_FaceUp
     }
 }
-Text Auto:When this card is placed on the stage from your hand, you may choose 1 "Repairing" in your waiting room and put it face up underneath this card as a marker.
+Text Auto: When this card is placed on the stage from your hand, you may choose 1 "Repairing" in your waiting room and put it face up underneath this card as a marker.
 Auto: OnEndOfAttack
 {
     If Climax 54 Forgotten Things
@@ -725,7 +725,7 @@ Auto: OnEndOfAttack
         }
     }
 }
-Text Auto:CxCombo [Put a marker from underneath this card in the waiting room] At the end of this card's attack, if "54 Forgotten Things" is in your climax area, you may pay the cost. If you do, put the bottom 4 cards of your opponent's deck into their waiting room, and deal 1 damage to your opponent X times. X is equal to the number of climax among those cards. 
+Text Auto: CxCombo [Put a marker from underneath this card in the waiting room] At the end of this card's attack, if "54 Forgotten Things" is in your climax area, you may pay the cost. If you do, put the bottom 4 cards of your opponent's deck into their waiting room, and deal 1 damage to your opponent X times. X is equal to the number of climax among those cards. 
 EndCard
 
 Character: ZLS/W93-031
@@ -744,7 +744,7 @@ Cont: GiveSelf
         GainPower 1000
     }
 }
-Text Cont:If the number of other «Saga» characters you have is 2 or more, this card gets +1000 power.
+Text Cont: If the number of other «Saga» characters you have is 2 or more, this card gets +1000 power.
 Auto: OnPlay
 {
     If LocationContainsOrLess Stock 5 Any
@@ -764,7 +764,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:When this card is placed on the stage from your hand, if there are 5 or less cards in your stock, put the top 2 cards of your deck in the waiting room. If there's at least 1 climax among them, reveal the top 2 cards of your deck, your opponent chooses a character or an event among those cards, add it to your hand and put the rest in the waiting room.
+Text Auto: When this card is placed on the stage from your hand, if there are 5 or less cards in your stock, put the top 2 cards of your deck in the waiting room. If there's at least 1 climax among them, reveal the top 2 cards of your deck, your opponent chooses a character or an event among those cards, add it to your hand and put the rest in the waiting room.
 EndCard
 
 Character: ZLS/W93-032
@@ -784,7 +784,7 @@ Auto: StartClimaxPhase
         ChooseCharacterFromTargets Choose a character to give the effect "When this card's battle opponent becomes reversed, you may put the top card of your deck in your stock."
     }
 }
-Text Auto:MEMORY At the start of your climax phase, if this card is in your center stage and "Revenge on Fate" is in your memory, choose 1 of your characters and that character gains the following ability until end of turn. "Auto:When this card's battle opponent becomes reversed, you may put the top card of your deck in your stock."
+Text Auto: MEMORY At the start of your climax phase, if this card is in your center stage and "Revenge on Fate" is in your memory, choose 1 of your characters and that character gains the following ability until end of turn. "Auto:When this card's battle opponent becomes reversed, you may put the top card of your deck in your stock."
 EndCard
 
 Character: ZLS/W93-033
@@ -845,7 +845,7 @@ Auto: OnPlay
     	*Downgrade
     }
 }
-Text Auto:Memory When this card is placed on the stage from your hand, if you have 2 or more "Revenge on Fate" in your memory, you may choose 1 of your opponent's level 1 or higher characters. If you do, your opponent chooses 1 level X or lower character in their waiting room, and exchanges them. X is equal to the level of the character you chose -1.
+Text Auto: Memory When this card is placed on the stage from your hand, if you have 2 or more "Revenge on Fate" in your memory, you may choose 1 of your opponent's level 1 or higher characters. If you do, your opponent chooses 1 level X or lower character in their waiting room, and exchanges them. X is equal to the level of the character you chose -1.
 EndCard
 
 Character: ZLS/W93-035
@@ -873,7 +873,7 @@ Trait1 Saga
 Trait2 Music
 *Revenge(1000)
 *SacrificeToSave(Any)
-Text Auto:[Put this card in the waiting room] When your other character is sent from stage to waiting room, if this is on the backstage you may pay the cost. If you do, return that character rested.
+Text Auto: [Put this card in the waiting room] When your other character is sent from stage to waiting room, if this is on the backstage you may pay the cost. If you do, return that character rested.
 EndCard
 
 Character: ZLS/W93-037
@@ -894,7 +894,7 @@ Auto: OnPlay
 	}
 }
 Quick
-Text Auto:When this card is placed on the stage from your hand, if the number of characters in your opponent's center stage is 1 or less, choose a character in your opponent's center stage and that character gets -3000 Power until end of turn.
+Text Auto: When this card is placed on the stage from your hand, if the number of characters in your opponent's center stage is 1 or less, choose a character in your opponent's center stage and that character gets -3000 Power until end of turn.
 Auto: OnPlay
 {
 	PayCost Discard 1 HasTrait Saga && IsCharacter
@@ -902,7 +902,7 @@ Auto: OnPlay
 		DrawCard
 	}
 }
-Text Auto:[Discard 1 «Saga» character] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw a card.
+Text Auto: [Discard 1 «Saga» character] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw a card.
 EndCard
 
 Character: ZLS/W93-038
@@ -921,7 +921,7 @@ Cont: GiveAll
 		GainPower 4000
 	}
 }
-Text Cont:During your turn, all your other "Tae Yamada" get +4000 power.
+Text Cont: During your turn, all your other "Tae Yamada" get +4000 power.
 Act: RestSelf
 {
 	TargetLocation Stage
@@ -950,7 +950,7 @@ Act: RestSelf
         Text Auto: When this card's battle opponent becomes reversed, you may put the top card of your opponent's clock into the waiting room. If you do, put that character into your opponent's clock.
 	}
 }
-Text Act:[Rest this card] Choose 1 of your «Saga» characters, it gets +500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reversed, you may put the top card of your opponent's clock into the waiting room. If you do, put that character into your opponent's clock."
+Text Act: [Rest this card] Choose 1 of your «Saga» characters, it gets +500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reversed, you may put the top card of your opponent's clock into the waiting room. If you do, put that character into your opponent's clock."
 EndCard
 
 Character: ZLS/W93-039
@@ -993,7 +993,7 @@ Auto: OnPlay
 	}
 }
 Quick
-Text Auto:When this card is placed on the stage from your hand, this card gets +3500 power and the following ability until end of turn. "Auto: At the end of the turn, return this card to your deck and shuffle your deck."
+Text Auto: When this card is placed on the stage from your hand, this card gets +3500 power and the following ability until end of turn. "Auto: At the end of the turn, return this card to your deck and shuffle your deck."
 EndCard
 
 Character: ZLS/W93-041
@@ -1081,7 +1081,7 @@ Auto: OnPlay
 		*OptionalDrawDiscard
 	}
 }
-Text Auto:When this card is placed on the stage from your hand, if the number of other «Saga» character you have is 2 or more, this card gets +4000 power for the turn and you may draw 1 card. If you do, discard 1 card.
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Saga» character you have is 2 or more, this card gets +4000 power for the turn and you may draw 1 card. If you do, discard 1 card.
 *StockHealer
 EndCard
 
@@ -1131,7 +1131,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [(1) Discard 1 card] When this card attacks, if "Relaxing in Casual Wear" is in your climax area and you have another «Saga» character, you may pay the cost. If you do, you may deal 1 damage to your opponent. If that damage is cancelled, you may deal 2 damage to your opponent. If that damage is cancelled, you may put the top 3 cards of your opponent's deck in their clock.
+Text Auto: CxCombo [(1) Discard 1 card] When this card attacks, if "Relaxing in Casual Wear" is in your climax area and you have another «Saga» character, you may pay the cost. If you do, you may deal 1 damage to your opponent. If that damage is cancelled, you may deal 2 damage to your opponent. If that damage is cancelled, you may put the top 3 cards of your opponent's deck in their clock.
 EndCard
 
 Character: ZLS/W93-048
@@ -1147,7 +1147,7 @@ Auto: OnOtherOpponentReversed
 {
 	*GiveCharacterPower(500,Saga)
 }
-Text Auto:When your other character's battle opponent becomes reversed, choose 1 of your «Saga» characters and that character gets +500 power until end of turn.
+Text Auto: When your other character's battle opponent becomes reversed, choose 1 of your «Saga» characters and that character gets +500 power until end of turn.
 Act: 1 RestSelf
 {
 	Brainstorm 5
@@ -1181,7 +1181,7 @@ Auto: OnPlay
 		*GiveCharacterPower(2000,Any)
 	}
 }
-Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is a «Saga» character, choose 1 of your character and that character gets +2000 until end of turn.
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is a «Saga» character, choose 1 of your character and that character gets +2000 until end of turn.
 Auto: OnPlay
 {
 	PayCost 2
@@ -1191,7 +1191,7 @@ Auto: OnPlay
 		ShuffleLocation Deck
 	}
 }
-Text Auto:[(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, return all cards from your waiting room to your deck and shuffle your deck.
+Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, return all cards from your waiting room to your deck and shuffle your deck.
 EndCard
 
 Character: ZLS/W93-050
@@ -1225,7 +1225,7 @@ Auto: OnPlay
 	}
 }
 Quick
-Text Auto:When this card is placed on the stage from your hand, if you have another «Saga» character, this card gets +2000 power until end of turn.
+Text Auto: When this card is placed on the stage from your hand, if you have another «Saga» character, this card gets +2000 power until end of turn.
 Auto: OnSpecificClimaxPlay Relaxing in Casual Wear
 {
 	TargetSelf
@@ -1237,7 +1237,7 @@ Auto: OnSpecificClimaxPlay Relaxing in Casual Wear
 			{
 				SearchWaitingRoom IsCharacter && HasTrait Saga
 			}
-			Text Auto:When this card's battle opponent becomes reverse, choose up to 1 «Saga» character in your waiting room and return it to your hand.
+			Text Auto: When this card's battle opponent becomes reverse, choose up to 1 «Saga» character in your waiting room and return it to your hand.
 		}
 		GainEffect
 		{
@@ -1249,11 +1249,11 @@ Auto: OnSpecificClimaxPlay Relaxing in Casual Wear
 					MoveCard memory
 				}
 			}
-			Text Auto:At the start of your encore step, if you have 2 or less cards in memory, put this card in your memory.
+			Text Auto: At the start of your encore step, if you have 2 or less cards in memory, put this card in your memory.
 		}
 	}
 }
-Text Auto:CxCombo When "Relaxing in Casual Wear" is placed in your climax area, if this is in your center stage, this card gets the following 2 abilities until end of turn. "Auto:When this card's battle opponent becomes reverse, choose up to 1 «Saga» character in your waiting room and return it to your hand." "Auto:At the start of your encore step, if you have 2 or less cards in memory, put this card in your memory."
+Text Auto: CxCombo When "Relaxing in Casual Wear" is placed in your climax area, if this is in your center stage, this card gets the following 2 abilities until end of turn. "Auto:When this card's battle opponent becomes reverse, choose up to 1 «Saga» character in your waiting room and return it to your hand." "Auto:At the start of your encore step, if you have 2 or less cards in memory, put this card in your memory."
 EndCard
 
 Character: ZLS/W93-052
@@ -1279,7 +1279,7 @@ Auto: StartAttackPhase
 		}
 	}
 }
-Text Auto:At the start of your attack phase, if "Revenge on Fate" is in your waiting room, this gains the following ability until the end of your opponent's next turn. "Cont:All of your other «Saga» characters get +2000 power."
+Text Auto: At the start of your attack phase, if "Revenge on Fate" is in your waiting room, this gains the following ability until the end of your opponent's next turn. "Cont:All of your other «Saga» characters get +2000 power."
 Auto: OnSpecificClimaxPlay Relaxing in Casual Wear
 {
 	If StageContains 1 Other && HasTrait Saga &&& LocationContains Level 1 NameEquals Revenge on Fate
@@ -1298,7 +1298,7 @@ Auto: OnSpecificClimaxPlay Relaxing in Casual Wear
 		}
 	}
 }
-Text Auto:CxCombo MEMORY EXPERIENCE[(1)] When "Relaxing in Casual Wear" is placed in your climax area, if you have another «Saga» character and you have "Revenge on Fate" in your level zone, you may pay the cost. If you do, look at up to the top X cards of your opponent's deck, choose up to X cards among them, put them on top of your opponent's deck in any order and put the rest in your waiting room. X equals to the number of "'Franchouchou' Sakura" in your memory.
+Text Auto: CxCombo MEMORY EXPERIENCE[(1)] When "Relaxing in Casual Wear" is placed in your climax area, if you have another «Saga» character and you have "Revenge on Fate" in your level zone, you may pay the cost. If you do, look at up to the top X cards of your opponent's deck, choose up to X cards among them, put them on top of your opponent's deck in any order and put the rest in your waiting room. X equals to the number of "'Franchouchou' Sakura" in your memory.
 EndCard
 
 Character: ZLS/W93-053
@@ -1318,7 +1318,7 @@ Cont: GiveSelf
 		GainPower 5000
 	}
 }
-Text Cont:MEMORY During your turn, if there are 2 or more "Revenge on Fate" in your memory, this card gets +5000 power.
+Text Cont: MEMORY During your turn, if there are 2 or more "Revenge on Fate" in your memory, this card gets +5000 power.
 Auto: OnReverseOpponent
 {
 	Question Put "Best Live, Yugiri" into memory?
@@ -1341,7 +1341,7 @@ Auto: OnReverseOpponent
 		}
 	}
 }
-Text Auto:When this card's battle opponent becomes reversed, you may put this card into your memory. If you do, at the beginning of your next draw phase, choose 1 "Best Live, Yugiri" in your memory, and put it on any position of your stage.
+Text Auto: When this card's battle opponent becomes reversed, you may put this card into your memory. If you do, at the beginning of your next draw phase, choose 1 "Best Live, Yugiri" in your memory, and put it on any position of your stage.
 Auto: OnPlay
 {
 	If LocationContains Level 1 NameEquals Revenge on Fate &&& StageContains 2 Other && HasTrait Saga
@@ -1350,7 +1350,7 @@ Auto: OnPlay
 		MoveCard Stock
 	}
 }
-Text Auto:EXPERIENCE When this card is placed on the stage from your hand, if the number of other «Saga» characters you have is 2 or more and there is a "Revenge on Fate" in your level zone, you may choose a «Saga» character in your waiting room and put that character in your stock.
+Text Auto: EXPERIENCE When this card is placed on the stage from your hand, if the number of other «Saga» characters you have is 2 or more and there is a "Revenge on Fate" in your level zone, you may choose a «Saga» character in your waiting room and put that character in your stock.
 EndCard
 
 Character: ZLS/W93-054
@@ -1391,7 +1391,7 @@ Auto: OnPlay
 		}
 	}
 }
-Text Auto:When this card is placed to the stage from your hand, choose up to 1 of your opponent's characters and return that character to their hand. You may discard 1 card. if you do, choose 1 of your opponent's characters and return that character to their hand
+Text Auto: When this card is placed to the stage from your hand, choose up to 1 of your opponent's characters and return that character to their hand. You may discard 1 card. if you do, choose 1 of your opponent's characters and return that character to their hand
 Auto: OnDirectAttack
 {
 	PayCost 1 Discard 1 Any
@@ -1399,7 +1399,7 @@ Auto: OnDirectAttack
 		Burn 1
 	}
 }
-Text Auto:[(1) Discard 1 card] When this card direct attacks, you may pay the cost. If you do, deal 1 damage to your opponent.
+Text Auto: [(1) Discard 1 card] When this card direct attacks, you may pay the cost. If you do, deal 1 damage to your opponent.
 EndCard
 
 Character: ZLS/W93-055
@@ -1422,7 +1422,7 @@ Auto: OnPlay
 		Burn 1
 	}
 }
-Text Auto:When this card is placed to the stage from your hand, reveal the top card of your deck. If that card is either a «Saga» character or "Revenge on Fate", you may deal 1 damage to your opponent.
+Text Auto: When this card is placed to the stage from your hand, reveal the top card of your deck. If that card is either a «Saga» character or "Revenge on Fate", you may deal 1 damage to your opponent.
 Auto: OnAttack
 {
 	If Climax Vacationing in Swimsuits
@@ -1436,7 +1436,7 @@ Auto: OnAttack
 		}
 	}
 }
-Text Auto:CxCombo [(2)] When this card attacks, if "Vacationing in Swimsuits" is in your climax area, you may pay the cost. If you do, deal 1 damage to your opponent and this card gets +3000 power until the end of your opponent's next turn.
+Text Auto: CxCombo [(2)] When this card attacks, if "Vacationing in Swimsuits" is in your climax area, you may pay the cost. If you do, deal 1 damage to your opponent and this card gets +3000 power until the end of your opponent's next turn.
 EndCard
 
 Character: ZLS/W93-056
@@ -1456,7 +1456,7 @@ Auto: OnSentFromStageToWaitingRoom
 		SearchWaitingRoom NameEquals Revenge on Fate
 	}
 }
-Text Auto:[Discard 1 card] When this card is placed to the waiting room from your stage, you may pay the cost. If you do, choose 1 "Revenge on Fate" in your waiting room and return it to your hand.
+Text Auto: [Discard 1 card] When this card is placed to the waiting room from your stage, you may pay the cost. If you do, choose 1 "Revenge on Fate" in your waiting room and return it to your hand.
 EndCard
 
 Character: ZLS/W93-057
@@ -1475,12 +1475,12 @@ Auto: OnTriggerCheckClimax
 		*OptionalDrawDiscard
 	}
 }
-Text Auto:When your character's trigger check reveals a climax with standby in its trigger icon, you may draw 1 card. If you do, discard 1 card.
+Text Auto: When your character's trigger check reveals a climax with standby in its trigger icon, you may draw 1 card. If you do, discard 1 card.
 Act: RestSelf
 {
 	*GiveCharacterPower(1500,Saga)
 }
-Text Act:[Rest this] Choose 1 of your «Saga» Characters, and that Character gains +1500 Power for the turn.
+Text Act: [Rest this] Choose 1 of your «Saga» Characters, and that Character gains +1500 Power for the turn.
 EndCard
 
 Character: ZLS/W93-058
@@ -1530,13 +1530,13 @@ Auto: OnPlay
 			//				PlaceOnStage false true true false
 			//			}
 			//		}
-			//		Text Act:Play choosen card from the waiting room
+			//		Text Act: Play choosen card from the waiting room
 			//	}
 			//}
 		}
 	}
 }
-Text Auto:[Discard 1 level 1 or higher card] During your main phase, when this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 character with level equal to or lower than your level in your waiting room and, during that main phase, you may play that card from your waiting room without fulfilling color requirements (If cost is needed to play the card, pay the cost).
+Text Auto: [Discard 1 level 1 or higher card] During your main phase, when this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 character with level equal to or lower than your level in your waiting room and, during that main phase, you may play that card from your waiting room without fulfilling color requirements (If cost is needed to play the card, pay the cost).
 EndCard
 
 Character: ZLS/W93-059
@@ -1563,7 +1563,7 @@ Auto: OnAttack
         PutTheRestIntoTheWaitingRoom
 	}
 }
-Text Auto:CxCombo When this card attacks, if "Guided Encounter" is in your climax area and the number of other «Saga» characters you have is 2 or more, reveal the top 2 cards of your deck, your opponent chooses a character or an event among those cards, add it to your hand and put the rest in the waiting room.
+Text Auto: CxCombo When this card attacks, if "Guided Encounter" is in your climax area and the number of other «Saga» characters you have is 2 or more, reveal the top 2 cards of your deck, your opponent chooses a character or an event among those cards, add it to your hand and put the rest in the waiting room.
 EndCard
 
 Character: ZLS/W93-060
@@ -1583,12 +1583,12 @@ Cont: GiveSelf
 		GainPower 4000
 	}
 }
-Text Cont:If the number of other «Saga» characters you have is 2 or more, this card gets +4000 power.
+Text Cont: If the number of other «Saga» characters you have is 2 or more, this card gets +4000 power.
 Auto: OnOpponentBrainstormSuccess
 {
 	*GiveCharacterPower(2000,Any)
 }
-Text Auto:Whenever your opponent's BRAINSTORM sends 1 or more climax in the waiting room, choose 1 of your characters and that character gets +2000 power until end of turn.
+Text Auto: Whenever your opponent's BRAINSTORM sends 1 or more climax in the waiting room, choose 1 of your characters and that character gets +2000 power until end of turn.
 EndCard
 
 Character: ZLS/W93-061
@@ -1612,7 +1612,7 @@ Auto: StartMyEncoreStep
 		}
 	}
 }
-Text Auto:CxCombo [Put a "Kagayaite" from your climax area in the waiting room] At the start of your encore step, you may pay the cost. If you do, choose a «Saga» character in your waiting room and return it to your hand.
+Text Auto: CxCombo [Put a "Kagayaite" from your climax area in the waiting room] At the start of your encore step, you may pay the cost. If you do, choose a «Saga» character in your waiting room and return it to your hand.
 EndCard
 
 Character: ZLS/W93-062
@@ -1651,7 +1651,7 @@ Cont: GiveSelf
         GainPower 1500
     }
 }
-Text Cont:If you have 2 or fewer cards in stock, this card gets +1500 power.
+Text Cont: If you have 2 or fewer cards in stock, this card gets +1500 power.
 EndCard
 
 Character: ZLS/W93-064
@@ -1695,7 +1695,7 @@ Auto: StartClimaxPhase
 {
     *GiveCharacterPower(1000,Any)
 }
-Text Auto:At the start of your climax phase, choose 1 of your characters and that character gets +1000 Power until end of turn.
+Text Auto: At the start of your climax phase, choose 1 of your characters and that character gets +1000 Power until end of turn.
 EndCard
 
 Character: ZLS/W93-066
@@ -1714,7 +1714,7 @@ Auto: OnReverseOpponent
     Reorder
     EndPeek
 }
-Text Auto:When this card's battle opponent becomes reverse, look at up to 2 cards from the top of your Library, and put them back on top of your Library in any order.
+Text Auto: When this card's battle opponent becomes reverse, look at up to 2 cards from the top of your Library, and put them back on top of your Library in any order.
 EndCard
 
 Character: ZLS/W93-067
@@ -1827,7 +1827,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:When this card is placed ont the stage from your hand, if you have 2 or less cards in memory, you may choose 1 "'Franchouchou' Sakura" in your waiting room and put it in your memory.
+Text Auto: When this card is placed ont the stage from your hand, if you have 2 or less cards in memory, you may choose 1 "'Franchouchou' Sakura" in your waiting room and put it in your memory.
 Auto: OnReverseOpponent
 {
     If PlayedThisTurn
@@ -1845,7 +1845,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:[(1)] During the turn this card has been placed to the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, reveal the top 2 cards of your deck, your opponent chooses a character or an event among those cards, add it to your hand and put the rest in the waiting room.
+Text Auto: [(1)] During the turn this card has been placed to the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, reveal the top 2 cards of your deck, your opponent chooses a character or an event among those cards, add it to your hand and put the rest in the waiting room.
 EndCard
 
 Character: ZLS/W93-074
@@ -1863,7 +1863,7 @@ Auto: OnPlay|PlacedBy Best Live, Junko
 {
     *OptionalHeal
 }
-Text Auto:When this card is placed on the stage from your hand or by the Auto: ability of your "Best Live, Junko", you may put the top card of your clock into the waiting room.
+Text Auto: When this card is placed on the stage from your hand or by the Auto: ability of your "Best Live, Junko", you may put the top card of your clock into the waiting room.
 Auto: OnSpecificClimaxPlay Pretty Bride
 {
     If InLocation CenterStage && StageContains 2 Other && HasTrait Saga
@@ -1880,11 +1880,11 @@ Auto: OnSpecificClimaxPlay Pretty Bride
                     Burn 3
                 }
             }
-            Text Auto:[(1) Discard 1 card] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 3 damage to your opponent.
+            Text Auto: [(1) Discard 1 card] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 3 damage to your opponent.
         }
     }
 }
-Text Auto:CxCombo When "Pretty Bride" is placed in your climax area, if this card is in center stage and the number of your other «Saga» characters is 2 or more, choose 1 of your characters and that character gets +1000 power and the following ability until end of turn. "Auto:[(1) Discard 1 card] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 3 damage to your opponent."
+Text Auto: CxCombo When "Pretty Bride" is placed in your climax area, if this card is in center stage and the number of your other «Saga» characters is 2 or more, choose 1 of your characters and that character gets +1000 power and the following ability until end of turn. "Auto:[(1) Discard 1 card] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 3 damage to your opponent."
 EndCard
 
 Character: ZLS/W93-075
@@ -1917,7 +1917,7 @@ Auto: OnOpponentClimaxPlay
         MoveCard Stock
     }
 }
-Text Auto:When your opponent places a climax card in their climax area, you may put this card in your stock.
+Text Auto: When your opponent places a climax card in their climax area, you may put this card in your stock.
 EndCard
 
 Character: ZLS/W93-076
@@ -1937,7 +1937,7 @@ Cont: GiveSelf
         GainPower 1000
     }
 }
-Text Cont:If all your characters are «Saga», this card gets +1000 power.
+Text Cont: If all your characters are «Saga», this card gets +1000 power.
 Auto: OnSpecificClimaxPlay Mezame RETURNER
 {
     If InLocation CenterStage && StageContains 1 Other && HasTrait Saga
@@ -1950,12 +1950,12 @@ Auto: OnSpecificClimaxPlay Mezame RETURNER
             {
                 SearchDeck HasTrait Saga && IsCharacter
             }
-            Text Auto:When this card's battle opponent becomes reverse, search your deck for up to 1 «Saga» character, reveal it, add it to your hand and shuffle your deck.
+            Text Auto: When this card's battle opponent becomes reverse, search your deck for up to 1 «Saga» character, reveal it, add it to your hand and shuffle your deck.
         }
 
     }
 }
-Text Auto:CxCombo When "Mezame RETURNER" is placed in your climax area, if this card is in center stage and you have another «Saga» haracter, choose 1 of your characters and that character gains the following ability until end of turn. "Auto:When this card's battle opponent becomes reverse, search your deck for up to 1 «Saga» character, reveal it, add it to your hand and shuffle your deck."
+Text Auto: CxCombo When "Mezame RETURNER" is placed in your climax area, if this card is in center stage and you have another «Saga» haracter, choose 1 of your characters and that character gains the following ability until end of turn. "Auto:When this card's battle opponent becomes reverse, search your deck for up to 1 «Saga» character, reveal it, add it to your hand and shuffle your deck."
 EndCard
 
 Character: ZLS/W93-077
@@ -1974,7 +1974,7 @@ Act: RestSelf
     DrawCard
     Discard 1 Any
 }
-Text Act:[Rest this card] Draw 1 card and discard 1 card.
+Text Act: [Rest this card] Draw 1 card and discard 1 card.
 EndCard
 
 Character: ZLS/W93-078
@@ -1995,7 +1995,7 @@ Auto: StartAttackPhase
         GainPower 7500
     }
 }
-Text Auto:At the start of your attack phase, if "Revenge on Fate" is in your waiting room, this card gets +7500 power until end of turn.
+Text Auto: At the start of your attack phase, if "Revenge on Fate" is in your waiting room, this card gets +7500 power until end of turn.
 Auto: OnAttack
 {
     PayCost Resonate Revenge on Fate
@@ -2017,7 +2017,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:RESONATE [Reveal 1 "Revenge on Fate" in your hand] When this card attacks, you may pay the cost. If you do, choose 1 of the following 2 effects and perform it once. "This card gets +2000 power until end of turn." "You may choose a «Saga» character in your waiting room and return it to your hand. If you do, discard 1 card."
+Text Auto: RESONATE [Reveal 1 "Revenge on Fate" in your hand] When this card attacks, you may pay the cost. If you do, choose 1 of the following 2 effects and perform it once. "This card gets +2000 power until end of turn." "You may choose a «Saga» character in your waiting room and return it to your hand. If you do, discard 1 card."
 EndCard
 
 Character: ZLS/W93-079
@@ -2035,7 +2035,7 @@ Cont: GiveSelf
     GainPower 0
     //Joke effect, left it to avoid confusion between picture and number of effects
 }
-Text Cont:If the local date is March 8th and both you and your Opponent are physically in the Saga Prefecture, this gains +10000 Power.
+Text Cont: If the local date is March 8th and both you and your Opponent are physically in the Saga Prefecture, this gains +10000 Power.
 Auto: OnPlay
 {
     PayCost Rest 1 CardPosition Stand
@@ -2048,7 +2048,7 @@ Auto: OnPlay
         ShuffleLocation OpponentDeck
     }
 }
-Text Auto:[Rest 1 of your standing characters] When this card is placed on the stage from your hand, you may pay the cost. If you do, your opponent chooses 1 climax card in their waiting room, returns all cards in their waiting room except the chosen card to their deck and they shuffle their deck.
+Text Auto: [Rest 1 of your standing characters] When this card is placed on the stage from your hand, you may pay the cost. If you do, your opponent chooses 1 climax card in their waiting room, returns all cards in their waiting room except the chosen card to their deck and they shuffle their deck.
 Auto: OnAttack
 {
     PayCost 1 Discard 1 Any
@@ -2060,7 +2060,7 @@ Auto: OnAttack
         GainSoul 1
     }
 }
-Text Auto:[(1) Discard 1 card] When this card attacks, you may pay the cost. If you do, choose up to 3 of your «Saga» characters and those characters get +500 power and +1 soul until end of turn.
+Text Auto: [(1) Discard 1 card] When this card attacks, you may pay the cost. If you do, choose up to 3 of your «Saga» characters and those characters get +500 power and +1 soul until end of turn.
 EndCard
 
 Character: ZLS/W93-080
@@ -2092,7 +2092,7 @@ Cont: GiveSelf
         GainPower 2000
     }
 }
-Text Cont:If you have no other characters, this gets +2000 power.
+Text Cont: If you have no other characters, this gets +2000 power.
 *RunInFrontOfCharacter
 EndCard
 
@@ -2135,12 +2135,12 @@ Auto: StartAttackPhase|StartOpponentAttackPhase
                     MoveCard Stock
                 }
             }
-            Text Auto:When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock.
+            Text Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock.
         }
     }
 }
 Quick
-Text Auto:At the start of any player's attack phase, if "Revenge on Fate" is in your waiting room, this card gets +500 power and the following ability until end of turn. "Auto:When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
+Text Auto: At the start of any player's attack phase, if "Revenge on Fate" is in your waiting room, this card gets +500 power and the following ability until end of turn. "Auto:When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
 EndCard
 
 Character: ZLS/W93-084
@@ -2179,11 +2179,11 @@ Auto: OnPlay
             {
                 LoseSoul 2
             }
-            Text Cont:The character facing this card gets -2 souls.
+            Text Cont: The character facing this card gets -2 souls.
         }
     }
 }
-Text Auto:When this card is placed on the stage from your hand, if the number of other «Saga» characters you have is 2 or more, this card gets the following ability until the end of your opponent's next turn. "Cont:The character facing this card gets -2 souls."
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Saga» characters you have is 2 or more, this card gets the following ability until the end of your opponent's next turn. "Cont:The character facing this card gets -2 souls."
 EndCard
 
 Character: ZLS/W93-086
@@ -2225,7 +2225,7 @@ Auto: StartClimaxPhase
 {
     *GiveCharacterPower(1000,Any)
 }
-Text Auto:At the start of your climax phase, choose 1 of your «Saga» characters and that character gets +1000 power until end of turn.
+Text Auto: At the start of your climax phase, choose 1 of your «Saga» characters and that character gets +1000 power until end of turn.
 *Act1Rest2SearchBrainstorm(Saga)
 EndCard
 
@@ -2248,7 +2248,7 @@ Auto: OnPlay|OnPlacedOnStageFromWaitingRoom
         GainSpecialEffect FreeSideAttack
     }
 }
-Text Auto:When this card is placed on the stage from your hand or waiting room, reveal the top card of your deck. If that card is a «Saga» character, this character's soul does not decrease by side attacking until end of turn.
+Text Auto: When this card is placed on the stage from your hand or waiting room, reveal the top card of your deck. If that card is a «Saga» character, this character's soul does not decrease by side attacking until end of turn.
 *OnAttackGivePowerForEachOther(500,Saga)
 EndCard
 
@@ -2283,7 +2283,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo When this card attacks, if "Motivation Is Important" is in your climax area and you have another «Saga» character, perform the following effect twice. "Declare a number between 0, 1 and 2. Put the top card of your deck in the waiting room. If the Level of that card is the same as the number you declared, you may put the top card of your deck in your stock."
+Text Auto: CxCombo When this card attacks, if "Motivation Is Important" is in your climax area and you have another «Saga» character, perform the following effect twice. "Declare a number between 0, 1 and 2. Put the top card of your deck in the waiting room. If the Level of that card is the same as the number you declared, you may put the top card of your deck in your stock."
 EndCard
 
 Character: ZLS/W93-091
@@ -2306,7 +2306,7 @@ Auto: StartAttackPhase
         GainPower 2500
     }
 }
-Text Auto:At the start of your attack phase, if you have 2 or more "Revenge on Fate" in the waiting room, choose 1 of your «Saga» characters and that character gets +2500 power until the end of your opponent's next turn.
+Text Auto: At the start of your attack phase, if you have 2 or more "Revenge on Fate" in the waiting room, choose 1 of your «Saga» characters and that character gets +2500 power until the end of your opponent's next turn.
 EndCard
 
 Character: ZLS/W93-092
@@ -2345,7 +2345,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:When this card is placed on the stage from your hand, if the number of other «Saga» characters you have is 4 or more, you may choose 1 «Saga» character in your waiting room and put it in your stock.
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Saga» characters you have is 4 or more, you may choose 1 «Saga» character in your waiting room and put it in your stock.
 *GreenEarlyPlayBomb
 EndCard
 
@@ -2384,7 +2384,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [Discard 1 «Saga» character] When this card attacks, if "Unexpected Errand Running" is in your climax area, the number of other «Saga» characters you have is 2 or more and you have 1 "Revenge on Fate" in the waiting room, you may pay the cost. If you do, this card gets +2500 power until end of turn, look at up to the top 2 cards of your deck and choose 1 of the following 2 effects and perform it. "Put those cards in your hand." "Put those cards in the waiting room. If you do, draw up to 2 cards."
+Text Auto: CxCombo [Discard 1 «Saga» character] When this card attacks, if "Unexpected Errand Running" is in your climax area, the number of other «Saga» characters you have is 2 or more and you have 1 "Revenge on Fate" in the waiting room, you may pay the cost. If you do, this card gets +2500 power until end of turn, look at up to the top 2 cards of your deck and choose 1 of the following 2 effects and perform it. "Put those cards in your hand." "Put those cards in the waiting room. If you do, draw up to 2 cards."
 EndCard
 
 Event: ZLS/W93-095
@@ -2462,7 +2462,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:When this card is placed to the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 climax among them, this card gets the following ability until end of turn. "Auto: When this card becomes reversed, if this card's battle opponent is cost 0 or lower you may reverse that character."
+Text Auto: When this card is placed to the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 climax among them, this card gets the following ability until end of turn. "Auto: When this card becomes reversed, if this card's battle opponent is cost 0 or lower you may reverse that character."
 EndCard
 
 Character: ZLS/W93-102
@@ -2484,7 +2484,7 @@ Auto: OnPlay
         GainSoul 2
     }
 }
-Text Auto:When this card is placed to the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 climax among them, this card gets +2 soul until end of turn.
+Text Auto: When this card is placed to the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 climax among them, this card gets +2 soul until end of turn.
 Auto: OnDamageCancel
 {
     Question Return this card to your hand ?
@@ -2494,7 +2494,7 @@ Auto: OnDamageCancel
         MoveCard Hand
     }
 }
-Text Auto:When damage dealt by this card is canceled, you may put into your hand.
+Text Auto: When damage dealt by this card is canceled, you may put into your hand.
 EndCard
 
 Character: ZLS/W93-103
@@ -2522,7 +2522,7 @@ Auto: OnPlay
     }
 
 }
-Text Auto:When this card is placed to the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 climax among them, choose 1 of your opponent's center stage characters and that character gets -1000 power until end of turn.
+Text Auto: When this card is placed to the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 climax among them, choose 1 of your opponent's center stage characters and that character gets -1000 power until end of turn.
 Auto: OnReversed
 {
     PayCost 1 SendSelf Clock
@@ -2530,7 +2530,7 @@ Auto: OnReversed
         *Check3Add1(Any)
     }
 }
-Text Auto:[(1) Put this card in your clock] When this card becomes reverse in battle, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 character among them, show it to your opponent, put it in your hand and put the remaining cards in the waiting room.
+Text Auto: [(1) Put this card in your clock] When this card becomes reverse in battle, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 character among them, show it to your opponent, put it in your hand and put the remaining cards in the waiting room.
 EndCard
 
 Character: ZLS/W93-104
@@ -2552,7 +2552,7 @@ Auto: OnPlay
         MoveCard Stock
     }
 }
-Text Auto:When this card is placed to the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 climax among them, put this card in your stock.
+Text Auto: When this card is placed to the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 climax among them, put this card in your stock.
 EndCard
 
 Character: ZLS/W93-105
@@ -2577,7 +2577,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[Discard 1 card] When this card is placed to the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 climax among them, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
+Text Auto: [Discard 1 card] When this card is placed to the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 climax among them, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
 EndCard
 
 Character: ZLS/W93-106
@@ -2599,7 +2599,7 @@ Auto: OnPlay
         GainPower 3000
     }
 }
-Text Auto:When this card is placed to the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 climax among them, this card gets +3000 power until end of turn.
+Text Auto: When this card is placed to the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 climax among them, this card gets +3000 power until end of turn.
 Auto: StartOpponentDrawPhase
 {
     TargetTop Deck 1
@@ -2614,7 +2614,7 @@ Auto: StartOpponentDrawPhase
         } 
     }
 }
-Text Auto:At the beginning of your opponent's draw phase, reveal the top card of your deck. If that card is level 1 or higher, you may return this card to your hand.
+Text Auto: At the beginning of your opponent's draw phase, reveal the top card of your deck. If that card is level 1 or higher, you may return this card to your hand.
 EndCard
 
 Character: ZLS/W93-107
@@ -2635,7 +2635,7 @@ Auto: OnPlay
         *GiveCharacterPower(1500,Any)
     }
 }
-Text Auto:When this card is placed to the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 climax among them, choose 1 of your characters, and that character gets +1500 power until end of turn.
+Text Auto: When this card is placed to the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 climax among them, choose 1 of your characters, and that character gets +1500 power until end of turn.
 *GreenLevel0Bomb
 EndCard
 
@@ -2685,7 +2685,7 @@ Cont: GiveSelf
 {
     AddToOtherCardsTriggerIcon Soul NameEquals Revenge on Fate
 }
-Text Cont:All your "Revenge on Fate" in any zone get 1 soul trigger icon.
+Text Cont: All your "Revenge on Fate" in any zone get 1 soul trigger icon.
 Auto: StartMainPhase
 {
     If AllYourCharacters HasTrait Saga
@@ -2716,7 +2716,7 @@ Auto: OnPlay|OnOtherPlacedOnStageFromHand
         EndPeek
     }
 }
-Text Auto:When your other «Saga» character or this card is placed on the stage from your hand, you may look at the top card of your deck.
+Text Auto: When your other «Saga» character or this card is placed on the stage from your hand, you may look at the top card of your deck.
 *Act1RestSelfDrawBrainstorm5
 EndCard
 
@@ -2749,7 +2749,7 @@ Cont: GiveSelf
         GainPower 1500
     }
 }
-Text Cont:If there are 2 or fewer cards in your stock, this card gets +1500 power.
+Text Cont: If there are 2 or fewer cards in your stock, this card gets +1500 power.
 Auto: OnAttack
 {
     PayCost 2
@@ -2763,7 +2763,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:[(2)] When this card attacks, you may pay the cost. If you do, reveal the top card of your deck. If that card is a «Saga» character, this card gets +11000 power until end of turn.
+Text Auto: [(2)] When this card attacks, you may pay the cost. If you do, reveal the top card of your deck. If that card is a «Saga» character, this card gets +11000 power until end of turn.
 EndCard
 
 Character: ZLS/W93-T04
@@ -2788,7 +2788,7 @@ Auto: OnUseThisCardsBackup
         }
     }
 }
-Text Auto:When you use this card's BACKUP, if all your characters are «Saga», you may put the top card of your deck in stock.
+Text Auto: When you use this card's BACKUP, if all your characters are «Saga», you may put the top card of your deck in stock.
 Backup 2000
 EndCard
 
@@ -2822,7 +2822,7 @@ Cont: GiveSelf
         GainPower 4000
     }
 }
-Text Cont:During your turn, if the number of other «Saga» characters you have is 2 or more, this card gets +4000 power.
+Text Cont: During your turn, if the number of other «Saga» characters you have is 2 or more, this card gets +4000 power.
 Auto: OnPlay
 {
     If StageContains 4 Other && HasTrait Saga
@@ -2835,7 +2835,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:When this card is placed on the stage from your hand, if the number of other «Saga» characters you have is 4 or more, you may put the top card of your deck in your stock.
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Saga» characters you have is 4 or more, you may put the top card of your deck in your stock.
 EndCard
 
 Character: ZLS/W93-T07
@@ -2855,7 +2855,7 @@ Cont: GiveSelf
         GainPower 2000
     }
 }
-Text Cont:During your turn, if the number of other «Saga» characters you have is 2 or more, this card gets +2000 power.
+Text Cont: During your turn, if the number of other «Saga» characters you have is 2 or more, this card gets +2000 power.
 Auto: OnThisTriggerCheck
 {
     IfOther HasTrigger Soul
@@ -2870,7 +2870,7 @@ Auto: OnThisTriggerCheck
     }
 }
 TimesPerTurn 1
-Text Auto:This ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when this card's trigger check reveals a card with a soul trigger icon, deal 3 damage to your opponent, and this card gets +2000 power until end of turn.
+Text Auto: This ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when this card's trigger check reveals a card with a soul trigger icon, deal 3 damage to your opponent, and this card gets +2000 power until end of turn.
 EndCard
 
 Climax: ZLS/W93-T08
@@ -2922,7 +2922,7 @@ Auto: OnOtherPlacedOnStageFromHand
     }
 }
 TimesPerTurn 1
-Text Auto:This ability activates up to once per turn. When your other "Part-Time Job Life, Saki" is placed on the stage from your hand, you may put the top card of your deck in your stock.
+Text Auto: This ability activates up to once per turn. When your other "Part-Time Job Life, Saki" is placed on the stage from your hand, you may put the top card of your deck in your stock.
 *BondDiscard(Part-Time Job Life\, Saki)
 EndCard
 
@@ -2971,7 +2971,7 @@ Auto: OnSentFromStageToWaitingRoom
 		Discard 1 Any
 	}
 }
-Text Auto:When this card is placed to waiting room from the stage, you may reveal up to 3 cards from the top of your deck. If you reveal 1 or more cards, choose up to 1 «Saga» character from among them, put it into your hand, put the rest into your waiting room, choose 1 card in your hand, and put it into your waiting room.
+Text Auto: When this card is placed to waiting room from the stage, you may reveal up to 3 cards from the top of your deck. If you reveal 1 or more cards, choose up to 1 «Saga» character from among them, put it into your hand, put the rest into your waiting room, choose 1 card in your hand, and put it into your waiting room.
 EndCard
 
 Character: ZLS/W93-T14
@@ -2992,7 +2992,7 @@ Cont: GiveSelf
     MultiplyXValue 500
     GainPower X
 }
-Text Cont:This card gets +500 power for each of your other «Saga» characters in backstage.
+Text Cont: This card gets +500 power for each of your other «Saga» characters in backstage.
 Auto: OnAttack
 {
     If Climax Yume o Te ni, Modoreru Basho mo Nai Hibi o && StageContains 1 Other && HasTrait Saga
@@ -3000,7 +3000,7 @@ Auto: OnAttack
         *Check4Add1(Saga)
     }
 }
-Text Auto:CxCombo When this card attacks, if "Yume o Te ni, Modoreru Basho mo Nai Hibi o" is in your climax area and you have another «Saga» character, look at up to the top 4 cards from of your deck, choose up to 1 «Saga» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: CxCombo When this card attacks, if "Yume o Te ni, Modoreru Basho mo Nai Hibi o" is in your climax area and you have another «Saga» character, look at up to the top 4 cards from of your deck, choose up to 1 «Saga» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: ZLS/W93-T15
@@ -3021,7 +3021,7 @@ Auto: OnPlay
         *Check4Add1(Saga)
     }
 }
-Text Auto:[Discard 1 card] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Saga» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: [Discard 1 card] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Saga» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: ZLS/W93-T16
@@ -3065,7 +3065,7 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont:If the number of other «Saga» characters you have is 2 or more, this card gets +1500 power and the following ability. "Auto: When this card is placed from the stage to the waiting room, discard a card from your hand to the waiting room. If you do, return this card to hand."
+Text Cont: If the number of other «Saga» characters you have is 2 or more, this card gets +1500 power and the following ability. "Auto: When this card is placed from the stage to the waiting room, discard a card from your hand to the waiting room. If you do, return this card to hand."
 *Healer
 EndCard
 

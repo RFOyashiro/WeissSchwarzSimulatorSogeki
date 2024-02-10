@@ -92,7 +92,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto:[Rest another of your «Lily» characters] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, put the top card of your deck in your stock.
+Text Auto: [Rest another of your «Lily» characters] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, put the top card of your deck in your stock.
 EndCard
 
 Character: ALL/S76-T05
@@ -327,7 +327,7 @@ Cont: GiveSelf
         GainPower 500
     }
 }
-Text Cont:If the number of other «Lily» characters you have is 2 or more, this card gets +1 level and +500 power.
+Text Cont: If the number of other «Lily» characters you have is 2 or more, this card gets +1 level and +500 power.
 *MoveOtherWithTraitToBackstageOnReverse(Lily)
 EndCard
 
@@ -798,7 +798,7 @@ Auto: OnClimaxPlay
         LosePower 1000
     }
 }
-Text Auto:When a climax with a Bar trigger icon is placed on your climax area, choose 1 of your opponent's center stage characters and until end of turn that character gets -1000 power.
+Text Auto: When a climax with a Bar trigger icon is placed on your climax area, choose 1 of your opponent's center stage characters and until end of turn that character gets -1000 power.
 *Act1RestSelfDraw2Discard1Brainstorm
 EndCard
 
@@ -865,7 +865,7 @@ Auto: OnAttack
     }
 }
 Quick
-Text Auto:When this card attacks, if you have 2 or more other «Lily» characters, this card gets +2000 power until end of turn.
+Text Auto: When this card attacks, if you have 2 or more other «Lily» characters, this card gets +2000 power until end of turn.
 *OnAttackGivePowerTimesSoul
 EndCard
 
@@ -890,7 +890,7 @@ Auto: OnReverseOpponent
         PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto:CxCombo When this card's battle opponent becomes reverse, if "Neunwelt Tactic" is in your climax area, look at up to 2 cards from the top of your deck, choose up to 2 characters with «Lily» among them, show them to your opponent, put them in your hand, and put the rest into waiting room.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Neunwelt Tactic" is in your climax area, look at up to 2 cards from the top of your deck, choose up to 2 characters with «Lily» among them, show them to your opponent, put them in your hand, and put the rest into waiting room.
 EndCard
 
 Character: ALL/S76-009
@@ -1027,7 +1027,7 @@ Auto: OnSpecificClimaxPlay Neunwelt Tactic
         }
     }
 }
-Text Auto:CxCombo When "Neunwelt Tactic" is placed to your climax area, if you have another «Lily» character, choose 1 of the following 2 actions and perform it. "Choose up to 2 of your opponent's characters, put them to their memory, then your opponent places those characters from memory to separate positions on their stage." "Choose up to 2 of your characters and until end of turn they get +1000 power."
+Text Auto: CxCombo When "Neunwelt Tactic" is placed to your climax area, if you have another «Lily» character, choose 1 of the following 2 actions and perform it. "Choose up to 2 of your opponent's characters, put them to their memory, then your opponent places those characters from memory to separate positions on their stage." "Choose up to 2 of your characters and until end of turn they get +1000 power."
 EndCard
 
 Character: ALL/S76-014
@@ -1047,12 +1047,12 @@ Auto: OnPlay
         MoveCard Stock
     }
 }
-Text Auto:When this card is placed on the stage from your hand, you may choose a card in your hand and put it in your stock.
+Text Auto: When this card is placed on the stage from your hand, you may choose a card in your hand and put it in your stock.
 Auto: OnReversed
 {
     BlockEncore
 }
-Text Auto:When this card becomes reverse in battle, you cannot use "ENCORE" until end of turn.
+Text Auto: When this card becomes reverse in battle, you cannot use "ENCORE" until end of turn.
 EndCard
 
 Character: ALL/S76-015
@@ -1068,7 +1068,7 @@ Cont: GiveSelf
 {
     GainSpecialEffect CannotSideAttack
 }
-Text Cont:This cannot Side attack.
+Text Cont: This cannot Side attack.
 Auto: OnClimaxPlay
 {
     TargetLocation Stage
@@ -1078,7 +1078,7 @@ Auto: OnClimaxPlay
     TargetSelf
     GainPower X
 }
-Text Auto:When your climax is placed on your climax area, this card gets +X power until the end of your opponent's next turn. X is equal to 500 times the number of your «Lily» characters.
+Text Auto: When your climax is placed on your climax area, this card gets +X power until the end of your opponent's next turn. X is equal to 500 times the number of your «Lily» characters.
 EndCard
 
 Character: ALL/S76-016
@@ -1122,7 +1122,7 @@ Auto: OnPlay
         SearchWaitingRoom NameEquals I Want You to Feel That | Neunwelt Tactic
     }
 }
-Text Auto:CxCombo [Put a "Neunwelt Tactic" or "I Want You to Feel That" from your hand to your waiting room] When this card is placed on the stage from your hand you may pay the cost. If you do, choose a "Neunwelt Tactic" or "I Want You to Feel That" from your waiting room and return it to your hand.
+Text Auto: CxCombo [Put a "Neunwelt Tactic" or "I Want You to Feel That" from your hand to your waiting room] When this card is placed on the stage from your hand you may pay the cost. If you do, choose a "Neunwelt Tactic" or "I Want You to Feel That" from your waiting room and return it to your hand.
 EndCard
 
 Character: ALL/S76-018
@@ -1147,7 +1147,7 @@ Auto: OnSpecificClimaxPlay A Little Warmth
         MoveCard Stock
     }
 }
-Text Auto:CxCombo When "A Little Warmth" is placed on your climax area, if this card is in the center stage, choose up to 1 "Blooming Dignifiedly, Tazusa" your waiting room and return it to hand, and choose up to 1 «Lily» character in your waiting room and put it in stock.
+Text Auto: CxCombo When "A Little Warmth" is placed on your climax area, if this card is in the center stage, choose up to 1 "Blooming Dignifiedly, Tazusa" your waiting room and return it to hand, and choose up to 1 «Lily» character in your waiting room and put it in stock.
 EndCard
 
 Character: ALL/S76-019
@@ -1169,7 +1169,7 @@ Cont: GiveSelf
         GainPower X
     }
 }
-Text Cont:During your turn, for each of your other «Lily» characters this card gets +1500 power.
+Text Cont: During your turn, for each of your other «Lily» characters this card gets +1500 power.
 *OnAttackPay1ToDoubleTrigger
 EndCard
 
@@ -1205,7 +1205,7 @@ Cont: GiveSelf
         GainPower 2000
     }
 }
-Text Cont:If there are 5 or more cards in your hand, this card gets +2000 power.
+Text Cont: If there are 5 or more cards in your hand, this card gets +2000 power.
 Auto: OnPlay
 {
     PayCost Discard 1 Any
@@ -1218,7 +1218,7 @@ Auto: OnPlay
         MoveCard Clock
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Lily» character in your clock and return it to your hand, and put the top card of your deck in your clock.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Lily» character in your clock and return it to your hand, and put the top card of your deck in your clock.
 EndCard
 
 Character: ALL/S76-022
@@ -1232,7 +1232,7 @@ Trait1 Lily
 Trait2 Hitotsuyanagi Corps
 *OnPlayScry
 *SacrificeToSave(Any)
-Text Auto:[Put this card in the waiting room] When your other character is placed from the stage to the waiting room, if this card is in the backstage, you may pay the cost. If you do, put that character Rested in the position it was in.
+Text Auto: [Put this card in the waiting room] When your other character is placed from the stage to the waiting room, if this card is in the backstage, you may pay the cost. If you do, put that character Rested in the position it was in.
 EndCard
 
 Character: ALL/S76-023
@@ -1249,7 +1249,7 @@ Cont: GiveSelf
     GainSpecialEffect CannotUseEvents
     GainSpecialEffect CannotUseBackup
 }
-Text Cont:You cannot play events or BACKUP from hand.
+Text Cont: You cannot play events or BACKUP from hand.
 Auto: OnReverseOpponent
 {
     Question Put that character in clock ?
@@ -1261,7 +1261,7 @@ Auto: OnReverseOpponent
         MoveCard OpponentClock
     }
 }
-Text Auto:When this card's battle opponent becomes reverse, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock.
+Text Auto: When this card's battle opponent becomes reverse, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock.
 EndCard
 
 Character: ALL/S76-024
@@ -1518,7 +1518,7 @@ Auto: OnSpecificClimaxPlay What is Schutzengel
         }
     }
 }
-Text Auto:CxCombo When "What is Schutzengel" is placed to your climax area and this card is in the center stage, if all of your characters are «Lily», choose up to 1 of your characters, return it to your hand, and until end of turn this card gets the following ability. "Auto: At the beginning of your attack phase, choose 1 of your other «Lily» characters, stand it, and that character gets +1000 power until end of turn."
+Text Auto: CxCombo When "What is Schutzengel" is placed to your climax area and this card is in the center stage, if all of your characters are «Lily», choose up to 1 of your characters, return it to your hand, and until end of turn this card gets the following ability. "Auto: At the beginning of your attack phase, choose 1 of your other «Lily» characters, stand it, and that character gets +1000 power until end of turn."
 EndCard
 
 Character: ALL/S76-037
@@ -1607,7 +1607,7 @@ Act: 1 SendSelf WaitingRoom
 {
     *Check4Add1(Lily)
 }
-Text Act:[(1) Put this card in the waiting room] Look at up to 4 cards from the top of your deck and search for up to 1 «Lily» character, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Act: [(1) Put this card in the waiting room] Look at up to 4 cards from the top of your deck and search for up to 1 «Lily» character, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: ALL/S76-040
@@ -1651,7 +1651,7 @@ Cont: GiveSelf
     MultiplyXValue 2500
     GainPower X
 }
-Text Cont:This card gets +2500 power for each of your opponent's characters in backstage.
+Text Cont: This card gets +2500 power for each of your opponent's characters in backstage.
 *HandEncoreTrait(Lily)
 EndCard
 
@@ -1670,7 +1670,7 @@ Auto: OnPlay
 {
     SearchWaitingRoom HasTrait Lily
 }
-Text Auto:When this card is placed on the stage from your hand, you may choose a «Lily» character in your waiting room and return it to your hand.
+Text Auto: When this card is placed on the stage from your hand, you may choose a «Lily» character in your waiting room and return it to your hand.
 Act: RestSelf
 {
     TargetTop Deck 2
@@ -1683,7 +1683,7 @@ Act: RestSelf
         View
     }
 }
-Text Act:[Rest this card] Look at the top 2 cards of your deck and put them on top of your deck in any order.
+Text Act: [Rest this card] Look at the top 2 cards of your deck and put them on top of your deck in any order.
 EndCard
 
 Character: ALL/S76-043
@@ -1736,7 +1736,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:CxCombo [(2)] When this card attacks, if "I Want You to Feel That" is in your climax area, and you have 4 or more other «Lily» characters, you may pay the cost. If you do, deal 4 damage to your opponent.
+Text Auto: CxCombo [(2)] When this card attacks, if "I Want You to Feel That" is in your climax area, and you have 4 or more other «Lily» characters, you may pay the cost. If you do, deal 4 damage to your opponent.
 EndCard
 
 Character: ALL/S76-045
@@ -1762,7 +1762,7 @@ Act: 1 Rest 2 Any
         SearchWaitingRoom IsCharacter && HasTrait Lily
     }
 }
-Text Act:CxCombo BRAINSTORM [(1) Rest 2 of your characters] Flip over the top 5 cards of your deck and put them in the waiting room. For each "Neunwelt Tactic" or "I Want You to Feel That" revealed in this way, search your deck for up to 1 «Lily» character, reveal it, put it in your hand, and shuffle your deck.
+Text Act: CxCombo BRAINSTORM [(1) Rest 2 of your characters] Flip over the top 5 cards of your deck and put them in the waiting room. For each "Neunwelt Tactic" or "I Want You to Feel That" revealed in this way, search your deck for up to 1 «Lily» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: ALL/S76-046
@@ -1838,7 +1838,7 @@ Auto: OnSentFromStageToWaitingRoom
         SearchWaitingRoom HasTrait Lily
     }
 }
-Text Auto:[(2)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a «Lily» character in your waiting room and return it to your hand.
+Text Auto: [(2)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a «Lily» character in your waiting room and return it to your hand.
 EndCard
 
 Character: ALL/S76-050
@@ -1874,14 +1874,14 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:When this card is placed on the stage from your hand, you may choose a face-up card in your opponent's memory and turn it face-down. If you do, at the end of your turn, turn that card face-up.
+Text Auto: When this card is placed on the stage from your hand, you may choose a face-up card in your opponent's memory and turn it face-down. If you do, at the end of your turn, turn that card face-up.
 Auto: OnReversed
 {
     TargetSelf
     MoveCard Memory
 }
 Quick
-Text Auto:When this card becomes reverse in battle, Put this card into memory.
+Text Auto: When this card becomes reverse in battle, Put this card into memory.
 *EarlyPlayMemoryBomb
 EndCard
 
@@ -1944,7 +1944,7 @@ Cont: GiveAll
         GainSoul 1
     }
 }
-Text Cont:All your other "I'm Not Anything Yet, Riri" get +1000 power and +1 soul.
+Text Cont: All your other "I'm Not Anything Yet, Riri" get +1000 power and +1 soul.
 Auto: OnPlay
 {
     PayCost Discard 1 HasTrait Lily
@@ -1954,7 +1954,7 @@ Auto: OnPlay
         SearchWaitingRoom Compare TargetCardsLevel ThatCardsLevel OrLess && IsCharacter
     }
 }
-Text Auto:[Put a «Lily» character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck, choose a level X or lower character in your waiting room and return it to hand. X equals the level of the revealed card.
+Text Auto: [Put a «Lily» character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck, choose a level X or lower character in your waiting room and return it to hand. X equals the level of the revealed card.
 EndCard
 
 Character: ALL/S76-054
@@ -1981,7 +1981,7 @@ Auto: StartOpponentDrawPhase
         }
     }
 }
-Text Auto:At the beginning of your opponent's draw phase, reveal the top card of your deck. If it's level 1 or higher, you may return this card to your hand.
+Text Auto: At the beginning of your opponent's draw phase, reveal the top card of your deck. If it's level 1 or higher, you may return this card to your hand.
 EndCard
 
 Character: ALL/S76-055
@@ -2000,7 +2000,7 @@ Cont: GiveSelf
         GainPower 2000
     }
 }
-Text Cont:If there is a marker under this card, this card gets +2000 power.
+Text Cont: If there is a marker under this card, this card gets +2000 power.
 Auto: OnPlay
 {
     TargetTop Deck 1
@@ -2014,7 +2014,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is a «Lily» character, you may put it face-down underneath this card as marker.
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is a «Lily» character, you may put it face-down underneath this card as marker.
 EndCard
 
 Character: ALL/S76-056
@@ -2050,7 +2050,7 @@ Auto: OnSpecificClimaxPlay I am Honored! I am Happy!
         }
     }
 }
-Text Auto:CxCombo [Return this card to your hand] When "I am Honored! I am Happy!" is placed in your climax area, you may pay the cost. If you do, reveal the top card of your deck. If that card is a «Lily» character, put it in your hand.
+Text Auto: CxCombo [Return this card to your hand] When "I am Honored! I am Happy!" is placed in your climax area, you may pay the cost. If you do, reveal the top card of your deck. If that card is a «Lily» character, put it in your hand.
 *RestGivePower(2000,Any)
 EndCard
 
@@ -2071,7 +2071,7 @@ Cont: GiveSelf
     MultiplyXValue 1000
     GainPower X
 }
-Text Cont:This card gets +1000 power for each of your other «Lily» characters in your backstage.
+Text Cont: This card gets +1000 power for each of your other «Lily» characters in your backstage.
 Auto: OnAttack
 {
     If StageContains 2 Other && HasTrait Lily
@@ -2087,7 +2087,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:When this card attacks, if the number of other «Lily» characters you have is 2 or more, look at up to 2 cards from the top of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room.
+Text Auto: When this card attacks, if the number of other «Lily» characters you have is 2 or more, look at up to 2 cards from the top of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room.
 EndCard
 
 Character: ALL/S76-059
@@ -2107,7 +2107,7 @@ Auto: OnUseThisCardsBackup
     SetXValue TargetCount
     MillOpponentBottom X
 }
-Text Auto:When you use this card's BACKUP, put X cards from the bottom of your opponent's deck into the waiting room. X equals the number of your «Lily» characters.
+Text Auto: When you use this card's BACKUP, put X cards from the bottom of your opponent's deck into the waiting room. X equals the number of your «Lily» characters.
 Backup 3000
 EndCard
 
@@ -2128,7 +2128,7 @@ Cont: GiveAll
         GainPower 1000
     }
 }
-Text Cont:All your other "Yuyu Shirai" get +1000 power.
+Text Cont: All your other "Yuyu Shirai" get +1000 power.
 *GlobalPower(1000,Lily)
 *BondDiscard(Yuyu Shirai)
 EndCard
@@ -2151,7 +2151,7 @@ Auto: OnPlay
     MultiplyXValue 1000
     GainPower X
 }
-Text Auto:When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 1000 times the number of your «Lily» characters.
+Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 1000 times the number of your «Lily» characters.
 Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
 {
     PayCost 1
@@ -2159,7 +2159,7 @@ Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
         SearchWaitingRoom IsCharacter
     }
 }
-Text Auto:[(1)] When this card's level 2 or higher battle opponent becomes reverse, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
+Text Auto: [(1)] When this card's level 2 or higher battle opponent becomes reverse, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
 EndCard
 
 Event: ALL/S76-062
@@ -2262,7 +2262,7 @@ Auto: OnAttack
 		}
 	}
 }
-Text Auto:CxCombo [Put 1 card from hand to the waiting room] When this card attacks, if "Clumsy Schutzengel" is in your climax area and you have 2 or more other «Lily» characters, you may pay the cost. If you do, perform the following action 2 times. "Put the top card of your deck into your waiting room, choose up to 1 level X or lower «Lily» character in your waiting room and return it to your hand. X is equal to the level of that character.
+Text Auto: CxCombo [Put 1 card from hand to the waiting room] When this card attacks, if "Clumsy Schutzengel" is in your climax area and you have 2 or more other «Lily» characters, you may pay the cost. If you do, perform the following action 2 times. "Put the top card of your deck into your waiting room, choose up to 1 level X or lower «Lily» character in your waiting room and return it to your hand. X is equal to the level of that character.
 EndCard
 
 Character: ALL/S76-069
@@ -2318,7 +2318,7 @@ Auto: OnPlay
     TargetSelf
     GainPower X
 }
-Text Auto:When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 1000 times the number of your «Lily» characters.
+Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 1000 times the number of your «Lily» characters.
 Auto: OnEndOfAttack
 {
     If Climax Come Over Here
@@ -2341,7 +2341,7 @@ Auto: OnEndOfAttack
         }
     }
 }
-Text Auto:CxCombo [(1)] At the end of this card's attack, if "Come Over Here" is in your climax area, you may pay the cost. If you do, look at the top card of your deck, put it on the top or bottom of your deck, deal 3 damage to your opponent, and this card does not stand during your next stand phase.
+Text Auto: CxCombo [(1)] At the end of this card's attack, if "Come Over Here" is in your climax area, you may pay the cost. If you do, look at the top card of your deck, put it on the top or bottom of your deck, deal 3 damage to your opponent, and this card does not stand during your next stand phase.
 EndCard
 
 Character: ALL/S76-071
@@ -2385,7 +2385,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:[Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, put the top 2 cards of your deck into the waiting room. If there is a climax among them, you may pay the cost. If you do, search your deck for up to 1 «Lily» character, show it to your opponent, put it in your hand, and Shuffle your deck.
+Text Auto: [Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, put the top 2 cards of your deck into the waiting room. If there is a climax among them, you may pay the cost. If you do, search your deck for up to 1 «Lily» character, show it to your opponent, put it in your hand, and Shuffle your deck.
 Auto: StartClimaxPhase
 {
     If InLocation CenterStage
@@ -2396,7 +2396,7 @@ Auto: StartClimaxPhase
         }
     }
 }
-Text Auto:RESONATE [Reveal a "Blooming Dignifiedly, Miriam" in your hand] At the beginning of your climax phase, if this card is in your center stage, you may pay the cost. If you do, choose 1 of your other characters, and that character gets +2000 power until end of turn.
+Text Auto: RESONATE [Reveal a "Blooming Dignifiedly, Miriam" in your hand] At the beginning of your climax phase, if this card is in your center stage, you may pay the cost. If you do, choose 1 of your other characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: ALL/S76-073
@@ -2494,7 +2494,7 @@ Auto: StartClimaxPhase
         *GiveOtherCharacterPower(2000,Any)
     }
 }
-Text Auto:RESONATE [Reveal a "Blooming Dignifiedly, Miriam" in your hand] At the beginning of your climax phase, you may pay the cost. If you do, this card gets +2000 power until end of turn.
+Text Auto: RESONATE [Reveal a "Blooming Dignifiedly, Miriam" in your hand] At the beginning of your climax phase, you may pay the cost. If you do, this card gets +2000 power until end of turn.
 EndCard
 
 Character: ALL/S76-077
@@ -2513,12 +2513,12 @@ Cont: Assist
         GainPower 2000
     }
 }
-Text Cont:ASSIST Your «Lily» characters in front of this get +2000 power.
+Text Cont: ASSIST Your «Lily» characters in front of this get +2000 power.
 Auto: OnPlay
 {
     SearchDeck HasTrait Lily
 }
-Text Auto:When this card is placed on the stage from your hand, search your deck for up to 1 «Lily» character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto: When this card is placed on the stage from your hand, search your deck for up to 1 «Lily» character, reveal it, put it in your hand, and shuffle your deck.
 Auto: StartOpponentAttackPhase
 {
     TargetLocation Stage
@@ -2539,7 +2539,7 @@ Auto: StartOpponentAttackPhase
         }
     }
 }
-Text Auto:At the beginning of your opponent's attack phase, choose 1 of your «Lily» characters, and you may move that character to the open middle position of your center stage.
+Text Auto: At the beginning of your opponent's attack phase, choose 1 of your «Lily» characters, and you may move that character to the open middle position of your center stage.
 EndCard
 
 Character: ALL/S76-078
@@ -2598,7 +2598,7 @@ Auto: StartOpponentAttackPhase
         }
     }
 }
-Text Auto:RESONATE [Reveal a "Blooming Dignifiedly, Miriam" from your hand] At the beginning of your opponent's attack phase, you may pay the cost. If you do, move this card to an open position in your center stage.
+Text Auto: RESONATE [Reveal a "Blooming Dignifiedly, Miriam" from your hand] At the beginning of your opponent's attack phase, you may pay the cost. If you do, move this card to an open position in your center stage.
 EndCard
 
 Character: ALL/S76-080
@@ -2624,7 +2624,7 @@ Auto: StartOpponentAttackPhase
         }
     }
 }
-Text Auto:[(1)] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your characters with "Yuyu" in its card name and this card, stand and swap them.
+Text Auto: [(1)] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your characters with "Yuyu" in its card name and this card, stand and swap them.
 Auto: OnReversed
 {
     If Not MyTurn
@@ -2647,7 +2647,7 @@ Auto: OnReversed
         }
     }
 }
-Text Auto:[(1)] During your opponent's turn, when this card becomes reverse in battle, you may pay the cost. If you do, rest this card, and at the beginning of your next encore step, put this card into memory.
+Text Auto: [(1)] During your opponent's turn, when this card becomes reverse in battle, you may pay the cost. If you do, rest this card, and at the beginning of your next encore step, put this card into memory.
 EndCard
 
 Character: ALL/S76-081
@@ -2666,7 +2666,7 @@ Auto: OnPlay
         *OptionalDrawDiscard
     }
 }
-Text Auto:When this card is placed on the stage from your hand, if you have 2 or more other «Lily» characters, you may draw a card. If you do, discard a card from your hand to the waiting room.
+Text Auto: When this card is placed on the stage from your hand, if you have 2 or more other «Lily» characters, you may draw a card. If you do, discard a card from your hand to the waiting room.
 Auto: OnPlay
 {
     PayCost 1 Clock
@@ -2679,7 +2679,7 @@ Auto: OnPlay
         ShuffleLocation Deck
     }
 }
-Text Auto:[(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 cost 0 or lower «Lily» character that is your level or lower, place it in any position on the stage, and shuffle your deck.
+Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 cost 0 or lower «Lily» character that is your level or lower, place it in any position on the stage, and shuffle your deck.
 EndCard
 
 Character: ALL/S76-082
@@ -2698,12 +2698,12 @@ Auto: OnPlay
         SearchWaitingRoom IsCharacter && Compare ThatCardsLevel 2 OrMore
     }
 }
-Text Auto:CxCombo [Put a "Come Over Here" from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a level 2 or higher character in your waiting room and return it to your hand.
+Text Auto: CxCombo [Put a "Come Over Here" from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a level 2 or higher character in your waiting room and return it to your hand.
 Act: 1 Resonate Blooming Dignifiedly, Miriam &&& RestSelf
 {
     *Check3Add1(Lily)
 }
-Text Act:RESONATE [(1) Reveal a "Blooming Dignifiedly, Miriam" from your hand to your opponent, Rest this card] Look at up to 3 cards from the top of your deck, choose up to 1 «Lily» character among them, show it to your opponent, put it in your hand, and put the rest into waiting room.
+Text Act: RESONATE [(1) Reveal a "Blooming Dignifiedly, Miriam" from your hand to your opponent, Rest this card] Look at up to 3 cards from the top of your deck, choose up to 1 «Lily» character among them, show it to your opponent, put it in your hand, and put the rest into waiting room.
 EndCard
 
 Character: ALL/S76-083
@@ -2758,7 +2758,7 @@ Auto: OnPlay
     TargetSelf
     GainPower X
 }
-Text Auto:When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 500 times the number of your «Lily» characters.
+Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 500 times the number of your «Lily» characters.
 EndCard
 
 Character: ALL/S76-085
@@ -2779,7 +2779,7 @@ Cont: GiveSelf
         GainLevel 1
     }
 }
-Text Cont:If the cost of the character facing this card is 0 or lower, this card gets +1 level and +3500 power.
+Text Cont: If the cost of the character facing this card is 0 or lower, this card gets +1 level and +3500 power.
 *EncoreStepIfNoneRestedPayToRest
 EndCard
 
@@ -2799,7 +2799,7 @@ Auto: OnPlay
         SearchDeck NameEquals Hitotsuyanagi Riri
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Hitotsuyanagi Riri", reveal it, put it in your hand, and shuffle your deck.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Hitotsuyanagi Riri", reveal it, put it in your hand, and shuffle your deck.
 *RestGivePower(1500,Lily)
 EndCard
 
@@ -2849,7 +2849,7 @@ Act: 2 RestSelf
 {
     SearchDeck HasTrait Lily
 }
-Text Act:[(2) Rest this card] Search your deck for up to 1 «Lily» character, reveal it, put it in your hand, and shuffle your deck.
+Text Act: [(2) Rest this card] Search your deck for up to 1 «Lily» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: ALL/S76-089
@@ -2869,7 +2869,7 @@ Auto: OnSpecificClimaxPlay Rapport
         *Check4Add1(Lily)
     }
 }
-Text Auto:CxCombo When "Rapport" is placed on your climax area, if you have 2 or more other «Lily» characters, look at up to 4 cards from the top of your deck, choose up to 1 «Lily» character among them, show it to your opponent, put it in your hand, and put the rest into waiting room.
+Text Auto: CxCombo When "Rapport" is placed on your climax area, if you have 2 or more other «Lily» characters, look at up to 4 cards from the top of your deck, choose up to 1 «Lily» character among them, show it to your opponent, put it in your hand, and put the rest into waiting room.
 *Act1SearchBrainstorm(Lily)
 EndCard
 
@@ -2889,7 +2889,7 @@ Auto: OnPlay
         SearchDeck NameEquals To Schild for a Schutzengel
     }
 }
-Text Auto:[Put a «Lily» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "To Schild for a Schutzengel", reveal it, put it in your hand, and shuffle your deck.
+Text Auto: [Put a «Lily» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "To Schild for a Schutzengel", reveal it, put it in your hand, and shuffle your deck.
 Auto: OnAttack
 {
     Question Put the top card of your deck in waiting room ?
@@ -2903,7 +2903,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto:When this card attacks, you may put the top card of your deck in the waiting room. If it's a climax card, draw a card, and discard a card from your hand to the waiting room.
+Text Auto: When this card attacks, you may put the top card of your deck in the waiting room. If it's a climax card, draw a card, and discard a card from your hand to the waiting room.
 EndCard
 
 Character: ALL/S76-091
@@ -2922,7 +2922,7 @@ Cont: GiveSelf
         GainPower 1500
     }
 }
-Text Cont:If there are 2 or fewer cards in your stock, this card gets +1500 power.
+Text Cont: If there are 2 or fewer cards in your stock, this card gets +1500 power.
 Auto: OnAttack
 {
     PayCost Discard 1 Any
@@ -2933,7 +2933,7 @@ Auto: OnAttack
         Bounce
     }
 }
-Text Auto:[Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, choose 1 of your other «Lily» characters and return it to your hand.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, choose 1 of your other «Lily» characters and return it to your hand.
 EndCard
 
 Character: ALL/S76-092
@@ -2959,7 +2959,7 @@ Cont: GiveAll
                 MultiplyXValue 2000
                 GainPower X
             }
-            Text Auto:When this card attacks, this card gets +2000 power for each of your other «Lily» characters in your backstage.
+            Text Auto: When this card attacks, this card gets +2000 power for each of your other «Lily» characters in your backstage.
         }
         GainEffect
         {
@@ -2967,7 +2967,7 @@ Cont: GiveAll
         }
     }
 }
-Text Cont:All of your other "First Emotions, Yuyu" get the following 2 abilities. "Auto:When this card attacks, this card gets +2000 power for each of your other «Lily» characters in your backstage." "Auto: ENCORE [Discard 1 character]"
+Text Cont: All of your other "First Emotions, Yuyu" get the following 2 abilities. "Auto:When this card attacks, this card gets +2000 power for each of your other «Lily» characters in your backstage." "Auto: ENCORE [Discard 1 character]"
 Auto: OnOtherPlacedOnStageFromHand
 {
     If NameEquals First Emotions, Yuyu
@@ -2994,7 +2994,7 @@ Auto: OnOtherPlacedOnStageFromHand
     }
 }
 TimesPerTurn 1
-Text Auto:This ability activates up to once per turn. When another of your First Emotions, Yuyu is placed on your stage from hand, choose 1 of the following 2 effect to perform. "Choose up to 1 «Lily» character in your waiting room and put it to stock." "Reveal the top card of your deck. If it is a «Lily» character, put it in your hand."
+Text Auto: This ability activates up to once per turn. When another of your First Emotions, Yuyu is placed on your stage from hand, choose 1 of the following 2 effect to perform. "Choose up to 1 «Lily» character in your waiting room and put it to stock." "Reveal the top card of your deck. If it is a «Lily» character, put it in your hand."
 EndCard
 
 Character: ALL/S76-093
@@ -3013,7 +3013,7 @@ Cont: GiveSelf
     MultiplyXValue 1500
     GainPower X
 }
-Text Cont:This card gets +1500 power for each of your opponent's characters in backstage.
+Text Cont: This card gets +1500 power for each of your opponent's characters in backstage.
 *HandEncore
 EndCard
 
@@ -3111,12 +3111,12 @@ Auto: OnPlay
         *GiveCharacterPower(1500,Any)
     }
 }
-Text Auto:When this card is placed on the stage from your hand, put the top 2 cards of your deck in your waiting room. If there was at least 1 climax among them, choose 1 of your characters, and that character gets +1500 power until end of turn.
+Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in your waiting room. If there was at least 1 climax among them, choose 1 of your characters, and that character gets +1500 power until end of turn.
 Act: Discard 1 Any SendSelf WaitingRoom
 {
     SearchWaitingRoom HasTrait Lily
 }
-Text Act:[Put 1 card from your hand to the waiting room, put this card in the waiting room] Choose a «Lily» character in your waiting room and return it to your hand.
+Text Act: [Put 1 card from your hand to the waiting room, put this card in the waiting room] Choose a «Lily» character in your waiting room and return it to your hand.
 EndCard
 
 Character: ALL/S76-102
@@ -3135,7 +3135,7 @@ Auto: OnThisTriggerCheck
         SearchWaitingRoom IsCharacter
     }
 }
-Text Auto:When this card reveals a Bar trigger icon during trigger check, you may choose a character in your waiting room and return it to hand.
+Text Auto: When this card reveals a Bar trigger icon during trigger check, you may choose a character in your waiting room and return it to hand.
 *GreenCost0Bomb
 EndCard
 
@@ -3157,11 +3157,11 @@ Auto: OnAttack
     TargetSelf
     GainPower X
 }
-Text Auto:When this card attacks, this card gets +X power until end of turn. X equals 1000 times the number of your opponent's characters.
+Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 1000 times the number of your opponent's characters.
 Auto: Encore Discard 1 IsColor Green
 {
 }
-Text Auto:ENCORE [Put a Green card from your hand to the waiting room]
+Text Auto: ENCORE [Put a Green card from your hand to the waiting room]
 EndCard
 
 Character: ALL/S76-104
@@ -3183,7 +3183,7 @@ Auto: OnAttack
         Discard 1 Any
     }
 }
-Text Auto:When this card attacks, reveal the top card of your deck. If it's a «Lily» character, put it in your hand and discard a card from your hand to the waiting room.
+Text Auto: When this card attacks, reveal the top card of your deck. If it's a «Lily» character, put it in your hand and discard a card from your hand to the waiting room.
 Auto: OnReversed
 {
     TargetTop Deck 1
@@ -3194,7 +3194,7 @@ Auto: OnReversed
         Rest
     }
 }
-Text Auto:This ability activates up to once per turn. When this card becomes reverse in battle, reveal the top card of your deck. If it's level 2 or higher, you may rest this card.
+Text Auto: This ability activates up to once per turn. When this card becomes reverse in battle, reveal the top card of your deck. If it's level 2 or higher, you may rest this card.
 EndCard
 
 Character: ALL/S76-105
@@ -3217,7 +3217,7 @@ Cont: GiveSelf
         GainPower X
     }
 }
-Text Cont:During your turn, this card gets +500 power for each of your other «Lily» characters.
+Text Cont: During your turn, this card gets +500 power for each of your other «Lily» characters.
 Cont: Global
 {
     If InLocation OpponentStage
@@ -3228,7 +3228,7 @@ Cont: Global
         }
     }
 }
-Text Cont:All your opponent's characters get the following effect. "Auto: ENCORE [Put the top of your deck into your clock]"
+Text Cont: All your opponent's characters get the following effect. "Auto: ENCORE [Put the top of your deck into your clock]"
 EndCard
 
 Character: ALL/S76-106
@@ -3250,7 +3250,7 @@ Auto: OnPlay
         MoveCard Stock
     }
 }
-Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a level 0 or lower character, put it in your stock.
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a level 0 or lower character, put it in your stock.
 *RevengeTrait(3000,Lily)
 EndCard
 
@@ -3273,13 +3273,13 @@ Auto: OnPlay
         GainSpecialEffect FreeSideAttack
     }
 }
-Text Auto:When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 level 0 or lower character among them, this card's soul does not decrease by side attacking until end of turn.
+Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 level 0 or lower character among them, this card's soul does not decrease by side attacking until end of turn.
 Auto: OnPlay
 {
     TargetLocation OpponentStage
     LosePower 500
 }
-Text Auto:When this card is placed on the stage from your hand, all of your opponent's center stage characters get -500 power until end of turn.
+Text Auto: When this card is placed on the stage from your hand, all of your opponent's center stage characters get -500 power until end of turn.
 EndCard
 
 Character: ALL/S76-108
@@ -3296,7 +3296,7 @@ Auto: OnUseThisCardsBackup
 {
     Mill 3
 }
-Text Auto:When you use this card's BACKUP, put the top 3 cards of your deck in the waiting room.
+Text Auto: When you use this card's BACKUP, put the top 3 cards of your deck in the waiting room.
 Backup 2000
 EndCard
 
@@ -3374,7 +3374,7 @@ Auto: StartClimaxPhase
 {
     *GiveCharacterPower(1000,Lily)
 }
-Text Auto:At the beginning of your climax phase, choose 1 of your «Lily» characters and that character gets +1000 power until end of turn.
+Text Auto: At the beginning of your climax phase, choose 1 of your «Lily» characters and that character gets +1000 power until end of turn.
 *Act1Rest2SearchBrainstorm(Lily)
 EndCard
 
@@ -3395,7 +3395,7 @@ Cont: GiveSelf
         GainPower 1000
     }
 }
-Text Cont:If you have 2 or less crd in stock, this card gets +1 level and +1000 power.
+Text Cont: If you have 2 or less crd in stock, this card gets +1 level and +1000 power.
 EndCard
 
 Character: ALL/S76-P08
@@ -3417,7 +3417,7 @@ Auto: StartOpponentAttackPhase
         MoveToOpenPosition true false
     }
 }
-Text Auto:At the beginning of your opponent's attack phase, you may choose 1 character in your opponent's center stage and move it to an open position in center stage.
+Text Auto: At the beginning of your opponent's attack phase, you may choose 1 character in your opponent's center stage and move it to an open position in center stage.
 EndCard
 
 Character: ALL/S76-P09
@@ -3436,7 +3436,7 @@ Auto: OnPlay
         *Check3Add1(Any)
     }
 }
-Text Auto:[(1) Put the top card of your deck into clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 character among them, reveal it to your opponent, add it to your hand and put the remaining cards in your waiting room.
+Text Auto: [(1) Put the top card of your deck into clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 character among them, reveal it to your opponent, add it to your hand and put the remaining cards in your waiting room.
 EndCard
 
 Character: ALL/S76-P10
@@ -3481,7 +3481,7 @@ Cont: GiveAll
         GainPower 1000
     }
 }
-Text Cont:During your opponent's turn, all your other «Lily» characters get +1000 power.
+Text Cont: During your opponent's turn, all your other «Lily» characters get +1000 power.
 Auto: OnOtherPlacedOnStageFromHand
 {
     IfOther HasTrait Lily
@@ -3490,7 +3490,7 @@ Auto: OnOtherPlacedOnStageFromHand
         EndPeek
     }
 }
-Text Auto:When another of your «Lily» characters is placed on stage from your hand, look at the top card of your deck.
+Text Auto: When another of your «Lily» characters is placed on stage from your hand, look at the top card of your deck.
 EndCard
 
 Character: ALL/S76-P13
@@ -3512,7 +3512,7 @@ Auto: OnOpponentClimaxPlay
         MoveCard Stock
     }
 }
-Text Auto:When your opponent's climax is placed in their climax area, you may put this card in stock.
+Text Auto: When your opponent's climax is placed in their climax area, you may put this card in stock.
 EndCard
 
 Character: ALL/S76-P14
@@ -3575,7 +3575,7 @@ Auto: OnPlay
         LosePower 1000
     }
 }
-Text Auto:When this card is placed on the stage from your hand, put the top 2 cards of your deck into waiting room. If any climax has been put into waiting room via this effect, choose a character in your opponent's center stage and that character gets -1000 power until end of turn.
+Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck into waiting room. If any climax has been put into waiting room via this effect, choose a character in your opponent's center stage and that character gets -1000 power until end of turn.
 Auto: OnPlay
 {
     PayCost 1 Discard 1 Any
@@ -3584,7 +3584,7 @@ Auto: OnPlay
         *GiveOtherCharacterPower(1000,Lily)
     }
 }
-Text Auto:[(1) Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Lily» character in your waiting room, return it to your hand, choose 1 of your other «Lily» characters and that character gets +1000 power until end of turn.
+Text Auto: [(1) Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Lily» character in your waiting room, return it to your hand, choose 1 of your other «Lily» characters and that character gets +1000 power until end of turn.
 EndCard
 
 Character: ALL/S76-P18S
@@ -3646,14 +3646,14 @@ Auto: OnPlay
         }
     }
 }
-Text Auto:When this card is placed on the stage from your hand, you may choose a face-up card in your opponent's memory and turn it face-down. If you do, at the end of your turn, turn that card face-up.
+Text Auto: When this card is placed on the stage from your hand, you may choose a face-up card in your opponent's memory and turn it face-down. If you do, at the end of your turn, turn that card face-up.
 Auto: OnReversed
 {
     TargetSelf
     MoveCard Memory
 }
 Quick
-Text Auto:When this card becomes reverse, put this card in memory.
+Text Auto: When this card becomes reverse, put this card in memory.
 *EarlyPlayMemoryBomb
 EndCard
 
@@ -3688,7 +3688,7 @@ Auto: OnPlay
     }
 }
 Quick
-Text Auto:When this card is placed on the stage from your hand, if you have another «Lily» character, this card gets +2000 power until end of turn.
+Text Auto: When this card is placed on the stage from your hand, if you have another «Lily» character, this card gets +2000 power until end of turn.
 *GainPowerWhenAttackingLevel2(4500)
 EndCard
 
@@ -3723,7 +3723,7 @@ Cont: GiveSelf
         GainLevel 1
     }
 }
-Text Cont:If the cost of the character facing this card is 0 or less, this card gets +3500 power and +1 level.
+Text Cont: If the cost of the character facing this card is 0 or less, this card gets +3500 power and +1 level.
 *EncoreStepIfNoneRestedPayToRest
 EndCard
 
@@ -3758,7 +3758,7 @@ Auto: OnReverseOpponent
         *OptionalBlindStock
     }
 }
-Text Auto:When this card's battle opponent becomes reverse, if there is a climax in your climax area, you may put the top card of your deck into stock.
+Text Auto: When this card's battle opponent becomes reverse, if there is a climax in your climax area, you may put the top card of your deck into stock.
 EndCard
 
 Character: ALL/S76-P27
@@ -3793,7 +3793,7 @@ Auto: OnPlay
         GainPower 3000
     }
 }
-Text Auto:EXPERIENCE When this card is placed on the stage from your hand, if the total level of the cards in your level is 2 or more, choose 1 of your level 2 or more characters and that character gets +3000 power until end of turn.
+Text Auto: EXPERIENCE When this card is placed on the stage from your hand, if the total level of the cards in your level is 2 or more, choose 1 of your level 2 or more characters and that character gets +3000 power until end of turn.
 EndCard
 
 Character: ALL/S76-P29
@@ -3812,7 +3812,7 @@ Auto: OnPlay
         *GiveOtherCharacterPower(1000,Lily)
     }
 }
-Text Auto:[(1) Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Lily» character in your waiting room, return it to your hand, choose 1 of your other «Lily» characters and that character gets +1000 power until end of turn.
+Text Auto: [(1) Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Lily» character in your waiting room, return it to your hand, choose 1 of your other «Lily» characters and that character gets +1000 power until end of turn.
 EndCard
 
 Character: ALL/S76-P30
