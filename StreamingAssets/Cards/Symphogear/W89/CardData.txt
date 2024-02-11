@@ -30,7 +30,7 @@ Auto: OnAttack
 {
 	If Climax Courage to Bloom && StageContains 2 Other && HasTrait Music
 	{
-		MultipleChoiceQuestion Choose an effect.\n1: Look at up to 4 cards from the top of your deck, choose up to 1 «Music» character among them, show it to your opponent, put it in your hand, and put the remaining cards into the waiting room.\n2: Perform trigger check twice during this card attack's trigger step.|1|2
+		MultipleChoiceQuestion Choose an effect.\n1: Look at up to the top 4 cards of your deck, choose up to 1 «Music» character among them, show it to your opponent, put it in your hand, and put the remaining cards into the waiting room.\n2: Perform trigger check twice during this card attack's trigger step.|1|2
 		If Answer 0
 		{
 			RevealUpTo Deck 4
@@ -45,7 +45,7 @@ Auto: OnAttack
 		}
 	}
 }
-Text Auto: CX COMBO When this card attacks, if "Courage to Bloom" is in your climax area and the number of other «Music» characters you have is 2 or more, choose and perform 1 of the following 2 effects. "Look at up to 4 cards from the top of your deck, choose up to 1 «Music» character among them, show it to your opponent, put it in your hand, and put the remaining cards into the waiting room." "Perform trigger check twice during this card attack's trigger step."
+Text Auto: CX COMBO When this card attacks, if "Courage to Bloom" is in your climax area and the number of other «Music» characters you have is 2 or more, choose and perform 1 of the following 2 effects. "Look at up to the top 4 cards of your deck, choose up to 1 «Music» character among them, show it to your opponent, put it in your hand, and put the remaining cards into the waiting room." "Perform trigger check twice during this card attack's trigger step."
 EndCard
 
 Character: SG/W89-003
@@ -764,7 +764,7 @@ Auto: OnTriggerCheckClimax
         }
     }
 }
-Text Auto: [Put a card from hand to the waiting room] When your character's trigger check reveals a climax with a Bar trigger icon, you may pay the cost. If you do, look at up to 2 cards from the top of your deck, choose up to 1 among them, put it in your hand, and put the rest into the waiting room.
+Text Auto: [Put a card from hand to the waiting room] When your character's trigger check reveals a climax with a Bar trigger icon, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 1 among them, put it in your hand, and put the rest into the waiting room.
 EndCard
 
 Character: SG/W89-031
@@ -835,7 +835,7 @@ Auto: OnTriggerCheckClimax
         }
     }
 }
-Text Auto: [Put a card from hand to the waiting room] When your character's trigger check reveals a climax with a Bar trigger icon, you may pay the cost. If you do, look at up to 2 cards from the top of your deck, choose up to 1 among them, put it in your hand, and put the rest into the waiting room.
+Text Auto: [Put a card from hand to the waiting room] When your character's trigger check reveals a climax with a Bar trigger icon, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 1 among them, put it in your hand, and put the rest into the waiting room.
 Act: RestSelf
 {
     If LocationContains Level 1 NameEquals Igalima | Shul Shagana
@@ -1198,7 +1198,7 @@ Auto: OnPlay
         PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto: When this card is placed on the stage from your hand, look at up to 2 cards from the top of your deck, choose up to 2 of them, place them on top of your deck in any order, and put the rest into the waiting room.
+Text Auto: When this card is placed on the stage from your hand, look at up to the top 2 cards of your deck, choose up to 2 cards among them, place them on top of your deck in any order, and put the rest into the waiting room.
 EndCard
 
 Character: SG/W89-048
@@ -1346,7 +1346,7 @@ Auto: OnSentFromStageToWaitingRoom
         *Check4Add1Level1OrHigher
     }
 }
-Text Auto: [Put a card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: [Put a card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card among them, reveal it, put it in your hand, and put the rest into your waiting room.
 Auto: OnSentFromStageToWaitingRoom
 {
     PayCost 2
@@ -1440,7 +1440,7 @@ Auto: OnClimaxPlay
         *Check4Add1Level1OrHigher
     }
 }
-Text Auto: [(1)] When a climax is placed on your climax area, you may pay the cost. If you do, look at up to 4 cards from the top of your deck, choose up to 1 level 1 or higher card among them, show it to your opponent, put it in your hand, and put the rest into the waiting room.
+Text Auto: [(1)] When a climax is placed on your climax area, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card among them, show it to your opponent, put it in your hand, and put the rest into the waiting room.
 EndCard
 
 Character: SG/W89-058
@@ -1526,7 +1526,7 @@ Auto: OnAttack
         PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto: When this card attacks, look at up to 2 cards from the top of your deck, choose a card among them, place it on top of your deck, and put the rest into waiting room.
+Text Auto: When this card attacks, look at up to the top 2 cards of your deck, choose a card among them, place it on top of your deck, and put the rest into waiting room.
 *HandEncoreTrait(Music)
 EndCard
 
@@ -1664,7 +1664,7 @@ Act: 2 SendSelf Memory
     *CheckAndAdd(3)
 }
 ActivationRequirement CardPosition Stand
-Text Act: [(2) Put this card stand to memory] Look at up to 3 cards from the top of your deck, choose up to 1 card among them, put it in your hand, and put the rest into waiting room.
+Text Act: [(2) Put this card stand to memory] Look at up to the top 3 cards of your deck, choose up to 1 card among them, put it in your hand, and put the rest into waiting room.
 EndCard
 
 Character: SG/W89-067
@@ -1715,7 +1715,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto: CxCombo [(1) Put a "De Re Metallica" from climax area to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, look at up to 4 cards from the top of your deck, choose up to 4 «Music» characters or "Ichaival" among them, show them to your opponent, put them in your hand, put the rest into waiting room, and this card gets the following ability until the end of your opponent's next turn. "Auto: When this card is frontal attacked, you may return it to your hand."
+Text Auto: CxCombo [(1) Put a "De Re Metallica" from climax area to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 4 «Music» characters or "Ichaival" among them, show them to your opponent, put them in your hand, put the rest into waiting room, and this card gets the following ability until the end of your opponent's next turn. "Auto: When this card is frontal attacked, you may return it to your hand."
 EndCard
 
 Character: SG/W89-069
@@ -1885,7 +1885,7 @@ Cont: GiveSelf
                     PutTheRestIntoTheWaitingRoom
                 }
             }
-            Text Auto: When this card attacks, look at up to 2 cards from the top of your deck, choose 1 card among them, put it on top of your deck, and put the rest into waiting room.
+            Text Auto: When this card attacks, look at up to the top 2 cards of your deck, choose 1 card among them, put it on top of your deck, and put the rest into waiting room.
         }
         GainEffect
         {
@@ -1893,7 +1893,7 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont: If you have another «Music» character, this card gets +1500 power and the following 2 abilities. "Auto: When this card attacks, look at up to 2 cards from the top of your deck, choose 1 card among them, put it on top of your deck, and put the rest into waiting room." "Auto: ENCORE [Put a character from hand to the waiting room]"
+Text Cont: If you have another «Music» character, this card gets +1500 power and the following 2 abilities. "Auto: When this card attacks, look at up to the top 2 cards of your deck, choose 1 card among them, put it on top of your deck, and put the rest into waiting room." "Auto: ENCORE [Put a character from hand to the waiting room]"
 Auto: OnThisTriggerCheck
 {
     IfOther HasTrigger Soul

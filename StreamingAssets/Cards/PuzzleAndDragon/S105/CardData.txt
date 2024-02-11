@@ -480,7 +480,7 @@ Auto: OnPlay
         *CheckAndAdd(3)
     }
 }
-Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to 3 cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room.
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
 *ClockShift(0,yellow)
 EndCard
 
@@ -709,7 +709,7 @@ Auto: OnSentFromStageToWaitingRoom
         *Check4Add1Level1OrHigher
     }
 }
-Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. 
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card among them, reveal it, put it in your hand, and put the rest into your waiting room. 
 EndCard
 
 Character: PAD/S105-027
@@ -805,7 +805,7 @@ Auto: OnSpecificClimaxPlay Drillspear Jade Conqueror, Nautilus
         *GainBounceWhenFrontalAttacked
     }
 }
-Text Auto: CxCombo When "Drillspear Jade Conqueror, Nautilus" is placed on your climax area, if the number of other characters you have is 2 or more, this card gets the following 2 abilities until the end of your opponent's next turn. "Auto: When this card attacks, look at up to 2 cards from the top of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room." "Auto: When this card is frontal attacked, you may return this card to your hand."
+Text Auto: CxCombo When "Drillspear Jade Conqueror, Nautilus" is placed on your climax area, if the number of other characters you have is 2 or more, this card gets the following 2 abilities until the end of your opponent's next turn. "Auto: When this card attacks, look at up to the top 2 cards of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room." "Auto: When this card is frontal attacked, you may return this card to your hand."
 EndCard
 
 Character: PAD/S105-030
@@ -961,7 +961,7 @@ Auto: OnSentFromStageToWaitingRoom
         PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto: [(1) Choose a Green character in your waiting room and put it on the bottom of your clock] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 2 cards from the top of your deck and search for up to 2 Green characters, reveal them, put them in your hand, and put the rest into your waiting room.
+Text Auto: [(1) Choose a Green character in your waiting room and put it on the bottom of your clock] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 2 Green characters among them, reveal them, put them in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: PAD/S105-035
@@ -1324,7 +1324,7 @@ Auto: StartAttackPhase
     }
 }
 InMemory
-Text Auto: MEMORY [(1) Turn another face-up "Raving Bassist, Roche" and this card in your memory face-down] If this card is in memory, at the beginning of your attack phase, you may pay the cost. If you do, look at up to 6 cards from the top of your deck, choose 3 of them and put them in the waiting room, and put the rest on top of the deck in any order.
+Text Auto: MEMORY [(1) Turn another face-up "Raving Bassist, Roche" and this card in your memory face-down] If this card is in memory, at the beginning of your attack phase, you may pay the cost. If you do, look at up to the top 6 cards of your deck, choose 3 of them and put them in the waiting room, and put the rest on top of the deck in any order.
 EndCard
 
 Climax: PAD/S105-048
@@ -1404,7 +1404,7 @@ Auto: StartEncoreStep
 {
     If Climax Blazearm Scarlet Conqueror, Sea Wolf && InLocation CenterStage
     {
-        MultipleChoiceQuestion Choose an effect to perform.\n1:If the the number of colors you have is 4 or more and the character facing this card is reversed, look at up to 3 cards from the top of your deck, choose up to 1 of them and put it in your hand, choose up to 1 of them and put it in your stock, and put the rest into your waiting room.\n2:Choose a level 2 or higher character in your waiting room and return it to your hand.|1|2
+        MultipleChoiceQuestion Choose an effect to perform.\n1:If the the number of colors you have is 4 or more and the character facing this card is reversed, look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, choose up to 1 of them and put it in your stock, and put the rest into your waiting room.\n2:Choose a level 2 or higher character in your waiting room and return it to your hand.|1|2
         If Answer 0
         {
             If Compare ColorsOnStage 4 OrMore
@@ -1432,7 +1432,7 @@ Auto: StartEncoreStep
         }
     }
 }
-Text Auto: CxCombo At the beginning of your encore step, if "Blazearm Scarlet Conqueror, Sea Wolf" is in your climax area and this card is in the center stage, choose 1 of the following 2 effects and perform it. "If the the number of colors you have is 4 or more and the character facing this card is reversed, look at up to 3 cards from the top of your deck, choose up to 1 of them and put it in your hand, choose up to 1 of them and put it in your stock, and put the rest into your waiting room." "Choose a level 2 or higher character in your waiting room and return it to your hand."
+Text Auto: CxCombo At the beginning of your encore step, if "Blazearm Scarlet Conqueror, Sea Wolf" is in your climax area and this card is in the center stage, choose 1 of the following 2 effects and perform it. "If the the number of colors you have is 4 or more and the character facing this card is reversed, look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, choose up to 1 of them and put it in your stock, and put the rest into your waiting room." "Choose a level 2 or higher character in your waiting room and return it to your hand."
 EndCard
 
 Character: PAD/S105-053
@@ -1452,7 +1452,7 @@ Auto: OnSpecificClimaxPlay Head of the Ministry of Mystics, Mikage
         *Check4Add1(God)
     }
 }
-Text Auto: CxCombo When "Head of the Ministry of Mystics, Mikage" is placed on your climax area, if the number of other «God» characters you have is 2 or more, look at up to 4 cards from the top of your deck and search for up to 1 «God» character, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: CxCombo When "Head of the Ministry of Mystics, Mikage" is placed on your climax area, if the number of other «God» characters you have is 2 or more, look at up to the top 4 cards of your deck, choose up to 1 «God» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 Auto: OnTriggerCheckClimax
 {
     IfOther HasTrigger Bar
@@ -1491,7 +1491,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, if the the number of colors you have is 4 or more, you may pay the cost. If you do, look at up to 3 cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, if the the number of colors you have is 4 or more, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: PAD/S105-055
@@ -1877,7 +1877,7 @@ Auto: OnPlay
         Discard 1 Any
     }
 }
-Text Auto: EXPERIENCE When this card is placed on the stage from your hand, if the sum of levels of cards in your level is 2 or higher, look at up to 2 cards from the top of your deck, choose up to 1 card and put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
+Text Auto: EXPERIENCE When this card is placed on the stage from your hand, if the sum of levels of cards in your level is 2 or higher, look at up to the top 2 cards of your deck, choose up to 1 card and put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
 EndCard
 
 Character: PAD/S105-067
@@ -1925,7 +1925,7 @@ Act: 1 SendSelf WaitingRoom
 {
     *Check4Add1Level1OrHigher
 }
-Text Act: [(1) Put this card in the waiting room] Look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. 
+Text Act: [(1) Put this card in the waiting room] Look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card among them, reveal it, put it in your hand, and put the rest into your waiting room. 
 *RestGivePower(1000,Any)
 EndCard
 
@@ -2209,7 +2209,7 @@ Auto: OnSentFromStageToWaitingRoom
         PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 Blue character, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 Blue character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: PAD/S105-082
@@ -2600,7 +2600,7 @@ Auto: OnTriggerCheckClimax
     ChooseCharacterFromTargets Choose a character to give +1 soul.
     GainSoul 1
 }
-Text Auto: When your character's trigger check reveals a climax card, look at up to 2 cards from the top of your deck, put them on top of the deck in any order, choose 1 of your characters, and that character gets +1 soul until end of turn.
+Text Auto: When your character's trigger check reveals a climax card, look at up to the top 2 cards of your deck, put them on top of the deck in any order, choose 1 of your characters, and that character gets +1 soul until end of turn.
 EndCard
 
 Character: PAD/S105-096
@@ -2812,7 +2812,7 @@ Auto: OnReverseOpponent
         MoveCard Stock
     }
 }
-Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Zero Dimension Creator, Big Bang" is in your climax area, look at up to 4 cards from the top of your deck and search for up to 2 level 1 or higher cards, reveal them, choose 1 of them and put it in your hand, choose 1 of them and put it in your stock, and put the rest into your waiting room. 
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Zero Dimension Creator, Big Bang" is in your climax area, look at up to the top 4 cards of your deck, choose up to 2 level 1 or higher cards among them, reveal them, choose 1 of them and put it in your hand, choose 1 of them and put it in your stock, and put the rest into your waiting room. 
 EndCard
 
 Character: PAD/S105-T06
@@ -2986,7 +2986,7 @@ Auto: OnSentFromStageToWaitingRoom
         *Check4Add1Level1OrHigher
     }
 }
-Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. 
+Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card among them, reveal it, put it in your hand, and put the rest into your waiting room. 
 EndCard
 
 Character: PAD/S105-T14

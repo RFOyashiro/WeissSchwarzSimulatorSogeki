@@ -79,7 +79,7 @@ Auto: OnAttack
 		GainPower 1000
 	}
 }
-Text Auto: CxCombo When this card attacks, if "Billboard, Advertisement, Operation" is in your climax area, if you have 2 or more other «Lily» characters, look at up to 4 cards from the top of your deck, choose up to 1 level 1 or higher card from among them, reveal it to your opponent, put it into your hand, and put the rest into your waiting room. This card gets +1000 power until end of turn. (Climax are regarded as level 0)
+Text Auto: CxCombo When this card attacks, if "Billboard, Advertisement, Operation" is in your climax area, if you have 2 or more other «Lily» characters, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card from among them among them among them among them, reveal it to your opponent, put it into your hand, and put the rest into your waiting room. This card gets +1000 power until end of turn. (Climax are regarded as level 0)
 EndCard 
 
 Character: ALL/S90-004
@@ -193,7 +193,7 @@ Act: 1 RestSelf Resonate "To Protect That Smile" Kanaho
 	MoveCard Hand
 	PutTheRestIntoTheWaitingRoom
 }
-Text Act: Resonate [(1) Reveal 1 ""To Protect That Smile" Kanaho" and rest this card] Look at up to 3 cards from the top of your deck, choose up to 1 «Lily» character among them, reveal it to your opponent, add it to your hand, put the remaining cards into your waiting room.
+Text Act: Resonate [(1) Reveal 1 ""To Protect That Smile" Kanaho" and rest this card] Look at up to the top 3 cards of your deck, choose up to 1 «Lily» character among them among them among them among them, reveal it to your opponent, add it to your hand, put the remaining cards into your waiting room.
 EndCard 
 
 Character: ALL/S90-008
@@ -1045,7 +1045,7 @@ Auto: OnReverseOpponent
         *GiveCharacterPower(2000,Any)
     }
 }
-Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Sweet Memories" is in your climax area, look at up to 4 cards from the top of your deck and search for up to 1 «Lily» character, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Sweet Memories" is in your climax area, look at up to the top 4 cards of your deck, choose up to 1 «Lily» character among them among them among them, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: ALL/S90-041
@@ -1206,7 +1206,7 @@ Auto: OnAttack
         GainPower 1500
     }
 }
-Text Auto: CxCombo When this card attacks, if "Maybe You Would... Cuddle With Me?" is in your climax area, look at up to 2 cards from the top of your deck, choose up to 2 of them and put them on top of your deck in any order, put the rest into your waiting room, choose up to 2 cards in your opponent's waiting room and return them to the deck, your opponent shuffles that deck, and this card gets +1500 power until end of turn.
+Text Auto: CxCombo When this card attacks, if "Maybe You Would... Cuddle With Me?" is in your climax area, look at up to the top 2 cards of your deck, choose up to 2 cards among them and put them on top of your deck in any order, put the rest into your waiting room, choose up to 2 cards in your opponent's waiting room and return them to the deck, your opponent shuffles that deck, and this card gets +1500 power until end of turn.
 EndCard
 
 Character: ALL/S90-046

@@ -387,7 +387,7 @@ Effect:
 	TargetSelf
 	MoveCard Memory
 }
-Text Look at up to the top 4 cards of your deck, choose up to 1 «Music» character among them, reveal it, put it in your hand, and put the rest into your waiting room. Choose 1 of your characters, and that character gets +2000 power until end of turn. Put this card into memory.
+Text Look at up to the top 4 cards of your deck, choose up to 1 «Music» character among them among them, reveal it, put it in your hand, and put the rest into your waiting room. Choose 1 of your characters, and that character gets +2000 power until end of turn. Put this card into memory.
 EndCard
 
 Event: SG/W39-021
@@ -927,7 +927,7 @@ Effect:
 	PutTheRestIntoTheWaitingRoom
     *GiveCharacterPower(2000,Any)
 }
-Text Look at up to 3 cards from the top of your deck and search for up to 1 green card, reveal it, put it in your hand, and put the rest into your waiting room. Choose 1 of your characters, and that character gets +2000 power until end of turn.
+Text Look at up to the top 3 cards of your deck, choose up to 1 green card among them, reveal it, put it in your hand, and put the rest into your waiting room. Choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Event: SG/W39-046

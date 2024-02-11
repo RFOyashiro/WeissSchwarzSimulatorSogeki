@@ -526,7 +526,7 @@ Auto: OnClimaxPlay
 		*Check4Add1(Music)
 	}
 }
-Text Auto: [(1)] When a climax is placed on your climax area, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 <Music> character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: [(1)] When a climax is placed on your climax area, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 <Music> character among them among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: SG/W70-027
@@ -1461,7 +1461,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo When this card attacks, if "Gyaku-Rasetsu" is in your climax area, look at up to 2 cards from the top of your opponent's deck, choose up to 2 of those cards, put them on top of their deck in any order, put the remaining cards in waiting room, look at up to 2 cards from the top of your deck, choose up to 2 of those cards, put them on top of your deck in any order and put the remaining cards in waiting room.
+Text Auto: CxCombo When this card attacks, if "Gyaku-Rasetsu" is in your climax area, look at up to the top 2 cards of your opponent's deck, choose up to 2 of those cards, put them on top of their deck in any order, put the remaining cards in waiting room, look at up to 2 cards from the top of your deck, choose up to 2 of those cards, put them on top of your deck in any order and put the remaining cards in waiting room.
 Auto: OnAttacked
 {
     PayCost 2 Resonate Shirabe, Endless Struggle
@@ -1598,7 +1598,7 @@ Auto: OnAttack
         PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto: When this card attacks, if the number of other <Music> characters you have is 2 or more, look at up to 2 cards from the top of your deck, choose 1 among them, put it on top of your deck, and put the rest in waiting room.
+Text Auto: When this card attacks, if the number of other <Music> characters you have is 2 or more, look at up to the top 2 cards of your deck, choose 1 among them, put it on top of your deck, and put the rest in waiting room.
 EndCard
 
 Character: SG/W70-078
@@ -1622,7 +1622,7 @@ Auto: OnAttack
         PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto: CxCombo When this card attacks, if "For Someone" is in your climax area, if you have another <Alchemy> character, look at up to 4 cards from the top of your deck, choose up to 1 character with "Saint-Germain" or "Cagliostro" or "Prelati" in its card name, show it to your opponent, put it in your hand, and discard the remaining cards to the waiting room.
+Text Auto: CxCombo When this card attacks, if "For Someone" is in your climax area, if you have another <Alchemy> character, look at up to the top 4 cards of your deck, choose up to 1 character with "Saint-Germain" or "Cagliostro" or "Prelati" in its card name, show it to your opponent, put it in your hand, and discard the remaining cards to the waiting room.
 EndCard
 
 Character: SG/W70-079
@@ -1733,7 +1733,7 @@ Auto: OnSentFromStageToWaitingRoom
         PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 3 cards from the top of your deck, choose up to 1 character from among them, show it to your opponent, put it in your hand, and put the rest into your waiting room.
+Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 character from among them, show it to your opponent, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: SG/W70-082
@@ -2078,7 +2078,7 @@ Effect:
     }
     *GiveCharacterPower(2000,Any)
 }
-Text Look at up to 4 cards from the top of your deck, choose for up to 1 <Alchemy> character among them, reveal it, put it in your hand, put the rest into your waiting room, choose up to 1 of your opponent's characters, return it to their hand, choose 1 of your characters, and it gets +2000 power until end of turn.
+Text Look at up to the top 4 cards of your deck, choose up to 1 <Alchemy> character among them among them, reveal it, put it in your hand, put the rest into your waiting room, choose up to 1 of your opponent's characters, return it to their hand, choose 1 of your characters, and it gets +2000 power until end of turn.
 EndCard
 
 Climax: SG/W70-098

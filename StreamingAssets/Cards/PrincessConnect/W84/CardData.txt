@@ -717,7 +717,7 @@ Auto: OnAttack
         *GiveCharacterPower(1000,Landosol)
     }
 }
-Text Auto: CxCombo When this card attacks, if "For Victory" is in your climax area and the number of other «Landosol» characters you have is 2 or more, look at up to 3 cards from the top of your deck, choose up to 1 «Landosol» character among them, show it to your opponent, put it in your hand, put the rest into waiting room, choose 1 of your «Landosol» characters, and that character gets +1000 power until end of turn.
+Text Auto: CxCombo When this card attacks, if "For Victory" is in your climax area and the number of other «Landosol» characters you have is 2 or more, look at up to the top 3 cards of your deck, choose up to 1 «Landosol» character among them, show it to your opponent, put it in your hand, put the rest into waiting room, choose 1 of your «Landosol» characters, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: PRD/W84-030
@@ -888,7 +888,7 @@ Act: RestSelf
     MarkerTargetsUnderSavedTarget_FaceDown
     PutTheRestIntoTheWaitingRoom
 }
-Text Act: [Rest this card] Choose 1 of your opponent's characters, look at up to 2 cards from the top of your opponent's deck, choose a card among them, place it face-down underneath that character as marker, and put the remaining cards in their waiting room.
+Text Act: [Rest this card] Choose 1 of your opponent's characters, look at up to the top 2 cards of your opponent's deck, choose a card among them, place it face-down underneath that character as marker, and put the remaining cards in their waiting room.
 EndCard
 
 Character: PRD/W84-037
@@ -1043,7 +1043,7 @@ Act: 2 SendSelf WaitingRoom
     EndPeek
     ShuffleLocation Deck
 }
-Text Act: [(2) Put this card in the waiting room] Look at up to 10 cards from the top of your deck, choose up to 1 «Landosol» character among them, place it to any position on your stage, and shuffle your deck.
+Text Act: [(2) Put this card in the waiting room] Look at up to the top 10 cards of your deck, choose up to 1 «Landosol» character among them, place it to any position on your stage, and shuffle your deck.
 EndCard
 
 Character: PRD/W84-044
@@ -1304,7 +1304,7 @@ Auto: OnSentFromStageToWaitingRoom
         *Check4Add1Level1OrHigher
     }
 }
-Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: PRD/W84-058
@@ -1760,7 +1760,7 @@ Act: 1 SendSelf WaitingRoom
 {
     *Check4Add1(Landosol)
 }
-Text Act: [(1) Put this card in the waiting room] Look at up to 4 cards from the top of your deck, choose up to 1 «Landosol» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Act: [(1) Put this card in the waiting room] Look at up to the top 4 cards of your deck, choose up to 1 «Landosol» character among them among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: PRD/W84-075
@@ -1945,7 +1945,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to 3 cards from the top of your deck, choose a card among them, place it to your clock, and put the rest into waiting room. If you placed a card to clock with this effect, choose a «Landosol» character in your waiting room and return it to hand.
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose a card among them, place it to your clock, and put the rest into waiting room. If you placed a card to clock with this effect, choose a «Landosol» character in your waiting room and return it to hand.
 Auto: OnOpponentClimaxPlay
 {
     Question Put this card in stock ?
@@ -2648,7 +2648,7 @@ Auto: OnPlay
         *CheckAndAdd(3)
     }
 }
-Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to 3 cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room.
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: PRD/W84-T02

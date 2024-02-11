@@ -294,7 +294,7 @@ Effect:
 	MoveCard Hand
 	PutTheRestIntoTheWaitingRoom
 }
-Text Look at up to 4 cards from the top of your deck, choose up to 1 «Lily» character to add to your hand and put the rest into your waiting room.
+Text Look at up to the top 4 cards of your deck, choose up to 1 «Lily» character to add to your hand and put the rest into your waiting room.
 EndCard
 
 Climax: ALL/S76-T14
@@ -696,7 +696,7 @@ Auto: OnSentFromStageToWaitingRoom
 		PutTheRestIntoTheWaitingRoom
 	}
 }		
-Text Auto: [(1) Put the top card of your deck into your clock] When this card is put into your waiting room from the stage, you may pay the cost. If you do, look at up to 2 cards from the top of your deck, choose up to 2 «Lily» characters among them, reveal it to your opponent, add them to your hand, and put the rest into the waiting room.
+Text Auto: [(1) Put the top card of your deck into your clock] When this card is put into your waiting room from the stage, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 2 «Lily» characters among them among them, reveal it to your opponent, add them to your hand, and put the rest into the waiting room.
 EndCard
 
 Character: ALL/S76-002
@@ -890,7 +890,7 @@ Auto: OnReverseOpponent
         PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Neunwelt Tactic" is in your climax area, look at up to 2 cards from the top of your deck, choose up to 2 characters with «Lily» among them, show them to your opponent, put them in your hand, and put the rest into waiting room.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Neunwelt Tactic" is in your climax area, look at up to the top 2 cards of your deck, choose up to 2 characters with «Lily» among them, show them to your opponent, put them in your hand, and put the rest into waiting room.
 EndCard
 
 Character: ALL/S76-009
@@ -1607,7 +1607,7 @@ Act: 1 SendSelf WaitingRoom
 {
     *Check4Add1(Lily)
 }
-Text Act: [(1) Put this card in the waiting room] Look at up to 4 cards from the top of your deck and search for up to 1 «Lily» character, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Act: [(1) Put this card in the waiting room] Look at up to the top 4 cards of your deck, choose up to 1 «Lily» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: ALL/S76-040
@@ -1924,7 +1924,7 @@ Auto: OnPlay
 		*CheckAndAdd(4)
 	}
 }
-Text Auto: [(1) Put 1 «Lily» character from your hand into your waiting room] Look at up to 4 cards from the top of your deck, choose up to 1 card to add to your hand and put the rest into your waiting room.
+Text Auto: [(1) Put 1 «Lily» character from your hand into your waiting room] Look at up to the top 4 cards of your deck, choose up to 1 card to add to your hand and put the rest into your waiting room.
 EndCard
 
 Character: ALL/S76-053
@@ -2087,7 +2087,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: When this card attacks, if the number of other «Lily» characters you have is 2 or more, look at up to 2 cards from the top of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room.
+Text Auto: When this card attacks, if the number of other «Lily» characters you have is 2 or more, look at up to the top 2 cards of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room.
 EndCard
 
 Character: ALL/S76-059
@@ -2185,7 +2185,7 @@ Effect:
         }
     }
 }
-Text If you don't have a «Lily» character, you cannot play this card from hand. Choose a character in your waiting room and return it to your hand.\nRESONATE You may reveal a "To Schild for a Schutzengel" from your hand. If you do, put the top card of your deck in your waiting room. If that card is level 0 or lower, put up to 1 card from the top of your deck to stock. If it is not, look at up to 2 cards from the top of your deck, choose up to 1 card among them, put it in your hand, put the rest into waiting room, and discard a card from your hand.
+Text If you don't have a «Lily» character, you cannot play this card from hand. Choose a character in your waiting room and return it to your hand.\nRESONATE You may reveal a "To Schild for a Schutzengel" from your hand. If you do, put the top card of your deck in your waiting room. If that card is level 0 or lower, put up to 1 card from the top of your deck to stock. If it is not, look at up to the top 2 cards of your deck, choose up to 1 card among them, put it in your hand, put the rest into waiting room, and discard a card from your hand.
 EndCard
 
 Event: ALL/S76-063
@@ -2361,7 +2361,7 @@ Auto: OnSentFromStageToWaitingRoom
 		*Check4Add1Level1OrHigher
 	}
 }
-Text Auto: [Put 1 card from your hand into your waiting room] When this card is put into the waiting room from the stage, you may pay the cost. If you do, look at up to 4 cards from the top of your deck, choose up to 1 level 1 or higher card to add to your hand, and put the rest into the waiting room. (Climax are regarded as level 0)
+Text Auto: [Put 1 card from your hand into your waiting room] When this card is put into the waiting room from the stage, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card to add to your hand, and put the rest into the waiting room. (Climax are regarded as level 0)
 EndCard
 
 Character: ALL/S76-072
@@ -2703,7 +2703,7 @@ Act: 1 Resonate Blooming Dignifiedly, Miriam &&& RestSelf
 {
     *Check3Add1(Lily)
 }
-Text Act: RESONATE [(1) Reveal a "Blooming Dignifiedly, Miriam" from your hand to your opponent, Rest this card] Look at up to 3 cards from the top of your deck, choose up to 1 «Lily» character among them, show it to your opponent, put it in your hand, and put the rest into waiting room.
+Text Act: RESONATE [(1) Reveal a "Blooming Dignifiedly, Miriam" from your hand to your opponent, Rest this card] Look at up to the top 3 cards of your deck, choose up to 1 «Lily» character among them, show it to your opponent, put it in your hand, and put the rest into waiting room.
 EndCard
 
 Character: ALL/S76-083
@@ -2869,7 +2869,7 @@ Auto: OnSpecificClimaxPlay Rapport
         *Check4Add1(Lily)
     }
 }
-Text Auto: CxCombo When "Rapport" is placed on your climax area, if you have 2 or more other «Lily» characters, look at up to 4 cards from the top of your deck, choose up to 1 «Lily» character among them, show it to your opponent, put it in your hand, and put the rest into waiting room.
+Text Auto: CxCombo When "Rapport" is placed on your climax area, if you have 2 or more other «Lily» characters, look at up to the top 4 cards of your deck, choose up to 1 «Lily» character among them, show it to your opponent, put it in your hand, and put the rest into waiting room.
 *Act1SearchBrainstorm(Lily)
 EndCard
 
@@ -3436,7 +3436,7 @@ Auto: OnPlay
         *Check3Add1(Any)
     }
 }
-Text Auto: [(1) Put the top card of your deck into clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 character among them, reveal it to your opponent, add it to your hand and put the remaining cards in your waiting room.
+Text Auto: [(1) Put the top card of your deck into clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 character among them among them, reveal it to your opponent, add it to your hand and put the remaining cards in your waiting room.
 EndCard
 
 Character: ALL/S76-P10

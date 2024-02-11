@@ -25,7 +25,7 @@ Auto: OnSentFromStageToWaitingRoom
         *Check4Add1Level1OrHigher
     }
 }
-Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: HBR/W103-002
@@ -59,7 +59,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo [Put 1 card from your hand to the waiting room] When this card attacks, if "Unit 31C" is in your climax area, you may pay the cost. If you do, perform the following action twice. "Look at up to 3 cards from the top of your deck and search for up to 1 «Seraph» character, reveal it, put it in your hand, and put the rest into your waiting room."
+Text Auto: CxCombo [Put 1 card from your hand to the waiting room] When this card attacks, if "Unit 31C" is in your climax area, you may pay the cost. If you do, perform the following action twice. "Look at up to the top 3 cards of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room."
 EndCard
 
 Character: HBR/W103-003
@@ -116,7 +116,7 @@ Auto: OnTriggerCheckClimax
         *CheckAndAdd(2)
     }
 }
-Text Auto: [Put a climax from your hand to the waiting room] When your character's trigger check reveals a climax card, you may pay the cost. If you do, look at up to 2 cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room.
+Text Auto: [Put a climax from your hand to the waiting room] When your character's trigger check reveals a climax card, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: HBR/W103-005
@@ -440,7 +440,7 @@ Auto: OnEndOfAttack
         }
     }
 }
-Text Auto: CxCombo At the end of this card's attack, if "Unit 30G" is in your climax area and the number of other «Seraph» characters you have is 2 or more, look at up to 4 cards from the top of your deck and search for up to 1 «Seraph» character, reveal it, put it in your hand, and put the rest into your waiting room. Afterwards, you may put this card into memory. If you do, at the beginning of your next draw phase, choose a "Ally, Yuina Shirakawa" in your memory and put it in any position on the stage.
+Text Auto: CxCombo At the end of this card's attack, if "Unit 30G" is in your climax area and the number of other «Seraph» characters you have is 2 or more, look at up to the top 4 cards of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room. Afterwards, you may put this card into memory. If you do, at the beginning of your next draw phase, choose a "Ally, Yuina Shirakawa" in your memory and put it in any position on the stage.
 EndCard
 
 Character: HBR/W103-016
@@ -696,7 +696,7 @@ Auto: OnPlay
 {
     PayCost 1 Clock
     {
-        MultipleChoiceQuestion Choose an effect to resolve.\n1:Look at up to 5 cards from the top of your deck and choose up to 1 level 1 or lower character among them, reveal it, put it in your hand, and put the rest into your waiting room.\n2:Search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.|1|2
+        MultipleChoiceQuestion Choose an effect to resolve.\n1:Look at up to the top 5 cards of your deck, choose up to 1 level 1 or lower character among them, reveal it, put it in your hand, and put the rest into your waiting room.\n2:Search your deck for up to 1 level 1 or lower character among them, reveal it, put it in your hand, and shuffle your deck.|1|2
         If Answer 0
         {
             RevealUpTo Deck 5
@@ -711,7 +711,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of the following effects and perform it. "Look at up to 5 cards from the top of your deck and choose up to 1 level 1 or lower character among them, reveal it, put it in your hand, and put the rest into your waiting room." "Search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck."
+Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of the following effects and perform it. "Look at up to the top 5 cards of your deck, choose up to 1 level 1 or lower character among them, reveal it, put it in your hand, and put the rest into your waiting room." "Search your deck for up to 1 level 1 or lower character among them, reveal it, put it in your hand, and shuffle your deck."
 EndCard
 
 Character: HBR/W103-030
@@ -755,7 +755,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo [(2) Put 1 card from your hand to the waiting room] When this card attacks, if "Tiny Tears, Forgotten Memories" is in your climax area, you may pay the cost. If you do, look at up to 2 cards from the top of your deck, choose up to 2 cards among them and put them on top of your deck in any order, put the rest into your waiting room, and this card gets the following 2 abilities until the end of your opponent's next turn. "Cont: This cannot be chosen as target of opponent's effects." "Cont: The character facing this card gets -2 soul."
+Text Auto: CxCombo [(2) Put 1 card from your hand to the waiting room] When this card attacks, if "Tiny Tears, Forgotten Memories" is in your climax area, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 2 cards among them and put them on top of your deck in any order, put the rest into your waiting room, and this card gets the following 2 abilities until the end of your opponent's next turn. "Cont: This cannot be chosen as target of opponent's effects." "Cont: The character facing this card gets -2 soul."
 EndCard
 
 Character: HBR/W103-031
@@ -817,7 +817,7 @@ Act: 1 Resonate Eternal Merciful Guardian, Ichiko Ohshima &&& RestSelf
 {
     *Check3Add1(Seraph)
 }
-Text Act: RESONATE [(1) Reveal an "Eternal Merciful Guardian, Ichiko Ohshima" from your hand, rest this card] Look at up to 3 cards from the top of your deck and search for up to 1 «Seraph» character, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Act: RESONATE [(1) Reveal an "Eternal Merciful Guardian, Ichiko Ohshima" from your hand, rest this card] Look at up to the top 3 cards of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: HBR/W103-033
@@ -1370,7 +1370,7 @@ Auto: OnSpecificClimaxPlay Advance Chibi Operation Under-140
         }
     }
 }
-Text Auto: CxCombo [Return this card to your hand] When "Advance Chibi Operation Under-140" is placed on your climax area, if you have another «Seraph» character, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 «Seraph» character, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: CxCombo [Return this card to your hand] When "Advance Chibi Operation Under-140" is placed on your climax area, if you have another «Seraph» character, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: HBR/W103-058
@@ -1431,7 +1431,7 @@ Auto: OnSpecificClimaxPlay Unit 31A
         PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto: CxCombo When "Unit 31A" is placed on your climax area, if the number of other «Seraph» characters you have is 2 or more, look at up to 2 cards from the top of your deck and search for up to 1 level 1 or lower character, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: CxCombo When "Unit 31A" is placed on your climax area, if the number of other «Seraph» characters you have is 2 or more, look at up to the top 2 cards of your deck, choose up to 1 level 1 or lower character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: HBR/W103-060
@@ -1620,7 +1620,7 @@ Auto: OnClimaxPlay
         *Check4Add1(Seraph)
     }
 }
-Text Auto: [(1)] When your climax is placed on your climax area, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 «Seraph» character, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: [(1)] When your climax is placed on your climax area, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 Auto: OnOtherFrontalAttacked
 {
     IfOther HasTrait Seraph
@@ -1842,11 +1842,11 @@ Auto: StartClimaxPhase
             {
                 *Check4Add1(Seraph)
             }
-            Text Auto: When this card's battle opponent becomes reverse, look at up to 4 cards from the top of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+            Text Auto: When this card's battle opponent becomes reverse, look at up to the top 4 cards of your deck, choose up to 1 «Seraph» character among them among them, reveal it, put it in your hand, and put the rest into your waiting room.
         }
     }
 }
-Text Auto: ACCELERATE [Put the top card of your deck in your clock] At the beginning of your climax phase, you may pay the cost. If you do, this card gets +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, look at up to 4 cards from the top of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room."
+Text Auto: ACCELERATE [Put the top card of your deck in your clock] At the beginning of your climax phase, you may pay the cost. If you do, this card gets +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, look at up to the top 4 cards of your deck, choose up to 1 «Seraph» character among them among them, reveal it, put it in your hand, and put the rest into your waiting room."
 EndCard
 
 Character: HBR/W103-076
@@ -2002,7 +2002,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo [Put a «Seraph» character card from your hand to the waiting room] When this card attacks, if "Connecting Feelings" is in your climax area, you may pay the cost. If you do, look at up to 3 cards from the top of your deck and choose up to 3 cards that are either «Seraph» characters or "Addicting Music" among them, reveal them, put them in your hand, put the rest into your waiting room, and this card gets the following 2 abilities until the end of your opponent's next turn. "Cont: During your opponent's turn, all characters cannot be reverse." "Auto: At the beginning of your opponent's encore step, put this card into memory."
+Text Auto: CxCombo [Put a «Seraph» character card from your hand to the waiting room] When this card attacks, if "Connecting Feelings" is in your climax area, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 3 cards that are either «Seraph» characters or "Addicting Music" among them among them, reveal them, put them in your hand, put the rest into your waiting room, and this card gets the following 2 abilities until the end of your opponent's next turn. "Cont: During your opponent's turn, all characters cannot be reverse." "Auto: At the beginning of your opponent's encore step, put this card into memory."
 EndCard
 
 Character: HBR/W103-085
@@ -2548,7 +2548,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: When this card attacks, if the number of other «Seraph» characters you have is 2 or more, look at up to 2 cards from the top of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room.
+Text Auto: When this card attacks, if the number of other «Seraph» characters you have is 2 or more, look at up to the top 2 cards of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room.
 EndCard
 
 
