@@ -1348,6 +1348,29 @@ Power 2000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31A
+Auto: OnTriggerCheckClimax
+{
+    IfOther HasTrigger Gate
+    {
+        *OptionalDrawDiscard
+    }
+}
+Text Auto: When your character's trigger check reveals a climax with a gate trigger icon, you may draw 1 card. If you do, put 1 card from your hand into waiting room.
+Act: 1 RestSelf
+{
+    Brainstorm 4
+    TargetBrainstormed
+    NarrowTargets HasTrigger Gate
+    SetXValue TargetCount
+    Repeat X
+    {
+        AIChoice AddToHand
+        SearchLocationForTargets WaitingRoom 0 1 IsCharacter
+        RevealTargets
+        MoveCard Hand
+    }
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over 4 cards from the top of your deck, and put them into your waiting room. For each climax with a gate trigger icon revealed, choose up to 1 character in your waiting room and return it to your hand.
 EndCard
 
 Character: HBR/W103-057
