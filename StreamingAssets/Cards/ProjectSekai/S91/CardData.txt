@@ -740,8 +740,9 @@ Auto: OnAttack
             TargetTop OpponentDeck 3
             AIChoice If IsClimax
             ChooseCardsFromTargets 0 3 Any
-	        MoveCard OpponentWaitingRoom
+	        MoveCard OpponentDeck
             Reorder
+            PutTheRestIntoTheWaitingRoom
             TargetSelf
             GainPower 4000
         }
@@ -1899,10 +1900,10 @@ Auto: OnAttack
     If Climax Severed Strings
     {
         TargetTop OpponentDeck 2
-	    AIChoice If IsClimax
     	ChooseCardsFromTargets 0 2 Any
-	    MoveCard OpponentWaitingRoom
+	    MoveCard OpponentDeck
         Reorder
+        PutTheRestIntoTheWaitingRoom
         Peek Deck 2
 		If HasTarget
 		{
@@ -2810,9 +2811,10 @@ Auto: OnAttack
         PayCost 1 Discard 1 Any
         {
             TargetTop OpponentDeck 2
-            AIChoice If IsClimax
             ChooseCardsFromTargets 0 2 Any
-            MoveCard OpponentWaitingRoom
+            MoveCard OpponentDeck
+            Reorder
+            PutTheRestIntoTheWaitingRoom
             Reorder
         }
     }
@@ -4248,7 +4250,9 @@ Auto: OnAttack
             TargetTop OpponentDeck 2
             AIChoice If IsClimax
             ChooseCardsFromTargets 0 2 Any
-            MoveCard OpponentWaitingRoom
+            MoveCard OpponentDeck
+            Reorder
+            PutTheRestIntoTheWaitingRoom
         }
     }
 }
