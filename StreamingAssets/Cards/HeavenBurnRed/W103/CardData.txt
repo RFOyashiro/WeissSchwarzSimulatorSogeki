@@ -732,13 +732,14 @@ Auto: OnAttack
     {
         PayCost 2 Discard 1 Any
         {
-            Peek OpponentDeck 2
+            Peek Deck 2
             Message Choose cards to put on top of your deck.
             ChooseCardsFromTargets 0 2 Any
             Reorder
             PutTheRestIntoTheWaitingRoom
             EndPeek
             UntilEndOfOpponentsTurn
+            TargetSelf
             GainEffect
             {
                 *HexProof
