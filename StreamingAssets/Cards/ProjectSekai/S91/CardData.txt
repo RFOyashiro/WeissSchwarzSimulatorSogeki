@@ -652,7 +652,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo [Put 1 card from hand to the waiting room] When this card attacks, if "Resolve on the Night Before the Concert" is in your climax area and you have another «Music» character, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search up to 2 «Music» characters, reveal them, put them in your hand, and put the rest into your waiting room.
+Text Auto: CxCombo [Put 1 card from hand to the waiting room] When this card attacks, if "Resolve on the Night Before the Concert" is in your climax area and you have another «Music» character, you may pay the cost. If you do, look at up to the top 4 cards of your deck and search up to 2 «Music» characters, reveal them, put them in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: PJS/S91-032
@@ -733,11 +733,14 @@ Combo The Me Who Isn't an Idol
 *Healer
 Auto: OnAttack
 {
-    If Climax The Me Who Isn't an Idol && LocationContains Memory 2 Other && HasTrait Music &&& AllYourCharacters MORE MORE JUMP!
+    If Climax The Me Who Isn't an Idol && LocationContains Memory 2 Other && HasTrait Music &&& AllYourCharacters HasTrait MORE MORE JUMP!
     {
         PayCost 2
         {
-            *CheckTopXOfOpponentDeckSendAny(3)
+            TargetTop OpponentDeck 3
+            AIChoice If IsClimax
+            ChooseCardsFromTargets 0 3 Any
+	        MoveCard OpponentWaitingRoom
             TargetSelf
             GainPower 4000
         }
@@ -791,7 +794,7 @@ Auto: OnSpecificClimaxPlay Support Your Dreams!
         *Check4Add1(Music)
     }
 }
-Text Auto: CxCombo When "Support Your Dreams!" is placed on your climax area, if the number of other «Music» characters you have is 2 or more, look at up to 4 cards from the top of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: CxCombo When "Support Your Dreams!" is placed on your climax area, if the number of other «Music» characters you have is 2 or more, look at up to the top 4 cards of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, and put the rest into your waiting room.
 *Act1SearchBrainstorm(Music)
 EndCard
 
@@ -1004,7 +1007,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto: CxCombo [(1) Put an "In a Grand Occasion" from your climax area in the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 4 «Music» characters, reveal them, put them in your hand, put the rest into your waiting room, and this card gets the following ability until the end of your opponent's next turn. "Auto: When this card is frontal attacked, you may return this card to your hand."
+Text Auto: CxCombo [(1) Put an "In a Grand Occasion" from your climax area in the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, look at up to the top 4 cards of your deck and search for up to 4 «Music» characters, reveal them, put them in your hand, put the rest into your waiting room, and this card gets the following ability until the end of your opponent's next turn. "Auto: When this card is frontal attacked, you may return this card to your hand."
 EndCard
 
 Character: PJS/S91-048
@@ -1158,11 +1161,11 @@ Auto: OnSpecificClimaxPlay A Broken Bond
         {
             *Check4Add1(Music)
         }
-        Text Auto: When this card's battle opponent becomes reverse, look at up to 4 cards from the top of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, and put the rest into your waiting room.
+        Text Auto: When this card's battle opponent becomes reverse, look at up to the top 4 cards of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, and put the rest into your waiting room.
     }
 }
 Quick
-Text Auto: CxCombo When "A Broken Bond" is placed on your climax area, this card gets +2500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, look at up to 4 cards from the top of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, and put the rest into your waiting room."
+Text Auto: CxCombo When "A Broken Bond" is placed on your climax area, this card gets +2500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, look at up to the top 4 cards of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, and put the rest into your waiting room."
 *BondDiscard(In Order to Exceed "Rad Weekend"\, Akito Shinonome)
 EndCard
 
@@ -1577,7 +1580,7 @@ Auto: OnAttack
         *CheckAndAddAll(2,HasTrait Music)
     }
 }
-Text Auto: CxCombo When this card attacks, if "Pent-Up Frustration" is in your climax area, look at up to 2 cards from the top of your deck and search for up to 2 «Music» characters, reveal them, put them in your hand, and put the rest into your waiting room.
+Text Auto: CxCombo When this card attacks, if "Pent-Up Frustration" is in your climax area, look at up to the top 2 cards of your deck and search for up to 2 «Music» characters, reveal them, put them in your hand, and put the rest into your waiting room.
 EndCard
 
 Event: PJS/S91-075
@@ -1850,7 +1853,7 @@ Auto: OnSpecificClimaxPlay The "Good Girl" I Am
         }
     }
 }
-Text Auto: CxCombo [Put 1 card from your hand to the waiting room] When "The "Good Girl" I Am" is placed on your climax area, if you have another «Music» character, you may pay the cost. If you do, return all cards in your waiting room to the deck, shuffle your deck, look at up to 3 cards from the top of your deck and put them on top of the deck in any order.
+Text Auto: CxCombo [Put 1 card from your hand to the waiting room] When "The "Good Girl" I Am" is placed on your climax area, if you have another «Music» character, you may pay the cost. If you do, return all cards in your waiting room to the deck, shuffle your deck, look at up to the top 3 cards of your deck and put them on top of the deck in any order.
 Auto: OnClimaxPlay
 {
     TargetTop Deck 2
@@ -1863,7 +1866,7 @@ Auto: OnClimaxPlay
         View
     }
 }
-Text Auto: When your climax is placed on your climax area, look at up to 2 cards from the top of your deck and put them on top of the deck in any order.
+Text Auto: When your climax is placed on your climax area, look at up to the top 2 cards of your deck and put them on top of the deck in any order.
 EndCard
 
 Character: PJS/S91-088
@@ -1905,7 +1908,7 @@ Auto: OnAttack
 		}
     }
 }
-Text Auto: CxCombo When this card attacks, if "Severed Strings" is in your climax area, look at up to 2 cards from the top of your opponent's deck, choose up to 2 of them and put them on top of the deck in any order, put the rest in their waiting room, look at up to 2 cards from the top of your deck, choose up to 2 of them and put them on top of your deck in any order, and put the rest into your waiting room.
+Text Auto: CxCombo When this card attacks, if "Severed Strings" is in your climax area, look at up to 2 cards from the top of your opponent's deck, choose up to 2 of them and put them on top of the deck in any order, put the rest in their waiting room, look at up to the top 2 cards of your deck, choose up to 2 of them and put them on top of your deck in any order, and put the rest into your waiting room.
 EndCard
 
 Character: PJS/S91-089
@@ -2167,7 +2170,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: When this card attacks, if the number of other «Music» characters you have is 2 or more, look at up to 2 cards from the top of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room.
+Text Auto: When this card attacks, if the number of other «Music» characters you have is 2 or more, look at up to the top 2 cards of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room.
 EndCard
 
 Character: PJS/S91-096
@@ -2512,7 +2515,7 @@ Auto: OnReverseOpponent
         *GiveCharacterPower(2000,Any)
     }
 }
-Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Leo/need" is in your climax area, look at up to 4 cards from the top of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Leo/need" is in your climax area, look at up to the top 4 cards of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: PJS/S91-T11
@@ -2709,7 +2712,7 @@ Auto: OnReverseOpponent
         *GiveCharacterPower(2000,Any)
     }
 }
-Text Auto: CxCombo When this card's battle opponent becomes reverse, if "MORE MORE JUMP!" is in your climax area, look at up to 4 cards from the top of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "MORE MORE JUMP!" is in your climax area, look at up to the top 4 cards of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: PJS/S91-T22
@@ -2988,7 +2991,7 @@ Auto: OnReverseOpponent
         *GiveCharacterPower(2000,Any)
     }
 }
-Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Vivid BAD SQUAD" is in your climax area, look at up to 4 cards from the top of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Vivid BAD SQUAD" is in your climax area, look at up to the top 4 cards of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: PJS/S91-T37
@@ -3079,11 +3082,11 @@ Cont: GiveSelf
                     View
                 }
             }
-            Text Auto: When this card's battle opponent becomes reverse, look at up to 2 cards from the top of your deck and put them on top of the deck in any order.
+            Text Auto: When this card's battle opponent becomes reverse, look at up to the top 2 cards of your deck and put them on top of the deck in any order.
         }
     }
 }
-Text Cont: If the number of other «Music» characters you have is 2 or more, this card gets +1500 power and the following ability. "Auto: When this card's battle opponent becomes reverse, look at up to 2 cards from the top of your deck and put them on top of the deck in any order."
+Text Cont: If the number of other «Music» characters you have is 2 or more, this card gets +1500 power and the following ability. "Auto: When this card's battle opponent becomes reverse, look at up to the top 2 cards of your deck and put them on top of the deck in any order."
 *Healer
 EndCard
 
@@ -3247,7 +3250,7 @@ Auto: OnReverseOpponent
         *GiveCharacterPower(2000,Any)
     }
 }
-Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Wonderlands x Showtime" is in your climax area, look at up to 4 cards from the top of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Wonderlands x Showtime" is in your climax area, look at up to the top 4 cards of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: PJS/S91-T52
@@ -3471,7 +3474,7 @@ Auto: OnSentFromStageToWaitingRoom
         *Check4Add1Level1OrHigher
     }
 }
-Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. 
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to the top 4 cards of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. 
 EndCard
 
 Character: PJS/S91-T64
@@ -3576,7 +3579,7 @@ Auto: OnReverseOpponent
         *GiveCharacterPower(2000,Any)
     }
 }
-Text Auto: CxCombo When this card's battle opponent becomes reverse, if "25-ji, Nightcord de." is in your climax area, look at up to 4 cards from the top of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "25-ji, Nightcord de." is in your climax area, look at up to the top 4 cards of your deck and search for up to 1 «Music» character, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: PJS/S91-T67
@@ -4232,7 +4235,10 @@ Auto: OnAttack
     {
         PayCost 1 Discard 1 Any
         {
-            *CheckTopXOfOpponentDeckSendAny(2)
+            TargetTop OpponentDeck 2
+            AIChoice If IsClimax
+            ChooseCardsFromTargets 0 2 Any
+            MoveCard OpponentWaitingRoom
         }
     }
 }
