@@ -3021,7 +3021,7 @@ Auto: OnPlay
         *Check4Add1(Saga)
     }
 }
-Text Auto: [Discard 1 card] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Saga» character among them among them, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: [Discard 1 card] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Saga» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: ZLS/W93-T16
@@ -3082,7 +3082,7 @@ Effect:
     MoveCard Hand
     PutTheRestIntoTheWaitingRoom
 }
-Text Look at up to the top 3 cards of your deck, choose up to 3 «Saga» characters among them among them, reveal them, put them in your hand, and put the rest into your waiting room.
+Text Look at up to the top 3 cards of your deck, choose up to 3 «Saga» characters among them, reveal them, put them in your hand, and put the rest into your waiting room.
 EndCard
 
 Climax: ZLS/W93-T19

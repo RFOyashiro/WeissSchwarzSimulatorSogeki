@@ -696,7 +696,7 @@ Auto: OnSentFromStageToWaitingRoom
 		PutTheRestIntoTheWaitingRoom
 	}
 }		
-Text Auto: [(1) Put the top card of your deck into your clock] When this card is put into your waiting room from the stage, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 2 «Lily» characters among them among them, reveal it to your opponent, add them to your hand, and put the rest into the waiting room.
+Text Auto: [(1) Put the top card of your deck into your clock] When this card is put into your waiting room from the stage, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 2 «Lily» characters among them, reveal it to your opponent, add them to your hand, and put the rest into the waiting room.
 EndCard
 
 Character: ALL/S76-002
@@ -3436,7 +3436,7 @@ Auto: OnPlay
         *Check3Add1(Any)
     }
 }
-Text Auto: [(1) Put the top card of your deck into clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 character among them among them, reveal it to your opponent, add it to your hand and put the remaining cards in your waiting room.
+Text Auto: [(1) Put the top card of your deck into clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 character among them, reveal it to your opponent, add it to your hand and put the remaining cards in your waiting room.
 EndCard
 
 Character: ALL/S76-P10

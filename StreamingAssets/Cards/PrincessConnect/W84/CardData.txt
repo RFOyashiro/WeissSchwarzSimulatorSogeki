@@ -1760,7 +1760,7 @@ Act: 1 SendSelf WaitingRoom
 {
     *Check4Add1(Landosol)
 }
-Text Act: [(1) Put this card in the waiting room] Look at up to the top 4 cards of your deck, choose up to 1 «Landosol» character among them among them, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Act: [(1) Put this card in the waiting room] Look at up to the top 4 cards of your deck, choose up to 1 «Landosol» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: PRD/W84-075

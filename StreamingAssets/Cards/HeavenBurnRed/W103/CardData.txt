@@ -1842,11 +1842,11 @@ Auto: StartClimaxPhase
             {
                 *Check4Add1(Seraph)
             }
-            Text Auto: When this card's battle opponent becomes reverse, look at up to the top 4 cards of your deck, choose up to 1 «Seraph» character among them among them, reveal it, put it in your hand, and put the rest into your waiting room.
+            Text Auto: When this card's battle opponent becomes reverse, look at up to the top 4 cards of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
         }
     }
 }
-Text Auto: ACCELERATE [Put the top card of your deck in your clock] At the beginning of your climax phase, you may pay the cost. If you do, this card gets +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, look at up to the top 4 cards of your deck, choose up to 1 «Seraph» character among them among them, reveal it, put it in your hand, and put the rest into your waiting room."
+Text Auto: ACCELERATE [Put the top card of your deck in your clock] At the beginning of your climax phase, you may pay the cost. If you do, this card gets +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, look at up to the top 4 cards of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room."
 EndCard
 
 Character: HBR/W103-076
@@ -2002,7 +2002,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo [Put a «Seraph» character card from your hand to the waiting room] When this card attacks, if "Connecting Feelings" is in your climax area, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 3 cards that are either «Seraph» characters or "Addicting Music" among them among them, reveal them, put them in your hand, put the rest into your waiting room, and this card gets the following 2 abilities until the end of your opponent's next turn. "Cont: During your opponent's turn, all characters cannot be reverse." "Auto: At the beginning of your opponent's encore step, put this card into memory."
+Text Auto: CxCombo [Put a «Seraph» character card from your hand to the waiting room] When this card attacks, if "Connecting Feelings" is in your climax area, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 3 cards that are either «Seraph» characters or "Addicting Music" among them, reveal them, put them in your hand, put the rest into your waiting room, and this card gets the following 2 abilities until the end of your opponent's next turn. "Cont: During your opponent's turn, all characters cannot be reverse." "Auto: At the beginning of your opponent's encore step, put this card into memory."
 EndCard
 
 Character: HBR/W103-085

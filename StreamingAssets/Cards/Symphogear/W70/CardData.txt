@@ -526,7 +526,7 @@ Auto: OnClimaxPlay
 		*Check4Add1(Music)
 	}
 }
-Text Auto: [(1)] When a climax is placed on your climax area, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 <Music> character among them among them, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: [(1)] When a climax is placed on your climax area, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 <Music> character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: SG/W70-027
@@ -2078,7 +2078,7 @@ Effect:
     }
     *GiveCharacterPower(2000,Any)
 }
-Text Look at up to the top 4 cards of your deck, choose up to 1 <Alchemy> character among them among them, reveal it, put it in your hand, put the rest into your waiting room, choose up to 1 of your opponent's characters, return it to their hand, choose 1 of your characters, and it gets +2000 power until end of turn.
+Text Look at up to the top 4 cards of your deck, choose up to 1 <Alchemy> character among them, reveal it, put it in your hand, put the rest into your waiting room, choose up to 1 of your opponent's characters, return it to their hand, choose 1 of your characters, and it gets +2000 power until end of turn.
 EndCard
 
 Climax: SG/W70-098
