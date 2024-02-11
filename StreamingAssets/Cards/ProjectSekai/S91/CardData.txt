@@ -1742,7 +1742,7 @@ Cont: InHand
 }
 Text Cont: You may play this card from your hand without meeting the color requirement.
 *OnPlayTradeClimaxForCharacter(Music)
-Auto: OnReceiveDamage
+Auto: OnCancel
 {
     If InBattle
     {
@@ -1753,7 +1753,7 @@ Auto: OnReceiveDamage
         }
     }
 }
-Text Auto: During battles involving this card, if damage you receive is not canceled, you may return this card to your hand.
+Text Auto: During battles involving this card, if damage you receive canceled, you may return this card to your hand.
 EndCard
 
 Character: PJS/S91-085
