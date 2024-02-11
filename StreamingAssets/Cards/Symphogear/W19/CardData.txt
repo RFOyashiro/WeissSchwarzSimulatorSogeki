@@ -631,9 +631,10 @@ Cont: Alarm
 {
 	SetXValue CardsInStock
 	MultiplyXValue 500
-	TargetLocation Stage
-	NarrowTargets NameEquals Noise (Episode 4)
-	GainPower X
+	If NameEquals Noise (Episode 4)
+	{
+		GainPower X
+	}
 }
 Text Cont: ALARM If this card is on the top card of your clock, all of your "Noise (Episode 4)" gain +X power. X is equal to 500 times the number of cards in your stock.
 EndCard
