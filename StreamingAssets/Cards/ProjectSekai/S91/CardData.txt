@@ -2570,6 +2570,7 @@ Trait2 Leo/need
 Auto: OnPlay
 {
 	*PlayCharacterFromHand(Compare ThatCardsLevel MyLevel OrLess)
+    TargetSelf
 	GainPower 2000
 }
 Text Auto: When this card is placed on the stage from your hand, choose up to 1 character in your hand whose level is equal to or lower than your level and put it in any position on the stage, and this card gets +2000 power until end of turn.
@@ -4034,6 +4035,7 @@ Trait2 Leo/need
 Auto: OnPlay
 {
 	*PlayCharacterFromHand(Compare ThatCardsLevel MyLevel OrLess)
+    TargetSelf
 	GainPower 2000
 }
 Text Auto: When this card is placed on the stage from your hand, choose up to 1 character in your hand whose level is equal to or lower than your level and put it in any position on the stage, and this card gets +2000 power until end of turn.
