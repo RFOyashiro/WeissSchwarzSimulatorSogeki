@@ -1819,7 +1819,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto: [(1)] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, if the the number of colors among characters on your stage is 4 or more, you may pay the cost. If you do, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto: [(1)] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, if the number of colors among characters on your stage is 4 or more, you may pay the cost. If you do, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: PJS/S91-087
@@ -2112,7 +2112,7 @@ Cont: GiveSelf
         GainPower 6000
     }
 }
-Text Cont: If the the number of colors among characters on your stage is 4 or more, this card gets +6000 power.
+Text Cont: If the number of colors among characters on your stage is 4 or more, this card gets +6000 power.
 Auto: OnPlay
 {
     If StageContains 2 Other && HasTrait Leo/need
