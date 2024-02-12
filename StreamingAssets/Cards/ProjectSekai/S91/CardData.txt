@@ -67,7 +67,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo [(2) Put 1 card from hand to the waiting room] When this card attacks, if "Greetings From a Kigurumi" is your climax area and the number of other «Wonderlands x Showtime» characters you have is 2 or more, you may pay the cost. If you do, 1 damage to your opponent twice, and this card gets +3000 power until end of turn. 
+Text Auto: CxCombo [(2) Put 1 card from hand to the waiting room] When this card attacks, if "Greetings From a Kigurumi" is your climax area and the number of other «Wonderlands x Showtime» characters you have is 2 or more, you may pay the cost. If you do, 1 damage to your opponent twice, and this card gets +3000 power until end of turn.
 EndCard
 
 Character: PJS/S91-004
@@ -221,7 +221,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: MEMORY [(2)] When this card attacks, if there are 3 or more cards in your memory, you may pay the cost. If you do, deal 1 damage to your opponent. 
+Text Auto: MEMORY [(2)] When this card attacks, if there are 3 or more cards in your memory, you may pay the cost. If you do, deal 1 damage to your opponent.
 EndCard
 
 Character: PJS/S91-010
@@ -461,7 +461,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: When this card attacks, reveal the top card of your deck. If it's either a «Music» character or an event, put it in your hand and discard a card from your hand to the waiting room. 
+Text Auto: When this card attacks, reveal the top card of your deck. If it's either a «Music» character or an event, put it in your hand and discard a card from your hand to the waiting room.
 EndCard
 
 Character: PJS/S91-020
@@ -510,7 +510,7 @@ Color Y
 Level 1
 Cost 0
 Requirement StageContains 1 HasTrait Wonderlands x Showtime
-Effect: 
+Effect:
 {
     RevealUpTo Deck 4
 	ChooseCardsFromTargets 0 1 HasTrait Music || IsEvent
@@ -526,7 +526,7 @@ Name Tell Me About Everyone's Christmas
 Color Y
 Level 2
 Cost 1
-Effect: 
+Effect:
 {
     MoveCard Memory
     TargetTop Deck 1
@@ -553,7 +553,7 @@ Name Let's Cheer! Hatsune Miku
 Color Y
 Level 3
 Cost 1
-Effect: 
+Effect:
 {
     Repeat 2
     {
@@ -904,7 +904,7 @@ Cont: GiveSelf
     }
     If LocationContains Memory 3 Any
     {
-        GainSpecialEffect NoBackupOnAttack 
+        GainSpecialEffect NoBackupOnAttack
     }
     If LocationContains Memory 4 Any
     {
@@ -1083,7 +1083,7 @@ Auto: StartOpponentAttackPhase
                 MoveToOpenPosition true false
             }
         }
-        
+
     }
 }
 Text Auto: At the beginning of your opponent's attack phase, if there's a character facing this card, you may move this card to an empty position in your center stage.
@@ -1141,7 +1141,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo [(1) Put 1 card from hand to the waiting room] When this card attacks, if "First Breath in a Sekai" is in your climax area and the number of other «Music» characters you have is 2 or more, you may pay the cost. If you do, deal 3 damage to your opponent, and put up to 1 card from the top of your clock in the waiting room. 
+Text Auto: CxCombo [(1) Put 1 card from hand to the waiting room] When this card attacks, if "First Breath in a Sekai" is in your climax area and the number of other «Music» characters you have is 2 or more, you may pay the cost. If you do, deal 3 damage to your opponent, and put up to 1 card from the top of your clock in the waiting room.
 EndCard
 
 Character: PJS/S91-057
@@ -1309,7 +1309,7 @@ Auto: OnSpecificClimaxPlay What Lies Beyond|Even if the Taste Is the Same
         }
     }
 }
-Text Auto: CxCombo When "Even if the Taste Is the Same" or "What Lies Beyond" is placed on your climax area, if this card is in the center stage, there are 6 or fewer cards in your hand, and you have another «Music» character, choose up to 1 «Music» character in your waiting room and put it in your stock, and reveal the top card of your deck. If it's a level 0 or lower character, put it in your stock. 
+Text Auto: CxCombo When "Even if the Taste Is the Same" or "What Lies Beyond" is placed on your climax area, if this card is in the center stage, there are 6 or fewer cards in your hand, and you have another «Music» character, choose up to 1 «Music» character in your waiting room and put it in your stock, and reveal the top card of your deck. If it's a level 0 or lower character, put it in your stock.
 EndCard
 
 Character: PJS/S91-063
@@ -1590,7 +1590,7 @@ Name The Best and Strongest Duo!?
 Color R
 Level 2
 Cost 1
-Effect: 
+Effect:
 {
     SearchWaitingRoom IsCharacter
     SearchWaitingRoom IsCharacter
@@ -1966,7 +1966,7 @@ Auto: StartClimaxPhase
             {
                 SearchWaitingRoom HasTrigger Bag && IsClimax
             }
-            Else 
+            Else
             {
                 IfTarget HasTrigger Bar
                 {
@@ -1978,37 +1978,37 @@ Auto: StartClimaxPhase
                     {
                         SearchWaitingRoom HasTrigger Book && IsClimax
                     }
-                    Else 
+                    Else
                     {
                         IfTarget HasTrigger Choice
                         {
                             SearchWaitingRoom HasTrigger Choice && IsClimax
                         }
-                        Else 
+                        Else
                         {
                             IfTarget HasTrigger Door
                             {
                                 SearchWaitingRoom HasTrigger Door && IsClimax
                             }
-                            Else 
+                            Else
                             {
                                 IfTarget HasTrigger DoubleSoul
                                 {
                                     SearchWaitingRoom HasTrigger DoubleSoul && IsClimax
                                 }
-                                Else 
+                                Else
                                 {
                                     IfTarget HasTrigger Gate
                                     {
                                         SearchWaitingRoom HasTrigger Gate && IsClimax
                                     }
-                                    Else 
+                                    Else
                                     {
                                         IfTarget HasTrigger Shot
                                         {
                                             SearchWaitingRoom HasTrigger Shot && IsClimax
                                         }
-                                        Else 
+                                        Else
                                         {
                                             IfTarget HasTrigger Standby
                                             {
@@ -2169,7 +2169,7 @@ Auto: OnAttack
         Peek Deck 2
         If HasTarget
         {
-            Message Choose a card to put back on top. 
+            Message Choose a card to put back on top.
             AIChoice If Not IsClimax
             ChooseCardsFromTargets 1 1 Any
             MoveCard Deck
@@ -2299,7 +2299,7 @@ Color B
 Level 2
 Cost 3
 Counter
-Effect: 
+Effect:
 {
     If StageContains 5 HasTrait Music
     {
@@ -2317,7 +2317,7 @@ Name Growing Timbre
 Color B
 Level 2
 Cost 1
-Effect: 
+Effect:
 {
     SearchDeck IsClimax
     UntilEndOfOpponentsTurn
@@ -2513,7 +2513,7 @@ Auto: OnAttack
     }
 }
 Quick
-Text Auto: When this card attacks, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn. 
+Text Auto: When this card attacks, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn.
 Auto: OnReverseOpponent
 {
     If Climax Leo/need
@@ -2581,7 +2581,7 @@ Auto: OnReverseOpponent
         *ScryToBottom
     }
 }
-Text Auto: [(3) Put 1 card from your hand to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 2 damage to your opponent, look at the top card of your deck, and put it either on top or bottom of your deck. 
+Text Auto: [(3) Put 1 card from your hand to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 2 damage to your opponent, look at the top card of your deck, and put it either on top or bottom of your deck.
 EndCard
 
 Event: PJS/S91-T14
@@ -2589,7 +2589,7 @@ Name Guiding Hand
 Color B
 Level 1
 Cost 0
-Effect: 
+Effect:
 {
 	Mill 2
 	SetXValue TotalLevel
@@ -2710,7 +2710,7 @@ Auto: OnAttack
     }
 }
 Quick
-Text Auto: When this card attacks, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn. 
+Text Auto: When this card attacks, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn.
 Auto: OnReverseOpponent
 {
     If Climax MORE MORE JUMP!
@@ -2870,7 +2870,7 @@ Name Shining Stage
 Color G
 Level 1
 Cost 0
-Effect: 
+Effect:
 {
     DrawCard
     Discard 1 Any
@@ -2994,7 +2994,7 @@ Auto: OnAttack
     }
 }
 Quick
-Text Auto: When this card attacks, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn. 
+Text Auto: When this card attacks, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn.
 Auto: OnReverseOpponent
 {
     If Climax Vivid BAD SQUAD
@@ -3130,7 +3130,7 @@ Auto: OnAttack
         Burn 1
     }
 }
-Text Auto: [(2) Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, deal 1 damage to your opponent. 
+Text Auto: [(2) Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, deal 1 damage to your opponent.
 EndCard
 
 Climax: PJS/S91-T45
@@ -3253,7 +3253,7 @@ Auto: OnAttack
     }
 }
 Quick
-Text Auto: When this card attacks, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn. 
+Text Auto: When this card attacks, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn.
 Auto: OnReverseOpponent
 {
     If Climax Wonderlands x Showtime
@@ -3398,7 +3398,7 @@ Name Recruiting Troupe Members!
 Color Y
 Level 3
 Cost 3
-Effect: 
+Effect:
 {
     TargetLocation Stage
     ChooseCharacterFromTargets Choose a character to give the effect.
@@ -3486,7 +3486,7 @@ Auto: OnSentFromStageToWaitingRoom
         *Check4Add1Level1OrHigher
     }
 }
-Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card among them, reveal it, put it in your hand, and put the rest into your waiting room. 
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: PJS/S91-T64
@@ -3582,7 +3582,7 @@ Auto: OnAttack
     }
 }
 Quick
-Text Auto: When this card attacks, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn. 
+Text Auto: When this card attacks, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn.
 Auto: OnReverseOpponent
 {
     If Climax 25-ji, Nightcord de.
@@ -3707,7 +3707,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, this card gets +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent." 
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, this card gets +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent."
 EndCard
 
 Event: PJS/S91-T73
@@ -3715,7 +3715,7 @@ Name Lookout Gae
 Color B
 Level 2
 Cost 1
-Effect: 
+Effect:
 {
     SearchLocationForTargets Deck 0 2 HasTrait Music
     Reveal
@@ -3757,7 +3757,7 @@ Trait3 MORE MORE JUMP!
 Cont: GiveFacing
 {
     GainSoul 2
-} 
+}
 Text Cont: The character in front of this card gets +2 souls.
 Auto: OnReverseOpponent
 {
@@ -3782,7 +3782,7 @@ Auto: OnPlay
 {
     Peek OpponentDeck 2
     EndPeek
-} 
+}
 Text Auto: When this card is placed on the stage from your hand, look at up to the top 2 cards of your opponent's deck and put them back in the same order.
 EndCard
 
@@ -3826,7 +3826,7 @@ Cont: GiveSelf
     {
         GainPower 1500
     }
-} 
+}
 Text Cont: During your turn, if you have another «Leo/need» character, this card gets +1500 power.
 Auto: OnPlay
 {
@@ -3888,7 +3888,7 @@ Auto: OnPlay
         SearchLocationForTargets Clock 0 1 IsCharacter
         MoveCard Memory
     }
-} 
+}
 Text Auto: When this card is placed on the stage from your hand, if the number of other «MORE MORE JUMP!» characters you have is 2 or more, you may choose 1 character in your clock and put it into memory.
 EndCard
 
@@ -3973,7 +3973,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, this card gets +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent." 
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, this card gets +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent."
 EndCard
 
 Character: PJS/S91-P11
@@ -4018,7 +4018,7 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 MORE MORE JUMP!
-*ClimaxExchange 
+*ClimaxExchange
 EndCard
 
 Character: PJS/S91-P13
@@ -4409,7 +4409,7 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 MORE MORE JUMP!
-*OnPlayTradeClimaxForCharacter(Music) 
+*OnPlayTradeClimaxForCharacter(Music)
 Auto: OnDamageCanceled
 {
     Question Put this card into stock ?
