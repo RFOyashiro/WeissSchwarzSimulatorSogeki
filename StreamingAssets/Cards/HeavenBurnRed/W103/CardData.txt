@@ -732,14 +732,13 @@ Auto: OnAttack
     {
         PayCost 2 Discard 1 Any
         {
-            Peek Deck 2
+            RevealUpTo OpponentDeck 2
             Message Choose cards to put on top of your deck.
             ChooseCardsFromTargets 0 2 Any
             Reorder
             PutTheRestIntoTheWaitingRoom
-            EndPeek
-            UntilEndOfOpponentsTurn
             TargetSelf
+            UntilEndOfOpponentsTurn
             GainEffect
             {
                 *HexProof
@@ -756,7 +755,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo [(2) Put 1 card from your hand to the waiting room] When this card attacks, if "Tiny Tears, Forgotten Memories" is in your climax area, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 2 cards among them and put them on top of your deck in any order, put the rest into your waiting room, and this card gets the following 2 abilities until the end of your opponent's next turn. "Cont: This cannot be chosen as target of opponent's effects." "Cont: The character facing this card gets -2 soul."
+Text Auto: CxCombo [(2) Put 1 card from your hand to the waiting room] When this card attacks, if "Tiny Tears, Forgotten Memories" is in your climax area, you may pay the cost. If you do, look at up to the top 2 cards of your opponent's deck, choose up to 2 cards among them and put them on top of their deck in any order, put the rest into your waiting room, and this card gets the following 2 abilities until the end of your opponent's next turn. "Cont: This cannot be chosen as target of opponent's effects." "Cont: The character facing this card gets -2 soul."
 EndCard
 
 Character: HBR/W103-031

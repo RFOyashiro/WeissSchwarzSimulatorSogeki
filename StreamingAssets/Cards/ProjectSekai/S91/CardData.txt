@@ -2816,7 +2816,6 @@ Auto: OnAttack
             MoveCard OpponentDeck
             Reorder
             PutTheRestIntoTheWaitingRoom
-            Reorder
         }
     }
 }
