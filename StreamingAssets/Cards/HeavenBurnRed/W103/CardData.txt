@@ -735,6 +735,7 @@ Auto: OnAttack
             RevealUpTo OpponentDeck 2
             Message Choose cards to put on top of your deck.
             ChooseCardsFromTargets 0 2 Any
+            MoveCard OpponentDeck
             Reorder
             PutTheRestIntoTheWaitingRoom
             TargetSelf
