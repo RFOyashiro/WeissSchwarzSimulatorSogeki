@@ -1228,7 +1228,7 @@ Army
 *Healer
 Auto: OnAttack
 {
-    If Climac A Crisis Never Seen Before
+    If Climax A Crisis Never Seen Before
     {
         StockSwap
     }
