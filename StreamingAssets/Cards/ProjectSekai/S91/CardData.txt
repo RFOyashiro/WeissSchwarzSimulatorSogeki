@@ -1255,7 +1255,7 @@ Trait2 Vivid BAD SQUAD
 Act: RestSelf
 {
     TargetLocation Stage
-    NarrowTargets With Auto:BOND || With Auto: BOND
+    NarrowTargets With BOND
     ChooseCharacterFromTargets Choose a character with BOND to give the effect.
     GainEffect
     {
@@ -3850,7 +3850,7 @@ Trait2 Vivid BAD SQUAD
 Auto: OnPlay
 {
     RevealUpTo Deck 3
-    ChooseCardsFromTargets 0 1 With Auto:BOND || With Auto: BOND
+    ChooseCardsFromTargets 0 1 With BOND
     If HasTarget
     {
         Reveal

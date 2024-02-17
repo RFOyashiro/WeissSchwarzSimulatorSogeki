@@ -707,7 +707,7 @@ Auto: OnPlay
         }
         If Answer 1
         {
-            SearchDeck IsCharacter && Compare ThatCardsLevel 1 OrMore
+            SearchDeck IsCharacter && Compare ThatCardsLevel 1 OrLess
         }
     }
 }
