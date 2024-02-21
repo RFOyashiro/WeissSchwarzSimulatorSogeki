@@ -1754,7 +1754,7 @@ Auto: OnCancel
         }
     }
 }
-Text Auto: During battles involving this card, if damage you receive canceled, you may return this card to your hand.
+Text Auto: During battles involving this card, if damage you receive is canceled, you may return this card to your hand.
 EndCard
 
 Character: PJS/S91-085

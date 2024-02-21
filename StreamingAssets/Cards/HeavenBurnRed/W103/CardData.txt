@@ -1999,30 +1999,35 @@ Auto: OnAttack
 {
     If Climax Connecting Feelings
     {
-        RevealUpTo Deck 3
-        ChooseCardsFromTargets 0 3 HasTrait Seraph || NameEquals Addicting Music
-        MoveCard Hand
-        PutTheRestIntoTheWaitingRoom
-        UntilEndOfOpponentsTurn
-        GainEffect
+        PayCost Discard 1 HasTrait Seraph
         {
-            Cont: Global
+            RevealUpTo Deck 3
+            ChooseCardsFromTargets 0 3 HasTrait Seraph || NameEquals Addicting Music
+            MoveCard Hand
+            PutTheRestIntoTheWaitingRoom
+            TargetSelf
+            UntilEndOfOpponentsTurn
+            GainEffect
             {
-                If Not MyTurn
+                Cont: Global
                 {
-                    GainSpecialEffect CannotBeReversed
+                    If Not MyTurn
+                    {
+                        GainSpecialEffect CannotBeReversed
+                    }
                 }
+                Text Cont: During your opponent's turn, all characters cannot be reverse.
             }
-            Text Cont: During your opponent's turn, all characters cannot be reverse.
-        }
-        GainEffect
-        {
-            Auto: StartOpponentEncorePhase
+            UntilEndOfOpponentsTurn
+            GainEffect
             {
-                MoveCard Memory
+                Auto: StartOpponentEncorePhase
+                {
+                    MoveCard Memory
+                }
+                Quick
+                Text Auto: At the beginning of your opponent's encore step, put this card into memory.
             }
-            Quick
-            Text Auto: At the beginning of your opponent's encore step, put this card into memory.
         }
     }
 }
