@@ -875,7 +875,7 @@ Trait2 Virtual Singer
 Trait3 MORE MORE JUMP!
 Cont: GiveSelf
 {
-    If StageContainsOrLess 0 Any
+    If StageContainsOrLess 0 Other
     {
         GainLevel 1
         GainPower 2500
@@ -2000,7 +2000,7 @@ Power 10500
 Soul 2
 Trait1 Music
 Trait2 25-ji, Nightcord de.
-Combo 105
+Combo Canceled Message
 Auto: OnPlay
 {
 	*PlayCharacterFromHand(Compare ThatCardsLevel MyLevel OrLess)
@@ -2010,7 +2010,7 @@ Auto: OnPlay
 Text Auto: When this card is placed on the stage from your hand, choose up to 1 character in your hand whose level is equal to or lower than your level and put it in any position on the stage, and this card gets +2000 power until end of turn.
 Auto: OnAttack
 {
-    If Climax 105 && HandContains 1 HasTrait Music
+    If Climax Canceled Message && HandContains 1 HasTrait Music
     {
         PayCost 2
         {
@@ -2024,7 +2024,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo [(2) Reveal 1 «Music» character from your hand and put it to the bottom of your deck] When this card attacks, if "105" is in your climax area, you may pay the cost. If you do, deal 2 damage to yoru opponent, choose up to 2 cards in your opponent's waiting room, put them on top of your opponent's deck and shuffle your opponent's deck.
+Text Auto: CxCombo [(2) Reveal 1 «Music» character from your hand and put it to the bottom of your deck] When this card attacks, if "Canceled Message" is in your climax area, you may pay the cost. If you do, deal 2 damage to yoru opponent, choose up to 2 cards in your opponent's waiting room, put them on top of your opponent's deck and shuffle your opponent's deck.
 EndCard
 
 Character: PJS/S109-088
