@@ -1015,7 +1015,7 @@ Auto: StartOpponentAttackPhase
     ChooseCharacterFromTargets_Optional Choose a Hatsune Miku "Green Tanuki" to exchange with this card.
     If HasTarget
     {
-        AddSavedToCurrentTargets
+        AddSelfToTargets
         Stand
         Exchange
     }
