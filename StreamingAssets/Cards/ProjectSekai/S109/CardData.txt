@@ -112,7 +112,7 @@ Quick
 Text Auto: This ability activates up to once per turn. When you play an event, this card gets +2000 power until end of turn.
 Auto: OnSpecificClimaxPlay Dance! And! Sing!
 {
-    If InLocation CenterStage && StageContains 1 Other && Music
+    If InLocation CenterStage && StageContains 1 Other && HasTrait Music
     {
         SearchWaitingRoom NameEquals Where Does the Crying Come From?|In the way You're the Best At!
     }
@@ -492,8 +492,7 @@ Level 1
 Cost 0
 Effect:
 {
-    SearchLocationForTargets WaitingRoom 1 1 HasTrait Wonderlands x Showtime
-    MoveCard Stock
+    *PutCardFromWaitingRoomIntoStock(HasTrait Wonderlands x Showtime)
     Brainstorm 3
     If Compare BrainstormedClimax 1 OrMore
     {
