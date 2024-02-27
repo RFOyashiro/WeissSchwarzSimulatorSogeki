@@ -1793,3 +1793,414 @@ Name To the Ends with the Star
 *BookClimax
 EndCard
 
+Character: GT/W29-101
+Name Fortune Teller, Akari
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Tarot
+Trait2 Fortune Reading
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Tarot» character in your waiting room and return it to your hand.
+Auto:
+{
+
+}
+Text Auto: When another character of yours becomes reversed in battle, choose 1 of your characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: GT/W29-102
+Name Strong And Tough, Seira
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Tarot
+Trait2 Sports
+Auto:
+{
+
+}
+Text Auto: When another «Tarot» character of yours attacks, this card gets +1000 power until end of turn.
+EndCard
+
+Character: GT/W29-103
+Name Successor to the Sun, Akari
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Tarot
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose a «Tarot» character in your waiting room and return it to your hand.
+Auto:
+{
+
+}
+Text Auto: When your climax is placed on your climax area, this card gets +1500 power until end of turn.
+EndCard
+
+Character: GT/W29-104
+Name Mad Scientists, Tendo Trio Sisters
+Color B
+Level 1
+Cost 1
+Power 7000
+Soul 1
+Trait1 Homunculus
+Trait2 Tarot
+EndCard
+
+Character: GT/W29-105
+Name Cold Eyes, Seira
+Color B
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Tarot
+Trait2 Sports
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, this card gets +1000 power.
+EndCard
+
+Character: GT/W29-T01
+Name Smile Like the Sun, Akari
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Tarot
+Trait2 Fortune Reading
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +500 power.
+EndCard
+
+Character: GT/W29-T02
+Name Sleeping, Akari
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Tarot
+Trait2 Fortune Reading
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 0 or lower, you may reverse that character.
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, Put this card into memory.
+EndCard
+
+Character: GT/W29-T03
+Name Active Girl, Akari
+Color R
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Tarot
+Trait2 Fortune Reading
+EndCard
+
+Character: GT/W29-T04
+Name Naive And Romantic, Akari
+Color R
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Tarot
+Trait2 Fortune Reading
+EndCard
+
+Character: GT/W29-T05
+Name Awakened Power, Akari
+Color R
+Level 1
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Tarot
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times number of your characters with ASSIST.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck and put it either on top of the deck or in the waiting room.
+EndCard
+
+Character: GT/W29-T06
+Name Simple And True Heart, Akari
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Tarot
+Trait2 Fortune Reading
+EndCard
+
+Climax: GT/W29-T07
+Name Last User
+Color R
+
+EndCard
+
+Character: GT/W29-T08
+Name Cool Girl, Seira
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Tarot
+Trait2 Sports
+Act:
+{
+
+}
+Text Act: [(1)] Choose 1 of your other characters, that character gets +1000 power until end of turn, and this card gets +1000 power until end of turn.
+EndCard
+
+Character: GT/W29-T09
+Name Being Stoic, Seira
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Tarot
+Trait2 Sports
+EndCard
+
+Character: GT/W29-T10
+Name Shooter of Azure Light, Seira
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Tarot
+Trait2 Weapon
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: GT/W29-T11
+Name Rookie Member, Seira
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Tarot
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if "To the Ends with the Star" is in your climax area, this card gets +3500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put it on the bottom of the deck."
+EndCard
+
+Character: GT/W29-T12
+Name Unerasable Memory, Seira
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 8500
+Soul 1
+Trait1 Tarot
+Trait2 Sports
+EndCard
+
+Event: GT/W29-T13
+Name Unreachable Gift
+Color B
+Level 1
+Cost 0
+Effect: 
+{
+
+}
+Text Look at up to 4 cards from the top of your deck and choose up to 1 «Tarot» character, reveal it, and put it in your hand. Put the rest in the waiting room.
+EndCard
+
+Climax: GT/W29-T14
+Name Unending Battle
+Color B
+
+EndCard
+
+Climax: GT/W29-T15
+Name To the Ends with the Star
+*BookClimax
+EndCard
+
+Event: GT/W29-106
+Name Elemental Tarot "Temperance"
+Color Y
+Level 1
+Cost 0
+Effect: 
+{
+
+}
+Text BRAINSTORM Flip over the top card of your deck and put it in the waiting room. All your characters get +X soul until end of turn. X equals level of the card put in the waiting room this way. 
+EndCard
+
+Event: GT/W29-107
+Name Elemental Tarot "Moon"
+Color G
+Level 2
+Cost 0
+Effect: 
+{
+
+}
+Text BRAINSTORM Flip over the top card of your deck and put it in the waiting room. All your characters get +X power until end of turn. X equals 2000 times level of the card put in the waiting room this way. 
+EndCard
+
+Event: GT/W29-108
+Name Elemental Tarot "Sun"
+Color R
+Level 3
+Cost 1
+Effect: 
+{
+
+}
+Text BRAINSTORM Flip over the top card of your deck and put it in the waiting room. deal X damage to your opponent. X equals level of the card put in the waiting room this way. 
+EndCard
+
+Event: GT/W29-109
+Name Elemental Tarot "Star"
+Color B
+Level 2
+Cost 0
+Effect: 
+{
+
+}
+Text BRAINSTORM Flip over the top card of your deck and put it in the waiting room. All your characters get +X power until the end of your opponent's next turn. X equals 1000 times level of the card put in the waiting room this way. 
+EndCard
+
+Character: GT/W29-P01
+Name Slicing Sword, Akari
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Tarot
+Trait2 Weapon
+Act:
+{
+
+}
+Text Act: [(1)] Choose a level 0 or lower character in your opponent's center stage and put it in the waiting room.
+EndCard
+
+Character: GT/W29-P02
+Name Cooldown, Seira
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 Tarot
+Trait2 Sports
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your «Tarot» characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: GT/W29-P03
+Name to the Battlefield, Akari & Luna
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Tarot
+Auto:
+{
+
+}
+Text Auto: When your other character becomes reversed in battle, this card gets +1000 power until end of turn.
+EndCard
+
+Character: GT/W29-P04
+Name Playing Together, Akari & Tendo Trio Sisters
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Tarot
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: GT/W29-P05
+Name Looking Up at the Sky, Ginka
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 Tarot
+Trait2 Merchant
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +1000 power.
+EndCard
+
