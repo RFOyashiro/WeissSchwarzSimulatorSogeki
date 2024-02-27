@@ -892,6 +892,7 @@ EndCard
 
 Climax: GT/W29-050
 Name Lunar Eclipse
+Color G
 *DrawClimax
 EndCard
 
@@ -1173,7 +1174,11 @@ Soul 1
 Trait1 Tarot
 Trait2 Fortune Reading
 Combo Last User
-*CheckTopAddDiscard(Tarot)
+Auto: OnPlay
+{
+    *CheckTopAddDiscard(Tarot)
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is a «Tarot» characters, put it in your hand and put 1 card from your hand into waiting room.
 Auto: OnSpecificClimaxPlay Last User
 {
     If StageContainsOrLess 0 Other
@@ -1758,7 +1763,7 @@ Level 1
 Cost 0
 Effect:
 {
-    *Check4Add1
+    *Check4Add1(Tarot)
 }
 Text Look at up to the top 4 cards of your deck, choose up to 1 «Tarot» character among them among them, reveal it, and put it in your hand and put the rest in the waiting room.
 EndCard
@@ -1909,7 +1914,7 @@ Auto: OnSentFromStageToWaitingRoom
 {
     PayCost 1
     {
-        SendSelf Memory
+        MoveCard Memory
     }
 }
 Text Auto: [(1)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, put this card into memory.
