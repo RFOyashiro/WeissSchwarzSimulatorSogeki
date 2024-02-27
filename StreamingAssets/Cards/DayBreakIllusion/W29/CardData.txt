@@ -835,7 +835,7 @@ Auto: OnPlay
         *Check4Add1(Tarot)
     }
 }
-Text Auto: [Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Tarot» character among them, reveal it, put it in your hand and put the rest in the waiting room.
+Text Auto: [Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Tarot» character among them among them, reveal it, put it in your hand and put the rest in the waiting room.
 EndCard
 
 Character: GT/W29-045
@@ -1592,7 +1592,7 @@ Auto: OnAttack
 {
     If Climax To the Ends with the Star
     {
-        GainPower 3000
+        GainPower 3500
         GainEffect
         {
             Auto: OnReverseOpponent
@@ -1760,7 +1760,7 @@ Effect:
 {
     *Check4Add1
 }
-Text Look at up to the top 4 cards of your deck, choose up to 1 «Tarot» character among them, reveal it, and put it in your hand and put the rest in the waiting room.
+Text Look at up to the top 4 cards of your deck, choose up to 1 «Tarot» character among them among them, reveal it, and put it in your hand and put the rest in the waiting room.
 EndCard
 
 Event: GT/W29-097
@@ -1802,14 +1802,17 @@ Power 1000
 Soul 1
 Trait1 Tarot
 Trait2 Fortune Reading
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 2
+    {
+        SearchWaitingRoom HasTrait Tarot
+    }
 }
 Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Tarot» character in your waiting room and return it to your hand.
-Auto:
+Auto: OnOtherReversed
 {
-
+    *GiveCharacterPower(1000,Any)
 }
 Text Auto: When another character of yours becomes reversed in battle, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
@@ -1824,11 +1827,7 @@ Power 8000
 Soul 1
 Trait1 Tarot
 Trait2 Sports
-Auto:
-{
-
-}
-Text Auto: When another «Tarot» character of yours attacks, this card gets +1000 power until end of turn.
+*GainPowerWhenOtherAttacks(1000,Tarot)
 EndCard
 
 Character: GT/W29-103
@@ -1841,15 +1840,16 @@ Power 10000
 Soul 2
 Trait1 Tarot
 Trait2 Weapon
-Auto:
+Auto: OnPlay
 {
-
+    SearchWaitingRoom HasTrait Tarot
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose a «Tarot» character in your waiting room and return it to your hand.
-Auto:
+Auto: OnClimaxPlay
 {
-
+    GainPower 1500
 }
+Quick
 Text Auto: When your climax is placed on your climax area, this card gets +1500 power until end of turn.
 EndCard
 
@@ -1873,9 +1873,12 @@ Power 5000
 Soul 1
 Trait1 Tarot
 Trait2 Sports
-Cont:
+Cont: GiveSelf
 {
-
+    If Not MyTurn
+    {
+        GainPower 1000
+    }
 }
 Text Cont: During your opponent's turn, this card gets +1000 power.
 EndCard
@@ -1889,11 +1892,7 @@ Power 1000
 Soul 1
 Trait1 Tarot
 Trait2 Fortune Reading
-Cont:
-{
-
-}
-Text Cont: ASSIST Your characters in front of this card get +500 power.
+*500Assist
 EndCard
 
 Character: GT/W29-T02
@@ -1905,16 +1904,15 @@ Power 1500
 Soul 1
 Trait1 Tarot
 Trait2 Fortune Reading
-Auto:
+*RedLevel0Bomb
+Auto: OnSentFromStageToWaitingRoom
 {
-
+    PayCost 1
+    {
+        SendSelf Memory
+    }
 }
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 0 or lower, you may reverse that character.
-Auto:
-{
-
-}
-Text Auto: [(1)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, Put this card into memory.
+Text Auto: [(1)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, put this card into memory.
 EndCard
 
 Character: GT/W29-T03
@@ -1949,16 +1947,14 @@ Power 2500
 Soul 1
 Trait1 Tarot
 Trait2 Weapon
-Cont:
+Cont: Assist
 {
-
+    SetXToNumberOfCharacters With Assist
+    MultiplyXValue 500
+    GainPower X
 }
 Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times number of your characters with ASSIST.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck and put it either on top of the deck or in the waiting room.
+*OnPlayScry
 EndCard
 
 Character: GT/W29-T06
@@ -1976,7 +1972,7 @@ EndCard
 Climax: GT/W29-T07
 Name Last User
 Color R
-
+*DrawClimax
 EndCard
 
 Character: GT/W29-T08
@@ -1988,11 +1984,13 @@ Power 2500
 Soul 1
 Trait1 Tarot
 Trait2 Sports
-Act:
+Act: 1
 {
-
+    *GiveOtherCharacterPower(1000,Any)
+    TargetSelf
+    GainPower 1000
 }
-Text Act: [(1)] Choose 1 of your other characters, that character gets +1000 power until end of turn, and this card gets +1000 power until end of turn.
+Text Act: [(1)] Choose 1 of your other characters, that character this card get +1000 power until end of turn.
 EndCard
 
 Character: GT/W29-T09
@@ -2016,11 +2014,7 @@ Power 2500
 Soul 1
 Trait1 Tarot
 Trait2 Weapon
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+Backup 3000
 EndCard
 
 Character: GT/W29-T11
@@ -2033,11 +2027,31 @@ Power 8000
 Soul 1
 Trait1 Tarot
 Trait2 Weapon
-Auto:
+Combo To the Ends with the Star
+Auto: OnAttack
 {
-
+        If Climax To the Ends with the Star
+    {
+        GainPower 3500
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                TargetBattleOpponent
+                IfTarget OnStage
+                {
+                    Question_Obvious Put this card in the bottom of deck ?
+                    If Yes
+                    {
+                        MoveCardToBottom OpponentDeck
+                    }
+                }
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may put it on the bottom of the deck.
+        }
+    }
 }
-Text Auto: When this card attacks, if "To the Ends with the Star" is in your climax area, this card gets +3500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put it on the bottom of the deck."
+Text Auto: CxCombo When this card attacks, if "To the Ends with the Star" is in your climax area, this card gets +3500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put it on the bottom of the deck."
 EndCard
 
 Character: GT/W29-T12
@@ -2059,15 +2073,15 @@ Level 1
 Cost 0
 Effect: 
 {
-
+    *Check4Add1(Tarot)
 }
-Text Look at up to 4 cards from the top of your deck and choose up to 1 «Tarot» character, reveal it, and put it in your hand. Put the rest in the waiting room.
+Text Look at up to the top 4 cards of your deck, choose up to 1 «Tarot» character among them, reveal it, put it in your hand, and put the rest in the waiting room.
 EndCard
 
 Climax: GT/W29-T14
 Name Unending Battle
 Color B
-
+*2SoulClimax
 EndCard
 
 Climax: GT/W29-T15
@@ -2082,7 +2096,11 @@ Level 1
 Cost 0
 Effect: 
 {
-
+    Brainstorm 1
+    TargetBrainstormed
+    SetXValue TargetCardsLevel
+    TargetLocation Stage
+    GainSoul X
 }
 Text BRAINSTORM Flip over the top card of your deck and put it in the waiting room. All your characters get +X soul until end of turn. X equals level of the card put in the waiting room this way. 
 EndCard
@@ -2094,7 +2112,12 @@ Level 2
 Cost 0
 Effect: 
 {
-
+    Brainstorm 1
+    TargetBrainstormed
+    SetXValue TargetCardsLevel
+    MultiplyXValue 2000
+    TargetLocation Stage
+    GainPower X
 }
 Text BRAINSTORM Flip over the top card of your deck and put it in the waiting room. All your characters get +X power until end of turn. X equals 2000 times level of the card put in the waiting room this way. 
 EndCard
@@ -2106,7 +2129,10 @@ Level 3
 Cost 1
 Effect: 
 {
-
+    Brainstorm 1
+    TargetBrainstormed
+    SetXValue TargetCardsLevel
+    Burn X
 }
 Text BRAINSTORM Flip over the top card of your deck and put it in the waiting room. deal X damage to your opponent. X equals level of the card put in the waiting room this way. 
 EndCard
@@ -2118,7 +2144,13 @@ Level 2
 Cost 0
 Effect: 
 {
-
+    Brainstorm 1
+    TargetBrainstormed
+    SetXValue TargetCardsLevel
+    MultiplyXValue 1000
+    TargetLocation Stage
+    UntilEndOfOpponentsTurn
+    GainPower X
 }
 Text BRAINSTORM Flip over the top card of your deck and put it in the waiting room. All your characters get +X power until the end of your opponent's next turn. X equals 1000 times level of the card put in the waiting room this way. 
 EndCard
@@ -2132,9 +2164,12 @@ Power 2500
 Soul 1
 Trait1 Tarot
 Trait2 Weapon
-Act:
+Act: 1
 {
-
+    TargetLocation OpponentCenterStage
+    NarrowTargets Compare ThatCardsLevel 0 OrLess
+    ChooseCharacterFromTargets Choose a character to put into waiting room.
+    MoveCard OpponentWaitingRoom
 }
 Text Act: [(1)] Choose a level 0 or lower character in your opponent's center stage and put it in the waiting room.
 EndCard
@@ -2149,11 +2184,7 @@ Power 4500
 Soul 1
 Trait1 Tarot
 Trait2 Sports
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your «Tarot» characters, and that character gets +2000 power until end of turn.
+*RestGivePower(2000,Tarot)
 EndCard
 
 Character: GT/W29-P03
@@ -2164,10 +2195,11 @@ Cost 0
 Power 5000
 Soul 1
 Trait1 Tarot
-Auto:
+Auto: OnOtherReversed
 {
-
+    GainPower 1000
 }
+Quick
 Text Auto: When your other character becomes reversed in battle, this card gets +1000 power until end of turn.
 EndCard
 
@@ -2180,11 +2212,7 @@ Trigger Soul
 Power 2500
 Soul 1
 Trait1 Tarot
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+Backup 3000
 EndCard
 
 Character: GT/W29-P05
@@ -2197,10 +2225,5 @@ Power 4500
 Soul 1
 Trait1 Tarot
 Trait2 Merchant
-Cont:
-{
-
-}
-Text Cont: ASSIST Your characters in front of this card get +1000 power.
+*1000Assist
 EndCard
-
