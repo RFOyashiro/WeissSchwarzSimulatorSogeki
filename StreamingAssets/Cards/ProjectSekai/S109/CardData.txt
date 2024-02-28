@@ -2071,6 +2071,7 @@ Auto: OnPlay
             If HasTarget
             {
                 RevealTargets
+                LoadTargets
                 AddSavedToCurrentTargets
                 Exchange
             }
