@@ -1,0 +1,2100 @@
+Character: WTR/S85-001
+Name Fierce Sword Strikes, Kei Tachikawa
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Trion
+Trait2 Tachikawa Squad
+*OnAttackGivePower(1500,Trion)
+*MoveOtherWithTraitToBackstageOnReverse(Trion)
+EndCard
+
+Character: WTR/S85-002
+Name Speedy Decisions, Kirie Konami
+Color Y
+Level 1
+Cost 0
+Trigger Soul
+Power 3000
+Soul 1
+Trait1 Trion
+Trait2 Tamakoma First
+Combo Split in Half
+Cont: GiveSelf
+{
+    If MyTurn && StageContains 1 Other && HasTrait Trion
+    {
+        GainPower 3000
+    }
+}
+Text Cont: During your turn, if you have another «Trion» character, this card gets +3000 power.
+Auto: OnSpecificClimaxPlay Split in Half
+{
+    If StageContains 2 Other && HasTrait Trion
+    {
+        UntilEndOfOpponentsTurn
+        GainPower
+        *GainBounceWhenFrontalAttacked
+    }
+}
+Text Auto: CxCombo When "Split in Half" is placed to your climax area, if the number of other «Trion» characters you have is 2 or more, this card gets +1000 power and the following ability until the end of your opponent's next turn. "Auto: When this card is frontal attacked you may return it to your hand."
+EndCard
+
+Character: WTR/S85-003
+Name Wind Blade, Yuuichi Jin
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Trion
+Trait2 Tamakoma Branch
+Combo Ranged Slash
+*OnPlayDraw2Discard1
+Auto: OnAttack
+{
+    If Climax Ranged Slash
+    {
+        PayCost 2 Discard 2 Any
+        {
+            GainEffect
+            {
+                Auto: OnDamageCanceled
+                {
+                    TargetLocation WaitingRoom
+                    NarrowTargets NameEquals Black Trigger "Wind Blade"
+                    Burn TargetCount
+                    Burn TargetCount
+                }
+                TimesPerTurn 1
+                Text Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal X damage to your opponent twice. X equals the number of 'Black Trigger "Wind Blade"' in your waiting room.
+            }
+        }
+    }
+}
+Text Auto: CxCombo [(2) Put 2 cards from hand to the waiting room] When this card attacks, if "Ranged Slash" is in your climax area, you may pay the cost. If you do, this card gets +2000 power and the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal X damage to your opponent twice. X equals the number of 'Black Trigger "Wind Blade"' in your waiting room." 
+EndCard
+
+Character: WTR/S85-004
+Name Tachikawa Squad Operator, Yuu Kunichika
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Trion
+Trait2 Tachikawa Squad
+Auto: StartOpponentClimaxPhase
+{
+    TargetLocation Stage
+    NarrowTargets HasTrait Trion
+    GainEffect
+    {
+        Auto: OnFrontalAttack
+        {
+            PayCost Discard 1 Any
+            {
+                GainPower 2000
+            }
+        }
+        Text Auto: [Put 1 card from hand to the waiting room] When this card is frontal attacked, you may pay the cost. If you do, this card gets +2000 power until end of turn.
+    }
+}
+Alarm
+Quick
+Text Auto: ALARM If this card is on the top of your clock, at the beginning of your opponent's climax phase, all of your «Trion» characters gets the following ability until end of turn. "Auto: [Put 1 card from hand to the waiting room] When this card is frontal attacked, you may pay the cost. If you do, this card gets +2000 power until end of turn."
+Act: 1 RestSelf
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget HasTrigger Soul
+    {
+        MoveCard Hand
+    }
+}
+Text Act: [(1) Rest this card] Reveal the top card of your deck. If that card has a soul trigger icon, put it in your hand.
+EndCard
+
+Character: WTR/S85-005
+Name Magnificent Shooter, Nozomi Kako
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Trion
+Trait2 Kako Squad
+*PowerOnMyTurn(1000)
+Auto: OnSentFromStageToWaitingRoom
+{
+    PayCost Discard 1 Any
+    {
+        *Check4Add1Level1OrHigher
+    }
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card among them, reveal it, put it in your hand, and put the rest into your waiting room. 
+EndCard
+
+Character: WTR/S85-006
+Name High Speed Slashes, Futaba Kuroe
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Trion
+Trait2 Kako Squad
+Auto: OnPlay
+{
+    Mill 2
+    NarrowTargets IsClimax
+    If HasTarget
+    {
+        TargetSelf
+        GainSoul 2
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there were at least 1 climax among them, this card gets +2 soul until end of turn.
+Auto: OnPlay
+{
+    If StageContains 1 Other && HasTrait Trion
+    {
+        GainPower 2000
+    }
+}
+Quick
+Text Auto: When this card is placed on the stage from your hand, if you have another «Trion» character, this card gets +2000 power until end of turn.
+EndCard
+
+Character: WTR/S85-007
+Name Speedy Interruption, Shun Midorikawa
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Trion
+Trait2 Kusakabe Squad
+*CannotSideAttack
+*FreeRunner
+EndCard
+
+Character: WTR/S85-008
+Name Elite in Apron, Yuuichi Jin
+Color Y
+Level 1
+Cost 0
+Trigger Soul
+Power 1500
+Soul 1
+Trait1 Trion
+Trait2 Tamakoma Branch
+Auto: OnTriggerCheck
+{
+    IfOther HasTrigger Soul
+    {
+        *OptionalDrawDiscard
+    }
+}
+Text Auto: When the trigger check of this card reveals a card with a soul trigger icon, you may draw a card. If you do, choose a card from your hand and discard it to the waiting room.
+*YellowCost0Bomb
+EndCard
+
+Character: WTR/S85-009
+Name Trapper, Shinji Fuyushima
+Color Y
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 Trion
+Trait2 Fuyushima Squad
+*500Assist
+*Act1RestSelfSearchBrainstorm(Trion)
+EndCard
+
+Character: WTR/S85-010
+Name Play-by-Play of the Fierce Battle, Kouhei Izumi
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Trion
+Trait2 Tachikawa Squad
+Auto: OnTriggerCheck
+{
+    IfOther HasTrigger Soul
+    {
+        *OptionalDrawDiscard
+    }
+}
+Text Auto: When the trigger check of this card reveals a card with a soul trigger icon, you may draw a card. If you do, choose a card from your hand and discard it to the waiting room.
+*RestGivePower(3000,Trion)
+Act: 2 RestSelf
+{
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to return to hand.
+    Bounce
+}
+Text Act: [(2) Rest this card] Choose 1 of your opponent's characters and return it to their hand.
+EndCard
+
+Character: WTR/S85-011
+Name Carrying Out the Mission, Ai Kitora
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 3500
+Soul 1
+Trait1 Trion
+Trait2 Arashiyama Squad
+Cont: GiveSelf
+{
+    TargetLocation Memory
+    NarrowTargets NameEquals Wire Trigger "Spider"
+    SetXValue TargetCount
+    MultiplyXValue 3000
+    GainPower X
+}
+Text Cont: MEMORY This card gets +3000 power for each "Wire Trigger "Spider"" in your memory.
+*HandEncore
+EndCard
+
+Character: WTR/S85-012
+Name Disappearing Twin Blades, Souya Kazama
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 6500
+Soul 1
+Trait1 Trion
+Trait2 Kazama Squad
+Auto: OnTriggerCheck
+{
+    IfOther HasTrigger Soul
+    {
+        GainPower 6000
+    }
+}
+Quick
+Text Auto: When this card reveals a soul trigger icon during trigger check, this card gets +6000 power until end of turn.
+Act: 1
+{
+    GainEffect
+    {
+        Auto: OnAttack
+        {
+            GainSpecialEffect DoubleTrigger
+        }
+        TimesPerTurn 1
+        Text Auto: This ability activates up to once per turn. When this card attacks, perform the trigger check twice during this attack.
+    }
+}
+Text Act: [(1)] This card gets the following ability until end of turn. "Auto: This ability activates up to once per turn. When this card attacks, perform the trigger check twice during this attack."
+EndCard
+
+Character: WTR/S85-013
+Name Determining the Situation, Shouhei Kodera
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Trion
+Trait2 Miwa Squad
+Auto: OnPlay
+{
+	If StageContains 2 Other && HasTrait Trion
+	{
+		*OptionalDrawDiscard
+	}
+}
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Trion» characters you have is 2 or more, you may draw a card. If you do, discard a card.
+Auto: OnPlay
+{
+    PayCost 1 Discard 1 HasTrait Trion
+    {
+        *Check5Add1(Any)
+    }
+}
+Text Auto: [(1) Put a «Trion» character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 5 cards of your deck, choose up to 1 character among them among them, reveal it, put it in your hand, and put the remaining in the waiting room.
+EndCard
+
+Character: WTR/S85-014
+Name "Color" in His Eyes, Tsukihiko Amou
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Trion
+Trait2 Border Headquarters
+Cont: GiveSelf
+{
+    If MyTurn
+    {
+        TargetFacing
+        IfTarget ColorIs Green
+        {
+            GainPower 3000
+        }
+    }
+}
+Text Cont: During your turn, if the character facing this card is Green, this card gets +3000 power.
+Cont: GiveSelf
+{
+    TargetFacing
+    IfTarget ColorIs Yellow
+    {
+        GainSoul 2
+    }
+}
+Text Cont: If the character facing this card is Yellow, this card gets +2 soul.
+Auto: OnAttack
+{
+    TargetFacing
+    IfTarget ColorIs Blue
+    {
+        *CheckTopTraitOrEventAddDiscard(Trion)
+    }
+}
+Text Auto: When this card attacks, if the character facing this card is Blue, reveal the top card of your deck. If it's either a «Trion» character or an event, put it in your hand and discard a card from hand to the waiting room.
+Auto: OnReversed
+{
+    If MyTurn
+    {
+        TargetBattleOpponent
+        IfThatCard Compare ThatCardsLevel 1 OrLess && OnStage && Not CardPosition Reverse && ColorIs Red
+        {
+            Question Reverse the battle opponent?
+            If Yes
+            {
+                Reverse
+            }
+        }
+    }
+}
+Quick
+Text Auto: During your turn, when this card becomes reversed, if this card's battle opponent is Red and level 1 or lower you may reverse that character.
+EndCard
+
+Character: WTR/S85-015
+Name Full Arms, Reiji Kizaki
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Trion
+Trait2 Tamakoma First
+Auto: StartClimaxPhase
+{
+    If InLocation CenterStage
+    {
+        PayCost SendFromWaitingRoomToBottom 1 Clock HasTrait Trion
+        {
+            SearchDeck HasTrait Trion
+            Discard 1 Any
+            ShuffleLocation Deck
+        }
+    }
+}
+Text Auto: ACCELERATE [Put a «Trion» character from your waiting room on the bottom of your clock] At the beginning of your climax phase, if this card is in the center stage, you may pay the cost. If you do, search your deck for up to 1 «Trion» character, reveal it, put it in your hand, choose a card in your hand and discard it to the waiting room, and shuffle your deck.
+EndCard
+
+Character: WTR/S85-016
+Name Heavy Bullet, Shuuji Miwa
+Color Y
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 Trion
+Trait2 Miwa Squad
+Auto: OnPlay
+{
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    UntilEndOfOpponentsTurn
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            GainSpecialEffect CannotMove
+        }
+        Text Cont: This cannot move to another position.
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters, and that character gets the following ability until the end of your opponent's next turn. "Cont: This cannot move to another position."
+Auto: OnPlay
+{
+    PayCost 1
+    {
+        SearchWaitingRoom NameEquals Black Trigger "Wind Blade"
+    }
+}
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Black Trigger "Wind Blade"" in your waiting room and return it to your hand.
+EndCard
+
+Character: WTR/S85-017
+Name Geist On, Kyousuke Karasuma
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Trion
+Trait2 Tamakoma First
+Auto: StartClimaxPhase
+{
+    PayCost SendFromWaitingRoomToBottom 1 Clock HasTrait Trion
+    {
+        MultipleChoiceQuestion Choose an effect to resolve. (This card will be put into stock at the end of the turn regardless of the choosen effect)|+3000 power|+2 souls
+        If Answer 0
+        {
+            GainPower 3000
+        }
+        If Answer 1
+        {
+            GainSoul 2
+        }
+        ScheduleEffectForTargets EndOfTurn
+        {
+            Effect:
+            {
+                TargetSelf
+                MoveCard Stock
+            }
+        }
+    }
+}
+Text Auto: ACCELERATE [Put a «Trion» character from your waiting room on the bottom of your clock] At the beginning of your climax phase, you may pay the cost. If you do, choose 1 of the following 2 effects and perform it. "This gets +3000 power until end of turn. At the end of the turn, put this card in stock." "This gets +2 soul until end of turn. At the end of the turn, put this card in stock."
+EndCard
+
+Character: WTR/S85-018
+Name Battle Against Galopoula, Kirie Konami
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 8500
+Soul 2
+Trait1 Trion
+Trait2 Tamakoma First
+*EarlyPlay2OrLessClimax
+Auto: OnPlay
+{
+    *OptionalHeal
+    TargetSelf
+    GainPower 1500
+}
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 card from the top of your clock and place it in waiting room, and this card gets +1500 power until end of turn.
+Auto: StartOpponentAttackPhase
+{
+    PayCost 1 SendFromWaitingRoomToBottom 1 Clock HasTrait Trion
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen
+        ChooseCharacterFromTargets Choose a character to give -2 souls.
+        LoseSoul 2
+    }
+}
+Text Auto: ACCELERATE [(1) Put a «Trion» character from your waiting room on the bottom of your clock] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your opponent's characters, and that character gets -2 soul until end of turn.
+EndCard
+
+Character: WTR/S85-019
+Name Shooting Battle, Jun Arashiyama
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Trion
+Trait2 Arashiyama Squad
+*OnAttackCheck2ChooseTrigger
+Auto: StartOpponentAttackPhase
+{
+    PayCost Clock
+    {
+        TargetLocation Backstage
+        If Compare TargetCount 1 OrLess
+        {
+            TargetSelf
+            MoveToOpenPosition False True
+        }
+    }
+}
+Text Auto: [Put the top card of your deck in your clock] At the beginning of your opponent's attack phase, you may pay the cost. If you do, move this card to an open position in your backstage.
+EndCard
+
+Character: WTR/S85-020
+Name A Little into the Future, Yuuichi Jin
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Trion
+Trait2 Tamakoma Branch
+*OnPlayReorderTop2
+*OnAttackGivePowerTimesSoul
+EndCard
+
+Character: WTR/S85-021
+Name Enhanced Hearing Sense, Shirou Kikuchihara
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Trion
+Trait2 Kazama Squad
+Auto: OnPlay
+{
+    TargetTop OpponentDeck 2
+    View
+}
+Text Auto: When this card is placed on the stage from your hand, look at up to 2 cards from the top of your opponent's deck and put them back in the original order.
+Auto: OnDamageCanceled
+{
+    Question Put this card into hand ?
+    If Yes
+    {
+        Bounce
+    }
+}
+Text Auto: When damage dealt by this card is canceled, you may return this card to hand.
+EndCard
+
+Character: WTR/S85-022
+Name Twin Snipe, Ken Satori
+Color Y
+Level 1
+Cost 0
+Power 1000
+Soul 1
+Trait1 Trion
+Trait2 Arashiyama Squad
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose up to 2 cards in your opponent's center stage, and those characters get -1500 power until end of turn.
+EndCard
+
+Character: WTR/S85-023
+Name Precision Shooting, Tooru Narasaka
+Color Y
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Trion
+Trait2 Miwa Squad
+Cont:
+{
+
+}
+Text Cont: If there are 5 or less cards in your hand, this card gets +4500 power.
+EndCard
+
+Character: WTR/S85-024
+Name Battle Maniac, Yousuke Yoneya
+Color Y
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Trion
+Trait2 Miwa Squad
+Cont:
+{
+
+}
+Text Cont: During battles involving this card, your opponent cannot play BACKUP from hand.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the character facing this card is level 2, this card gets +6000 power until end of turn.
+EndCard
+
+Character: WTR/S85-025
+Name Former Teammate, Mitsuru Tokieda
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Trion
+Trait2 Arashiyama Squad
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, if you have a «Trion» character, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: WTR/S85-026
+Name Practical Sniper, Isami Touma
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Trion
+Trait2 Fuyushima Squad
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, put the top 3 cards of your deck in the waiting room. If there is at least 1 climax among them, you may choose a level 3 or lower character in your opponent's center stage and put it in the waiting room.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Trion» characters you have is 4 or more, you may choose a «Trion» character in your waiting room and put it in your stock.
+EndCard
+
+Event: WTR/S85-027
+Name Black Trigger "Wind Blade"
+Color Y
+Level 1
+Cost 0
+Effect: 
+{
+
+}
+Text If there are 6 or less cards in your stock, look at up to 5 cards from top card of your deck and search for up to 1 «Trion» character, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Event: WTR/S85-028
+Name Encounter Battle
+Color Y
+Level 3
+Cost 0
+Effect: 
+{
+
+}
+Text This ability activates up to once per turn. When this card attacks, perform trigger check twice during the trigger Step of this card attack."
+EndCard
+
+Climax: WTR/S85-029
+Name Split in Half
+*ChoiceClimax
+EndCard
+
+Climax: WTR/S85-030
+Name Ranged Slash
+*ChoiceClimax
+EndCard
+
+Character: WTR/S85-031
+Name Illusion via Duplication, Wen Sou
+Color G
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Trion
+Trait2 Galopoula
+Auto:
+{
+
+}
+Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a «Trion» character in your waiting room and return it to your hand.
+EndCard
+
+Character: WTR/S85-032
+Name Aerial Dancing Attack, Ratarykov
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Trion
+Trait2 Galopoula
+Auto:
+{
+
+}
+Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Despinis" is in your climax area and there are 6 or less cards in your stock, look at up to X cards from the top of your deck and search for up to 1 card that is either a «Trion» character or a "Bailout", reveal it, put it in your hand, and put the rest into your waiting room. X equals the number of your opponent's characters.
+EndCard
+
+Character: WTR/S85-033
+Name Hard And Sharp Arm, Gatlin
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Trion
+Trait2 Galopoula
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+Auto:
+{
+
+}
+Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +X power until end of turn. X equals 500 times the number of your other «Trion» characters.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Destruction of the Expedition Vessel" is in your climax area, look at up to the top 2 cards of your opponent's deck, choose up to 1 cards among them and put it on the bottom of the deck, put the rest on top of the deck in any order, and this card gets +3000 power until end of turn.
+EndCard
+
+Character: WTR/S85-034
+Name Investigating!, Youtarou Rindou And Raijinmaru
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Trion
+Trait2 Tamakoma Branch
+Auto:
+{
+
+}
+Text Auto: [Put a «Trion» character from hand to the waiting room] When your character's trigger check reveals a climax with 2 soul trigger icons, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 1 cards among them and put it in your hand and put the rest into your waiting room.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 5 cards of your deck and put them in the waiting room. For each climax with 2 soul trigger icons revealed this way, search your deck for up to 1 «Trion» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: WTR/S85-035
+Name Driving Force of the Border Headquarters, Motokichi Kinuta & Eizou Netsuri
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Trion
+Trait2 Border Headquarters
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters, and that character gets the following ability until end of turn. "Cont: This cannot return to hand and cannot be Sent to memory."
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from hand to this card stage, you may pay the cost. If you do, choose a level X or lower «Trion» character in your waiting room and return it to your hand. X equals the number of "Bailout" in your waiting room.
+EndCard
+
+Character: WTR/S85-036
+Name Trion Warrior for Pack Combat, Dog
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Trion
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [(1) Put this card in the waiting room] When your other «Trion» character is frontal attacked, you may pay the cost. If you do, choose 1 of your characters in battle, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: WTR/S85-037
+Name Disrupting Attacks, Koskero
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Trion
+Trait2 Galopoula
+Auto:
+{
+
+}
+Text Auto: This ability activates up to once per turn. When you use an Act: ability, all your characters get +2000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [Put 2 cards from hand to the waiting room] When this card is frontal attacked, you may pay the cost. If you do, choose the character facing this card, ad that character gets -3000 power until end of turn.
+EndCard
+
+Character: WTR/S85-038
+Name Perfect Parallel Processing, Yomi
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Trion
+Trait2 Galopoula
+Act:
+{
+
+}
+Text Act: [Put a «Trion» character from hand to the waiting room, put this card in the waiting room] Choose up to 2 of your "Trion Soldiers Fighting in Tandem, Idra", look at top X cards from the top of your deck, and put 1 each face-down under the chosen characters as markers. X equals the number of characters you chose by this card effect.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. If there's at least 1 "Trion Soldiers Fighting in Tandem, Idra" among them, choose a «Trion» character in your waiting room and return it to your hand.
+EndCard
+
+Character: WTR/S85-039
+Name Trion Soldiers Fighting in Tandem, Idra
+Color G
+Level 1
+Cost 0
+Power 2000
+Soul 1
+Trait1 Trion
+Cont:
+{
+
+}
+Text Cont: You may have as many copies of cards with the same name as this card in your deck.
+Cont:
+{
+
+}
+Text Cont: For each marker under this card, this card gets +1500 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose up to 3 "Trion Soldiers Fighting in Tandem, Idra" in your waiting room and put them face-up under this card as marker.
+EndCard
+
+Character: WTR/S85-040
+Name Professional Negotiator, Katsumi Karasawa
+Color G
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Trion
+Trait2 Border Headquarters
+Cont:
+{
+
+}
+Text Cont: All your other «Trion» characters get +500 power.
+Act:
+{
+
+}
+Text Act: [Rest 2 of your characters] Choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
+EndCard
+
+Character: WTR/S85-041
+Name Directing Trion Soldiers, Reghindetz
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 5500
+Soul 1
+Trait1 Trion
+Trait2 Galopoula
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from hand to the waiting room] When your character's trigger check reveals a climax with a Bar trigger icon, you may pay the cost. If you do, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your «Trion» characters, then choose 1 of your characters with the same card name as that character, and the chosen characters get +2000 power until end of turn.
+EndCard
+
+Character: WTR/S85-042
+Name Defending Peace, Masafumi Shinoda & Kyouko Sawamura
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Trion
+Trait2 Border Headquarters
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 1000 times the number of your «trion» characters.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, you may send that character to memory.
+EndCard
+
+Event: WTR/S85-043
+Name Bailout
+Color G
+Level 2
+Cost 0
+Effect: 
+{
+
+}
+Text Choose 1 of your characters and return it to hand.
+EndCard
+
+Event: WTR/S85-044
+Name Negotiating With the Higher-Ups
+Color G
+Level 2
+Cost 1
+Effect: 
+{
+
+}
+Text Search your deck for up to 2 «Trion» characters, reveal them, put them in your hand, discard a card from your hand to the waiting room, and shuffle your deck. Put this card into memory.
+EndCard
+
+Climax: WTR/S85-045
+Name Destruction of the Expedition Vessel
+*BarClimax
+EndCard
+
+Climax: WTR/S85-046
+Name Despinis
+*BarClimax
+EndCard
+
+Character: WTR/S85-047
+Name Battle Sniper, Tetsuji Arafune
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Trion
+Trait2 Arafune Squad
+Cont:
+{
+
+}
+Text Cont: If there are 2 or less cards in your stock, this card gets +1500 power.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 «Trion» character in your waiting room and return it to your hand.
+EndCard
+
+Character: WTR/S85-048
+Name Bright Sense, Youko Katori
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Trion
+Trait2 Katori Squad
+Cont:
+{
+
+}
+Text Cont: If the number of other «Trion» characters you have is 2 or more, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "The Day When Changes Happened" is in your climax area, put up to 1 card from the top of your deck in your stock, then reveal the top card of your deck. If it's level 1 or higher, put it in your hand. 
+EndCard
+
+Character: WTR/S85-049
+Name Filling Her Feelings into Bullets, Rei Nasu
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Trion
+Trait2 Nasu Squad
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, put the top card of your clock in your stock.
+Auto:
+{
+
+}
+Text Auto: CxCombo [(2)] When this card attacks, if "Concentrated Fire" is in your climax area, you may pay the cost. If you do, put the bottom 3 cards of your opponent's deck in the waiting room, and deal 2 damage to your opponent X times. X equals the number of climax cards among those cards. 
+EndCard
+
+Character: WTR/S85-050
+Name Full Power Swing, Yuuko Kumagai
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Trion
+Trait2 Nasu Squad
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's either a «Trion» character or an event, put it in your hand, and discard a card from your hand to the waiting room. (Otherwise put the revealed card back where it was)
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there's at least 1 climax among them, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
+EndCard
+
+Character: WTR/S85-051
+Name Mobile Sniper, Kouji Oki
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Trion
+Trait2 Ikoma Squad
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, all players perform the following action. "If there are 5 or more cards in your memory, choose 4 cards in your memory, and put all cards in your memory other than those chosen this way in the waiting room."
+Auto:
+{
+
+}
+Text Auto: [Put a «Trion» character from your hand in clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: WTR/S85-052
+Name Katori Squad Operator, Hana Somei
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Trion
+Trait2 Katori Squad
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck and put it either on top of the deck or in the waiting room.
+Auto:
+{
+
+}
+Text Auto: [Return this card to your hand] When your climax is placed on your climax area, you may pay the cost. If you do, choose 1 of your characters, and that character gets +1000 power until the end of your opponent's next turn.
+EndCard
+
+Character: WTR/S85-053
+Name Unending Smile, Kazuaki Ouji
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Trion
+Trait2 Ouji Squad
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your other «Trion» characters, and that character gets +X power and «Nickname» until end of turn. X equals 500 times the number of your other «Trion» characters.
+Auto:
+{
+
+}
+Text Auto: CxCombo [Put 2 cards from hand to the waiting room] When this card attacks, if "Ouji's Assault" is in your climax area, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 4 cards that are either «Trion» characters or "Bailout" among them, reveal them, put them in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: WTR/S85-054
+Name Captain's Will, Kuniharu Kakizaki
+Color R
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Trion
+Trait2 Kakizaki Squad
+Auto:
+{
+
+}
+Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed in battle, put this card on the bottom of the deck.
+EndCard
+
+Character: WTR/S85-055
+Name Unique Technique, Tatsuhito Ikoma
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 4000
+Soul 1
+Trait1 Trion
+Trait2 Ikoma Squad
+Auto:
+{
+
+}
+Text Auto: CxCombo When "Ikoma Senkuu" is placed on your climax area, put the top card of your deck in the waiting room. If it's either a «Trion» character or "Shredding Slash", choose up to 1 «Trion» character in your waiting room and put it in your stock, and this card gets the following ability until end of turn. "Cont: When this card attacks, you may instead choose a character in your opponent's backstage and have this card frontal attack that character as Defending character."
+Auto:
+{
+
+}
+Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 2000 times the number of your opponent's characters.
+EndCard
+
+Character: WTR/S85-056
+Name Accurate Defense, Kou Murakami
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Trion
+Trait2 Suzunari First
+Cont:
+{
+
+}
+Text Cont: If there are 2 or less climax cards in your waiting room, this card gets -1 level while in your hand.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose 1 «Trion» character in your clock and put it on the bottom of your deck.
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from hand to the waiting room] When this card is reversed in battle, you may pay the cost. If you do, look at the top card of your deck, place it underneath this card as marker, and Rest this card.
+EndCard
+
+Character: WTR/S85-057
+Name Fending Off Attacks, Rokurou Wakamura
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Trion
+Trait2 Katori Squad
+Cont:
+{
+
+}
+Text Cont: This cannot be chosen as target of opponent's effects.
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room, Put this card into memory] When this card becomes reversed in battle, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: WTR/S85-058
+Name Unexpected Opponent, Kai Minamisawa
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Trion
+Trait2 Ikoma Squad
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters and a Trait on that character, and that character loses all instances of that Trait until end of turn.
+Act:
+{
+
+}
+Text Act: [(1) Put this card in the waiting room] Look at up to the top 4 cards of your deck, choose up to 1 card that is either «Trion» character or "Bailout" among them, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: WTR/S85-059
+Name Adoring Personality, Tatsuya Kuruma
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Trion
+Trait2 Suzunari First
+Auto:
+{
+
+}
+Text Auto: When your other «Trion» character attacks, this card gets +1000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [(1) Put this card in the waiting room] When your other «Trion» character is frontal attacked, you may pay the cost. If you do, return that character to hand.
+EndCard
+
+Character: WTR/S85-060
+Name Shaken, Taichi Betsuyaku
+Color R
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Trion
+Trait2 Suzunari First
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, return all cards in your waiting room to your deck and shuffle your deck.
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, you may reverse that character.
+EndCard
+
+Character: WTR/S85-061
+Name Ikoma Squad Operator, Maori Hosoi
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 Trion
+Trait2 Ikoma Squad
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get the following ability. "Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform trigger check twice during this card attack's trigger Step."
+Act:
+{
+
+}
+Text Act: [(1) Rest 2 of your characters] Look at top X cards from the top of your deck, search for up to 1 card that is either a «Trion» character or "Shredding Slash", reveal it, put it in your hand, and put the rest into your waiting room. X equals the number of your opponent's characters.
+EndCard
+
+Character: WTR/S85-062
+Name One-on-One, Fumika Teruya
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 7500
+Soul 2
+Trait1 Trion
+Trait2 Kakizaki Squad
+Cont:
+{
+
+}
+Text Cont: If the number of other «Trion» characters you have is 2 or more, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: [Put a «Trion» character from your hand to the waiting room] When this card is frontal attacked, you may pay the cost. If you do, this card gets +2500 power until end of turn.
+EndCard
+
+Character: WTR/S85-063
+Name Riding the Bombing, Yutaka Kashio
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Trion
+Trait2 Ouji Squad
+Cont:
+{
+
+}
+Text Cont: For each of your other "User of Fusion Bullets, Kazuki Kurauchi", this card gets +1 level and +1500 power.
+Cont:
+{
+
+}
+Text Cont: All your other "User of Fusion Bullets, Kazuki Kurauchi" get +1 level and +1500 power.
+Auto:
+{
+
+}
+Text Auto: [Put a «Trion» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "User of Fusion Bullets, Kazuki Kurauchi", reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: WTR/S85-064
+Name Kakizaki Squad Operator, Madoka Ui
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Trion
+Trait2 Kakizaki Squad
+Auto:
+{
+
+}
+Text Auto: When your other character becomes reversed in battle, choose 1 of your characters, and that character gets +1000 power until end of turn.
+Act:
+{
+
+}
+Text Act: [Rest this card] If this card does not have a marker under it, choose a «Trion» character in your waiting room and put it face-up under this card as marker.
+Act:
+{
+
+}
+Text Act: [(1) Rest this card] Return a marker from under this card to your hand.
+EndCard
+
+Character: WTR/S85-065
+Name User of Fusion Bullets, Kazuki Kurauchi
+Color R
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Trion
+Trait2 Ouji Squad
+EndCard
+
+Character: WTR/S85-066
+Name Breaking the Defense, Kotarou Tomoe
+Color R
+Level 0
+Cost 0
+Power 3500
+Soul 1
+Trait1 Trion
+Trait2 Kakizaki Squad
+Cont:
+{
+
+}
+Text Cont: All of your opponent's characters get "Auto: ENCORE [(2)]".
+Auto:
+{
+
+}
+Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +2000 power until end of turn.
+EndCard
+
+Character: WTR/S85-067
+Name Battle on the Rooftop, Atsushi Hokari
+Color R
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Trion
+Trait2 Arafune Squad
+Auto:
+{
+
+}
+Text Auto: [Put 2 cards from your hand to the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 1000, level 1 [Put this card from your hand to the waiting room]
+EndCard
+
+Character: WTR/S85-068
+Name Fruits of Senpais' Efforts, Akane Hiura
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Trion
+Trait2 Nasu Squad
+Auto:
+{
+
+}
+Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +X power until end of turn. X equals 500 times the number of your «Trion» characters.
+Auto:
+{
+
+}
+Text Auto: When this card is frontal attacked, you may put the top card of your deck in your waiting room. If it's a climax card, choose the character facing this card, and that character gets -1 soul until end of turn.
+EndCard
+
+Character: WTR/S85-069
+Name Haya Kittaka,, Ouji Squad Operator
+Color R
+Level 1
+Cost 1
+Trigger Soul
+Power 3000
+Soul 1
+Trait1 Trion
+Trait2 Ouji Squad
+Cont:
+{
+
+}
+Text Cont: ASSIST Your «Trion» characters in front of this card get +X power. X equals 500 times level of that character.
+Auto:
+{
+
+}
+Text Auto: This ability activates up to once per turn. When you use an Act: ability, choose 1 of your characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: WTR/S85-070
+Name Risking His Body to Cover, Yuuta Miura
+Color R
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 Trion
+Trait2 Katori Squad
+Cont:
+{
+
+}
+Text Cont: If all your characters are «Trion», this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: [Put this card in the waiting room] When your other «Trion» character is frontal attacked, you may pay the cost. If you do, choose 1 of your Battling characters, and until end of turn that character gets +2500 power.
+EndCard
+
+Character: WTR/S85-071
+Name Resume Sniping, Yoshito Hanzaki
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Trion
+Trait2 Arafune Squad
+Auto:
+{
+
+}
+Text Auto: [Put a "battle Sniper, Tetsuji Arafune" from hand to the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, return all cards in your waiting room to your deck, and shuffle your deck.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: WTR/S85-072
+Name Easygoing Gunner, Hiro Kitazoe
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 Trion
+Trait2 Kageura Squad
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your other «Trion» characters, and until end of turn that character gets +X power. X equals 1000 times the number of your other «Trion» characters.
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 2 or lower, you may reverse that character.
+EndCard
+
+Character: WTR/S85-073
+Name Tricky Strategy, Satoshi Mizukami
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Trion
+Trait2 Ikoma Squad
+Auto:
+{
+
+}
+Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +X power until end of turn. X equals 1000 times the number of your other «Trion» characters.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, you may announce "Asteroid".
+EndCard
+
+Event: WTR/S85-074
+Name Gunning & Sniping
+Color R
+Level 1
+Cost 1
+Effect: 
+{
+
+}
+Text MEMORY [Put 1 climax from your hand to the waiting room] At the beginning of your main phase, if this card is in your memory, you may pay the cost. If you do, return this card to your hand.
+EndCard
+
+Event: WTR/S85-075
+Name Shredding Slash
+Color R
+Level 2
+Cost 1
+Effect: 
+{
+
+}
+Text This ability activates up to once per turn. When damage dealt by this card is canceled, you may stand this card.: Put this card on the bottom of the deck.
+EndCard
+
+Climax: WTR/S85-076
+Name The Day When Changes Happened
+*StandbyClimax
+EndCard
+
+Climax: WTR/S85-077
+Name Concentrated Fire
+*StandbyClimax
+EndCard
+
+Climax: WTR/S85-078
+Name Ouji's Assault
+*DoorClimax
+EndCard
+
+Climax: WTR/S85-079
+Name Ikoma Senkuu
+Color R
+
+EndCard
+
+Character: WTR/S85-080
+Name Massive Trion Quantity, Chika Amatori
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Trion
+Trait2 Tamakoma Second
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed in battle, you may reveal up to 3 cards from the top of your deck. If you reveal at least 1 card this way, choose up to 1 «Trion» character among them, put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
+Auto:
+{
+
+}
+Text Auto: [(1)] During your opponent's turn, when this card becomes reversed in battle, you may pay the cost. If you do, Rest this card, and at the beginning of your next encore step, put this card in the waiting room.
+EndCard
+
+Character: WTR/S85-081
+Name Heading Towards the Target, Osamu Mikumo
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Trion
+Trait2 Tamakoma Second
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck and put it either on top or bottom of the deck.
+Auto:
+{
+
+}
+Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: WTR/S85-082
+Name Eyes to the Target, Yuuma Kuga
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Trion
+Trait2 Tamakoma Second
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+Cont:
+{
+
+}
+Text Cont: CxCombo If "checkmate" is in your climax area, this card gets +4000 power and the following ability. "Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent." 
+Auto:
+{
+
+}
+Text Auto: [(2) Put 1 card from hand to the waiting room] At the beginning of your encore step, if this card is in the center stage, and either your opponent has no characters in their center stage or all of your opponent's center stage characters are reversed, you may pay the cost. If you do, deal 2 damage to your opponent. 
+EndCard
+
+Character: WTR/S85-083
+Name New Ace Attacker, Hyuse
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Trion
+Trait2 Tamakoma Second
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the number of other «Trion» characters you have is 2 or more, this card gets +4000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, your opponent puts all of their stock in the waiting room, and then puts the same number of cards from top of their deck in stock.
+EndCard
+
+Character: WTR/S85-084
+Name Combination With Allies, Koutarou Suwa
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Trion
+Trait2 Suwa Squad
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's either a «Trion» character or "Bailout", this card may side attack this card turn without soul Penalty. 
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a climax in your waiting room and return it to your hand.
+EndCard
+
+Character: WTR/S85-085
+Name Tamakoma Branch Operator, Shiori Usami
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 6000
+Soul 1
+Trait1 Trion
+Trait2 Tamakoma Branch
+Cont:
+{
+
+}
+Text Cont: ASSIST Your level 3 or higher characters in front of this card get +2000 power.
+Auto:
+{
+
+}
+Text Auto: When your character's trigger check reveals a card with a soul trigger icon, choose 1 of your «Trion» characters, and that character gets +1500 power until end of turn.
+EndCard
+
+Character: WTR/S85-086
+Name Piercing Attack, Masataka Ninomiya
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Trion
+Trait2 Ninomiya Squad
+Cont:
+{
+
+}
+Text Cont: If the number of «Trion» characters you have is 4 or more, this card gets -1 level while in your hand.
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card attacks, you may pay the cost. If you do, put the top 4 cards of your deck in the waiting room, and deal X damage to your opponent. X equals the number of climax cards among those cards. 
+Auto:
+{
+
+}
+Text Auto: When this card is placed from stage to the waiting room, you may return this card to hand. If you do, choose up to 1 «Trion» character in your waiting room and place it to stock.
+EndCard
+
+Character: WTR/S85-087
+Name Decisive Strike, Osamu Mikumo
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Trion
+Trait2 Tamakoma Second
+Cont:
+{
+
+}
+Text Cont: EXPERIENCE For each «Trion» character in your level, this card gets +1 level and +2000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo At the beginning of your encore step, if "Thruster ON!" is in your climax area and the number of other «Trion» characters you have is 2 or more, look at up to the top 4 cards of your deck, choose up to 1 card that is either a «Trion» character or a "Bailout" among them, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: WTR/S85-088
+Name Seeing Through Lies, Yuuma Kuga
+Color B
+Level 1
+Cost 0
+Trigger Soul
+Power 1500
+Soul 1
+Trait1 Trion
+Trait2 Tamakoma Second
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at your opponent's hand.
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the cost of the battle opponent of this card is 0 or lower, you may put that character on the bottom of the deck.
+EndCard
+
+Character: WTR/S85-089
+Name Aftokrator's Neighbor, Hyuse
+Color B
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Trion
+Auto:
+{
+
+}
+Text Auto: When the damage dealt by this card is canceled, you may put this card in your stock.
+Auto:
+{
+
+}
+Text Auto: CxCombo This ability activates up to once per turn. When damage dealt by this card is canceled, if "Lampyris" is in your climax area and you have another «Trion» character, look at up to the top 2 cards of your deck, choose up to 2 cards that are either «Trion» characters or events among them, reveal them, put them in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: WTR/S85-090
+Name "Cannon" of the Tamakoma, Chika Amatori
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 Trion
+Trait2 Tamakoma Second
+Auto:
+{
+
+}
+Text Auto: CxCombo [Put an "Exploding Shelling" from your climax area in the waiting room] At the beginning of your encore step, you may pay the cost. If you do, return all cards in your waiting room to your deck, and shuffle your deck.
+Act:
+{
+
+}
+Text Act: [Rest 2 of your characters] Choose 1 of your characters, and that character gets the following ability until the end of your opponent's next turn. "Auto: When this card is frontal attacked, you may return this card to your hand."
+EndCard
+
+Character: WTR/S85-091
+Name Ebina Squad Operator, Sakurako Taketomi
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Trion
+Trait2 Ebina Squad
+Auto:
+{
+
+}
+Text Auto: At the beginning of your climax phase, you may look at the top card of your deck. (Put it back where it was)
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, perform the following action. "Look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room."
+EndCard
+
+Character: WTR/S85-092
+Name Calm Appease, Daichi Tsutsumi
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Trion
+Trait2 Suwa Squad
+Cont:
+{
+
+}
+Text Cont: All your other "Coming in A Pinch, Hisato Sasamori" get +1 soul.
+Act:
+{
+
+}
+Text Act: [(1) Put 1 card from hand to the waiting room, Rest this card] If you are level 2 or higher, choose a "Coming in A Pinch, Hisato Sasamori" in your waiting room and put it in any position on the stage.
+EndCard
+
+Character: WTR/S85-093
+Name At the Other Side of His Aim, Yuuma Kuga
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Trion
+Trait2 Tamakoma Second
+Cont:
+{
+
+}
+Text Cont: character facing this card as well as this card cannot side attack.
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's attack phase, you may move this card to an open position in your center stage that has an opponent's character Opposite that position.
+EndCard
+
+Character: WTR/S85-094
+Name New Way of Fighting, Osamu Mikumo
+Color B
+Level 1
+Cost 0
+Power 2000
+Soul 1
+Trait1 Trion
+Trait2 Tamakoma Second
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +500 power.
+Auto:
+{
+
+}
+Text Auto: MEMORY At the beginning of your climax phase, choose 1 of your characters, and that character gets +X power until end of turn. X equals 1000 times the number of "Wire trigger 'Spider'" in your memory.
+EndCard
+
+Character: WTR/S85-095
+Name Follow-up Attack, Sumiharu Inukai
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 1000
+Soul 1
+Trait1 Trion
+Trait2 Ninomiya Squad
+Auto:
+{
+
+}
+Text Auto: When you use BACKUP of this card, if all your characters are «Trion», you may put the top card of your deck in stock.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 2000, level 1 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: WTR/S85-096
+Name Pinning Them Down, Chika Amatori
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 3500
+Soul 1
+Trait1 Trion
+Trait2 Tamakoma Second
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters, and that character gets the following ability until end of turn. "Cont: This cannot return to hand and cannot be Sent to memory."
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is higher than the level of your opponent, you may put that character on the bottom of the deck.
+EndCard
+
+Character: WTR/S85-097
+Name Reliable Support, Shinnosuke Tsuji
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Trion
+Trait2 Ninomiya Squad
+Cont:
+{
+
+}
+Text Cont: If the number of other «Trion» characters you have is 2 or more, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the level of the character facing this card is 3 or higher, this card gets +6000 power until end of turn.
+EndCard
+
+Character: WTR/S85-098
+Name Coming in A Pinch, Hisato Sasamori
+Color B
+Level 2
+Cost 2
+Power 12000
+Soul 0
+Trait1 Trion
+Trait2 Suwa Squad
+EndCard
+
+Event: WTR/S85-099
+Name Wire Trigger "Spider"
+Color B
+Level 1
+Cost 1
+Effect: 
+{
+
+}
+Text Choose a «Trion» character in your waiting room and return it to your hand. Put this card into memory. Reveal the top card of your deck. If that card is level 2 or higher place it to stock. 
+EndCard
+
+Event: WTR/S85-100
+Name Bailout
+Color B
+Level 3
+Cost 4
+Effect: 
+{
+
+}
+Text If you don't have a «Trion» character, you cannot play this card from hand. You may play this card from your hand without meeting the color requirement. Choose a character in battle, and that character gets the following ability until end of turn. "Cont: This cannot deal damage to players." You may choose 1 of your characters and return it to your hand.
+EndCard
+
+Climax: WTR/S85-101
+Name Checkmate
+*GateClimax
+EndCard
+
+Climax: WTR/S85-102
+Name Thruster ON!
+*BookClimax
+EndCard
+
+Climax: WTR/S85-103
+Name Exploding Shelling
+*GateClimax
+EndCard
+
+Climax: WTR/S85-104
+Name Lampyris
+Color B
+
+EndCard
+
+Character: WTR/S85-105
+Name Right Now!, Kirie Konami
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Trion
+Trait2 Tamakoma First
+Cont:
+{
+
+}
+Text Cont: ASSIST Your level 0 or lower characters in front of this card get +1000 power.
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 0 or lower, you may put that character in stock. If you do, put the bottom card of your opponent's stock in the waiting room.
+EndCard
+

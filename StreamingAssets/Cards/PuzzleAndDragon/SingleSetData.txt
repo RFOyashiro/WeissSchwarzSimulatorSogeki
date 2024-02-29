@@ -1,4 +1,0 @@
-Series: Puzzle & Dragon
-Folder: PuzzleAndDragon/S105
-Prefix: PAD/S105
-SetName: Puzzle & Dragon
