@@ -816,6 +816,7 @@ Auto: OnAttack
     IfTarget HasTrait Lily || NameEquals In the Sun
     {
         TargetSelf
+        UntilEndOfOpponentsTurn
         GainEffect
         {
             Cont: GiveFacing
