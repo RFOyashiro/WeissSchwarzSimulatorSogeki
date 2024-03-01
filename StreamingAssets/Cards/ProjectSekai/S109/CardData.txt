@@ -492,7 +492,8 @@ Level 1
 Cost 0
 Effect:
 {
-    *PutCardFromWaitingRoomIntoStock(HasTrait Wonderlands x Showtime)
+    SearchLocationForTargets WaitingRoom 1 1 HasTrait Wonderlands x Showtime
+    MoveCard Stock
     Brainstorm 3
     If Compare BrainstormedClimax 1 OrMore
     {
