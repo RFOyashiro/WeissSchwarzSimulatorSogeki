@@ -6,7 +6,7 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Auto: OnPlay
 {
     PayCost 1 SendFromWaitingRoomToBottom 1 Clock HasTrait Music
@@ -52,12 +52,12 @@ Trigger Soul
 Power 10000
 Soul 2
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Combo Greetings From a Kigurumi
 *Healer
 Auto: OnAttack
 {
-    If Climax Greetings From a Kigurumi && StageContains 2 Other && HasTrait Wonderlands x Showtime
+    If Climax Greetings From a Kigurumi && StageContains 2 Other && HasTrait Wonderlands × Showtime
     {
         PayCost 2 Discard 1 Any
         {
@@ -67,7 +67,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo [(2) Put 1 card from hand to the waiting room] When this card attacks, if "Greetings From a Kigurumi" is your climax area and the number of other «Wonderlands x Showtime» characters you have is 2 or more, you may pay the cost. If you do, 1 damage to your opponent twice, and this card gets +3000 power until end of turn.
+Text Auto: CxCombo [(2) Put 1 card from hand to the waiting room] When this card attacks, if "Greetings From a Kigurumi" is your climax area and the number of other «Wonderlands × Showtime» characters you have is 2 or more, you may pay the cost. If you do, 1 damage to your opponent twice, and this card gets +3000 power until end of turn.
 EndCard
 
 Character: PJS/S91-004
@@ -79,7 +79,7 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 Wonderlands x Showtime
+Trait3 Wonderlands × Showtime
 *GainPowerWithEnoughCharacters(2000,2,Music)
 Auto: OnThisTriggerCheck
 {
@@ -101,7 +101,7 @@ Power 4000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 Wonderlands x Showtime
+Trait3 Wonderlands × Showtime
 Auto: StartClimaxPhase
 {
     If LocationContains OpponentStock 2 Any
@@ -127,7 +127,7 @@ Cost 0
 Power 4500
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Combo The Phantom Performer
 *GainPowerWithEnoughCharacters(1000,2,Music)
 Auto: StartMyEncoreStep
@@ -150,7 +150,7 @@ Power 5000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 Wonderlands x Showtime
+Trait3 Wonderlands × Showtime
 *GlobalPower(1000,Music)
 Auto: OnTriggerCheckClimax
 {
@@ -175,7 +175,7 @@ Power 7000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 Wonderlands x Showtime
+Trait3 Wonderlands × Showtime
 Auto: OnAttack
 {
     TargetFacing
@@ -199,7 +199,7 @@ Trigger Soul
 Power 8500
 Soul 2
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 *EarlyPlay2OrLessClimax
 Auto: OnPlay
 {
@@ -232,7 +232,7 @@ Cost 0
 Power 500
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 *GlobalPower(500,Music)
 Cont: GiveSelf
 {
@@ -254,7 +254,7 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Combo Let's Have a Meeting!
 *OnPlayMill2GainPowerForEachCharacter(1000,Music)
 Auto: OnAttack
@@ -280,7 +280,7 @@ Power 3500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 Wonderlands x Showtime
+Trait3 Wonderlands × Showtime
 *GainPowerForEachOther(500,Music)
 *GainPowerWhenAttackingLevel2(6000)
 EndCard
@@ -294,7 +294,7 @@ Trigger Soul
 Power 1500
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Auto: OnUseThisCardsBackup
 {
     SetXToNumberOfCharacters HasTrait Music
@@ -313,7 +313,7 @@ Trigger Soul
 Power 5000
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Combo Operating Behind the Scenes
 Cont: GiveSelf
 {
@@ -380,7 +380,7 @@ Cost 0
 Power 500
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Auto: StartClimaxPhase
 {
     *GiveCharacterPower(1000,Music)
@@ -418,7 +418,7 @@ Cost 0
 Power 1000
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Auto: OnAttack
 {
     UntilEndOfOpponentsTurn
@@ -441,7 +441,7 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 Wonderlands x Showtime
+Trait3 Wonderlands × Showtime
 *OnPlayScryToBottom
 Auto: OnAttack
 {
@@ -473,7 +473,7 @@ Trigger Soul
 Power 2500
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 *YellowCost0Bomb
 EndCard
 
@@ -486,7 +486,7 @@ Trigger Soul
 Power 3500
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Auto: OnPlay
 {
     PayCost Discard 1 HasTrait Music
@@ -509,7 +509,7 @@ Name Wonder Christmas!
 Color Y
 Level 1
 Cost 0
-Requirement StageContains 1 HasTrait Wonderlands x Showtime
+Requirement StageContains 1 HasTrait Wonderlands × Showtime
 Effect:
 {
     RevealUpTo Deck 4
@@ -518,7 +518,7 @@ Effect:
 	MoveCard Hand
 	PutTheRestIntoTheWaitingRoom
 }
-Text If you don't have a «Wonderlands x Showtime» character, you cannot play this card from hand. Look at up to the top 4 cards of your deck, choose up to 1 «Music» character or event among them, reveal it, put it in your hand, and put the rest into your waiting room.
+Text If you don't have a «Wonderlands × Showtime» character, you cannot play this card from hand. Look at up to the top 4 cards of your deck, choose up to 1 «Music» character or event among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Event: PJS/S91-023
@@ -540,12 +540,12 @@ Text Send this card to memory.
 Text Reveal the top card of your deck. If that card is a «Music» character or event, add it to your hand.
 Cont: Memory
 {
-    If MyTurn && HasTrait Wonderlands x Showtime
+    If MyTurn && HasTrait Wonderlands × Showtime
     {
         GainPower 1000
     }
 }
-Text Cont: MEMORY During your turn, if this card is in your memory, all your «Wonderlands x Showtime» characters get +1000 power.
+Text Cont: MEMORY During your turn, if this card is in your memory, all your «Wonderlands × Showtime» characters get +1000 power.
 EndCard
 
 Event: PJS/S91-024
@@ -3170,27 +3170,27 @@ Text Act: [(1)] Draw a card, and discard a card from your hand to the waiting ro
 EndCard
 
 Character: PJS/S91-T48
-Name Wonderlands x Showtime, Tsukasa Tenma
+Name Wonderlands × Showtime, Tsukasa Tenma
 Color Y
 Level 0
 Cost 0
 Power 1000
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 *YellowLevel0Bomb
 *EncoreStepIfNoneRestedPayToRest
 EndCard
 
 Character: PJS/S91-T49
-Name Wonderlands x Showtime, Rui Kamishiro
+Name Wonderlands × Showtime, Rui Kamishiro
 Color Y
 Level 0
 Cost 0
 Power 1500
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Auto: StartClimaxPhase
 {
     *GiveCharacterPower(1000,Music)
@@ -3243,8 +3243,8 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 Wonderlands x Showtime
-Combo Wonderlands x Showtime
+Trait3 Wonderlands × Showtime
+Combo Wonderlands × Showtime
 Auto: OnAttack
 {
     If StageContains 2 Other && HasTrait Music
@@ -3256,13 +3256,13 @@ Quick
 Text Auto: When this card attacks, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn.
 Auto: OnReverseOpponent
 {
-    If Climax Wonderlands x Showtime
+    If Climax Wonderlands × Showtime
     {
         *Check4Add1(Music)
         *GiveCharacterPower(2000,Any)
     }
 }
-Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Wonderlands x Showtime" is in your climax area, look at up to the top 4 cards of your deck, choose up to 1 «Music» character among them, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Wonderlands × Showtime" is in your climax area, look at up to the top 4 cards of your deck, choose up to 1 «Music» character among them, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: PJS/S91-T52
@@ -3307,7 +3307,7 @@ Power 5000
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 Wonderlands x Showtime
+Trait3 Wonderlands × Showtime
 *LevelAssist
 Auto: OnPlay
 {
@@ -3340,7 +3340,7 @@ Text Cont: This card gets +2500 power for each of your other backstage «Music»
 EndCard
 
 Character: PJS/S91-T56
-Name Wonderlands x Showtime, Emu Ootori
+Name Wonderlands × Showtime, Emu Ootori
 Color Y
 Level 3
 Cost 2
@@ -3348,13 +3348,13 @@ Trigger Soul
 Power 9500
 Soul 2
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 *Healer
 *OnPlayGainPowerForEach(1000,Music)
 EndCard
 
 Character: PJS/S91-T57
-Name Wonderlands x Showtime, Nene Kusanagi
+Name Wonderlands × Showtime, Nene Kusanagi
 Color Y
 Level 3
 Cost 2
@@ -3362,7 +3362,7 @@ Trigger Soul
 Power 10000
 Soul 2
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Auto: OnPlay
 {
     *OptionalDraw
@@ -3430,7 +3430,7 @@ Text Auto: When this card is placed in your climax area, choose up to 1 level 1 
 EndCard
 
 Climax: PJS/S91-T60
-Name Wonderlands x Showtime
+Name Wonderlands × Showtime
 *ChoiceClimax
 EndCard
 
@@ -3900,7 +3900,7 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Auto: OnReversed
 {
     If LocationContainsOrLess Memory 2 Any
@@ -3908,14 +3908,14 @@ Auto: OnReversed
         PayCost 1 Clock SendSelf Memory
         {
             RevealUpTo Deck 2
-            ChooseCardsFromTargets 0 2 HasTrait Wonderlands x Showtime || ColorIs Yellow && IsEvent
+            ChooseCardsFromTargets 0 2 HasTrait Wonderlands × Showtime || ColorIs Yellow && IsEvent
             Reveal
             MoveCard Hand
             PutTheRestIntoTheWaitingRoom
         }
     }
 }
-Text Auto: [(1) Put the top card of your deck into clock, put this card into memory] When this card becomes reverse in battle, if you have 2 or less cards in memory, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 2 «Wonderlands x Showtime» characters or Yellow events among them, add them to your hand and put the rest into waiting room.
+Text Auto: [(1) Put the top card of your deck into clock, put this card into memory] When this card becomes reverse in battle, if you have 2 or less cards in memory, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 2 «Wonderlands × Showtime» characters or Yellow events among them, add them to your hand and put the rest into waiting room.
 EndCard
 
 Character: PJS/S91-P09
@@ -3984,7 +3984,7 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Auto: StartClimaxPhase
 {
     *GiveCharacterPower(1000,Music)
@@ -4155,7 +4155,7 @@ Cost 0
 Power 1000
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Auto: OnAttack
 {
     TargetLocation Stage
@@ -4324,7 +4324,7 @@ Trigger Soul
 Power 1000
 Soul 2
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Auto: OnPlay
 {
     *OptionalDraw
@@ -4430,7 +4430,7 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 *PowerOnMyTurn(1000)
 *FreeRunner
 EndCard

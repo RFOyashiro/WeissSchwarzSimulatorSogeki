@@ -6,7 +6,7 @@ Cost 0
 Power 500
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Cont: GiveSelf
 {
     OverrideTriggerIconEffect Choice
@@ -48,7 +48,7 @@ Trigger Soul
 Power 10000
 Soul 2
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Combo Fishing Before the Storm
 *Healer
 Auto: OnAttack
@@ -81,7 +81,7 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Virtual Singer
-Trait3 Wonderlands x Showtime
+Trait3 Wonderlands × Showtime
 *CannotSideAttack
 Auto: OnSentFromStageToWaitingRoom
 {
@@ -101,7 +101,7 @@ Cost 0
 Power 4500
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Combo Dance! And! Sing!
 Auto: OnUseEvent
 {
@@ -129,7 +129,7 @@ Trigger Soul
 Power 8500
 Soul 2
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Cont: InHand
 {
     If LocationContains WaitingRoom 6 IsEvent
@@ -200,7 +200,7 @@ Cost 0
 Power 500
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 *OnPlayCheckTopTraitOrEventAddDiscard(Music)
 Auto: OnPlay
 {
@@ -220,7 +220,7 @@ Cost 0
 Power 1000
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 *PowerOnMyTurn(1000)
 Auto: OnReversed
 {
@@ -272,7 +272,7 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Combo Invitation of Little Squirrels
 Auto: OnUseEvent
 {
@@ -304,7 +304,7 @@ Trigger Soul
 Power 1500
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Combo Inner Flame
 *PowerOnMyTurn(5000)
 Auto: OnAttack
@@ -330,7 +330,7 @@ Trigger Soul
 Power 2000
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 *PowerOnMyTurn(4000)
 *ClimaxExchange
 EndCard
@@ -344,7 +344,7 @@ Trigger Soul
 Power 1000
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Auto: OnUseThisCardsBackup
 {
     TargetSelf
@@ -389,7 +389,7 @@ Trigger Soul
 Power 2500
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 *PowerOnMyTurn(10000)
 Auto: OnAttack
 {
@@ -442,7 +442,7 @@ Trigger Soul
 Power 6500
 Soul 1
 Trait1 Music
-Trait2 Wonderlands x Showtime
+Trait2 Wonderlands × Showtime
 Auto: OnPlay
 {
     PayCost Discard 1 IsEvent
@@ -461,15 +461,15 @@ Color Y
 Level 1
 Cost 0
 Counter
-Requirement StageContains 1 HasTrait Wonderlands x Showtime
+Requirement StageContains 1 HasTrait Wonderlands × Showtime
 Effect:
 {
     Mill 2
 	SetXValue TotalLevel
-	SearchWaitingRoom HasTrait Wonderlands x Showtime && Compare ThatCardsLevel X OrLess
+	SearchWaitingRoom HasTrait Wonderlands × Showtime && Compare ThatCardsLevel X OrLess
 }
-Text COUNTER If you don't have a «Wonderlands x Showtime» character, this card cannot be played from hand.
-Text Put the top 2 cards of your deck into your waiting room, choose up to 1 level X or lower «Wonderlands x Showtime» character in your waiting room, and return it to your hand. X is equal to the total level of the cards put into your waiting room by this effect.
+Text COUNTER If you don't have a «Wonderlands × Showtime» character, this card cannot be played from hand.
+Text Put the top 2 cards of your deck into your waiting room, choose up to 1 level X or lower «Wonderlands × Showtime» character in your waiting room, and return it to your hand. X is equal to the total level of the cards put into your waiting room by this effect.
 EndCard
 
 Event: PJS/S109-019
@@ -492,7 +492,7 @@ Level 1
 Cost 0
 Effect:
 {
-    SearchLocationForTargets WaitingRoom 1 1 HasTrait Wonderlands x Showtime
+    SearchLocationForTargets WaitingRoom 1 1 HasTrait Wonderlands × Showtime
     MoveCard Stock
     Brainstorm 3
     If Compare BrainstormedClimax 1 OrMore
@@ -500,7 +500,7 @@ Effect:
         BlindStock
     }
 }
-Text BRAINSTORM Choose 1 «Wonderlands x Showtime» character in your waiting room and put that character into stock. Flip over the top 3 cards of your deck, and put them into your waiting room. If at least 1 climax has been revealed, put the top card of your deck into stock.
+Text BRAINSTORM Choose 1 «Wonderlands × Showtime» character in your waiting room and put that character into stock. Flip over the top 3 cards of your deck, and put them into your waiting room. If at least 1 climax has been revealed, put the top card of your deck into stock.
 EndCard
 
 Event: PJS/S109-021
