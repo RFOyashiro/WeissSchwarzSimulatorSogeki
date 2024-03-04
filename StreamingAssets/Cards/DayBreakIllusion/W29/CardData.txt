@@ -184,11 +184,11 @@ Auto: OnAttack
                     }
                 }
             }
-            Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 3 or Lower, you may send that character and this card to memory.
+            Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 3 or less, you may send that character and this card to memory.
         }
     }
 }
-Text Auto: CxCombo When this card attacks, if "Biggest Horror of the Summer" is in your climax area, this card gets the following ability until end of turn. "Auto: When this card becomes reversed, if the level of the battle opponent of this card is 3 or Lower, you may send that character and this card to memory."
+Text Auto: CxCombo When this card attacks, if "Biggest Horror of the Summer" is in your climax area, this card gets the following ability until end of turn. "Auto: When this card becomes reversed, if the level of the battle opponent of this card is 3 or less, you may send that character and this card to memory."
 EndCard
 
 Character: GT/W29-008
@@ -389,7 +389,7 @@ Auto: OnPlay
         ShuffleLocation Deck
     }
 }
-Text Auto: [Put 2 cards from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower «Tarot» character and put it in any position in the backstage, and shuffle your deck.
+Text Auto: [Put 2 cards from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or less «Tarot» character and put it in any position in the backstage, and shuffle your deck.
 EndCard
 
 Character: GT/W29-019
@@ -432,7 +432,7 @@ Effect:
     *GiveCharacterPower(3000,Any)
 }
 Text If you don't have a «Tarot» character, you cannot play this card from hand.
-Text Choose up to 1 of your opponent's level 0 or lower characters and return it to hand.
+Text Choose up to 1 of your opponent's level 0 or less characters and return it to hand.
 Text Choose 1 of your characters, and that character gets +3000 power until end of turn.
 EndCard
 
@@ -483,7 +483,7 @@ Auto: OnPlay
         DontStand
     }
 }
-Text Auto: [Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your opponent's level 0 or lower character in center stage and that character doesn't stand during your opponent's next stand phase.
+Text Auto: [Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your opponent's level 0 or less character in center stage and that character doesn't stand during your opponent's next stand phase.
 *Act1RestSelfClockBrainstorm
 EndCard
 
@@ -862,7 +862,7 @@ Effect:
     TargetSelf
     MoveCard Clock
 }
-Text Choose 1 level 2 or lower «Tarot» character in your clock and put it in any position on the stage. Put this card in clock.
+Text Choose 1 level 2 or less «Tarot» character in your clock and put it in any position on the stage. Put this card in clock.
 EndCard
 
 Event: GT/W29-047
@@ -1301,7 +1301,7 @@ Effect:
         MoveCard Memory
     }
 }
-Text Choose 1 "Hinata Taiyo" in your waiting room and put it in clock. If you do, choose up to 1 level 2 or lower «Tarot» character in your waiting room and put it in any position on the stage. Put this card into memory.
+Text Choose 1 "Hinata Taiyo" in your waiting room and put it in clock. If you do, choose up to 1 level 2 or less «Tarot» character in your waiting room and put it in any position on the stage. Put this card into memory.
 EndCard
 
 Event: GT/W29-072
@@ -2176,7 +2176,7 @@ Act: 1
     ChooseCharacterFromTargets Choose a character to put into waiting room.
     MoveCard OpponentWaitingRoom
 }
-Text Act: [(1)] Choose a level 0 or lower character in your opponent's center stage and put it in the waiting room.
+Text Act: [(1)] Choose a level 0 or less character in your opponent's center stage and put it in the waiting room.
 EndCard
 
 Character: GT/W29-P02
