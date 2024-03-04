@@ -693,7 +693,7 @@ Auto: OnSpecificClimaxPlay Lunar Eclipse
 {
     If LocationContainsOrLess CenterStage 1 Other
     {
-        PayCost Discard 1 SendSelf Memory
+        PayCost Discard 1 Any SendSelf Memory
         {
             SearchLocationForTargets WaitingRoom 1 1 NameEquals Wolf Girl, Luna
             If HasTarget
