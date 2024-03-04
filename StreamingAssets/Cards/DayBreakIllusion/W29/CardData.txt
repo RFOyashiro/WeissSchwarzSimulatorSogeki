@@ -1183,7 +1183,7 @@ Auto: OnSpecificClimaxPlay Last User
 {
     If StageContainsOrLess 0 Other
     {
-        PayCost SendSelf Clock
+        PayCost SendSelf WaitingRoom
         {
             SearchLocationForTargets Deck 0 1 NameEquals Girl of Destiny, Akari
             If HasTarget
