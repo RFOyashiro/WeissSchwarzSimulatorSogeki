@@ -2014,7 +2014,7 @@ Auto: OnAttack
     {
         PayCost 2
         {
-            SearchLocationForTargets Hand 1 1 HasTrait
+            SearchLocationForTargets Hand 1 1 HasTrait Music
             RevealTargets
             MoveCardToBottom Deck
             Burn 2
@@ -2260,7 +2260,7 @@ Auto: OnPlay
     ChooseCharacterFromTargets Choose a character to give +X power.
     GainPower X
 }
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your «Music» character and that character gets +X power until end of turn. X equals the number of "Canceled Message" in your waiting room times 1000
+Text Auto: CxCombo When this card is placed on the stage from your hand, choose 1 of your «Music» character and that character gets +X power until end of turn. X equals the number of "Canceled Message" in your waiting room times 1000
 EndCard
 
 Character: PJS/S109-095

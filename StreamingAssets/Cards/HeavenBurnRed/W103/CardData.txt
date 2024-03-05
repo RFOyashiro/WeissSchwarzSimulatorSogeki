@@ -1210,7 +1210,7 @@ Effect:
     OpponentChooseCardsFromTargets 1 1 Any
     MoveCard WaitingRoom
     RemoveCurrentFromSavedTargets
-    AddSavedToCurrentTargets
+    LoadTargets
     MoveCard Hand
     ShuffleLocation Deck
     TriggerCustomEvent PlayEmaEvent
