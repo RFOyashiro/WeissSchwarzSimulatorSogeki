@@ -92,7 +92,7 @@ Auto: StartClimaxPhase
         }
     }
 }
-Text Auto: CHANGE [(2) Put the top card of your Libary in clock, put this card into memory] At the beginning of your climax phase, you may pay the cost. If you do, choose a "Father's Child, Ginka" in your waiting room and put it in the position this card was in.
+Text Auto: CHANGE [(2) Put the top card of your deck in clock, put this card into memory] At the beginning of your climax phase, you may pay the cost. If you do, choose a "Father's Child, Ginka" in your waiting room and put it in the position this card was in.
 Act: RestSelf
 {
     If Not HasMarker
@@ -184,11 +184,11 @@ Auto: OnAttack
                     }
                 }
             }
-            Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 3 or less, you may send that character and this card to memory.
+            Text Auto: When this card becomes reverse, if the level of this card's battle opponent is 3 or less, you may put that character and this card into memory.
         }
     }
 }
-Text Auto: CxCombo When this card attacks, if "Biggest Horror of the Summer" is in your climax area, this card gets the following ability until end of turn. "Auto: When this card becomes reversed, if the level of the battle opponent of this card is 3 or less, you may send that character and this card to memory."
+Text Auto: CxCombo When this card attacks, if "Biggest Horror of the Summer" is in your climax area, this card gets the following ability until end of turn. "Auto: When this card becomes reverse, if the level of this card's battle opponent is 3 or less, you may put that character and this card into memory."
 EndCard
 
 Character: GT/W29-008
@@ -225,7 +225,7 @@ Cont: GiveAll
         GainLevel 1
     }
 }
-Text Cont: All your other characters with either «Tarot» or «Familiar» get +1 level.
+Text Cont: All your other «Tarot» or «Familiar» characters get +1 level.
 EndCard
 
 Character: GT/W29-010
@@ -249,7 +249,7 @@ Auto: StartOpponentAttackPhase
         }
     }
 }
-Text Auto: CxCombo [(1) Put a "Million Dollar Gold Coins" from hand to the waiting room] At the beginning of your opponent's attack phase, if this card is in the center stage, you may pay the cost. If you do, all your characters get +2000 power until end of turn.
+Text Auto: CxCombo [(1) Put a "Million Dollar Gold Coins" from hand to the waiting room] At the beginning of your opponent's attack phase, if this card is in your center stage, you may pay the cost. If you do, all your characters get +2000 power until end of turn.
 EndCard
 
 Character: GT/W29-011
@@ -389,7 +389,7 @@ Auto: OnPlay
         ShuffleLocation Deck
     }
 }
-Text Auto: [Put 2 cards from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or less «Tarot» character and put it in any position in the backstage, and shuffle your deck.
+Text Auto: [Put 2 cards from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or less «Tarot» character and put it in any position in your backstage, and shuffle your deck.
 EndCard
 
 Character: GT/W29-019
@@ -427,7 +427,7 @@ Effect:
 {
     TargetLocation OpponentStage
     NarrowTargets Compare ThatCardsLevel 0 OrLess
-    ChooseCharacterFromTargets Choose a character to return to hand.
+    ChooseCharacterFromTargets_Optional Choose a character to return to hand.
     Bounce
     *GiveCharacterPower(3000,Any)
 }
@@ -507,7 +507,7 @@ Auto: OnSpecificClimaxPlay Beautiful Vacation
         Change
     }
 }
-Text Auto: CxCombo [(2) Put this card into memory] When "Beautiful Vacation" is placed on your climax area, you may pay the cost. If you do, choose 1 "Power of the Moon, Luna" in your waiting room and put it in the position this card was in.
+Text Auto: CxCombo [(2) Put this card into memory] When "Beautiful Vacation" is placed in your climax area, you may pay the cost. If you do, choose 1 "Power of the Moon, Luna" in your waiting room and put it in the position this card was in.
 EndCard
 
 Character: GT/W29-028
@@ -693,7 +693,7 @@ Auto: OnSpecificClimaxPlay Lunar Eclipse
 {
     If LocationContainsOrLess CenterStage 1 Other
     {
-        PayCost Discard 1 Any SendSelf Memory
+        PayCost Discard 1 Any &&& SendSelf Memory
         {
             SearchLocationForTargets WaitingRoom 1 1 NameEquals Wolf Girl, Luna
             If HasTarget
@@ -703,7 +703,7 @@ Auto: OnSpecificClimaxPlay Lunar Eclipse
         }
     }
 }
-Text Auto: CxCombo [Put 1 card from hand to the waiting room, put this card into memory] When "Lunar Eclipse" is placed on your climax area, if there is 1 or less other characters in your center stage, you may pay the cost. If you do, choose a "Wolf Girl, Luna" in your waiting room and put it in the position this card was in.
+Text Auto: CxCombo [Put 1 card from hand to the waiting room, put this card into memory] When "Lunar Eclipse" is placed in your climax area, if you have 1 or less other characters in center stage, you may pay the cost. If you do, choose a "Wolf Girl, Luna" in your waiting room and put it in the position this card was in.
 EndCard
 
 Character: GT/W29-037
@@ -730,14 +730,14 @@ Text Cont: All your other «Tarot» characters get "Auto: ENCORE [Put 1 characte
 Auto: OnPlay|PlacedBy Rookie Member, Luna
 {
     TargetLocation Stage
-    NarrowTargets HasTrait Tarot
+    NarrowTargets HasTrait Tarot && Other
     SetXToNumberOfCharacters
     Peek Deck X
     ChooseCard Choose a card to add to your hand.
     MoveCard Hand
     PutTheRestIntoTheWaitingRoom
 }
-Text Auto: When this card is placed on the stage from your hand or by the effect of the Auto: ability of "Rookie Member, Luna" to the stage, look at up to X card from the top of your deck, choose up to 1 card and put it in your hand. Put the rest in the waiting room. X equals the number of your «Tarot» characters.
+Text Auto: When this card is placed on the stage from your hand or by the effect of the Auto: ability of "Rookie Member, Luna" to the stage, look at up to X card from the top of your deck, choose up to 1 card among them, put it in your hand and put the rest into the waiting room. X equals the number of your «Tarot» characters.
 EndCard
 
 Character: GT/W29-038
@@ -835,7 +835,7 @@ Auto: OnPlay
         *Check4Add1(Tarot)
     }
 }
-Text Auto: [Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Tarot» character among them among them, reveal it, put it in your hand and put the rest in the waiting room.
+Text Auto: [Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Tarot» character among them, reveal it, put it in your hand and put the rest into the waiting room.
 EndCard
 
 Character: GT/W29-045
@@ -922,7 +922,7 @@ Auto: OnReversed
         }
     }
 }
-Text Auto: CxCombo [(1) Put 1 "Opened Fate" from hand to the waiting room, put this card into clock] When this card becomes reversed in battle, if the number of other «Tarot» characters you have is 3 or more, you may pay the cost. If you do, deal 1 damage to your opponent, and choose 1 "Power of the Sun, Akari" in your waiting room and put it rest in the position this card was in.
+Text Auto: CxCombo [(1) Put 1 "Opened Fate" from hand to the waiting room, put this card into clock] When this card becomes reversed in battle, if the number of other «Tarot» characters you have is 3 or more, you may pay the cost. If you do, deal 1 damage to your opponent, choose 1 "Power of the Sun, Akari" in your waiting room and put it rest in the position this card was in.
 EndCard
 
 Character: GT/W29-052
@@ -960,7 +960,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo When this card attacks, if "Clessidra" is in your climax area, you may choose a "Hinata Taiyo" in your waiting room and put it face-down underneath this card as a marker.
+Text Auto: CxCombo When this card attacks, if "Clessidra" is in your climax area, you may choose 1 "Hinata Taiyo" in your waiting room and put it face-down underneath this card as a marker.
 EndCard
 
 Character: GT/W29-053
@@ -1077,7 +1077,7 @@ Auto: OnReversed
         SearchWaitingRoom HasTrait Fortune Telling|Weapon
     }
 }
-Text Auto: [(2) Put this card into memory] When this card becomes reversed in battle, you may pay the cost. If you do, choose 1 character with either «Fortune Telling» or «Weapon» in your waiting room and return it to your hand.
+Text Auto: [(2) Put this card into memory] When this card becomes reverse in battle, you may pay the cost. If you do, choose 1 «Fortune Telling» or «Weapon» character in your waiting room and return it to your hand.
 EndCard
 
 Character: GT/W29-059
@@ -1129,7 +1129,7 @@ Auto: OnPlay
         OpponentRefresh
     }
 }
-Text Auto: [Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, each player returns all cards in his or her waiting room to their decks and shuffle those Libraries.
+Text Auto: [Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, all player returns all cards from their waiting room to their deck and shuffle their deck.
 EndCard
 
 Character: GT/W29-062
@@ -1269,7 +1269,7 @@ Act: 1 Clock SendFromHand 1 Memory NameEquals Youth Cereburm &&& SendSelf Memory
     SearchWaitingRoom HasTrait Tarot
     Refresh
 }
-Text Act: [(1) Put the top card of your deck in your clock, send 1 "Youth Cereburm" from your hand to memory, put this card into memory] Choose up to 2 «Tarot» characters in your waiting room and return them to your hand, then return all cards in your Waiting room to your deck and shuffle your deck.
+Text Act: [(1) Put the top card of your deck in your clock, send 1 "Youth Cereburm" from your hand to memory, put this card into memory] Choose up to 2 «Tarot» characters in your waiting room and return them to your hand, return all cards from your waiting room to your deck and shuffle your deck.
 EndCard
 
 Character: GT/W29-070
@@ -1422,7 +1422,7 @@ Auto: OnPlay
         OpponentQuestion Put this card in your hand ?
         If Yes
         {
-            MoveCard Hand
+            MoveCard OpponentHand
         }
     }
 }
@@ -1521,7 +1521,7 @@ Act: 1
     DrawCard
     Discard 1 Any
 }
-Text Act: [(1)] draw a card, and discard a card from hand to the waiting room.
+Text Act: [(1)] Draw 1 card and put 1 card from hand to the waiting room.
 EndCard
 
 Character: GT/W29-084
@@ -1765,7 +1765,7 @@ Effect:
 {
     *Check4Add1(Tarot)
 }
-Text Look at up to the top 4 cards of your deck, choose up to 1 «Tarot» character among them among them, reveal it, and put it in your hand and put the rest in the waiting room.
+Text Look at up to the top 4 cards of your deck, choose up to 1 «Tarot» character among them, reveal it, and put it in your hand and put the rest in the waiting room.
 EndCard
 
 Event: GT/W29-097
@@ -1819,7 +1819,7 @@ Auto: OnOtherReversed
 {
     *GiveCharacterPower(1000,Any)
 }
-Text Auto: When another character of yours becomes reversed in battle, choose 1 of your characters, and that character gets +1000 power until end of turn.
+Text Auto: When another character of yours becomes reverse in battle, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: GT/W29-102
@@ -1855,7 +1855,7 @@ Auto: OnClimaxPlay
     GainPower 1500
 }
 Quick
-Text Auto: When your climax is placed on your climax area, this card gets +1500 power until end of turn.
+Text Auto: When your climax is placed in your climax area, this card gets +1500 power until end of turn.
 EndCard
 
 Character: GT/W29-104
@@ -1995,7 +1995,7 @@ Act: 1
     TargetSelf
     GainPower 1000
 }
-Text Act: [(1)] Choose 1 of your other characters, that character this card get +1000 power until end of turn.
+Text Act: [(1)] Choose 1 of your other characters, that character and this card get +1000 power until end of turn.
 EndCard
 
 Character: GT/W29-T09
@@ -2056,7 +2056,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo When this card attacks, if "To the Ends with the Star" is in your climax area, this card gets +3500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put it on the bottom of the deck."
+Text Auto: CxCombo When this card attacks, if "To the Ends with the Star" is in your climax area, this card gets +3500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that card to the bottom of your opponent's deck."
 EndCard
 
 Character: GT/W29-T12
@@ -2076,7 +2076,7 @@ Name Unreachable Gift
 Color B
 Level 1
 Cost 0
-Effect: 
+Effect:
 {
     *Check4Add1(Tarot)
 }
@@ -2099,7 +2099,7 @@ Name Elemental Tarot "Temperance"
 Color Y
 Level 1
 Cost 0
-Effect: 
+Effect:
 {
     Brainstorm 1
     TargetBrainstormed
@@ -2107,7 +2107,7 @@ Effect:
     TargetLocation Stage
     GainSoul X
 }
-Text BRAINSTORM Flip over the top card of your deck and put it in the waiting room. All your characters get +X soul until end of turn. X equals level of the card put in the waiting room this way. 
+Text BRAINSTORM Flip over the top card of your deck and put it in the waiting room. All your characters get +X soul until end of turn. X equals level of the card put in the waiting room this way.
 EndCard
 
 Event: GT/W29-107
@@ -2115,7 +2115,7 @@ Name Elemental Tarot "Moon"
 Color G
 Level 2
 Cost 0
-Effect: 
+Effect:
 {
     Brainstorm 1
     TargetBrainstormed
@@ -2124,7 +2124,7 @@ Effect:
     TargetLocation Stage
     GainPower X
 }
-Text BRAINSTORM Flip over the top card of your deck and put it in the waiting room. All your characters get +X power until end of turn. X equals 2000 times level of the card put in the waiting room this way. 
+Text BRAINSTORM Flip over the top card of your deck and put it in the waiting room. All your characters get +X power until end of turn. X equals 2000 times level of the card put in the waiting room this way.
 EndCard
 
 Event: GT/W29-108
@@ -2132,14 +2132,14 @@ Name Elemental Tarot "Sun"
 Color R
 Level 3
 Cost 1
-Effect: 
+Effect:
 {
     Brainstorm 1
     TargetBrainstormed
     SetXValue TargetCardsLevel
     Burn X
 }
-Text BRAINSTORM Flip over the top card of your deck and put it in the waiting room. deal X damage to your opponent. X equals level of the card put in the waiting room this way. 
+Text BRAINSTORM Flip over the top card of your deck and put it in the waiting room. deal X damage to your opponent. X equals level of the card put in the waiting room this way.
 EndCard
 
 Event: GT/W29-109
@@ -2147,7 +2147,7 @@ Name Elemental Tarot "Star"
 Color B
 Level 2
 Cost 0
-Effect: 
+Effect:
 {
     Brainstorm 1
     TargetBrainstormed
@@ -2157,7 +2157,7 @@ Effect:
     UntilEndOfOpponentsTurn
     GainPower X
 }
-Text BRAINSTORM Flip over the top card of your deck and put it in the waiting room. All your characters get +X power until the end of your opponent's next turn. X equals 1000 times level of the card put in the waiting room this way. 
+Text BRAINSTORM Flip over the top card of your deck and put it in the waiting room. All your characters get +X power until the end of your opponent's next turn. X equals 1000 times level of the card put in the waiting room this way.
 EndCard
 
 Character: GT/W29-P01

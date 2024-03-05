@@ -970,7 +970,7 @@ Name With a Small Fan, Haruka Kiritani
 Color G
 Level 1
 Cost 0
-Power 1500
+Power 4500
 Soul 1
 Trait1 Music
 Trait2 MORE MORE JUMP!
