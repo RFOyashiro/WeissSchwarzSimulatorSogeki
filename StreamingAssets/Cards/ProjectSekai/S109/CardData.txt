@@ -2010,7 +2010,7 @@ Auto: OnPlay
 Text Auto: When this card is placed on the stage from your hand, choose up to 1 character in your hand whose level is equal to or lower than your level and put it in any position on the stage, and this card gets +2000 power until end of turn.
 Auto: OnAttack
 {
-    If Climax Canceled Message && HandContains 1 HasTrait Music
+    If Climax Canceled Message && LocationContains Hand 1 HasTrait Music
     {
         PayCost 2
         {
