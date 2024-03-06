@@ -2036,7 +2036,7 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 25-ji, Nightcord de.
-Auto: OnTriggerCheckClimax
+Auto: OnClimaxPlay
 {
     IfOther HasTrigger Gate
     {
@@ -2046,7 +2046,7 @@ Auto: OnTriggerCheckClimax
         LosePower 1000
     }
 }
-Text Auto: When your character's trigger check reveals a climax with a Gate trigger icon, choose 1 of your opponent's character in center stage and that character gets -1000 power until end of turn.
+Text Auto: When a climax with a Gate trigger icon is placed in your climax area, choose 1 of your opponent's character in center stage and that character gets -1000 power until end of turn.
 *Act1RestSelfSalvageBrainstorm(Any)
 EndCard
 
