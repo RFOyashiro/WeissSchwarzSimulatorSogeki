@@ -1298,7 +1298,8 @@ Trait2 Vivid BAD SQUAD
 Combo Opening Soon!
 Auto: OnAttack
 {
-    SetXToNumberOfCharacters InLocation OpponentStage
+    TargetLocation OpponentStage
+    SetXValue TargetCount
     MultiplyXValue 1000
     TargetSelf
     GainPower X
@@ -1312,8 +1313,6 @@ Auto: OnAttack
 		Mill 3
         NarrowTargets HasTrait Music
         SearchWaitingRoom Compare ThatCardsLevel TargetCount OrLess && HasTrait Music
-		RevealTargets
-		MoveCard Hand
         TargetSelf
         GainPower 1000
 	}
