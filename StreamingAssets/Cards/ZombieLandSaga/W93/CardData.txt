@@ -27,11 +27,11 @@ Auto: OnReverseOpponent
 {
     If Climax Do You Dislike Windy Days? && StageContains 2 Other && HasTrait Saga
     {
-        MultipleChoiceQuestion Choose an effect to resolve first.\n1: Look at up to the top 4 cards of your deck, choose up to 1 «Saga» character or 1 'Revenge of Fate' among them, show it to your opponent, add it to your hand and put the rest into your waiting room.\n2: You may choose 1 of your opponent's level 1 or higher characters. If you do, your opponent chooses 1 level X or lower character in their waiting room, and exchanges them. X is equal to the level of the character you chose -1.|1|2
+        MultipleChoiceQuestion Choose an effect to resolve first.\n1: Look at up to the top 4 cards of your deck, choose up to 1 «Saga» character or 1 'Revenge on Fate' among them, show it to your opponent, add it to your hand and put the rest into your waiting room.\n2: You may choose 1 of your opponent's level 1 or higher characters. If you do, your opponent chooses 1 level X or lower character in their waiting room, and exchanges them. X is equal to the level of the character you chose -1.|1|2
         If Answer 0
         {
             RevealUpTo Deck 4
-            ChooseCardsFromTargets 0 1 HasTrait Saga && IsCharacter || NameEquals Revenge of Fate
+            ChooseCardsFromTargets 0 1 HasTrait Saga && IsCharacter || NameEquals Revenge on Fate
             RevealTargets
             MoveCard Hand
             PutTheRestIntoTheWaitingRoom
@@ -47,14 +47,14 @@ Auto: OnReverseOpponent
             ChooseCharacterFromTargets Choose an opponent character.
             *Downgrade
             RevealUpTo Deck 4
-            ChooseCardsFromTargets 0 1 HasTrait Saga && IsCharacter || NameEquals Revenge of Fate
+            ChooseCardsFromTargets 0 1 HasTrait Saga && IsCharacter || NameEquals Revenge on Fate
             RevealTargets
             MoveCard Hand
             PutTheRestIntoTheWaitingRoom
         }
     }
 }
-Text Auto: CxCombo When this card's battle opponent becomes reversed, if "Do You Dislike Windy Days?" is in your climax area and the number of other «Saga» characters you have is 2 or more, perform each of the following abilities 1 time in any order. "Look at up to the top 4 cards of your deck, choose up to 1 «Saga» character or 1 'Revenge of Fate' among them, show it to your opponent, add it to your hand and put the rest in the waiting room." "You may choose 1 of your opponent's level 1 or higher characters. If you do, your opponent chooses 1 level X or lower character in their waiting room, and exchanges them. X is equal to the level of the character you chose -1."
+Text Auto: CxCombo When this card's battle opponent becomes reversed, if "Do You Dislike Windy Days?" is in your climax area and the number of other «Saga» characters you have is 2 or more, perform each of the following abilities 1 time in any order. "Look at up to the top 4 cards of your deck, choose up to 1 «Saga» character or 1 'Revenge on Fate' among them, show it to your opponent, add it to your hand and put the rest in the waiting room." "You may choose 1 of your opponent's level 1 or higher characters. If you do, your opponent chooses 1 level X or lower character in their waiting room, and exchanges them. X is equal to the level of the character you chose -1."
 EndCard
 
 Character: ZLS/W93-003
@@ -335,7 +335,7 @@ Trait1 Saga
 Trait2 Music
 Auto: OnAttack
 {
-    PayCost Resonate Revenge of Fate
+    PayCost Resonate Revenge on Fate
     {
         TargetLocation Stage
         ChooseCharactersFromTargets 0 2 Choose up to 2 characters to give +2000 power.
