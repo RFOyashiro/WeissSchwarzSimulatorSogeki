@@ -1626,7 +1626,7 @@ Text Auto: CxCombo When this card attacks, if "For Someone" is in your climax ar
 EndCard
 
 Character: SG/W70-079
-Name Saint-Germain & Prelati & Cagliostro
+Name Saint-Germain Prelati Cagliostro
 Color B
 Level 3
 Cost 2
@@ -1674,14 +1674,11 @@ Auto: OnPlay
 {
     PayCost 1
     {
-        If LocationContains WaitingRoom 1 NameEquals Saint-Germain & Prelati & Cagliostro
-        {
-            SearchLocationForTargets 1 1 NameEquals Saint-Germain & Prelati & Cagliostro
-            PlaceOnStage false true true false
-        }
+        SearchLocationForTargets WaitingRoom 1 1 NameEquals Saint-Germain Prelati Cagliostro
+        PlaceOnStage false true true false
     }
 }
-Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Saint-Germain & Prelati & Cagliostro" in your waiting room and place it to any slot on the stage.
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Saint-Germain Prelati Cagliostro" in your waiting room and place it to any slot on the stage.
 Auto: OnReverseOpponent
 {
     If Climax Those Who Pursue an Ideal && LocationContains Memory 2 HasTrait Alchemy

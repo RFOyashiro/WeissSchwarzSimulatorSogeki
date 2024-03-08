@@ -121,13 +121,10 @@ Auto: OnPlay
 {
     PayCost Discard 1 Any
     {
-        If LocationContains WaitingRoom 1 NameEquals Autoscorer Phara && Compare ThatCardsLevel 0 OrLess
-        {
-            SearchLocationForTargets WaitingRoom 1 1 NameEquals Autoscorer Phara && Compare ThatCardsLevel 0 OrLess
-            PlaceOnStage false true true false
-            UntilEndOfOpponentsTurn
-            GainLevel 1
-        }
+        SearchLocationForTargets WaitingRoom 1 1 NameEquals Autoscorer Phara && Compare ThatCardsLevel 0 OrLess
+        PlaceOnStage false true true false
+        UntilEndOfOpponentsTurn
+        GainLevel 1
     }
 }
 Text Auto: [Put a card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a level 0 or lower "Autoscorer Phara" from your waiting room, place it to any slot on the stage, and until the end of your opponent's next turn this card gets +1 level.
@@ -383,11 +380,8 @@ Act: 1 RestSelf
 {
     If LocationContainsOrLess Memory 5 Any
     {
-        If LocationContains WaitingRoom 1 HasTrait Alchemy && IsCharacter
-        {
-            SearchLocationForTargets WaitingRoom 1 1 HasTrait Alchemy && IsCharacter
-            MoveCard Memory
-        }
+        SearchLocationForTargets WaitingRoom 1 1 HasTrait Alchemy && IsCharacter
+        MoveCard Memory
     }
 }
 Text Act: [(1) Rest this card] If you have 5 or less cards in memory, choose an <Alchemy> character in your waiting room and send it to memory.
@@ -575,11 +569,8 @@ Effect:
         {
             Effect:
             {
-                If LocationContains Memory 1 NameEquals Hibiki, Holy Chant
-                {
-                    SearchLocationForTargets Memory 1 1 NameEquals Hibiki, Holy Chant
-                    MoveCard Hand
-                }
+                SearchLocationForTargets Memory 1 1 NameEquals Hibiki, Holy Chant
+                MoveCard Hand
             }
         }
     }
@@ -910,13 +901,10 @@ Auto: OnPlay
 {
      PayCost Discard 1 Any
      {
-         If LocationContains WaitingRoom 1 NameEquals Autoscorer Leiur
-         {
-             SearchLocationForTargets WaitingRoom 0 1 NameEquals Autoscorer Leiur
-             PlaceOnStage false true true false
-             UntilEndOfOpponentsTurn
-             GainLevel 1
-         }
+        SearchLocationForTargets WaitingRoom 0 1 NameEquals Autoscorer Leiur
+        PlaceOnStage false true true false
+        UntilEndOfOpponentsTurn
+        GainLevel 1
      }
 }
 Text Auto: [Put a card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Autoscorer Leiur" in your waiting room, place it into any position on your stage, and this card gets +1 level until the end of your opponent's next turn.
@@ -1254,11 +1242,8 @@ Effect:
         {
             Effect:
             {
-                If LocationContains Memory 1 NameEquals Kirika, Holy Chant
-                {
-                    SearchLocationForTargets Memory 1 1 NameEquals Kirika, Holy Chant
-                    MoveCard Hand
-                }
+                SearchLocationForTargets Memory 1 1 NameEquals Kirika, Holy Chant
+                MoveCard Hand
             }
         }
     }
@@ -1296,11 +1281,8 @@ Effect:
         {
             Effect:
             {
-                If LocationContains Memory 1 NameEquals Shirabe, Holy Chant
-                {
-                    SearchLocationForTargets Memory 1 1 NameEquals Shirabe, Holy Chant
-                    MoveCard Hand
-                }
+                SearchLocationForTargets Memory 1 1 NameEquals Shirabe, Holy Chant
+                MoveCard Hand
             }
         }
     }
@@ -1756,11 +1738,8 @@ Auto: OnSpecificClimaxPlay HORNET PISTOLS
 {
     PayCost RestSelf
     {
-        If LocationContains WaitingRoom 1 HasTrait Music && IsCharacter
-        {
-            SearchLocationForTargets WaitingRoom 1 1 HasTrait Music && IsCharacter
-            MoveCard Stock
-        }
+        SearchLocationForTargets WaitingRoom 1 1 HasTrait Music && IsCharacter
+        MoveCard Stock
     }
 }
 Text Auto: CxCombo [Rest this card] When "HORNET PISTOLS" is placed to your climax area, you may pay the cost. If you do, choose a «Music» character in your waiting room and put it to your stock.
@@ -1924,11 +1903,8 @@ Effect:
         {
             Effect:
             {
-                If LocationContains Memory 1 NameEquals Chris, Holy Chant
-                {
-                    SearchLocationForTargets Memory 1 1 NameEquals Chris, Holy Chant
-                    MoveCard Hand
-                }
+                SearchLocationForTargets Memory 1 1 NameEquals Chris, Holy Chant
+                MoveCard Hand
             }
         }
     }
@@ -1966,11 +1942,8 @@ Effect:
         {
             Effect:
             {
-                If LocationContains Memory 1 NameEquals Maria, Holy Chant
-                {
-                    SearchLocationForTargets Memory 1 1 NameEquals Maria, Holy Chant
-                    MoveCard Hand
-                }
+                SearchLocationForTargets Memory 1 1 NameEquals Maria, Holy Chant
+                MoveCard Hand
             }
         }
     }
@@ -2365,11 +2338,8 @@ Effect:
         {
             Effect:
             {
-                If LocationContains Memory 1 NameEquals Tsubasa, Holy Chant
-                {
-                    SearchLocationForTargets Memory 1 1 NameEquals Tsubasa, Holy Chant
-                    MoveCard Hand
-                }
+                SearchLocationForTargets Memory 1 1 NameEquals Tsubasa, Holy Chant
+                MoveCard Hand
             }
         }
     }
