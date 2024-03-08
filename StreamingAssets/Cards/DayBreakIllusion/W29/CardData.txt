@@ -1374,7 +1374,7 @@ Trait2 Weapon
 *Healer
 Act: Discard 1 Any
 {
-    *GiveCharacterPower(1500,Tarot)
+    *GiveOtherCharacterPower(1500,Tarot)
     TargetSelf
     GainPower 1500
 }
