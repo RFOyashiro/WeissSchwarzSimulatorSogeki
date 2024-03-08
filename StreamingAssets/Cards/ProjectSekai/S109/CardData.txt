@@ -1836,7 +1836,8 @@ Trait2 Virtual Singer
 Trait3 Vivid BAD SQUAD
 Auto: OnAttack
 {
-    SetXToNumberOfCharacters InLocation OpponentStage
+    TargetLocation OpponentStage
+    SetXValue TargetCount
     MultiplyXValue 2000
     GainPower X
 }
