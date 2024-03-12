@@ -1121,8 +1121,11 @@ Auto: OnAttack
                             Question_Obvious Put the top 3 card of your opponent's deck in their clock ?
                             If Yes
                             {
-                                TargetTop OpponentDeck 3
-                                MoveCard OpponentClock
+                                Repeat 3
+                                {
+                                    TargetTop OpponentDeck 1
+                                    MoveCard OpponentClock
+                                }
                             }
                         }
                     }
