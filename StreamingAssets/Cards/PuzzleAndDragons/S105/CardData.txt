@@ -1621,9 +1621,12 @@ Auto: StartAttackPhase
 Text Auto: CxCombo EXPERIENCE [Put a "Flaming Wonderbloom Empress, Echidna - Sara" from your climax area in the waiting room] At the beginning of your attack phase, if there is a 'Ruka & Mitsuki, Water Shrine Beast Princess' in your level, you may pay the cost. If you do, stand this card, and your opponent puts the top 10 cards of their deck in the waiting room.
 Auto: OnReverseOpponent
 {
-    PayCost 1
+    If MyTurn
     {
-        Heal
+        PayCost 1
+        {
+            Heal
+        }
     }
 }
 Text Auto: [(1)] During your turn, when this card's battle opponent becomes reverse, you may pay the cost. If you do, put the top card of your clock in the waiting room.
@@ -1891,7 +1894,11 @@ Trait1 Demon
 Trait2 God
 Auto: OnPlay
 {
-    *ExchangeCardInLevelWithWaitingRoom(Any, Any)
+    Question Exchange a card of your level with a card in waiting room ?
+    If Yes
+    {
+        *ExchangeCardInLevelWithWaitingRoom(Any, Any)
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose a card in your level and a card in your waiting room and swap them.
 Auto: OnClimaxPlay 
