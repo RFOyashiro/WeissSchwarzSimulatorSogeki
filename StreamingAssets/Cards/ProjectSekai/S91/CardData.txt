@@ -1514,31 +1514,26 @@ Cont: GiveSelf
     NarrowTargets IsColor Yellow && Not FaceDown
     If HasTarget
     {
-        TargetSelf
         GainColor Yellow
     }
     LoadTargets
     NarrowTargets IsColor Green && Not FaceDown
     If HasTarget
     {
-        TargetSelf
         GainColor Green
     }
     LoadTargets
     NarrowTargets IsColor Red && Not FaceDown
     If HasTarget
     {
-        TargetSelf
         GainColor Red
     }
     LoadTargets
     NarrowTargets IsColor Blue && Not FaceDown
     If HasTarget
     {
-        TargetSelf
         GainColor Blue
     }
-    LoadTargets
 }
 Text Cont: This gets all colors of face-up markers underneath this card.
 Auto: OnPlay|OnPlacedOnStageFromWaitingRoom
@@ -1546,7 +1541,7 @@ Auto: OnPlay|OnPlacedOnStageFromWaitingRoom
     SearchLocationForTargets WaitingRoom 0 1 Any
     Marker_FaceUp
 }
-Text Auto: When this card is placed on the stage from your hand or waiting room, you may choose a card in your waiting room and put it face-up underneath this card as marker.
+Text Auto: When this card is placed on the stage from your hand or waiting room, choose up to 1 card in your waiting room and put it face-up underneath this card as a marker.
 EndCard
 
 Character: PJS/S91-073
