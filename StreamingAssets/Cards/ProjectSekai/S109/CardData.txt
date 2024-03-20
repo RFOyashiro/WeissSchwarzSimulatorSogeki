@@ -2575,3 +2575,31 @@ Climax: PJS/S109-111
 Name Holding a Stray Hand
 *GateClimax
 EndCard
+
+Character: PJS/S109-P01
+Name Cupid Friendship, Kagamine Rin
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Virtual Singer
+Trait3 Wonderlands × Showtime
+*OnPlayReorderTop2
+Auto: OnAttack
+{
+    If LocationContainsOrLess Backstage 0 Other
+    {
+        Question Put the top card of your deck into the waiting room?
+        If Yes
+        {
+            Mill 1
+            IfTarget IsCharacter && Compare TargetCardsLevel 0 OrLess && InLocation WaitingRoom
+            {
+                PlaceOnStage False False True False
+            }
+        }
+    }
+}
+Text Auto: When this card attacks, if you have no other characters in backstage, you may put the top card of your deck into the waiting room, if it is a level 0 character put it on any position of your backstage.
