@@ -281,14 +281,17 @@ Auto: StartEncoreStep
     PayCost SendClimax WaitingRoom
     {
         SearchLocationForTargets Hand 0 1 NameEquals Hand in Hand
-        MoveCard Climax
-        TempLabel ClimaxPlayedFromEffect
+        If HasTarget
+        {
+            MoveCard Climax
+            TriggerCustomEvent HandInHandClimaxPlayedFromEffect
+        }
     }
 }
 Text Auto: CxCombo [Put 1 climax from your climax area in the waiting room] At the beginning of encore step, you may pay the cost. If you do, choose up to 1 "Hand in Hand" in your hand and put it in your climax area.
-Auto: OnSpecificClimaxPlay Hand in Hand
+Auto: OnCustomEvent HandInHandClimaxPlayedFromEffect
 {
-    If HasTempLabel ClimaxPlayedFromEffect && InLocation CenterStage
+    If InLocation CenterStage
     {
         PayCost 1 Discard 1 Any
         {
