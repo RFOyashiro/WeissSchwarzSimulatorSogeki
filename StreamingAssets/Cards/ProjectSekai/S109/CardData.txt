@@ -2603,3 +2603,4 @@ Auto: OnAttack
     }
 }
 Text Auto: When this card attacks, if you have no other characters in backstage, you may put the top card of your deck into the waiting room, if it is a level 0 character put it on any position of your backstage.
+EndCard
