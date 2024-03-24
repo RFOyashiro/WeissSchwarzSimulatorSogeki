@@ -827,6 +827,7 @@ Auto: OnAttack
         Reveal
         IfTarget Compare ThatCardsLevel 1 OrMore
         {
+            TargetSelf
             GainSpecialEffect DoubleTrigger
         }
     }
@@ -1002,7 +1003,7 @@ Cont: GiveSelf
         {
             Act: 1 Discard 1 Any SendSelf WaitingRoom
             {
-                SearchLocationForTargets Hand NameEquals Alexander the Commander
+                SearchLocationForTargets Hand 0 1 NameEquals Alexander the Commander
                 Change
             }
             Text Act: [(1) Discard a card from your hand into waiting room, put this card into waiting room] Choose up to 1 "Alexander the Commander" in your hand and put that card in the position this card was in.
