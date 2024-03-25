@@ -525,7 +525,7 @@ Trait3 Physical
 Auto: OnPlay
 {
     TargetLocation Hand
-	ChooseCardFromTargets 0 1 Any
+	ChooseCardsFromTargets 0 1 Any
 	MoveCard Stock
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose a card in your hand and put it in your stock.
@@ -750,6 +750,7 @@ Auto: OnEndOfAttack
         }
     }
 }
+TimesPerTurn 1
 Text Auto: CxCombo This ability activates up to once per turn. At the end of this card's attack, if "Mega Awoken Goddess of power, Kali" is in your climax area, choose 1 of the following 2 effects and perform it. "Choose up to 2 characters in your waiting room and return them to your hand, choose up to 1 level 1 or lower characters in your waiting room and put it in your stock, and this card gets +1000 power until the end of your opponent's next turn." "[(1) Put 1 card from your hand to the waiting room] If you have 2 or more other characters, you may pay the cost. If you do, stand this card."
 EndCard
 
