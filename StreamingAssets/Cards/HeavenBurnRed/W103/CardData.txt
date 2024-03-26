@@ -2158,7 +2158,7 @@ Cont: GiveSelf
     {
         GainEffect
         {
-            Act: Discard 1 Any SendSelf WaitingRoom
+            Act: Discard 1 Any &&& SendSelf WaitingRoom
             {
                 SearchLocationForTargets Hand 1 1 NameEquals Kokoro Inspire, Erika Aoi
                 If HasTarget
@@ -2201,7 +2201,7 @@ Trait2 Unit 31B
 Auto: OnPlay
 {
 	TargetLocation Hand
-	ChooseCardFromTargets 0 1 Any
+	ChooseCardsFromTargets 0 1 Any
 	MoveCard Stock
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose 1 card in your hand, and put it into your stock.
