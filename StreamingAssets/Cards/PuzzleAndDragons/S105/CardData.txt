@@ -562,9 +562,15 @@ Trait1 God
 Trait2 Healer
 Cont: GiveSelf
 {
-    If MyTurn && StageContains 2 Other && IsColor Yellow || Other && HasTrait God
+    If MyTurn
     {
-        GainPower 2000
+        TargetLocation Stage
+        NarrowTargets Other
+        NarrowTargets HasTrait God || ColorIs Yellow
+        If Compare TargetCount 2 OrMore
+        {
+            GainPower 2000
+        }
     }
 }
 Text Cont: During your turn, if the number of other Yellow or «God» characters you have is 2 or more, this card gets +2000 power.
