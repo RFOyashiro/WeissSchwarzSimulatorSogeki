@@ -2671,7 +2671,7 @@ Auto: OnPlay
 {
     PayCost 1 Clock
     {
-        SearchLocationForTargets 0 1 Deck Compare ThatCardsCost 0 OrLess && Compare ThatCardsLevel MyLevel OrLess && HasTrait Lily
+        SearchLocationForTargets Deck 0 1 Compare ThatCardsCost 0 OrLess && Compare ThatCardsLevel MyLevel OrLess && HasTrait Lily
         If HasTarget
         {
             PlaceOnStage false true true false
