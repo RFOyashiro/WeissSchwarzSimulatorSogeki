@@ -1008,7 +1008,7 @@ Cont: GiveSelf
     {
         GainEffect
         {
-            Act: 1 Discard 1 Any SendSelf WaitingRoom
+            Act: 1 Discard 1 Any &&& SendSelf WaitingRoom
             {
                 SearchLocationForTargets Hand 0 1 NameEquals Alexander the Commander
                 Change

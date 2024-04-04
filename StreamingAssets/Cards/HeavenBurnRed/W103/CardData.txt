@@ -1215,7 +1215,7 @@ Effect:
     ShuffleLocation Deck
     TriggerCustomEvent PlayEmaEvent
 }
-Text Search your deck for up to 2 characters with either "Ichiko", "Niina", "Minori", "Yotsuha", "Isuzu", or "Muua" in its card name while also having different card names from each other, reveal them, your opponent chooses 1 of them and put it in the waiting room, put the rest in your hand, and shuffle your deck.
+Text Search your deck for up to 2 characters with either "Ichiko", "Niina", "Minori", "Yotsuha", "Isuzu", or "Muua" in its card name with different names, reveal them, your opponent chooses 1 card among them, put it in the waiting room, put the rest in your hand, and shuffle your deck.
 EndCard
 
 Climax: HBR/W103-048
