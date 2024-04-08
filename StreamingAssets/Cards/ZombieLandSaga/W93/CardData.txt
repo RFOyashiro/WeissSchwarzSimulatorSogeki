@@ -524,7 +524,7 @@ Effect:
     SearchLocationForTargets WaitingRoom 1 1 IsCharacter && Compare ThatCardsLevel X OrLess
     MoveCard Hand
 }
-Text BRAINSTORM Flip over 4 cards from the top of your deck and put them into the waiting room. Choose a level X or lower «Saga» character in your waiting room and return it to your hand. X = number of «Saga» character revealed this way.
+Text BRAINSTORM Flip over 3 cards from the top of your deck and put them into the waiting room. Choose a level X or lower «Saga» character in your waiting room and return it to your hand. X equals number of «Saga» character revealed this way.
 EndCard
 
 Event: ZLS/W93-020
