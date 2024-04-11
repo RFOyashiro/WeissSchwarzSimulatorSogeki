@@ -155,7 +155,7 @@ Trait2 Gran Eple
 Auto: OnAttack
 {
     TargetLocation Stage
-    NarrowTargets NameContains Kanaho
+    NarrowTargets NameContains 叶星
     ChooseCharacterFromTargets Choose a character with "Kanaho" in its card name to gain +1000 power.
     GainPower 1000
 }
@@ -398,7 +398,7 @@ Trait2 Gran Eple
 Combo Lightning-Speed Matchup
 Cont: GiveSelf
 {
-    If StageContains 2 Other && NameContains Kanaho|Takane
+    If StageContains 2 Other && NameContains 叶星|高嶺
     {
         GainPower 1000
     }
@@ -525,7 +525,7 @@ Trait1 Lily
 Trait2 Gran Eple
 Cont: GiveSelf
 {
-	If StageContains 1 Other && NameContains Kanaho
+	If StageContains 1 Other && NameContains 叶星
 	{
 		GainPower 1500
 	}
@@ -554,7 +554,7 @@ Auto: OnPlay
 {
     TargetTop OpponentDeck 1
     Reveal
-    IfTarget NameContains Unicorn
+    IfTarget NameContains ユニコーン
     {
         TargetSelf
         GainPower 10000
@@ -606,7 +606,7 @@ Trait1 Lily
 Trait2 Gran Eple
 Auto: OnAttack
 {
-    If StageContains 2 Other && NameContains Kureha|Akari|Himeka
+    If StageContains 2 Other && NameContains 紅巴|灯莉|姫歌
     {
         *GiveCharacterPower(2000,Any)
     }
@@ -626,7 +626,7 @@ Trait1 Lily
 Trait2 Gran Eple
 Auto: OnAttack
 {
-    If StageContains 1 Other && NameContains Kureha|Akari|Himeka
+    If StageContains 1 Other && NameContains 紅巴|灯莉|姫歌
     {
         GainPower 3000
     }
@@ -1614,7 +1614,7 @@ Text Auto: CxCombo [Return this card to hand] When "Angsty Age" is placed on you
 Act: RestSelf
 {
     TargetLocation Stage
-    NarrowTargets NameContains Riri|Kaede
+    NarrowTargets NameContains 梨璃|楓
     ChooseCharacterFromTargets Choose character to give +500 power.
     UntilEndOfOpponentsTurn
     GainPower 500
@@ -2050,7 +2050,7 @@ Effect:
 {
     PayCost Discard 2 Any
     {
-        SearchLocationForTargets WaitingRoom 0 4 NameContains Riri && IsCharacter && Compare ThatCardsCost 0 OrLess
+        SearchLocationForTargets WaitingRoom 0 4 NameContains 梨璃 && IsCharacter && Compare ThatCardsCost 0 OrLess
         PlaceOnStage false true true false
     }
     *GiveCharacterPower(3000,Any)
@@ -2556,7 +2556,7 @@ Trait1 Lily
 Trait2 Hervor
 Cont: GiveSelf
 {
-    If StageContains 1 Other && NameContains Renka|Yo
+    If StageContains 1 Other && NameContains 恋花|瑤
     {
         GainLevel 1
         GainPower 1000
@@ -2695,7 +2695,7 @@ Text Cont: All your other ""Lily of the Season" Ran" get +1000 power.
 Auto: StartAttackPhase
 {
     TargetLocation Stage
-    NarrowTargets NameContains Ran
+    NarrowTargets NameContains 藍
     ChooseCharacterFromTargets Choose a character to give +1500 power.
     GainPower 1500
 }
@@ -2751,7 +2751,7 @@ Trait1 Lily
 Trait2 Hervor
 Cont: GiveSelf
 {
-    If Not StageContains 1 Other && NameContains Kazuha|Renka|Yo|Chikaru
+    If Not StageContains 1 Other && NameContains 一葉|恋花|瑤|千香瑠
     {
         GainSpecialEffect CannotStand
     }
@@ -2977,7 +2977,7 @@ Trait1 Lily
 Trait2 Hitotsuyanagi Corps
 Auto: OnAttack
 {
-	If Not StageContains 1 Other && NameContains Riri
+	If Not StageContains 1 Other && NameContains 梨璃
 	{
 		TargetTop Deck 1
 		MoveCard Clock
@@ -3274,7 +3274,7 @@ Soul 1
 Trait1 Lily
 Cont: GiveAll
 {
-    If Other && NameContains "Can't Stop Fruity!"|"Lily of the Season"
+    If Other && NameContains “きゃんとすとっぷ・ふるーてぃ！”|“旬なリリィ”
     {
         GainPower 500
     }
