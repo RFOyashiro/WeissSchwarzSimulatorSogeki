@@ -2200,7 +2200,7 @@ Effect:
         Burn 4
         Mill 9
         NarrowTargets IsCharacter
-        If TargetsContainsSeparateCardsThatMeetConditions NameContains Riri, NameContains Yuyu, NameContains Kaede, NameContains Fumi, NameContains Tazusa, NameContains Mai, NameContains Shenlin, NameContains Yujia, NameContains Miriam
+        If TargetsContainsSeparateCardsThatMeetConditions NameContains 梨璃, NameContains 夢結, NameContains 楓, NameContains 二水, NameContains 鶴紗, NameContains 梅, NameContains 神琳, NameContains 雨嘉, NameContains ミリアム
         {
             Repeat 4
             {
@@ -2554,7 +2554,7 @@ Trait1 Lily
 Trait2 Hitotsuyanagi Corps
 Auto: OnAttack
 {
-	If Not StageContains 1 Other && NameContains Riri
+	If Not StageContains 1 Other && NameContains 梨璃
 	{
 		TargetTop Deck 1
 		MoveCard Clock
@@ -2614,7 +2614,7 @@ Auto: StartOpponentAttackPhase
     PayCost 1
     {
         TargetLocation Stage
-        NarrowTargets Other && NameContains Yuyu && CanMove
+        NarrowTargets Other && NameContains 夢結 && CanMove
         ChooseCharacterFromTargets Choose a character to swap with this card.
         If HasTarget
         {
@@ -3315,7 +3315,7 @@ Trait2 Hitotsuyanagi Corps
 EndCard
 
 Climax: ALL/S76-P01
-Name Assault Lily BOUQUE
+Name Assault Lily BOUQUET
 Color R
 *2SoulClimax
 EndCard
