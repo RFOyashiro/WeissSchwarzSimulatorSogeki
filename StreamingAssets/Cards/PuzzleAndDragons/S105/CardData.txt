@@ -1017,7 +1017,7 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont: If you are level 2 or higher, this card gets the following ability. "Act:[(1) Discard a card from your hand into waiting room, put this card into waiting room] Choose up to 1 "Alexander the Commander" in your hand and put that card in the position this card was in.""
+Text Cont: If you are level 2 or higher, this card gets the following ability. "Act:[(1) Discard a card from your hand into waiting room, put this card into waiting room] Choose up to 1 "Alexander the Commander" in your hand and put that card in the position this card was in."
 *Act1RestSelfSalvageBrainstorm(Any)
 EndCard
 
