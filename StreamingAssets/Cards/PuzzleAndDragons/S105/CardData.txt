@@ -1081,7 +1081,8 @@ Cont: GiveSelf
 {
     If MyTurn
     {
-        SetXToNumberOfCharacters InLocation OpponentBackstage
+        TargetLocation OpponentBackstage
+        SetXValue TargetCount
         MultiplyXValue 3000
         GainPower X
     }
@@ -2142,7 +2143,8 @@ Trait2 Demon
 *EarlyPlay2OrLessClimax
 Cont: GiveSelf
 {
-    SetXToNumberOfCharacters InLocation OpponentBackstage
+    TargetLocation OpponentBackstage
+    SetXValue TargetCount
     MultiplyXValue 1500
     GainPower X
 }
@@ -2549,7 +2551,8 @@ Trait1 Dragon
 Trait2 Demon
 Cont: GiveSelf
 {
-    SetXToNumberOfCharacters InLocation OpponentBackstage
+    TargetLocation OpponentBackstage
+    SetXValue TargetCount
     MultiplyXValue 2000
     GainPower X
 }
@@ -2864,7 +2867,8 @@ Trait2 Healer
 Trait3 Physical
 Cont: GiveSelf
 {
-    SetXToNumberOfCharacters InLocation OpponentBackstage
+    TargetLocation OpponentBackstage
+    SetXValue TargetCount
     MultiplyXValue 2500
     GainPower X
 }
