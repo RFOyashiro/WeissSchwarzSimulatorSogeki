@@ -49,7 +49,7 @@ Trait1 Weapon
 Auto: OnPlay
 {
     TargetLocation Stage
-    NarrowTargets NameContains Yuu
+    NarrowTargets NameContains ユウ
     If Not HasTarget
     {
         TargetTop Deck 1
@@ -146,7 +146,7 @@ Cont: GiveSelf
         {
             Act: SendSelf WaitingRoom
             {
-                SearchLocationForTargets WaitingRoom 1 1 NameContains "Dead Scythe" Dead Master
+                SearchLocationForTargets WaitingRoom 1 1 NameEquals "Dead Scythe" Dead Master
                 If HasTarget
                 {
                     Change
@@ -207,7 +207,7 @@ Trait1 Weapon
 Auto: OnPlay
 {
     TargetLocation Stage
-    NarrowTargets NameContains Yomi
+    NarrowTargets NameContains ヨミ
     If Not HasTarget
     {
         TargetTop Deck 1
