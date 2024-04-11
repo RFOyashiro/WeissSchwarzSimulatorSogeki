@@ -862,8 +862,13 @@ Auto: OnSpecificClimaxPlay A Single Red Leaf
     {
         SearchLocationForTargets WaitingRoom 0 1 Compare ThatCardsLevel 0 OrLess && HasTrait Music
         PlaceOnStage false true true false
-        TargetSelf
-        MoveCard Memory
+        ScheduleEffectForTargets EndOfMyTurn
+        {
+            Effect:
+            {
+                MoveCard Memory
+            }
+        }
     }
 }
 Text Auto: CxCombo When "A Single Red Leaf" is placed to your climax area, if this card is in the center stage, choose up to 1 «Music» character in your waiting room whose cost is 0 or lower and put it in any position on the stage, and at the end of the turn, send that card to memory.
