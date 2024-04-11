@@ -237,7 +237,7 @@ Auto: OnPlay
 {
     PayCost 1
     {
-        TargetTop Deck 3
+        TargetTop OpponentDeck 3
 		If Compare TargetCount 2 OrMore
 		{
 			Reorder
@@ -679,7 +679,7 @@ Soul 1
 Trait1 Sports
 Cont: GiveAll
 {
-    If StageContainsOrLess 1 Other && Other
+    If StageContainsOrLess 1 Other &&& Other
     {
         GainPower 1500
     }
