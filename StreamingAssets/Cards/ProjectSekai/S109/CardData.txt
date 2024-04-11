@@ -2063,21 +2063,28 @@ Auto: OnPlay
 {
 	PayCost Send 1 WaitingRoom Other
 	{
+		Message Search your deck for up to 1 climax.
 		SearchLocationForTargets Deck 0 1 IsClimax
-        If HasTarget
-        {
-            RevealTargets
-            SaveTargets
-            SearchLocationForTargets Hand 1 1 IsClimax
-            If HasTarget
-            {
-                RevealTargets
-                LoadTargets
-                AddSavedToCurrentTargets
-                Exchange
-            }
-        }
-        ShuffleLocation Deck
+		If HasTarget
+		{
+			RevealTargets
+			SaveTargets
+			Message Choose a climax in your hand.
+			SearchLocationForTargets Hand 1 1 IsClimax
+			If HasTarget
+			{
+				RevealTargets
+				MoveCard Deck
+				LoadTargets
+				MoveCard Hand
+			}
+			Else
+			{
+				MoveCard Deck
+				ShuffleLocation Deck
+			}
+		}
+		ShuffleLocation Deck
 	}
 }
 Text Auto: [Put 1 other «Music» character from your stage into your waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 climax, reveal it, choose 1 climax in your hand, reveal it, swap them and shuffle your deck.
