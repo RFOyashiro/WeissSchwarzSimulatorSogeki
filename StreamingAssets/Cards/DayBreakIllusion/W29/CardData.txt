@@ -315,7 +315,7 @@ Trait2 Fan
 Act: RestSelf
 {
     TargetLocation Stage
-    NarrowTargets NameContains Ginka
+    NarrowTargets NameContains ぎんか
     ChooseCharacterFromTargets Choose a character to give +1500 power.
     GainPower 1500
 }
@@ -1012,7 +1012,7 @@ Trait1 Tarot
 Trait2 Fortune Reading
 Cont: GiveAll
 {
-    If NameContains Akari
+    If NameContains あかり
     {
         GainPower 500
     }
