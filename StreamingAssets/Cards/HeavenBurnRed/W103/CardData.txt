@@ -1203,7 +1203,7 @@ Cost 1
 Counter
 Effect: 
 {
-    SearchLocationForTargets Deck 0 2 IsCharacter && NameContains Ichiko|Niina|Minori|Yotsuha|Isuzu|Muua && WithDifferentNames
+    SearchLocationForTargets Deck 0 2 IsCharacter && NameContains 一千子|二以奈|三野里|四ツ葉|五十鈴|六宇亜 && WithDifferentNames
     SaveTargets
     RevealTargets
     Message Choose a card to put into your opponent's waiting room.
