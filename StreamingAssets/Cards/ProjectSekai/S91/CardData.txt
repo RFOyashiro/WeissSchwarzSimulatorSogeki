@@ -4429,3 +4429,95 @@ Trait2 Wonderlands × Showtime
 *PowerOnMyTurn(1000)
 *FreeRunner
 EndCard
+
+Character: PJS/S91-P30
+Name Teammate/Hagu
+Color G
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Music
+Trait2 MORE MORE JUMP!
+*GiveAllOpponentsEncore2
+Auto: StartOpponentAttackPhase
+{
+    TargetLocation OpponentCenterStage
+    If Compare TargetCount 2 OrLess && Compare TargetCount 1 OrMore
+    {
+        ChooseCharacterFromTargets_Optional Choose 1 opponent's character to move to an open position of their center stage.
+        IfTarget CanMove
+        {
+            MoveToOpenPosition True False
+        }
+    }
+}
+Text Auto: At the beginning of your opponent's attack phase, you may choose 1 character in your opponent's center stage and move that card to an open position of their center stage.
+EndCard
+
+Character: PJS/S91-P31
+Name Theater/25-ji Passion
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 25-ji, Nightcord de.
+*RestGivePower(2500,Any)
+EndCard
+
+Character: PJS/S91-P32
+Name Connect the Stars/Purpose
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Leo/need
+Auto: StartOpponentAttackPhase
+{
+	If LocationContainsOrLess CenterStage 2 Any
+	{
+		TargetFacing
+		If HasTarget
+		{
+			TargetSelf
+			Question Move this card to another position?
+			If Yes
+			{
+				MoveToOpenPosition True False
+			}
+		}
+	}
+}
+Text Auto: At the beginning of your opponent's attack phase, if there is a character facing this card, you may move this card to an open position of your center stage.
+EndCard
+
+Character: PJS/S91-P33
+Name Kirapipi★Kirapika/Filament Fever
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Wonderlands × Showtime
+*OnPlayGainPower(1500)
+Auto: StartOpponentDrawPhase
+{
+	TargetTop Deck 1
+	Reveal
+	IfTarget Compare ThatCardsLevel 1 OrMore
+	{
+		Question_Obvious Return this to your hand?
+		If Yes
+		{
+			TargetSelf
+			MoveCard Hand
+		}
+	}
+}
+Text Auto: At the beginning of your opponent's draw phase, reveal the top card of your deck. If that card level 1 or higher, you may return this card to your hand.
+EndCard
