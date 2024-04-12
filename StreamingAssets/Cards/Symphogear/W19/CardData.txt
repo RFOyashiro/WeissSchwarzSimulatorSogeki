@@ -124,7 +124,7 @@ Auto: OnAttack
             RevealUpTo Deck 2
             AIChoice AddToHand
             Message Choose up to 2 cards with "Hibiki" in it's card name and add it to your hand.
-            ChooseCardsFromTargets 0 2 NameContains "Hibiki"
+            ChooseCardsFromTargets 0 2 NameContains 響
             RevealTargets
             MoveCard Hand
             PutTheRestIntoTheWaitingRoom
@@ -353,7 +353,7 @@ Level 2
 Cost 2
 Effect:
 {
-	PayCost Send 1 WaitingRoom NameContains Hibiki && Compare ThatCardsLevel 2 OrMore
+	PayCost Send 1 WaitingRoom NameContains 響 && Compare ThatCardsLevel 2 OrMore
     {
 		Message Choose a "Hibiki Tachibana" in your waiting room and put it in any position on your stage
 		SearchLocationForTargets WaitingRoom 0 1 NameEquals Hibiki Tachibana
@@ -371,7 +371,7 @@ Level 1
 Cost 1
 Effect:
 {
-	PayCost Rest 2 NameContains Hibiki
+	PayCost Rest 2 NameContains 響
 	{
 		Message Choose up to 2 «Music» characters.
 		SearchLocationForTargets Deck 0 2 HasTrait Music
@@ -514,7 +514,7 @@ Trait2 Weapon
 Combo Warmth Forgotten
 Auto: OnAttack
 {
-	If Climax Warmth Forgotten &&& StageContains 4 NameContains Chris && Other
+	If Climax Warmth Forgotten &&& StageContains 4 NameContains クリス && Other
 	{
 		TargetSelf
 		UntilEndOfOpponentsTurn
@@ -755,7 +755,7 @@ Effect:
 Text Put this card in your memory
 Cont: Memory
 {
-	If NameContains Chris|Fine
+	If NameContains クリス|フィーネ
 	{
 		GainPower 500
 	}
@@ -771,7 +771,7 @@ Cost 3
 Counter
 Effect:
 {
-	PayCost Send 1 WaitingRoom NameContains Chris && Compare ThatCardsLevel 2 OrMore
+	PayCost Send 1 WaitingRoom NameContains クリス && Compare ThatCardsLevel 2 OrMore
     {
 		Message Choose a "Chris Yukine" in your waiting room and put it in on any position on your stage.
 		SearchLocationForTargets WaitingRoom 0 1 NameEquals Chris Yukine
@@ -786,7 +786,7 @@ Name Solomon's Cane
 Color G
 Level 1
 Cost 3
-Requirement StageContains 1 NameContains Chris|Fine
+Requirement StageContains 1 NameContains クリス|フィーネ
 Effect:
 {
 	Message Choose up to 3 "Noise (Episode 4)".
@@ -829,7 +829,7 @@ Auto: OnSentFromStageToWaitingRoom
 {
 	PayCost 2
 	{
-		SearchWaitingRoom NameContains Tsubasa && IsCharacter
+		SearchWaitingRoom NameContains 翼 && IsCharacter
 	}
 }
 Text Auto: [(2)] When this card is placed in your waiting room from stage, you may pay the cost. If you do, choose a character with "Tsubasa" in it's card name in your waiting room and return it to your hand.
@@ -880,7 +880,7 @@ Power 1500
 Trait1 Music
 Cont: GiveAll
 {
-	If NameContains Hibiki
+	If NameContains 響
 	{
 		GainPower 500
 	}
@@ -1299,7 +1299,7 @@ Trait2 Weapon
 Combo We Were Two Back Then
 Auto: OnAttack
 {
-	If Climax We Were Two Back Then && StageContains 4 Other && NameContains Tsubasa
+	If Climax We Were Two Back Then && StageContains 4 Other && NameContains 翼
 	{
 		*OptionalDraw
 	}
@@ -1626,7 +1626,7 @@ Level 2
 Cost 2
 Effect:
 {
-	PayCost Send 1 WaitingRoom NameContains Tsubasa && Compare ThatCardsLevel 2 OrMore
+	PayCost Send 1 WaitingRoom NameContains 翼 && Compare ThatCardsLevel 2 OrMore
     {
 		Message Choose a "Tsubasa Kazanari" in your waiting room and put it on any position on your stage
 		SearchLocationForTargets Hand 0 1 NameEquals Tsubasa Kazanari
@@ -1777,6 +1777,156 @@ Auto: OnAttack
 	}
 }
 Text Auto: [(1)] When this card attacks, you may pay the cost. If you do, choose 1 of your «Music> characters and that character gains +1000 power until the end of your opponent's turn.
+EndCard
+
+Character: SG/W19-T01
+Name Normal World, Hibiki
+Color Y
+Level 0
+Cost 0
+Power 1000
+Trait1 Music
+*500Assist
+EndCard
+
+Character: SG/W19-T02
+Name Important Person of Interest, Hibiki
+Color Y
+Level 0
+Cost 0
+Power 2500
+Trait1 Music
+*PowerOnMyTurn(1000)
+EndCard
+
+Character: SG/W19-T03
+Name First Live Concert, Hibiki
+Color Y
+Level 0
+Cost 0
+Power 3000
+Trait1 Music
+EndCard
+
+Character: SG/W19-T04
+Name Beats of Awakening, Hibiki
+Color Y
+Level 1
+Cost 0
+Power 4500
+Trait1 Music
+*OnAttackGiveOtherPower(1000,Music)
+*HandEncore
+EndCard
+
+Character: SG/W19-T05
+Name Doing Her Best, Hibiki
+Color Y
+Level 1
+Cost 1
+Power 7000
+Trait1 Music
+EndCard
+
+Character: SG/W19-T06
+Name Easily Ignored, Hibiki
+Color Y
+Level 2
+Cost 1
+Power 8000
+Trigger Soul
+Trait1 Music
+Cont: GiveSelf
+{
+	If StageContains 1 Other && Compare ThatCardsLevel 3 OrMore
+	{
+		GainPower 1000
+	}
+}
+Text Cont: If you have another level 3 or higher character, this card gets +1000 power.
+EndCard
+
+Climax: SG/W19-T07
+Name I Have Something to Protect!
+Color Y
+*WindClimax
+EndCard
+
+Character: SG/W19-T08
+Name Cold Personality, Tsubasa
+Color B
+Level 0
+Cost 0
+Power 3000
+Trait1 Music
+Trait2 Weapon
+EndCard
+
+Character: SG/W19-T09
+Name Thinking of Kanade, Tsubasa
+Color B
+Level 1
+Cost 0
+Power 5500
+Trait1 Music
+Trait2 Weapon
+EndCard
+
+Character: SG/W19-T10
+Name Facing Noise, Tsubasa
+Color B
+Level 1
+Cost 1
+Power 2000
+Trigger Soul
+Trait1 Music
+Trait2 Weapon
+Backup 2000
+EndCard
+
+Character: SG/W19-T11
+Name Way of the Sentinel, Tsubasa
+Color B
+Level 1
+Cost 1
+Power 6000
+Trait1 Music
+Trait2 Weapon
+Combo The Blue Flash
+Auto: OnAttack
+{
+	If Climax The Blue Flash
+	{
+		UntilEndOfOpponentsTurn
+		GainPower 1500
+	}
+}
+Text Auto: CxCombo When this card attacks, if "The Blue Flash" is in your climax area, this card gets +1500 power until end of your opponent's next turn.
+*HandEncore
+EndCard
+
+Character: SG/W19-T12
+Name "ZweiWing" Kanade & Tsubasa
+Color B
+Level 2
+Cost 2
+Power 9000
+Soul 2
+Trigger Soul
+Trait1 Music
+Trait2 Weapon
+EndCard
+
+Climax: SG/W19-T13
+Name We Were Two Back Then
+Color B
+*OldStockSoulClimax
+EndCard
+
+Climax: SG/W19-T14
+Name The Blue Flash
+Color B
+*DrawClimax
 EndCard
 
 Climax: SG/W19-106
