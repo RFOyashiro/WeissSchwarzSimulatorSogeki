@@ -2754,7 +2754,7 @@ Trait1 Landosol
 Trait2 Guild
 Cont: GiveSelf
 {
-    If Not StageContains 1 Other && NameContains Yuuki
+    If Not StageContains 1 Other && NameContains ユウキ
     {
         GainSpecialEffect CannotStand
     }
@@ -2762,7 +2762,7 @@ Cont: GiveSelf
 Text Cont: If you don't have another character with "Yuuki" in its card name, this card does not stand during your stand phase.
 Cont: GiveSelf
 {
-    If StageContains 1 Other && NameContains Yuuki
+    If StageContains 1 Other && NameContains ユウキ
     {
         GainPower 2500
         GainEffect
@@ -2774,7 +2774,7 @@ Cont: GiveSelf
 Text Cont: If you have another character with "Yuuki" in its card name, this card gets +2500 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
 Auto: OnReverseOpponent
 {
-    If MyTurn && StageContains 1 Other && NameContains Yuuki
+    If MyTurn && StageContains 1 Other && NameContains ユウキ
     {
         TargetFacing
         IfTarget OnStage
@@ -2888,7 +2888,7 @@ Name Entrusted Wish
 Color B
 Level 2
 Cost 0
-Requirement StageContains 1 NameContains Kokkoro
+Requirement StageContains 1 NameContains コッコロ
 Effect: 
 {
     MultipleChoiceQuestion Perform 1 of the following effects.\n1:Draw a card\n2:Choose up to 1 'Bond with Allies, Yuuki' in your waiting room and put it in any position on the stage, and that character gets +1000 power until end of turn."|1|2
@@ -2903,7 +2903,7 @@ Effect:
         GainPower 1000
     }
     TargetLocation Stage
-    NarrowTargets NameContains Yuuki && Not HasMarker
+    NarrowTargets NameContains ユウキ && Not HasMarker
     ChooseCharacterFromTargets Choose a character to put this card underneath it as marker.
     If HasTarget
     {
