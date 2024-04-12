@@ -34,7 +34,7 @@ Trait1 Music
 Trait2 Hero
 Cont: GiveAll
 {
-    If NameContains Underhanded
+    If NameContains 卑怯
     {
         GainEffect
         {
@@ -116,7 +116,7 @@ Trait2 Hero
 Auto: StartClimaxPhase
 {
     TargetLocation Stage
-    NarrowTargets NameContains Underhanded
+    NarrowTargets NameContains 卑怯
     ChooseCharacterFromTargets Choose a character to give +2000 power.
     GainPower 2000
 }
@@ -590,7 +590,7 @@ Trait1 Music
 Trait2 Hero
 Cont: GiveSelf
 {
-    If StageContains 2 Other && NameContains Underhanded
+    If StageContains 2 Other && NameContains 卑怯
     {
         GainSpecialEffect FreeSideAttack
     }
