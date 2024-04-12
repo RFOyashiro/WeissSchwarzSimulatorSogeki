@@ -64,7 +64,7 @@ Trait1 Music
 Auto: OnAttack
 {
 	TargetLocation Stage
-	NarrowTargets NameContains Hibiki
+	NarrowTargets NameContains 響
 	GainPower 500
 }
 Quick
@@ -120,7 +120,7 @@ Trait1 Music
 Combo Superb Song Combination Arts
 Auto: OnAttack
 {
-	If Climax Superb Song Combination Arts && StageContains 4 NameContains Hibiki && Other
+	If Climax Superb Song Combination Arts && StageContains 4 NameContains 響 && Other
 	{
 		TargetSelf
 		GainPower 3000
@@ -269,7 +269,7 @@ Trait1 Music
 *1500Assist
 Auto: OnPlay
 {
-	If StageContains 3 NameContains Hibiki && Other
+	If StageContains 3 NameContains 響 && Other
 	{
         Question_Obvious Put the top card of your deck in stock ?
         If Yes
@@ -422,7 +422,7 @@ Level 2
 Cost 1
 Effect: 
 {
-	PayCost Send 1 Clock NameContains Hibiki && Compare ThatCardsLevel 2 OrMore
+	PayCost Send 1 Clock NameContains 響 && Compare ThatCardsLevel 2 OrMore
     {
 		Message choose 1 '"Offensive Spear: Gungnir" Hibiki' in your waiting room and put it in any position on stage
 		SearchLocationForTargets WaitingRoom 1 1 NameEquals "Offensive Spear: Gungnir" Hibiki
@@ -507,7 +507,7 @@ Trait1 Music
 Trait2 Weapon
 Cont: GiveSelf
 {
-	If StageContains 1 NameContains Shirabe && Other
+	If StageContains 1 NameContains 調 && Other
 	{
 		GainPower 1500
 	}
@@ -526,7 +526,7 @@ Trait1 Music
 Trait2 Weapon
 Cont: GiveSelf
 {
-	If StageContains 1 NameContains Kirika && Other
+	If StageContains 1 NameContains 切歌 && Other
 	{
 		GainPower 1000
 		GainEffect
@@ -1116,7 +1116,7 @@ Trait2 Weapon
 Combo Red HOT BLAZE
 Auto: OnAttack
 {
-	If Climax Red HOT BLAZE && StageContains 4 NameContains Chris && Other
+	If Climax Red HOT BLAZE && StageContains 4 NameContains クリス && Other
 	{
 		SearchWaitingRoom IsCharacter
 		TargetSelf
@@ -1191,7 +1191,7 @@ Trait1 Music
 Trait2 Weapon
 Cont: GiveSelf
 {
-	If StageContains 3 Other && NameContains Chris
+	If StageContains 3 Other && NameContains クリス
 	{
 		GainPower 2000
 	}
@@ -1242,7 +1242,7 @@ Trait1 Music
 Auto: OnOtherAttacked
 {
 	TargetMyCharacterInBattle
-	IfTarget NameContains Maria
+	IfTarget NameContains マリア
 	{
 		PayCost SendSelf WaitingRoom
 		{
@@ -1356,7 +1356,7 @@ Level 2
 Cost 2
 Effect: 
 {
-	PayCost Send 1 WaitingRoom NameContains Chris && Compare ThatCardsLevel 2 OrMore
+	PayCost Send 1 WaitingRoom NameContains クリス && Compare ThatCardsLevel 2 OrMore
     {
 		Message Choose a ""Long Range Wide Area Attack" Chris" in your Waiting Room and put it in any Slot on the Stage.
 		SearchLocationForTargets Hand 0 1 NameEquals "Long Range Wide Area Attack" Chris
@@ -1522,7 +1522,7 @@ Power 1500
 Soul 1
 Cont: GiveAll
 {
-	If NameContains Hibiki && InLocation MiddleCenterStage
+	If NameContains 響 && InLocation MiddleCenterStage
 	{
 		GainPower 500
 	}
@@ -1542,7 +1542,7 @@ Trait1 Music
 Trait2 Weapon
 Auto: OnPlay
 {
-	If StageContains 2 Other && NameContains Tsubasa
+	If StageContains 2 Other && NameContains 翼
 	{
 		DrawCard
 		Discard 1 Any
@@ -1606,7 +1606,7 @@ Trait2 Weapon
 Combo Flash of the Cavalry Blade
 Auto: OnAttack
 {
-	If Climax Flash of the Cavalry Blade && StageContains 4 Other && NameContains Tsubasa
+	If Climax Flash of the Cavalry Blade && StageContains 4 Other && NameContains 翼
 	{
 		PayCost
 		{
@@ -1704,7 +1704,7 @@ Level 2
 Cost 1
 Effect: 
 {
-	PayCost Send 1 WaitingRoom NameContains Tsubasa && Compare ThatCardsLevel 2 OrMore
+	PayCost Send 1 WaitingRoom NameContains 翼 && Compare ThatCardsLevel 2 OrMore
     {
 		Message Choose a "Tsubasa, Drawn Blade" in your Hand and put it in any Slot on the Stage.
 		SearchLocationForTargets Hand 0 1 NameEquals Tsubasa, Drawn Blade
@@ -1757,4 +1757,262 @@ Climax: SG/W27-100
 Name Flash of the Cavalry Blade
 Color B
 *DrawClimax
+EndCard
+
+Character: SG/W27-101
+Name Hot Spring Break, Hibiki
+JPName 温泉で一息 響
+Color Y
+Level 1
+Cost 1
+Power 3000
+Soul 1
+Trigger Soul
+Trait1 Music
+Backup 2000
+EndCard
+
+Character: SG/W27-102
+Name Hot Spring Break, Chris
+JPName 温泉で一息 クリス
+Color R
+Level 2
+Cost 1
+Power 2500
+Soul 1
+Trigger Soul
+Trait1 Music
+Trait2 Weapon
+Backup 3000
+EndCard
+
+Character: SG/W27-103
+Name Hot Spring Break, Maria
+JPName 温泉で一息 マリア
+Color R
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Backup 1500
+EndCard
+
+Character: SG/W27-104
+Name Hot Spring Break, Tsubasa
+JPName 温泉で一息 翼
+Color B
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Backup 1500
+EndCard
+
+Character: SG/W27-P01
+Name Two Divas, Tsubasa & Maria
+JPName 二人の歌姫 翼＆マリア
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+EndCard
+
+Character: SG/W27-P02
+Name Trusting Friends, Hibiki
+JPName 信じる仲間 響
+Color Y
+Level 2
+Cost 2
+Power 7500
+Soul 2
+Trigger Soul
+Trait1 Music
+*PowerInMiddle(1000)
+*HandEncore
+EndCard
+
+Character: SG/W27-P03
+Name Wearer of Black Gungnir, Maria
+JPName 黒いガングニールの少女 マリア
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnOtherReversed
+{
+    GainPower 1000
+}
+Quick
+Text Auto: When your other character becomes reversed in battle, this card gets +1000 power until end of turn.
+EndCard
+
+Character: SG/W27-P04
+Name Trusting Friends, Tsubasa
+JPName 信じる仲間 翼
+Color B
+Level 2
+Cost 1
+Power 7500
+Soul 1
+Trigger Soul
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	If InLocation LeftCenterStage
+	{
+		GainPower 1000
+	}
+}
+Text Cont: If this card is in your center stage left position, this card gets +1000 power.
+Act: 1
+{
+	DrawCard
+	Discard 1 Any
+}
+Text Act: [(1)] Draw 1 card and put 1 card from your hand into waiting room.
+EndCard
+
+Character: SG/W27-P05
+Name Wearer of Shul Shagana, Shirabe
+JPName シュルシャガナの装者 調
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	If StageContains 1 Other && NameContains 切歌
+	{
+		GainPower 1000
+		GainEffect
+		{
+			*HandEncore
+		}
+	}
+}
+Text Cont: If you have another character with "Kirika" in its card name, this card gets +1000 power and the following ability. "Auto: ENCORE [Discard a character]"
+EndCard
+
+Character: SG/W27-P06
+Name Trusting Friends, Chris
+JPName 信じる仲間 クリス
+Color R
+Level 2
+Cost 1
+Power 7500
+Soul 1
+Trigger Soul
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	If InLocation RightCenterStage
+	{
+		GainPower 1000
+	}
+}
+Text Cont: If this card is in your center stage right position, this card gets +1000 power.
+Act: 1
+{
+	*GiveCharacterPower(1500,Music)
+}
+Text Act: [(1)] Choose 1 of your «Music» character and that character gets +1500 power until end of turn.
+EndCard
+
+Character: SG/W27-P07
+Name Wearer of Igalima, Kirika
+JPName イガリマの装者 切歌
+Color G
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	If StageContains 1 Other && NameContains 調
+	{
+		GainLevel 1
+		GainPower 1000
+	}
+}
+Text Cont: If you have another character with "Shirabe" in its card name, this card gets +1 level and +1000 power.
+*HandEncore
+EndCard
+
+Character: SG/W27-P08
+Name Wearer of Shen Shoujin, Miku
+JPName シェンショウジンの装者 未来
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveAll
+{
+	If Other && InLocation MiddleCenterStage && NameContains 響
+	{
+		GainEffect
+		{
+			*HandEncore
+		}
+	}
+}
+Text Cont: Your other character with "Hibiki" in its card name in the middle position of your center stage gets the following ability. "Auto: ENCORE [Discard a character]"
+EndCard
+
+Character: SG/W27-P09
+Name Trusting Hearth Song, Hibiki
+JPName 信じる胸の歌 響
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Act: 1 Rest 2 Any
+{
+	GainPower 1500
+	GainSoul 1
+}
+Text Act: [(1) Rest 2 of your characters] This card gets +1500 power and +1 soul until end of turn.
+EndCard
+
+Character: SG/W27-P10
+Name Hot Spring Break, Shirabe
+JPName 温泉で一息 調
+Color G
+Level 2
+Cost 1
+Power 8000
+Soul 1
+Trigger Soul
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	If LocationContainsOrLess Hand 4 Any
+	{
+		GainPower 1000
+	}
+}
+Text Cont: If you have 4 or less cards in hand, this card gets +1000 power.
 EndCard
