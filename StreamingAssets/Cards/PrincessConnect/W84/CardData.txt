@@ -640,7 +640,7 @@ Effect:
     }
     OpponentBrainstorm 3
     TargetBrainstormed
-    If Compare X TotalPower GreaterThan || StageContains 1 NameContains Pecorine
+    If Compare X TotalPower GreaterThan || StageContains 1 NameContains ペコリーヌ
     {
         SearchWaitingRoom HasTrait Landosol
     }
