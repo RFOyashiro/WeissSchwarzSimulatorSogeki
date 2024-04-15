@@ -397,10 +397,10 @@ Level 2
 Cost 1
 Effect: 
 {
-	PayCost Send 1 Hand NameContains Hibiki && Compare ThatCardsLevel 2 OrMore
+	PayCost Send 1 Hand NameContains 響 && Compare ThatCardsLevel 2 OrMore
     {
 		Message Choose a charactre with "Hibiki" in name from your hand and put it in any Slot on the Stage.
-		SearchLocationForTargets Hand 0 1 NameContains Hibiki
+		SearchLocationForTargets Hand 0 1 NameContains 響
 		PlaceOnStage false true true false
     }
 }
@@ -571,7 +571,7 @@ Trait1 Music
 Trait2 Weapon
 Cont: GiveSelf
 {
-	If StageContains 1 NameContains Shirabe
+	If StageContains 1 NameContains 調
 	{
 		GainPower 1500
 	}
@@ -817,7 +817,7 @@ Auto: OnPlay
 	PayCost RestSelf
 	{
 		TargetLocation Stage
-		NarrowTargets NameContains Kirika
+		NarrowTargets NameContains 切歌
 		ChooseCharacterFromTargets Choose a "Kirika" to give the effect "[A] When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
 		GainEffect
 		{
@@ -939,12 +939,12 @@ Counter
 Effect: 
 {
     TargetLocation Stage
-    NarrowTargets NameContains Kirika
+    NarrowTargets NameContains 切歌
     ChooseCharacterFromTargets_Optional Choose a character with "Kirika" in its card name to give +2000 power.
     GainPower 2000
     SaveTargets
     TargetLocation Stage
-    NarrowTargets NameContains Shirabe && Not InSavedTargets
+    NarrowTargets NameContains 調 && Not InSavedTargets
     ChooseCharacterFromTargets_Optional Choose a different character with "Shirabe" in its card name to give +2000 power.
     GainPower 2000
 }
@@ -1067,15 +1067,12 @@ Trait2 Weapon
 *GlobalPower(500,Music)
 Auto: OnOtherReversed
 {
-    TargetMyCharacterInBattle
-    IfTarget HasTrait Music
+    IfOther HasTrait Music
     {
-        TargetLocation Stage
-        ChooseCharacterFromTargets Choose 1 character to give +500 power
-        GainPower 500
+        *GiveCharacterPower(500,Any)
     }
 }
-Text Auto: When your other «Music» character becomes reversed in battle, choose 1 of your characters, it gets +POWER power until end of turn.
+Text Auto: When your other «Music» character becomes reversed in battle, choose 1 of your characters, it gets +500 power until end of turn.
 EndCard
 
 Character: SG/W39-054
@@ -1415,10 +1412,10 @@ Level 2
 Cost 1
 Effect: 
 {
-    PayCost Send 1 Hand NameContains Chris && Compare ThatCardsLevel 2 OrMore
+    PayCost Send 1 Hand NameContains クリス && Compare ThatCardsLevel 2 OrMore
     {
         Message Choose a character with "Chris" in name from your hand and put it in any Slot on the Stage.
-        SearchLocationForTargets Hand 0 1 NameContains Chris
+        SearchLocationForTargets Hand 0 1 NameContains クリス
         PlaceOnStage false true true false
     }
 }
@@ -1448,10 +1445,10 @@ Level 2
 Cost 1
 Effect: 
 {
-    PayCost Send 1 Hand NameContains Maria && Compare ThatCardsLevel 2 OrMore
+    PayCost Send 1 Hand NameContains マリア && Compare ThatCardsLevel 2 OrMore
     {
         Message Choose a character with "Maria" in name from your hand and put it in any Slot on the Stage.
-        SearchLocationForTargets Hand 0 1 NameContains Maria
+        SearchLocationForTargets Hand 0 1 NameContains マリア
         PlaceOnStage false true true false
     }
 }
@@ -1740,7 +1737,7 @@ Soul 1
 Trait1 Glasses
 Cont: GiveAll
 {
-    If NameContains Tsubasa && Other
+    If NameContains 翼 && Other
     {
         GainPower 1500
     }
@@ -1913,10 +1910,10 @@ Level 2
 Cost 1
 Effect: 
 {
-    PayCost Send 1 Hand NameContains Tsubasa && Compare ThatCardsLevel 2 OrMore
+    PayCost Send 1 Hand NameContains 翼 && Compare ThatCardsLevel 2 OrMore
     {
         Message Choose a character with "Tsubasa" in name from your hand and put it in any Slot on the Stage.
-        SearchLocationForTargets Hand 0 1 NameContains Tsubasa
+        SearchLocationForTargets Hand 0 1 NameContains 翼
         PlaceOnStage false true true false
     }
 }
@@ -1953,6 +1950,238 @@ EndCard
 Climax: SG/W39-100
 Name Furinkazan Gekkou
 *BlueStockSoul
+EndCard
+
+Climax: SG/W39-101
+Name I Have Something To Protect!
+JPName 守りたいものがあるんです！
+Color Y
+*DrawClimax
+EndCard
+
+Climax: SG/W39-102
+Name MEGA DETH QUARTET
+JPName MEGA DETH QUARTET
+Color R
+*DrawClimax
+EndCard
+
+Climax: SG/W39-103
+Name HORIZON SPEAR
+JPName HORIZON†SPEAR
+*DoorClimax
+EndCard
+
+Climax: SG/W39-104
+Name The Blue Flash
+JPName 蒼ノ一閃
+Color R
+*DrawClimax
+EndCard
+
+Character: SG/W39-P01
+Name Hakuseki Girls, Maria & Tsubasa
+JPName 白皙の少女 マリア＆翼
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*500Assist
+*OnPlayScryToBottom
+EndCard
+
+Character: SG/W39-P02
+Name Overflowing Fighting Spirit, Hibiki
+JPName みなぎる闘志 響
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Cont: GiveSelf
+{
+    If LocationContainsOrLess OpponentStage 3 Any
+    {
+        GainPower 1000
+    }
+}
+Text Cont: If the number of characters your opponent have is 3 or less, this card gets +1000 power.
+EndCard
+
+Character: SG/W39-P03
+Name Clear Cold Stance, Tsubasa
+JPName 清冽な構え 翼
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Backup 1000
+EndCard
+
+Character: SG/W39-P04
+Name Grand Onlaught, Chris
+JPName 赫たる猛攻 クリス
+Color R
+Level 1
+Cost 1
+Power 6500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+    If StageContains 3 Other && HasTrait Music
+    {
+        GainLevel 1
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
+}
+Text Cont: If the number of other «Music» characters you have is 3 or more, this card gets +1 level and the following ability. "Auto: ENCORE [Put 1 character from your hand into waiting room]"
+EndCard
+
+Character: SG/W39-P05
+Name Reaping Blow, Kirika
+JPName 刈り取る一撃 切歌
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+    If StageContains 1 Other && NameContains 調
+    {
+        GainPower 1500
+    }
+}
+Text Cont: If you have another character with "Shirabe" in its card name, this card gets +1500 power.
+EndCard
+
+Character: SG/W39-P06
+Name Rotation Tearing Sword, Shirabe
+JPName 伐り裂く回転 調
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+    If StageContains 1 Other && NameContains 切歌
+    {
+        GainPower 1500
+    }
+}
+Text Cont: If you have another character with "Kirika" in its card name, this card gets +1500 power.
+EndCard
+
+Character: SG/W39-P07
+Name Clear Eye, Maria
+JPName 澄んだ眼光 マリア
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+    If StageContains 3 Other && HasTrait Music
+    {
+        GainPower 1000
+    }
+}
+Text Cont: If the number of other «Music» characters you have is 3 or more, this card gets +1000 power.
+EndCard
+EndCard
+
+Character: SG/W39-P08
+Name Depth of Alchemy, Carol
+JPName 錬金術の深奥 キャロル
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Alchemy
+*OnPlayGainPower(1500)
+EndCard
+
+Character: SG/W39-P09
+Name "Singing for the Sake of Everyone" Hibiki
+JPName “皆のために歌う”響
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Music
+Auto: OnPlay
+{
+    GainPower 1000
+    GainLevel 1
+}
+Quick
+Text Auto: When this card is placed on the stage from your hand, this card gets +1 level and +1000 power until end of turn.
+EndCard
+
+Character: SG/W39-P10
+Name Evil Grin, Chris
+JPName 不敵な微笑 クリス
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*GiveMiddlePower(500,Any)
+Act: 2 RestSelf
+{
+    SearchWaitingRoom IsCharacter
+}
+Text Act: [(2) Rest this card] Choose 1 character in your waiting room and return it to your hand.
+EndCard
+
+Character: SG/W39-P11
+Name In the Midst of Dreaming, Tsubasa
+JPName 夢の途中 翼
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*OnPlayGiveOtherPower(2000,Music)
+EndCard
+
+Character: SG/W39-P12
+Name Facing Threat, Hibiki
+JPName 脅威に立ち向かう響
+Color Y
+Level 2
+Cost 1
+Power 8000
+Trigger Soul
+Soul 1
+Trait1 Music
+*OnPlayGainPowerForEach(500,Music)
 EndCard
 
 Character: SG/W39-P13
@@ -1995,6 +2224,25 @@ Cont: GiveSelf
 Text Cont: If the cost of the character facing this card is 0 or lower, this card gets +1 level and +3500 power.
 EndCard
 
+Character: SG/W39-P15
+Name With a New Song, Tsubasa
+JPName 新たな歌と共に 翼
+Color B
+Level 1
+Cost 1
+Power 1500
+Soul 1
+Trigger Soul
+Trait1 Music
+Trait2 Weapon
+Auto: OnUseThisCardsBackup
+{
+    *ScryToBottom
+}
+Text Auto: When you use this card's BACKUP, look at the top card of your deck and put it either on top or bottom of your deck.
+Backup 1500
+EndCard
+
 Character: SG/W39-P16
 Name Chris, With a New Song
 Color R
@@ -2012,4 +2260,81 @@ Auto: OnPlay
     }
 }
 Text Auto: [Discard 1 climax] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
+EndCard
+
+Character: SG/W39-P17
+Name With a New Song, Kirika
+JPName 新たな歌と共に 切歌
+Color G
+Level 2
+Cost 1
+Power 4500
+Soul 1
+Trigger Soul
+Trait1 Music
+Trait2 Weapon
+*Level3Assist
+Auto: OnPlay
+{
+    PayCost 2
+    {
+        SearchDeck HasTrait Music
+    }
+}
+Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Music» character, reveal it, add it to your hand and shuffle your deck.
+EndCard
+
+Character: SG/W39-P18
+Name With a New Song, Shirabe
+JPName 新たな歌と共に 調
+Color B
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*GlobalPower(500,Music)
+Auto: OnPlay
+{
+    If CardPosition Stand
+    {
+        PayCost RestSelf
+        {
+            TargetLocation Stage
+            NarrowTargets NameContains 切歌
+            ChooseCharacterFromTargets Choose a character to give the effect.
+            GainEffect
+            {
+                Auto: OnReverseOpponent
+                {
+                    *OptionalBlindStock
+                }
+                Text Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck into stock.
+            }
+        }
+    }
+}
+Text Auto: [Rest this card] When this card is placed on the stage from your hand, if this card is stand, you may pay the cost. If you do, choose 1 of your characters with "Kirika" in its card name, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck into stock."
+EndCard
+
+Character: SG/W39-P19
+Name "Manga DE Zesshou" Hibiki
+JPName “まんが DE 絶唱”響
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Auto: OnAttack
+{
+    Mill 1
+    IfTarget HasTrait Music
+    {
+        TargetSelf
+        GainPower 2000
+    }
+}
+Text Auto: When this card attacks, put the top card of your deck into waiting room. If that card is a «Music» character, this card gets +2000 power until end of turn.
 EndCard
