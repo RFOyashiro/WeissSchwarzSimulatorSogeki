@@ -2644,6 +2644,7 @@ EndCard
 
 Character: ZLS/W93-P01
 Name Ai & Junko
+JPName 愛＆純子
 Color G
 Level 1
 Cost 0
@@ -2663,6 +2664,7 @@ EndCard
 
 Character: ZLS/W93-P02
 Name Past and Present Idols, Ai & Junko
+JPName 今も昔もアイドル 愛＆純子
 Color G
 Level 1
 Cost 0
@@ -2676,6 +2678,7 @@ EndCard
 
 Character: ZLS/W93-P03
 Name Zombie No.1, Sakura
+JPName ゾンビィ１号 さくら
 Color R
 Level 0
 Cost 0
