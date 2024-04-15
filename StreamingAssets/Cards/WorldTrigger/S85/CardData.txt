@@ -2205,7 +2205,7 @@ Auto: OnDamageCanceled
     If Climax Lampyris && StageContains 1 Other && HasTrait Trion
     {
         RevealUpTo Deck 2
-        ChooseCardsFromTargets 0 1 HasTrait Trion || IsEvent
+        ChooseCardsFromTargets 0 2 HasTrait Trion || IsEvent
         RevealTargets
         MoveCard Hand
         PutTheRestIntoTheWaitingRoom

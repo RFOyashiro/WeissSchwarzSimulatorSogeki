@@ -1296,16 +1296,19 @@ Trait1 Music
 Trait2 Leo/need
 Combo Even if the Taste Is the Same
 Combo What Lies Beyond
-Auto: OnSpecificClimaxPlay What Lies Beyond|Even if the Taste Is the Same
+Auto: OnClimaxPlay
 {
-    If InLocation CenterStage && LocationContainsOrLess Hand 6 Any &&& StageContains 1 Other && HasTrait Music
+    If Climax What Lies Beyond || Climax Even if the Taste Is the Same
     {
-        *PutCardFromWaitingRoomIntoStock(HasTrait Music)
-        TargetTop Deck 1
-        Reveal
-        IfTarget Compare ThatCardsLevel 0 LessThan
+        If InLocation CenterStage && LocationContainsOrLess Hand 6 Any &&& StageContains 1 Other && HasTrait Music
         {
-            MoveCard Stock
+            *PutCardFromWaitingRoomIntoStock(HasTrait Music)
+            TargetTop Deck 1
+            Reveal
+            IfTarget Compare ThatCardsLevel 0 OrLess
+            {
+                MoveCard Stock
+            }
         }
     }
 }
@@ -2807,6 +2810,7 @@ Auto: OnAttack
         PayCost 1 Discard 1 Any
         {
             TargetTop OpponentDeck 2
+            Message Choose cards to put on top of your opponent's deck.
             ChooseCardsFromTargets 0 2 Any
             MoveCard OpponentDeck
             Reorder
@@ -4245,6 +4249,7 @@ Auto: OnAttack
         {
             TargetTop OpponentDeck 2
             AIChoice If IsClimax
+            Message Choose cards to put on top of your opponent's deck.
             ChooseCardsFromTargets 0 2 Any
             MoveCard OpponentDeck
             Reorder

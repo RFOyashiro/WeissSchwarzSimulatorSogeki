@@ -91,7 +91,7 @@ Auto: OnPlay
     PayCost Discard 1 ColorIs Yellow
     {
         TargetLocation Stage
-        NarrowTargets Other && NameEquals Kagamine Rin "Radical Star"
+        NarrowTargets Other && NameEquals Kagamine Rin "Lyrical Star"
         ChooseCharacterFromTargets Choose a character to give the effect.
         AddSelfToTargets
         GainEffect
@@ -204,7 +204,7 @@ Effect:
     ChooseCharacterFromTargets Choose a character to stand.
     Stand
     Message Search a character to put to the bottom of your deck.
-    SearchLocationForTargets IsCharacter
+    SearchLocationForTargets WaitingRoom 1 1 IsCharacter
     MoveCardToBottom Deck
     TargetSelf
     MoveCard Stock

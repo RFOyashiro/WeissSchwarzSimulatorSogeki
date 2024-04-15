@@ -189,7 +189,7 @@ Auto: OnEndOfAttack
     }
 }
 TimesPerTurn 1
-Text Auto: CxCombo [(2) Put 2 cards from your hand into waiting room] This ability activates up to once per turn. At the end of this card's attack, if "For the Next Live!" is in your climax area and the number of colors you have is 4 or more, you may pay the cost. If you do, stand this card.
+Text Auto: CxCombo [(1) Put 2 cards from your hand into waiting room] This ability activates up to once per turn. At the end of this card's attack, if "For the Next Live!" is in your climax area and the number of colors you have is 4 or more, you may pay the cost. If you do, stand this card.
 EndCard
 
 Character: PJS/S109-007
