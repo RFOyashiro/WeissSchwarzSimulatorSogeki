@@ -2920,11 +2920,13 @@ EndCard
 
 Climax: WTR/S85-P01
 Name BORDER
+JPName BORDER
 *DoorClimax
 EndCard
 
 Character: WTR/S85-P02
 Name Rapid Approach, Yuuma Kuga
+JPName 急速接近 空閑 遊真
 Image wtr_s85_p02
 Color B
 Level 0
