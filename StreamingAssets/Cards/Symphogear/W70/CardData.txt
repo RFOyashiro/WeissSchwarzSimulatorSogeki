@@ -76,9 +76,9 @@ Auto: OnReverseOpponent
 {
 	If PlayedThisTurn
 	{
-		PayCost 1 Rest 1 NameContains Hibiki|Miku && Other
+		PayCost 1 Rest 1 NameContains 響|未来 && Other
 		{
-			SearchDeck NameContains Hibiki|Miku && IsCharacter
+			SearchDeck NameContains 響|未来 && IsCharacter
 		}
 	}
 }
@@ -100,7 +100,7 @@ Act: RestSelf
 {
     TargetLocation WaitingRoom
     NarrowTargets IsCharacter
-    If TargetsContainsSeparateCardsThatMeetConditions NameContains Tsubasa , NameContains Chris , NameContains Maria , NameContains Kirika , NameContains Shirabe
+    If TargetsContainsSeparateCardsThatMeetConditions NameContains 翼 , NameContains クリス , NameContains マリア , NameContains 切歌 , NameContains 調
     {
         TargetLocation Stage
         NarrowTargets NameEquals "Alchemic Gold" Hibiki
@@ -249,7 +249,7 @@ Trait1 Music
 Combo Loving Duo Shout
 Cont: GiveSelf
 {
-	If StageContainsOrLess 0 Other && NameContains Kirika
+	If StageContainsOrLess 0 Other && NameContains 切歌
 	{
 		GainSpecialEffect CannotStand
 	}
@@ -412,7 +412,7 @@ Trait1 Alchemy
 Trait2 Clothes
 Auto: OnUseThisCardsBackup
 {
-	SearchLocationForTargets WaitingRoom 0 1 NameContains Confrontation With Symphogear
+	SearchLocationForTargets WaitingRoom 0 1 NameContains シンフォギア装者との対峙
 	MoveCard Memory
 }
 Text Auto: When you use this card's BACKUP, you may choose a character in your waiting room with "Confrontation with Symphogear" in its card name and send it to memory.
@@ -475,7 +475,7 @@ Name Ignite Module
 Color Y
 Level 1
 Cost 1
-Requirement StageContains 1 NameContains Hibiki|Kirika
+Requirement StageContains 1 NameContains 響|切歌
 Effect: 
 {
 	*OptionalDraw
@@ -542,14 +542,14 @@ Auto: OnPlay
 {
 	PayCost 1 Clock
 	{
-		SearchDeck NameContains Kirika|Shirabe
+		SearchDeck NameContains 切歌|調
 	}
 }
 Text Auto: [(1) Put the top card of your deck in clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with "Kirika" or "Shirabe" in its card name, show it to your opponent, put it in your hand, and shuffle your deck.
 Auto: OnAttack
 {
 	TargetLocation Stage
-	NarrowTargets Other && NameContains Kirika|Shirabe
+	NarrowTargets Other && NameContains 切歌|調
 	ChooseCharacterFromTargets Choose a character to give +1000 power.
 	GainPower 1000
 }
@@ -568,9 +568,9 @@ Trait2 Weapon
 Combo Kill: Juliet
 Auto: OnAttack
 {
-	If Climax Kill: Juliet && AllYourCharacters NameContains Hibiki|Kirika
+	If Climax Kill: Juliet && AllYourCharacters NameContains 響|切歌
 	{
-		SearchWaitingRoom NameContains Hibiki | Kirika
+		SearchWaitingRoom NameContains 響|切歌
 	}
 }
 Text Auto: CxCombo When this card attacks, if "Kill: Juliet" is in your climax area and all of your characters have "Hibiki" or "Kirika" in its card name, choose a character in your waiting room with "Hibiki" or "Kirika" in its card name and return it to your hand.
@@ -649,7 +649,7 @@ Auto: OnPlay
 	PayCost Resonate Hibiki, New Battle
 	{
 		TargetLocation Stage
-		NarrowTargets NameContains Hibiki|Kirika
+		NarrowTargets NameContains 響|切歌
 		ChooseCharacterFromTargets Choose a character to give +3000 power and hexproof
 		GainPower 3000
 		GainEffect
@@ -911,7 +911,7 @@ Name Ignite Module
 Color G
 Level 3
 Cost 2
-Requirement StageContains 1 NameContains Tsubasa|Shirabe
+Requirement StageContains 1 NameContains 翼|調
 Effect: 
 {
 	Mill 4
@@ -1050,10 +1050,10 @@ Auto: OnPlay
     PayCost 1 Clock Discard 2 Any
     {
         Message Choose up to 1 "Tsubasa" to add to your hand
-        SearchLocationForTargets Deck 0 1 NameContains Tsubasa && IsCharacter
+        SearchLocationForTargets Deck 0 1 NameContains 翼 && IsCharacter
         SaveTargets
         Message Choose up to 1 "Maria" to add to your hand
-        SearchLocationForTargets Deck 0 1 NameContains Maria && IsCharacter && Not InSavedTargets
+        SearchLocationForTargets Deck 0 1 NameContains マリア && IsCharacter && Not InSavedTargets
         AddCurrentToSavedTargets
         LoadTargets
         RevealTargets
@@ -1077,7 +1077,7 @@ Trait1 Music
 Trait2 Weapon
 Cont: GiveAll
 {
-    If MyTurn && NameContains Chris|Maria
+    If MyTurn && NameContains クリス|マリア
     {
         GainPower 1000
     }
@@ -1085,7 +1085,7 @@ Cont: GiveAll
 Text Cont: During your turn, your other characters with "Chris" or "Maria" in its card name get +1000 power.
 Act: 2 RestSelf
 {
-    SearchWaitingRoom NameContains Chris|Maria
+    SearchWaitingRoom NameContains クリス|マリア
 }
 Text Act: [(2) Rest this card] Choose a character in your waiting room with "Chris" or "Maria" in its card name and return it to hand.
 EndCard
@@ -1191,7 +1191,7 @@ Auto: OnPlay
 Text Auto: [Put a <Music> character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Chris, Power to Connect" or "Maria, Collecting Thoughts" in your waiting room and return it to hand.
 Act: Discard 1 Any SendSelf WaitingRoom
 {
-    SearchWaitingRoom NameContains Chris|Maria
+    SearchWaitingRoom NameContains クリス|マリア
 }
 Text Act: [Put a card from hand to the waiting room, put this card in the waiting room] Choose a character with "Chris" or "Maria" in its card name from the waiting room and return it to hand.
 EndCard
@@ -1376,7 +1376,7 @@ Color R
 Level 3
 Cost 1
 Counter
-Requirement StageContains 1 NameContains Chris|Maria
+Requirement StageContains 1 NameContains クリス|マリア
 Effect: 
 {
     *OptionalHeal
@@ -1523,7 +1523,7 @@ Act: 1 RestSelf
         SetXValue BrainstormedClimax
         Repeat X
         {
-            SearchDeck NameContains Saint-Germain|Cagliostro|Prelati
+            SearchDeck NameContains サンジェルマン|カリオストロ|プレラーティ
         }
     }
 }
@@ -1551,7 +1551,7 @@ Auto: OnPlay
 {
     PayCost 1 Discard 1 Any
     {
-        SearchDeck NameContains Tsubasa | Shirabe
+        SearchDeck NameContains 翼|調
     }
 }
 Text Auto: [(1) Put a card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with "Tsubasa" or "Shirabe" in its card name, show it to your opponent, put it in your hand, and shuffle your deck.
@@ -1616,7 +1616,7 @@ Auto: OnAttack
     {
         RevealUpTo Deck 4
         Message Choose a character with "Saint-Germain" or "Cagliostro" or "Prelati" in name to put in your hand
-        ChooseCardsFromTargets 0 1 NameContains Saint-Germain|Cagliostro|Prelati
+        ChooseCardsFromTargets 0 1 NameContains サンジェルマン|カリオストロ|プレラーティ
         Reveal
         MoveCard Hand
         PutTheRestIntoTheWaitingRoom
@@ -1776,7 +1776,7 @@ Auto: OnPlay
     If HasTarget
     {
         Message Choose a character with "Saint-Germain" or "Cagliostro" or "Prelati" in name to put in your hand
-        ChooseCardsFromTargets 0 1 NameContains Saint-Germain|Cagliostro|Prelati && IsCharacter
+        ChooseCardsFromTargets 0 1 NameContains サンジェルマン|カリオストロ|プレラーティ && IsCharacter
         Reveal
         MoveCard Hand
         PutTheRestIntoTheWaitingRoom
@@ -1802,7 +1802,7 @@ Auto: OnTriggerCheck
     IfOther HasTrigger Soul
     {
         TargetLocation Stage
-        NarrowTargets NameContains Tsubasa|Shirabe
+        NarrowTargets NameContains 翼|調
         ChooseCharacterFromTargets Choose a Tsubasa or Shirabe to give +2000 power.
         GainPower 2000
     }
@@ -1881,7 +1881,7 @@ Act: 1 RestSelf
         {
             Auto: OnReverseOpponent
             {
-                SearchDeck NameContains Tsubasa|Maria && IsCharacter
+                SearchDeck NameContains 翼|マリア && IsCharacter
             }
             Text Auto: When this card's battle opponent becomes reverse, search your deck for a character with "Tsubasa" or "Maria" in its card name, show it to your opponent, put it in your hand, and shuffle your deck.
         }
@@ -1919,7 +1919,7 @@ Auto: OnReverseOpponent
     If HasTarget
     {
         Message Choose a character with "Maria", "Kirika" or "Shirabe" in its card name to put in your hand
-        ChooseCardsFromTargets 0 1 NameContains Maria|Kirika|Shirabe && IsCharacter
+        ChooseCardsFromTargets 0 1 NameContains マリア|切歌|調 && IsCharacter
         Reveal
         MoveCard Hand
         PutTheRestIntoTheWaitingRoom
@@ -2094,8 +2094,259 @@ Name Those Who Pursue an Ideal
 *GateClimax
 EndCard
 
+Character: SG/W70-101
+Name Linked Attack, Hibiki
+JPName 連携攻撃 響
+Color Y
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Music
+*YellowCost0Bomb
+EndCard
+
+Character: SG/W70-102
+Name Unreasonable Training, Kirika
+JPName 無茶な訓練 切歌
+Color G
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+    If StageContains 1 Other NameEquals Unreasonable Training, Shirabe
+    {
+        GainPower 1000
+    }
+}
+Text Cont: If you have another "Unreasonable Training, Shirabe", this card gets +1000 power.
+*ClockEncore
+EndCard
+
+Character: SG/W70-103
+Name Unreasonable Training, Shirabe
+JPName 無茶な訓練 調
+Color G
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: StartOpponentAttackPhase
+{
+    TargetLocation Stage
+    NarrowTargets Other && NameEquals Unreasonable Training, Kirika
+    If HasTarget
+    {
+        ChooseCharacterFromTargets Choose a character to exchange with this card.
+        AddSelfToTargets
+        Stand
+        Exchange
+    }
+}
+Text Auto: At the beginning of your opponent's attack phase, choose 1 of your "Unreasonable Training, Kirika" and this card, stand and exchange them.
+EndCard
+
+Character: SG/W70-104
+Name in a Subspace Cage, Chris
+JPName 亜空間の檻の中で クリス
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Music
+Trait2 Weapon
+*EarlyPlay4OrMore(Music)
+Auto: OnPlay
+{
+    *OptionalDraw
+    GainPower 2000
+}
+Text Auto: When this card is placed on the stage from your hand, draw up to 1 card, and this card gets +2000 power until end of turn.
+EndCard
+
+Character: SG/W70-105
+Name Unyielding Heart, Maria
+JPName あきらめない心 マリア
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Music
+Trait2 Weapon
+*CannotSideAttack
+*EncoreStepIfNoneRestedPayToRest
+EndCard
+
+Character: SG/W70-106
+Name Linked Attack, Tsubasa
+JPName 連携攻撃 翼
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*OnPlayGainPower(1500)
+Auto: OnAttack
+{
+    TargetTop Deck
+    Reveal
+    IfTarget HasTrait Music
+    {
+        MoveCard Hand
+        Discard 1 Any
+    }
+}
+Text Auto: When this card attacks, reveal the top card of your deck. If it's a «Music» character, put it in your hand and discard a card from your hand to the waiting room.
+EndCard
+
+Character: SG/W70-P01
+Name Singing Voice, Hibiki
+JPName 輝きを放つ歌声 響
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Music
+Cont: GiveSelf
+{
+    If MyTurn
+    {
+        TargetFacing
+        IfTarget Compare ThatCardsLevel 3 OrMore
+        {
+            GainPower 4000
+            GainSoul 1
+        }
+    }
+}
+Text Cont: During your turn, if the level of the character facing this card is 3 or higher, this card gets +4000 power and +1 soul.
+EndCard
+
+Character: SG/W70-P02
+Name Radiant Singing Voice, Kirika
+JPName 輝きを放つ歌声 切歌
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*PowerInMiddle(3000)
+EndCard
+
+Character: SG/W70-P03
+Name Radiant Singing Voice, Shirabe
+JPName 輝きを放つ歌声 調
+Color G
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*OnPlayMill2GainPowerForEachCharacter(1000,Music)
+EndCard
+
+Character: SG/W70-P04
+Name Radiant Singing Voice, Chris
+JPName 輝きを放つ歌声 クリス
+Color R
+Level 1
+Cost 1
+Trigger Soul
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Backup 2500
+EndCard
+
+Character: SG/W70-P05
+Name Radiant Singing Voice, Maria
+JPName 輝きを放つ歌声 マリア
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*OnPlayGivePower(1500,Music)
+EndCard
+
+Character: SG/W70-P06
+Name Radiant Singing Voice, Tsubasa
+JPName 輝きを放つ歌声 翼
+Color B
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnAttack
+{
+    If StageContains 2 Other && HasTrait Music
+    {
+        GainPower 2000
+    }
+}
+Quick
+Text Auto: When this card attacks, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn.
+EndCard
+
+Character: SG/W70-P07
+Name Holiday Moment, Kirika & Shirabe
+JPName 休日のひととき 切歌&調
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*OnAttackGainPowerForEachOther(1000,Music)
+EndCard
+
+Character: SG/W70-P08
+Name Holiday Moment, Hibiki & Chris
+JPName 休日のひととき 響&クリス
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+    If InLocation MiddleCenterStage
+    {
+        GainSoul 1
+    }
+}
+Text Cont: If this card is in the middle position of your center stage, this card gets +1 soul.
+*YellowLevel0Bomb
+EndCard
+
 Character: SG/W70-P09
-Name Hibiki, Time of the Decisive Battle
+Name Time of the Decisive Battle, Hibiki
 Color Y
 Level 1
 Cost 0
@@ -2122,4 +2373,43 @@ Cont: GiveSelf
     }
 }
 Text Cont: If "Ignite Module" is in your memory, this card gets the following ability. "Auto: When this card's battle opponent becomes reverse, reveal the top card of your deck. If that card is level 1 of higher, put it in your hand."
+EndCard
+
+Character: SG/W70-P10
+Name "Manga DE Zesshou" Symphogear Device
+JPName “まんが DE 絶唱”シンフォギア装者
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+*GlobalPower(500,Music)
+Auto: OnTriggerCheckClimax
+{
+    *GiveCharacterPower(1000,Any)
+}
+Text Auto: When your character's trigger check reveals a climax card, choose 1 of your characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: SG/W70-P11
+Name Heart-Pounding Overnight Party, Shirabe & Kirika
+JPName ドキドキお泊り会 調＆切歌
+Color G
+Level 1
+Cost 1
+Trigger Soul
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnUseThisCardsBackup
+{
+    If AllYourCharacters NameContains 切歌|調
+    {
+        *OptionalBlindStock
+    }
+}
+Text Auto: When you use this card's BACKUP, if all of your characters have "Kirika" or "Shirabe" in its card name, you may put the top card of your deck in your stock.
+Backup 2000
 EndCard
