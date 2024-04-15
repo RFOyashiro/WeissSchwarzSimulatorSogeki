@@ -563,7 +563,7 @@ Effect:
     PayCost Send 1 Memory NameEquals Hibiki, Holy Chant && CardPosition Stand
     {
         Message Choose a character with "Hibiki" in its card name in your hand, place it into any position on your stage.
-        SearchLocationForTargets Hand 0 1 NameContains Hibiki
+        SearchLocationForTargets Hand 0 1 NameContains 響
         PlaceOnStage false true true false
         ScheduleEffect StartClimaxPhase
         {
@@ -1236,7 +1236,7 @@ Effect:
     PayCost Send 1 Memory NameEquals Kirika, Holy Chant && CardPosition Stand
     {
         Message Choose a character with "Kirika" in its card name in your hand, place it to any position on your stage
-        SearchLocationForTargets Hand 0 1 NameContains Kirika
+        SearchLocationForTargets Hand 0 1 NameContains 切歌
         PlaceOnStage false true true false
         ScheduleEffect StartClimaxPhase
         {
@@ -1275,7 +1275,7 @@ Effect:
     PayCost Send 1 Memory NameEquals Shirabe, Holy Chant && CardPosition Stand
     {
         Message Choose a character with "Shirabe" in its card name in your hand, place it to any position on your stage.
-        SearchLocationForTargets Hand 0 1 NameContains Shirabe
+        SearchLocationForTargets Hand 0 1 NameContains 調
         PlaceOnStage false true true false
         ScheduleEffect StartClimaxPhase
         {
@@ -1636,7 +1636,7 @@ Auto: OnPlay
 {
     If LocationContainsOrLess Memory 2 Any
     {
-        SearchLocationForTargets WaitingRoom 0 1 NameContains Autoscorer
+        SearchLocationForTargets WaitingRoom 0 1 NameContains 自動人形
 		MoveCard Memory
     }
 }
@@ -1897,7 +1897,7 @@ Effect:
     PayCost Send 1 Memory NameEquals Chris, Holy Chant && CardPosition Stand
     {
         Message Choose a character with "Chris" in name from your hand and put it in any Slot on the Stage.
-        SearchLocationForTargets Hand 0 1 NameContains Chris
+        SearchLocationForTargets Hand 0 1 NameContains クリス
         PlaceOnStage false true true false
         ScheduleEffect StartClimaxPhase
         {
@@ -1936,7 +1936,7 @@ Effect:
     PayCost Send 1 Memory NameEquals Maria, Holy Chant && CardPosition Stand
     {
         Message Choose a character with "Maria" in name from your hand and put it in any Slot on the Stage.
-        SearchLocationForTargets Hand 0 1 NameContains Maria
+        SearchLocationForTargets Hand 0 1 NameContains マリア
         PlaceOnStage false true true false
         ScheduleEffect StartClimaxPhase
         {
@@ -2332,7 +2332,7 @@ Effect:
     PayCost Send 1 Memory NameEquals Tsubasa, Holy Chant && CardPosition Stand
     {
         Message Choose a character with "Tsubasa" in name from your hand and put it in any Slot on the Stage.
-        SearchLocationForTargets Hand 0 1 NameContains Tsubasa
+        SearchLocationForTargets Hand 0 1 NameContains 翼
         PlaceOnStage false true true false
         ScheduleEffect StartClimaxPhase
         {
@@ -2482,3 +2482,27 @@ Trait1 Music
 *PowerOnMyTurn(1000)
 *GainPowerWhenAttackingLevel3(6000)
 EndCard
+
+Character: SG/W89-P02
+Name Chris & Tsubasa, Brilliance of the Beach
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+    If StageContainsOrLess 0 Other
+    {
+        GainPower 1500
+        GainEffect
+        {
+            *FreeRunner
+        }
+    }
+}
+Text Cont: If you have no other characters, this card gets +1500 power and the following ability. "Auto: At the beginning of your opponent's attack phase, you may move this card to an open position of your center stage."
+EndCard
+
