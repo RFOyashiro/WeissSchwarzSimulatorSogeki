@@ -381,7 +381,7 @@ Auto: OnAttack
     }
 }
 Quick
-Text Auto: CxCombo When this card attacks, if "Shadow Floating in Darkness" is in your climax area, this card gets +1000 power and your opponent may not play BACKUP from hand until end of turn.
+Text Auto: CxCombo When this card attacks, if "Shadow Floating in Darkness" is in your climax area, this card gets +1000 power and your opponent may not play "BACKUP" from hand until end of turn.
 EndCard
 
 Climax: BR/SE06-19

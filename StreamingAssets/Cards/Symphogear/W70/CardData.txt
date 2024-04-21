@@ -134,7 +134,7 @@ Auto: OnUseThisCardsBackup
 
     }
 }
-Text Auto: [(2) Put a character from your stage in the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent and put it in the waiting room.
+Text Auto: [(2) Put a character from your stage in the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent and put it in the waiting room.
 Backup 2500
 EndCard
 
@@ -415,7 +415,7 @@ Auto: OnUseThisCardsBackup
 	SearchLocationForTargets WaitingRoom 0 1 NameContains シンフォギア装者との対峙
 	MoveCard Memory
 }
-Text Auto: When you use this card's BACKUP, you may choose a character in your waiting room with "Confrontation with Symphogear" in its card name and send it to memory.
+Text Auto: When you use this card's "BACKUP", you may choose a character in your waiting room with "Confrontation with Symphogear" in its card name and send it to memory.
 Backup 1500
 EndCard
 
@@ -774,7 +774,7 @@ Auto: OnUseThisCardsBackup
         }
 	}
 }
-Text Auto: [Put 2 cards from your hand to the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
+Text Auto: [Put 2 cards from your hand to the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
 Backup 2500
 EndCard
 
@@ -1571,7 +1571,7 @@ Cont: GiveAll
     GainSpecialEffect CannotUseEvents
     GainSpecialEffect CannotUseBackup
 }
-Text Cont: You cannot play events or BACKUP from hand.
+Text Cont: You cannot play events or "BACKUP" from hand.
 EndCard
 
 Character: SG/W70-077
@@ -2017,7 +2017,7 @@ Auto: OnUseThisCardsBackup
 {
     Mill 3
 }
-Text Auto: When you use this card's BACKUP, put the top 3 cards of your deck in the waiting room.
+Text Auto: When you use this card's "BACKUP", put the top 3 cards of your deck in the waiting room.
 Backup 3000
 EndCard
 
@@ -2410,6 +2410,6 @@ Auto: OnUseThisCardsBackup
         *OptionalBlindStock
     }
 }
-Text Auto: When you use this card's BACKUP, if all of your characters have "Kirika" or "Shirabe" in its card name, you may put the top card of your deck in your stock.
+Text Auto: When you use this card's "BACKUP", if all of your characters have "Kirika" or "Shirabe" in its card name, you may put the top card of your deck in your stock.
 Backup 2000
 EndCard

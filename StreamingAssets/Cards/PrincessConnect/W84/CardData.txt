@@ -68,7 +68,7 @@ Cont: GiveSelf
         GainSpecialEffect NoEventsOnAttack
     }
 }
-Text Cont: During your turn, if the number of other «Landosol» characters you have is 4 or more, this card gets +5000 power and the following ability. "Cont: In battles involving this card, your opponent may not play events or BACKUP from hand."
+Text Cont: During your turn, if the number of other «Landosol» characters you have is 4 or more, this card gets +5000 power and the following ability. "Cont: In battles involving this card, your opponent may not play events or "BACKUP" from hand."
 *MusashiEffect
 EndCard
 
@@ -387,7 +387,7 @@ Auto: OnUseThisCardsBackup
         *OptionalBlindStock
     }
 }
-Text Auto: When you use BACKUP of this card, if all your characters are «Landosol», you may put the top card of your deck in stock.
+Text Auto: When you use "BACKUP" of this card, if all your characters are «Landosol», you may put the top card of your deck in stock.
 Backup 2000
 EndCard
 
@@ -409,7 +409,7 @@ Auto: OnUseThisCardsBackup
     TargetTop Deck X
     MoveCard WaitingRoom
 }
-Text Auto: When you use this card's BACKUP, put the top X cards of your deck into the waiting room. X equals the number of your «Landosol» characters.
+Text Auto: When you use this card's "BACKUP", put the top X cards of your deck into the waiting room. X equals the number of your «Landosol» characters.
 Backup 3000
 EndCard
 
@@ -1114,7 +1114,7 @@ Auto: OnUseThisCardsBackup
         }
     }
 }
-Text Auto: [Put 2 cards from hand to the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, you may put the top card of your opponent's clock in the waiting room. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in their clock.
+Text Auto: [Put 2 cards from hand to the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, you may put the top card of your opponent's clock in the waiting room. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in their clock.
 Backup 1000
 EndCard
 
@@ -1390,12 +1390,12 @@ Auto: PlacedBy Those Who Want to Fight
                     GainSpecialEffect NoBackupOnAttack
                     GainSpecialEffect NoEventsOnAttack
                 }
-                Text Cont: In battles involving this card, your opponent cannot use events or BACKUP from hand.
+                Text Cont: In battles involving this card, your opponent cannot use events or "BACKUP" from hand.
             }
         }
     }
 }
-Text Auto: CxCombo [(1) Put a "Those Who Want to Fight" from your climax area to the waiting room] During your climax phase, when this card is placed to the stage by the effect of "Those Who Want to Fight", you may pay the cost. If you do, stand this card, and this card cannot reverse and gets the following ability until the end of your opponent's next turn. "Cont: In battles involving this card, your opponent cannot use events or BACKUP from hand."
+Text Auto: CxCombo [(1) Put a "Those Who Want to Fight" from your climax area to the waiting room] During your climax phase, when this card is placed to the stage by the effect of "Those Who Want to Fight", you may pay the cost. If you do, stand this card, and this card cannot reverse and gets the following ability until the end of your opponent's next turn. "Cont: In battles involving this card, your opponent cannot use events or "BACKUP" from hand."
 Auto: OnAttack
 {
     TargetLocation OpponentStage
@@ -1527,7 +1527,7 @@ Auto: OnUseAccelerate
         Text Auto: [(1)] When this card's battle opponent becomes reverse, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
     }
 }
-Text Auto: When you use ACCELERATE, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: [(1)] When this card's battle opponent becomes reverse, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand."
+Text Auto: When you use "ACCELERATE", choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: [(1)] When this card's battle opponent becomes reverse, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand."
 Act: RestSelf
 {
     TargetLocation OpponentCenterStage
@@ -2424,7 +2424,7 @@ Auto: OnUseThisCardsBackup
 {
     Mill 3
 }
-Text Auto: When you use this card's BACKUP, put the top 3 cards of your deck in the waiting room.
+Text Auto: When you use this card's "BACKUP", put the top 3 cards of your deck in the waiting room.
 Backup 2000
 EndCard
 
@@ -2682,7 +2682,7 @@ Cont: GiveSelf
     GainSpecialEffect CannotUseBackup
     GainSpecialEffect CannotUseEvents
 }
-Text Cont: You cannot play events or BACKUP from hand.
+Text Cont: You cannot play events or "BACKUP" from hand.
 EndCard
 
 Character: PRD/W84-T04

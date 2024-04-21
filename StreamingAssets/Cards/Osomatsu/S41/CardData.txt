@@ -382,7 +382,7 @@ Auto: OnUseThisCardsBackup
     }
 }
 Quick
-Text Auto: When you use this card's BACKUP, choose 1 of your Yellow characters in battle, and that character gets +1000 power until end of turn.
+Text Auto: When you use this card's "BACKUP", choose 1 of your Yellow characters in battle, and that character gets +1000 power until end of turn.
 Backup 1000
 EndCard
 
@@ -430,7 +430,7 @@ Auto: OnUseThisCardsBackup
         }
     }
 }
-Text Auto: [(2) Put 1 character from your stage in the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent's level and put it in stock.
+Text Auto: [(2) Put 1 character from your stage in the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent's level and put it in stock.
 Backup 2500
 EndCard
 
@@ -1173,11 +1173,11 @@ Cont: GiveSelf
                     GainSpecialEffect NoBackupOnAttack
                 }
             }
-            Text Cont: During this card's battle, your opponent cannot play BACKUP from hand.
+            Text Cont: During this card's battle, your opponent cannot play "BACKUP" from hand.
         }
     }
 }
-Text Cont: If the number of other characters with "Matsu" in its card name you have is 2 or more, this card gets +1500 power and the following ability. "Cont: During this card's battle, your opponent cannot play BACKUP from hand."
+Text Cont: If the number of other characters with "Matsu" in its card name you have is 2 or more, this card gets +1500 power and the following ability. "Cont: During this card's battle, your opponent cannot play "BACKUP" from hand."
 EndCard
 
 Character: OMS/S41-055
@@ -1502,7 +1502,7 @@ Auto: OnUseThisCardsBackup
     }
 }
 Quick
-Text Auto: When you use this card's BACKUP, choose 1 of your characters in battle with "Matsu" in its card name, and that character gets +1000 power until end of turn.
+Text Auto: When you use this card's "BACKUP", choose 1 of your characters in battle with "Matsu" in its card name, and that character gets +1000 power until end of turn.
 Backup 2500
 EndCard
 

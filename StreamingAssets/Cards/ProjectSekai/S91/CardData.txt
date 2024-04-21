@@ -300,7 +300,7 @@ Auto: OnUseThisCardsBackup
     SetXToNumberOfCharacters HasTrait Music
     MillOpponentBottom X
 }
-Text Auto: When you use this card's BACKUP, put X cards from the bottom of your opponent's deck in the waiting room. X equals the number of your «Music» characters.
+Text Auto: When you use this card's "BACKUP", put X cards from the bottom of your opponent's deck in the waiting room. X equals the number of your «Music» characters.
 Backup 3000
 EndCard
 
@@ -814,7 +814,7 @@ Cont: GiveSelf
     GainSpecialEffect CannotUseEvents
     GainSpecialEffect CannotUseBackup
 }
-Text Cont: You cannot play events or BACKUP from hand.
+Text Cont: You cannot play events or "BACKUP" from hand.
 EndCard
 
 Character: PJS/S91-039
@@ -911,7 +911,7 @@ Cont: GiveSelf
         GainSpecialEffect CannotBeChosen
     }
 }
-Text Cont: MEMORY If you have 2 or more cards in memory, this card gets +2000 power during your turn. If you have 3 or more cards in memory, your opponent may not play BACKUP from hand during battles involving this card. If you have 4 or more cards in memory, this card cannot be chosen as target of your opponent's effects.
+Text Cont: MEMORY If you have 2 or more cards in memory, this card gets +2000 power during your turn. If you have 3 or more cards in memory, your opponent may not play "BACKUP" from hand during battles involving this card. If you have 4 or more cards in memory, this card cannot be chosen as target of your opponent's effects.
 *OnPlayDraw2Discard2BlindStock
 EndCard
 
@@ -1194,7 +1194,7 @@ Auto: OnUseThisCardsBackup
         }
     }
 }
-Text Auto: [(2) Put 1 character from your stage in the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent and put it in the waiting room.
+Text Auto: [(2) Put 1 character from your stage in the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent and put it in the waiting room.
 Backup 2500
 EndCard
 
@@ -3292,7 +3292,7 @@ Auto: OnUseThisCardsBackup
         *OptionalBlindStock
     }
 }
-Text Auto: When you use BACKUP of this card, if all your characters are «Music», you may put the top card of your deck in stock.
+Text Auto: When you use "BACKUP" of this card, if all your characters are «Music», you may put the top card of your deck in stock.
 Backup 2000
 EndCard
 
@@ -3378,10 +3378,10 @@ Auto: OnPlay
                 GainSpecialEffect CannotUseBackup
             }
         }
-        Text Cont: During battles involving this card, you cannot play events or BACKUP from hand.
+        Text Cont: During battles involving this card, you cannot play events or "BACKUP" from hand.
     }
 }
-Text Auto: When this card is placed on the stage from your hand, draw up to 1 card, choose 1 of your opponent's characters, and that character gets the following ability until end of turn. "Cont: During battles involving this card, you cannot play events or BACKUP from hand."
+Text Auto: When this card is placed on the stage from your hand, draw up to 1 card, choose 1 of your opponent's characters, and that character gets the following ability until end of turn. "Cont: During battles involving this card, you cannot play events or "BACKUP" from hand."
 Auto: OnPlay
 {
     If StageContains 4 Other && HasTrait Music
@@ -3639,7 +3639,7 @@ Auto: OnUseThisCardsBackup
 {
     *ScryToBottom
 }
-Text Auto: When you use this card's BACKUP, look at the top card of your deck and put it either on top or bottom of the deck.
+Text Auto: When you use this card's "BACKUP", look at the top card of your deck and put it either on top or bottom of the deck.
 Backup 2500
 EndCard
 
@@ -4341,10 +4341,10 @@ Auto: OnPlay
                 GainSpecialEffect CannotUseBackup
             }
         }
-        Text Cont: During battles involving this card, you cannot play events or BACKUP from hand.
+        Text Cont: During battles involving this card, you cannot play events or "BACKUP" from hand.
     }
 }
-Text Auto: When this card is placed on the stage from your hand, draw up to 1 card, choose 1 of your opponent's characters, and that character gets the following ability until end of turn. "Cont: During battles involving this card, you cannot play events or BACKUP from hand."
+Text Auto: When this card is placed on the stage from your hand, draw up to 1 card, choose 1 of your opponent's characters, and that character gets the following ability until end of turn. "Cont: During battles involving this card, you cannot play events or "BACKUP" from hand."
 Auto: OnPlay
 {
     If StageContains 4 Other && HasTrait Music

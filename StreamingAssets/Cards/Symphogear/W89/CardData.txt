@@ -325,7 +325,7 @@ Cont: GiveSelf
                 GainSpecialEffect NoBackupOnAttack
                 GainSpecialEffect NoEventsOnAttack
             }
-            Text Cont: During battles involving this card, your opponent may not play events or BACKUP from hand.
+            Text Cont: During battles involving this card, your opponent may not play events or "BACKUP" from hand.
         }
         GainEffect
         {
@@ -353,7 +353,7 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont: EXPERIENCE If the sum of levels of cards in your level is 5 or more and you have no other characters, this card gets +12000 power and the following 3 abilities. "Cont:During battles involving this card, your opponent may not play events or BACKUP from hand." "Auto:[(1) Put a card from hand to the waiting room] When this card attacks you may pay the cost. If you do, perform trigger check 3 times during this card attack's trigger step." "Auto:[Put 3 cards from hand to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 1 damage to your opponent twice."
+Text Cont: EXPERIENCE If the sum of levels of cards in your level is 5 or more and you have no other characters, this card gets +12000 power and the following 3 abilities. "Cont:During battles involving this card, your opponent may not play events or "BACKUP" from hand." "Auto:[(1) Put a card from hand to the waiting room] When this card attacks you may pay the cost. If you do, perform trigger check 3 times during this card attack's trigger step." "Auto:[Put 3 cards from hand to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 1 damage to your opponent twice."
 Act: Send 1 WaitingRoom Any
 {
     *GiveCharacterPower(1500,Any)
@@ -510,7 +510,7 @@ Auto: OnUseThisCardsBackup
 {
     Mill 3
 }
-Text Auto: When you use this card's BACKUP, put the top 3 cards of your deck in the waiting room.
+Text Auto: When you use this card's "BACKUP", put the top 3 cards of your deck in the waiting room.
 Backup 2000
 EndCard
 
@@ -1369,7 +1369,7 @@ Auto: OnEndOfAttack
             SaveTargets
             TargetSelf
             AddSavedToCurrentTargets
-            ChooseCharacterFromTargets Choose a character to stand and give the following 2 abilities. "[C] During this card's battle, your opponent may not use BACKUP from hand." "[C] This cannot be chosen by your opponent's abilities."
+            ChooseCharacterFromTargets Choose a character to stand and give the following 2 abilities. "[C] During this card's battle, your opponent may not use "BACKUP" from hand." "[C] This cannot be chosen by your opponent's abilities."
             Stand
             GainSpecialEffect NoBackupOnAttack
             GainSpecialEffect CannotBeChosen
@@ -1377,7 +1377,7 @@ Auto: OnEndOfAttack
     }
 }
 TimesPerTurn 1
-Text Auto: CX COMBO [(1) Put a «Music» character from hand to the waiting room] This ability activates up to once per turn. At the end of this card's attack, If "Highest Good: Rose Cross" is in your climax area and you have another «Music» character, you may pay the cost. If you do, choose either 1 of your other "Tsubasa, Resurrected Phoenix" or this card, stand that card, and that card gets the following 2 abilities until end of turn. "Cont: During this card's battle, your opponent may not use BACKUP from hand." "Cont: This cannot be chosen by your opponent's abilities."
+Text Auto: CX COMBO [(1) Put a «Music» character from hand to the waiting room] This ability activates up to once per turn. At the end of this card's attack, If "Highest Good: Rose Cross" is in your climax area and you have another «Music» character, you may pay the cost. If you do, choose either 1 of your other "Tsubasa, Resurrected Phoenix" or this card, stand that card, and that card gets the following 2 abilities until end of turn. "Cont: During this card's battle, your opponent may not use "BACKUP" from hand." "Cont: This cannot be chosen by your opponent's abilities."
 EndCard
 
 Character: SG/W89-056
@@ -2290,7 +2290,7 @@ Auto: OnUseThisCardsBackup
     SetXValue TargetCount
     MillOpponent X
 }
-Text Auto: When you use this card's BACKUP, put X cards from the bottom of your opponent's deck into the waiting room. X equals the number of your «Music» characters.
+Text Auto: When you use this card's "BACKUP", put X cards from the bottom of your opponent's deck into the waiting room. X equals the number of your «Music» characters.
 Backup 3000
 EndCard
 

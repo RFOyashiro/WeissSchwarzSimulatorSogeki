@@ -258,7 +258,7 @@ Cont: GiveSelfEverywhere
 				TargetMyCharacterInBattle
 				GainPower 1000
 			}
-			Text Act: BACKUP 1000, Level 0 [Put this card from your hand into your waiting room]
+			Text Act: "BACKUP" 1000, Level 0 [Put this card from your hand into your waiting room]
 		}
         GainEffect
         {
@@ -281,11 +281,11 @@ Cont: GiveSelfEverywhere
                     }                    
                 }                
             }
-            Text Auto: [Put 3 «Landosol» character cards from your hand to the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose a character in battle, and that character gets the following ability until end of turn. "Cont: This card cannot deal damage to players."
+            Text Auto: [Put 3 «Landosol» character cards from your hand to the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose a character in battle, and that character gets the following ability until end of turn. "Cont: This card cannot deal damage to players."
         }
     }
 }
-Text Cont: If you have another "For Somebody, Pecorine", this card in all zones gets a soul trigger icon and the following 2 abilities. "Auto: [Put 3 «Landosol» characters from your hand to the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose a character in battle, and that character gets the following ability until end of turn. 'Cont: This card cannot deal damage to players.'" "Act: BACKUP 1000, Level 0 [Put this card from your hand into your waiting room]"
+Text Cont: If you have another "For Somebody, Pecorine", this card in all zones gets a soul trigger icon and the following 2 abilities. "Auto: [Put 3 «Landosol» characters from your hand to the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose a character in battle, and that character gets the following ability until end of turn. 'Cont: This card cannot deal damage to players.'" "Act: "BACKUP" 1000, Level 0 [Put this card from your hand into your waiting room]"
 EndCard
 
 Character: PRD/W100-010
@@ -549,7 +549,7 @@ Auto: OnUseThisCardsBackup
         }
     }
 }
-Text Auto: When you use this card's BACKUP, perform the following action. "You may discard a card from your hand to the waiting room. If you do, look at the top card of your deck and put it either on top of the deck or in the waiting room." You may repeat this card action as many times as desired.
+Text Auto: When you use this card's "BACKUP", perform the following action. "You may discard a card from your hand to the waiting room. If you do, look at the top card of your deck and put it either on top of the deck or in the waiting room." You may repeat this card action as many times as desired.
 Backup 2000
 EndCard
 
@@ -1450,7 +1450,7 @@ Auto: OnUseThisCardsBackup
     SetXToNumberOfCharacters HasTrait Landosol
     MillOpponentBottom X
 }
-Text Auto: When you use this card's BACKUP, put X cards from the bottom of your opponent's deck in the waiting room. X equals the number of your «Landosol» characters.
+Text Auto: When you use this card's "BACKUP", put X cards from the bottom of your opponent's deck in the waiting room. X equals the number of your «Landosol» characters.
 Backup 3000
 EndCard
 
@@ -1880,7 +1880,7 @@ Auto: OnUseThisCardsBackup
         }
     } 
 }
-Text Auto: [(2) Put 1 character from your stage in the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
+Text Auto: [(2) Put 1 character from your stage in the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
 Backup 2500
 EndCard
 
@@ -2538,7 +2538,7 @@ Auto: OnUseThisCardsBackup
         SearchWaitingRoom NameEquals Rookie Waiter, Saren
     }
 }
-Text Auto: [(1)] When you use this card's BACKUP, you may pay the cost. If you do, choose a "Rookie Waiter, Saren" in your waiting room and return it to your hand.
+Text Auto: [(1)] When you use this card's "BACKUP", you may pay the cost. If you do, choose a "Rookie Waiter, Saren" in your waiting room and return it to your hand.
 Backup 2500
 EndCard
 

@@ -1249,7 +1249,7 @@ Cont: GiveSelf
     GainSpecialEffect CannotUseEvents
     GainSpecialEffect CannotUseBackup
 }
-Text Cont: You cannot play events or BACKUP from hand.
+Text Cont: You cannot play events or "BACKUP" from hand.
 Auto: OnReverseOpponent
 {
     Question Put that character in clock ?
@@ -2107,7 +2107,7 @@ Auto: OnUseThisCardsBackup
     SetXValue TargetCount
     MillOpponentBottom X
 }
-Text Auto: When you use this card's BACKUP, put X cards from the bottom of your opponent's deck into the waiting room. X equals the number of your «Lily» characters.
+Text Auto: When you use this card's "BACKUP", put X cards from the bottom of your opponent's deck into the waiting room. X equals the number of your «Lily» characters.
 Backup 3000
 EndCard
 
@@ -2185,7 +2185,7 @@ Effect:
         }
     }
 }
-Text If you don't have a «Lily» character, you cannot play this card from hand. Choose a character in your waiting room and return it to your hand.\nRESONATE You may reveal a "To Schild for a Schutzengel" from your hand. If you do, put the top card of your deck in your waiting room. If that card is level 0 or lower, put up to 1 card from the top of your deck to stock. If it is not, look at up to the top 2 cards of your deck, choose up to 1 card among them, put it in your hand, put the rest into waiting room, and discard a card from your hand.
+Text If you don't have a «Lily» character, you cannot play this card from hand. Choose a character in your waiting room and return it to your hand.\n RESONATE You may reveal a "To Schild for a Schutzengel" from your hand. If you do, put the top card of your deck in your waiting room. If that card is level 0 or lower, put up to 1 card from the top of your deck to stock. If it is not, look at up to the top 2 cards of your deck, choose up to 1 card among them, put it in your hand, put the rest into waiting room, and discard a card from your hand.
 EndCard
 
 Event: ALL/S76-063
@@ -3296,7 +3296,7 @@ Auto: OnUseThisCardsBackup
 {
     Mill 3
 }
-Text Auto: When you use this card's BACKUP, put the top 3 cards of your deck in the waiting room.
+Text Auto: When you use this card's "BACKUP", put the top 3 cards of your deck in the waiting room.
 Backup 2000
 EndCard
 
@@ -3829,6 +3829,6 @@ Auto: OnUseResonate
     *GiveCharacterPower(1000,Any)
 }
 TimesPerTurn 1
-Text Auto: This ability activates up to 1 time per turn. When you use RESONATE, choose 1 of your character and that character gets +1000 power until end of turn.
+Text Auto: This ability activates up to 1 time per turn. When you use "RESONATE", choose 1 of your character and that character gets +1000 power until end of turn.
 *RestGivePower(1000,Any)
 EndCard

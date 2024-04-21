@@ -107,7 +107,7 @@ Auto: OnUseResonate
     *GiveCharacterPower(2000,Any)
 }
 TimesPerTurn 1
-Text Auto: This ability activates up to once a turn. When you use RESONATE, choose 1 of your characters, and that characters gets +2000 power until end of turn.
+Text Auto: This ability activates up to once a turn. When you use "RESONATE", choose 1 of your characters, and that characters gets +2000 power until end of turn.
 Act: RestSelf
 {
     TargetLocation Hand
@@ -706,7 +706,7 @@ Auto: OnUseThisCardsBackup
     SearchLocationForTargets Clock 0 1 NameEquals "Kanaho's Determinaton" Kanaho
     MoveCard Stock
 }
-Text Auto: When you use this card's BACKUP, you may choose a ""Kanaho's Determinaton" Kanaho" in your clock and put it in your stock.
+Text Auto: When you use this card's "BACKUP", you may choose a ""Kanaho's Determinaton" Kanaho" in your clock and put it in your stock.
 Backup 2500
 EndCard
 
@@ -758,7 +758,7 @@ Effect:
 	TargetSelf
 	MoveCard Memory
 }
-Text Choose up to 2 of your «Lily» characters, they get +1500 power until end of turn.\nRESONATE You may reveal a ""To Protect That Smile" Kanaho" and a ""Gran Eple's Winning Strategy" Takane" from your hand. If you reveal 1 of each this way, search your deck for up to 1 climax, reveal it to your opponent, put it into your hand, and shuffle your deck.\nPut this card into your memory.
+Text Choose up to 2 of your «Lily» characters, they get +1500 power until end of turn.\n RESONATE You may reveal a ""To Protect That Smile" Kanaho" and a ""Gran Eple's Winning Strategy" Takane" from your hand. If you reveal 1 of each this way, search your deck for up to 1 climax, reveal it to your opponent, put it into your hand, and shuffle your deck.\nPut this card into your memory.
 Cont: Memory
 {
 	If MyTurn && HasTrait Lily && InLocation Stage
@@ -1325,11 +1325,11 @@ Auto: OnPlay
         {
             GainSpecialEffect NoBackupInBattle
         }
-        Text Cont: During battles involving this card, no player may play BACKUP from hand.
+        Text Cont: During battles involving this card, no player may play "BACKUP" from hand.
     }
 }
 Quick
-Text Auto: When this card is placed on the stage from your hand, this card gets +4500 power and the following ability until the end of your opponent's next turn. "Cont: During battles involving this card, no player may play BACKUP from hand."
+Text Auto: When this card is placed on the stage from your hand, this card gets +4500 power and the following ability until the end of your opponent's next turn. "Cont: During battles involving this card, no player may play "BACKUP" from hand."
 Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
 {
     SearchWaitingRoom IsCharacter
@@ -2324,7 +2324,7 @@ Auto: OnUseThisCardsBackup
         LoseSoul 1
     }
 }
-Text Auto: [(1) Put 1 character from your stage in the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's level 2 or higher characters, and that character gets -1 soul until end of turn.
+Text Auto: [(1) Put 1 character from your stage in the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's level 2 or higher characters, and that character gets -1 soul until end of turn.
 Backup 2500
 EndCard
 

@@ -150,7 +150,7 @@ Auto: OnUseThisCardsBackup
     }
 }
 Quick
-Text Auto: MEMORY When you use this card's BACKUP, if there are 2 or more «Tarot» characters in your memory, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
+Text Auto: MEMORY When you use this card's "BACKUP", if there are 2 or more «Tarot» characters in your memory, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
 Backup 2500
 EndCard
 
@@ -1049,7 +1049,7 @@ Cont: GiveSelf
     MultiplyXValue 1000
     GainPower X
 }
-Text Cont: This card gets +1000 power for each of your other character with ASSIST.
+Text Cont: This card gets +1000 power for each of your other character with "ASSIST".
 Auto: OnOtherReversed
 {
     GainEffect
@@ -1224,7 +1224,7 @@ Auto: OnUseThisCardsBackup
         SearchWaitingRoom HasTrait Tarot
     }
 }
-Text Auto: [(2)] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 «Tarot» character in your waiting room and return it to your hand.
+Text Auto: [(2)] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 «Tarot» character in your waiting room and return it to your hand.
 Backup 1000
 EndCard
 
@@ -1958,7 +1958,7 @@ Cont: Assist
     MultiplyXValue 500
     GainPower X
 }
-Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times number of your characters with ASSIST.
+Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times number of your characters with "ASSIST".
 *OnPlayScry
 EndCard
 

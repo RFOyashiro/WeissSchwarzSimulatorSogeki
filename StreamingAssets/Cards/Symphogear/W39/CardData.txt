@@ -239,7 +239,7 @@ Auto: OnUseThisCardsBackup
 {
 	MillOpponent 3
 }
-Text Auto: When you use this card's BACKUP, put the top 3 cards of your opponent's deck in waiting room.
+Text Auto: When you use this card's "BACKUP", put the top 3 cards of your opponent's deck in waiting room.
 Backup 3000
 EndCard
 
@@ -888,7 +888,7 @@ Auto: OnUseThisCardsBackup
 		GainPower 1000
 	}
 }
-Text Auto: When you use this card's BACKUP, choose 1 of your green characters in battle, and that character gets +1000 power until end of turn.
+Text Auto: When you use this card's "BACKUP", choose 1 of your green characters in battle, and that character gets +1000 power until end of turn.
 Backup 1500
 EndCard
 
@@ -1034,7 +1034,7 @@ Auto: OnPlay|PlacedBy CHANGE
         *OptionalBurn(1)
     }
 }
-Text Auto: When this card is placed on the stage from your hand or by CHANGE, reveal the top card of your deck. If that card is a «Music» character, you may deal 1 damage to your opponent.
+Text Auto: When this card is placed on the stage from your hand or by "CHANGE", reveal the top card of your deck. If that card is a «Music» character, you may deal 1 damage to your opponent.
 Auto: OnAttack
 {
     PayCost ShuffleFromWaitingRoom 2 IsCharacter
@@ -1137,7 +1137,7 @@ Auto: OnUseThisCardsBackup
         }
     }
 }
-Text Auto: [(2) Put a character from your stage in the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent and put that character in the waiting room.
+Text Auto: [(2) Put a character from your stage in the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent and put that character in the waiting room.
 Backup 2500
 EndCard
 
@@ -1701,7 +1701,7 @@ Auto: OnUseThisCardsBackup
 {
     *ScryToBottom
 }
-Text Auto: When you use this card's BACKUP, look at the top card of your deck and put it either on top or bottom of the deck.
+Text Auto: When you use this card's "BACKUP", look at the top card of your deck and put it either on top or bottom of the deck.
 Backup 1500
 EndCard
 
@@ -1722,7 +1722,7 @@ Auto: OnUseThisCardsBackup
         GainPower 1000
     }
 }
-Text Auto: MEMORY When you use this card's BACKUP, if there are 2 or more cards in your memory, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
+Text Auto: MEMORY When you use this card's "BACKUP", if there are 2 or more cards in your memory, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
 Backup 2500
 EndCard
 
@@ -1801,7 +1801,7 @@ Cont: Assist
     MultiplyXValue 500
     GainPower X
 }
-Text Cont: ASSIST Your characters in front of this card get +X power. X is equal to 500 times the number of your characters with ASSIST.
+Text Cont: ASSIST Your characters in front of this card get +X power. X is equal to 500 times the number of your characters with "ASSIST".
 Act: 2 RestSelf
 {
     Heal
@@ -2239,7 +2239,7 @@ Auto: OnUseThisCardsBackup
 {
     *ScryToBottom
 }
-Text Auto: When you use this card's BACKUP, look at the top card of your deck and put it either on top or bottom of your deck.
+Text Auto: When you use this card's "BACKUP", look at the top card of your deck and put it either on top or bottom of your deck.
 Backup 1500
 EndCard
 

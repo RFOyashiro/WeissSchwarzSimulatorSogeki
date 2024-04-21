@@ -341,7 +341,7 @@ Auto: OnUseThisCardsBackup
     }
 }
 Quick
-Text Auto: When you use this card's BACKUP, if the number of «Music» characters you have is 2 or more, choose 1 of your characters in battle, and that character gets +X power until end of turn. X equals 500 times your level.
+Text Auto: When you use this card's "BACKUP", if the number of «Music» characters you have is 2 or more, choose 1 of your characters in battle, and that character gets +X power until end of turn. X equals 500 times your level.
 Backup 1000
 EndCard
 
@@ -744,7 +744,7 @@ Auto: OnUseThisCardsBackup
         }
     }
 }
-Text Auto: [(2) Put 1 card from your hand to the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
+Text Auto: [(2) Put 1 card from your hand to the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
 Backup 2500
 EndCard
 

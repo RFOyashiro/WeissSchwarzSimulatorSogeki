@@ -310,7 +310,7 @@ Auto: OnUseThisCardsBackup
         }
 	}
 }
-Text Auto: [Put 2 cards from your hand to the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in stock. If you do, put the bottom card of your opponent's stock in the waiting room.
+Text Auto: [Put 2 cards from your hand to the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in stock. If you do, put the bottom card of your opponent's stock in the waiting room.
 Backup 1000
 EndCard
 
@@ -1035,7 +1035,7 @@ Auto: OnUseThisCardsBackup
 {
     *ScryToBottom
 }
-Text Auto: When you use this card's BACKUP, look at the top card of your deck and put it either on top or bottom of the deck.
+Text Auto: When you use this card's "BACKUP", look at the top card of your deck and put it either on top or bottom of the deck.
 Backup 2500
 EndCard
 
@@ -2483,7 +2483,7 @@ Auto: OnUseThisCardsBackup
     TargetBottom OpponentDeck X
     MoveCard WaitingRoom
 }
-Text Auto: When you use this card's BACKUP, put the bottom X cards of your opponent's deck in the waiting room. X equals the number of your opponent's characters.
+Text Auto: When you use this card's "BACKUP", put the bottom X cards of your opponent's deck in the waiting room. X equals the number of your opponent's characters.
 Backup 3000
 EndCard
 
@@ -2646,7 +2646,7 @@ Auto: OnOpponentUseEvent|OnOpponentUsesAct
         MoveCard OpponentWaitingRoom
     }
 }
-Text Auto: During your turn, when your opponent uses an event or BACKUP, if this card is in the center stage, your opponent puts the top card of their stock in the waiting room.
+Text Auto: During your turn, when your opponent uses an event or "BACKUP", if this card is in the center stage, your opponent puts the top card of their stock in the waiting room.
 Auto: OnPlay
 {
     UntilEndOfOpponentsTurn
@@ -2850,7 +2850,7 @@ Auto: OnUseThisCardsBackup
         *OptionalBlindStock
     }
 }
-Text Auto: When you use this card's BACKUP, if you have 3 or more characters, you may put the top card of your deck in your stock.
+Text Auto: When you use this card's "BACKUP", if you have 3 or more characters, you may put the top card of your deck in your stock.
 Backup 2000
 EndCard
 

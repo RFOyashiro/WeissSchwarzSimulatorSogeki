@@ -570,7 +570,7 @@ Cont: GiveSelf
     GainSpecialEffect CannotUseEvents
     GainSpecialEffect CannotUseBackup
 }
-Text Cont: You cannot play events or BACKUP from hand.
+Text Cont: You cannot play events or "BACKUP" from hand.
 EndCard
 
 Character: HBR/W103-021
@@ -632,7 +632,7 @@ Auto: OnUseThisCardsBackup
         *OptionalBlindStock
     }
 }
-Text Auto: When you use this card's BACKUP, if all your characters are «Seraph», you may put the top card of your deck in stock.
+Text Auto: When you use this card's "BACKUP", if all your characters are «Seraph», you may put the top card of your deck in stock.
 Backup 2000
 EndCard
 
@@ -1443,7 +1443,7 @@ Auto: OnUseAccelerate
     }
 }
 TimesPerTurn 1
-Text Auto: [Put 1 card from your hand to the waiting room] This ability activates up to once per turn. When you use ACCELERATE, you may pay the cost. If you do, put the top card of your clock in the waiting room.
+Text Auto: [Put 1 card from your hand to the waiting room] This ability activates up to once per turn. When you use "ACCELERATE", you may pay the cost. If you do, put the top card of your clock in the waiting room.
 Auto: OnSpecificClimaxPlay Unit 31A
 {
     If StageContains 2 Other && HasTrait Seraph
@@ -1496,7 +1496,7 @@ Auto: OnUseThisCardsBackup
         GainPower 1000
     }
 }
-Text Auto: ACCELERATE [(1) Put the top card of your deck in your clock, put a character from your stage in the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of the opponent, put it in the waiting room, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
+Text Auto: ACCELERATE [(1) Put the top card of your deck in your clock, put a character from your stage in the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of the opponent, put it in the waiting room, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
 Backup 2000
 EndCard
 
@@ -1577,7 +1577,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto: [Put a «Seraph» character from your hand to the waiting room] When this card is placed on the stage from your hand, if you have another «Seraph» character, you may pay the cost. If you do, search your deck for up to 1 character with ACCELERATE, reveal it, put it in your hand, and shuffle your deck.
+Text Auto: [Put a «Seraph» character from your hand to the waiting room] When this card is placed on the stage from your hand, if you have another «Seraph» character, you may pay the cost. If you do, search your deck for up to 1 character with "ACCELERATE", reveal it, put it in your hand, and shuffle your deck.
 *OnAttackGivePower(1500,Seraph)
 EndCard
 
@@ -2598,7 +2598,7 @@ Auto: OnPlay
     ChooseCharacterFromTargets Choose a character to give +2000 power.
     GainPower 2000
 }
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your other characters with ACCELERATE, and that character gets +2000 power until end of turn.
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your other characters with "ACCELERATE", and that character gets +2000 power until end of turn.
 EndCard
 
 Character: HBR/W103-T02
@@ -2787,7 +2787,7 @@ Cont: GiveSelf
          
     }
 }
-Text Cont: During your turn, if the number of other «Seraph» characters you have is 4 or more, this card gets +5000 power and the following ability. "Cont: During battles involving this card, your opponent may not play events or BACKUP from hand."
+Text Cont: During your turn, if the number of other «Seraph» characters you have is 4 or more, this card gets +5000 power and the following ability. "Cont: During battles involving this card, your opponent may not play events or "BACKUP" from hand."
 Auto: OnAttack
 {
     TargetTop Deck 1

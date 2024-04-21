@@ -1591,7 +1591,7 @@ Auto: OnOpponentBrainstormSuccess
 {
 	*GiveCharacterPower(2000,Any)
 }
-Text Auto: Whenever your opponent's BRAINSTORM sends 1 or more climax in the waiting room, choose 1 of your characters and that character gets +2000 power until end of turn.
+Text Auto: Whenever your opponent's "BRAINSTORM" sends 1 or more climax in the waiting room, choose 1 of your characters and that character gets +2000 power until end of turn.
 EndCard
 
 Character: ZLS/W93-061
@@ -2794,7 +2794,7 @@ Auto: OnUseThisCardsBackup
         }
     }
 }
-Text Auto: When you use this card's BACKUP, if all your characters are «Saga», you may put the top card of your deck in stock.
+Text Auto: When you use this card's "BACKUP", if all your characters are «Saga», you may put the top card of your deck in stock.
 Backup 2000
 EndCard
 

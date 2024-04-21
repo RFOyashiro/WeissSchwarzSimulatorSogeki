@@ -713,7 +713,7 @@ Cont: Assist
     MultiplyXValue 500
     GainPower X
 }
-Text Cont: ASSIST Your characters in front of this card get +X power. X is equal to 500 times the number of your characters with ASSIST
+Text Cont: ASSIST Your characters in front of this card get +X power. X is equal to 500 times the number of your characters with "ASSIST"
 *ClockShift(1,green)
 EndCard
 
@@ -999,7 +999,7 @@ Auto: OnPlay|PlacedBy CHANGE
 {
     *OptionalHeal
 }
-Text Auto: When this card is placed on the stage from your hand or by CHANGE, you may put the top card of your clock in the waiting room.
+Text Auto: When this card is placed on the stage from your hand or by "CHANGE", you may put the top card of your clock in the waiting room.
 Auto: OnAttack
 {
 	If Climax Declaration of War
@@ -1032,7 +1032,7 @@ Auto: OnUseThisCardsBackup
 		Mill 3
 	}
 }
-Text Auto: When you use this card's BACKUP, if the number of «Music» characters you have is 3 or more, put the top 3 cards of your deck in the waiting room.
+Text Auto: When you use this card's "BACKUP", if the number of «Music» characters you have is 3 or more, put the top 3 cards of your deck in the waiting room.
 Backup 1000
 EndCard
 

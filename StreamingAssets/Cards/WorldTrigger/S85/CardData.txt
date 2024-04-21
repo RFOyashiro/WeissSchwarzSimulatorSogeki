@@ -629,7 +629,7 @@ Cont: GiveSelf
         GainSpecialEffect NoBackupOnAttack
     }
 }
-Text Cont: During battles involving this card, your opponent cannot play BACKUP from hand.
+Text Cont: During battles involving this card, your opponent cannot play "BACKUP" from hand.
 *GainPowerWhenAttackingLevel2(6000)
 EndCard
 
@@ -1705,7 +1705,7 @@ Auto: OnUseThisCardsBackup
         }
     }
 }
-Text Auto: [Put 2 cards from your hand to the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
+Text Auto: [Put 2 cards from your hand to the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
 Backup 1000
 EndCard
 
@@ -2361,7 +2361,7 @@ Auto: OnUseThisCardsBackup
         *OptionalBlindStock
     }
 }
-Text Auto: When you use this card's BACKUP, if all your characters are «Trion», you may put the top card of your deck in stock.
+Text Auto: When you use this card's "BACKUP", if all your characters are «Trion», you may put the top card of your deck in stock.
 Backup 2000
 EndCard
 

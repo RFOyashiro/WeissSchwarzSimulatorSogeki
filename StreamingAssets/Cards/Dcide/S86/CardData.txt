@@ -1,0 +1,2119 @@
+Character: DCT/S86-001
+Name Singing-and-Dancing Battle Miko, Ariya
+JPName 歌って踊れる戦巫女 ありや
+Color Y
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Combo Star-connected Bond
+*PowerOnMyTurn(2000)
+Auto: OnAttack
+{
+    If Climax Star-connected Bond && StageContains 2 Other && HasTrait Knocker Up|Yurajima
+    {
+        *Check3Add1(Knocker Up|Yurajima)
+        PayCost 1
+        {
+            GainSpecialEffect DoubleTrigger
+        }
+    }
+}
+Text Auto: CxCombo [(1)] When this card attacks, if "Star-connected Bond" is in your climax area and the number of other characters with either «Knocker Up» or «Yurajima» you have is 2 or more, look at up to 3 cards from the top of your deck and search for up to 1 character with either «Knocker Up» or «Yurajima», reveal it, put it in your hand, put the rest into your waiting room, and you may pay the cost. If you do, perform trigger check twice during this card attack's trigger Step.
+EndCard
+
+Character: DCT/S86-002
+Name Top Idol, Ariya
+JPName 最高のアイドル ありや
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Knocker Up
+Trait2 Weapon
+Cont: InHand
+{
+    If LocationContainsOrLess Deck 5 Any
+    {
+        LoseLevel 1
+    }
+}
+Text Cont: If there are 5 or less cards in your deck, this card gets -1 level while in your hand.
+Cont: GiveAll
+{
+    IfOwner InLocation CenterStage
+    {
+        If HasTrait Knocker Up|Yurajima
+        {
+            GainPower 1500
+        }
+    }
+}
+Text Cont: If this card is in the center stage, all your characters with either «Knocker Up» or «Yurajima» get +1500 power.
+Auto: OnPlay
+{
+    If LocationContainsOrLess Deck 5 Any
+    {
+        Refresh
+        SearchDeck HasTrait Knocker Up|Yurajima
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, if there are 5 or less cards in your deck, return all cards from your waiting room to the deck. If you do, search your deck for up to 1 character with either «Knocker Up» or «Yurajima», reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: DCT/S86-003
+Name Ariya And Helpers, Ariya
+JPName ありやとお手伝い隊 ありや
+Color Y
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+*GainPowerWithEnoughCharacters(2000,2,Knocker Up|Yurajima)
+*OnAttackPay1ToDoubleTrigger
+EndCard
+
+Character: DCT/S86-004
+Name Unrivaled Heir, Shuichi
+JPName 無双の御曹司 周一
+Color Y
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Auto: OnPlay
+{
+    Question Put the top 3 cards of your deck into waiting room ?
+    If Yes
+    {
+        Mill 3
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top 3 cards of your deck in the waiting room.
+Auto: OnPlay
+{
+    PayCost 1
+    {
+        SearchLocationForTargets WaitingRoom 1 1 HasTrait Knocker Up|Yurajima && Compare ThatCardsCost 0 OrLess
+        PlaceOnStage false true true false
+        ScheduleEffectForTargets EndOfMyTurn
+        {
+            Effect:
+            {
+                MoveCard Memory
+            }
+        }
+    }
+}
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a cost 0 or lower character in your waiting room with either «Knocker Up» or «Yurajima» and put it in any position on the stage, and at the end of the turn, send that character to memory.
+EndCard
+
+Character: DCT/S86-005
+Name For the Sake of Determination, Ariya
+JPName 決意のために ありや
+Color Y
+Level 1
+Cost 1
+Trigger Soul
+Power 1000
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Auto: OnUseThisCardsBackup
+{
+    Mill 3
+}
+Text Auto: When you use this card's "BACKUP", put the top 3 cards of your deck in the waiting room.
+Backup 2000
+EndCard
+
+Character: DCT/S86-006
+Name "Dreamer" Ariya
+JPName “夢見る人” ありや
+Color Y
+Level 1
+Cost 1
+Trigger Soul
+Power 3000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Cont: GiveSelf
+{
+    If LocationContains 1 NameEquals Shrine Girl, Ariya || NameEquals Plan for Tomorrow, Aki
+    {
+        GainPower 2000
+        GainEffect
+        {
+            Auto: OnPlay|OnPlacedOnStageFromMemory
+            {
+                TargetLocation Stage
+                NarrowTargets Other
+                ChooseCharacterFromTargets Choose a character to give +1 level.
+                GainLevel 1
+            }
+            Text Auto: When this card is placed on the stage from your hand or memory, choose 1 of your other character, and that character gets +1 level until end of turn.
+        }
+    }
+}
+Text Cont: MEMORY If either "Shrine Girl, Ariya" or "Plan for Tomorrow, Aki" is in your memory, this card gets +2000 power and the following ability. "Auto: When this card is placed on the stage from your hand or memory, choose 1 of your other character, and that character gets +1 level until end of turn."
+*YellowEarlyPlayBomb
+EndCard
+
+Character: DCT/S86-007
+Name Battlefield Is Also A Stage, Ariya
+JPName 戦場だってステージ ありや
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Knocker Up
+Trait2 Weapon
+*Healer
+Auto: OnAttack
+{
+    PayCost 1 Discard 1 Any
+    {
+        GainPower 2000
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                *OptionalBurn(1)
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent.
+        }
+    }
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, this card gets +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent." 
+EndCard
+
+Character: DCT/S86-008
+Name Student Council Election, Shuichi
+JPName 生徒会選挙 周一
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Auto: OnPlay
+{
+    PayCost SendFromWaitingRoom 2 Deck IsCharacter
+	{
+		ShuffleLocation Deck
+		TargetSelf
+		GainSoul 1
+	}
+}
+Text Auto: [Return 2 characters from your waiting room to the deck, shuffle your deck] When this card is placed on the stage from your hand, you may pay the cost. If you do, this card gets +1 soul until end of turn.
+Auto: OnPlay
+{
+    PayCost 1 Discard 1 Any
+    {
+        *CheckAndAdd(3)
+    }
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to 3 cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: DCT/S86-009
+Name Overwhelming Maternal Instinct, Maria
+JPName あふれ出る母性 茉莉亜
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Auto: OnPlay
+{
+	If LocationContainsOrLess OpponentCenterStage 1 Any
+	{
+		TargetLocation OpponentCenterStage
+		NarrowTargets CanBeChosen && Compare ThatCardsCost 0 OrLower
+		MoveCard WaitingRoom
+	}
+}
+Text Auto: When this card is placed on the stage from your hand, if your opponent has 1 or less characters in their center stage, choose 1 cost 0 or lower character in your opponent's center stage, and put it into their waiting room.
+Auto: OnPlay
+{
+    PayCost Discard 1 HasTrait Knocker Up
+    {
+        DrawCard
+    }
+}
+Text Auto: [Put a «Knocker Up» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw a card.
+EndCard
+
+Character: DCT/S86-010
+Name In the Middle of Examination, Riku
+JPName 診察中 凌久
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Cont:
+{
+
+}
+Text Cont: All your other "Lazybone Art Teacher, Mugen" get +500 power and "Auto: ENCORE [Put a «Knocker Up» character from hand to the waiting room].
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest 2 of your characters] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 «Knocker Up» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: DCT/S86-011
+Name Shrine Girl, Ariya
+JPName 神社の娘 ありや
+Color Y
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if there are 2 or less cards in your memory, you may choose a '"Dreamer" Ariya' in your waiting room and send it to memory.
+Auto:
+{
+
+}
+Text Auto: MEMORY [Rest this card] At the beginning of your attack phase, if there's a climax in your climax area and this card is in the center stage, you may pay the cost. If you do, choose a '"Dreamer" Ariya' in your memory and this card, exchange them, and at the beginning of the encore step, exchange them again.
+EndCard
+
+Character: DCT/S86-012
+Name Sacred Japanese Language Teacher, Maria
+JPName 聖なる国語教師 茉莉亜
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 5500
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: ASSIST Your level 3 or higher characters in front of this card get +2000 power.
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a climax in your waiting room and return it to your hand.
+Auto:
+{
+
+}
+Text Auto: BOND/"Lazybone Art Teacher, Mugen" [Put 1 card from your hand to the waiting room]
+EndCard
+
+Character: DCT/S86-013
+Name Whimsey Health Doctor, Riku
+JPName 気まぐれな保健医 凌久
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 5500
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: MEMORY If there are 3 or more cards in your memory, this card gets the following ability. "Cont: All your other «Knocker Up» character get +1000 power."
+Act:
+{
+
+}
+Text Act: [(2) Rest this card] Put the top card of your clock in the waiting room.
+Act:
+{
+
+}
+Text Act: [(2) Rest this card] Choose 1 of your opponent's characters and return it to their hand.
+EndCard
+
+Character: DCT/S86-014
+Name Lazybone Art Teacher, Mugen
+JPName グータラ美術教師 無弦
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 8000
+Soul 2
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If there are 2 or less climax cards in your waiting room, this card gets -1 level while in your hand.
+Cont:
+{
+
+}
+Text Cont: For each of your other «Knocker Up» characters in the backstage, this card gets +1500 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Welcome to Paradise" is in your climax area, reveal the top 6 cards of your deck, shuffle your deck, and deal X damage to your opponent. X equals the number of cards with BOND among them. 
+EndCard
+
+Character: DCT/S86-015
+Name Calm And Cool Student Council President, Shuichi
+JPName 冷静沈着な生徒会長 周一
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Auto:
+{
+
+}
+Text Auto: When this card's trigger check reveals a climax with a Choice trigger icon, you may choose a character in your waiting room and return it to your hand.
+Auto:
+{
+
+}
+Text Auto: BOND/"Singing-and-Dancing battle Miko, Ariya" "Shrine Girl, Ariya" [Put 1 card from your hand to the waiting room]
+EndCard
+
+Character: DCT/S86-016
+Name A Place Full of Memories, Mugen
+JPName 思い出の場所 無弦
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a «Knocker Up» character in your waiting room and return it to your hand.
+EndCard
+
+Character: DCT/S86-017
+Name Ready to Go!, Ariya
+JPName 気合い十分！ ありや
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When you use this card's "BACKUP", if you have a character with either «Knocker Up» or «Yurajima», choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
+Act:
+{
+
+}
+Text Act: [Counter] "BACKUP" 2500, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: DCT/S86-018
+Name Prideful Knight, Shuichi
+JPName 孤高の騎士 周一
+Color Y
+Level 2
+Cost 2
+Trigger Soul
+Power 6500
+Soul 2
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: MEMORY If there are 2 or more characters with either «Knocker Up» or «Yurajima» in your memory, this card gets +3500 power and "Auto: ENCORE
+Auto:
+{
+
+}
+Text Auto: CxCombo [Put a "Swordplay" from your climax area to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 4 characters with either «Knocker Up» or «Yurajima», reveal them, put them in your hand, and put the rest into your waiting room.
+EndCard
+
+Event: DCT/S86-019
+Name Dramatic Gentle
+JPName ドラマチック・ジェントル
+Color Y
+Level 1
+Cost 0
+Effect: 
+{
+
+}
+Text You may discard a card from your hand to the waiting room. If you do, all your opponent's characters get -1500 power until end of turn. Put this card in clock.
+EndCard
+
+Event: DCT/S86-020
+Name All My Body And Soul
+JPName 全身全霊
+Color Y
+Level 3
+Cost 1
+Effect: 
+{
+
+}
+Text Look at up to X cards from the top of your deck, choose up to 2 of them and put them in your hand, and put the rest into your waiting room. X equals the number of your «Knocker Up» characters.
+EndCard
+
+Climax: DCT/S86-021
+Name Star-connected Bond
+JPName 星が繋ぐ絆
+*ChoiceClimax
+EndCard
+
+Climax: DCT/S86-022
+Name Welcome to Paradise
+JPName ようこそ楽園へ
+*ChoiceClimax
+EndCard
+
+Climax: DCT/S86-023
+Name Swordplay
+JPName 剣戟
+*WindClimax
+EndCard
+
+Character: DCT/S86-024
+Name True Strength, Eri
+JPName 本当の強さ 愛莉
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: [Put the top card of your deck in your clock] When your climax is placed on your climax area, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. 
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock."
+EndCard
+
+Character: DCT/S86-025
+Name Really An Adult, Jessica
+JPName れっきとした大人 ジェシカ
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Knocker Up
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, put the top card of your clock in your stock.
+Auto:
+{
+
+}
+Text Auto: CxCombo MEMORY [(4) Put 1 card from your hand to the waiting room] This ability activates up to once per turn. At the end of the attack in which the character in your center stage Center position attacked, if "The Strongest Tag Team" is in your climax area, this card is in the center stage, and there are 2 or more «Knocker Up» characters in your memory, you may pay the cost. If you do, perform the following action 3 times. "deal 1 damage to your opponent." 
+EndCard
+
+Character: DCT/S86-026
+Name Still in Her Growth Spurt, Jessica
+JPName まだまだ成長期 ジェシカ
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Knocker Up
+Trait2 Shibuya
+Auto:
+{
+
+}
+Text Auto: When your other «Knocker Up» character attacks, this card gets +1000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [(1)] During your opponent's turn, when this card becomes reversed in battle, you may pay the cost. If you do, Rest this card, and at the beginning of your next encore step, Put this card into memory.
+EndCard
+
+Character: DCT/S86-027
+Name Finally Getting Over It, Eri
+JPName 吹っ切れたお嬢様 愛莉
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Knocker Up» character in your clock and return it to your hand, and put the top card of your deck in your clock.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your other «Knocker Up» characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: DCT/S86-028
+Name Lively Tea Party, Eri
+JPName 賑やかなお茶会 愛莉
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Knocker Up
+Trait2 Shibuya
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a climax in your waiting room and return it to your hand.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if there are 5 or more cards in your hand, choose 1 of your characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: DCT/S86-029
+Name Genius Engineer of the Observatory, Hana
+JPName 天文台の天才エンジニア 花菜
+Color G
+Level 1
+Cost 1
+Trigger Soul
+Power 3500
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 of your opponent's characters and send it to memory, and your opponent puts that character from memory in any position on their stage.
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is higher than the level of the opponent, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock.
+EndCard
+
+Character: DCT/S86-030
+Name Awakened, Eri
+JPName 覚醒 愛莉
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 4000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times level of that character.
+Auto:
+{
+
+}
+Text Auto: When your character's trigger check reveals a climax with a Bar trigger icon, you may draw a card. If you do, discard a card from your hand to the waiting room.
+Act:
+{
+
+}
+Text Act: [Put an "Charming Rouge, Eri" from your hand to the waiting room, Rest this card] Choose a character in your waiting room and return it to your hand.
+EndCard
+
+Character: DCT/S86-031
+Name "Dreamer" Hana & Maron & Jyuri
+JPName “夢見る人” 花菜＆まろん＆樹理
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If there are 2 or less climax cards in your waiting room, this card gets -1 level while in your hand.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Sunset Action" is in your climax area and there are 3 or more cards in your memory, perform the following action. "Reveal the top card of your deck. If it's a level 0 or lower character, deal 3 damage to your opponent, otherwise, deal 1 damage to your opponent." 
+EndCard
+
+Character: DCT/S86-032
+Name Investigation at Night, Maron
+JPName 夜の大捜査線 まろん
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 0 or lower, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock.
+Auto:
+{
+
+}
+Text Auto: BOND/"Patrolling Today Too, Jyuri" [Put 1 card from your hand to the waiting room]
+EndCard
+
+Character: DCT/S86-033
+Name Goofy Rookie Police, Maron
+JPName 天然な新米警官 まろん
+Color G
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: MEMORY If there is a card in your memory, this card gets +1500 power.
+Auto:
+{
+
+}
+Text Auto: When your climax is placed on your climax area, this card gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
+EndCard
+
+Character: DCT/S86-034
+Name Heiress Policewoman, Jyuri
+JPName 令嬢警官 樹理
+Color G
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If the number of other «Knocker Up» characters you have is 2 or more, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo When "Sunset Action" is placed to your climax area, if this card is in the center stage and you have another «Knocker Up» character, you may choose 1 of your opponent's level 1 or higher character. If you do, your opponent chooses a level X or lower character in their waiting room and exchange the chosen characters. X equals level of the character you chose this way minus 1.
+EndCard
+
+Character: DCT/S86-035
+Name Charming Rouge, Eri
+JPName 魅惑のルージュ 愛莉
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Knocker Up
+Trait2 Shibuya
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if you have another «Knocker Up» character, this card gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Friendly Peacock-san" is in your climax area and the number of other «Knocker Up» characters you have is 2 or more, this card gets the following 2 abilities until the end of your opponent's next turn. "Auto: At the end of this card's attack, you may draw a card. If you do, discard a card from your hand to the waiting room." "Auto: When this card is frontal attacked, you may return this card to your hand."
+EndCard
+
+Character: DCT/S86-036
+Name Patrolling Today Too, Jyuri
+JPName 今日も巡回中 樹理
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Auto:
+{
+
+}
+Text Auto: When you use this card's "BACKUP", choose 1 of your characters in battle, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, send that character to memory."
+Act:
+{
+
+}
+Text Act: [Counter] "BACKUP" 3000, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: DCT/S86-037
+Name "Dreamer" Eri
+JPName “夢見る人” 愛莉
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If the number of other «Knocker Up» characters you have is 2 or more, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at up to X cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your «Knocker Up» characters.
+Auto:
+{
+
+}
+Text Auto: When your climax is placed on your climax area, this card gets +2500 power and the following ability until end of turn. "Cont: This cannot be chosen as target of opponent's effects."
+EndCard
+
+Character: DCT/S86-038
+Name Leave the Preparation to Me, Eri
+JPName 準備はまかせて 愛莉
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your other «Knocker Up» characters, and that character gets +X power until end of turn. X equals 500 times the number of your other «Knocker Up» characters.
+Auto:
+{
+
+}
+Text Auto: BOND/'"Dreamer" Rena' [Put a «Knocker Up» character from your waiting room on the bottom of the clock]
+EndCard
+
+Character: DCT/S86-039
+Name "Dreamer" Jessica
+JPName “夢見る人” ジェシカ
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: All your other «Knocker Up» characters get +500 power.
+Act:
+{
+
+}
+Text Act: [Put a "Really An Adult, Jessica" from hand to the waiting room, Rest this card] Search your deck for up to 1 «Knocker Up» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: DCT/S86-040
+Name Discovery of the Century, Hana
+JPName 世紀の大発見 花菜
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, all players perform the following action. "If there are 5 or more cards in your memory, choose 4 cards in your memory, and put all cards in your memory other than those chosen this way in the waiting room."
+Auto:
+{
+
+}
+Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Knocker Up» character in your waiting room and return it to your hand.
+EndCard
+
+Character: DCT/S86-041
+Name It's Not Bad to Be Lively, Jessica
+JPName 賑やかなのも悪くない ジェシカ
+Color G
+Level 1
+Cost 0
+Power 2000
+Soul 1
+Trait1 Knocker Up
+Trait2 Shibuya
+Auto:
+{
+
+}
+Text Auto: When you use this card's "BACKUP", if you have a «Knocker Up» character, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
+Act:
+{
+
+}
+Text Act: [Counter] "BACKUP" 1000, level 1 [Put this card from your hand to the waiting room]
+EndCard
+
+Character: DCT/S86-042
+Name Let's Play a Trick!, Jessica
+JPName イタズラしちゃうぞ！ ジェシカ
+Color G
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: During your turn, if the number of other «Knocker Up» characters you have is 2 or more, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform trigger check twice during this card attack's trigger Step.
+EndCard
+
+Character: DCT/S86-043
+Name Jessica Clayborn
+JPName ジェシカ・クレイボーン
+Color G
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+EndCard
+
+Character: DCT/S86-044
+Name Break Time, Jessica
+JPName 休憩タイム ジェシカ
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 500
+Soul 1
+Trait1 Knocker Up
+Trait2 Shibuya
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, put the top 3 cards of your deck in the waiting room. If there is at least 1 climax among them, you may choose a level 3 or lower character in your opponent's center stage and put it in the waiting room.
+Auto:
+{
+
+}
+Text Auto: [clock] ALARM If this card is on top of your clock and the number of «Knocker Up» characters you have is 4 or more, at the beginning of your climax phase, draw up to 2 cards, and discard 2 cards from your hand to the waiting room.
+EndCard
+
+Character: DCT/S86-045
+Name Queen's Charisma, Eri
+JPName 女王様的魅力 愛莉
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Knocker Up
+Trait2 Shibuya
+Cont:
+{
+
+}
+Text Cont: If you have another character with "Rena" in its card name, this card gets +7500 power.
+Auto:
+{
+
+}
+Text Auto: BOND/"Thinks of Friends, Rena" [Put 1 card from your hand to the waiting room]
+EndCard
+
+Event: DCT/S86-046
+Name Paradise Treasure Ship
+JPName 極楽宝船
+Color G
+Level 1
+Cost 1
+Effect: 
+{
+
+}
+Text You may discard a climax from your hand to the waiting room. If you do, choose up to 2 character in your waiting room and return them to your hand.
+EndCard
+
+Event: DCT/S86-047
+Name Bringing Dreams to Life!
+JPName 夢をお届け！
+Color G
+Level 3
+Cost 0
+Effect: 
+{
+
+}
+Text Choose 1 of the following 3 effects and perform it. "Search your deck for up to 1 climax card, reveal it, put it in your hand, and shuffle your deck. "All your characters get +1 soul until end of turn." "Choose a character in your waiting room and return it to your hand."
+EndCard
+
+Climax: DCT/S86-048
+Name The Strongest Tag Team
+JPName 最強タッグ
+*BarClimax
+EndCard
+
+Climax: DCT/S86-049
+Name Sunset Action
+JPName サンセットアクション
+*BarClimax
+EndCard
+
+Climax: DCT/S86-050
+Name Friendly Peacock-san
+JPName 仲良しの孔雀さん
+*BarClimax
+EndCard
+
+Character: DCT/S86-051
+Name Spirited High Schooler Fighter, Ryuhei
+JPName 熱き高校生ファイター 龍平
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's attack phase, you may move this card to an open position in the center stage.
+Act:
+{
+
+}
+Text Act: [(1) Put this card into memory] Look at up to 3 cards from the top of your deck and search for up to 1 «Knocker Up» character, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: DCT/S86-052
+Name Thinks of Friends, Rena
+JPName 友達思い 玲菜
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If the number of other «Knocker Up» characters you have is 2 or more, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo When "Takoyaki Party" is placed on your climax area, if this card is in the center stage, you may choose a «Knocker Up» character in your waiting room and either return it to your hand or put it in stock. If you put that card in stock this way, this card gets +2000 power until end of turn.
+EndCard
+
+Character: DCT/S86-053
+Name Charming Rouge, Rena
+JPName 魅惑のルージュ 玲菜
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Knocker Up
+Trait2 Shibuya
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your «Knocker Up» characters, and that character gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [Return this card to your hand] When your climax is placed on your climax area, you may pay the cost. If you do, choose 1 of your characters, and that character gets +1000 power until the end of your opponent's next turn.
+EndCard
+
+Character: DCT/S86-054
+Name In a Flash, Aruto
+JPName 電光石火 或斗
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 0 or lower, you may reverse that character.
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a «Knocker Up» character in your waiting room and return it to your hand.
+EndCard
+
+Character: DCT/S86-055
+Name Running, Ryuhei
+JPName ランニング中 龍平
+Color R
+Level 1
+Cost 0
+Trigger Soul
+Power 1500
+Soul 1
+Trait1 Knocker Up
+Trait2 Shibuya
+Auto:
+{
+
+}
+Text Auto: [Put 2 cards from your hand to the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
+Act:
+{
+
+}
+Text Act: [Counter] "BACKUP" 1000, level 1 [Put this card from your hand to the waiting room]
+EndCard
+
+Character: DCT/S86-056
+Name Genius Programmer, Aruto
+JPName 天才プロゲーマー 或斗
+Color R
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If the number of other «Knocker Up» characters you have is 2 or more, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "battle for Pudding" is in your climax area, you may choose a character in your waiting room and return it to your hand.
+EndCard
+
+Character: DCT/S86-057
+Name "Dreamer" Ryuhei
+JPName “夢見る人” 龍平
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: CxCombo If "battle for Pudding" is in your climax area, this card gets standby trigger icon in all Zones.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+Auto:
+{
+
+}
+Text Auto: CxCombo [Put a "battle for Pudding" from your climax area in the waiting room] When this card attacks, you may pay the cost. If you do, you may choose a climax in your hand and put it in your climax area.
+EndCard
+
+Character: DCT/S86-058
+Name After Store Closes, Eiji
+JPName 閉店後 瑛士
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Cont:
+{
+
+}
+Text Cont: All your other "Hazuki, Day Napping With Ponta" get «Sweets» and the following ability. "Auto: When this card attacks, look at the top card of your deck, put it either on top or bottom of the deck, and this card gets +1000 power until end of turn."
+Auto:
+{
+
+}
+Text Auto: BOND/"Hazuki, Day Napping With Ponta" [Put a «Knocker Up» character from your waiting room on the bottom of the clock]
+EndCard
+
+Character: DCT/S86-059
+Name Positive Influencer, Rena
+JPName ポジティブインフルエンサー 玲菜
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: All your other «Knocker Up» characters get +500 power.
+Act:
+{
+
+}
+Text Act: [(2) Rest this card] Choose either a «Knocker Up» character or a "Selfie at the Cafe" in your waiting room and return it to your hand. If you return a "Selfie at the Cafe" to your hand this way, choose 1 of your characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: DCT/S86-060
+Name Inline Skating, Aruto
+JPName インラインスケート 或斗
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Knocker Up
+Trait2 Shibuya
+Auto:
+{
+
+}
+Text Auto: At the beginning of your climax phase, choose 1 of your «Knocker Up» characters, and that character gets the following ability until the end of your opponent's next turn. "Auto: At the beginning of your opponent's attack phase, you may put the top card of your deck in the waiting room. If it's a «Knocker Up» character, you may move this card to an open position in the center stage."
+EndCard
+
+Character: DCT/S86-061
+Name Day Nap With Ponta, Hazuki
+JPName ぽん太とお昼寝 葉月
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if you have another «Knocker Up» character, this card gets +2000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [(1) Rest 1 of your other standing «Knocker Up» characters] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, search your deck for up to 1 «Knocker Up» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: DCT/S86-062
+Name Mysterious Bartender, Eiji
+JPName 謎のバーマスター 瑛士
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 6000
+Soul 2
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: For each of your other «Knocker Up» character in the backstage, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+EndCard
+
+Character: DCT/S86-063
+Name Tiny Champion, Hazuki
+JPName 小さなチャンピオン 葉月
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If this card is in the center stage, all your «Knocker Up» characters get +1500 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo When "Lunch Party!" is placed on your climax area, if this card is in the center stage, choose up to 3 cards in your opponent's waiting room and return them to the deck, and your opponent shuffles that deck.
+Auto:
+{
+
+}
+Text Auto: [(2) Put 2 cards from your hand to the waiting room] When this card attacks, if the number of other «Knocker Up» characters you have is 4 or more, you may pay the cost. If you do, deal 5 damage to your opponent. 
+EndCard
+
+Character: DCT/S86-064
+Name Easy Victory, Rena
+JPName 楽勝 玲菜
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If there are 2 or less climax cards in your waiting room, this card gets -1 level while in your hand.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+EndCard
+
+Character: DCT/S86-065
+Name Gadget Boy, Aruto
+JPName ガジェット少年 或斗
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Knocker Up
+Trait2 Shibuya
+Cont:
+{
+
+}
+Text Cont: All your other "Jessica Clayborn" get +500 power and the following ability. "Auto: When this card's battle opponent becomes reverse, if there's a climax in your climax area, you may put the top card of your deck in stock."
+Act:
+{
+
+}
+Text Act: [Rest 2 of your «Knocker Up» characters] Choose 1 of your characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: DCT/S86-066
+Name Charisma Knocker Up, Rena
+JPName カリスマノッカーアップ 玲菜
+Color R
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+EndCard
+
+Character: DCT/S86-067
+Name "Dreamer" Rena
+JPName “夢見る人” 玲菜
+Color R
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, you may reverse that character.
+Auto:
+{
+
+}
+Text Auto: BOND/"Iron Fists of Justice, Ryuhei" [Put 1 card from your hand to the waiting room]
+EndCard
+
+Character: DCT/S86-068
+Name Iron Fists of Justice, Ryuhei
+JPName 正義の鉄拳 龍平
+Color R
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Knocker Up
+Trait2 Shibuya
+Cont:
+{
+
+}
+Text Cont: For each of your other «Knocker Up» characters, this card gets +500 power.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the character facing this card is level 2, this card gets +6000 power until end of turn.
+EndCard
+
+Character: DCT/S86-069
+Name Beloved Gal, Rena
+JPName 愛されギャル 玲菜
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 1500
+Soul 1
+Trait1 Knocker Up
+Trait2 Shibuya
+Auto:
+{
+
+}
+Text Auto: When you use this card's "BACKUP", put X cards from the bottom of your opponent's deck in the waiting room. X equals the number of your «Knocker Up» characters.
+Act:
+{
+
+}
+Text Act: [Counter] "BACKUP" 3000, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: DCT/S86-070
+Name Young Lion King, Ryuhei
+JPName 若き獅子王 龍平
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 6500
+Soul 2
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: When you play this card from your hand, you may choose 1 of your "Charisma Knocker Up, Rena" and put it in the waiting room. If you do, you may play this card with 0 cost.
+Cont:
+{
+
+}
+Text Cont: If the number of other «Knocker Up» characters you have is 2 or more, this card gets +4000 power.
+EndCard
+
+Event: DCT/S86-071
+Name I Am Winner!
+JPName あいあむうぃなー！
+Color R
+Level 1
+Cost 1
+Effect: 
+{
+
+}
+Text MEMORY If this card is in memory, all your «Knocker Up» characters get +1000 power.
+EndCard
+
+Event: DCT/S86-072
+Name Adult's Being Serious
+JPName オトナの本気
+Color R
+Level 3
+Cost 6
+Effect: 
+{
+
+}
+Text Perform the following 2 effects once each in any order of your choice. "Choose up to 3 cards in your opponent's waiting room and return them to the deck, and your opponent shuffles that deck." "deal 3 damage to your opponent." 
+EndCard
+
+Climax: DCT/S86-073
+Name Takoyaki Party
+JPName たこ焼きパーティ
+*DoorClimax
+EndCard
+
+Climax: DCT/S86-074
+Name Battle for Pudding
+JPName プリン争奪戦
+*StandbyClimax
+EndCard
+
+Climax: DCT/S86-075
+Name Lunch Party!
+JPName らんちぱーてぃ！
+*StandbyClimax
+EndCard
+
+Character: DCT/S86-076
+Name Noticing Her Own Feelings, Eru
+JPName 気付いた感情 える
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose a character in your waiting room with either «Knocker Up», «Yurajima», or «Mystery» and put it face-down under this card as marker.
+Auto:
+{
+
+}
+Text Auto: When your character on the stage exchanges with a character in memory, you may put a marker from under this card in stock.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 character in your waiting room and return it to your hand.
+EndCard
+
+Character: DCT/S86-077
+Name Not Used to Welcoming Others, Eru
+JPName 慣れないお出迎え える
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Cont:
+{
+
+}
+Text Cont: If there are 5 or more cards in your hand, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 level 1 or higher card, reveal it, put it in your hand, and put the rest into your waiting room. 
+EndCard
+
+Character: DCT/S86-078
+Name Mysterious Transfer Student, Eru
+JPName ミステリアス転校生 える
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 7500
+Soul 2
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If you have 4 or more characters with either «Knocker Up», «Yurajima», or «Mystery», this card gets -1 level while in your hand.
+Cont:
+{
+
+}
+Text Cont: ASSIST Your «Knocker Up» characters in front of this card get +2000 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+EndCard
+
+Character: DCT/S86-079
+Name Dreamer High School Student, Rando
+JPName 夢見る高校生 蘭堂
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: MEMORY If there are 2 or more "Plan for Tomorrow, Aki" in your memory, this card gets +2500 power and the following ability. "Auto: [(1) Put 1 card from your hand to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 1 damage to your opponent" 
+Auto:
+{
+
+}
+Text Auto: When this card is placed from hand or memory to the stage, you may put the top card of your clock in the waiting room.
+Auto:
+{
+
+}
+Text Auto: CxCombo MEMORY [(1) Put 1 card from your hand to the waiting room] When this card attacks, if "Anger Within" is in your climax area and there are 3 or more cards in your memory, you may pay the cost. If you do, deal 4 damage to your opponent. 
+EndCard
+
+Character: DCT/S86-080
+Name Deepened Bond, Rando
+JPName 深めた絆 蘭堂
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Auto:
+{
+
+}
+Text Auto: This ability activates up to 3 times per turn. When your other character with BOND is placed on the stage from your hand, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto:
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your other character with BOND and put it in stock.
+EndCard
+
+Character: DCT/S86-081
+Name Plan for Tomorrow, Aki
+JPName 明日の約束 亞希
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Yurajima
+Cont:
+{
+
+}
+Text Cont: All your other characters with either «Knocker Up» or «Yurajima» get +500 power.
+Act:
+{
+
+}
+Text Act: [(1) send this card standing character to memory] Choose from your waiting room either a "Dreamer High School Student, Rando", "The Moment the Rainbow Appeared, Rando", or a "Rando Furukata" and return it to your hand.
+EndCard
+
+Character: DCT/S86-082
+Name Secretly Santa Claus, Eru
+JPName 内緒のサンタクロース える
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Cont:
+{
+
+}
+Text Cont: If you have another "Deepened Bond, Rando" in your backstage, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: BOND/"Deepened Bond, Rando" [Put 1 card from your hand to the waiting room]
+EndCard
+
+Character: DCT/S86-083
+Name Mysterious Maid, Eru
+JPName ミステリアスメイド える
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with either «Knocker Up», «Yurajima», or «Mystery», reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: DCT/S86-084
+Name The Moment the Rainbow Appeared, Rando
+JPName 虹がかかるひととき 蘭堂
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 5000
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose a "Dreamer High School Student, Rando" in your waiting room and send it to memory.
+Auto:
+{
+
+}
+Text Auto: CxCombo MEMORY [Rest this card] At the beginning of your attack phase, if "Anger Within" is in your climax area, this card is in the center stage, you have another «Knocker Up» character, and there is an "Plan for Tomorrow, Aki" in your memory, you may pay the cost. If you do, choose a "Dreamer High School Student, Rando" in your memory and this card, exchange them, and at the beginning of the encore step, exchange them again.
+EndCard
+
+Character: DCT/S86-085
+Name Girl in Love, Rin
+JPName 恋する少女 凛
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Knocker Up
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, your opponent puts all of their stock in the waiting room, and then puts the same number of cards from top of their deck in stock.
+Auto:
+{
+
+}
+Text Auto: CxCombo When "Even as Rivals for Love" is placed on your climax area, if this card is in the center stage and you have another «Knocker Up» character, this card gets the following 2 abilities until the end of your opponent's next turn. "Cont: This cannot be chosen as target of opponent's effects." "Auto: When this card is frontal attacked, deal 1 damage to your opponent." 
+EndCard
+
+Character: DCT/S86-086
+Name Not Used to Welcoming Others, Rando
+JPName 慣れないお出迎え 蘭堂
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Cont:
+{
+
+}
+Text Cont: If you have another character with either «Knocker Up», «Yurajima», or «Mystery», all your other "For the Sake of Revenge, Eru" get +3000 power.
+Auto:
+{
+
+}
+Text Auto: BOND/"Incredible Transfer Student, Eru" "Fateful Dawn, Eru" [Put 1 card from your hand to the waiting room]
+EndCard
+
+Character: DCT/S86-087
+Name Time After School, Rin
+JPName 下校の時間 凛
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's attack phase, you may put the top card of your deck in the waiting room. If it's a «Knocker Up» character, you may move this card to an open position in the center stage.
+Auto:
+{
+
+}
+Text Auto: BOND/"Rando Furukata" [Put another «Knocker Up» character from your stage to the waiting room]
+EndCard
+
+Character: DCT/S86-088
+Name Incredible Transfer Student, Eru
+JPName 不思議な転校生 える
+Color B
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if there are 2 or less cards in your memory, you may choose an "power of the Sea God, Eru" in your waiting room and send it to memory.
+Auto:
+{
+
+}
+Text Auto: MEMORY [Rest this card] At the beginning of your attack phase, if there's a climax in your climax area and this card is in the center stage, you may pay the cost. If you do, choose an "power of the Sea God, Eru" in your memory and this card, exchange them, and at the beginning of the encore step, exchange them again.
+EndCard
+
+Character: DCT/S86-089
+Name Fateful Dawn, Eru
+JPName 運命の夜明け える
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Cont:
+{
+
+}
+Text Cont: If the number of other characters with either «Knocker Up» you have is 2 or more, «Yurajima», or «Mystery», this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Sprouting Friendship" is in your climax area and the number of other characters with either «Knocker Up» you have is 2 or more, «Yurajima», or «Mystery», choose 1 of the following 2 effects and perform it. "Choose up to 1 climax in your climax area and put it in the waiting room, return all cards from your waiting room to the deck, and shuffle your deck." "Choose up to 1 character in your waiting room and return it to your hand."
+EndCard
+
+Character: DCT/S86-090
+Name "Dreamer" Eru
+JPName “夢見る人” える
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: During your turn, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your other characters with either «Knocker Up», «Yurajima» or «Mystery», and that character gets +X power until end of turn. X equals 500 times the number of your other characters with either «Knocker Up», «Yurajima» or «Mystery».
+EndCard
+
+Character: DCT/S86-091
+Name Power of the Sea God, Eru
+JPName 海神の力 える
+Color B
+Level 1
+Cost 1
+Power 5000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: MEMORY If there are 2 or more cards in your memory, this card gets +2000 power and the following ability. "Auto: When this card attacks, if the character facing this card is level 2, this card gets +6000 power until end of turn."
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if there's a climax in your climax area, this card gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
+EndCard
+
+Character: DCT/S86-092
+Name Kind Art Club Student, Rando
+JPName 優しき美術部員 蘭堂
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Knocker Up
+Trait2 Yurajima
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +3000 power until end of turn. /Auto: When this card is placed from the stage to the waiting room, if there are 2 or less cards in your memory, you may choose an "Plan for Tomorrow, Aki" from your waiting room and send it to memory.
+EndCard
+
+Character: DCT/S86-093
+Name "Dreamer" Rando
+JPName “夢見る人” 蘭堂
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If the number of other characters with either «Knocker Up» you have is 2 or more, «Yurajima», or «Mystery», all your other "Ariya, Promise to Attend School" and "Singing-and-Dancing battle Miko, Ariya" get +1000 power.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your "Unrivaled Heir, Shuichi", and that Charcater gets +1 soul until end of turn.
+EndCard
+
+Character: DCT/S86-094
+Name Servant of God, Tris
+JPName 神の使い トリス
+Color B
+Level 1
+Cost 0
+Power 500
+Soul 1
+Trait1 Mystery
+Cont:
+{
+
+}
+Text Cont: If you are level 3 or higher, this card gets the following ability. "Act:
+Cont:
+{
+
+}
+Text Cont: All your other «Knocker Up» characters get +500 power.
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's attack phase, you may choose this card plus either a "The Moment the Rainbow Appeared, Rando", "Incredible Transfer Student, Eru" or "Shrine Girl, Ariya", then stand and exchange the chosen characters.
+EndCard
+
+Character: DCT/S86-095
+Name For the Sake of Revenge, Eru
+JPName 復讐のため える
+Color B
+Level 2
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Knocker Up
+Trait2 Weapon
+EndCard
+
+Event: DCT/S86-096
+Name Speeding Emotions
+JPName 馳せる想い
+Color B
+Level 2
+Cost 4
+Effect: 
+{
+
+}
+Text Choose 1 of your opponent's characters and Rest it.
+EndCard
+
+Event: DCT/S86-097
+Name Stand Alongside Friends
+JPName 友と並び立つ
+Color B
+Level 3
+Cost 1
+Effect: 
+{
+
+}
+Text Choose 1 of your characters, and that character gets +3500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent." 
+EndCard
+
+Climax: DCT/S86-098
+Name Anger Within
+JPName 怒りを胸に
+*GateClimax
+EndCard
+
+Climax: DCT/S86-099
+Name Sprouting Friendship
+JPName 友情の萌芽
+*GateClimax
+EndCard
+
+Climax: DCT/S86-100
+Name Even as Rivals for Love
+JPName 恋のライバルでも
+*BookClimax
+EndCard
+
+Character: DCT/S86-101
+Name Truly Precious Thing, Ariya
+JPName 本当に大切なもの ありや
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: Your other character in the middle position of your center stage gets +500 power.
+Cont:
+{
+
+}
+Text Cont: All your other characters with either «Knocker Up» or «Yurajima» get +500 power.
+EndCard
+
+Character: DCT/S86-102
+Name Cool Beauty, Eri
+JPName クールビューティー 愛莉
+Color G
+Level 0
+Cost 0
+Power 4000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: You cannot play events or "BACKUP" from hand.
+EndCard
+
+Character: DCT/S86-103
+Name Gentle Smile, Rena
+JPName 穏やかな笑み 玲菜
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +500 power.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1)] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, perform the following action. "Choose a «Knocker Up» character in your waiting room and return it to your hand, and discard a card from your hand to the waiting room."
+EndCard
+
+Character: DCT/S86-104
+Name Lonely Soldier, Eru
+JPName 孤独な戦士 える
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Knocker Up
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: All your other characters with either :Knocker Up», «Yurajima», or «Mystery» get +500 power.
+Act:
+{
+
+}
+Text Act: [Put 1 card from your hand to the waiting room, put this card in the waiting room] Choose a character in your waiting room with either :Knocker Up», «Yurajima», or «Mystery» and return it to your hand.
+EndCard
+

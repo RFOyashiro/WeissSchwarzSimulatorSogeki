@@ -1338,7 +1338,7 @@ Cont: GiveSelf
         GainSpecialEffect NoBackupInBattle
     }
 }
-Text Cont: During this card's battle, your opponent cannot use BACKUPs from hand.
+Text Cont: During this card's battle, your opponent cannot use "BACKUP"s from hand.
 *Healer
 Auto: OnAttack
 {

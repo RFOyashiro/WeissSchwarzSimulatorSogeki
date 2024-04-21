@@ -548,7 +548,7 @@ Cont: GiveAll
     GainSpecialEffect CannotUseEvents
     GainSpecialEffect CannotUseBackup
 }
-Text Cont: You cannot play Events or BACKUP from hand.
+Text Cont: You cannot play Events or "BACKUP" from hand.
 EndCard
 
 Character: SG/W52-025
@@ -1033,7 +1033,7 @@ Auto: OnUseThisCardsBackup
     SearchLocationForTargets WaitingRoom 0 1 NameContains 自動人形
     MoveCard Memory
 }
-Text Auto: When you use this card's BACKUP, you may choose a character in your waiting room with "Autoscorer" in its card name and put it in memory.
+Text Auto: When you use this card's "BACKUP", you may choose a character in your waiting room with "Autoscorer" in its card name and put it in memory.
 Backup 1500
 EndCard
 
