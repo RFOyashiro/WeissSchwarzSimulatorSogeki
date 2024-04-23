@@ -148,7 +148,7 @@ Trait1 Knocker Up
 Trait2 Weapon
 Cont: GiveSelf
 {
-    If LocationContains 1 NameEquals Shrine Girl, Ariya || NameEquals Plan for Tomorrow, Aki
+    If LocationContains Memory 1 NameEquals Shrine Girl, Ariya || NameEquals Plan for Tomorrow, Aki
     {
         GainPower 2000
         GainEffect
@@ -1990,7 +1990,7 @@ Auto: OnPlay
 Text Auto: When this card is placed on the stage from your hand, you may choose a "Dreamer High School Student, Rando" in your waiting room and send it to memory.
 Auto: StartAttackPhase
 {
-    If Climax Dreamer High School Student, Rando && InLocation CenterStage && StageContains 1 Other && HasTrait Knocker Up &&& LocationContains Memory 1 NameEquals Plan for Tomorrow, Aki
+    If Climax Anger Within && InLocation CenterStage && StageContains 1 Other && HasTrait Knocker Up &&& LocationContains Memory 1 NameEquals Plan for Tomorrow, Aki
     {
         PayCost RestSelf
         {
