@@ -258,7 +258,7 @@ Cont: GiveSelfEverywhere
 				TargetMyCharacterInBattle
 				GainPower 1000
 			}
-			Text Act: "BACKUP" 1000, Level 0 [Put this card from your hand into your waiting room]
+			Text Act:<b> BACKUP 1000 Level 0</b> [Put this card from your hand into your waiting room]
 		}
         GainEffect
         {

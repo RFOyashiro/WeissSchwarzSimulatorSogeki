@@ -358,7 +358,7 @@ Act_Backup: 1
 }
 Quick
 ActivationRequirement Compare MyLevel 1 OrMore
-Text Act: <b>BACKUP 3000 Level 1</b> [(1) Reveal this card from hand, put this card at the bottom of your deck]
+Text Act:<b> BACKUP 3000 Level 1</b> [(1) Reveal this card from hand, put this card at the bottom of your deck]
 EndCard
 
 Character: PJS/S109-014
@@ -1146,7 +1146,7 @@ Act_Backup: 1
 }
 Quick
 ActivationRequirement Compare MyLevel 2 OrMore
-Text Act: <b>BACKUP 3000 Level 2</b> [(1) Put this card into memory]
+Text Act:<b> BACKUP 3000 Level 2</b> [(1) Put this card into memory]
 EndCard
 
 Character: PJS/S109-049
