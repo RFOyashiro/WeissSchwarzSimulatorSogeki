@@ -15,6 +15,7 @@ Auto: OnAttack
     If Climax Star-connected Bond && StageContains 2 Other && HasTrait Knocker Up|Yurajima
     {
         *Check3Add1(Knocker Up|Yurajima)
+        TargetSelf
         PayCost 1
         {
             GainSpecialEffect DoubleTrigger
