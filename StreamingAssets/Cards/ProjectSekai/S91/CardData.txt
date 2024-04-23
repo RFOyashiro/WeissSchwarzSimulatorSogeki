@@ -1265,10 +1265,10 @@ Act: RestSelf
             SaveTargets
             SearchWaitingRoom BondTargetOfSavedTarget
         }
-        Text Act: [Put this card in the waiting room] Choose a character in your waiting room with a card name specified by BOND on this card and return it to your hand.
+        Text Act: [Put this card in the waiting room] Choose a character in your waiting room with a card name specified by "BOND" on this card and return it to your hand.
     }
 }
-Text Act: [Rest this card] Choose 1 of your other characters with BOND, and that card gets the following ability until end of turn. "Act: [Put this card in the waiting room] Choose a character in your waiting room with a card name specified by BOND on this card and return it to your hand."
+Text Act: [Rest this card] Choose 1 of your other characters with "BOND", and that card gets the following ability until end of turn. "Act: [Put this card in the waiting room] Choose a character in your waiting room with a card name specified by "BOND" on this card and return it to your hand."
 Text Act: effect of this card unavailable
 EndCard
 
@@ -3858,7 +3858,7 @@ Auto: OnPlay
     }
     PutTheRestIntoTheWaitingRoom
 }
-Text Auto: When this card is placed on the stage from your hand, look at up to the top 3 cards of your deck, choose up to 1 character with BOND among them, reveal it and add it to your hand. If you added a card to your hand, put a card from your hand into waiting room.
+Text Auto: When this card is placed on the stage from your hand, look at up to the top 3 cards of your deck, choose up to 1 character with "BOND" among them, reveal it and add it to your hand. If you added a card to your hand, put a card from your hand into waiting room.
 Auto: StartClimaxPhase
 {
     If StageContains 2 Other && HasTrait Vivid BAD SQUAD
