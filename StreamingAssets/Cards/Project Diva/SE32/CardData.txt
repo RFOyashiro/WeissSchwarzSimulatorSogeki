@@ -283,7 +283,7 @@ Auto: StartEncoreStep
         SearchLocationForTargets Hand 0 1 NameEquals Hand in Hand
         If HasTarget
         {
-            MoveCard Climax
+            PlayClimax
             TriggerCustomEvent HandInHandClimaxPlayedFromEffect
         }
     }
