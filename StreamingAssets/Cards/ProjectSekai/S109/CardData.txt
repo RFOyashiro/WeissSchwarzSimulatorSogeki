@@ -1376,7 +1376,7 @@ Act: RestSelf
     ChooseCharacterFromTargets Choose a character to give +1 soul.
     GainSoul 1
 }
-Text Act: [Rest this card] Choose 1 of your character with BOND and that character gets +1 soul until end of turn.
+Text Act: [Rest this card] Choose 1 of your character with "BOND" and that character gets +1 soul until end of turn.
 EndCard
 
 Character: PJS/S109-062
