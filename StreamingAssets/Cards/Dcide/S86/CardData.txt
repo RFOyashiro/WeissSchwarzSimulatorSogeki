@@ -1772,8 +1772,9 @@ Auto: OnPlay
 Text Auto: When this card is placed on the stage from your hand, you may choose a character in your waiting room with either «Knocker Up», «Yurajima», or «Mystery» and put it face-down under this card as marker.
 Auto: OnCustomEvent MemorySwap
 {
-    SearchLocationForTargets Marker 0 1 Any
-    MoveCard Stock
+	TargetLocation Marker
+	ChooseCardsFromTargets 0 1 Any
+	MoveCard Stock
 }
 Text Auto: When your character on the stage exchanges with a character in memory, you may put a marker from under this card in stock.
 *Act1RestSelfSalvageBrainstorm(Any)
