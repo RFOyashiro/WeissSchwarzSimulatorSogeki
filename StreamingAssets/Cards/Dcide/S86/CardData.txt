@@ -309,7 +309,7 @@ Auto: StartAttackPhase
     {
         PayCost RestSelf
         {
-            SearchLocationForTargets 1 1 NameEquals "Dreamer" Ariya
+            SearchLocationForTargets Memory 1 1 NameEquals "Dreamer" Ariya
             If HasTarget
             {
                 AddSelfToTargets
@@ -324,7 +324,7 @@ Auto: StartAttackPhase
                         ChooseCharacterFromTargets Exchanging "Dreamer" Ariya and Shrine Girl, Ariya again. Choose a "Dreamer" Ariya.
                         SaveTargets
                         Message Exchanging "Dreamer" Ariya and Shrine Girl, Ariya again. Choose a Shrine Girl, Ariya.
-                        SearchLocationForTargets 1 1 NameEquals Shrine Girl, Ariya
+                        SearchLocationForTargets Memory 1 1 NameEquals Shrine Girl, Ariya
                         If HasTarget
                         {
                             AddSavedToCurrentTargets
@@ -1988,7 +1988,7 @@ Auto: StartAttackPhase
     {
         PayCost RestSelf
         {
-            SearchLocationForTargets 1 1 NameEquals Dreamer High School Student, Rando
+            SearchLocationForTargets Memory 1 1 NameEquals Dreamer High School Student, Rando
             If HasTarget
             {
                 AddSelfToTargets
@@ -2003,7 +2003,7 @@ Auto: StartAttackPhase
                         ChooseCharacterFromTargets Exchanging Dreamer High School Student, Rando and The Moment the Rainbow Appeared, Rando again. Choose a Dreamer High School Student, Rando
                         SaveTargets
                         Message Exchanging Dreamer High School Student, Rando and The Moment the Rainbow Appeared, Rando again. Choose a The Moment the Rainbow Appeared, Rando.
-                        SearchLocationForTargets 1 1 NameEquals The Moment the Rainbow Appeared, Rando
+                        SearchLocationForTargets Memory 1 1 NameEquals The Moment the Rainbow Appeared, Rando
                         If HasTarget
                         {
                             AddSavedToCurrentTargets
@@ -2122,7 +2122,7 @@ Auto: StartAttackPhase
     {
         PayCost RestSelf
         {
-            SearchLocationForTargets 1 1 NameEquals Power of the Sea God, Eru
+            SearchLocationForTargets Memory 1 1 NameEquals Power of the Sea God, Eru
             If HasTarget
             {
                 AddSelfToTargets
@@ -2137,7 +2137,7 @@ Auto: StartAttackPhase
                         ChooseCharacterFromTargets Exchanging Power of the Sea God, Eru and Incredible Transfer Student, Eru again. Choose a Power of the Sea God, Eru
                         SaveTargets
                         Message Exchanging Power of the Sea God, Eru and Incredible Transfer Student, Eru again. Choose a Incredible Transfer Student, Eru.
-                        SearchLocationForTargets 1 1 NameEquals Incredible Transfer Student, Eru
+                        SearchLocationForTargets Memory 1 1 NameEquals Incredible Transfer Student, Eru
                         If HasTarget
                         {
                             AddSavedToCurrentTargets
@@ -2867,7 +2867,7 @@ Text Auto: [(1) Discard a card] When this card is placed on the stage from your 
 EndCard
 
 Character: DCT/S86-T15
-Name Randou Furukata
+Name Rando Furukata
 JPName 古堅 蘭堂
 Color B
 Level 1
