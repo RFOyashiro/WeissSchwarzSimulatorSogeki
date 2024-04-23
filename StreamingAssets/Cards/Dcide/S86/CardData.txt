@@ -298,7 +298,7 @@ Auto: OnPlay
     If LocationContainsOrLess Memory 2 Any
     {
         Message  you may choose a '"Dreamer" Ariya' in your waiting room and send it to memory.
-        SearchLocationForTargets WaitingRoom 0 2 NameEquals "Dreamer" Ariya
+        SearchLocationForTargets WaitingRoom 0 1 NameEquals "Dreamer" Ariya
         MoveCard Memory
     }
 }
