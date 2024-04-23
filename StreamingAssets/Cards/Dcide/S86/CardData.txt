@@ -317,19 +317,22 @@ Auto: StartAttackPhase
                 TriggerCustomEvent MemorySwap
                 ScheduleEffect StartEncoreStep
                 {
-                    TargetLocation Stage
-                    NarrowTargets NameEquals "Dreamer" Ariya
-                    If HasTarget
+                    Effect:
                     {
-                        ChooseCharacterFromTargets Exchanging "Dreamer" Ariya and Shrine Girl, Ariya again. Choose a "Dreamer" Ariya.
-                        SaveTargets
-                        Message Exchanging "Dreamer" Ariya and Shrine Girl, Ariya again. Choose a Shrine Girl, Ariya.
-                        SearchLocationForTargets Memory 1 1 NameEquals Shrine Girl, Ariya
+                        TargetLocation Stage
+                        NarrowTargets NameEquals "Dreamer" Ariya
                         If HasTarget
                         {
-                            AddSavedToCurrentTargets
-                            Exchange
-                            TriggerCustomEvent MemorySwap
+                            ChooseCharacterFromTargets Exchanging "Dreamer" Ariya and Shrine Girl, Ariya again. Choose a "Dreamer" Ariya.
+                            SaveTargets
+                            Message Exchanging "Dreamer" Ariya and Shrine Girl, Ariya again. Choose a Shrine Girl, Ariya.
+                            SearchLocationForTargets Memory 1 1 NameEquals Shrine Girl, Ariya
+                            If HasTarget
+                            {
+                                AddSavedToCurrentTargets
+                                Exchange
+                                TriggerCustomEvent MemorySwap
+                            }
                         }
                     }
                 }
@@ -682,7 +685,10 @@ Auto: OnReversed
             Rest
             ScheduleEffectForTargets StartMyEncoreStep
             {
-                MoveCard Memory
+                Effect:
+                {
+                    MoveCard Memory
+                }
             }
         }
     }
@@ -1996,19 +2002,22 @@ Auto: StartAttackPhase
                 TriggerCustomEvent MemorySwap
                 ScheduleEffect StartEncoreStep
                 {
-                    TargetLocation Stage
-                    NarrowTargets NameEquals Dreamer High School Student, Rando
-                    If HasTarget
+                    Effect:
                     {
-                        ChooseCharacterFromTargets Exchanging Dreamer High School Student, Rando and The Moment the Rainbow Appeared, Rando again. Choose a Dreamer High School Student, Rando
-                        SaveTargets
-                        Message Exchanging Dreamer High School Student, Rando and The Moment the Rainbow Appeared, Rando again. Choose a The Moment the Rainbow Appeared, Rando.
-                        SearchLocationForTargets Memory 1 1 NameEquals The Moment the Rainbow Appeared, Rando
+                        TargetLocation Stage
+                        NarrowTargets NameEquals Dreamer High School Student, Rando
                         If HasTarget
                         {
-                            AddSavedToCurrentTargets
-                            Exchange
-                            TriggerCustomEvent MemorySwap
+                            ChooseCharacterFromTargets Exchanging Dreamer High School Student, Rando and The Moment the Rainbow Appeared, Rando again. Choose a Dreamer High School Student, Rando
+                            SaveTargets
+                            Message Exchanging Dreamer High School Student, Rando and The Moment the Rainbow Appeared, Rando again. Choose a The Moment the Rainbow Appeared, Rando.
+                            SearchLocationForTargets Memory 1 1 NameEquals The Moment the Rainbow Appeared, Rando
+                            If HasTarget
+                            {
+                                AddSavedToCurrentTargets
+                                Exchange
+                                TriggerCustomEvent MemorySwap
+                            }
                         }
                     }
                 }
@@ -2130,19 +2139,22 @@ Auto: StartAttackPhase
                 TriggerCustomEvent MemorySwap
                 ScheduleEffect StartEncoreStep
                 {
-                    TargetLocation Stage
-                    NarrowTargets NameEquals Power of the Sea God, Eru
-                    If HasTarget
+                    Effect:
                     {
-                        ChooseCharacterFromTargets Exchanging Power of the Sea God, Eru and Incredible Transfer Student, Eru again. Choose a Power of the Sea God, Eru
-                        SaveTargets
-                        Message Exchanging Power of the Sea God, Eru and Incredible Transfer Student, Eru again. Choose a Incredible Transfer Student, Eru.
-                        SearchLocationForTargets Memory 1 1 NameEquals Incredible Transfer Student, Eru
+                        TargetLocation Stage
+                        NarrowTargets NameEquals Power of the Sea God, Eru
                         If HasTarget
                         {
-                            AddSavedToCurrentTargets
-                            Exchange
-                            TriggerCustomEvent MemorySwap
+                            ChooseCharacterFromTargets Exchanging Power of the Sea God, Eru and Incredible Transfer Student, Eru again. Choose a Power of the Sea God, Eru
+                            SaveTargets
+                            Message Exchanging Power of the Sea God, Eru and Incredible Transfer Student, Eru again. Choose a Incredible Transfer Student, Eru.
+                            SearchLocationForTargets Memory 1 1 NameEquals Incredible Transfer Student, Eru
+                            If HasTarget
+                            {
+                                AddSavedToCurrentTargets
+                                Exchange
+                                TriggerCustomEvent MemorySwap
+                            }
                         }
                     }
                 }
