@@ -147,22 +147,22 @@ Power 3000
 Soul 1
 Trait1 Knocker Up
 Trait2 Weapon
+Auto: OnPlay|OnPlacedOnStageFromMemory
+{
+    If LocationContains Memory 1 NameEquals Shrine Girl, Ariya || NameEquals Plan for Tomorrow, Aki
+    {
+        TargetLocation Stage
+        NarrowTargets Other
+        ChooseCharacterFromTargets Choose a character to give +1 level.
+        GainLevel 1
+    }
+}
+Quick
 Cont: GiveSelf
 {
     If LocationContains Memory 1 NameEquals Shrine Girl, Ariya || NameEquals Plan for Tomorrow, Aki
     {
         GainPower 2000
-        GainEffect
-        {
-            Auto: OnPlay|OnPlacedOnStageFromMemory
-            {
-                TargetLocation Stage
-                NarrowTargets Other
-                ChooseCharacterFromTargets Choose a character to give +1 level.
-                GainLevel 1
-            }
-            Text Auto: When this card is placed on the stage from your hand or memory, choose 1 of your other character, and that character gets +1 level until end of turn.
-        }
     }
 }
 Text Cont: MEMORY If either "Shrine Girl, Ariya" or "Plan for Tomorrow, Aki" is in your memory, this card gets +2000 power and the following ability. "Auto: When this card is placed on the stage from your hand or memory, choose 1 of your other character, and that character gets +1 level until end of turn."
