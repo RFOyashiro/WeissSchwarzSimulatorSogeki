@@ -961,7 +961,7 @@ Power 9000
 Soul 2
 Trait1 Knocker Up
 Trait2 Weapon
-*GainPowerWithEnoughCharacters(2,1000,Knocker Up)
+*GainPowerWithEnoughCharacters(1000,2,Knocker Up)
 *OnPlayCheckX(Knocker Up)
 Auto: OnClimaxPlay
 {
@@ -1224,7 +1224,7 @@ Soul 1
 Trait1 Knocker Up
 Trait2 Weapon
 Combo Takoyaki Party
-*GainPowerWithEnoughCharacters(2,1000,Knocker Up)
+*GainPowerWithEnoughCharacters(1000,2,Knocker Up)
 Auto: OnSpecificClimaxPlay Takoyaki Party
 {
     If InLocation CenterStage
@@ -1331,7 +1331,7 @@ Soul 1
 Trait1 Knocker Up
 Trait2 Weapon
 Combo Battle for Pudding
-*GainPowerWithEnoughCharacters(2,2000,Knocker Up)
+*GainPowerWithEnoughCharacters(2000,2,Knocker Up)
 Auto: OnReverseOpponent
 {
     If Climax Battle for Pudding
@@ -1681,7 +1681,7 @@ HandAction Send 1 WaitingRoom NameEquals Charisma Knocker Up, Rena
 	PlaceOnStage False True True False
 }
 Text Cont: When you play this card from your hand, you may choose 1 of your "Charisma Knocker Up, Rena" and put it in the waiting room. If you do, you may play this card with 0 cost.
-*GainPowerWithEnoughCharacters(2,4000,Knocker Up)
+*GainPowerWithEnoughCharacters(4000,2,Knocker Up)
 EndCard
 
 Event: DCT/S86-071
@@ -2178,7 +2178,7 @@ Soul 1
 Trait1 Knocker Up
 Trait2 Yurajima
 Combo Sprouting Friendship
-*GainPowerWithEnoughCharacters(2,1000,Knocker Up|Yurajima|Mystery)
+*GainPowerWithEnoughCharacters(1000,2,Knocker Up|Yurajima|Mystery)
 Auto: OnReverseOpponent
 {
     If Climax Sprouting Friendship && StageContains 2 Other && HasTrait Knocker Up|Yurajima|Mystery
