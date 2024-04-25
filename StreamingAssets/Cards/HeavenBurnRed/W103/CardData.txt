@@ -2218,7 +2218,7 @@ Soul 1
 Trait1 Seraph
 Trait2 Unit 31X
 Combo Dear My Little HERO
-*GainPowerWithEnoughCharacters(100,2,Seraph)
+*GainPowerWithEnoughCharacters(1000,2,Seraph)
 Auto: StartMyEncoreStep
 {
     If Climax Dear My Little HERO
