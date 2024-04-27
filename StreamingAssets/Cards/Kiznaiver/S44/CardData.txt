@@ -1,0 +1,1866 @@
+Character: KI/S44-001
+Name Pain in His Heart, Tenga
+JPName 胸の痛み 天河
+Color Y
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Kizuna
+Trait2 Glasses
+Combo Like Or Being Liked
+*GainPowerForEachOther(500,Kizuna)
+Auto: OnReverseOpponent
+{
+    If Climax Like Or Being Liked
+    {
+        RevealUpTo Deck 2
+        ChooseCardsFromTargets 0 2 Compare ThatCardsLevel 1 OrMore
+        RevealTargets
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
+}
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Like Or Being Liked" is in your climax area, look at up to the top 2 cards of your deck, choose up to 2 level 1 or higher cards among them, reveal them, put them in your hand, and put the rest into your waiting room. 
+EndCard
+
+Character: KI/S44-002
+Name "Incredulous And Crazy" Nico
+JPName “不思議メンヘラ”仁子
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Kizuna
+Trait2 Incredulous
+Combo Because We Are Friends
+*OnPlayDraw2Discard1
+Auto: OnSpecificClimaxPlay Because We Are Friends
+{
+    PayCost 2 Discard 1 NameEquals Peculiar One of the Class, Nico
+    {
+        TargetLocation CenterStage
+        GainPower 1000
+        GainEffect
+        {
+            *OnCancelBurn1
+        }
+    }
+}
+Text Auto: [(2) Put a "Peculiar One of the Class, Nico" from your hand to the waiting room] When "Because We Are Friends" is placed on your climax area, you may pay the cost. If you do, all your characters in the center stage get +1000 power and the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent." 
+EndCard
+
+Character: KI/S44-003
+Name Giving a Pep Talk, Tenga
+JPName 迷いに喝 天河
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Kizuna
+Trait2 Glasses
+*YellowLevel0Bomb
+Act: Send 1 WaitingRoom Any
+{
+    *GiveCharacterPower(2000,Kizuna)
+}
+Text Act: [Put 1 character from your stage in the waiting room] Choose 1 of your «Kizuna» characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: KI/S44-004
+Name One Who Can Self-Reflect, Nico
+JPName 反省できる子 仁子
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Kizuna
+Trait2 Incredulous
+Auto: OnClimaxPlay
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Kizuna
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give +1 soul.
+        GainSoul 1
+    }
+}
+Text Auto: When your climax is placed on your climax area, reveal the top card of your deck. If that card is a «Kizuna» character, choose 1 of your characters, and that character gets +1 soul until end of turn.
+*Bond1(Quiet Literary-Type Girl\, Honoka)
+EndCard
+
+Character: KI/S44-005
+Name Peculiar One of the Class, Nico
+JPName クラスの珍獣枠 仁子
+Color Y
+Level 1
+Cost 0
+Power 6500
+Soul 1
+Trait1 Kizuna
+Trait2 Incredulous
+Cont:
+{
+
+}
+Text Cont: This gets -1 level while on the stage.
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed in battle, put this card on the bottom of the deck.
+EndCard
+
+Character: KI/S44-006
+Name From Being Uncertain to Believing, Nico
+JPName 不安から確信へ 仁子
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 5000
+Soul 1
+Trait1 Kizuna
+Trait2 Incredulous
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is higher than the level of your opponent, you may put that character in stock. If you do, put the bottom card of your opponent's stock in the waiting room.
+Auto:
+{
+
+}
+Text Auto: BOND/"Straightforward Personality, Tenga" [(1)]
+EndCard
+
+Character: KI/S44-007
+Name Straightforward Personality, Tenga
+JPName 真っすぐな性格 天河
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Kizuna
+Trait2 Glasses
+Cont:
+{
+
+}
+Text Cont: For each of your other «Kizuna» characters, this card gets +500 power.
+Cont:
+{
+
+}
+Text Cont: GREAT PERFORMANCE
+EndCard
+
+Character: KI/S44-008
+Name Stricken With Grief, Nico
+JPName 打ちひしがれた仁子
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Kizuna
+Trait2 Incredulous
+Cont:
+{
+
+}
+Text Cont: If you are level 3 or higher, character facing this card gets -1 soul.
+EndCard
+
+Character: KI/S44-009
+Name Black Gomorin
+JPName 黒いゴモリン
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: KI/S44-010
+Name Night of the Camp, Tenga
+JPName 合宿の夜 天河
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Kizuna
+Trait2 Glasses
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top 3 cards of your deck in the waiting room.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your other «Kizuna» characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: KI/S44-011
+Name Somewhat Chaotic, Nico
+JPName わりとカオスな仁子
+Color Y
+Level 1
+Cost 1
+Trigger Soul
+Power 4000
+Soul 1
+Trait1 Kizuna
+Trait2 Incredulous
+Cont:
+{
+
+}
+Text Cont: Your other «Kizuna» character in the middle position of your center stage gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When "Best Friends" is placed on your climax area, you may pay the cost. If you do, choose up to 2 of your characters, and they get the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may draw a card."
+EndCard
+
+Character: KI/S44-012
+Name "Wild Dog" Tenga
+JPName “狂犬”天河
+Color Y
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Kizuna
+Trait2 Glasses
+Cont:
+{
+
+}
+Text Cont: If the number of other «Kizuna» characters you have is 2 or more, this card gets +1000 power.
+Cont:
+{
+
+}
+Text Cont: For each marker under this card, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck under this card as marker.
+EndCard
+
+Character: KI/S44-013
+Name Confused, Tenga
+JPName 当惑する天河
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Kizuna
+Trait2 Glasses
+Auto:
+{
+
+}
+Text Auto: [(2)] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's level 2 or higher characters, and that character gets -1 soul until end of turn.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: KI/S44-014
+Name Awkward Response, Tenga
+JPName ぎこちない返事 天河
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Kizuna
+Trait2 Glasses
+Cont:
+{
+
+}
+Text Cont: All your other characters with BOND get +1 soul.
+Act:
+{
+
+}
+Text Act: [Rest 2 of your «Kizuna» characters] Choose 1 of your characters, and that character gets +1500 power until end of turn.
+EndCard
+
+Character: KI/S44-015
+Name Gomorin
+JPName ゴモリン
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Cont:
+{
+
+}
+Text Cont: You may have as many cards with the same name as this card in your Deck.
+Cont:
+{
+
+}
+Text Cont: For each marker under this card, this card gets +1500 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top 3 cards of your deck in the waiting room.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose up to X "Gomorin" in your waiting room and put them face-down under this card as marker. X is the the number of your "Gomorin" in the center stage.
+EndCard
+
+Character: KI/S44-016
+Name Responding Happily, Niko
+JPName 嬉しい答え 仁子
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Kizuna
+Trait2 Incredulous
+Cont:
+{
+
+}
+Text Cont: For each of your other "Nico, Responding Happily" in the center stage, this card gets +1000 power and +1 soul.
+EndCard
+
+Character: KI/S44-017
+Name Nico in Pajamas
+JPName パジャマの仁子
+Color Y
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Kizuna
+Trait2 Incredulous
+EndCard
+
+Character: KI/S44-018
+Name Man Who Never Learns, Yoshizawa
+JPName 懲りない男 吉沢
+Color Y
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Kizuna
+Trait2 Delinquent
+Cont:
+{
+
+}
+Text Cont: For each marker under this card, this card gets +1500 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose up to 2 "Gomorin" in your waiting room and put them face-down under this card as marker.
+EndCard
+
+Character: KI/S44-019
+Name Lower Position, Kamaishi
+JPName 子分格 釜石
+Color Y
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Kizuna
+Trait2 Delinquent
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if "Gomorin" is in your clock, this card gets +4000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+EndCard
+
+Character: KI/S44-020
+Name Four People Without Connection, Yuta & Tenga & Katsuhira & Hisomu
+JPName 接点のない4人 由多＆天河＆勝平＆日染
+Color Y
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Kizuna
+Trait2 Glasses
+EndCard
+
+Character: KI/S44-021
+Name Her Personal Opinion, Nico
+JPName 一家言あり 仁子
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Kizuna
+Trait2 Incredulous
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 500 times the number of your «Kizuna» characters.
+EndCard
+
+Character: KI/S44-022
+Name Muscleman, Tenga
+JPName 用心棒 天河
+Color Y
+Level 2
+Cost 2
+Trigger Soul
+Power 7500
+Soul 2
+Trait1 Kizuna
+Trait2 Glasses
+Cont:
+{
+
+}
+Text Cont: If the number of «Kizuna» characters you have is 4 or more, this card gets -1 level while in your hand.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put a Yellow card from your hand to the waiting room]
+EndCard
+
+Event: KI/S44-023
+Name Honoka-chan Come Out And Play
+JPName ほのかちゃんあそぼ
+Color Y
+Level 3
+Cost 1
+Effect: 
+{
+
+}
+Text Choose 1 of your characters, and that character gets +3500 power and the following ability until end of turn. "Auto: [(1)] When a level 2 or higher battle opponent of this card becomes reversed, you may pay the cost. If you do, put the top card of your clock in the waiting room." Put this card into memory.
+EndCard
+
+Climax: KI/S44-024
+Name Like Or Being Liked
+JPName 好きだとか好かれるとか
+*WindClimax
+EndCard
+
+Climax: KI/S44-025
+Name Because We Are Friends
+JPName 友達だから
+*ShotClimax
+EndCard
+
+Climax: KI/S44-026
+Name Best Friends
+JPName Best Friends
+Color Y
+
+EndCard
+
+Character: KI/S44-027
+Name "Cunning And Sly" Yuta
+JPName “狡猾リア”由多
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Kizuna
+Trait2 Narcisscist
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room, Rest 2 of your standing characters] This ability activates up to once per turn. When your other character with BOND is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Kizuna» character among them, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +1500 power until end of turn.
+Act:
+{
+
+}
+Text Act: [Put a character with BOND from your stage in the waiting room] Choose 1 of your characters, and that character gets +2500 power until end of turn.
+EndCard
+
+Character: KI/S44-028
+Name "High And Mighty" Honoka
+JPName “上から選民”穂乃香
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Kizuna
+Trait2 Manga
+Cont:
+{
+
+}
+Text Cont: If there are 2 or less climax cards in your waiting room, this card gets -1 level while in your hand.
+Cont:
+{
+
+}
+Text Cont: If all your characters are «Kizuna», this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+EndCard
+
+Character: KI/S44-029
+Name "Friends" Honoka
+JPName “友達”穂乃香
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Kizuna
+Trait2 Manga
+Cont:
+{
+
+}
+Text Cont: All your other «Kizuna» characters get +500 power.
+Auto:
+{
+
+}
+Text Auto: BOND/"Peculiar One of the Class, Nico" [Put 1 card from your hand to the waiting room]
+EndCard
+
+Character: KI/S44-030
+Name Quiet Literary-Type Girl, Honoka
+JPName 寡黙な文系少女 穂乃香
+Color G
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Kizuna
+Trait2 Manga
+Cont:
+{
+
+}
+Text Cont: All your other characters get the following ability. "Cont: This cannot side attack."
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, if "Isn't It Nice Being Kiznaiver" is in your climax area, choose up to 1 «Kizuna» character in your waiting room and put it in your stock, choose 1 of your characters, and that character gets +3000 power until end of turn.
+EndCard
+
+Character: KI/S44-031
+Name Yuta & Honoka
+JPName 由多＆穂乃香
+Color G
+Level 1
+Cost 0
+Power 6500
+Soul 1
+Trait1 Kizuna
+Trait2 Narcisscist
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in your waiting room. If there were at least 1 climax among them, put this card in your stock.
+EndCard
+
+Character: KI/S44-032
+Name Studying, Yuta
+JPName 勉強中 由多
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 Kizuna
+Trait2 Narcisscist
+Cont:
+{
+
+}
+Text Cont: ASSIST Your level 3 and higher characters in front of this card get +2000 power.
+Auto:
+{
+
+}
+Text Auto: BOND/'"High And Mighty" Honoka' [(1)]
+EndCard
+
+Character: KI/S44-033
+Name Having a Complex About His Looks, Yuta
+JPName 容姿のコンプレックス 由多
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Kizuna
+Trait2 Narcisscist
+Cont:
+{
+
+}
+Text Cont: If the number of other «Kizuna» characters you have is 2 or more, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: This ability activates up to twice per turn. When your other character with BOND is placed on the stage from your hand, draw a card, and discard a card from your hand to the waiting room.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, if "Forbidden Past" is in your climax area, you may put that character in clock.
+EndCard
+
+Character: KI/S44-034
+Name Affected Action, Yuta
+JPName 気障な言動 由多
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Kizuna
+Trait2 Narcisscist
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your opponent's stock in the waiting room. If you do, choose a card in your opponent's waiting room and put it in his or her stock.
+Auto:
+{
+
+}
+Text Auto: [(1) Put this card in your clock] When this card becomes reversed in battle, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: KI/S44-035
+Name "Charles de Macking" Ruru
+JPName “シャルル・ド・マッキング”瑠々
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Manga
+Auto:
+{
+
+}
+Text Auto: [(1) Put the top card of your deck in your clock, Put this card into memory] When this card becomes reversed in battle, you may pay the cost. If you do, search your deck for up to 1 «Manga» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: KI/S44-036
+Name Loves Being Alone, Honoka
+JPName 独りを好む穂乃香
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Kizuna
+Trait2 Manga
+Cont:
+{
+
+}
+Text Cont: If you have 1 or less other character, this card gets +1500 power.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, if there is no climax in your opponent's waiting room, you may choose a card in your waiting room and put it in your stock.
+EndCard
+
+Character: KI/S44-037
+Name Panicking Hunk, Yuta
+JPName 焦るイケメン 由多
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 Kizuna
+Trait2 Narcisscist
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Kizuna» character, reveal it, put it in your hand, and shuffle your deck.
+Auto:
+{
+
+}
+Text Auto: [(2) Put this card in your waiting room] When "Forbidden Past" is placed on your climax area, you may pay the cost. If you do, choose up to 1 "Having a Complex About His Looks, Yuta" in your waiting room and put it in the position this card was in.
+EndCard
+
+Character: KI/S44-038
+Name Honoka Embarrassed
+JPName 照れる穂乃香
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Kizuna
+Trait2 Manga
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your opponent's cost 1 or lower characters and put it in the waiting room, and your opponent chooses up to 1 level 0 or lower character in his or her waiting room and put it in the position that character was in.
+Act:
+{
+
+}
+Text Act: [Rest 1 of your characters] Choose a '"Charles de Macking" Ruru' in your memory and put it in your stock.
+EndCard
+
+Character: KI/S44-039
+Name Arguing, Yuta
+JPName 舌戦 由多
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Kizuna
+Trait2 Narcisscist
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +500 power.
+Auto:
+{
+
+}
+Text Auto: [Rest this card] When "Those Who Smell Like the Sea" is placed on your climax area, if this card is standing, you may pay the cost. If you do, all your characters get +1500 power and the following ability until end of turn. "Cont: This cannot side attack."
+EndCard
+
+Character: KI/S44-040
+Name Harsh Personality, Honoka
+JPName 性格キツめ 穂乃香
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Kizuna
+Trait2 Manga
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose a character in your opponent's center stage, and that character gets -1000 power until end of turn.
+Act:
+{
+
+}
+Text Act: [Put 1 card from your hand to the waiting room] Choose 1 of your characters with "Yuta" in its card name, and that character gets the following ability until end of turn. "Auto: When this card becomes reversed, if the level of the battle opponent of this card is lower than or equal to the level of this card, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock."
+EndCard
+
+Character: KI/S44-041
+Name "Charles de Macking" Maki
+JPName “シャルル・ド・マッキング”牧
+Color G
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Kizuna
+Trait2 Manga
+EndCard
+
+Character: KI/S44-042
+Name Shadows of Ruru, Honoka
+JPName 瑠々の幻影 穂乃香
+Color G
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Kizuna
+Trait2 Manga
+Cont:
+{
+
+}
+Text Cont: MEMORY If '"Charles de Macking" Ruru' is in your memory, this card gets +2000 power and the following ability. "Auto: When this card becomes reversed in battle, put the top card of your deck in your clock, and Rest this card."
+EndCard
+
+Character: KI/S44-043
+Name Sparkling, Yuta
+JPName キラキラな由多
+Color G
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Kizuna
+Trait2 Narcisscist
+EndCard
+
+Character: KI/S44-044
+Name Being Made a Fool, Yuta
+JPName 翻弄される由多
+Color G
+Level 1
+Cost 1
+Trigger Soul
+Power 1000
+Soul 1
+Trait1 Kizuna
+Trait2 Narcisscist
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, put the top 3 cards of your opponent's deck in the waiting room.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 2000, level 1 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: KI/S44-045
+Name Connected by Kizuna, Honoka
+JPName 繋がるキズナ 穂乃香
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 8500
+Soul 1
+Trait1 Kizuna
+Trait2 Manga
+EndCard
+
+Event: KI/S44-046
+Name Anti-Bug Spray
+JPName 防虫クレープ
+Color G
+Level 1
+Cost 0
+Effect: 
+{
+
+}
+Text If you have 2 or less «Kizuna» characters, you cannot play this card from your hand. Reveal the top card of your deck. If it's a «Kizuna» character, put it in your stock.  Choose a character in your opponent's center stage, and that character gets -3000 power until end of turn.
+EndCard
+
+Event: KI/S44-047
+Name Summer Beyond Control
+JPName 持て余す夏
+Color G
+Level 1
+Cost 1
+Effect: 
+{
+
+}
+Text Search your deck for up to 1 character with "Yuta" in its card name and up to 1 character with "Honoka" in its card name, reveal them, put them in your hand, discard a card from your hand to the waiting room, and shuffle your deck.
+EndCard
+
+Climax: KI/S44-048
+Name Forbidden Past
+JPName 禁忌の過去
+Color G
+
+EndCard
+
+Climax: KI/S44-049
+Name Isn't It Nice Being Kiznaiver
+JPName キズナイーバーでいいじゃない
+Color G
+
+EndCard
+
+Climax: KI/S44-050
+Name Those Who Smell Like the Sea
+JPName 磯臭いやつら
+Color G
+
+EndCard
+
+Character: KI/S44-051
+Name "I Won't Let You Be Alone" Katsuhira
+JPName “一人にはしない”勝平
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Kizuna
+Trait2 Void
+Cont:
+{
+
+}
+Text Cont: MEMORY If there are 2 or more "Overwhelming Memories, Shiori & Asuka" in your memory, this card gets -1 level while in your hand.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, put the top card of your deck in the waiting room, choose up to 1 of your opponent's level X or lower characters and put it in the waiting room. X equals level of the card put in the waiting room this way. 
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if "Pain Regained" is in your climax area, choose a character in your waiting room and return it to your hand, and this card gets +1500 power until the end of your opponent's next turn.
+EndCard
+
+Character: KI/S44-052
+Name Lost Her Self-Confidence, Chidori
+JPName 自信喪失 千鳥
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Kizuna
+Trait2 Housework
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, put the top card of your clock in your stock.
+Auto:
+{
+
+}
+Text Auto: [(3)] When this card attacks, you may pay the cost. If you do, deal 1 damage to your opponent. 
+EndCard
+
+Character: KI/S44-053
+Name Overwhelming Memories, Shiori & Asuka
+JPName 溢れる思い出 しおり＆あすか
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Kizuna
+Trait2 Void
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your «Kizuna» characters, and that character gets +1500 power until end of turn.
+Act:
+{
+
+}
+Text Act: [(1) Put this card into memory] Look at up to the top 4 cards of your deck, choose up to 1 «Kizuna» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: KI/S44-054
+Name Crush on Someone, Chidori
+JPName 一方向の好意 千鳥
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Kizuna
+Trait2 Housework
+Auto:
+{
+
+}
+Text Auto: [(1) Put the top card of your deck in your clock] When this card attacks, you may pay the cost. If you do, choose a «Kizuna» character in your waiting room and return it to your hand.
+EndCard
+
+Character: KI/S44-055
+Name No Energy And Indifferent, Katsuhira
+JPName 無気力で無頓着 勝平
+Color R
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Kizuna
+Trait2 Void
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, you may reverse that character.
+Auto:
+{
+
+}
+Text Auto: BOND/"Lost Her Self-Confidence, Chidori" [(1)]
+EndCard
+
+Character: KI/S44-056
+Name Bitter Anger, Chidori
+JPName 沈痛な怒り 千鳥
+Color R
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Kizuna
+Trait2 Housework
+Cont:
+{
+
+}
+Text Cont: If all your characters are «Kizuna», this card gets +500 power and "Auto: ENCORE [Put the top card of your deck in your clock]".
+Cont:
+{
+
+}
+Text Cont: character facing this card gets "Auto: ENCORE [Put the top card of your deck in your clock]".
+EndCard
+
+Character: KI/S44-057
+Name Past Revealed, Katsuhira
+JPName 明かされる過去 勝平
+Color R
+Level 1
+Cost 1
+Power 7000
+Soul 1
+Trait1 Kizuna
+Trait2 Void
+Cont:
+{
+
+}
+Text Cont: This cannot side attack.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, if "Awakened Memories" is in your climax area, you may choose a character in your waiting room and return it to your hand.
+EndCard
+
+Character: KI/S44-058
+Name Childhood Neighbor Friend, Chidori
+JPName 幼馴染のお隣さん 千鳥
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Kizuna
+Trait2 Housework
+Cont:
+{
+
+}
+Text Cont: All your other "Past Revealed, Katsuhira" get +1 level and +500 power.
+Auto:
+{
+
+}
+Text Auto: BOND/"Past Revealed, Katsuhira" [Put the top card of your deck in your clock]
+EndCard
+
+Character: KI/S44-059
+Name Analysis of Kizuna, Katsuhira
+JPName キズナの考察 勝平
+Color R
+Level 0
+Cost 0
+Power 4000
+Soul 1
+Trait1 Kizuna
+Trait2 Void
+Cont:
+{
+
+}
+Text Cont: This cannot side attack.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's not a «Kizuna» character, put it in your clock. 
+EndCard
+
+Character: KI/S44-060
+Name After Her Revelation, Chidori
+JPName 告白のあと 千鳥
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Kizuna
+Trait2 Housework
+Cont:
+{
+
+}
+Text Cont: If the character chosen by effect of this card is on the stage, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed to the stage, choose 1 of your other characters.
+Auto:
+{
+
+}
+Text Auto: When this card is placed from the stage to the waiting room, put the character chosen by effect of this card in the waiting room.
+EndCard
+
+Character: KI/S44-061
+Name Confronting Sonozaki, Chidori
+JPName 園崎との対峙 千鳥
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 6000
+Soul 1
+Trait1 Kizuna
+Trait2 Housework
+Cont:
+{
+
+}
+Text Cont: All your other «Kizuna» characters get +1000 power.
+Auto:
+{
+
+}
+Text Auto: When "To the Person Who I Like Likes" is placed on your climax area, reveal your deck, your opponent looks at your deck and chooses a level 2 or higher character among them and put it in your hand, and shuffle your deck.
+EndCard
+
+Character: KI/S44-062
+Name Feeling After Being Duped, Chidori
+JPName ふられた気持ち 千鳥
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Kizuna
+Trait2 Housework
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Kizuna» characters you have is 4 or more, you may put the top card of your deck in your stock.
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, your opponent may draw 2 cards. If you do, your opponent discards 2 cards from his or her hand to the waiting room.
+EndCard
+
+Character: KI/S44-063
+Name Katsuhira Being Proactive
+JPName 積極的な勝平
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Kizuna
+Trait2 Void
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your other «Kizuna» characters, and that character gets +1000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: BOND/"Foreperson at the Scene, Sonozaki" [(1)]
+EndCard
+
+Character: KI/S44-064
+Name Chidori's Cute Side
+JPName かわいい一面 千鳥
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Kizuna
+Trait2 Housework
+Cont:
+{
+
+}
+Text Cont: If you have another "Know-It-All, Sonozaki", this card gets the following ability. "Act: [Put this card in the waiting room] Choose up to 1 "Chidori, Feeling After Being Dumped" in your hand and put it in the position this card was in."
+Cont:
+{
+
+}
+Text Cont: All your other level 0 and lower characters get +1000 power.
+EndCard
+
+Character: KI/S44-065
+Name Body Without Pain, Katsuhira
+JPName 無痛の体 勝平
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Kizuna
+Trait2 Void
+Auto:
+{
+
+}
+Text Auto: [(1)] During your opponent's turn, when this card becomes reversed in battle, you may pay the cost. If you do, Rest this card, and at the beginning of your next encore step, put this card in the waiting room.
+EndCard
+
+Character: KI/S44-066
+Name Chidori Being Meddlesome
+JPName 世話焼きな千鳥
+Color R
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Kizuna
+Trait2 Housework
+EndCard
+
+Character: KI/S44-067
+Name Katsuhira's Childhood Days
+JPName 幼き日の勝平
+Color R
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Kizuna
+Trait2 Void
+EndCard
+
+Character: KI/S44-068
+Name Mayor of Sugomori City
+JPName 洲籠市長
+Color R
+Level 1
+Cost 1
+Trigger Soul
+Power 5000
+Soul 1
+Trait1 Glasses
+Auto:
+{
+
+}
+Text Auto: [clock] ALARM If this card is on top of your clock and you have 4 or more characters that are either «Mystery», «Delinquent», or "Gomorin", at the beginning of your climax phase, you may choose a character in your waiting room and return it to your hand. If you do, discard a card from your hand to the waiting room.
+EndCard
+
+Character: KI/S44-069
+Name Comparing Answers, Katsuhira
+JPName 答え合わせ 勝平
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Kizuna
+Trait2 Void
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: KI/S44-070
+Name "Forgetful Kid" Katsuhira
+JPName “忘却ぶりっ子”勝平
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Kizuna
+Trait2 Void
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put a Red card from your hand to the waiting room]
+Auto:
+{
+
+}
+Text Auto: MEMORY When this card attacks, if "Overwhelming Memories, Shiori & Asuka" is in your memory, this card gets +X power until end of turn. X equals 1000 times the number of your «Kizuna» characters.
+EndCard
+
+Event: KI/S44-071
+Name Gift for Being Thoughtful
+JPName 気遣いへのお礼
+Color R
+Level 1
+Cost 1
+Effect: 
+{
+
+}
+Text Choose up to 1 «Kizuna» character in your waiting room and return it to your hand, choose a cost 0 or lower character in your opponent's center stage and put it in the waiting room.
+EndCard
+
+Event: KI/S44-072
+Name Kizuna of Wounds
+JPName キズのキズナ
+Color R
+Level 3
+Cost 2
+Effect: 
+{
+
+}
+Text All your opponent's characters get -1 soul until end of turn.
+EndCard
+
+Climax: KI/S44-073
+Name Pain Regained
+JPName 取り戻した痛み
+*DoorClimax
+EndCard
+
+Climax: KI/S44-074
+Name Awakened Memories
+JPName 蘇る記憶
+Color R
+
+EndCard
+
+Climax: KI/S44-075
+Name To the Person Who I Like Likes
+JPName 好きな人の好きな人へ
+Color R
+
+EndCard
+
+Character: KI/S44-076
+Name "Immoral" Hisomu
+JPName “インモラル”日染
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Kizuna
+Trait2 Immoral
+Cont:
+{
+
+}
+Text Cont: Your other «Kizuna» character in the middle position of your center stage gets +1500 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Kizuna» character, put it in your hand and discard a card from your hand to the waiting room. 
+EndCard
+
+Character: KI/S44-077
+Name "Sharing From Now On" Sonozaki
+JPName “分かち合うこれから”園崎
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Kizuna
+Trait2 Mystery
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+Auto:
+{
+
+}
+Text Auto: When "Opened Wound" is placed on your climax area, if there is no marker under this card, you may choose a «Kizuna» character in your waiting room and put it face-down under this card as marker.
+Auto:
+{
+
+}
+Text Auto: [Put a marker from under this card in the waiting room] During battles involving this card, when damage taken by you isn't canceled, you may pay the cost. If you do, deal the same amount of damage to your opponent. 
+EndCard
+
+Character: KI/S44-078
+Name Always Cool, Sonozaki
+JPName 常にクール 園崎
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Kizuna
+Trait2 Mystery
+Cont:
+{
+
+}
+Text Cont: ASSIST During your opponent's turn, all your characters in front of this card get +500 power.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest 2 of your characters] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 «Kizuna» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: KI/S44-079
+Name Idol of the Kizna Committee, Sonozaki
+JPName 絆の会のアイドル 園崎
+Color B
+Level 0
+Cost 0
+Power 4000
+Soul 1
+Trait1 Kizuna
+Trait2 Mystery
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in your waiting room. If there were at least 1 climax among them, Rest this card.
+EndCard
+
+Character: KI/S44-080
+Name Girl With Loneliness in Her Heart, Sonozaki
+JPName 寂しさを抱えた少女 園崎
+Color B
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Kizuna
+Trait2 Mystery
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 500 times the number of your «Kizuna» characters.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if "Happy Days" is in your climax area, you may draw a card.
+EndCard
+
+Character: KI/S44-081
+Name Dangerous Beauty, Hisomu
+JPName 危険な美貌 日染
+Color B
+Level 1
+Cost 0
+Power 6500
+Soul 1
+Trait1 Kizuna
+Trait2 Immoral
+Cont:
+{
+
+}
+Text Cont: If there is 1 or less card in your clock, this card cannot attack.
+Auto:
+{
+
+}
+Text Auto: [Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Dangerous Woodcutting" in your waiting room and return it to your hand.
+Auto:
+{
+
+}
+Text Auto: When your opponent's climax is placed on your climax area, put this card in the waiting room.
+EndCard
+
+Character: KI/S44-082
+Name "Ball of Discontent" Sonozaki
+JPName “不満の麩まんじゅう”園崎
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 8500
+Soul 2
+Trait1 Kizuna
+Trait2 Mystery
+Cont:
+{
+
+}
+Text Cont: If there are 6 or more "Gomorin" in your waiting room, this card gets -1 level while in your hand.
+Cont:
+{
+
+}
+Text Cont: For each marker under this card, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room, and deal X damage to your opponent. X equals sum of the number of soul triggers of the cards put in the waiting room this way. 
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose up to 3 "Gomorin" in your waiting room and put them face-down under this card as marker.
+EndCard
+
+Character: KI/S44-083
+Name Sonozaki's Various Looks
+JPName 七変化 園崎
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Kizuna
+Trait2 Mystery
+Cont:
+{
+
+}
+Text Cont: ASSIST Your level 0 and lower characters in front of this card get +1500 power.
+Auto:
+{
+
+}
+Text Auto: [Put this card in the waiting room] When your other character is placed from the stage to the waiting room, if this card is in the backstage, you may pay the cost. If you do, put that character Rested in the position it was in.
+EndCard
+
+Character: KI/S44-084
+Name Peculiar About Pain, Hisomu
+JPName 痛みへのこだわり 日染
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Kizuna
+Trait2 Immoral
+Cont:
+{
+
+}
+Text Cont: If there are 3 or more cards in your clock, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: [Put the top card of your deck in your clock] When "Joy of a Masochist" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 2 cost 0 or lower characters and put them in separate positions on the stage, and put the rest into your waiting room.
+EndCard
+
+Character: KI/S44-085
+Name School Counselor "Urushi-"
+JPName スクールカウンセラー“うるしー”
+Color B
+Level 1
+Cost 0
+Power 500
+Soul 1
+Trait1 Teacher
+Trait2 Science
+Auto:
+{
+
+}
+Text Auto: BOND/'"Sharing From Now On" Sonozaki' [Put 1 card from your hand to the waiting room]
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 1500, level 1 [Put this card from your hand to the waiting room]
+EndCard
+
+Character: KI/S44-086
+Name Watching Over, Hisomu
+JPName 見守る日染
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Kizuna
+Trait2 Immoral
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at up to 2 cards from the top of your deck and put them on top of the deck in any order.
+EndCard
+
+Character: KI/S44-087
+Name Know-It-All, Sonozaki
+JPName 全てを知る者 園崎
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 5000
+Soul 1
+Trait1 Kizuna
+Trait2 Mystery
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times level of that character.
+Auto:
+{
+
+}
+Text Auto: When your climax is placed on your climax area, choose 1 of your characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: KI/S44-088
+Name "That Kind of Person" Hisomu
+JPName “それ系のアレ”日染
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Kizuna
+Trait2 Immoral
+Cont:
+{
+
+}
+Text Cont: If '"Immoral" Hisomu' is in your clock, this card gets -1 level while in your hand.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, draw up to 1 card, and this card gets +2000 power until end of turn.
+EndCard
+
+Character: KI/S44-089
+Name Homeroom Teacher of Class 2-A "Ya-mada"
+JPName 2年A組担任“やーまだ”
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Teacher
+Trait2 Science
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +500 power.
+Act:
+{
+
+}
+Text Act: [(2) Rest this card] Search your deck for up to 1 character that is either «Mystery», «Delinquent», or "Gomorin", reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: KI/S44-090
+Name Adaptative Type, Hisomu
+JPName 順応するタイプ 日染
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Kizuna
+Trait2 Immoral
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed in battle, reveal the top card of your deck. If it's level 1 or higher, return this card to your hand. Otherwise, put this card in your clock. 
+EndCard
+
+Character: KI/S44-091
+Name Plan to Become Popular, Hisomu
+JPName 人気者計画 日染
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Kizuna
+Trait2 Immoral
+EndCard
+
+Character: KI/S44-092
+Name Foreperson at the Scene, Sonozaki
+JPName 現場監督 園崎
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Kizuna
+Trait2 Mystery
+Auto:
+{
+
+}
+Text Auto: [(1) Put this card in the waiting room] When your other «Kizuna» character is frontal attacked, you may pay the cost. If you do, choose 1 of your characters in battle, and that character gets +2500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+EndCard
+
+Character: KI/S44-093
+Name Love Scene at the Gym, Sonozaki
+JPName 体育館のラブシーン 園崎
+Color B
+Level 1
+Cost 1
+Power 7000
+Soul 1
+Trait1 Kizuna
+Trait2 Mystery
+EndCard
+
+Character: KI/S44-094
+Name Grown And Natrual, Yuta & Hisomu
+JPName 養殖と天然 由多＆日染
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 8500
+Soul 1
+Trait1 Kizuna
+Trait2 Immoral
+EndCard
+
+Character: KI/S44-095
+Name Looking at the Wound, Hisomu
+JPName 傷を見つめる日染
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 10000
+Soul 1
+Trait1 Kizuna
+Trait2 Immoral
+Cont:
+{
+
+}
+Text Cont: This gets -2 level while on the stage.
+EndCard
+
+Event: KI/S44-096
+Name Dangerous Woodcutting
+JPName 危険な薪割り
+Color B
+Level 1
+Cost 0
+Effect: 
+{
+
+}
+Text Look at up to the top 4 cards of your deck, choose up to 1 «Kizuna» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Event: KI/S44-097
+Name Nori-chan Strap
+JPName のりちゃんストラップ
+Color B
+Level 3
+Cost 0
+Effect: 
+{
+
+}
+Text Choose 1 of your characters, and that character gets +X power until end of turn. X equals 1000 times the number of your «Kizuna» characters.
+EndCard
+
+Climax: KI/S44-098
+Name Opened Wound
+JPName 開放される痛み
+*GateClimax
+EndCard
+
+Climax: KI/S44-099
+Name Happy Days
+JPName 幸せな日々
+*BookClimax
+EndCard
+
+Climax: KI/S44-100
+Name Joy of a Masochist
+JPName ドMの歓悦
+Color B
+
+EndCard
+
