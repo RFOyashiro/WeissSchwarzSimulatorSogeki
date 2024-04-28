@@ -2086,7 +2086,7 @@ Soul 1
 Trait1 Trion
 Trait2 Tamakoma Branch
 *Level3Assist
-Auto: OnTriggerCheckClimax
+Auto: OnTriggerCheck
 {
     IfOther HasTrigger Soul
     {
