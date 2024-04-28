@@ -147,22 +147,22 @@ Power 3000
 Soul 1
 Trait1 Knocker Up
 Trait2 Weapon
-Auto: OnPlay|OnPlacedOnStageFromMemory
-{
-    If LocationContains Memory 1 NameEquals Shrine Girl, Ariya || NameEquals Plan for Tomorrow, Aki
-    {
-        TargetLocation Stage
-        NarrowTargets Other
-        ChooseCharacterFromTargets Choose a character to give +1 level.
-        GainLevel 1
-    }
-}
-Quick
 Cont: GiveSelf
 {
     If LocationContains Memory 1 NameEquals Shrine Girl, Ariya || NameEquals Plan for Tomorrow, Aki
     {
         GainPower 2000
+        GainEffect
+        {
+            Auto: OnPlay|OnPlacedOnStageFromMemory
+            {
+                TargetLocation Stage
+                NarrowTargets Other
+                ChooseCharacterFromTargets Choose a character to give +1 level.
+                GainLevel 1
+            }
+            Text Auto: When this card is placed on the stage from your hand or memory, choose 1 of your other character, and that character gets +1 level until end of turn.
+        }
     }
 }
 Text Cont: MEMORY If either "Shrine Girl, Ariya" or "Plan for Tomorrow, Aki" is in your memory, this card gets +2000 power and the following ability. "Auto: When this card is placed on the stage from your hand or memory, choose 1 of your other character, and that character gets +1 level until end of turn."
@@ -313,24 +313,22 @@ Auto: StartAttackPhase
             SearchLocationForTargets Memory 1 1 NameEquals "Dreamer" Ariya
             If HasTarget
             {
+                SaveTargets
                 AddSelfToTargets
                 Exchange
                 TriggerCustomEvent MemorySwap
-                ScheduleEffect StartEncoreStep
+                LoadTargets
+                ScheduleEffectForTargets StartEncoreStep
                 {
                     Effect:
                     {
-                        TargetLocation Stage
-                        NarrowTargets NameEquals "Dreamer" Ariya
-                        If HasTarget
+                        If OnStage
                         {
-                            ChooseCharacterFromTargets Exchanging "Dreamer" Ariya and Shrine Girl, Ariya again. Choose a "Dreamer" Ariya.
-                            SaveTargets
                             Message Exchanging "Dreamer" Ariya and Shrine Girl, Ariya again. Choose a Shrine Girl, Ariya.
                             SearchLocationForTargets Memory 1 1 NameEquals Shrine Girl, Ariya
                             If HasTarget
                             {
-                                AddSavedToCurrentTargets
+                                AddSelfToTargets
                                 Exchange
                                 TriggerCustomEvent MemorySwap
                             }
@@ -1999,24 +1997,22 @@ Auto: StartAttackPhase
             SearchLocationForTargets Memory 1 1 NameEquals Dreamer High School Student, Rando
             If HasTarget
             {
+                SaveTargets
                 AddSelfToTargets
                 Exchange
                 TriggerCustomEvent MemorySwap
-                ScheduleEffect StartEncoreStep
+                LoadTargets
+                ScheduleEffectForTargets StartEncoreStep
                 {
                     Effect:
                     {
-                        TargetLocation Stage
-                        NarrowTargets NameEquals Dreamer High School Student, Rando
-                        If HasTarget
+                        If OnStage
                         {
-                            ChooseCharacterFromTargets Exchanging Dreamer High School Student, Rando and The Moment the Rainbow Appeared, Rando again. Choose a Dreamer High School Student, Rando
-                            SaveTargets
                             Message Exchanging Dreamer High School Student, Rando and The Moment the Rainbow Appeared, Rando again. Choose a The Moment the Rainbow Appeared, Rando.
                             SearchLocationForTargets Memory 1 1 NameEquals The Moment the Rainbow Appeared, Rando
                             If HasTarget
                             {
-                                AddSavedToCurrentTargets
+                                AddSelfToTargets
                                 Exchange
                                 TriggerCustomEvent MemorySwap
                             }
@@ -2136,24 +2132,22 @@ Auto: StartAttackPhase
             SearchLocationForTargets Memory 1 1 NameEquals Power of the Sea God, Eru
             If HasTarget
             {
+                SaveTargets
                 AddSelfToTargets
                 Exchange
                 TriggerCustomEvent MemorySwap
-                ScheduleEffect StartEncoreStep
+                LoadTargets
+                ScheduleEffectForTargets StartEncoreStep
                 {
                     Effect:
                     {
-                        TargetLocation Stage
-                        NarrowTargets NameEquals Power of the Sea God, Eru
-                        If HasTarget
+                        If OnStage
                         {
-                            ChooseCharacterFromTargets Exchanging Power of the Sea God, Eru and Incredible Transfer Student, Eru again. Choose a Power of the Sea God, Eru
-                            SaveTargets
                             Message Exchanging Power of the Sea God, Eru and Incredible Transfer Student, Eru again. Choose a Incredible Transfer Student, Eru.
                             SearchLocationForTargets Memory 1 1 NameEquals Incredible Transfer Student, Eru
                             If HasTarget
                             {
-                                AddSavedToCurrentTargets
+                                AddSelfToTargets
                                 Exchange
                                 TriggerCustomEvent MemorySwap
                             }
