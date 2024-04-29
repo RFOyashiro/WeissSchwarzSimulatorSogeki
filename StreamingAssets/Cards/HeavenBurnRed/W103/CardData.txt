@@ -2198,13 +2198,13 @@ Power 4000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31B
-Auto: OnPlay
+Auto: OnSentFromStageToWaitingRoom
 {
 	TargetLocation Hand
 	ChooseCardsFromTargets 0 1 Any
 	MoveCard Stock
 }
-Text Auto: When this card is placed on the stage from your hand, you may choose 1 card in your hand, and put it into your stock.
+Text Auto: When this card is placed in the waiting room from the stage, you may choose 1 card in your hand, and put it into your stock.
 *OnAttackPay1ToDoubleTrigger
 EndCard
 
