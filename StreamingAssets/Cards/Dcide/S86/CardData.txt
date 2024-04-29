@@ -64,6 +64,7 @@ Auto: OnPlay
     }
 }
 Text Auto: When this card is placed on the stage from your hand, if there are 5 or less cards in your deck, return all cards from your waiting room to the deck. If you do, search your deck for up to 1 character with either «Knocker Up» or «Yurajima», reveal it, put it in your hand, and shuffle your deck.
+Text <color=red> * This card is part of a 3C1 restriction alongside DCT/S86-076 and DCT/S86-088 in JP. </color>
 EndCard
 
 Character: DCT/S86-003
@@ -542,6 +543,7 @@ Effect:
     MoveCard Clock
 }
 Text You may discard a card from your hand to the waiting room. If you do, all your opponent's characters get -1500 power until end of turn. Put this card in clock.
+Text <color=red> * This card is part of a 3C1 restriction alongside W89-028 and W89-034 in JP. </color>
 EndCard
 
 Event: DCT/S86-020
@@ -1777,6 +1779,7 @@ Auto: OnCustomEvent MemorySwap
 }
 Text Auto: When your character on the stage exchanges with a character in memory, you may put a marker from under this card in stock.
 *Act1RestSelfSalvageBrainstorm(Any)
+Text <color=red> * This card is part of a 3C1 restriction alongside DCT/S86-088 and DCT/S86-002 in JP. </color>
 EndCard
 
 Character: DCT/S86-077
@@ -1876,7 +1879,8 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo MEMORY [(1) Put 1 card from your hand to the waiting room] When this card attacks, if "Anger Within" is in your climax area and there are 3 or more cards in your memory, you may pay the cost. If you do, deal 4 damage to your opponent. 
+Text Auto: CxCombo MEMORY [(1) Put 1 card from your hand to the waiting room] When this card attacks, if "Anger Within" is in your climax area and there are 3 or more cards in your memory, you may pay the cost. If you do, deal 4 damage to your opponent.
+Text <color=red> * This card is limited to 2 copy in the JP format. </color>
 EndCard
 
 Character: DCT/S86-080
@@ -2159,6 +2163,7 @@ Auto: StartAttackPhase
     }
 }
 Text Auto: MEMORY [Rest this card] At the beginning of your attack phase, if there's a climax in your climax area and this card is in the center stage, you may pay the cost. If you do, choose an "Power of the Sea God, Eru" in your memory and this card, exchange them, and at the beginning of the encore step, exchange them again.
+Text <color=red> * This card is part of a 3C1 restriction alongside DCT/S86-076 and DCT/S86-002 in JP. </color>
 EndCard
 
 Character: DCT/S86-089
