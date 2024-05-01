@@ -599,15 +599,20 @@ Cont: GiveSelf
 {
     If MyTurn
     {
-        
+        SetXToNumberOfCharacters Other && HasTrait Omiko City
+        MultiplyXValue 500
+        GainPower X
     }
 }
 Text Cont: During your turn, this card gets +500 power for each of your other «Omiko City» characters.
-Auto:
+Auto: OnPlay
 {
-
+    Repeat 2
+    {
+        *Scry
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, perform the following action twice. "Look at the top card of your deck, and put it either on top of the deck or in the waiting room."
+Text Auto: When this card is placed on the stage from your hand, perform the following effect twice. "Look at the top card of your deck, and put it either on top of the deck or in the waiting room."
 EndCard
 
 Character: AYT/W110-023
@@ -620,14 +625,26 @@ Power 4500
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Auto:
+Auto: OnAttack
 {
-
+    If StageContains 2 Other && HasTrait Omiko City
+    {
+        GainPower 2000
+    }
 }
+Quick
 Text Auto: When this card attacks, if the number of other «Omiko City» characters you have is 2 or more, this card gets +2000 power until end of turn.
-Auto:
+Auto: OnAttack
 {
-
+    If LocationContains Climax 1 HasTrigger Wind
+    {
+        TargetTop Deck 1
+        Reveal
+        IfTarget Compare ThatCardsLevel 2 OrMore
+        {
+            MoveCard Hand
+        }
+    }
 }
 Text Auto: When this card attacks, if there's a climax with a Wind trigger icon in your climax area, reveal the top card of your deck. If it's level 2 or higher, put it in your hand.
 EndCard
@@ -642,9 +659,14 @@ Power 5000
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsClimax &&& Send 1 WaitingRoom Other
+    {
+        SearchLocationForTargets WaitingRoom 1 1 IsClimax
+        RevealTargets
+        MoveCard Hand
+    }
 }
 Text Auto: [Put 1 climax from your hand to the waiting room, put another character from your stage to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a climax in your waiting room and return it to your hand.
 EndCard
@@ -660,11 +682,18 @@ Power 5000
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        RevealUpTo Deck 4
+        ChooseCardsFromTargets 0 1 HasTrigger Soul
+        RevealTargets
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
 }
-Text Auto: [Put a card form your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 card with a soul trigger icon among them, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: [Put 1 card form your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 card with a Soul trigger icon among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: AYT/W110-026
@@ -678,16 +707,17 @@ Power 6000
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn
+    {
+        SetXToNumberOfCharacters Other && HasTrait Omiko City
+        MultiplyXValue 1500
+        GainPower X
+    }
 }
-Text Cont: During your turn, for each of your other «Omiko City» characters, this card gets +1500 power.
-Auto:
-{
-
-}
-Text Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform trigger check twice during this card attack's trigger Step.
+Text Cont: During your turn, this card gets +1500 power for each of your other «Omiko City» characters.
+*OnAttackPay1ToDoubleTrigger
 EndCard
 
 Event: AYT/W110-027
@@ -696,11 +726,17 @@ JPName 二人だけの思い出
 Color Y
 Level 1
 Cost 0
+Requirement StageContains 1 HasTrait Omiko City
+Text If you don't have an «Omiko City» character, you cannot play this card from hand.
 Effect:
 {
-
+    *Check4Add1(Omiko City)
+    TargetLocation OpponentCenterStage
+    NarrowTargets CanBeChosen && Compare ThatCardsCost 0 OrLess
+    ChooseCharacterFromTargets_Optional Choose up to 1 character to return to hand.
+    Bounce
 }
-Text If you don't have an «Omiko City» character, you cannot play this card from hand. Look at up to the top 4 cards of your deck, choose up to 1 «Omiko City» character among them, reveal it, put it in your hand, and put the rest into your waiting room. You may choose a cost 0 or lower character in your opponent's center stage and return it to their hand.
+Text Look at up to the top 4 cards of your deck, choose up to 1 «Omiko City» character among them, reveal it, put it in your hand, and put the rest into your waiting room.\nYou may choose a cost 0 or lower character in your opponent's center stage and return it to their hand.
 EndCard
 
 Climax: AYT/W110-028
@@ -737,16 +773,8 @@ Power 3500
 Soul 1
 Trait1 Omiko City
 Trait2 Kachofugetsu
-Cont:
-{
-
-}
-Text Cont: All your opponent's characters get "Auto: ENCORE [(2)]".
-Auto:
-{
-
-}
-Text Auto: At the beginning of your opponent's attack phase, you may move this card to an open position in your center stage that has an opponent's character Opposite that position.
+*GiveAllOpponentsEncore2
+*RunInFrontOfCharacter
 EndCard
 
 Character: AYT/W110-033
@@ -759,16 +787,31 @@ Power 3000
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Cont:
+Combo Real? Kiss
+*PowerOnMyTurn(4000)
+Auto: OnSpecificClimaxPlay Real? Kiss
 {
-
+    If StageContains 3 Other
+    {
+        GainEffect
+        {
+            *OnAttackPay1ToDoubleTrigger
+        }
+        GainEffect
+        {
+            Auto: OnEndOfAttack
+            {
+                TargetTop Deck 1
+                Reveal
+                SearchLocationForTargets WaitingRoom 1 1 IsCharacter && Compare ThatCardsLevel TargetCardsLevel OrLess
+                RevealTargets
+                MoveCard Hand
+            }
+            Text Auto: At the end of this card's attack, reveal the top card of your deck, choose a level X or lower character in your waiting room and return it to your hand. X equals level of the revealed card.
+        }
+    }
 }
-Text Cont: During your turn, this card gets +4000 power.
-Auto:
-{
-
-}
-Text Auto: CxCombo When "Real? Kiss" is placed on your climax area, if the number of other characters you have is 3 or more, this card gets the following 2 abilities until end of turn. "Auto:
+Text Auto: CxCombo When "Real? Kiss" is placed on your climax area, if the number of other characters you have is 3 or more, this card gets the following 2 abilities until end of turn. "Auto: [(1)] When this card attacks, you may pay the cost, perform the trigger check twice during this attack." "Auto: At the end of this card's attack, reveal the top card of your deck, choose a level X or lower character in your waiting room and return it to your hand. X equals level of the revealed card."
 EndCard
 
 Character: AYT/W110-034
@@ -782,14 +825,26 @@ Power 10000
 Soul 2
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Auto:
+Combo Distance Between Friends
+Auto: OnPlay
 {
-
+    PayCost 1
+    {
+        *OptionalDraw
+        SearchLocationForTargets Hand 0 1 NameEquals Special Relationship, Matsuri
+        PlaceOnStage false true true false
+    }
 }
 Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw up to 1 card, choose up to 1 "Special Relationship, Matsuri" in your hand and put it in any position on the stage.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Distance Between Friends && StageContains 2 Other && HasTrait Omiko City
+    {
+        PayCost 1 Discard 1 Any
+        {
+            Burn 3
+        }
+    }
 }
 Text Auto: CxCombo [(1) Put 1 card from your hand to the waiting room] When this card attacks, if "Distance Between Friends" is in your climax area and the number of other «Omiko City» characters you have is 2 or more, you may pay the cost. If you do, deal 3 damage to your opponent.
 EndCard
@@ -804,16 +859,26 @@ Power 500
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchWaitingRoom NameEquals Secret Art "Gender exchange Awakened"
+    }
 }
-Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 "Secret Art 'Gender exchange Awakened'" in your waiting room and return it to your hand.
-Act:
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 'Secret Art "Gender exchange Awakened"' in your waiting room and return it to your hand.
+Act: 1 SendFromWaitingRoom 1 Memory NameEquals Secret Art "Gender exchange Awakened" &&& SendSelf WaitingRoom
 {
-
+    If Compare MyLevel 2 OrMore
+    {
+        SearchLocationForTargets WaitingRoom 1 1 NameEquals Exposing His power, Shirogane
+        If HasTarget
+        {
+            Change
+        }
+    }
 }
-Text Act: [(1) send 1 "Secret Art 'Gender exchange Awakened'" from your waiting room to memory, put this card in the waiting room] If you are level 2 or higher, choose 1 "Exposing His power, Shirogane" in your waiting room and put it in the position this card was in.
+Text Act: [(1) Send 1 'Secret Art "Gender exchange Awakened"' from your waiting room to memory, put this card in the waiting room] If you are level 2 or higher, choose 1 "Exposing His power, Shirogane" in your waiting room and put it in the position this card was in.
 EndCard
 
 Character: AYT/W110-036
@@ -826,16 +891,12 @@ Power 1000
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Auto:
+Auto: StartClimaxPhase
 {
-
+    *GiveCharacterPower(500,Any)
 }
 Text Auto: At the beginning of your climax phase, choose 1 of your characters, and that character gets +500 power until end of turn.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 «Omiko City» character, reveal it, put it in your hand, and shuffle your deck.
+*Act1RestSelfSearchBrainstorm(Omiko City)
 EndCard
 
 Character: AYT/W110-037
@@ -848,14 +909,13 @@ Power 1000
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Cont:
+*GlobalPower(500,Omiko City)
+Act: 1 RestSelf
 {
-
-}
-Text Cont: All your other «Omiko City» characters get +500 power.
-Act:
-{
-
+    TargetLocation OpponentCenterStage
+    NarrowTargets CanBeChosen && Compare ThatCardsLevel 0 OrLess
+    ChooseCharactersFromTargets 0 2 Choose up to 2 characters to put into waiting room.
+    MoveCard OpponentWaitingRoom
 }
 Text Act: [(1) Rest this card] Choose up to 2 level 0 or lower characters in your opponent's center stage and put it in the waiting room.
 EndCard
@@ -870,9 +930,12 @@ Power 2000
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Auto:
+Auto: OnAttack
 {
-
+    PayCost Discard 1 Any
+    {
+        *Check4Add1(Omiko City)
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Omiko City» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
@@ -887,14 +950,39 @@ Power 2000
 Soul 1
 Trait1 Omiko City
 Trait2 Kachofugetsu
-Auto:
+Auto: OnPlay
 {
-
+    If LocationContains Clock 1 Any &&& LocationContains WaitingRoom 1 IsCharacter && HasTrait Omiko City
+    {
+        Question Exchange the bottom of card of your clock with a character in waiting room ?
+        If Yes
+        {
+            SearchLocationForTargets WaitingRoom 1 1 IsCharacter && HasTrait Omiko City
+            RevealTargets
+            SaveTargets
+            TargetBottom Clock 1
+            RevealTargets
+            AddSavedToCurrentTargets
+            Exchange
+        }
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose the bottom card of your clock and an «Omiko City» character in your waiting room and exchange them.
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        TargetTop Deck 2
+        If Compare TargetCount 2 OrMore
+        {
+            Reorder
+        }
+        Else
+        {
+            View
+        }
+        SearchWaitingRoom IsCharacter && HasTrait Omiko City
+    }
 }
 Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 2 cards of your deck, put them on top of your deck in any order, choose 1 «Omiko City» character in your waiting room and return it to your hand.
 EndCard
@@ -909,16 +997,22 @@ Power 3500
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Cont:
+Cont: GiveAll
 {
-
+    If MyTurn && NameEquals Getting Used to the New Body, Matsuri
+    {
+        GainPower 2000
+    }
 }
-Text Cont: During your turn, all your other "Matsuri, Adapting to the New Body" get +2000 power.
-Auto:
+Text Cont: During your turn, all your other "Getting Used to the New Body, Matsuri" get +2000 power.
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchDeck NameEquals Getting Used to the New Body, Matsuri
+    }
 }
-Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Matsuri, Adapting to the New Body", reveal it, put it in your hand, and shuffle your deck.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Getting Used to the New Body, Matsuri", reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: AYT/W110-041
@@ -932,16 +1026,25 @@ Power 4000
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Auto:
+*OnPlayFlicker
+Auto: OnPlay
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            If InBattle
+            {
+                GainSpecialEffect CannotUseEvents
+                GainSpecialEffect CannotUseBackup
+            }
+        }
+        Text Cont: During battles involving this card, you cannot play events or "BACKUP" from hand.
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, choose up to 1 of your opponent's characters and send it to memory, and your opponent puts that character from memory to any position on their stage.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters, and that character gets the following ability until end of turn. "Cont: During battles involving this card, you cannot play events or BACKUP from hand."
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters, and that character gets the following ability until end of turn. "Cont: During battles involving this card, you cannot play events or "BACKUP" from hand."
 EndCard
 
 Character: AYT/W110-042
@@ -955,21 +1058,9 @@ Power 9000
 Soul 2
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Cont:
-{
-
-}
-Text Cont: If the number of other «Omiko City» characters you have is 2 or more, this card gets +2000 power.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
-Auto:
-{
-
-}
-Text Auto: [(1)] At the beginning of encore step, if you have no other Rested characters in the center stage, you may pay the cost. If you do, Rest this card.
+*GainPowerWithEnoughCharacters(2000,2,Omiko City)
+*Healer
+*EncoreStepIfNoneRestedPayToRest
 EndCard
 
 Character: AYT/W110-043
@@ -983,16 +1074,27 @@ Power 10500
 Soul 2
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Cont:
+Combo To Respond to What Was Entrusted
+*GlobalPower(1500,Omiko City)
+Cont: GiveAll
 {
-
+    If Climax To Respond to What Was Entrusted && NameEquals "Wind Exorcist Ninja" Matsuri
+    {
+        GainPower 1000
+        GainEffect
+        {
+            Auto: StartMyEncoreStep
+            {
+                PayCost 2 Discard 1 Any
+                {
+                    Burn 2
+                }
+            }
+            Text Auto: [(2) Put 1 card from your hand to the waiting room] At the beginning of your encore step, you may pay the cost. If you do, deal 2 damage to your opponent.
+        }
+    }
 }
-Text Cont: All your other «Omiko City» characters get +1500 power.
-Cont:
-{
-
-}
-Text Cont: CxCombo If "To Respond to What Was Entrusted" is in your climax area, all your other "'Wind Exorcist Ninja' Matsuri" get +1000 power and the following ability. "Auto: [(2) Put 1 card from your hand to the waiting room] At the beginning of your encore step, you may pay the cost. If you do, deal 2 damage to your opponent."
+Text Cont: CxCombo If "To Respond to What Was Entrusted" is in your climax area, all your other '"Wind Exorcist Ninja" Matsuri' get +1000 power and the following ability. "Auto: [(2) Put 1 card from your hand to the waiting room] At the beginning of your encore step, you may pay the cost. If you do, deal 2 damage to your opponent."
 EndCard
 
 Character: AYT/W110-044
@@ -1005,16 +1107,28 @@ Power 1000
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Cont:
+Cont: GiveSelf
 {
-
+    If HasMarker
+    {
+        GainPower 3000
+    }
 }
-Text Cont: If there is a marker under this card, this card gets +3000 power.
-Auto:
+Text Cont: If there is a marker underneath this card, this card gets +3000 power.
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Omiko City || IsEvent
+    {
+        Question Put that card underneath this card as a marker ?
+        If Yes
+        {
+            Marker_FaceDown
+        }
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it is either an «Omiko City» character or an event, you may put it face-down under this card as marker. (If you don't, put it back where it was)
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it is either an «Omiko City» character or an event, you may put it face down underneath this card as marker.
 EndCard
 
 Character: AYT/W110-045
@@ -1027,14 +1141,17 @@ Power 2000
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Auto:
+*OnPlayScry
+Auto: OnClimaxPlay
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck and put it either on top of the deck or in the waiting room.
-Auto:
-{
-
+    PayCost SendSelf Hand
+    {
+        *GiveCharacterPower(1000,Any)
+        GainEffect
+        {
+            *OnAttackCheck2ChooseTrigger
+        }
+    }
 }
 Text Auto: [Return this card to your hand] When your climax is placed on your climax area, you may pay the cost. If you do, choose 1 of your characters, and that character gets +1000 power and the following ability until end of turn. "Auto: When this card attacks, look at up to the top 2 cards of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room."
 EndCard
@@ -1049,16 +1166,16 @@ Power 3000
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 2 Other && HasTrait Omiko City
+    {
+        GainPower 2500
+        GainSpecialEffect CannotBeChosen
+    }
 }
 Text Cont: If the number of other «Omiko City» characters you have is 2 or more, this card gets +2500 power and cannot be chosen by opponent's effects.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, if the character facing this card is level 2, this card gets +6000 power until end of turn.
+*GainPowerWhenAttackingLevel2(6000)
 EndCard
 
 Character: AYT/W110-047
@@ -1071,14 +1188,28 @@ Power 4500
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn && LocationContains Clock 1 NameEquals Special Relationship, Suzu
+    {
+        GainPower 2000
+        GainSoul 1
+    }
 }
 Text Cont: During your turn, if "Special Relationship, Suzu" is in your clock, this card gets +2000 power and +1 soul.
-Auto:
+Auto: OnOtherFrontalAttacked
 {
-
+	IfOther HasTrait Omiko City
+	{
+		PayCost 1 SendSelf WaitingRoom
+		{
+			TargetOther
+			IfTarget OnStage
+			{
+				MoveCard Hand
+			}
+		}
+	}
 }
 Text Auto: [(1) Put this card in the waiting room] When your other «Omiko City» character is frontal attacked, you may pay the cost. If you do, return that character to your hand.
 EndCard
@@ -1093,16 +1224,19 @@ Power 5000
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 2 Other && HasTrait 
+    {
+        GainPower 1500
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
 Text Cont: If the number of other «Omiko City» characters you have is 2 or more, this card gets +1500 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
-Auto:
-{
-
-}
-Text Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform trigger check twice during this card attack's trigger Step.
+*OnAttackPay1ToDoubleTrigger
 EndCard
 
 Character: AYT/W110-049
@@ -1116,16 +1250,8 @@ Power 2500
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Auto:
-{
-
-}
-Text Auto: When you use this card's BACKUP, choose 1 of your characters in battle, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, send that character to memory."
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+*MemoryBackup
+Backup 3000
 EndCard
 
 Character: AYT/W110-050
@@ -1139,14 +1265,27 @@ Power 6000
 Soul 2
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters Other && InLocation CenterStage && HasTrait Omiko City
+    MultiplyXValue 2500
+    GainPower X
 }
-Text Cont: For each of your other «Omiko City» character in the center stage, this card gets +2500 power.
-Auto:
+Text Cont: This card gets +2500 power for each of your other «Omiko City» character in the center stage.
+Auto: OnAttack
 {
-
+    If StageContains 2 Other && HasTrait Omiko City
+    {
+        Peek Deck 2
+        If HasTarget
+        {
+            Message Choose a card to put back on top. 
+            AIChoice If Not IsClimax
+            ChooseCardsFromTargets 1 1 Any
+            MoveCard Deck
+            PutTheRestIntoTheWaitingRoom
+        }
+    }
 }
 Text Auto: When this card attacks, if the number of other «Omiko City» characters you have is 2 or more, look at up to the top 2 cards of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room.
 EndCard
@@ -1161,14 +1300,14 @@ Power 500
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Auto:
+Auto: OnPlay
 {
-
+    *OptionalDrawDiscard
 }
 Text Auto: When this card is placed on the stage from your hand, you may draw a card. If you do, discard a card from your hand to the waiting room.
-Act:
+Act: 1 SendSelf WaitingRoom
 {
-
+    *Check4Add1(Omiko City)
 }
 Text Act: [(1) Put this card in the waiting room] Look at up to the top 4 cards of your deck, choose up to 1 «Omiko City» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
@@ -1183,16 +1322,26 @@ Power 500
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Auto:
+Combo Room for Improvement Is What I Like
+Auto: OnSpecificClimaxPlay Room for Improvement Is What I Like
 {
-
+    If StageContains 1 Other && HasTrait Omiko City
+    {
+        TargetLocation Stage
+        NarrowTargets Other
+        ChooseCharacterFromTargets Choose a character to give the effect.
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                SearchWaitingRoom IsCharacter
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand.
+        }
+    }
 }
 Text Auto: CxCombo When "Room for Improvement Is What I Like" is placed on your climax area, if you have another «Omiko City» character, choose 1 of your other characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand."
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, perform the following action. "Look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room."
+*Act1RestSelfCheck3Add1Brainstorm
 EndCard
 
 Character: AYT/W110-053
@@ -1205,16 +1354,15 @@ Power 1000
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Auto:
+Auto: OnAttack
 {
-
+    PayCost Discard 1 HasTrait Omiko City
+    {
+        DrawCard
+    }
 }
 Text Auto: [Put an «Omiko City» character from your hand to the waiting room] When this card is placed on the stage from your hand or when this card attacks, you may pay the cost. If you do, draw a card.
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 0 or lower, you may reverse that character.
+*RedLevel0Bomb
 EndCard
 
 Character: AYT/W110-054
@@ -1227,16 +1375,8 @@ Power 1000
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi
-Auto:
-{
-
-}
-Text Auto: When this card attacks, choose 1 of your characters, and that character gets +2500 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, you may reverse that character.
+*OnAttackGivePower(2500,Any)
+*RedLevel1Bomb
 EndCard
 
 Character: AYT/W110-055
@@ -1249,16 +1389,8 @@ Power 2000
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Auto:
-{
-
-}
-Text Auto: When you use this card's BACKUP, if you have an «Omiko City» character, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 1000, level 1 [Put this card from your hand to the waiting room]
+*BackupBonus1000(Omiko City)
+Backup 1000
 EndCard
 
 Character: AYT/W110-056
@@ -1272,14 +1404,20 @@ Power 1500
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +1 soul.
+    GainSoul 1
 }
 Text Auto: When this card is placed on the stage from your hand, choose 1 of your characters, and that character gets +1 soul until end of turn.
-Act:
+Act: SendSelf BottomOfDeck
 {
-
+    SearchLocationForTargets Hand 0 1 Compare ThatCardsLevel MyLevel OrLess
+    If HasTarget
+    {
+        Change
+    }
 }
 Text Act: [Put this card on the bottom of the deck] Choose up to 1 character in your hand whose level is equal to or lower than your level and put it in the position this card was in.
 EndCard
@@ -1295,16 +1433,12 @@ Power 2000
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Cont:
+*LevelAssistTrait(Omiko City)
+Act: Discard 2 Any &&& RestSelf
 {
-
+    Heal
 }
-Text Cont: ASSIST Your «Omiko City» characters in front of this card get +X power. X equals 500 times level of that character.
-Act:
-{
-
-}
-Text Act: [Put 2 cards from your hand to the waiting room, Rest this card] Put the top card of your clock in your stock.
+Text Act: [Put 2 cards from your hand to the waiting room, rest this card] Put the top card of your clock in your stock.
 EndCard
 
 Character: AYT/W110-058
@@ -1317,16 +1451,8 @@ Power 5500
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Cont:
-{
-
-}
-Text Cont: If the number of other «Omiko City» characters you have is 2 or more, this card gets +2000 power.
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+*GainPowerWithEnoughCharacters(2000,2,Omiko City)
+*HandEncore
 EndCard
 
 Character: AYT/W110-059
@@ -1340,16 +1466,15 @@ Power 5000
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi
-Cont:
+*500Assist
+Cont: GiveAll
 {
-
+    If LocationContains Memory 1 NameEquals Secret Art "Gender exchange Awakened" &&& Other && HasTrait Omiko City
+    {
+        GainPower 1500
+    }
 }
-Text Cont: ASSIST Your characters in front of this card get +500 power.
-Cont:
-{
-
-}
-Text Cont: MEMORY If "Secret Art 'Gender exchange Awakened'" is in your memory, all your other «Omiko City» character get +1500 power.
+Text Cont: MEMORY If 'Secret Art "Gender exchange Awakened"' is in your memory, all your other «Omiko City» character get +1500 power.
 EndCard
 
 Character: AYT/W110-060
@@ -1363,16 +1488,8 @@ Power 6000
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Cont:
-{
-
-}
-Text Cont: ASSIST Your level 3 or higher characters in front of this card get +2000 power.
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your characters, and that character gets +1000 power until end of turn.
+*Level3Assist
+*RestGivePower(1000,Any)
 EndCard
 
 Character: AYT/W110-061
@@ -1386,16 +1503,12 @@ Power 6000
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Auto:
+Auto: OnPlay
 {
-
+    *PutCardFromWaitingRoomIntoStock(NameEquals Living as a Girl\, Matsuri)
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose a "Living as a Girl, Matsuri" in your waiting room and put it in your stock.
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is higher than the level of your opponent, you may send that character to memory.
+*EarlyPlayMemoryBomb
 EndCard
 
 Character: AYT/W110-062
@@ -1409,21 +1522,15 @@ Power 9500
 Soul 2
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Cont:
+*EarlyPlay2OrLessClimax
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters InLocation Backstage && Other && HasTrait Omiko City
+    MultiplyXValue 500
+    GainPower X
 }
-Text Cont: If there are 2 or less climax cards in your waiting room, this card gets -1 level while in your hand.
-Cont:
-{
-
-}
-Text Cont: For each of your other «Omiko City» characters in the backstage, this card gets +500 power.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, look at up to X cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your «Omiko City» characters.
+Text Cont: This card gets +500 power for each of your other «Omiko City» characters in the backstage,.
+*OnPlayCheckX(Omiko City)
 EndCard
 
 Event: AYT/W110-063
@@ -1434,9 +1541,32 @@ Level 2
 Cost 0
 Effect:
 {
-
+    MultipleChoiceQuestion Choose 1 of the following 2 effect and perform it.\n1: [Put 1 ""Hardboiled Hot-Blooded Guy" Matsuri" from your stage into waiting room] You may pay the cost. If you do, choose up to 1 "Special Relationship, Matsuri" in your hand and put it in the position that card was in.\n2: If you have an «Omiko City» character, choose a level 2 or higher character in your waiting room and return it to your hand.|1|2
+    If Answer 0
+    {
+        TargetLocation Stage
+        NarrowTargets NameEquals "Hardboiled Hot-Blooded Guy" Matsuri
+        ChooseCharacterFromTargets_Optional You may pay the cost: Put 1 ""Hardboiled Hot-Blooded Guy" Matsuri" from your stage into waiting room
+        If HasTarget
+        {
+            RememberSlot
+            MoveCard WaitingRoom
+            SearchLocationForTargets Hand 0 1 NameEquals Special Relationship, Matsuri
+            If HasTarget
+            {
+                PlaceOnRememberedSlot
+            }
+        }
+    }
+    If Answer 1
+    {
+        If StageContains 1 HasTrait Omiko City
+        {
+            SearchWaitingRoom Compare ThatCardsLevel 2 OrMore && IsCharacter
+        }
+    }
 }
-Text You may pay the cost. If you do, choose up to 1 "Special Relationship, Matsuri" in your hand and put it in the position this card was in." "If you have an «Omiko City» character, choose a level 2 or higher character in your waiting room and return it to your hand."
+Text Choose 1 of the following 2 effect and perform it.\n"[Put 1 ""Hardboiled Hot-Blooded Guy" Matsuri" from your stage into waiting room] You may pay the cost. If you do, choose up to 1 "Special Relationship, Matsuri" in your hand and put it in the position that card was in."\n"If you have an «Omiko City» character, choose a level 2 or higher character in your waiting room and return it to your hand."
 EndCard
 
 Event: AYT/W110-064
@@ -1447,7 +1577,10 @@ Level 3
 Cost 1
 Effect:
 {
-
+    SearchLocationForTargets Deck 0 2 IsCharacter && HasTrait Omiko City
+    RevealTargets
+    MoveCard Hand
+    ShuffleLocation Deck
 }
 Text Search your deck for up to 2 «Omiko City» characters, reveal them, put them in your hand, and shuffle your deck.
 EndCard
@@ -1474,7 +1607,7 @@ Climax: AYT/W110-068
 Name Room for Improvement Is What I Like
 JPName 改良の余地こそ私の大好物
 Color R
-
+*2SoulClimax
 EndCard
 
 Character: AYT/W110-069
@@ -1487,16 +1620,20 @@ Power 500
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Auto:
+Auto: OnPlay
 {
-
+    Message You may choose a card to return to hand and put the top card of your deck into clock.
+    SearchLocationForTargets Clock 0 1 Any
+    If HasTarget
+    {
+        RevealTargets
+        MoveCard Hand
+        TargetTop Deck 1
+        MoveCard Clock
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose a card in your clock and return it to your hand. If you do, put a card from your hand in your clock.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 «Omiko City» character in your waiting room and return it to your hand.
+*Act1RestSelfSalvageBrainstorm(Omiko City)
 EndCard
 
 Character: AYT/W110-070
@@ -1509,14 +1646,22 @@ Power 4000
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Cont:
+Combo Unstoppable Lewdness
+Cont: GiveSelf
 {
-
+    If AllYourCharacters HasTrait Omiko City
+    {
+        LoseLevel 1
+        GainPower 1500
+    }
 }
 Text Cont: If all your characters are «Omiko City», this card gets -1 level and +1500 power while on the stage.
-Auto:
+Auto: OnSpecificClimaxPlay Unstoppable Lewdness
 {
-
+    If InLocation CenterStage
+    {
+        SearchDeck IsCharacter && HasTrait Omiko City
+    }
 }
 Text Auto: CxCombo When "Unstoppable Lewdness" is placed on your climax area, if this card is in the center stage, search your deck for up to 1 «Omiko City» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -1532,16 +1677,25 @@ Power 6000
 Soul 1
 Trait1 Omiko City
 Trait2 Kachofugetsu
-Auto:
+Auto: OnPlay
 {
-
+    If LocationContainsOrLess Deck 6 Any
+    {
+        Refresh
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, if there are 6 or less cards in your deck, you may return all cards in your waiting room to your deck. If you do, shuffle your deck.
-Auto:
+Auto: StartClimaxPhase
 {
-
+    If StageContains 4 HasTrait Omiko City
+    {
+        *OptionalDraw
+        *OptionalDraw
+        Discard 2 Any
+    }
 }
-Text Auto: [clock] ALARM If this card is on top of your clock and the number of «Omiko City» characters you have is 4 or more, at the beginning of your climax phase, draw up to 2 cards, and discard 2 cards from your hand to the waiting room.
+Alarm
+Text Auto: ALARM If this card is on top of your clock and the number of «Omiko City» characters you have is 4 or more, at the beginning of your climax phase, draw up to 2 cards, and discard 2 cards from your hand to the waiting room.
 EndCard
 
 Character: AYT/W110-072
@@ -1555,21 +1709,36 @@ Power 11000
 Soul 2
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Cont:
+Combo Dream-like Time
+Cont: GiveSelf
 {
-
+    LoseLevel 3
+    GainSpecialEffect CannotBeChosen
 }
 Text Cont: This gets -3 level while on the stage. This cannot be chosen as target of opponent's effects.
-Auto:
+Auto: OnPlay
 {
-
+    Message Choose a character to put into memory
+    SearchLocationForTargets Clock 0 1 IsCharacter
+    MoveCard Memory
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose a character in your clock and send it to memory.
-Auto:
+Auto: OnAttack
 {
-
+If Climax Dream-like Time && StageContains 1 Other && HasTrait Omiko City
+    {
+        MultipleChoiceQuestion Choose 1 of the following 2 effects and perform it.\n1: Deal 1 damage to your opponent.\n2: You may put the top card of your clock in the waiting room.|1|2
+        If Answer 0
+        {
+            Burn 1
+        }
+        If Answer 1
+        {
+            *OptionalHeal
+        }
+    }
 }
-Text Auto: CxCombo When this card attacks, if "Dream-like Time" is in your climax area and you have another «Omiko City» character, choose 1 of the following 2 effects and perform it. "deal 1 damage to your opponent." "You may put the top card of your clock in the waiting room."
+Text Auto: CxCombo When this card attacks, if "Dream-like Time" is in your climax area and you have another «Omiko City» character, choose 1 of the following 2 effects and perform it. "Deal 1 damage to your opponent." "You may put the top card of your clock in the waiting room."
 EndCard
 
 Character: AYT/W110-073
@@ -1582,16 +1751,18 @@ Power 500
 Soul 1
 Trait1 Omiko City
 Trait2 Kachofugetsu
-Cont:
+*Level0Assist
+Auto: OnTriggerCheckClimax
 {
-
+    IfOther HasTrigger Gate
+    {
+        PayCost Discard 1 Any
+        {
+            *CheckAndAdd(2)
+        }
+    }
 }
-Text Cont: ASSIST Your level 0 or lower characters in front of this card get +1000 power.
-Auto:
-{
-
-}
-Text Auto: [Put 1 card from your hand to the waiting room] When you trigger a climax with a Gate trigger icon, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
+Text Auto: [Put 1 card from your hand to the waiting room] When your characters' trigger check reveals a climax with a Gate trigger icon, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 1 cards among them, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: AYT/W110-074
@@ -1604,16 +1775,8 @@ Power 1500
 Soul 1
 Trait1 Omiko City
 Trait2 Kachofugetsu
-Auto:
-{
-
-}
-Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Omiko City» character, reveal it, put it in your hand, and shuffle your deck.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, choose 1 of your «Omiko City» characters, and that character gets +1500 power until end of turn.
+*DropSearch(Omiko City)
+*OnAttackGivePower(1500,Omiko City)
 EndCard
 
 Character: AYT/W110-075
@@ -1626,9 +1789,12 @@ Power 2000
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Clock
+    {
+        SearchDeck IsCharacter && Compare ThatCardsLevel 1 OrLess
+    }
 }
 Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -1644,16 +1810,32 @@ Power 3000
 Soul 1
 Trait1 Omiko City
 Trait2 Kachofugetsu
-Auto:
+Auto: OnClimaxPlay
 {
-
+    UntilEndOfOpponentsTurn
+    *GiveCharacterPower(4000,Any)
 }
 Text Auto: When your climax is placed on your climax area, choose 1 of your characters, and that character gets +4000 power until the end of your opponent's next turn.
-Auto:
+Auto: OnTriggerCheckClimax
 {
-
+    IfOther HasTrigger Gate
+    {
+        PayCost Discard 1 Any
+        {
+            TargetTop Deck 2
+            If Compare TargetCount 2 OrMore
+            {
+                Reorder
+            }
+            Else
+            {
+                View
+            }
+            *OptionalDraw
+        }
+    }
 }
-Text Auto: [Put 1 card from your hand to the waiting room] When you trigger a climax with a Gate trigger icon, you may pay the cost. If you do, look at up to 2 cards from the top of your deck, put them on top of the deck in any order, and draw up to 1 card.
+Text Auto: [Put 1 card from your hand to the waiting room] When your characters' trigger check reveals a climax with a Gate trigger icon, you may pay the cost. If you do, look at up to 2 cards from the top of your deck, put them on top of the deck in any order, and draw up to 1 card.
 EndCard
 
 Character: AYT/W110-077
@@ -1667,14 +1849,28 @@ Power 6000
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Auto:
+Combo Dream-like Time
+Auto: OnPlay
 {
-
+    PayCost SendFromWaitingRoom 1 BottomOfClock IsCharacter && HasTrait Omiko City
+    {
+        DrawCard
+    }
 }
 Text Auto: [Put an «Omiko City» character from your waiting room on the bottom of your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw a card.
-Auto:
+Auto: OnSpecificClimaxPlay Dream-like Time
 {
-
+    If Phase Climax
+    {
+        PayCost SendSelf WaitingRoom
+        {
+            SearchLocationForTargets Hand 0 1 NameEquals Unstoppable Desire, Suzu
+            If HasTarget
+            {
+                Change
+            }
+        }
+    }
 }
 Text Auto: CxCombo [Put this card in the waiting room] During your climax phase, when "Dream-like Time" is placed on your climax area, you may pay the cost. If you do, choose up to 1 "Unstoppable Desire, Suzu" in your hand and put it in the position this card was in.
 EndCard
@@ -1690,14 +1886,17 @@ Power 10500
 Soul 2
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Cont:
+*EarlyPlayInClock(Special Relationship\, Suzu)
+Auto: OnPlay
 {
-
-}
-Text Cont: If "Special Relationship, Suzu" is in your clock, this card gets -1 level while in your hand.
-Auto:
-{
-
+	PayCost Rest 1 Any
+	{
+		OpponentMessage Choose a climax to keep in your waiting room.
+		OpponentSearchLocationForTargets WaitingRoom 1 1 IsClimax
+		ReverseTargets OpponentWaitingRoom
+		MoveCard OpponentDeck
+		ShuffleLocation OpponentDeck
+	}
 }
 Text Auto: [Rest 1 of your characters] When this card is placed on the stage from your hand, you may pay the cost. If you do, your opponent chooses a climax in their waiting room, return all cards but the chosen card from the waiting room to their deck, and shuffles their deck.
 EndCard
@@ -1712,14 +1911,32 @@ Power 1000
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Auto:
+Auto: OnPlay
 {
-
+    Mill 2
+    NarrowTargets IsClimax
+    If HasTarget
+    {
+        TargetLocation OpponentCenterStage
+        NarrowTargets CanBeChosen
+        ChooseCharacterFromTargets Choose a character to give -1000 power.
+        LosePower 1000
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in your waiting room. If there were at least 1 climax among them, choose a character in your opponent's center stage, and that character gets -1000 power until end of turn.
-Auto:
+Auto: OnReversed
 {
-
+    Mill 2
+    NarrowTargets Compare ThatCardsLevel 2 OrMore
+    If HasTarget
+    {
+        Question_Obvious Put this card in stock ?
+        If Yes
+        {
+            TargetSelf
+            MoveCard Stock
+        }
+    }
 }
 Text Auto: When this card becomes reversed in battle, put the top 2 cards of your deck in the waiting room. If there were at least 1 level 2 or higher card among them, you may put this card in your stock.
 EndCard
@@ -1734,16 +1951,8 @@ Power 1500
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi
-Auto:
-{
-
-}
-Text Auto: At the beginning of your opponent's attack phase, you may move this card to an open position in the center stage.
-Auto:
-{
-
-}
-Text Auto: [(1)] At the beginning of encore step, if you have no other Rested characters in the center stage, you may pay the cost. If you do, Rest this card.
+*FreeRunner
+*EncoreStepIfNoneRestedPayToRest
 EndCard
 
 Character: AYT/W110-081
@@ -1756,16 +1965,18 @@ Power 2000
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Auto:
+Combo Responsibilities as a Childhood Friend
+*ClimaxExchange
+Auto: OnSpecificClimaxPlay Responsibilities as a Childhood Friend
 {
-
+    If StageContains 1 Other HasTrait Omiko City
+    {
+        TargetLocation OpponentStage
+        ChooseTraitFromTarget
+        LoseTrait CHOSEN_TRAIT
+    }
 }
-Text Auto: [(1) Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a climax in your waiting room and return it to your hand.
-Auto:
-{
-
-}
-Text Auto: CxCombo When "Responsibilities as a Childhood Friend" is placed on your climax area, if you have another «Omiko City» character, choose 1 Trait on a character on your opponent's stage, and all your opponent's characters lose all instances of that Trait until end of turn.
+Text Auto: CxCombo When "Responsibilities as a Childhood Friend" is placed on your climax area, if you have another «Omiko City» character, choose 1 trait on a character on your opponent's stage, and all your opponent's characters lose all instances of that trait until end of turn.
 EndCard
 
 Character: AYT/W110-082
@@ -1778,14 +1989,13 @@ Power 2000
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Auto:
+*OnPlayGainPower(1500)
+Auto: OnPlay
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
-Auto:
-{
-
+    PayCost Discard 1 Any
+    {
+        SearchWaitingRoom NameEquals Suzu's Dumplings
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a "Suzu's Dumplings" in your waiting room and return it to your hand.
 EndCard
@@ -1800,16 +2010,15 @@ Power 3000
 Soul 1
 Trait1 Omiko City
 Trait2 Kachofugetsu
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn && LocationContains CenterStage 1 NameEquals Precious Manga, Lucy
+    {
+        GainPower 4000
+    }
 }
 Text Cont: During your turn, if you have another "Precious Manga, Lucy" in the center stage, this card gets +4000 power.
-Auto:
-{
-
-}
-Text Auto: BOND/"Precious Manga, Lucy" [(1)]
+*Bond1(Precious Manga\, Lucy)
 EndCard
 
 Character: AYT/W110-084
@@ -1822,16 +2031,16 @@ Power 4000
 Soul 1
 Trait1 Omiko City
 Trait2 Kachofugetsu
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn && LocationContains CenterStage 1 NameEquals Premonition of Love Talks, Yayoi
+    {
+        GainPower 2000
+        GainSoul 1
+    }
 }
-Text Cont: During your turn, if you have another "Premonition of Love Talks, Yayoi" in the center stage, this card gets +2000 power and +1 soul.
-Auto:
-{
-
-}
-Text Auto: BOND/"Premonition of Love Talks, Yayoi" [Put 1 card from your hand to the waiting room]
+Text Cont: During your turn, if you have another "Precious Manga, Lucy" in the center stage, this card gets +4000 power.
+*Bond1(Premonition of Love Talks\, Yayoi)
 EndCard
 
 Character: AYT/W110-085
@@ -1844,9 +2053,25 @@ Power 5000
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn && LocationContains Clock 1 NameEquals Special Relationship, Suzu
+    {
+        GainPower 2000
+        GainEffect
+        {
+            Auto: OnAttack
+            {
+                TargetTop Deck 1
+                Reveal
+                IfTarget Compare ThatCardsLevel 1 OrLess
+                {
+                    MoveCard Stock
+                }
+            }
+            Text Auto: When this card attacks, reveal the top card of your deck. If it's level 1 or lower, put it in your stock.
+        }
+    }
 }
 Text Cont: During your turn, if "Special Relationship, Suzu" is in your clock, this card gets +2000 power and the following ability. "Auto: When this card attacks, reveal the top card of your deck. If it's level 1 or lower, put it in your stock."
 EndCard
@@ -1861,16 +2086,24 @@ Power 5500
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Cont:
+Cont: GiveSelf
 {
-
+    LoseLevel 1
 }
 Text Cont: This gets -1 level while on the stage.
-Auto:
+Auto: StartAttackPhase
 {
-
+    If InLocation CenterStage
+    {
+        Question Give -4000 power to this card and give +4000 to a character ?
+        If Yes
+        {
+            LosePower 4000
+            *GiveCharacterPower(4000,Any)
+        }
+    }
 }
-Text Auto: At the beginning of your Atack phase, if this card is in the center stage, you may have this card get -4000 power until the end of your opponent's next turn. If you do, choose 1 o your characters, and that character gets +4000 power until end of turn.
+Text Auto: At the beginning of your attack phase, if this card is in the center stage, you this card may get -4000 power until the end of your opponent's next turn. If you do, choose 1 of your characters, and that character gets +4000 power until end of turn.
 EndCard
 
 Character: AYT/W110-087
@@ -1884,14 +2117,15 @@ Power 5000
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi
-Auto:
+*OnPlayMax4Memory
+Act: SendSelf WaitingRoom
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, all players perform the following action. "If there are 5 or more cards in your memory, choose 4 cards in your memory, and put all cards in your memory other than those chosen this way in the waiting room."
-Act:
-{
-
+    SearchLocationForTargets WaitingRoom 1 1 NameEquals Moment in Summer, Suzu
+    If HasTarget
+    {
+        Change
+        GainPower 3000
+    }
 }
 Text Act: [Put this card in the waiting room] Choose a "Moment in Summer, Suzu" in your waiting room and put it in the position this card was in, and that character gets +3000 power until end of turn.
 EndCard
@@ -1907,14 +2141,29 @@ Power 5000
 Soul 1
 Trait1 Omiko City
 Trait2 Kachofugetsu
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && NameEquals Photo Chance, Lucy
+    {
+        GainPower 6000
+    }
 }
 Text Cont: If you have another "Photo Chance, Lucy", this card gets +6000 power.
-Auto:
+Auto: StartOpponentAttackPhase
 {
-
+    If StageContains 1 Other && NameEquals Photo Chance, Lucy
+    {
+        Question Exchange this card and a "Photo Chance, Lucy" ?
+        If Yes
+        {
+            TargetLocation Stage
+            NarrowTargets NameEquals Photo Chance, Lucy
+            ChooseCharacterFromTargets Choose a "Photo Chance, Lucy" to exchange.
+            AddSelfToTargets
+            Stand
+            Exchange
+        }
+    }
 }
 Text Auto: At the beginning of your opponent's attack phase, you may choose 1 of your "Photo Chance, Lucy" and this card, then stand and exchange them.
 EndCard
@@ -1929,14 +2178,10 @@ Power 500
 Soul 1
 Trait1 Omiko City
 Trait2 Kachofugetsu
-Cont:
+*GlobalPower(500,Omiko City)
+Act: 1 Rest 2 Any
 {
-
-}
-Text Cont: All your other «Omiko City» characters get +500 power.
-Act:
-{
-
+    *Check4Add1Level1OrHigher
 }
 Text Act: [(1) Rest 2 of your characters] Look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
@@ -1951,14 +2196,21 @@ Power 2000
 Soul 1
 Trait1 Omiko City
 Trait2 Kachofugetsu
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains Backstage 1 Other && NameEquals Delicate Heart, Yayoi
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If you have another "Delicate Heart, Yayoi" in your backstage, this card gets +2000 power.
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchLocationForTargets Deck 0 1 NameEquals Delicate Heart, Yayoi
+        PlaceOnStage false true true false
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Delicate Heart, Yayoi", put it in any position on the stage, and shuffle your deck.
 EndCard
@@ -1973,16 +2225,12 @@ Power 500
 Soul 1
 Trait1 Omiko City
 Trait2 Kachofugetsu
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    Mill 3
 }
-Text Auto: When you use this card's BACKUP, put the top 3 cards of your deck in the waiting room.
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 1500, level 1 [Put this card from your hand to the waiting room]
+Text Auto: When you use this card's "BACKUP", put the top 3 cards of your deck in the waiting room.
+Backup 1500
 EndCard
 
 Character: AYT/W110-092
@@ -1996,16 +2244,8 @@ Power 3500
 Soul 1
 Trait1 Omiko City
 Trait2 Kachofugetsu
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck and put it either on top or bottom of the deck.
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is higher than the level of your opponent, you may put that character on the bottom of the deck.
+*OnPlayScry
+*BlueEarlyPlayBomb
 EndCard
 
 Character: AYT/W110-093
@@ -2019,16 +2259,23 @@ Power 6500
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi
-Auto:
+Auto: OnPlay
 {
-
+	RevealUpTo Deck 4
+	AIChoice AddToHand
+	ChooseCardsFromTargets 0 1 IsEvent
+	If HasTarget
+	{
+		RevealTargets
+		MoveCard Hand
+		PutTheRestIntoTheWaitingRoom
+		CheckForEmptyDeck
+		Discard 1 Any
+	}
+	PutTheRestIntoTheWaitingRoom
 }
 Text Auto: When this card is placed on the stage from your hand, look at up to the top 4 cards of your deck, choose up to 1 event among them, reveal it, put it in your hand, and put the rest into your waiting room. If you put a card in your hand this way, discard a card from your hand to the waiting room.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, if the level of the character facing this card is 3 or higher, this card gets +6000 power until end of turn.
+*GainPowerWhenAttackingLevel3(6000)
 EndCard
 
 Character: AYT/W110-094
@@ -2041,16 +2288,8 @@ Power 8500
 Soul 1
 Trait1 Omiko City
 Trait2 Kachofugetsu
-Cont:
-{
-
-}
-Text Cont: If "Moment in Summer, Yayoi" is in your clock, this card gets -1 level while in your hand.
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put an «Omiko City» character from your hand to the waiting room]
+*EarlyPlayInClock(Moment in Summer\, Yayoi)
+*HandEncoreTrait(Omiko City)
 EndCard
 
 Character: AYT/W110-095
@@ -2064,14 +2303,22 @@ Power 9500
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Cont:
+Combo Smile of the Goddess
+Cont: GiveSelf
 {
-
+    LoseLevel 2
 }
 Text Cont: This gets -2 level while on the stage.
-Auto:
+Auto: OnSpecificClimaxPlay Smile of the Goddess
 {
-
+    If InLocation CenterStage && StageContains 4 Other && HasTrait Omiko City
+    {
+        TargetLocation Stage
+        GainEffect
+        {
+            *OnCancelBurn1
+        }
+    }
 }
 Text Auto: CxCombo When "Smile of the Goddess" is placed on your climax area, if this card is in the center stage and the number of other «Omiko City» characters you have is 4 or more, all your characters get the following ability until end of turn. "Auto: This ability activates up to once per turn. When damage dealt by this card is canceled, you may draw a card."
 EndCard
@@ -2084,9 +2331,18 @@ Level 2
 Cost 0
 Effect:
 {
-
+    TargetLocation Stage
+    NarrowTargets HasTrait Omiko City
+    ChooseCharactersFromTargets 0 2 Choose up to 2 characters to give the effect.
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            GainSpecialEffect NoBackupOnAttack
+        }
+    }
 }
-Text During battles involving this card, your opponent may not play BACKUP from hand." Put this card in your stock.
+Text Choose up to 2 of your «Omiko City» characters and those characters get the following ability until end of turn. "Cont: During battles involving this card, your opponent may not play BACKUP from hand."\nPut this card in your stock.
 EndCard
 
 Climax: AYT/W110-097
@@ -2111,7 +2367,157 @@ Climax: AYT/W110-100
 Name Smile of the Goddess
 JPName 女神のほほえみ
 Color B
+Auto: OnPlay
+{
+    *PutCardFromWaitingRoomIntoStock(Compare ThatCardsLevel 1 OrMore && IsCharacter)
+    TargetLocation Stage
+    GainSoul 1
+}
+Text Auto: When this card is placed on the climax area from your hand, choose up to 1 level 1 or lower character in your waiting room, put it in your stock and all your characters get +1 soul until end of turn.
+EndCard
 
+Character: AYT/W110-101
+Name Chibi Matsuri
+JPName ちび祭里
+Color Y
+Level 2
+Cost 1
+Power 2000
+Soul 1
+Trigger Soul
+Trait1 Omiko City
+Trait2 Exorcist Ninja
+*BackupBonus1000(Omiko City)
+Backup 2500
+EndCard
+
+Character: AYT/W110-102
+Name Chibi Lucy
+JPName ちびルーシー
+Color Y
+Level 1
+Cost 1
+Power 5000
+Soul 1
+Trigger Soul
+Trait1 Omiko City
+Trait2 Kachofugetsu
+*OnPlayGainPowerForEach(500,Omiko City)
+Auto: OnPlay
+{
+    If StageContains 4 Other && HasTrait Omiko City
+    {
+        *PutCardFromWaitingRoomIntoStock(HasTrait Omiko City && IsCharacter)
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Omiko City» characters you have is 4 or more, you may choose 1 «Omiko City» character in your waiting room and put it into stock.
+EndCard
+
+Character: AYT/W110-103
+Name Chibi Reo
+JPName ちび恋緒
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Omiko City
+Trait2 Exorcist Ninja
+Auto: StartClimaxPhase
+{
+    *GiveCharacterPower(1000,Omiko City)
+}
+Text Auto: At the beginning of your climax phase, choose 1 of your «Omiko City» characters and that character gets +1000 power until end of turn.
+*Act1SearchBrainstorm(Omiko City)
+EndCard
+
+Character: AYT/W110-104
+Name Chibi Suzu
+JPName ちびすず
+Color B
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Omiko City
+Trait2 Ayakashi Medium
+Cont: GiveSelf
+{
+    SetXValue MarkersUnderThis
+    GainLevel X
+    MultiplyXValue 1500
+    GainPower X
+}
+Text Cont: This card gets +1 level and +1500 power for each marker underneath this card.
+Auto: OnReverseOpponent
+{
+    Question_Obvious Look and put the top card of your deck underneath this card as a marker ?
+    If Yes
+    {
+        PeekTop Deck
+        TargetTop Deck 1
+        Marker_FaceDown
+    }
+}
+Text Auto: When this card's battle opponent becomes reverse, you may look at the top card of your deck. If you do, put the top card of your deck face down underneath this card as a marker.
+EndCard
+
+Character: AYT/W110-105
+Name Chibi Yayoi
+JPName ちび弥生
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Omiko City
+Trait2 Kachofugetsu
+Auto: OnAttack
+{
+    If PlayedThisTurn
+    {
+        PayCost 1 Discard 2 Any
+        {
+            SearchLocationForTargets Deck 0 2 IsCharacter && HasTrait Omiko City
+            RevealTargets
+            MoveCard Hand
+            ShuffleLocation Deck
+        }
+    }
+}
+Text Auto: [(1) Put 2 cards from your hand into waiting room] During this turn this card was placed on the stage from your hand, when this card attacks, you may pay the cost. If you do, search your deck for up to 2 «Omiko City» characters, reveal them, add them to your hand and shuffle your deck.
+EndCard
+
+Character: AYT/W110-P01
+Name Two Childhood Friends, Mari & Suzu
+JPName 幼馴染みの二人 祭里＆すず
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Omiko City
+Trait2 Kachofugetsu
+Auto: OnPlay
+{
+    If StageContains 1 Other && HasTrait Omiko City
+    {
+        GainPower 2000
+    }
+}
+Quick
+Text Auto: When this card is placed on the stage from your hand, if you have another «Omiko City» character, this card gets +2000 power until end of turn.
+Auto: OnReverseOpponent
+{
+    If PlayedThisTurn
+    {
+        PayCost 1 Rest 1 Other && HasTrait Omiko City
+        {
+            SearchDeck IsCharacter && HasTrait Omiko City
+        }
+    }
+}
+Text Auto: [(1) Rest 1 of your other «Omiko City» character] During the turn this card was placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, search your deck for up to 1 «Omiko City» character, reveal it, add it to your hand and shuffle your deck.
 EndCard
 
 Character: AYT/W110-T01
@@ -2124,16 +2530,8 @@ Power 500
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Cont:
-{
-
-}
-Text Cont: ASSIST Your «Omiko City» characters in front of this card get +500 power.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 5 cards of your deck and put them in the waiting room. For each climax revealed this way, draw up to 1 card.
+*500Assist
+*Act1RestSelfDrawBrainstorm5
 EndCard
 
 Character: AYT/W110-T02
@@ -2146,16 +2544,8 @@ Power 1500
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Auto:
-{
-
-}
-Text Auto: When this card attacks, choose 1 of your «Omiko City» characters, and that character gets +1500 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: When this card's battle opponent becomes reverse, choose 1 of your other «Omiko City» characters, Rest it and move it to an open position in the backstage.
+*OnAttackGivePower(1500,Omiko City)
+*MoveOtherWithTraitToBackstageOnReverse(Omiko City)
 EndCard
 
 Character: AYT/W110-T03
@@ -2168,14 +2558,19 @@ Power 1500
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi
-Act:
+Act: 2 Send 1 WaitingRoom Other && NameEquals Daily Life of an Exorcist Ninja, Matsuri
 {
-
+    If Compare MyLevel 3 OrMore
+    {
+        SearchLocationForTargets WaitingRoom 1 1 NameEquals "Girl Buddies" Matsuri & Suzu
+        PlaceOnStage false true true false
+        GainPower 2000
+    }
 }
-Text Act: [(2) Put another "Daily Life of an Exorcist Ninja, Matsuri" from your stage in the waiting room] If you are level 3 or higher, choose 1 "'Girl Buddies' Matsuri & Suzu" in your waiting room, put it in any position on the stage, and that character gets +2000 power until end of turn.
-Act:
+Text Act: [(2) Put another "Daily Life of an Exorcist Ninja, Matsuri" from your stage in the waiting room] If you are level 3 or higher, choose 1 '"Girl Buddies" Matsuri & Suzu' in your waiting room, put it in any position on the stage, and that character gets +2000 power until end of turn.
+Act: Discard 1 Any &&& SendSelf WaitingRoom
 {
-
+    SearchWaitingRoom HasTrait Omiko City && IsCharacter
 }
 Text Act: [Put 1 card from your hand to the waiting room, put this card in the waiting room] Choose an «Omiko City» character in your waiting room and return it to your hand.
 EndCard
@@ -2190,14 +2585,23 @@ Power 4500
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Cont:
+Combo Prepared to Give Up Returning to Male
+Cont: GiveSelf
 {
-
+    If MyTurn && StageContains 2 Other && HasTrait Omiko City
+    {
+        GainPower 2000
+    }
 }
 Text Cont: During your turn, if the number of other «Omiko City» characters you have is 2 or more, this card gets +2000 power.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Prepared to Give Up Returning to Male && StageContains 2 Other && HasTrait Omiko City
+    {
+        Mill 2
+        SetXValue TotalLevel
+        SearchWaitingRoom Compare ThatCardsLevel X OrLess && IsCharacter
+    }
 }
 Text Auto: CxCombo When this card attacks, if "Prepared to Give Up Returning to Male" is in your climax area and the number of other «Omiko City» characters you have is 2 or more, put the top 2 cards of your deck in the waiting room, choose up to 1 level X or lower character in your waiting room and return it to your hand. X equals sum of levels of cards put in the waiting room this way.
 EndCard
@@ -2213,11 +2617,7 @@ Power 1000
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 2500, level 1 [(1) Put this card from your hand to the waiting room]
+Backup 2500
 EndCard
 
 Character: AYT/W110-T06
@@ -2243,16 +2643,8 @@ Power 6000
 Soul 2
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Cont:
-{
-
-}
-Text Cont: For each of your other «Omiko City» characters, this card gets +1000 power.
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+*GainPowerForEachOther(1000,Omiko City)
+*HandEncore
 EndCard
 
 Character: AYT/W110-T08
@@ -2266,14 +2658,22 @@ Power 10000
 Soul 2
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Cont:
+*PowerOnMyTurn(1000)
+Auto: OnPlay
 {
-
-}
-Text Cont: During your turn, this card gets +1000 power.
-Auto:
-{
-
+    TargetTop Deck 3
+    If Compare TargetCount 2 OrMore
+    {
+        Reorder
+    }
+    Else
+    {
+        View
+    }
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets_Optional Choose up to 1 character to return to hand.
+    Bounce
 }
 Text Auto: When this card is placed on the stage from your hand, look at up to the top 3 cards of your deck, put them on top of your deck in any order, choose up to 1 of your opponent's characters and return that character to their hand.
 EndCard
@@ -2286,7 +2686,14 @@ Level 1
 Cost 1
 Effect:
 {
-
+    SearchLocationForTargets Deck 0 1 NameContains 祭里 && IsCharacter
+    SaveTargets
+    SearchLocationForTargets Deck 0 1 NameContains すず && IsCharacter
+    AddSavedToCurrentTargets
+    RevealTargets
+    MoveCard Hand
+    Discard 1 Any
+    ShuffleLocation Deck
 }
 Text Search your deck for up to 1 character with "Matsuri" in its card name and up to 1 character with "Suzu" in its card name, reveal them, put them in your hand, discard a card from your hand to the waiting room, and shuffle your deck.
 EndCard
@@ -2307,16 +2714,8 @@ Power 500
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck and put it either on top or bottom of the deck.
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed in battle, if the level of the battle opponent of this card is 0 or lower, you may put that character on the bottom of the deck.
+*OnPlayScryToBottom
+*BlueLevel0Bomb
 EndCard
 
 Character: AYT/W110-T12
@@ -2329,16 +2728,19 @@ Power 1000
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Cont:
+Cont: GiveAll
 {
-
+    If NameEquals Kachofugetsu, Matsuri
+    {
+        GainPower 1500
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
 Text Cont: All your other "Kachofugetsu, Matsuri" get +1500 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
-Auto:
-{
-
-}
-Text Auto: BOND/"Kachofugetsu, Matsuri" [Put 1 card from your hand to the waiting room]
+*BondDiscard(Kachofugetsu\, Matsuri)
 EndCard
 
 Character: AYT/W110-T13
@@ -2351,9 +2753,12 @@ Power 2000
 Soul 1
 Trait1 Omiko City
 Trait2 Kachofugetsu
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContainsOrLess Hand 5 Any
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If there are 5 or more cards in your hand, this card gets +2000 power.
 EndCard
@@ -2368,16 +2773,17 @@ Power 2500
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Auto:
+*OnPlayGainPower(3000)
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        TargetTop Deck 1
+        Reveal
+        SearchWaitingRoom Compare ThatCardsLevel TargetCardsLevel OrLess && IsCharacter
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, this card gets +3000 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck, choose a level X or lower character in your waiting room and return it to your hand. X equals level of the card revealed this way. (climax cards are considered level to be 0 for this card effect. Put the revealed card back where it was)
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck, choose a level X or lower character in your waiting room and return it to your hand. X equals level of the card revealed this way.
 EndCard
 
 Character: AYT/W110-T15
@@ -2391,14 +2797,13 @@ Power 3000
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Cont:
+*PowerOnMyTurn(10000)
+Auto: OnReverseOpponent
 {
-
-}
-Text Cont: During your turn, this card gets +10000 power.
-Auto:
-{
-
+    If LocationContains Climax 1 Any
+    {
+        *OptionalBlindStock
+    }
 }
 Text Auto: When this card's battle opponent becomes reverse, if there is a climax in your climax area, you may put the top card of your deck in your stock.
 EndCard
@@ -2414,14 +2819,13 @@ Power 3500
 Soul 1
 Trait1 Omiko City
 Trait2 Kachofugetsu
-Cont:
+*LevelAssist
+Auto: OnPlay
 {
-
-}
-Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times level of that character.
-Auto:
-{
-
+    PayCost Discard 1 Any
+    {
+        SearchWaitingRoom HasTrait Omiko City && IsCharacter
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose an «Omiko City» character in your waiting room and return it to your hand.
 EndCard
@@ -2437,14 +2841,25 @@ Power 10000
 Soul 2
 Trait1 Omiko City
 Trait2 Kachofugetsu
-Auto:
+Combo Exorcist Ninja and Ayakashi Medium
+Auto: OnPlay|PlacedBy Been Waiting for This Moment, Shirogane
 {
-
+    *OptionalHeal
 }
 Text Auto: When this card is placed on the stage from your hand or by the effect of Act: of "Been Waiting for This Moment, Shirogane" to the stage, you may put the top card of your clock in the waiting room.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Exorcist Ninja and Ayakashi Medium
+    {
+        PayCost 2 Discard 1 Any
+        {
+            Repeat 2
+            {
+                Burn 1
+            }
+            GainPower 1000
+        }
+    }
 }
 Text Auto: CxCombo [(2) Put 1 card from your hand to the waiting room] When this card attacks, if "Exorcist Ninja and Ayakashi Medium" is in your climax area, you may pay the cost. If you do, deal 1 damage to your opponent twice, and this card gets +1000 power until end of turn.
 EndCard
@@ -2460,14 +2875,23 @@ Power 10000
 Soul 2
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation Stage
+    NarrowTargets Other && HasTrait Omiko City
+    ChooseCharacterFromTargets_Optional Choose up to 1 character to put into stock.
+    MoveCard Stock
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose 1 of your other «Omiko City» character and put it in your stock.
-Auto:
+Auto: OnAttack
 {
-
+    If PlayedThisTurn
+    {
+        PayCost 2 Discard 1 Any
+        {
+            Burn 4
+        }
+    }
 }
 Text Auto: [(2) Put 1 card from your hand to the waiting room] During the turn this card is placed on the stage from your hand, when this card attacks, you may pay the cost. If you do, deal 4 damage to your opponent.
 EndCard
@@ -2482,6 +2906,6 @@ Climax: AYT/W110-T20
 Name The New Life Starting
 JPName 訪れた新生活
 Color B
-
+*2SoulClimax
 EndCard
 
