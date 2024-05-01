@@ -157,12 +157,12 @@ Cont: GiveSelf
         {
             Auto: OnPlay|OnPlacedOnStageFromMemory
             {
-                TargetLocation Stage
+                TargetLocation AnyStage
                 NarrowTargets Other
                 ChooseCharacterFromTargets Choose a character to give +1 level.
                 GainLevel 1
             }
-            Text Auto: When this card is placed on the stage from your hand or memory, choose 1 of your other character, and that character gets +1 level until end of turn.
+            Text Auto: When this card is placed on the stage from your hand or memory, choose 1 other character, and that character gets +1 level until end of turn.
         }
     }
 }
