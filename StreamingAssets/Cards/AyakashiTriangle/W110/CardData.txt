@@ -210,28 +210,34 @@ Cont: GiveSelf
 {
     OverrideTriggerIconEffect Wind
     {
-        TargetMyCharacterInBattle
-        GainSoul 1
-        If StageContainsOrLess 1 NameEquals "Exorcist Ninja Tools Artisan" Reo
+        Effect:
         {
-            TargetLocation OpponentStage
-            NarrowTargets CanBeChosen
-            ChooseCharacterFromTargets_Optional Choose up to 1 character to put into stock (and put the bottom card of your opponent's stock into waiting room).
-            MoveCard OpponentStock
-            TargetBottom OpponentStock
-            MoveCard OpponentWaitingRoom
+            TargetMyCharacterInBattle
+            GainSoul 1
+            If StageContainsOrLess 1 NameEquals "Exorcist Ninja Tools Artisan" Reo
+            {
+                TargetLocation OpponentStage
+                NarrowTargets CanBeChosen
+                ChooseCharacterFromTargets_Optional Choose up to 1 character to put into stock (and put the bottom card of your opponent's stock into waiting room).
+                MoveCard OpponentStock
+                TargetBottom OpponentStock
+                MoveCard OpponentWaitingRoom
+            }
         }
     }
     OverrideTriggerIconEffect LoneWind
     {
-        If StageContainsOrLess 1 NameEquals "Exorcist Ninja Tools Artisan" Reo
+        Effect:
         {
-            TargetLocation OpponentStage
-            NarrowTargets CanBeChosen
-            ChooseCharacterFromTargets_Optional Choose up to 1 character to put into stock (and put the bottom card of your opponent's stock into waiting room).
-            MoveCard OpponentStock
-            TargetBottom OpponentStock
-            MoveCard OpponentWaitingRoom
+            If StageContainsOrLess 1 NameEquals "Exorcist Ninja Tools Artisan" Reo
+            {
+                TargetLocation OpponentStage
+                NarrowTargets CanBeChosen
+                ChooseCharacterFromTargets_Optional Choose up to 1 character to put into stock (and put the bottom card of your opponent's stock into waiting room).
+                MoveCard OpponentStock
+                TargetBottom OpponentStock
+                MoveCard OpponentWaitingRoom
+            }
         }
     }
 }

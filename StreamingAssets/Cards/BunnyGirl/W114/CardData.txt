@@ -857,14 +857,23 @@ Power 4500
 Soul 1
 Trait1 Adolescence
 Trait2 Smartphone
-Auto:
+Combo Hiding Embarrassment
+*OnClimaxPlayGivePower(1000,Any)
+Auto: OnSpecificClimaxPlay Hiding Embarrassment
 {
-
-}
-Text Auto: When your climax is placed on your climax area, choose 1 of your characters, and that character gets +1000 power until end of turn.
-Auto:
-{
-
+    If StageContains 2 Other && HasTrait Adolescence
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give the effect.
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                SearchDeck IsCharacter && HasTrait Adolescence
+            }
+            Text Auto: When this card's battle opponent becomes reverse, search your deck for up to 1 «Adolescence» character, reveal it, put it in your hand, and shuffle your deck.
+        }
+    }
 }
 Text Auto: CxCombo When "Hiding Embarrassment" is placed on your climax area, if the number of other «Adolescence» characters you have is 2 or more, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, search your deck for up to 1 «Adolescence» character, reveal it, put it in your hand, and shuffle your deck."
 EndCard
@@ -879,14 +888,20 @@ Power 500
 Soul 1
 Trait1 Adolescence
 Trait2 Science
-Auto:
+Auto: OnPlay|OnSentFromStageToWaitingRoom
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchWaitingRoom IsCharacter
+    }
 }
 Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand or when this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
-Auto:
+Auto: OnAttack
 {
-
+    TargetLocation OpponentCenterStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to give -1000 power.
+    LosePower 1000
 }
 Text Auto: When this card attacks, choose a character in your opponent's center stage, and that character gets -1000 power until end of turn.
 EndCard
@@ -901,14 +916,20 @@ Power 1000
 Soul 1
 Trait1 Adolescence
 Trait2 Ransel
-Cont:
-{
-
-}
 Text Cont: When you pay for the cost of CxCombo of "Mysterious Girl, Ransel Girl", you may discard this card from hand in place of 2 cards.
-Auto:
+Auto: StartOpponentDrawPhase
 {
-
+    Mill 2
+    NarrowTargets Compare TargetCardsLevel 2 OrMore
+    If HasTarget
+    {
+        Question Return this card to your hand ?
+        If Yes
+        {
+            TargetSelf
+            Bounce
+        }
+    }
 }
 Text Auto: At the beginning of your opponent's draw phase, put the top 2 cards of your deck in the waiting room. If there's at least 1 level 2 or higher card among them, you may return this card to your hand.
 EndCard
@@ -924,16 +945,17 @@ Power 2500
 Soul 1
 Trait1 Adolescence
 Trait2 Ransel
-Auto:
+Auto: OnTriggerCheckClimax
 {
-
+    PayCost Discard 1 IsClimax
+    {
+        DrawCard
+        Discard 1 Any
+        SearchWaitingRoom IsCharacter && HasTrait Adolescence
+    }
 }
 Text Auto: [Put 1 climax from your hand to the waiting room] When your characters' trigger check reveals a climax, you may pay the cost. If you do, draw a card, discard a card from your hand to the waiting room, choose an «Adolescence» character in your waiting room and return it to your hand.
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your «Adolescence» characters, and that character gets +2500 power until end of turn.
+*RestGivePower(2500,Adolescence)
 EndCard
 
 Character: SBY/W114-037
@@ -947,14 +969,67 @@ Power 10000
 Soul 2
 Trait1 Adolescence
 Trait2 Ransel
-Auto:
+Combo A Familiar-Looking Girl
+*Healer
+Auto: OnAttack
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
-Auto:
-{
-
+    If Climax A Familiar-Looking Girl
+    {
+        SetXValue 0
+        TargetLocation Hand
+        ForEachTarget
+        {
+            IfTarget NameEquals Beachside Encounter, Ransel Girl
+            {
+                AddToXValue 2
+            }
+            Else
+            {
+                AddToXValue 1
+            }
+        }
+        //Check if cost can be paid before trying to pay it
+        If Compare X 5 OrMore 
+        {
+            Question Pay the cost of the effect ?
+            If Yes
+            {
+                If LocationContains Hand 1 NameEquals Beachside Encounter, Ransel Girl
+                {
+                    //If player has target in hand, allow them to discard up to 3 before discarding more to reach a total of 5
+                    Message Discard up to 3 "Beachside Encounter, Ransel Girl". (Each counts as 2 cards)
+                    SearchLocationForTargets Hand 0 3 NameEquals Beachside Encounter, Ransel Girl
+                    MoveCard WaitingRoom
+                    SetXValue TargetCount
+                    MultiplyXValue 2
+                    If Compare X 5 LessThan
+                    {
+                        MultiplyXValue -1
+                        AddToXValue 5
+                        //Get X to its opposite to add 5 to get the missing discard value
+                        //X + y = 5 <=> 5 - X = y
+                        //5 - X = y <=> -X + 5 = y
+                        Message Discard cards to have a total of 5 discarded card.
+                        Discard X Not NameEquals Beachside Encounter, Ransel Girl
+                        Burn 2
+                        Burn 5
+                    }
+                    Else
+                    {
+                        Burn 2
+                        Burn 5
+                    }
+                }
+                Else
+                {
+                    //If player has no target in hand, simply discard 5 cards.
+                    Discard 5 Any
+                    Burn 2
+                    Burn 5
+                }
+            }
+        }
+    }
 }
 Text Auto: CxCombo [Put 5 cards from your hand to the waiting room] When this card attacks, if "A Familiar-Looking Girl" is in your climax area, you may pay the cost. If you do, deal 2 damage to your opponent, and deal 5 damage to your opponent.
 EndCard
@@ -969,14 +1044,13 @@ Power 1500
 Soul 1
 Trait1 Adolescence
 Trait2 Smartphone
-Auto:
+*OnPlayFlicker
+Auto: OnPlay
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, choose up to 1 of your opponent's characters and send it to memory, and your opponent puts that character from memory to any position on their stage.
-Auto:
-{
-
+    PayCost HandClock IsCharacter && HasTrait Adolescence
+    {
+        *Check5Add1(Any)
+    }
 }
 Text Auto: [Put an «Adolescence» character from you hand in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 5 cards of your deck, choose up to 1 character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
@@ -990,16 +1064,8 @@ Cost 0
 Power 4500
 Soul 1
 Trait1 Adolescence
-Auto:
-{
-
-}
-Text Auto: When your other «Adolescence» character attacks, this card gets +1000 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: When this card's battle opponent becomes reverse, choose 1 of your other «Adolescence» characters, Rest it and move it to an open position in the backstage.
+*GainPowerWhenOtherAttacks(1000,Adolescence)
+*MoveOtherWithTraitToBackstageOnReverse(Adolescence)
 EndCard
 
 Character: SBY/W114-040
@@ -1013,16 +1079,35 @@ Power 1000
 Soul 1
 Trait1 Adolescence
 Trait2 Smartphone
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    TargetMyCharacterInBattle
+    GainEffect
+    {
+        Auto: OnReverseOpponent
+        {
+            TargetLocation OpponentClock
+            If HasTarget
+            {
+                TargetBattleOpponent
+                IfTarget OnStage
+                {
+                    Question Put the top card of the opponent's clock into the waiting room to put the battle opponent into clock?
+                    If Yes
+                    {
+                        TargetTop OpponentClock 1
+                        MoveCard OpponentWaitingRoom
+                        TargetBattleOpponent
+                        MoveCard OpponentClock
+                    }
+                }
+            }
+        }
+        Text Auto: When this card's battle opponent becomes reverse, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock.
+    }
 }
-Text Auto: When you use this card's BACKUP, choose 1 of your characters in battle, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock."
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+Text Auto: When you use this card's "BACKUP", choose 1 of your characters in battle, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock."
+Backup 2500
 EndCard
 
 Character: SBY/W114-041
@@ -1034,16 +1119,35 @@ Cost 0
 Power 500
 Soul 1
 Trait1 Adolescence
-Cont:
+Cont: GiveAll
 {
-
+    If Other && NameEquals Taking Step by Step, Kaede Azusagawa
+    {
+        GainEffect
+        {
+            *PowerOnMyTurn(1000)
+        }
+        GainEffect
+        {
+            Auto: OnReversed
+            {
+                TargetTop Deck 1
+                Reveal
+                IfTarget Compare ThatCardsLevel 1
+                {
+                    Question Return this card to your hand ?
+                    If Yes
+                    {
+                        TargetSelf
+                        Bounce
+                    }
+                }
+            }
+        }
+    }
 }
 Text Cont: All your other "Taking Step by Step, Kaede Azusagawa" get the following 2 abilities. "Cont: During your turn, this card gets +1000 power." "Auto: When this card becomes reversed in battle, reveal the top card of your deck. If it's level 1 or higher, you may return this card to your hand."
-Cont:
-{
-
-}
-Text Cont: ASSIST Your characters in front of this card get +500 power.
+*500Assist
 EndCard
 
 Character: SBY/W114-042
@@ -1057,9 +1161,14 @@ Power 5500
 Soul 1
 Trait1 Adolescence
 Trait2 Mystery
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation Stage
+    ChooseCharactersFromTargets 0 2 Choose up to 2 characters to give the effect.
+    GainEffect
+    {
+        *GreenEarlyPlayBomb
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, choose up to 2 of your characters, and those characters get the following ability until end of turn. "Auto: When this card becomes reversed, if the level of the battle opponent of this card is higher than the level of the opponent, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock."
 EndCard
@@ -1075,7 +1184,7 @@ Power 10000
 Soul 2
 Trait1 Adolescence
 Trait2 Science
-Cont:
+Cont: InHand
 {
 
 }
