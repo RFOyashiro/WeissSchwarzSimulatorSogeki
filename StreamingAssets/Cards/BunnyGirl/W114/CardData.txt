@@ -1,0 +1,2191 @@
+Character: SBY/W114-001
+Name Continuing the Dream, Kaede Azusagawa
+JPName 夢の続き 梓川 花楓
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Adolescence
+Trait2 Animal
+Auto: OnTriggerCheckClimax
+{
+    *Scry
+    *GiveCharacterPower(1000,Any)
+}
+Text Auto: When your characters' trigger check reveals a climax, look at the top card of your deck, put it either on top of the deck or in the waiting room, choose 1 of your characters, and that character gets +1000 power until end of turn.
+*Act1RestSelfSalvageBrainstorm(Any)
+EndCard
+
+Character: SBY/W114-002
+Name Dancing Feeling, Nodoka Toyohama
+JPName 踊る気持ち 豊浜 のどか
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 8500
+Soul 2
+Trait1 Adolescence
+Trait2 Fashionable
+*EarlyPlay2OrLessClimax
+Cont: GiveSelf
+{
+    SetXToNumberOfCharacters Other && InLocation Backstage && HasTrait Adolescence
+    MultiplyXValue 1000
+    GainPower X
+}
+Text Cont: This card gets +1000 power for each of your other «Adolescence» characters in the backstage
+Auto: OnPlay
+{
+    MultipleChoiceQuestion Choose 1 of the following 2 effect and perform it.\n1: You may put the top card of your clock in the waiting room.\n2: Your opponent puts the top 10 cards of their deck in the waiting room, and this card gets +3000 power until end of turn.|1|2
+    If Answer 0
+    {
+        *OptionalHeal
+    }
+    If Answer 1
+    {
+        MillOpponent 10
+        TargetSelf
+        GainPower 3000
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of the following 2 effects and perform it. "You may put the top card of your clock in the waiting room." "Your opponent puts the top 10 cards of their deck in the waiting room, and this card gets +3000 power until end of turn."
+EndCard
+
+Character: SBY/W114-003
+Name Path She Decided On, Kaede Azusagawa
+JPName 自分で決めた道 梓川 花楓
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Adolescence
+Trait2 Animal
+Combo Courage-Carrying Seabreeze
+Cont: InHand
+{
+    If LocationContains Level 1 NameEquals The Dream Remained &&& LocationContains Level 1 NameEquals Holding Two's Thoughts Inside, Kaede Azusagawa
+    {
+        LoseLevel 1
+    }
+}
+Text Cont: EXPERIENCE If "The Dream Remained" and "Holding Two's Thoughts Inside, Kaede Azusagawa" are in your level, this card gets -1 level while in your hand.
+Auto: OnSpecificClimaxPlay Courage-Carrying Seabreeze
+{
+    If InLocation CenterStage
+    {
+        MultipleChoiceQuestion Choose 1 of the following 2 effect and perform it.\n1: Search your deck for up to 3 «Adolescence» characters, reveal them, choose 1 of them and put it in your hand, choose 1 of them and put it in your stock, put the rest into your waiting room, shuffle your deck, and this card gets +3000 power until end of turn.\n2: YDeal 2 damage to your opponent.|1|2
+        If Answer 0
+        {
+            SearchLocationForTargets Deck 0 3 IsCharacter && HasTrait Adolescence
+            RevealTargets
+            SaveTargets
+            Message Choose a card to put into hand.
+            ChooseCardsFromTargets 1 1 Any
+            RevealTargets
+            MoveCard Hand
+            RemoveCurrentFromSavedTargets
+            LoadTargets
+            Message Choose a card to put into stock.
+            ChooseCardsFromTargets 1 1 Any
+            RevealTargets
+            MoveCard Stock
+            RemoveCurrentFromSavedTargets
+            LoadTargets
+            MoveCard WaitingRoom
+            ShuffleLocation Deck
+            TargetSelf
+            GainPower 3000
+        }
+        If Answer 1
+        {
+            Burn 2
+        }
+    }
+}
+Text Auto: CxCombo When "Courage-Carrying Seabreeze" is placed on your climax area, if this card is in the center stage, choose 1 of the following 2 effects and perform it. "Search your deck for up to 3 «Adolescence» characters, reveal them, choose 1 of them and put it in your hand, choose 1 of them and put it in your stock, put the rest into your waiting room, shuffle your deck, and this card gets +3000 power until end of turn." "Deal 2 damage to your opponent."
+EndCard
+
+Character: SBY/W114-004
+Name I Will Work Hard, Kaede Azusagawa
+JPName 頑張れるから 梓川 花楓
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Adolescence
+Trait2 Animal
+Auto: OnPlay|OnAttack
+{
+    *Scry
+}
+Text Auto: When this card is placed on the stage from your hand or when this card attacks, look at the top card of your deck and put it either on top of your deck or in the waiting room.
+*YellowLevel0Bomb
+EndCard
+
+Character: SBY/W114-005
+Name Fashion Show, Kaede Azusagawa & Mai Sakurajima
+JPName ファッションショー 梓川 花楓＆桜島 麻衣
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Adolescence
+Auto: OnPlay
+{
+    *ExchangeCardInLevelWithWaitingRoom(Any,Any)
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose a card in your level and a card in your waiting room and exchange them.
+Auto: OnPlay
+{
+    If LocationContains Level 1 NameEquals The Dream Remained &&& LocationContains Level 1 NameEquals Holding Two's Thoughts Inside, Kaede Azusagawa
+    {
+        PayCost Discard 1 Any
+        {
+            SearchDeck IsCharacter && HasTrait Adolescence
+        }
+    }
+}
+Text Auto: EXPERIENCE [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, if "The Dream Remained" and "Holding Two's Thoughts Inside, Kaede Azusagawa" are in your level, you may pay the cost. If you do, search your deck for up to 1 «Adolescence» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SBY/W114-006
+Name Strategist, Mai Sakurajima
+JPName 策士 桜島 麻衣
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+Auto: OnPlay
+{
+    If StageContains 1 Other && HasTrait Adolescence
+    {
+        GainPower 2000
+    }
+}
+Quick
+Text Auto: When this card is placed on the stage from your hand, if you have another «Adolescence» character, this card gets +2000 power until end of turn.
+Auto: OnReversed
+{
+    PayCost 1 Discard 1 Any &&& SendSelf Memory
+    {
+        SearchLocationForTargets Clock 1 1 Any
+        MoveCard Hand
+        TargetTop Deck 1
+        MoveCard Clock
+    }
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room, put this card into memory] When this card becomes reversed in battle, you may pay the cost. If you do, choose a card in your clock, return it to your hand, and put the top card of your deck in your clock.
+EndCard
+
+Character: SBY/W114-007
+Name Little Devil Speech, Mai Sakurajima
+JPName 小悪魔発言 桜島 麻衣
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+Cont: GiveSelf
+{
+    If LocationContainsOrLess Stock 2 Any
+    {
+        GainPower 1500
+    }
+}
+Text Cont: If there are 2 or less cards in your stock, this card gets +1500 power.
+Auto: OnReverseOpponent
+{
+    TargetBattleOpponent
+    IfTarget OnStage
+    {
+        Question Put the battle opponent into your opponent's stock?
+        If Yes
+        {
+            MoveCard OpponentStock
+            TargetBottom OpponentStock 1
+            MoveCard OpponentWaitingRoom
+        }
+    }
+}
+Text Auto: When this card's battle opponent becomes reverse, you may put that character in your opponent's stock. If you do, put the bottom card of your opponent's stock in the waiting room.
+EndCard
+
+Character: SBY/W114-008
+Name Different Paths Taken Due to Feelings, Kaede Azusagawa & Kaede Azusagawa
+JPName 想いが巡る分かれ道 梓川 花楓＆梓川 かえで
+Color Y
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Adolescence
+Trait2 Animal
+Combo Feelings Inside Never Revealed
+Cont: GiveSelf
+{
+    SetXToNumberOfCharacters Other && InLocation Backstage && HasTrait Adolescence
+    MultiplyXValue 1000
+    GainPower X
+}
+Text Cont: This card gets +1000 power for each of your other «Adolescence» characters in the backstage
+Auto: OnAttack
+{
+    If Climax Feelings Inside Never Revealed
+    {
+        RevealUpTo Deck 4
+        ChooseCardsFromTargets 0 1 HasTrait Adolescence && IsCharacter || NameEquals The Dream Remained
+        RevealTargets
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
+}
+Text Auto: CxCombo When this card attacks, if "Feelings Inside Never Revealed" is in your climax area and you have another «Adolescence» character, look at up to the top 4 cards of your deck, choose up to 1 «Adolescence» character or "The Dream Remained" among them, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: SBY/W114-009
+Name Naive And Romantic, Uzuki Hirokawa
+JPName 天真爛漫 広川 卯月
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Adolescence
+Trait2 Idol
+Auto: OnPlay
+{
+    If StageContains 1 Other && HasTrait Adolescence
+    {
+        GainPower 2000
+    }
+}
+Quick
+Text Auto: When this card is placed on the stage from your hand, if you have another «Adolescence» character, this card gets +2000 power until end of turn.
+Auto: OnReverseOpponent
+{
+    PayCost 1 Rest 1 Other && HasTrait
+    {
+        SearchDeck IsCharacter && HasTrait Adolescence
+    }
+}
+Text Auto: [(1) Rest 1 of your other standing «Adolescence» characters] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, search your deck for up to 1 «Adolescence» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SBY/W114-010
+Name Holding Two's Thoughts Inside, Kaede Azusagawa
+JPName 二人の想い抱きしめて 梓川 花楓
+Color Y
+Level 1
+Cost 1
+Trigger Soul
+Power 3500
+Soul 1
+Trait1 Adolescence
+Trait2 Animal
+Cont: GiveHand
+{
+    If NameEquals The Dream Remained
+    {
+        ChangeCost -1
+    }
+}
+Text Cont: "The Dream Remained" in your hand gets -1 cost.
+Cont: GiveSelf
+{
+    AddToOtherCardsTriggerIcon Soul NameEquals The Dream Remained
+}
+Text Cont: "The Dream Remained" in all your other Zones get a soul trigger icon.
+*LevelAssistTrait(Asolescence)
+EndCard
+
+Character: SBY/W114-011
+Name Incredible Karte, Kaede Azusagawa
+JPName 不可思議のカルテ 梓川 花楓
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Adolescence
+Trait2 Animal
+*OnAttackGivePower(1500,Adolescence)
+Auto: StartOpponentAttackPhase
+{
+    PayCost 1
+    {
+        If LocationContainsOrLess Backstage 1 Any
+        {
+            MoveToOpenPosition false true
+        }
+    }
+}
+Text Auto: [(1)] At the beginning of your opponent's attack phase, you may pay the cost. If you do, move this card to an open position in the backstage.
+EndCard
+
+Character: SBY/W114-012
+Name Incredible Karte, Nodoka Toyohama
+JPName 不可思議のカルテ 豊浜 のどか
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Adolescence
+Trait2 Fashionable
+Cont: GiveAll
+{
+    If Other && NameEquals Christmas Present, Nodoka Toyohama
+    {
+        GainPower 1000
+        GainEffect
+        {
+            Auto: OnAttack
+            {
+                TargetTop Deck 2
+                If Compare TargetCount 2 OrMore
+                {
+                    Reorder
+                }
+                Else
+                {
+                    View
+                }
+            }
+            Text Auto: When this card attacks, look at up to 2 cards from the top of your deck, and put them on top of the deck in any order.
+        }
+    }
+}
+Text Cont: All your other "Christmas Present, Nodoka Toyohama" get +1000 power and the following ability. "Auto: When this card attacks, look at up to 2 cards from the top of your deck, and put them on top of the deck in any order."
+Auto: OnPlay
+{
+    PayCost Discard 1 HasTrait Adolescence && IsCharacter
+    {
+        SearchDeck NameEquals Christmas Present, Nodoka Toyohama
+    }
+}
+Text Auto: [Put an «Adolescence» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Christmas Present, Nodoka Toyohama", reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SBY/W114-013
+Name Natural Idol, Uzuki Hirokawa
+JPName 天然アイドル 広川 卯月
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Adolescence
+Trait2 Idol
+Cont: GiveSelf
+{
+    If InLocation MiddleCenterStage
+    {
+        GainSoul 1
+    }
+}
+Text Cont: If this card is in the middle position of your center stage, this card gets +1 soul.
+Auto: OnPlay
+{
+    PayCost HandClock Any
+    {
+        SetXToNumberOfCharacters Other && HasTrait Adolescence
+        Peek Deck X
+        ChooseCardsFromTargets 0 1 Any
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
+}
+Text Auto: [Put 1 card from your hand in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at to up to the top X cards of your deck, choose up to 1 card among them, put it in your hand, and put the rest into your waiting room. X equals the number of your other «Adolescence» characters.
+EndCard
+
+Character: SBY/W114-014
+Name Future Together, Kaede Azusagawa & Kaede Azusagawa
+JPName 二人で踏み出す未来 梓川 花楓＆梓川 かえで
+Color Y
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Adolescence
+Trait2 Animal
+Cont: GiveSelf
+{
+    If LocationContains Level 1 NameEquals The Dream Remained
+    {
+        GainPower 3000
+    }
+}
+Text Cont: EXPERIENCE If "The Dream Remained" is in your level, this card gets +3000 power.
+*GainPowerWhenAttackingLevel2(6000)
+EndCard
+
+Character: SBY/W114-015
+Name High Degree Idol, Nodoka Toyohama
+JPName 高学歴アイドル 豊浜 のどか
+Color Y
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Adolescence
+Trait2 Fashionable
+Cont: GiveSelf
+{
+    TargetLocation OpponentBackstage
+    SetXValue TargetCount
+    MultiplyXValue 1500
+    GainPower X
+}
+Text Cont: This card gets +1500 power for each of your opponent's backstage characters
+*OnOtherAttackedSacrificeToGivePower(1500,Adolescence)
+EndCard
+
+Character: SBY/W114-016
+Name Time Spent at Home, Mai Sakurajima
+JPName 家でのひと時 桜島 麻衣
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+*OnPlayGainPower(1500)
+Auto: OnAttack
+{
+    If LocationContains Climax 1 HasTrigger Choice
+    {
+        TargetTop Deck 1
+        Reveal
+        IfTarget Compare ThatCardsLevel 1 OrMore
+        {
+            TargetSelf
+            GainSpecialEffect DoubleTrigger
+        }
+    }
+}
+Text Auto: When this card attacks, if there's a climax with a Choice trigger icon in your climax area, reveal the top card of your deck. If it's level 1 or higher, perform trigger check twice during this card attack's trigger Step.
+EndCard
+
+Character: SBY/W114-017
+Name Path They Want to Take, Kaede Azusagawa & Kotomi Kano
+JPName 進みたい道 梓川 花楓＆鹿野 琴美
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 6500
+Soul 1
+Trait1 Adolescence
+Auto: OnPlay
+{
+    TargetLocation Stage
+    NarrowTargets OnStage && HasTrait Adolescence
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        *OnAttackPay1ToDoubleTrigger
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your other «Adolescence» character, and that character gets the following ability until end of turn. "Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform trigger check twice during this card attack's trigger Step."
+Act: SendSelf WaitingRoom
+{
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to return to hand.
+    Bounce
+}
+Text Act: [Put this card in the waiting room] Choose 1 of your opponent's characters and return it to their hand.
+EndCard
+
+Character: SBY/W114-018
+Name Answer Pushing Her forward, Uzuki Hirokawa
+JPName 背中を押す答え 広川 卯月
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10500
+Soul 2
+Trait1 Adolescence
+Trait2 Idol
+Auto: OnPlay
+{
+    PayCost 1
+    {
+        SearchWaitingRoom IsClimax
+    }
+}
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a climax in your waiting room and return it to your hand.
+Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
+{
+    *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait Adolescence)
+}
+Text Auto: When a level 2 or higher battle opponent of this card becomes reversed, you may choose an «Adolescence» character in your waiting room and put it in your stock.
+EndCard
+
+Character: SBY/W114-019
+Name School Conference, Sakuta Azusagawa & Miwako Tomobe
+JPName 学校説明会 梓川 咲太＆友部 美和子
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Adolescence
+*GlobalPower(500,Adolescence)
+Act: 2 RestSelf
+{
+    SearchWaitingRoom HasTrait Adolescence && IsCharacter
+}
+Text Act: [(2) Rest this card] Choose 1 «Adolescence» character in your waiting room and return it to your hand.
+EndCard
+
+Character: SBY/W114-020
+Name Maiden Note, Uzuki Hirokawa
+JPName オトメノート 広川 卯月
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Adolescence
+Trait2 Idol
+Combo Sweet Palette on stage!!
+Auto: StartClimaxPhase
+{
+    *GiveCharacterPower(500,Adolescence)
+}
+Text Auto: At the beginning of your climax phase, choose 1 of your «Adolescence» characters, and that character gets +500 power until end of turn.
+Auto: OnSpecificClimaxPlay Sweet Palette on stage!!
+{
+    If StageContains 2 Other
+    {
+        Mill 1
+        IfTarget Compare ThatCardsLevel 0 OrLess
+        {
+            *OptionalBlindStock
+        }
+        IfTarget Compare ThatCardsLevel 2 OrLess && Compare ThatCardsLevel 1 OrMore
+        {
+            TargetLocation Stage
+            NarrowTargets HasTrait Adolescence
+            ChooseCharacterFromTargets Choose a character to give +1 soul.
+            GainSoul 1
+        }
+        IfTarget Compare ThatCardsLevel 3 OrMore
+        {
+            SearchWaitingRoom IsCharacter
+        }
+    }
+}
+Text Auto: CxCombo When "Sweet Palette on stage!!" is placed on your climax area, if the number of other characters you have is 2 or more, put the top card of your deck in the waiting room. If it's level 0 or lower, put up to 1 card from the top of your deck in your stock. If it's level 1 or 2, choose 1 of your «Adolescence» character, and that character gets +1 soul until end of turn. If it's level 3 or higher, choose up to 1 character in your waiting room and return it to your hand.
+EndCard
+
+Character: SBY/W114-021
+Name Taking Step by Step, Kaede Azusagawa
+JPName 一歩ずつ進んでいく 梓川 花楓
+Color Y
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Adolescence
+Trait2 Animal
+EndCard
+
+Character: SBY/W114-022
+Name Drama Filming, Mai Sakurajima
+JPName ドラマ撮影 桜島 麻衣
+Color Y
+Level 1
+Cost 0
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+Cont: GiveSelf
+{
+    If StageContains 2 Other && HasTrait Adolescence
+    {
+        GainPower 3000
+        GainEffect
+        {
+            Cont: GiveAll
+            {
+                If Other && NameEquals Wicked Smile, Mai Sakurajima
+                {
+                    GainPower 1000
+                    GainSoul 1
+                }
+            }
+        }
+    }
+}
+Text Cont: If the number of other «Adolescence» characters you have is 2 or more, this card gets +3000 power and the following ability. "Cont: All your other 'Wicked Smile, Mai Sakurajima' get +1000 power and +1 soul."
+Auto: OnPlay
+{
+    PayCost Discard 1 IsCharacter && HasTrait Adolescence
+    {
+        SearchDeck NameEquals Wicked Smile, Mai Sakurajima
+    }
+}
+Text Auto: [Put an «Adolescence» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Wicked Smile, Mai Sakurajima", reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SBY/W114-023
+Name Feelings She Wishes to Make True, Kaede Azusagawa
+JPName 叶えたい想い 梓川 花楓
+Color Y
+Level 1
+Cost 1
+Trigger Soul
+Power 500
+Soul 1
+Trait1 Adolescence
+Trait2 Animal
+Auto: OnUseThisCardsBackup
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Adolescence || NameEquals The Dream Remained
+    {
+        MoveCard Hand
+        Discard 1 Any
+    }
+}
+Text Auto: When you use this card's "BACKUP", reveal the top card of your deck. If it's either an «Adolescence» character or "The Dream Remained", put it in your hand and discard a card from your hand to the waiting room.
+Backup 2000
+EndCard
+
+Character: SBY/W114-024
+Name Someone Looking Familiar, Uzuki Hirokawa
+JPName 見覚えのある人物 広川 卯月
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Adolescence
+Trait2 Idol
+Auto: OnAttack
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget HasTrait Adolescence && IsCharacter
+    {
+        TargetLocation Stage
+        GainPower 3000
+        GainSoul 2
+    }
+}
+Text Auto: When this card attacks, reveal the top card of your deck. If it's an «Adolescence» character, all your character gets +3000 power and +2 soul until end of turn.
+EndCard
+
+Character: SBY/W114-025
+Name Signs of Growth, Kaede Azusagawa
+JPName 成長の兆し 梓川 花楓
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 6000
+Soul 1
+Trait1 Adolescence
+Trait2 Animal
+Cont: GiveSelf
+{
+    If LocationContains Level 1 NameEquals The Dream Remained
+    {
+        GainPower 4500
+        GainEffect
+        {
+            *HandEncoreTrait(Adolescence)
+        }
+    }
+}
+Text Cont: EXPERIENCE If "The Dream Remained" is in your level, this card gets +4500 power and "Auto: ENCORE [Put an «Adolescence» character from your hand to the waiting room]".
+Auto: OnReversed
+{
+    If LocationContains Climax 1 HasTrigger Choice
+    {
+        *CheckAndAdd(3)
+        Discard 1 Any
+    }
+}
+Text Auto: When this card becomes reversed, if there's a climax with a Choice trigger icon in your climax area, look at up to the top 3 cards of your deck, choose up to 1 card among them, put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
+EndCard
+
+Character: SBY/W114-026
+Name Wicked Smile, Mai Sakurajima
+JPName 意地悪な笑み 桜島 麻衣
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+Combo Sudden Shop Visit
+*EarlyPlay4OrMore(Adolescence)
+Auto: OnSpecificClimaxPlay Sudden Shop Visit
+{
+    If InLocation CenterStage && StageContains 4 Other && HasTarget Adolescence
+    {
+        TargetLocation Stage
+        NarrowTargets Other
+        ChooseCharacterFromTargets Choose a character to give the effect.
+        AddSelfToTargets
+        GainEffect
+        {
+            Auto: OnDamageCanceled
+            {
+                SearchWaitingRoom IsCharacter
+                *PutCardFromWaitingRoomIntoStock(HasTrait Adolescence && IsCharacter)
+            }
+            TimesPerTurn 1
+            Text Auto: This ability activates up to once per turn. When damage dealt by this card is canceled, choose up to 1 character in your waiting room and return it to your hand, choose up to 1 «Adolescence» character in your waiting room and put it in your stock.
+        }
+    }
+}
+Text Auto: CxCombo When "Sudden Shop Visit" is placed on your climax area, if this card is in the center stage and the number of other «Adolescence» characters you have is 4 or more, choose 1 of your other characters and this card, and they get the following ability until end of turn. "Auto: This ability activates up to once per turn. When damage dealt by this card is canceled, choose up to 1 character in your waiting room and return it to your hand, choose up to 1 «Adolescence» character in your waiting room and put it in your stock."
+EndCard
+
+Character: SBY/W114-027
+Name Ideal World, Nodoka Toyohama
+JPName 理想の世界 豊浜 のどか
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Adolescence
+Trait2 Fashionable
+*CannotSideAttack
+Auto: OnAttack
+{
+    TargetFacing
+    IfTarget Compare ThatCardsLevel 3 OrMore
+    {
+        UntilEndOfOpponentsTurn
+        GainPower 4500
+    }
+}
+Text Auto: When this card attacks, if the level of the character facing this card is 3 or higher, this card gets +4500 power until the end of your opponent's next turn.
+EndCard
+
+Event: SBY/W114-028
+Name The Dream Remained
+JPName のこされた夢
+Color Y
+Level 1
+Cost 1
+Effect:
+{
+    SearchWaitingRoom IsCharacter && HasTrait Adolescence
+    *ExchangeCardInLevelWithWaitingRoom(Any,Any)
+}
+Text Choose 1 «Adolescence» character in your waiting room and return it to your hand.\nYou may choose a card in your level and a card in your waiting room and exchange them.
+Auto: StartOpponentAttackPhase
+{
+    If LocationContains Level 1 NameEquals Holding Two's Thoughts Inside, Kaede Azusagawa &&& LocationContains Level 1 NameEquals Path She Decided On, Kaede Azusagawa
+    {
+        If LocationContains WaitingRoom 1 IsCharacter && HasTrait Adolescence
+        {
+            PayCost 4 SendFromLocationToLocation Level Memory 1 true Not Other && Not FaceDown
+            {
+                SearchLocationForTargets WaitingRoom 1 1 IsCharacter && HasTrait Adolescence
+                MoveCard Level
+                TargetLocation OpponentStage
+                NarrowTargets CanBeChosen
+                ChooseCharacterFromTargets Choose a character to give -3 souls.
+                LoseSoul 3
+            }
+        }
+    }
+}
+InLevel
+Text Auto: EXPERIENCE [(4) send this card face up card to memory, put an «Adolescence» character from your waiting room in your level] If this card is in the level and both "Holding Two's Thoughts Inside, Kaede Azusagawa" and "Path She Decided On, Kaede Azusagawa" are in your level, at the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your opponent's characters, and that character gets -3 soul until end of turn.
+EndCard
+
+Climax: SBY/W114-029
+Name Courage-Carrying Seabreeze
+JPName 勇気を運ぶ海風
+*ChoiceClimax
+EndCard
+
+Climax: SBY/W114-030
+Name Feelings Inside Never Revealed
+JPName 明かしたことのない胸の内
+*ChoiceClimax
+EndCard
+
+Climax: SBY/W114-031
+Name Sweet Palette on stage!!
+JPName スイートバレット on stage!!
+*ChoiceClimax
+EndCard
+
+Climax: SBY/W114-032
+Name Sudden Shop Visit
+JPName 突然の来店
+*ChoiceClimax
+EndCard
+
+Character: SBY/W114-033
+Name Thoughts-Carrying Cherry Blossom, Tomoe Koga
+JPName 想い運ぶ桜の花 古賀 朋絵
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Adolescence
+Trait2 Smartphone
+Auto:
+{
+
+}
+Text Auto: When your climax is placed on your climax area, choose 1 of your characters, and that character gets +1000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: CxCombo When "Hiding Embarrassment" is placed on your climax area, if the number of other «Adolescence» characters you have is 2 or more, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, search your deck for up to 1 «Adolescence» character, reveal it, put it in your hand, and shuffle your deck."
+EndCard
+
+Character: SBY/W114-034
+Name Adolescence Is a Paradox, Rio Futaba
+JPName 青春はパラドックス 双葉 理央
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Adolescence
+Trait2 Science
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand or when this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose a character in your opponent's center stage, and that character gets -1000 power until end of turn.
+EndCard
+
+Character: SBY/W114-035
+Name Beachside Encounter, Ransel Girl
+JPName 浜辺での邂逅 ランドセルガール
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Adolescence
+Trait2 Ransel
+Cont:
+{
+
+}
+Text Cont: When you pay for the cost of CxCombo of "Mysterious Girl, Ransel Girl", you may discard this card from hand in place of 2 cards.
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's draw phase, put the top 2 cards of your deck in the waiting room. If there's at least 1 level 2 or higher card among them, you may return this card to your hand.
+EndCard
+
+Character: SBY/W114-036
+Name Bubble-Like Existence, Ransel Girl
+JPName 泡沫の存在 ランドセルガール
+Color G
+Level 1
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Adolescence
+Trait2 Ransel
+Auto:
+{
+
+}
+Text Auto: [Put 1 climax from your hand to the waiting room] When your characters' trigger check reveals a climax, you may pay the cost. If you do, draw a card, discard a card from your hand to the waiting room, choose an «Adolescence» character in your waiting room and return it to your hand.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your «Adolescence» characters, and that character gets +2500 power until end of turn.
+EndCard
+
+Character: SBY/W114-037
+Name Mysterious Girl, Ransel Girl
+JPName 謎の少女 ランドセルガール
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Adolescence
+Trait2 Ransel
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+Auto:
+{
+
+}
+Text Auto: CxCombo [Put 5 cards from your hand to the waiting room] When this card attacks, if "A Familiar-Looking Girl" is in your climax area, you may pay the cost. If you do, deal 2 damage to your opponent, and deal 5 damage to your opponent.
+EndCard
+
+Character: SBY/W114-038
+Name Cute Waitress, Tomoe Yuga
+JPName キュートなウェイトレス 古賀 朋絵
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Adolescence
+Trait2 Smartphone
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 of your opponent's characters and send it to memory, and your opponent puts that character from memory to any position on their stage.
+Auto:
+{
+
+}
+Text Auto: [Put an «Adolescence» character from you hand in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 5 cards of your deck, choose up to 1 character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: SBY/W114-039
+Name Path Home at Twilight, Sakuta Azusagawa
+JPName 夕焼けの帰り道 梓川 咲太
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Adolescence
+Auto:
+{
+
+}
+Text Auto: When your other «Adolescence» character attacks, this card gets +1000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, choose 1 of your other «Adolescence» characters, Rest it and move it to an open position in the backstage.
+EndCard
+
+Character: SBY/W114-040
+Name Peeking, Tomoe Kogato
+JPName 覗き見 古賀 朋絵
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 1000
+Soul 1
+Trait1 Adolescence
+Trait2 Smartphone
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, choose 1 of your characters in battle, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock."
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: SBY/W114-041
+Name Gentling Watching Over, Sakuta Azusagawa
+JPName 優しく見守る 梓川 咲太
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Adolescence
+Cont:
+{
+
+}
+Text Cont: All your other "Taking Step by Step, Kaede Azusagawa" get the following 2 abilities. "Cont: During your turn, this card gets +1000 power." "Auto: When this card becomes reversed in battle, reveal the top card of your deck. If it's level 1 or higher, you may return this card to your hand."
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +500 power.
+EndCard
+
+Character: SBY/W114-042
+Name Happy Parfait Time, Shoko Makinohara
+JPName ハッピーパフェタイム 牧之原 翔子
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 5500
+Soul 1
+Trait1 Adolescence
+Trait2 Mystery
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose up to 2 of your characters, and those characters get the following ability until end of turn. "Auto: When this card becomes reversed, if the level of the battle opponent of this card is higher than the level of the opponent, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock."
+EndCard
+
+Character: SBY/W114-043
+Name Reliable Counsel, Rio Futaba
+JPName 頼れる相談役 双葉 理央
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Adolescence
+Trait2 Science
+Cont:
+{
+
+}
+Text Cont: If your opponent has a level 3 or higher character, this card gets -1 level while in your hand.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's an «Adolescence» character, you may put the top card of your opponent's deck in the waiting room. If you do, choose a level 3 or lower character in your opponent's center stage and put it on top of the deck.
+EndCard
+
+Event: SBY/W114-044
+Name To the Person He Wants to See
+JPName 会いたい人の元に
+Color G
+Level 2
+Cost 2
+Effect:
+{
+
+}
+Text MEMORY [Turn this card face up card face down] If this card is in your memory, at the beginning of your draw phase, you may pay the cost. If you do, deal 2 damage to your opponent.
+EndCard
+
+Climax: SBY/W114-045
+Name Hiding Embarrassment
+JPName 照れ隠し
+*BarClimax
+EndCard
+
+Climax: SBY/W114-046
+Name A Familiar-Looking Girl
+JPName 見覚えのある少女
+*BarClimax
+EndCard
+
+Character: SBY/W114-047
+Name Compounding Memories, Mai Sakurajima
+JPName 積み重なる思い出 桜島 麻衣
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+Auto:
+{
+
+}
+Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
+Auto:
+{
+
+}
+Text Auto: At the end of the battle in which this card attacked or when this card becomes reversed in battle, if there is 1 or less card in your memory, you may Put this card into memory.
+EndCard
+
+Character: SBY/W114-048
+Name Incredible Karte, Mai Sakurajima
+JPName 不可思議のカルテ 桜島 麻衣
+Color R
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Sudden Warm Gaze" is in your climax area and the number of other «Adolescence» characters you have is 2 or more, look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
+Auto:
+{
+
+}
+Text Auto: MEMORY When this card attacks, if "Compounding Memories, Mai Sakurajima" is in your memory, this card gets +3000 power for the attack, and perform trigger check twice during this card attack's trigger Step. After the two trigger checks are made, put the top card of your stock in the waiting room.
+EndCard
+
+Character: SBY/W114-049
+Name One Year Spent With You, Mai Sakurajima
+JPName 君と過ごした一年間 桜島 麻衣
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Adolescence
+Trait2 Cuisine
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+Auto:
+{
+
+}
+Text Auto: CxCombo MEMORY [(1) Put an «Adolescence» character from your hand to the waiting room] When this card attacks, if "Kiss Between the Two of Us" is in your climax area, there are 5 or less cards in your hand, and the number of other characters you have is 3 or more, you may pay the cost. If you do, perform the following action X times. "Put the bottom 2 cards of your opponent's deck in the waiting room. If there's a climax among them, deal 2 damage to your opponent." X equals 2 if there are 3 or less different card names among cards in your memory and X equals 3 if there are 4 or more different card names among cards in your memory.
+EndCard
+
+Character: SBY/W114-050
+Name Going Out, Kaede Azusagawa
+JPName おでかけ 梓川 花楓
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Adolescence
+Trait2 Animal
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your «Adolescence» characters, and that character gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, if you have no other characters in the backstage, look at the top 2 cards of your deck and search for up to 1 level 0 or lower «Adolescence» character, put it in any position in the backstage, and put the rest into your waiting room.
+EndCard
+
+Character: SBY/W114-051
+Name Troubled Girl, Kaede Azusagawa
+JPName 悩める少女 梓川 花楓
+Color R
+Level 1
+Cost 0
+Power 1000
+Soul 1
+Trait1 Adolescence
+Trait2 Animal
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a level 0 or lower «Adolescence» character in your waiting room and put it in any position on your stage.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your characters, and that character gets +4000 power until end of turn.
+EndCard
+
+Character: SBY/W114-052
+Name New Wound, Mai Sakurajima
+JPName 新たな傷跡 桜島 麻衣
+Color R
+Level 1
+Cost 0
+Power 2000
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, you may reverse that character.
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to waiting room, Put this card into memory] When this card becomes reversed in battle, you may pay the cost. If you do, search your deck for up to 1 «Adolescence» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SBY/W114-053
+Name Sleepover for Two, Mai Sakurajima
+JPName 二人きりのお泊り 桜島 麻衣
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 3500
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times level of that character.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Adolescence» characters you have is 4 or more, you may choose an «Adolescence» character in your waiting room and put it in your stock.
+Auto:
+{
+
+}
+Text Auto: MEMORY When your climax with a Comeback trigger icon is triggered, if there are 2 or more differently named cards in your memory, look at the top card of your opponent's deck, put it either on top or bottom of the deck, choose 1 of your characters, and that character gets +1500 power until end of turn.
+EndCard
+
+Character: SBY/W114-054
+Name Future Promise, Mai Sakurajima
+JPName 未来への約束 桜島 麻衣
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Adolescence
+Trait2 Cuisine
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card is placed on the stage from your hand or by effect of "Mutual Feelings" to the stage, choose up to 1 "Someday We'll Be Family" in your waiting room and return it to your hand, and this card gets +1000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: CxCombo[//B] When this card attacks, if "Someday We'll Be Family" is in your climax area and you have another «Adolescence» character, this card gets the following ability until the end of your opponent's next turn. "Auto: When the character facing this card attacks, perform the following action 3 times. 'Look at the top card of your deck, and put it either on top of the deck or in the waiting room.'"
+EndCard
+
+Character: SBY/W114-055
+Name Big Sister Personality, Nodoka Toyohama
+JPName 姉御肌 豊浜 のどか
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Adolescence
+Trait2 Fashionable
+Cont:
+{
+
+}
+Text Cont: CxCombo If "Museninaccyau" is in your climax area, all of your characters get +1500 power.
+Auto:
+{
+
+}
+Text Auto: [(2)] At the beginning of your encore step, if this card is in the center stage, and either your opponent has no characters in their center stage or all of your opponent's center stage characters are reversed, you may pay the cost. If you do, deal 2 damage to your opponent.
+EndCard
+
+Character: SBY/W114-056
+Name Trendy Role, Nodoka Toyohama
+JPName おしゃれ担当 豊浜 のどか
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Adolescence
+Trait2 Fashionable
+Auto:
+{
+
+}
+Text Auto: [Put an «Adolescence» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw a card.
+Auto:
+{
+
+}
+Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose an «Adolescence» character in your waiting room and return it to your hand.
+EndCard
+
+Character: SBY/W114-057
+Name Feelings Wished to Be Expressed, Sakuta Azusagawa
+JPName 届けたい想い 梓川 咲太
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Adolescence
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Mutual Feelings" in your waiting room and return it to your hand.
+EndCard
+
+Character: SBY/W114-058
+Name Unfamiliar Slice of Life, Kaede Azusagawa
+JPName 見慣れぬ日常 梓川 花楓
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Adolescence
+Trait2 Animal
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your other «Adolescence» characters, and that character gets +1000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [Return this card to your hand] When your climax is placed on your climax area, you may pay the cost. If you do, look at the top card of your deck, put it either on top of the deck or in the waiting room, choose 1 of your characters, and that character gets +1500 power until end of turn.
+EndCard
+
+Character: SBY/W114-059
+Name Best Girlfriend One Can Have, Mai Sakurajima
+JPName 最高の彼女 桜島 麻衣
+Color R
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +3000 power until end of turn, and if there's no Red card in your memory, choose up to 1 "Compounding Memories, Mai Sakurajima" in your waiting room and send it to memory.
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform trigger check twice during this card attack's trigger Step.
+EndCard
+
+Character: SBY/W114-060
+Name After a Bath, Kaede Azusagawa
+JPName お風呂上がり 梓川 花楓
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Adolescence
+Trait2 Animal
+Auto:
+{
+
+}
+Text Auto: [(2) Put 1 character from your stage in the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: SBY/W114-061
+Name Passing College Exam, Mai Sakurajima
+JPName 大学合格 桜島 麻衣
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 5000
+Soul 2
+Trait1 Adolescence
+Trait2 Cuisine
+Auto:
+{
+
+}
+Text Auto: MEMORY When this card attacks, if there are 2 or more differently named cards in your memory, this card gets +X power until end of turn. X equals 1500 times the number of your opponent's characters.
+Act:
+{
+
+}
+Text Act: [send this card standing card to memory] Search your deck for up to 1 "One Year Spent With You, Mai Sakurajima" or "Incredible Karte, Mai Sakurajima", reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SBY/W114-062
+Name Uneasiness Coming Down on Her, Kaede Azusagawa
+JPName 心に降り注ぐ不安 梓川 花楓
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 6000
+Soul 2
+Trait1 Adolescence
+Trait2 Animal
+Cont:
+{
+
+}
+Text Cont: During your turn, all your other «Adolescence» characters get +1000 power.
+Cont:
+{
+
+}
+Text Cont: If the number of other «Adolescence» characters you have is 2 or more, this card gets +3500 power and "Auto: ENCORE [Put an «Adolescence» character from your hand to the waiting room]".
+EndCard
+
+Character: SBY/W114-063
+Name Tears Flowing, Kaede Azusagawa
+JPName こぼれ落ちる涙 梓川 花楓
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Adolescence
+Trait2 Animal
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 character in your hand whose level is equal to or lower than your level and put it in any position on the stage, and that character gets +2000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, your opponent returns all cards from their stock to their deck, shuffles that deck, and puts the same number of cards from top of their deck in their stock.
+EndCard
+
+Character: SBY/W114-064
+Name Another World, Kaede Azusagawa
+JPName もう一つの世界 梓川 花楓
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Adolescence
+Trait2 Animal
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters, and that character gets the following ability until the end of your opponent's next turn. "Cont: This cannot move to another position."
+Act:
+{
+
+}
+Text Act: [(1) Put this card in the waiting room] Look at up to the top 4 cards of your deck, choose up to 1 «Adolescence» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: SBY/W114-065
+Name Usual Path Home, Mai Sakurajima
+JPName いつもの帰り道 桜島 麻衣
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your other «Adolescence» characters, and that character gets +X power until end of turn. X equals 1000 times soul of that character.
+Auto:
+{
+
+}
+Text Auto: MEMORY When this card is placed on the stage from your hand, if "Mai Sakurajima, Irreplaceable Existence" is in your memory, reveal the top card of your deck. If it's either an «Adolescence» character or an event, put it in your hand and discard a card from your hand to the waiting room.
+EndCard
+
+Character: SBY/W114-066
+Name Graduating, Mai Sakurajima
+JPName 卒業生 桜島 麻衣
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+Auto:
+{
+
+}
+Text Auto: When your climax with a Comeback trigger icon is triggered, choose up to 2 of your characters, and those characters get +1000 power until end of turn.
+Act:
+{
+
+}
+Text Act: [(1) send this card standing card to memory] If you are level 2 or higher, look at up to the top 2 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: SBY/W114-067
+Name Charm for Two, Mai Sakurajima
+JPName 二人のお守り 桜島 麻衣
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from hand to this card stage, you may pay the cost. If you do, choose a level X or lower «Adolescence» character in your waiting room and return it to your hand. X equals the number of "Future Promise, Mai Sakurajima" in your waiting room.
+EndCard
+
+Character: SBY/W114-068
+Name Fading Days, Ransel Girl & Sakuta Azusagawa & Mai Sakurajima
+JPName 薄れゆく日常 ランドセルガール＆梓川 咲太＆桜島 麻衣
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Adolescence
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if there is 1 or less character in your opponent's center stage, you may choose a cost 0 or lower character in your opponent's center stage and put it in the waiting room.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if all of your characters are «Adolescence», look at up to the top 2 cards of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room.
+EndCard
+
+Character: SBY/W114-069
+Name Introducing Boyfriend, Mai Sakurajima
+JPName 彼氏紹介 桜島 麻衣
+Color R
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+Auto:
+{
+
+}
+Text Auto: This ability activates up to once per turn. When this card becomes reversed in battle, reveal the top card of your deck. If it's level 2 or higher, you may Rest this card.
+Auto:
+{
+
+}
+Text Auto: MEMORY At the beginning of your climax phase, if there's a card in your memory, choose 1 of your «Adolescence» characters, and that character gets +3000 power until end of turn.
+EndCard
+
+Character: SBY/W114-070
+Name Disguised, Mai Sakurajima
+JPName お忍び 桜島 麻衣
+Color R
+Level 1
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, choose 1 of your characters in battle, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, send that character to memory."
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 2000, level 1 [(1) Put this card from hand to the waiting room]
+EndCard
+
+Character: SBY/W114-071
+Name Meeting for the First Time in a While, Kaede Azusagawa
+JPName 久々の対面 梓川 花楓
+Color R
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Adolescence
+Trait2 Animal
+Auto:
+{
+
+}
+Text Auto: When your other «Adolescence» character attacks, this card gets +X power until end of turn. X equals 500 times the number of your other «Adolescence» characters.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+EndCard
+
+Character: SBY/W114-072
+Name Benefit of the Divorce Papers, Sakuta Azusagawa
+JPName 婚姻届の御利益 梓川 咲太
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 5500
+Soul 1
+Trait1 Adolescence
+Cont:
+{
+
+}
+Text Cont: ASSIST Your level 3 or higher characters in front of this card get +2000 power.
+Auto:
+{
+
+}
+Text Auto: At the beginning of your climax phase, if there are 3 or more markers under this card, put all markers from under this card in the waiting room, and deal 1 damage to your opponent.
+Auto:
+{
+
+}
+Text Auto: During your opponent's attack phase, when damage taken by you is canceled, if you have another "Future Promise, Mai Sakurajima", and there are 2 or less cards between all cards in your markers, you may choose an «Adolescence» character in your waiting room and put it face down underneath this card as a marker.
+EndCard
+
+Climax: SBY/W114-074
+Name Sudden Warm Gaze
+JPName 突然の熱視線
+*DoorClimax
+EndCard
+
+Climax: SBY/W114-075
+Name Kiss Between the Two of Us
+JPName ふたりだけのキス
+*DoorClimax
+EndCard
+
+Climax: SBY/W114-076
+Name Someday We'll Be Family
+JPName いつか家族に
+*DoorClimax
+EndCard
+
+Climax: SBY/W114-077
+Name Museninaccyau
+JPName ミューズになっちゃう
+*StandbyClimax
+EndCard
+
+Character: SBY/W114-078
+Name Feeling Warmth within the Powdered Snow, Rio Futaba
+JPName 温もり感じる粉雪 双葉 理央
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Adolescence
+Trait2 Science
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 climax card, reveal it, choose up to 1 climax in your hand, reveal it, exchange the revealed climax cards, and shuffle your deck.
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card among them, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: SBY/W114-079
+Name Shape of the Continuing Dream, Rio Futaba
+JPName これから続く夢のカタチ 牧之原 翔子
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Adolescence
+Trait2 Mystery
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, if there are 4 or more cards in your hand, this card gets +1 level, +1500 power, and the following ability. "Auto: At the beginning of your opponent's attack phase, you may move this card to an open position in the center stage with an opponent's character Opposite that position.
+Act:
+{
+
+}
+Text Act: [Put 1 card from your hand to the waiting room, put this card in the waiting room] Choose an «Adolescence» character in your waiting room and return it to your hand.
+EndCard
+
+Character: SBY/W114-080
+Name Momentary Mirage, Ransel Girl
+JPName ひとときの幻 ランドセルガール
+Color B
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Adolescence
+Trait2 Ransel
+Cont:
+{
+
+}
+Text Cont: During your turn, this card gets +3000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo At the end of this card's attack, if "To Get Over It On One's Own" is in your climax area and the number of other «Adolescence» characters you have is 2 or more, look at the top card of your deck and search for up to 1 «Adolescence» character or event, reveal it, put it in your hand, and put the rest into your waiting room. Afterwards, you may put this card into memory. If you do, at the beginning of your next draw phase, choose 1 "Momentary Mirage, Ransel Girl" in your memory and put it in any position on the stage.
+EndCard
+
+Character: SBY/W114-081
+Name To the Ideal World, Ransel Girl & Sakuta Azusagawa
+JPName 理想の世界へ ランドセルガール＆梓川 咲太
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Adolescence
+Auto:
+{
+
+}
+Text Auto: [(2) Return this card to your hand] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your other characters and return it to your hand.
+EndCard
+
+Character: SBY/W114-082
+Name Incredible Karte, Shoko Makinohara
+JPName 不可思議のカルテ 牧之原 翔子
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Adolescence
+Trait2 Mystery
+Cont:
+{
+
+}
+Text Cont: If you are level 3 or higher, this card gets the following ability. "Act:
+EndCard
+
+Character: SBY/W114-083
+Name Incredible Karte, Tomoe Koga
+JPName 不可思議のカルテ 古賀 朋絵
+Color B
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Adolescence
+Trait2 Smartphone
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Tomoe Koga, Petite Devil Kouhai", put it in any position on the stage, and shuffle your deck.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your "Tomoe Koga, Petite Devil Kouhai", and that character gets +2500 power and +1 soul until end of turn.
+Act:
+{
+
+}
+Text Act: [Put a "Tomoe Koga, Petite Devil Kouhai" from your hand to the waiting room, Rest this card] Choose a character in your waiting room and return it to your hand.
+EndCard
+
+Character: SBY/W114-084
+Name Incredible Karte, Rio Futaba
+JPName 不可思議のカルテ 双葉 理央
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 3500
+Soul 1
+Trait1 Adolescence
+Trait2 Science
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times level of that character.
+Act:
+{
+
+}
+Text Act: [Put this card in the waiting room] Choose 1 of your opponent's characters, move it to another open position on your opponent's stage, choose 1 of your "Rio Futaba, Logical Witch", and that character gets +3500 power and the following ability until end of turn. "Auto: [Put 2 cards from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, deal 1 damage to your opponent."
+EndCard
+
+Character: SBY/W114-085
+Name Younger Cute Girl, Shoko Makinohara
+JPName 年下のかわいらしい女の子 牧之原 翔子
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Adolescence
+Trait2 Mystery
+Cont:
+{
+
+}
+Text Cont: If the number of «Adolescence» characters you have is 4 or more, this card gets -1 level while in your hand.
+Cont:
+{
+
+}
+Text Cont: This card gets +1000 power for each marker under this card
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, you may choose an «Adolescence» character in your waiting room and put it face down underneath this card as a marker.
+EndCard
+
+Character: SBY/W114-086
+Name First Love Girl, Shoko Makinohara
+JPName ハツコイ少女 牧之原 翔子
+Color B
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Adolescence
+Trait2 Mystery
+Act:
+{
+
+}
+Text Act: [(1) Put this card in the waiting room] Choose 1 "Shoko Makinohara, Respective Choice" in your waiting room, put it in the position this card was in, and that character gets +2500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may send that character to memory."
+EndCard
+
+Character: SBY/W114-087
+Name Deja Vu, Ransel Girl
+JPName デジャヴ ランドセルガール
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 3000
+Soul 1
+Trait1 Adolescence
+Trait2 Ransel
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] If this card is in the waiting room and you are level 1 or higher, at the beginning of your climax phase, you may pay the cost. If you do, put it in any position in the center stage.
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is higher than the level of your opponent, you may put that character on the bottom of the deck. If you do, put this card on the bottom of the deck.
+EndCard
+
+Character: SBY/W114-088
+Name Lookalike, Ransel Girl
+JPName 瓜二つの姿 ランドセルガール
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 5000
+Soul 1
+Trait1 Adolescence
+Trait2 Ransel
+Auto:
+{
+
+}
+Text Auto: When your other «Adolescence» attacks, this card gets +3000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if there's a climax in your climax area and you have another «Adolescence» character, reveal the top card of your deck. If it's either an «Adolescence» character or an event, put it in your hand.
+EndCard
+
+Character: SBY/W114-089
+Name Confronting Mother, Sakuta Azusagawa
+JPName 母に向き合う 梓川 咲太
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 8000
+Soul 2
+Trait1 Adolescence
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, put the top card of your clock in your stock, and this card gets +3000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [(3) Put 1 card from your hand to the waiting room] At the end of this card's attack, if you have another "Future Promise, Mai Sakurajima" in the center stage, you may pay the cost. If you do, deal 4 damage to your opponent.
+EndCard
+
+Character: SBY/W114-090
+Name Who Are You, Old Man?, Ransel Girl
+JPName おじさん、だあれ？ ランドセルガール
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Adolescence
+Trait2 Ransel
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, draw up to 2 cards, and discard a card from your hand to the waiting room.
+Auto:
+{
+
+}
+Text Auto: [Return this card to your hand] AT the start of your climax phase, you may pay the cost. If you do, choose up to 1 "Mysterious Girl, Ransel Girl" in your hand and put it in the position this card was in.
+EndCard
+
+Character: SBY/W114-091
+Name The World Where Only I Am Missing, Sakuta Azusagawa
+JPName 僕だけがいない世界 梓川 咲太
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Adolescence
+Cont:
+{
+
+}
+Text Cont: This cannot be chosen as target of opponent's effects.
+Auto:
+{
+
+}
+Text Auto: MEMORY [(1) Put this card into memory] At the beginning of your climax phase, if you are level 2 or higher and there is a "Feelings Wished to Be Expressed, Sakuta Azusagawa" in your memory, you may pay the cost. If you do, choose 1 "Benefit of the Divorce Papers, Sakuta Azusagawa" in your waiting room and put it in the position this card was in.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your characters, and that character gets +1500 power until end of turn.
+EndCard
+
+Character: SBY/W114-092
+Name Hair Blowing in the Wind, Ransel Girl
+JPName なびく髪 ランドセルガール
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Adolescence
+Trait2 Ransel
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your «Adolescence» characters, and that character gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your «Adolescence» characters, and that character gets +1500 power until end of turn.
+EndCard
+
+Character: SBY/W114-093
+Name Incredible Elementary School Student, Ransel Girl
+JPName 不可思議な小学生 ランドセルガール
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Adolescence
+Trait2 Ransel
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose a character in your opponent's backstage whose level is higher than the level of your opponent. That character does not stand during your opponent's next stand phase.
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Adolescence» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SBY/W114-094
+Name Lost Child, Ransel Girl
+JPName 迷子 ランドセルガール
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Adolescence
+Trait2 Ransel
+Auto:
+{
+
+}
+Text Auto: When your climax is placed on your climax area, choose up to 2 of your characters, and those characters get +1000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: CxCombo When "Lost in Life" is placed on your climax area, if the number of other characters you have is 3 or more, choose 1 of your other characters, and that character gets the following ability until end of turn. "Auto: This ability activates up to once per turn. When damage dealt by this card is canceled, look at up to the top 4 cards of your deck, choose up to 2 level 1 or higher cards among them, reveal them, put them in your hand, and put the rest in the Waitign Room."
+EndCard
+
+Character: SBY/W114-095
+Name Day They Became Family, Sakuta's Mother & Sakuta Azusagawa & Kaede Azusagawa
+JPName 家族になれた日 咲太の母＆梓川 咲太＆梓川 花楓
+Color B
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Adolescence
+Trait2 Parent-child
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, all your other «Adolescence» characters get +1000 power.
+Auto:
+{
+
+}
+Text Auto: [clock] ALARM If this card is on top of your clock and the number of «Adolescence» characters you have is 4 or more, at the beginning of your climax phase, draw up to 2 cards, and discard 2 cards from your hand to the waiting room.
+EndCard
+
+Character: SBY/W114-096
+Name Coffee Break, Rio Futaba
+JPName コーヒータイム 双葉 理央
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Adolescence
+Trait2 Science
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your opponent's level 1 or higher characters, your opponent chooses a level X or lower character in their waiting room and exchange the chosen characters. X equals level of the character you chose this way -1.
+EndCard
+
+Character: SBY/W114-097
+Name Ransel-Carrying Girl, Ransel Girl
+JPName ランドセルを背負った少女 ランドセルガール
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Adolescence
+Trait2 Ransel
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, if there's a climax in your opponent's climax area, choose 1 of your «Adolescence» characters in battle, and that character gets +2000 power until end of turn.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Event: SBY/W114-098
+Name Mutual Feelings
+JPName 届いた想い
+Color B
+Level 2
+Cost 0
+Effect:
+{
+
+}
+Text You may pay the cost. If you do, choose 1 'Future Promise, Mai Sakurajima' in your waiting room, put it in any position on the stage, and that character gets the following ability until end of turn. 'Cont: This cannot be chosen as target of opponent's effects.'"
+EndCard
+
+Climax: SBY/W114-099
+Name To Get Over It On One's Own
+JPName 自分で乗り越えるために
+*GateClimax
+EndCard
+
+Climax: SBY/W114-100
+Name Lost in Life
+JPName 人生の迷子
+*GateClimax
+EndCard
+
