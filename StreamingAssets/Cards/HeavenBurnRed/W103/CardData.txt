@@ -108,7 +108,7 @@ Power 500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31C
-*GlobalPower(500,Serpah)
+*GlobalPower(500,Seraph)
 Auto: OnTriggerCheckClimax
 {
     PayCost Discard 1 IsClimax

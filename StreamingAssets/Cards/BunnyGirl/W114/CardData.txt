@@ -35,7 +35,7 @@ Cont: GiveSelf
     MultiplyXValue 1000
     GainPower X
 }
-Text Cont: This card gets +1000 power for each of your other «Adolescence» characters in the backstage
+Text Cont: This card gets +1000 powe for each of your other «Adolescence» characters in the backstage
 Auto: OnPlay
 {
     MultipleChoiceQuestion Choose 1 of the following 2 effect and perform it.\n1: You may put the top card of your clock in the waiting room.\n2: Your opponent puts the top 10 cards of their deck in the waiting room, and this card gets +3000 power until end of turn.|1|2
@@ -238,7 +238,7 @@ Cont: GiveSelf
     MultiplyXValue 1000
     GainPower X
 }
-Text Cont: This card gets +1000 power for each of your other «Adolescence» characters in the backstage
+Text Cont: This card gets +1000 powe for each of your other «Adolescence» characters in the backstage
 Auto: OnAttack
 {
     If Climax Feelings Inside Never Revealed
@@ -447,7 +447,7 @@ Cont: GiveSelf
     MultiplyXValue 1500
     GainPower X
 }
-Text Cont: This card gets +1500 power for each of your opponent's backstage characters
+Text Cont: This card gets +1500 powe for each of your opponent's backstage characters
 *OnOtherAttackedSacrificeToGivePower(1500,Adolescence)
 EndCard
 
@@ -989,7 +989,7 @@ Auto: OnAttack
             }
         }
         //Check if cost can be paid before trying to pay it
-        If Compare X 5 OrMore 
+        If Compare X 5 OrMore
         {
             Question Pay the cost of the effect ?
             If Yes
@@ -1010,7 +1010,7 @@ Auto: OnAttack
                         //X + y = 5 <=> 5 - X = y
                         //5 - X = y <=> -X + 5 = y
                         Message Discard cards to have a total of 5 discarded card.
-                        Discard X Not NameEquals Beachside Encounter, Ransel Girl
+                        Discard X Any
                         Burn 2
                         Burn 5
                     }
@@ -1186,12 +1186,28 @@ Trait1 Adolescence
 Trait2 Science
 Cont: InHand
 {
-
+    If LocationContains OpponentStage 1 Compare ThatCardsLevel 3 OrMore
+    {
+        LoseLevel 1
+    }
 }
 Text Cont: If your opponent has a level 3 or higher character, this card gets -1 level while in your hand.
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Adolescence
+    {
+        Question Mill the top card of your opponent's deck ?
+        If Yes
+        {
+            MillOpponent 1
+            TargetLocation OpponentCenterStage
+            NarrowTargets CanBeChosen && Compare ThatCardsLevel 3 OrLess
+            ChooseCharacterFromTargets Choose a character to return to hand.
+            Bounce
+        }
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's an «Adolescence» character, you may put the top card of your opponent's deck in the waiting room. If you do, choose a level 3 or lower character in your opponent's center stage and put it on top of the deck.
 EndCard
@@ -1202,11 +1218,22 @@ JPName 会いたい人の元に
 Color G
 Level 2
 Cost 2
+Requirement StageContains 1 NameContains ランドセルガール
+Text If you have no character with "Ransel Girl" in its card name, you cannot play this card from your hand.
 Effect:
 {
-
+    MoveCard Memory
 }
-Text MEMORY [Turn this card face up card face down] If this card is in your memory, at the beginning of your draw phase, you may pay the cost. If you do, deal 2 damage to your opponent.
+Text Put this card into memory.
+Auto: StartDrawPhase
+{
+    PayCost FlipSelfFaceDown
+    {
+        Burn 2
+    }
+}
+InMemory
+Text Auto: MEMORY [Flip this face up card face down] If this card is in your memory, at the beginning of your draw phase, you may pay the cost. If you do, deal 2 damage to your opponent.
 EndCard
 
 Climax: SBY/W114-045
@@ -1231,16 +1258,26 @@ Power 1500
 Soul 1
 Trait1 Adolescence
 Trait2 Cuisine
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Clock
+    {
+        SearchDeck Compare ThatCardsLevel 1 OrLess && IsCharacter
+    }
 }
 Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
-Auto:
+Auto: OnEndOfAttack|OnReversed
 {
-
+    If LocationContainsOrLess Memory 1 Any
+    {
+        Question Put this card into memory ?
+        If Yes
+        {
+            MoveCard Memory
+        }
+    }
 }
-Text Auto: At the end of the battle in which this card attacked or when this card becomes reversed in battle, if there is 1 or less card in your memory, you may Put this card into memory.
+Text Auto: At the end of this card's attack or when this card becomes reverse in battle, if there is 1 or less card in your memory, you may put this card into memory.
 EndCard
 
 Character: SBY/W114-048
@@ -1253,16 +1290,33 @@ Power 3500
 Soul 1
 Trait1 Adolescence
 Trait2 Cuisine
-Auto:
+Combo Sudden Warm Gaze
+Auto: OnAttack
 {
-
+    If Climax Sudden Warm Gaze && StageContains 2 Other && HasTrait Adolescence
+    {
+        *CheckAndAdd(3)
+    }
 }
-Text Auto: CxCombo When this card attacks, if "Sudden Warm Gaze" is in your climax area and the number of other «Adolescence» characters you have is 2 or more, look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
-Auto:
+Text Auto: CxCombo When this card attacks, if "Sudden Warm Gaze" is in your climax area and the number of other «Adolescence» characters you have is 2 or more, look at up to the top 3 cards of your deck, choose up to 1 card among them, put it in your hand, and put the rest into your waiting room.
+Auto: OnAttack
 {
-
+    If LocationContains Memory 1 NameEquals Compounding Memories, Mai Sakurajima
+    {
+        GainPower 3000
+        GainSpecialEffect DoubleTrigger
+        ScheduleEffectForTargets OnEndOfAttack
+        {
+            Effect:
+            {
+                LosePower 3000
+                TargetTop Stock 1
+                MoveCard WaitingRoom
+            }
+        }
+    }
 }
-Text Auto: MEMORY When this card attacks, if "Compounding Memories, Mai Sakurajima" is in your memory, this card gets +3000 power for the attack, and perform trigger check twice during this card attack's trigger Step. After the two trigger checks are made, put the top card of your stock in the waiting room.
+Text Auto: MEMORY When this card attacks, if "Compounding Memories, Mai Sakurajima" is in your memory, this card gets +3000 power until end of this card's attack, and perform trigger check twice during this card attack's trigger Step. After the two trigger checks are made, put the top card of your stock in the waiting room.
 EndCard
 
 Character: SBY/W114-049
@@ -1276,14 +1330,30 @@ Power 10000
 Soul 2
 Trait1 Adolescence
 Trait2 Cuisine
-Auto:
+Combo Kiss Between the Two of Us
+*Healer
+Auto: OnAttack
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
-Auto:
-{
-
+    If Climax Kiss Between the Two of Us && LocationContainsOrLess Hand 5 Any &&& StageContains 3 Other
+    {
+        PayCost 1 Discard 1 Any
+        {
+            SetXValue 2
+            If LocationContainsWithDifferentNames Memory 4 Any
+            {
+                SetXValue 3
+            }
+            Repeat X
+            {
+                MillOpponentBottom 2
+                NarrowTargets IsClimax
+                If HasTarget
+                {
+                    Burn 2
+                }
+            }
+        }
+    }
 }
 Text Auto: CxCombo MEMORY [(1) Put an «Adolescence» character from your hand to the waiting room] When this card attacks, if "Kiss Between the Two of Us" is in your climax area, there are 5 or less cards in your hand, and the number of other characters you have is 3 or more, you may pay the cost. If you do, perform the following action X times. "Put the bottom 2 cards of your opponent's deck in the waiting room. If there's a climax among them, deal 2 damage to your opponent." X equals 2 if there are 3 or less different card names among cards in your memory and X equals 3 if there are 4 or more different card names among cards in your memory.
 EndCard
@@ -1298,16 +1368,18 @@ Power 1500
 Soul 1
 Trait1 Adolescence
 Trait2 Animal
-Auto:
+*OnAttackGivePower(1500,Adolescence)
+Auto: OnReverseOpponent
 {
-
+    If LocationContainsOrLess Backstage 0 Any
+    {
+        RevealExactly Deck 2
+        ChooseCardsFromTargets 0 1 IsCharacter && Compare ThatCardsLevel 0 OrLess
+        PlaceOnStage false false true false
+        PutTheRestIntoTheWaitingRoom
+    }
 }
-Text Auto: When this card attacks, choose 1 of your «Adolescence» characters, and that character gets +1500 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: When this card's battle opponent becomes reverse, if you have no other characters in the backstage, look at the top 2 cards of your deck and search for up to 1 level 0 or lower «Adolescence» character, put it in any position in the backstage, and put the rest into your waiting room.
+Text Auto: When this card's battle opponent becomes reverse, if you have no other characters in backstage, look at the top 2 cards of your deck, choose up to 1 level 0 or lower «Adolescence» character among them, place it into any position in your backstage, and put the rest into your waiting room.
 EndCard
 
 Character: SBY/W114-051
@@ -1320,16 +1392,16 @@ Power 1000
 Soul 1
 Trait1 Adolescence
 Trait2 Animal
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchLocationForTargets WaitingRoom 0 1 Compare ThatCardsLevel 0 OrLess && IsCharacter && HasTrait Adolescence
+        PlaceOnStage false true true false
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a level 0 or lower «Adolescence» character in your waiting room and put it in any position on your stage.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, choose 1 of your characters, and that character gets +4000 power until end of turn.
+*OnAttackGivePower(4000,Any)
 EndCard
 
 Character: SBY/W114-052
@@ -1342,16 +1414,15 @@ Power 2000
 Soul 1
 Trait1 Adolescence
 Trait2 Cuisine
-Auto:
+*RedLevel1Bomb
+Auto: OnReversed
 {
-
+    PayCost 1 Discard 1 Any &&& SendSelf Memory
+    {
+        SearchDeck IsCharacter && HasTrait Adolescence
+    }
 }
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, you may reverse that character.
-Auto:
-{
-
-}
-Text Auto: [(1) Put 1 card from your hand to waiting room, Put this card into memory] When this card becomes reversed in battle, you may pay the cost. If you do, search your deck for up to 1 «Adolescence» character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto: [(1) Put 1 card from your hand to waiting room, put this card into memory] When this card becomes reversed in battle, you may pay the cost. If you do, search your deck for up to 1 «Adolescence» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SBY/W114-053
@@ -1365,21 +1436,35 @@ Power 3500
 Soul 1
 Trait1 Adolescence
 Trait2 Cuisine
-Cont:
+*LevelAssist
+Auto: OnPlay
 {
-
-}
-Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times level of that character.
-Auto:
-{
-
+    If StageContains 4 Other && HasTrait Adolescence
+    {
+        *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait Adolescence)
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, if the number of other «Adolescence» characters you have is 4 or more, you may choose an «Adolescence» character in your waiting room and put it in your stock.
-Auto:
+Auto: OnTriggerCheckClimax
 {
-
+    IfOther HasTrigger Door
+    {
+        If LocationContainsWithDifferentNames Memory 2 Any
+        {
+            PeekTop OpponentDeck
+            Question Place this card on the bottom of the deck? (Press no to return it to the top)
+            If Yes
+            {
+                MoveCardToBottom OpponentDeck
+            }
+            If No
+            {
+                EndPeek
+            }
+        }
+    }
 }
-Text Auto: MEMORY When your climax with a Comeback trigger icon is triggered, if there are 2 or more differently named cards in your memory, look at the top card of your opponent's deck, put it either on top or bottom of the deck, choose 1 of your characters, and that character gets +1500 power until end of turn.
+Text Auto: MEMORY When your characters' trigger check reveal a climax with a Door trigger icon, if there are 2 or more cards with different names in your memory, look at the top card of your opponent's deck, put it either on top or bottom of the deck, choose 1 of your characters, and that character gets +1500 power until end of turn.
 EndCard
 
 Character: SBY/W114-054
@@ -1393,16 +1478,33 @@ Power 10000
 Soul 2
 Trait1 Adolescence
 Trait2 Cuisine
-Auto:
+Combo Someday We'll Be Family
+Auto: OnPlay|PlacedBy Mutual Feelings
 {
-
+    SearchWaitingRoom NameEquals Someday We'll Be Family
+    TargetSelf
+    GainPower 1000
 }
 Text Auto: CxCombo When this card is placed on the stage from your hand or by effect of "Mutual Feelings" to the stage, choose up to 1 "Someday We'll Be Family" in your waiting room and return it to your hand, and this card gets +1000 power until end of turn.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Someday We'll Be Family && StageContains 1 Other && HasTrait Adolescence
+    {
+        UntilEndOfOpponentsTurn
+        GainEffect
+        {
+            Auto: OnFacingAttacks
+            {
+                Repeat 3
+                {
+                    *Scry
+                }
+            }
+            Text Auto: When the character facing this card attacks, perform the following action 3 times. 'Look at the top card of your deck, and put it either on top of the deck or in the waiting room.'
+        }
+    }
 }
-Text Auto: CxCombo[//B] When this card attacks, if "Someday We'll Be Family" is in your climax area and you have another «Adolescence» character, this card gets the following ability until the end of your opponent's next turn. "Auto: When the character facing this card attacks, perform the following action 3 times. 'Look at the top card of your deck, and put it either on top of the deck or in the waiting room.'"
+Text Auto: CxCombo When this card attacks, if "Someday We'll Be Family" is in your climax area and you have another «Adolescence» character, this card gets the following ability until the end of your opponent's next turn. "Auto: When the character facing this card attacks, perform the following action 3 times. 'Look at the top card of your deck, and put it either on top of the deck or in the waiting room.'"
 EndCard
 
 Character: SBY/W114-055
@@ -1416,14 +1518,24 @@ Power 10000
 Soul 2
 Trait1 Adolescence
 Trait2 Fashionable
-Cont:
+Combo Museninaccyau
+Cont: GiveAll
 {
-
+    If Climax Museninaccyau
+    {
+        GainPower 1500
+    }
 }
 Text Cont: CxCombo If "Museninaccyau" is in your climax area, all of your characters get +1500 power.
-Auto:
+Auto: StartMyEncoreStep
 {
-
+    If InLocation CenterStage && AllOpponentsReversed
+    {
+        PayCost 2
+        {
+            Burn 2
+        }
+    }
 }
 Text Auto: [(2)] At the beginning of your encore step, if this card is in the center stage, and either your opponent has no characters in their center stage or all of your opponent's center stage characters are reversed, you may pay the cost. If you do, deal 2 damage to your opponent.
 EndCard
@@ -1438,16 +1550,15 @@ Power 1500
 Soul 1
 Trait1 Adolescence
 Trait2 Fashionable
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsCharacter && HasTrait Adolescence
+    {
+        DrawCard
+    }
 }
 Text Auto: [Put an «Adolescence» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw a card.
-Auto:
-{
-
-}
-Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose an «Adolescence» character in your waiting room and return it to your hand.
+*OnPlayTradeClimaxForCharacter(Adolescence)
 EndCard
 
 Character: SBY/W114-057
@@ -1459,14 +1570,23 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Adolescence
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchLocationForTargets Clock 1 1 Any
+        MoveCard Hand
+        TargetTop Deck
+        MoveCard Clock
+    }
 }
 Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchWaitingRoom NameEquals Mutual Feelings
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Mutual Feelings" in your waiting room and return it to your hand.
 EndCard
@@ -1481,14 +1601,14 @@ Power 2000
 Soul 1
 Trait1 Adolescence
 Trait2 Animal
-Auto:
+*OnPlayGiveOtherPower(1000,Adolescence)
+Auto: OnClimaxPlay
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your other «Adolescence» characters, and that character gets +1000 power until end of turn.
-Auto:
-{
-
+    PayCost SendSelf Hand
+    {
+        *Scry
+        *GiveCharacterPower(1500,Any)
+    }
 }
 Text Auto: [Return this card to your hand] When your climax is placed on your climax area, you may pay the cost. If you do, look at the top card of your deck, put it either on top of the deck or in the waiting room, choose 1 of your characters, and that character gets +1500 power until end of turn.
 EndCard
@@ -1503,16 +1623,17 @@ Power 2500
 Soul 1
 Trait1 Adolescence
 Trait2 Cuisine
-Auto:
+Auto: OnPlay
 {
-
+    GainPower 3000
+    If LocationContainsOrLess Memory 0 IsColor Red
+    {
+        SearchLocationForTargets WaitingRoom 0 1 NameEquals Compounding Memories, Mai Sakurajima
+        MoveCard Memory
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, this card gets +3000 power until end of turn, and if there's no Red card in your memory, choose up to 1 "Compounding Memories, Mai Sakurajima" in your waiting room and send it to memory.
-Auto:
-{
-
-}
-Text Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform trigger check twice during this card attack's trigger Step.
+*OnAttackPay1ToDoubleTrigger
 EndCard
 
 Character: SBY/W114-060
@@ -1526,16 +1647,21 @@ Power 2500
 Soul 1
 Trait1 Adolescence
 Trait2 Animal
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    PayCost 2 Send 1 WaitingRoom Any
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen && EarlyPlay
+        If HasTarget
+        {
+            ChooseCharacterFromTargets choose 1 of your opponent's characters whose level is higher than your opponent's level and put it in waiting room.
+            MoveCard WaitingRoom
+        }
+    }
 }
-Text Auto: [(2) Put 1 character from your stage in the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+Text Auto: [(2) Put 1 character from your stage in the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
+Backup 2500
 EndCard
 
 Character: SBY/W114-061
@@ -1549,16 +1675,25 @@ Power 5000
 Soul 2
 Trait1 Adolescence
 Trait2 Cuisine
-Auto:
+Auto: OnAttack
 {
-
+    If LocationContainsWithDifferentNames Memory 2 Any
+    {
+        TargetLocation OpponentStage
+        SetXValue TargetCount
+        MultiplyXValue 1500
+        TargetSelf
+        GainPower X
+    }
 }
-Text Auto: MEMORY When this card attacks, if there are 2 or more differently named cards in your memory, this card gets +X power until end of turn. X equals 1500 times the number of your opponent's characters.
-Act:
+Quick
+Text Auto: MEMORY When this card attacks, if there are 2 or more cards with different names in your memory, this card gets +X power until end of turn. X equals 1500 times the number of your opponent's characters.
+Act: SendSelf Memory
 {
-
+    SearchDeck NameEquals One Year Spent With You, Mai Sakurajima || NameEquals Incredible Karte, Mai Sakurajima
 }
-Text Act: [send this card standing card to memory] Search your deck for up to 1 "One Year Spent With You, Mai Sakurajima" or "Incredible Karte, Mai Sakurajima", reveal it, put it in your hand, and shuffle your deck.
+ActivationRequirement CardPosition Stand
+Text Act: [Put this card stand to memory] Search your deck for up to 1 "One Year Spent With You, Mai Sakurajima" or "Incredible Karte, Mai Sakurajima", reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SBY/W114-062
@@ -1572,14 +1707,24 @@ Power 6000
 Soul 2
 Trait1 Adolescence
 Trait2 Animal
-Cont:
+Cont: GiveAll
 {
-
+    If MyTurn && Other && HasTrait Adolescence
+    {
+        GainPower 1000
+    }
 }
 Text Cont: During your turn, all your other «Adolescence» characters get +1000 power.
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 2 Other && HasTrait Adolescence
+    {
+        GainPower 3500
+        GainEffect
+        {
+            *HandEncoreTrait(Adolescence)
+        }
+    }
 }
 Text Cont: If the number of other «Adolescence» characters you have is 2 or more, this card gets +3500 power and "Auto: ENCORE [Put an «Adolescence» character from your hand to the waiting room]".
 EndCard
@@ -1595,14 +1740,23 @@ Power 10000
 Soul 2
 Trait1 Adolescence
 Trait2 Animal
-Auto:
+Auto: OnPlay
 {
-
+	*PlayCharacterFromHand(Compare ThatCardsLevel MyLevel OrLess)
+	GainPower 2000
 }
 Text Auto: When this card is placed on the stage from your hand, choose up to 1 character in your hand whose level is equal to or lower than your level and put it in any position on the stage, and that character gets +2000 power until end of turn.
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 2
+    {
+        TargetLocation OpponentStock
+        SetXValue TargetCount
+        MoveCard OpponentDeck
+        ShuffleLocation OpponentDeck
+        TargetTop OpponentDeck X
+        MoveCard Stock
+    }
 }
 Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, your opponent returns all cards from their stock to their deck, shuffles that deck, and puts the same number of cards from top of their deck in their stock.
 EndCard
@@ -1617,14 +1771,25 @@ Power 1500
 Soul 1
 Trait1 Adolescence
 Trait2 Animal
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    UntilEndOfOpponentsTurn
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            GainSpecialEffect CannotMove
+        }
+        Text Cont: This cannot move to another position.
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters, and that character gets the following ability until the end of your opponent's next turn. "Cont: This cannot move to another position."
-Act:
+Act: 1 SendSelf WaitingRoom
 {
-
+    *Check4Add1(Adolescence)
 }
 Text Act: [(1) Put this card in the waiting room] Look at up to the top 4 cards of your deck, choose up to 1 «Adolescence» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
@@ -1639,16 +1804,21 @@ Power 2000
 Soul 1
 Trait1 Adolescence
 Trait2 Cuisine
-Auto:
+*OnAttackGivePowerForEachOther(1000,Adolescence)
+Auto: OnPlay
 {
-
+    If LocationContains Memory 1 NameEquals Irreplaceable Existence, Mai Sakurajima
+    {
+        TargetTop Deck 1
+		Reveal
+		IfTarget IsCharacter && HasTrait Adolescence || IsEvent
+		{
+			MoveCard Hand
+			Discard 1 Any
+		}
+    }
 }
-Text Auto: When this card attacks, choose 1 of your other «Adolescence» characters, and that character gets +X power until end of turn. X equals 1000 times soul of that character.
-Auto:
-{
-
-}
-Text Auto: MEMORY When this card is placed on the stage from your hand, if "Mai Sakurajima, Irreplaceable Existence" is in your memory, reveal the top card of your deck. If it's either an «Adolescence» character or an event, put it in your hand and discard a card from your hand to the waiting room.
+Text Auto: MEMORY When this card is placed on the stage from your hand, if "Irreplaceable Existence, Mai Sakurajima" is in your memory, reveal the top card of your deck. If it's either an «Adolescence» character or an event, put it in your hand and discard a card from your hand to the waiting room.
 EndCard
 
 Character: SBY/W114-066
@@ -1661,16 +1831,25 @@ Power 2000
 Soul 1
 Trait1 Adolescence
 Trait2 Cuisine
-Auto:
+Auto: OnTriggerCheckClimax
 {
-
+    IfOther HasTrigger Door
+    {
+        TargetLocation Stage
+        ChooseCharactersFromTargets 0 2 Choose up to 2 characters to give +1000 power.
+        GainPower 1000
+    }
 }
-Text Auto: When your climax with a Comeback trigger icon is triggered, choose up to 2 of your characters, and those characters get +1000 power until end of turn.
-Act:
+Text Auto: When your character's trigger check reveals a climax with a Door trigger icon, choose up to 2 of your characters, and those characters get +1000 power until end of turn.
+Act: 1 SendSelf Memory
 {
-
+    If Compare MyLevel 2 OrMore
+    {
+        *CheckAndAdd(2)
+    }
 }
-Text Act: [(1) send this card standing card to memory] If you are level 2 or higher, look at up to the top 2 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
+ActivationRequirement CardPosition Stand
+Text Act: [(1) Put this card stand to memory] If you are level 2 or higher, look at up to the top 2 cards of your deck, choose up to 1 cards among them, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: SBY/W114-067
@@ -1998,7 +2177,7 @@ Cont:
 {
 
 }
-Text Cont: This card gets +1000 power for each marker under this card
+Text Cont: This card gets +1000 powe for each marker under this card
 Auto:
 {
 
