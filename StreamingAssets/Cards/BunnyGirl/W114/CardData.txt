@@ -1862,11 +1862,17 @@ Power 2000
 Soul 1
 Trait1 Adolescence
 Trait2 Cuisine
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        TargetLocation WaitingRoom
+        NarrowTargets NameEquals Future Promise, Mai Sakurajima
+        SetXValue TargetCount
+        SearchWaitingRoom IsCharacter && HasTrait Adolescence && Compare ThatCardsLevel X OrLess
+    }
 }
-Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from hand to this card stage, you may pay the cost. If you do, choose a level X or lower «Adolescence» character in your waiting room and return it to your hand. X equals the number of "Future Promise, Mai Sakurajima" in your waiting room.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a level X or lower «Adolescence» character in your waiting room and return it to your hand. X equals the number of "Future Promise, Mai Sakurajima" in your waiting room.
 EndCard
 
 Character: SBY/W114-068
@@ -1878,14 +1884,29 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Adolescence
-Auto:
+Auto: OnPlay
 {
-
+	If LocationContainsOrLess OpponentCenterStage 1 Any
+	{
+		TargetLocation OpponentCenterStage
+		NarrowTargets CanBeChosen && Compare ThatCardsCost 0 OrLess
+		MoveCard WaitingRoom
+	}
 }
-Text Auto: When this card is placed on the stage from your hand, if there is 1 or less character in your opponent's center stage, you may choose a cost 0 or lower character in your opponent's center stage and put it in the waiting room.
-Auto:
+Text Auto: When this card is placed on the stage from your hand, if your opponent has 1 or less characters in their center stage, choose 1 cost 0 or lower character in your opponent's center stage, and put it into their waiting room.
+Auto: OnAttack
 {
-
+    If AllYourCharacters HasTrait Adolescence
+    {
+        Peek Deck 2
+		If HasTarget
+		{
+			Message Choose a card to put back on top. 
+			ChooseCardsFromTargets 1 1 Any
+			MoveCard Deck
+			PutTheRestIntoTheWaitingRoom
+		}
+    }
 }
 Text Auto: When this card attacks, if all of your characters are «Adolescence», look at up to the top 2 cards of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room.
 EndCard
@@ -1900,14 +1921,28 @@ Power 3000
 Soul 1
 Trait1 Adolescence
 Trait2 Cuisine
-Auto:
+Auto: OnReversed
 {
-
+	TargetTop Deck 1
+	Reveal
+	If Compare TargetCardsLevel 2 OrHigher
+	{
+		Question_Obvious Rest this card?
+		If Yes
+		{
+			TargetSelf
+			Rest
+		}
+	}
 }
-Text Auto: This ability activates up to once per turn. When this card becomes reversed in battle, reveal the top card of your deck. If it's level 2 or higher, you may Rest this card.
-Auto:
+TimesPerTurn 1
+Text Auto: This ability activates up to once per turn. When this card becomes reversed in battle, reveal the top card of your deck. If that card is a level 2 or higher card, you may rest this card.
+Auto: StartClimaxPhase
 {
-
+    If LocationContains Memory 1 Any
+    {
+        *GiveCharacterPower(3000,Adolescence)
+    }
 }
 Text Auto: MEMORY At the beginning of your climax phase, if there's a card in your memory, choose 1 of your «Adolescence» characters, and that character gets +3000 power until end of turn.
 EndCard
@@ -1923,16 +1958,8 @@ Power 2000
 Soul 1
 Trait1 Adolescence
 Trait2 Cuisine
-Auto:
-{
-
-}
-Text Auto: When you use this card's BACKUP, choose 1 of your characters in battle, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, send that character to memory."
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 2000, level 1 [(1) Put this card from hand to the waiting room]
+*MemoryBackup
+Backup 2000
 EndCard
 
 Character: SBY/W114-071
@@ -1945,16 +1972,18 @@ Power 6000
 Soul 1
 Trait1 Adolescence
 Trait2 Animal
-Auto:
+Auto: OnOtherAttacks
 {
-
+    IfOther HasTrait Adolescence
+    {
+        SetXToNumberOfCharacters HasTrait Adolescence && Other
+        MultiplyXValue 500
+        GainPower X
+    }
 }
+Quick
 Text Auto: When your other «Adolescence» character attacks, this card gets +X power until end of turn. X equals 500 times the number of your other «Adolescence» characters.
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+*HandEncore
 EndCard
 
 Character: SBY/W114-072
@@ -1967,19 +1996,29 @@ Trigger Soul
 Power 5500
 Soul 1
 Trait1 Adolescence
-Cont:
+*Level3Assist
+Auto: StartClimaxPhase
 {
-
-}
-Text Cont: ASSIST Your level 3 or higher characters in front of this card get +2000 power.
-Auto:
-{
-
+    If Compare MarkersUnderThis 3 OrMore
+    {
+        SetXValue MarkersUnderThis
+        ForcePayCost SendMarkers X WaitingRoom
+        {
+            Burn 1
+        }
+    }
 }
 Text Auto: At the beginning of your climax phase, if there are 3 or more markers under this card, put all markers from under this card in the waiting room, and deal 1 damage to your opponent.
-Auto:
+Auto: OnCancel
 {
-
+    If Phase Attack && Not MyTurn && StageContains 1 Other && NameEquals Future Promise, Mai Sakurajima &&& Compare MarkersUnderThis 2 OrLess
+    {
+        SearchLocationForTargets WaitingRoom 0 1 IsCharacter && HasTrait Adolescence
+        If HasTarget
+        {
+            Marker_FaceDown
+        }
+    }
 }
 Text Auto: During your opponent's attack phase, when damage taken by you is canceled, if you have another "Future Promise, Mai Sakurajima", and there are 2 or less cards between all cards in your markers, you may choose an «Adolescence» character in your waiting room and put it face down underneath this card as a marker.
 EndCard
