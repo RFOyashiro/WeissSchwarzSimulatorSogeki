@@ -5,7 +5,9 @@ SetName: Bunny Girl Senpai (W64)
 Folder: BunnyGirl/W77
 Prefix: SBY/W77
 SetName: Dreaming Girl (W77)
-
+Folder: BunnyGirl/W114
+Prefix: SBY/W114
+SetName: Rascal Series (W114)
 Folder: Dengeki Bunko/BunnyGirl
 Prefix: GBY/WS02
 SetName: Dengeki Bunny Girl Senpai (WS02)

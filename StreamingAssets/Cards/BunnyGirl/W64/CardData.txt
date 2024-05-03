@@ -248,7 +248,7 @@ Trait1 Adolescence
 Trait2 Fashionable
 Cont: GiveAll
 {
-	If MyTurn && Other && NameContains Mai|Nodoka
+	If MyTurn && Other && NameContains 麻衣|のどか
 	{
 		GainPower 1000
 	}
@@ -256,7 +256,7 @@ Cont: GiveAll
 Text Cont: During your turn, all of your other characters with "Mai" or "Nodoka" in its card name get +1000 power.
 Act: 2 RestSelf 
 {
-	SearchWaitingRoom IsCharacter && NameContains Mai|Nodoka
+	SearchWaitingRoom IsCharacter && NameContains 麻衣|のどか
 }
 Text Act: [(2) Rest this card] Choose 1 character in your waiting room with "Mai" or "Nodoka" in its card name, and return it to your hand.
 EndCard
@@ -482,7 +482,7 @@ Cost 1
 Counter
 Effect: 
 {
-	SearchLocationForTargets Deck 0 2 IsCharacter && NameContains Mai|Nodoka
+	SearchLocationForTargets Deck 0 2 IsCharacter && NameContains 麻衣|のどか
 	MoveCard Hand
 	ShuffleLocation Deck 
 	Discard 1 Any
@@ -752,6 +752,7 @@ Trait2 Smartphone
 Auto: OnPlay|OnOtherPlacedOnStageFromHand
 {
 	Peek Deck 1
+	EndPeek
 }
 Text Auto: When your other 《Adolescence》 character or this card is placed on the stage from your hand, you may look at the top card of your deck. 
 EndCard
@@ -822,7 +823,7 @@ Trait1 Adolescence
 Act: RestSelf 
 {
 	TargetLocation Stage
-	NarrowTargets NameContains Shoko
+	NarrowTargets NameContains 翔子
 	GainPower 1500
 }
 Text Act: [Rest this card] Choose 1 character with "Shoko" in its card name, it gets +1500 power until end of turn.
@@ -956,7 +957,7 @@ Name Looping World
 Color G
 Level 2
 Cost 6
-Requirement StageContains 1 NameContains Tomoe
+Requirement StageContains 1 NameContains 朋絵
 Effect:
 {
 	If Compare MyLevel 2 OrLower && Compare OpponentsLevel 2 OrLower 
@@ -1256,7 +1257,7 @@ Auto: OnPlay
 {
 	PayCost Discard 1 Any
 	{
-		SearchWaitingRoom NameContains Mai|Nodoka
+		SearchWaitingRoom NameContains 麻衣|のどか
 	}
 }
 Text Auto: [Put 1 card from your hand into your waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 character in your waiting room with "Mai" or "Nodoka" in its card name, and return it to your hand.
@@ -1975,6 +1976,213 @@ EndCard
 Climax: SBY/W64-E100
 Name Blue-Filled Vision
 *GateClimax
+EndCard
+
+Character: SBY/W64-101
+Name SD Nodoka Toyohama
+JPName SD 豊浜 のどか
+Color Y
+Level 2
+Cost 1
+Power 4500
+Soul 1
+Trigger Soul
+Trait1 Adolescence
+Trait2 Fashionable
+*LevelAssist
+*OnPlayGiveOtherPower(1500,Any)
+EndCard
+
+Character: SBY/W64-102
+Name SD Kaede Azusagawa
+JPName SD 梓川 かえで
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Adolescence
+Trait2 Animal
+Auto: OnPlay
+{
+	TargetTop Deck 1
+	Reveal
+	IfTarget Compare ThatCardsLevel 1 OrMore
+	{
+		TargetSelf
+		GainSoul 1
+	}
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is level 1 or higher, this card gets +1 soul until end of turn.
+Auto: OnAttack
+{
+    PayCost Discard 1 Any
+    {
+        TargetLocation Stage
+        NarrowTargets Other && HasTrait Adolescence
+        ChooseCharacterFromTargets Choose a character to return to hand.
+        Bounce
+    }
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, choose 1 of your other «Adolescence» characters and return it to your hand.
+EndCard
+
+Character: SBY/W64-103
+Name SD Tomoe Koga
+JPName SD 古賀 朋絵
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Adolescence
+Trait2 Smartphone
+*OnPlayGainPower(1500)
+Auto: OnAttack
+{
+	PayCost ShuffleFromWaitingRoom 2 IsCharacter
+	{
+		GainPower 2000
+	}
+}
+Text Auto: [Return 2 characters from your waiting room to your deck, shuffle your deck] When this card attacks, you may pay the cost. If you do, this card gets +2000 power until end of turn.
+EndCard
+
+Character: SBY/W64-104
+Name SD Mai Sakurajima
+JPName SD 桜島 麻衣
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+*PowerOnMyTurn(2000)
+Auto: OnPlay
+{
+	PayCost Discard 1 IsClimax
+	{
+		SearchLocationForTargets WaitingRoom 1 1 Compare ThatCardsCost 0 OrLess && Compare ThatCardsLevel MyLevel OrLess && IsCharacter && HasTrait Adolescence
+		PlaceOnStage false true true false
+	}
+}
+Text Auto: [Put 1 climax from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 «Adolescence» character in your waiting room whose level is equal or lower than your level and whose cost is 0 or lower and place it into any position on your stage.
+EndCard
+
+Character: SBY/W64-105
+Name SD Rio Futaba
+JPName SD 双葉 理央
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Adolescence
+Trait2 Science
+Cont: GiveAll
+{
+	If Other && StageContainsOrLess 1 Other
+	{
+		GainPower 1500
+	}
+}
+Text Cont: If the number of other characters you have is 1 or less, all your other characters get +1500 power.
+Auto: OnPlay
+{
+	If LocationContainsOrLess OpponentCenterStage 1 Any
+	{
+		TargetLocation OpponentCenterStage
+		NarrowTargets CanBeChosen && Compare ThatCardsCost 0 OrLower
+		MoveCardToBottom OpponentDeck
+	}
+}
+Text Auto: When this card is placed on the stage from your hand, if your opponent has 1 or less characters in their center stage, choose 1 cost 0 or lower character in your opponent's center stage, and put it into the bottom of their deck.
+EndCard
+
+Character: SBY/W64-106
+Name SD Shoko Makinohara
+JPName SD 牧之原 翔子
+Color B
+Level 2
+Cost 1
+Power 7500
+Soul 1
+Trigger Soul
+Trait1 Adolescence
+Trait2 Mystery
+*GainPowerWhenOtherAttacks(1500,Adolescence)
+EndCard
+
+Character: SBY/W64-P01
+Name Fascinating invitation, Mai Sakurajima
+JPName 魅惑の誘い 桜島 麻衣
+Color R
+Level 2
+Cost 1
+Power 7000
+Soul 1
+Trigger Soul
+Trait1 Adolescence
+Trait2 Cuisine
+*OnPlayGainPowerForEach(1000,Adolescence)
+Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
+{
+	PayCost 1
+	{
+		SearchWaitingRoom IsCharacter
+	}
+}
+Text Auto: [(1)] When this card's level 2 or higher battle opponent becomes reverse, you may pay the cost. If you do, choose 1 character in your waiting room and return it to your hand.
+EndCard
+
+Character: SBY/W64-P02
+Name Summer Memories, Mai Sakurajima
+JPName 夏の思い出 桜島 麻衣
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+Auto: OnPlay
+{
+	PayCost HandClock IsCharacter && HasTrait Adolescence
+	{
+		*CheckAndAdd(3)
+	}
+}
+Text Auto: [Put 1 «Adolescence» character from your hand into clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 card among them, add it to your hand and put the rest into waiting room.
+EndCard
+
+Character: SBY/W64-P03
+Name Autumn Visit, Mai Sakurajima
+JPName 秋の訪れ 桜島 麻衣
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+*PowerOnMyTurn(1000)
+Auto: OnPlay
+{
+	If StageContains 1 Other && HasTrait Adolescence
+	{
+		TargetTop Deck 2
+		If Compare TargetCount 2 OrMore
+		{
+			Reorder
+		}
+		Else
+		{
+			View
+		}
+	}
+}
+Text Auto: When this card is placed on the stage from your hand, if you have another «Adolescence» character, look at up to 2 cards from the top of your deck and return them in any order.
 EndCard
 
 Character: SBY/W64-TE01

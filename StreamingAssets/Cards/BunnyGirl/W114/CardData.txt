@@ -2023,6 +2023,31 @@ Auto: OnCancel
 Text Auto: During your opponent's attack phase, when damage taken by you is canceled, if you have another "Future Promise, Mai Sakurajima", and there are 2 or less cards between all cards in your markers, you may choose an «Adolescence» character in your waiting room and put it face down underneath this card as a marker.
 EndCard
 
+Event: SBY/W114-073a
+Name Many Memories
+JPName 思い出の数々
+Color R
+Level 2
+Cost 1
+Effect:
+{
+    MoveCard Memory
+    SearchWaitingRoom NameContains 麻衣
+    SearchWaitingRoom NameContains 麻衣
+    Discard 1 Any
+    If LocationContains WaitingRoom 6 HasTrigger && IsClimax
+    {
+        PayCost 1
+        {
+            Refresh
+            DrawCard
+            Discard 1 Any
+        }
+    }
+}
+Text Put this card into memory.\nChoose up to 2 characters with "Mai" in its card name in your waiting room and return them to your hand. Put 1 card from your hand into waiting room.\n[(1)] If you 6 or more climax with a Door trigger icon in your waiting room, you may pay the cost. If you do, return all cards from your waiting room in your deck, shuffle your deck, draw a card and put 1 card from your hand into waiting room.
+EndCard
+
 Climax: SBY/W114-074
 Name Sudden Warm Gaze
 JPName 突然の熱視線
@@ -2057,14 +2082,41 @@ Power 1500
 Soul 1
 Trait1 Adolescence
 Trait2 Science
-Auto:
+Auto: OnPlay
 {
-
+	PayCost 1
+	{
+		Message Search your deck for up to 1 climax.
+		SearchLocationForTargets Deck 0 1 IsClimax
+		If HasTarget
+		{
+			RevealTargets
+			SaveTargets
+			Message Choose a climax in your hand.
+			SearchLocationForTargets Hand 1 1 IsClimax
+			If HasTarget
+			{
+				RevealTargets
+				MoveCard Deck
+				LoadTargets
+				MoveCard Hand
+			}
+			Else
+			{
+				MoveCard Deck
+				ShuffleLocation Deck
+			}
+		}
+		ShuffleLocation Deck
+	}
 }
-Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 climax card, reveal it, choose up to 1 climax in your hand, reveal it, exchange the revealed climax cards, and shuffle your deck.
-Auto:
+Text Auto: [(1)] When this is placed on stage from hand, you may pay the cost. If you do, search your deck for up to 1 climax, show it to your opponent, then choose up to 1 climax in your hand, reveal it to your opponent, exchange them, and shuffle your deck afterwards.
+Auto: OnSentFromStageToWaitingRoom
 {
-
+    PayCost Discard 1 Any
+    {
+        *Check4Add1Level1OrHigher
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
@@ -2079,14 +2131,22 @@ Power 1500
 Soul 1
 Trait1 Adolescence
 Trait2 Mystery
-Cont:
+Cont: GiveSelf
 {
-
+    If Not MyTurn && LocationContains Hand 4 Any
+    {
+        GainLevel 1
+        GainPower 1500
+        GainEffect
+        {
+            *RunInFrontOfCharacter
+        }
+    }
 }
-Text Cont: During your opponent's turn, if there are 4 or more cards in your hand, this card gets +1 level, +1500 power, and the following ability. "Auto: At the beginning of your opponent's attack phase, you may move this card to an open position in the center stage with an opponent's character Opposite that position.
-Act:
+Text Cont: During your opponent's turn, if there are 4 or more cards in your hand, this card gets +1 level, +1500 power, and the following ability. "Auto: At the beginning of your opponent's attack phase, you may move this card to an open position of your center stage with a character facing it."
+Act: Discard 1 Any &&& SendSelf WaitingRoom
 {
-
+    SearchWaitingRoom IsCharacter && HasTrait Adolescence
 }
 Text Act: [Put 1 card from your hand to the waiting room, put this card in the waiting room] Choose an «Adolescence» character in your waiting room and return it to your hand.
 EndCard
@@ -2101,16 +2161,38 @@ Power 3500
 Soul 1
 Trait1 Adolescence
 Trait2 Ransel
-Cont:
+Combo To Get Over It On One's Own
+*PowerOnMyTurn(3000)
+Auto: OnEndOfAttack
 {
-
+    If Climax To Get Over It On One's Own && StageContains 2 Other && HasTrait Adolescence
+    {
+        RevealExactly Deck 1
+        ChooseCardsFromTargets 0 1 IsCharacter && HasTrait Adolescence || IsEvent
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+        Question Put this card into memory?
+        If Yes
+        {
+            MoveCard Memory
+            ScheduleEffect StartDrawPhase
+            {
+                Effect:
+                {
+                    TargetLocation Memory
+                    NarrowTargets NameEquals Momentary Mirage, Ransel Girl
+                    FirstTarget
+                    If HasTarget
+                    {
+                        Message Momentary Mirage, Ransel Girl returns from memory.
+                        PlaceOnStage false true true false
+                    }
+                }
+            }
+        } 
+    }
 }
-Text Cont: During your turn, this card gets +3000 power.
-Auto:
-{
-
-}
-Text Auto: CxCombo At the end of this card's attack, if "To Get Over It On One's Own" is in your climax area and the number of other «Adolescence» characters you have is 2 or more, look at the top card of your deck and search for up to 1 «Adolescence» character or event, reveal it, put it in your hand, and put the rest into your waiting room. Afterwards, you may put this card into memory. If you do, at the beginning of your next draw phase, choose 1 "Momentary Mirage, Ransel Girl" in your memory and put it in any position on the stage.
+Text Auto: CxCombo At the end of this card's attack, if "To Get Over It On One's Own" is in your climax area and the number of other «Adolescence» characters you have is 2 or more, look at the top card of your deck, choose up to 1 «Adolescence» character or event among it, reveal it, put it in your hand, and put the rest into your waiting room. Afterwards, you may put this card into memory. If you do, at the beginning of your next draw phase, choose 1 "Momentary Mirage, Ransel Girl" in your memory and put it in any position on the stage.
 EndCard
 
 Character: SBY/W114-081
@@ -2122,9 +2204,15 @@ Cost 0
 Power 1000
 Soul 1
 Trait1 Adolescence
-Auto:
+Auto: StartOpponentAttackPhase
 {
-
+    PayCost 2 SendSelf Hand
+    {
+        TargetLocation Stage
+        NarrowTargets Other
+        ChooseCharacterFromTargets Choose a character to return to your hand.
+        Bounce
+    }
 }
 Text Auto: [(2) Return this card to your hand] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your other characters and return it to your hand.
 EndCard
@@ -2139,11 +2227,27 @@ Power 2000
 Soul 1
 Trait1 Adolescence
 Trait2 Mystery
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare MyLevel 3 OrMore
+    {
+        GainEffect
+        {
+            Act: 1 SendSelf WaitingRoom
+            {
+                SearchLocationForTargets Hand 0 1 NameEquals Irreplaceable Existence, Shoko Makinohara
+                If HasTarget
+                {
+                    Change
+                    UntilEndOfOpponentsTurn
+                    GainPower 1500
+                }
+            }
+            Text Act: [(1) Put this card into waiting room] Choose up to 1 "Irreplaceable Existence, Shoko Makinohara" in your hand, place it in the position this card was in and that character gets +1500 power until end of your opponent's next turn.
+        }
+    }
 }
-Text Cont: If you are level 3 or higher, this card gets the following ability. "Act:
+Text Cont: If you are level 3 or higher, this card gets the following ability. "Act: [(1) Put this card into waiting room] Choose up to 1 "Irreplaceable Existence, Shoko Makinohara" in your hand, place it in the position this card was in and that character gets +1500 power until end of your opponent's next turn."
 EndCard
 
 Character: SBY/W114-083
@@ -2156,21 +2260,30 @@ Power 1500
 Soul 1
 Trait1 Adolescence
 Trait2 Smartphone
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchLocationForTargets Deck 0 1 NameEquals Petit Devil Kouhai, Tomoe Koga
+        PlaceOnStage false true true false
+        ShuffleLocation Deck
+    }
 }
-Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Tomoe Koga, Petite Devil Kouhai", put it in any position on the stage, and shuffle your deck.
-Act:
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Petit Devil Kouhai, Tomoe Koga", put it in any position on the stage, and shuffle your deck.
+Act: RestSelf
 {
-
+    TargetLocation Stage
+    NarrowTargets NameEquals Petit Devil Kouhai, Tomoe Koga
+    ChooseCharacterFromTargets Choose a "Petit Devil Kouhai, Tomoe Koga" to give +2500 power and +1 soul.
+    GainPower 2500
+    GainSoul 1
 }
-Text Act: [Rest this card] Choose 1 of your "Tomoe Koga, Petite Devil Kouhai", and that character gets +2500 power and +1 soul until end of turn.
-Act:
+Text Act: [Rest this card] Choose 1 of your "Petit Devil Kouhai, Tomoe Koga", and that character gets +2500 power and +1 soul until end of turn.
+Act: Discard 1 NameEquals Petit Devil Kouhai, Tomoe Koga &&& RestSelf
 {
-
+    SearchWaitingRoom IsCharacter
 }
-Text Act: [Put a "Tomoe Koga, Petite Devil Kouhai" from your hand to the waiting room, Rest this card] Choose a character in your waiting room and return it to your hand.
+Text Act: [Put a "Petit Devil Kouhai, Tomoe Koga" from your hand to the waiting room, rest this card] Choose a character in your waiting room and return it to your hand.
 EndCard
 
 Character: SBY/W114-084
@@ -2184,16 +2297,33 @@ Power 3500
 Soul 1
 Trait1 Adolescence
 Trait2 Science
-Cont:
+*LevelAssist
+Act: SendSelf WaitingRoom
 {
-
+    If LocationContainsOrLess OpponentStage 4 Any &&& LocationContains OpponentStage 1 Any
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen
+        ChooseCharacterFromTargets Choose a character to move to an open position.
+        MoveToOpenPosition true true
+    }
+    TargetLocation Stage
+    NarrowTargets NameEquals Logical Witch, Rio Futaba
+    ChooseCharacterFromTargets Choose a "Logical Witch, Rio Futaba" to give +3500 power and the effect.
+    GainPower 3500
+    GainEffect
+    {
+        Auto: OnAttack
+        {
+            PayCost Discard 2 Any
+            {
+                Burn 1
+            }
+        }
+        Text Auto: [Put 2 cards from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, deal 1 damage to your opponent.
+    }
 }
-Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times level of that character.
-Act:
-{
-
-}
-Text Act: [Put this card in the waiting room] Choose 1 of your opponent's characters, move it to another open position on your opponent's stage, choose 1 of your "Rio Futaba, Logical Witch", and that character gets +3500 power and the following ability until end of turn. "Auto: [Put 2 cards from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, deal 1 damage to your opponent."
+Text Act: [Put this card in the waiting room] Choose 1 of your opponent's characters, move it to another open position on your opponent's stage, choose 1 of your "Logical Witch, Rio Futaba", and that character gets +3500 power and the following ability until end of turn. "Auto: [Put 2 cards from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, deal 1 damage to your opponent."
 EndCard
 
 Character: SBY/W114-085
@@ -2207,24 +2337,22 @@ Power 9000
 Soul 2
 Trait1 Adolescence
 Trait2 Mystery
-Cont:
+*EarlyPlay4OrMore(Adolescence)
+Cont: GiveSelf
 {
-
+    SetXValue MarkersUnderThis
+    MultiplyXValue 1000
+    GainPower X
 }
-Text Cont: If the number of «Adolescence» characters you have is 4 or more, this card gets -1 level while in your hand.
-Cont:
+Text Cont: This card gets +1000 power for each marker under this card
+*Healer
+Auto: OnReverseOpponent
 {
-
-}
-Text Cont: This card gets +1000 powe for each marker under this card
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
-Auto:
-{
-
+    SearchLocationForTargets WaitingRoom 0 1 IsCharacter && HasTrait Adolescence
+    If HasTarget
+    {
+        Marker_FaceDown
+    }
 }
 Text Auto: When this card's battle opponent becomes reverse, you may choose an «Adolescence» character in your waiting room and put it face down underneath this card as a marker.
 EndCard
@@ -2239,11 +2367,32 @@ Power 5000
 Soul 1
 Trait1 Adolescence
 Trait2 Mystery
-Act:
+Act: 1 SendSelf WaitingRoom
 {
-
+    SearchLocationForTargets WaitingRoom 1 1 NameEquals Respective Choices, Shoko Makinohara
+    If HasTarget
+    {
+        Change
+        GainPower 2500
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                TargetBattleOpponent
+                IfTarget OnStage
+                {
+                    Question Put that character in memory ?
+                    If Yes
+                    {
+                        MoveCard Memory
+                    }
+                }
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may send that character to memory.
+        }
+    }
 }
-Text Act: [(1) Put this card in the waiting room] Choose 1 "Shoko Makinohara, Respective Choice" in your waiting room, put it in the position this card was in, and that character gets +2500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may send that character to memory."
+Text Act: [(1) Put this card in the waiting room] Choose 1 "Respective Choices, Shoko Makinohara" in your waiting room, put it in the position this card was in, and that character gets +2500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may send that character to memory."
 EndCard
 
 Character: SBY/W114-087
@@ -2257,16 +2406,19 @@ Power 3000
 Soul 1
 Trait1 Adolescence
 Trait2 Ransel
-Auto:
+Auto: StartClimaxPhase
 {
-
+    If Compare MyLevel 1 OrMore
+    {
+        PayCost 1 Discard 1 Any
+        {
+            PlaceOnStage false true true false
+        }
+    }
 }
+InWaitingRoom
 Text Auto: [(1) Put 1 card from your hand to the waiting room] If this card is in the waiting room and you are level 1 or higher, at the beginning of your climax phase, you may pay the cost. If you do, put it in any position in the center stage.
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is higher than the level of your opponent, you may put that character on the bottom of the deck. If you do, put this card on the bottom of the deck.
+*BlueEarlyPlayBomb
 EndCard
 
 Character: SBY/W114-088
@@ -2280,14 +2432,18 @@ Power 5000
 Soul 1
 Trait1 Adolescence
 Trait2 Ransel
-Auto:
+*GainPowerWhenOtherAttacks(3000,Adolescence)
+Auto: OnAttack
 {
-
-}
-Text Auto: When your other «Adolescence» attacks, this card gets +3000 power until end of turn.
-Auto:
-{
-
+    If LocationContains Climax 1 Any &&& StageContains 1 Other && HasTrait Adolescence
+    {
+        TargetTop Deck 1
+        Reveal
+        IfTarget IsEvent || IsCharacter && HasTrait Adolescence
+        {
+            MoveCard Hand
+        }
+    }
 }
 Text Auto: When this card attacks, if there's a climax in your climax area and you have another «Adolescence» character, reveal the top card of your deck. If it's either an «Adolescence» character or an event, put it in your hand.
 EndCard
@@ -2302,14 +2458,26 @@ Trigger Soul
 Power 8000
 Soul 2
 Trait1 Adolescence
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        TargetTop Clock 1
+        MoveCard Stock
+        TargetSelf
+        GainPower 3000
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, put the top card of your clock in your stock, and this card gets +3000 power until end of turn.
-Auto:
+Auto: OnEndOfAttack
 {
-
+    If StageContains 1 Other && NameEquals Future Promise, Mai Sakurajima && InLocation CenterStage
+    {
+        PayCost 3 Discard 1 Any
+        {
+            Burn 4
+        }
+    }
 }
 Text Auto: [(3) Put 1 card from your hand to the waiting room] At the end of this card's attack, if you have another "Future Promise, Mai Sakurajima" in the center stage, you may pay the cost. If you do, deal 4 damage to your opponent.
 EndCard
@@ -2325,16 +2493,19 @@ Power 10000
 Soul 2
 Trait1 Adolescence
 Trait2 Ransel
-Auto:
+*OnPlayDraw2Discard1
+Auto: StartClimaxPhase
 {
-
+    PayCost SendSelf Hand
+    {
+        SearchLocationForTargets Hand 0 1 NameEquals Mysterious Girl, Ransel Girl
+        If HasTarget
+        {
+            Change
+        }
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, draw up to 2 cards, and discard a card from your hand to the waiting room.
-Auto:
-{
-
-}
-Text Auto: [Return this card to your hand] AT the start of your climax phase, you may pay the cost. If you do, choose up to 1 "Mysterious Girl, Ransel Girl" in your hand and put it in the position this card was in.
+Text Auto: [Return this card to your hand] At the beginning of your climax phase, you may pay the cost. If you do, choose up to 1 "Mysterious Girl, Ransel Girl" in your hand and put it in the position this card was in.
 EndCard
 
 Character: SBY/W114-091
@@ -2346,21 +2517,23 @@ Cost 0
 Power 500
 Soul 1
 Trait1 Adolescence
-Cont:
+*HexProof
+Auto: StartClimaxPhase
 {
-
-}
-Text Cont: This cannot be chosen as target of opponent's effects.
-Auto:
-{
-
+    If Compare MyLevel 2 OrMore && LocationContains Memory 1 NameEquals Feelings Wished to Be Expressed, Sakuta Azusagawa
+    {
+        PayCost 1 SendSelf Memory
+        {
+            SearchLocationForTargets WaitingRoom 1 1 NameEquals Benefit of the Divorce Papers, Sakuta Azusagawa
+            If HasTarget
+            {
+                Change
+            }
+        }
+    }
 }
 Text Auto: MEMORY [(1) Put this card into memory] At the beginning of your climax phase, if you are level 2 or higher and there is a "Feelings Wished to Be Expressed, Sakuta Azusagawa" in your memory, you may pay the cost. If you do, choose 1 "Benefit of the Divorce Papers, Sakuta Azusagawa" in your waiting room and put it in the position this card was in.
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your characters, and that character gets +1500 power until end of turn.
+*RestGivePower(1500,Any)
 EndCard
 
 Character: SBY/W114-092
@@ -2373,16 +2546,8 @@ Power 1000
 Soul 1
 Trait1 Adolescence
 Trait2 Ransel
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your «Adolescence» characters, and that character gets +1500 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, choose 1 of your «Adolescence» characters, and that character gets +1500 power until end of turn.
+*OnPlayGivePower(1500,Adolescence)
+*OnAttackGivePower(1500,Adolescence)
 EndCard
 
 Character: SBY/W114-093
@@ -2395,16 +2560,15 @@ Power 1500
 Soul 1
 Trait1 Adolescence
 Trait2 Ransel
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation OpponentBackstage
+    NarrowTargets CanBeChosen && EarlyPlay
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    DontStand
 }
 Text Auto: When this card is placed on the stage from your hand, choose a character in your opponent's backstage whose level is higher than the level of your opponent. That character does not stand during your opponent's next stand phase.
-Auto:
-{
-
-}
-Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Adolescence» character, reveal it, put it in your hand, and shuffle your deck.
+*DropSearch(Adolescence)
 EndCard
 
 Character: SBY/W114-094
@@ -2417,14 +2581,33 @@ Power 1500
 Soul 1
 Trait1 Adolescence
 Trait2 Ransel
-Auto:
+Combo Lost in Life
+Auto: OnClimaxPlay
 {
-
+    TargetLocation Stage
+	ChooseCharactersFromTargets 0 2 Choose up to 2 characters to give +1000 power.
+	GainPower 1000
 }
 Text Auto: When your climax is placed on your climax area, choose up to 2 of your characters, and those characters get +1000 power until end of turn.
-Auto:
+Auto: OnSpecificClimaxPlay Lost in Life
 {
-
+    If StageContains 3 Other
+    {
+        TargetLocation Stage
+        NarrowTargets Other
+        ChooseCharacterFromTargets Choose a character to give the effect.
+        GainEffect
+        {
+            Auto: OnDamageCanceled
+            {
+                RevealUpTo Deck 4
+                ChooseCardsFromTargets 0 2 Compare ThatCardsLevel 1 OrMore
+                RevealTargets
+                MoveCard Hand
+                PutTheRestIntoTheWaitingRoom
+            }
+        }
+    }
 }
 Text Auto: CxCombo When "Lost in Life" is placed on your climax area, if the number of other characters you have is 3 or more, choose 1 of your other characters, and that character gets the following ability until end of turn. "Auto: This ability activates up to once per turn. When damage dealt by this card is canceled, look at up to the top 4 cards of your deck, choose up to 2 level 1 or higher cards among them, reveal them, put them in your hand, and put the rest in the Waitign Room."
 EndCard
@@ -2439,16 +2622,25 @@ Power 2500
 Soul 1
 Trait1 Adolescence
 Trait2 Parent-child
-Cont:
+Cont: GiveAll
 {
-
+    If Not MyTurn && Other && HasTrait Adolescence
+    {
+        GainPower 1000
+    }
 }
 Text Cont: During your opponent's turn, all your other «Adolescence» characters get +1000 power.
-Auto:
+Auto: StartClimaxPhase
 {
-
+    If StageContains 4 HasTrait Adolescence
+    {
+        *OptionalDraw
+        *OptionalDraw
+        Discard 2 Any
+    }
 }
-Text Auto: [clock] ALARM If this card is on top of your clock and the number of «Adolescence» characters you have is 4 or more, at the beginning of your climax phase, draw up to 2 cards, and discard 2 cards from your hand to the waiting room.
+Alarm
+Text Auto: ALARM If this card is on top of your clock and the number of «Adolescence» characters you have is 4 or more, at the beginning of your climax phase, draw up to 2 cards, and discard 2 cards from your hand to the waiting room.
 EndCard
 
 Character: SBY/W114-096
@@ -2461,9 +2653,15 @@ Power 4500
 Soul 1
 Trait1 Adolescence
 Trait2 Science
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        TargetLocation OpponentStage
+		NarrowTargets Compare ThatCardsLevel 1 OrMore && CanBeChosen
+		ChooseCharacterFromTargets_Optional Choose up to 1 character to downgrade.
+		*Downgrade
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your opponent's level 1 or higher characters, your opponent chooses a level X or lower character in their waiting room and exchange the chosen characters. X equals level of the character you chose this way -1.
 EndCard
@@ -2479,16 +2677,17 @@ Power 2500
 Soul 1
 Trait1 Adolescence
 Trait2 Ransel
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    If LocationContains OpponentClimax 1 Any
+    {
+        TargetMyCharacterInBattle
+        GainPower 2000
+    }
 }
+Quick
 Text Auto: When you use this card's BACKUP, if there's a climax in your opponent's climax area, choose 1 of your «Adolescence» characters in battle, and that character gets +2000 power until end of turn.
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+Backup 2500
 EndCard
 
 Event: SBY/W114-098
@@ -2499,9 +2698,27 @@ Level 2
 Cost 0
 Effect:
 {
-
+    MultipleChoiceQuestion Choose 1 of the following 2 effect and perform it.\n1: Choose up to 2 of your characters and those characters get +2500 power until end of turn."\n2: [(1) Put 1 of your character from your stage into waitng room, put 1 stand 'Feelings Wished to Be Expressed, Sakuta Azusagawa' from your stage into memory] You may pay the cost. If you do, choose 1 'Future Promise, Mai Sakurajima' in your waiting room, put it in any position on the stage, and that character gets the following ability until end of turn. 'Cont: This cannot be chosen as target of opponent's effects.'"|1|2
+    If Answer 0
+    {
+        TargetLocation Stage
+        ChooseCharactersFromTargets 0 2 Choose up to to characters to give +2500 power.
+        GainPower 2500
+    }
+    If Answer 1
+    {
+        PayCost 1 Send 1 WaitingRoom Any &&& Send 1 Memory NameEquals Feelings Wished to Be Expressed, Sakuta Azusagawa && CardPosition Stand
+        {
+            SearchLocationForTargets WaitingRoom 1 1 NameEquals Future Promise, Mai Sakurajima
+            PlaceOnStage false true true false
+            GainEffect
+            {
+                *HexProof
+            }
+        }
+    }
 }
-Text You may pay the cost. If you do, choose 1 'Future Promise, Mai Sakurajima' in your waiting room, put it in any position on the stage, and that character gets the following ability until end of turn. 'Cont: This cannot be chosen as target of opponent's effects.'"
+Text Choose 1 of the following 2 effect and perform it.\n"Choose up to 2 of your characters and those characters get +2500 power until end of turn."\n"[(1) Put 1 of your character from your stage into waitng room, put 1 stand 'Feelings Wished to Be Expressed, Sakuta Azusagawa' from your stage into memory] You may pay the cost. If you do, choose 1 'Future Promise, Mai Sakurajima' in your waiting room, put it in any position on the stage, and that character gets the following ability until end of turn. 'Cont: This cannot be chosen as target of opponent's effects.'"
 EndCard
 
 Climax: SBY/W114-099
@@ -2516,3 +2733,48 @@ JPName 人生の迷子
 *GateClimax
 EndCard
 
+Character: SBY/W114-P01
+Name Walking Into the Future, Mai Sakurajima
+JPName 歩んでいく未来 桜島 麻衣
+Color R
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Adolescence
+Trait2 Cuisine
+*GainPowerForEachOther(500,Adolescence)
+*GainPowerWhenAttackingLevel2(6000)
+EndCard
+
+Character: SBY/W114-P03
+Name Uniform, Kaede Azusagawa
+JPName 制服姿 梓川 花楓
+Color Y
+Level 2
+Cost 1
+Power 6500
+Soul 1
+Trigger Soul
+Trait1 Adolescence
+Trait2 Animal
+Auto: OnPlay
+{
+    TargetLocation Stage
+    NarrowTargets Other && HasTrait Adolescence
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        *OnAttackPay1ToDoubleTrigger
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your other «Adolescence» characters and that character gets the followign ability until end of turn. "[(1)] When this card attacks, you may pay the cost, perform the trigger check twice during this attack."
+Act: SendSelf WaitingRoom
+{
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to return to hand.
+    Bounce
+}
+Text Act: [Put this card into waiting room] Choose 1 of your opponent's character and return it to their hand.
+EndCard

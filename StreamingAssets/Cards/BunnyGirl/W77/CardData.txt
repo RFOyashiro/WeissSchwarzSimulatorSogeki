@@ -123,7 +123,7 @@ Auto: StartOpponentAttackPhase
 	PayCost 1
 	{
 		TargetLocation Stage
-		NarrowTargets NameContains Sakuta
+		NarrowTargets NameContains 咲太
 		AddSelfToTargets 
 		Exchange
 	}
@@ -278,7 +278,7 @@ Auto: OnSentFromStageToWaitingRoom
 {
 	PayCost 2
 	{
-		SearchWaitingRoom IsCharacter && NameContains Shoko
+		SearchWaitingRoom IsCharacter && NameContains 翔子
 	}
 }
 Text Auto: [(2)] When this card is put into your waiting room from the stage, you may pay the cost. If you do, choose 1 character in your waiting room with "Shoko" in its card name, and return it to your hand.
@@ -545,7 +545,7 @@ Act: RestSelf
 	If Not HasMarker 
 	{
 		Message Choose a marker.
-		SearchLocationForTargets WaitingRoom 1 1 NameContains Mai && IsCharacter
+		SearchLocationForTargets WaitingRoom 1 1 NameContains 麻衣 && IsCharacter
 		Marker_FaceUp
 	}
 }
@@ -956,7 +956,7 @@ Level 2
 Cost 1
 Effect: 
 {
-	ForcePayCost Rest 1 NameContains Sakuta && CardPosition Stand
+	ForcePayCost Rest 1 NameContains 咲太 && CardPosition Stand
 	{
 		SearchLocationForTargets Clock 1 1 HasTrait Adolescence
 		RevealTargets
@@ -1827,7 +1827,7 @@ Auto: OnPlay
 {
 	PayCost 2 
 	{
-		SearchDeck NameContains Sakuta && IsCharacter
+		SearchDeck NameContains 咲太 && IsCharacter
 	}
 }
 Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with "Sakuta" in its card name, reveal it to your opponent, put it into your hand, and shuffle your deck.
@@ -1878,7 +1878,7 @@ Text Cont: During your opponent's turn, all of your other 《Adolescence》 char
 Act: RestSelf 
 {
 	TargetLocation Stage 
-	NarrowTargets NameContains Futaba|Sakuta|Kunimi
+	NarrowTargets NameContains 双葉|咲太|国見
 	ChooseCharacterFromTargets Choose a character to give +1000 power.
 	GainPower 1000
 }
@@ -1914,7 +1914,7 @@ Power 5500
 Trait1 Adolescence
 Cont: GiveSelf 
 {
-	If Not StageContains 1 Other && NameContains Tomoe
+	If Not StageContains 1 Other && NameContains 朋絵
 	{
 		GainSpecialEffect CannotAttack 
 	}
