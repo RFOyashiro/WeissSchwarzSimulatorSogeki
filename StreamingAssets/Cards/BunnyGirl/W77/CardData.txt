@@ -2003,7 +2003,7 @@ Effect:
 	{
 		MoveCard Memory
 	}
-	*ExchangeCardInLevelWithWaitingRoom(Any, NameEquals Irreplaceable Existence, Shoko Makinohara)
+	*ExchangeCardInLevelWithWaitingRoom(Any, NameEquals Irreplaceable Existence\, Shoko Makinohara)
 }
 Text If "Future Plans" is not in your memory, put this card into your memory.\nYou may choose 1 card in your level and 1 "Irreplaceable Existence, Shoko Makinohara" in your waiting room, and exchange them.\nChoose 1 of your characters, it gets +2000 power until end of turn.
 Auto: OnLevelUp 

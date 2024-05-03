@@ -858,7 +858,7 @@ Soul 1
 Trait1 Adolescence
 Trait2 Smartphone
 Combo Hiding Embarrassment
-*OnClimaxPlayGivePower(1000,Any)
+*OnClimaxPlayGivePower(1000)
 Auto: OnSpecificClimaxPlay Hiding Embarrassment
 {
     If StageContains 2 Other && HasTrait Adolescence
@@ -2001,11 +2001,9 @@ Auto: StartClimaxPhase
 {
     If Compare MarkersUnderThis 3 OrMore
     {
-        SetXValue MarkersUnderThis
-        ForcePayCost SendMarkers X WaitingRoom
-        {
-            Burn 1
-        }
+        TargetLocation Marker
+        MoveCard WaitingRoom
+        Burn 1
     }
 }
 Text Auto: At the beginning of your climax phase, if there are 3 or more markers under this card, put all markers from under this card in the waiting room, and deal 1 damage to your opponent.
