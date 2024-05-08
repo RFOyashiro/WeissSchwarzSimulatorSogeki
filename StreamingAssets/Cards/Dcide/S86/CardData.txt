@@ -2370,7 +2370,7 @@ Effect:
     ChooseCharacterFromTargets Choose a character to rest.
     Rest
 }
-Text COUNTER Choose 1 of your opponent's characters and rest it.
+Text Counter: Choose 1 of your opponent's characters and rest it.
 EndCard
 
 Event: DCT/S86-097

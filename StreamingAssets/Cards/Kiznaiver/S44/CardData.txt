@@ -502,7 +502,7 @@ Effect:
     TargetSelf
     MoveCard Memory
 }
-Text COUNTER Choose 1 of your characters, and that character gets +3500 power and the following ability until end of turn. "Auto: [(1)] When a level 2 or higher battle opponent of this card becomes reversed, you may pay the cost. If you do, put the top card of your clock in the waiting room." Put this card into memory.
+Text Counter: Choose 1 of your characters, and that character gets +3500 power and the following ability until end of turn. "Auto: [(1)] When a level 2 or higher battle opponent of this card becomes reversed, you may pay the cost. If you do, put the top card of your clock in the waiting room." Put this card into memory.
 EndCard
 
 Climax: KI/S44-024
@@ -1603,7 +1603,7 @@ Effect:
     TargetLocation OpponentStage
     LoseSoul 1
 }
-Text COUNTER All your opponent's characters get -1 soul until end of turn.
+Text Counter: All your opponent's characters get -1 soul until end of turn.
 EndCard
 
 Climax: KI/S44-073
@@ -2083,7 +2083,7 @@ Effect:
 	ChooseCharacterFromTargets Choose a character to give +X power.
 	GainPower X
 }
-Text COUNTER Choose 1 of your characters, and that character gets +X power until end of turn. X equals 1000 times the number of your «Kizuna» characters.
+Text Counter: Choose 1 of your characters, and that character gets +X power until end of turn. X equals 1000 times the number of your «Kizuna» characters.
 EndCard
 
 Climax: KI/S44-098

@@ -468,7 +468,7 @@ Effect:
 	SetXValue TotalLevel
 	SearchWaitingRoom HasTrait Wonderlands × Showtime && Compare ThatCardsLevel X OrLess
 }
-Text COUNTER If you don't have a «Wonderlands × Showtime» character, this card cannot be played from hand.
+Text Counter: If you don't have a «Wonderlands × Showtime» character, this card cannot be played from hand.
 Text Put the top 2 cards of your deck into your waiting room, choose up to 1 level X or lower «Wonderlands × Showtime» character in your waiting room, and return it to your hand. X is equal to the total level of the cards put into your waiting room by this effect.
 EndCard
 
@@ -541,7 +541,7 @@ Effect:
         LoseSoul 3
     }
 }
-Text COUNTER [Put 1 "It's All Right, Everyone, KAITO" from your hand into waiting room] You may pay the cost. If you do, choose 1 of your opponent's character and that characters gets -3 souls.
+Text Counter: [Put 1 "It's All Right, Everyone, KAITO" from your hand into waiting room] You may pay the cost. If you do, choose 1 of your opponent's character and that characters gets -3 souls.
 EndCard
 
 Event: PJS/S109-023

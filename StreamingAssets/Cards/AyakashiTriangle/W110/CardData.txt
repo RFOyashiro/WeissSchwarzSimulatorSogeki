@@ -2268,14 +2268,12 @@ Trait2 Ayakashi
 Auto: OnPlay
 {
 	RevealUpTo Deck 4
-	AIChoice AddToHand
 	ChooseCardsFromTargets 0 1 IsEvent
 	If HasTarget
 	{
 		RevealTargets
 		MoveCard Hand
 		PutTheRestIntoTheWaitingRoom
-		CheckForEmptyDeck
 		Discard 1 Any
 	}
 	PutTheRestIntoTheWaitingRoom

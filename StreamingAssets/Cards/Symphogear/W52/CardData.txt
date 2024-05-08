@@ -1085,7 +1085,7 @@ Effect:
         Text Auto: When this card's battle opponent becomes reverse, you may put that character in clock.
     }
 }
-Text COUNTER Choose 1 of your characters with either "Kirika" or "Shirabe" in its card name, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character in clock."
+Text Counter: Choose 1 of your characters with either "Kirika" or "Shirabe" in its card name, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character in clock."
 EndCard
 
 Event: SG/W52-048

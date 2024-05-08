@@ -3066,7 +3066,7 @@ Effect:
     ChooseCharacterFromTargets Choose a character to get -3 souls.
     LoseSoul 3
 }
-Text COUNTER Choose 1 of your opponent's characters, and that character gets -3 souls until end of turn.
+Text Counter: Choose 1 of your opponent's characters, and that character gets -3 souls until end of turn.
 EndCard
 
 Climax: ALL/S76-097

@@ -778,7 +778,7 @@ Effect:
 		PlaceOnStage True True True False
     }
 }
-Text COUNTER You may choose 1 of your level 2 or higher characters with "Chris" in it's card name that isn't in battle and put it into your waiting room. If you do, choose a "Chris Yukine" in your waiting room and place it on any empty position on your stage.
+Text Counter: You may choose 1 of your level 2 or higher characters with "Chris" in it's card name that isn't in battle and put it into your waiting room. If you do, choose a "Chris Yukine" in your waiting room and place it on any empty position on your stage.
 EndCard
 
 Event: SG/W19-047
