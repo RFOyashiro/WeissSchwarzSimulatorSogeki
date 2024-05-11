@@ -1,0 +1,4 @@
+Series: Evangelion Rebuild 
+Folder: Evangelion/S12
+Prefix: EV/S12
+SetName: Evangelion Rebuild (S12)
