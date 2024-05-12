@@ -7,6 +7,7 @@ Repo of sets worked on by Sogeki
 - Black Rock Shooter
 - Day Break Illusion
 - D_Cide
+- Evangelion Rebuild
 - Heaven Burn Red
 - Kiznaiver
 - Osomatsu
