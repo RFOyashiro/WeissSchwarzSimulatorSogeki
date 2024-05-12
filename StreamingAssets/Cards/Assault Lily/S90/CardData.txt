@@ -1418,7 +1418,7 @@ Auto: OnUseAct
 }
 TimesPerTurn 1
 Text Auto: This ability activates up to once per turn. When you use an Act: ability, choose 1 of your «Lily» characters, and that character gets +1500 power until end of turn.
-Auto: StartOpponentDrawPhase
+Auto: StartDrawPhase
 {
     *Scry
 }

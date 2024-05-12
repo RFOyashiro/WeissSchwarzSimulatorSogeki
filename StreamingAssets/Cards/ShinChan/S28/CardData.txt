@@ -1,0 +1,2179 @@
+Character: CS/S28-001
+Name Frivolous, Shinnosuke
+JPName お調子者 しんのすけ
+Color Y
+Level 0
+Cost 0
+Power 3500
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Cont:
+{
+    
+}
+Text Cont: All your other characters get "Cont: This cannot side attack".
+EndCard
+
+Character: CS/S28-002
+Name Father of the House, Hiroshi
+JPName マイホームパパ ひろし
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Family
+Trait2 Salaryman
+Cont:
+{
+
+}
+Text Cont: During your turn, for each of your other characters with either «Family» or «Kindergarten», this card gets +500 power.
+EndCard
+
+Character: CS/S28-003
+Name Part of the Family, Shiro
+JPName 家族の一員 シロ
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Family
+Trait2 Animal
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +500 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 of your other characters. That character gets +X power until end of turn, where X equals 500 times level of that character.
+EndCard
+
+Character: CS/S28-004
+Name Normal Shinnosuke
+JPName いつものしんのすけ
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 character with either «Family» or «Kindergarten», reveal it, put in your hand, and shuffle your deck.
+EndCard
+
+Character: CS/S28-005
+Name Strongest 0-Year-Old, Himawari
+JPName 最強の０才児 ひまわり
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Family
+Trait2 Gem
+Cont:
+{
+
+}
+Text Cont: If you have 1 or less other characters, all your other characters get +1 level and +1000 power.
+EndCard
+
+Character: CS/S28-006
+Name Mother's Love, Misae
+JPName 母の愛 みさえ
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 5000
+Soul 1
+Trait1 Family
+Trait2 Housewife
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times level of that character.
+Auto:
+{
+
+}
+Text Auto: [(1)] When "handkerchief of Important Memories" is placed on your climax area, you may pay the cost. If you do, choose 1 "Father of the House, Hiroshi" in your waiting room and put it in any position on the stage.
+EndCard
+
+Character: CS/S28-007
+Name Fateful Mischief, Shinnosuke
+JPName 運命のいたずら しんのすけ
+Color Y
+Level 2
+Cost 2
+Trigger Soul
+Power 8500
+Soul 2
+Trait1 Family
+Trait2 Kindergarten
+Cont:
+{
+
+}
+Text Cont: If the number of other characters with either «Family» or «Kindergarten» you have is 3 or more, this card gets +1000 power.
+EndCard
+
+Character: CS/S28-008
+Name Buriburizaemon
+JPName ぶりぶりざえもん
+Color Y
+Level 0
+Cost 0
+Power 5500
+Soul 1
+Trait1 Animal
+Trait2 Dark Hero
+Cont:
+{
+
+}
+Text Cont: If you are level 0, this card cannot attack.
+EndCard
+
+Character: CS/S28-009
+Name Joy of Family, Misae
+JPName 家族の喜び みさえ
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Family
+Trait2 Housewife
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from hand to the waiting room] When "New Family" is placed on your climax area, if the number of other «Famiyl» characters you have is 2 or more, you may pay the cost. If you do, choose up to 1 "Mischievous Child, Himawari" in your hand and put it in any position on the stage.
+EndCard
+
+Character: CS/S28-010
+Name Loves Shiny Stuff, Himawari
+JPName 光りもの好き ひまわり
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Family
+Trait2 Gem
+Cont:
+{
+
+}
+Text Cont: During your turn, for each of your other characters with either «Family» or «Kindergarten», this card gets +500 power.
+EndCard
+
+Character: CS/S28-011
+Name the Brassiere Mask Returns, Shinnosuke
+JPName 帰ってきたブラジャーマスク しんのすけ
+Color Y
+Level 1
+Cost 1
+Trigger Soul
+Power 1500
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Auto:
+{
+
+}
+Text Auto: CHANGE [(2) Put 1 card from hand to the waiting room, Put this card in the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose a "Fateful Mischief, Shinnosuke" in your waiting room and put it in the position this card was in.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 2000, level 1 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: CS/S28-012
+Name Happy Family, Nohara Household
+JPName 幸せな家族 野原一家
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Family
+Trait2 Animal
+Cont:
+{
+
+}
+Text Cont: If the number of other characters with either «Family» or «Kindergarten» you have is 3 or more, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+EndCard
+
+Character: CS/S28-013
+Name Kindergartener Who Can't Summon a Gust, Shinnosuke
+JPName ちょー嵐を呼ばない園児 しんのすけ
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Auto:
+{
+
+}
+Text Auto: BOND/"Mischievous Child, Himawari" [Put the top card of your deck in your clock]
+EndCard
+
+Character: CS/S28-014
+Name Joy of Family, Hiroshi
+JPName 家族の喜び ひろし
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Family
+Trait2 Salaryman
+Act:
+{
+
+}
+Text Act: [Rest 1 of your characters with either «Family» or «Kindergarten::] This gets +1000 power until end of turn.
+EndCard
+
+Character: CS/S28-015
+Name Special Noogie Attack, Misae
+JPName 必殺グリグリ攻撃 みさえ
+Color Y
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Family
+Trait2 Housewife
+EndCard
+
+Character: CS/S28-016
+Name Section Chief, Hiroshi
+JPName 係長 ひろし
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Family
+Trait2 Salaryman
+Auto:
+{
+
+}
+Text Auto: At the beginning of your encore step, if "My House is Gone" is in your climax area, put the top card of your deck in the waiting room. If it's a level 0 character, you may choose this card and up to 2 of your other characters and return them to your hand.
+EndCard
+
+Character: CS/S28-017
+Name Taking a Walk, Shiro
+JPName 散歩中のシロ
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Family
+Trait2 Animal
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+EndCard
+
+Character: CS/S28-018
+Name Kantam Robo
+JPName カンタムロボ
+Color Y
+Level 1
+Cost 1
+Power 6500
+Soul 1
+Trait1 Mecha
+Trait2 Hero(CS/PY
+Cont:
+{
+
+}
+Text Cont: During your turn, if there are 4 or less cards in your hand, this card gets +2000 power.
+EndCard
+
+Character: CS/S28-019
+Name Mischievous Child, Himawari
+JPName いたずらっ子 ひまわり
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Family
+Trait2 Gem
+Cont:
+{
+
+}
+Text Cont: If the number of other characters with either «Family» or «Kindergarten» you have is 3 or more, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put the top card of your deck in your clock]
+EndCard
+
+Character: CS/S28-020
+Name Angry Shiro
+JPName ご立腹なシロ
+Color Y
+Level 2
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Family
+Trait2 Animal
+EndCard
+
+Event: CS/S28-021
+Name Family Portrait
+JPName 家族写真
+Color Y
+Level 1
+Cost 1
+Effect: 
+{
+
+}
+Text Reveal the top card of your deck. Put it in your hand if it's a character with either «Family» or «Kindergarten». (Otherwise put it back) All your characters with either «Family» or «Kindergarten» get +2000 power until end of turn.
+EndCard
+
+Event: CS/S28-022
+Name Scent of Jasmine
+JPName ジャスミンの香り
+Color Y
+Level 3
+Cost 3
+Effect: 
+{
+
+}
+Text deal 5 damage to your opponent. 
+EndCard
+
+Climax: CS/S28-023
+Name My House is Gone
+JPName オラの家がなくなったゾ
+*ShotClimax
+EndCard
+
+Climax: CS/S28-024
+Name Handkerchief of Important Memories
+JPName 大切な思い出のハンカチ
+*WindClimax
+EndCard
+
+Climax: CS/S28-025
+Name New Family
+JPName 新たな家族
+Color Y
+
+EndCard
+
+Climax: CS/S28-025Ｒ
+Name New Family
+JPName 新たな家族
+Color Y
+
+EndCard
+
+Character: CS/S28-026
+Name Being Silly, Shinnosuke
+JPName おバカなしんのすけ
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if "All-Star" is in your climax area, choose up to 1 character in your waiting room with either «Family» or «Kindergarten» and put it in stock, and this card gets +3000 power until the end of your opponent's next turn.
+EndCard
+
+Character: CS/S28-027
+Name Kasukabe Defense Organization
+JPName かすかべ防衛隊
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Kindergarten
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, search your deck for up to 1 character with either «Family» or «Kindergarten», reveal it, put it in your hand, and shuffle your deck.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, if "Singing Time" is in your climax area, you may put that character in clock.
+EndCard
+
+Character: CS/S28-028
+Name Ai Suotome
+JPName 酢乙女 あい
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Kindergarten
+Trait2 Daughter
+Cont:
+{
+
+}
+Text Cont: If the number of other «Kindergarten» characters you have is 2 or more, this card gets +1 level and +1500 power.
+EndCard
+
+Character: CS/S28-029
+Name Anger Spilling Over, Shinnosuke
+JPName 怒り爆発 しんのすけ
+Color G
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Act:
+{
+
+}
+Text Act: [(1) Put this card in the waiting room] Look at up to 4 cards from the top of your deck and search for up to 1 character with either «Family» or «Kindergarten», reveal it, and put it in your hand. Put the rest in the waiting room.
+EndCard
+
+Character: CS/S28-030
+Name Runaway Youth, Shinnosuke
+JPName 家出少年 しんのすけ
+Color G
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card attacks, if "Shin-chan's Love" is in your climax area, you may pay the cost. If you do, choose a card in your clock and return it to your hand, then put the top card of your deck in your clock, and this card gets +2000 power until end of turn.
+EndCard
+
+Character: CS/S28-031
+Name Elite Kindergartener, Kazama-kun
+JPName エリート園児 風間くん
+Color G
+Level 1
+Cost 1
+Power 7000
+Soul 1
+Trait1 Kindergarten
+Trait2 Honor Student
+Cont:
+{
+
+}
+Text Cont: This cannot Direct attack.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+EndCard
+
+Character: CS/S28-032
+Name Action Mask
+JPName アクション仮面
+Color G
+Level 2
+Cost 2
+Trigger Soul
+Power 8500
+Soul 2
+Trait1 Mask
+Trait2 Hero(CS/PY
+Cont:
+{
+
+}
+Text Cont: For each marker under this card, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: [Put 1 climax from hand to the waiting room] When this card attacks, you may pay the cost. If you do, put the top card of your deck under this card as a marker.
+EndCard
+
+Character: CS/S28-033
+Name Scary-Looking, Kindergarten Chief
+JPName コワモテな園長先生
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Teacher
+Trait2 Kindergarten
+Cont:
+{
+
+}
+Text Cont: All your other «Kindergarten» characters get +500 power.
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Kindergarten» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: CS/S28-034
+Name Micchi & Yoshirin
+JPName ミッチー＆ヨシりん
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Love
+Cont:
+{
+
+}
+Text Cont: If you have no other characters, this card gets +1 level and +1500 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your opponent's stock in the waiting room. If you do, choose a card in your opponent's waiting room and put it in stock.
+EndCard
+
+Character: CS/S28-035
+Name Female College Student Love Interest, Nanako
+JPName 憧れの女子大生 ななこ
+Color G
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Onee-san
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +500 power.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: CS/S28-036
+Name Precocious Girl, Nene
+JPName おませな女の子 ネネちゃん
+Color G
+Level 1
+Cost 1
+Power 6500
+Soul 1
+Trait1 Kindergarten
+Trait2 Doll
+Auto:
+{
+
+}
+Text Auto: When this card is palced on the stage from your hand, reveal the top card of your deck. Put it in stock if it's level 1 or higher. (climax is considered to be level 0 for this card effect. Otherwise put it back)
+EndCard
+
+Character: CS/S28-037
+Name Secretly Skilled, Bo-chan
+JPName 陰の実力者 ボーちゃん
+Color G
+Level 2
+Cost 2
+Trigger Soul
+Power 8000
+Soul 2
+Trait1 Kindergarten
+Trait2 Mystery
+Cont:
+{
+
+}
+Text Cont: If the number of other characters with either «Family» or «Kindergarten» you have is 3 or more, this card gets "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
+Auto:
+{
+
+}
+Text Auto: When your other character with either «Family» or «Kindergarten» attacks, this card gets +1000 power until end of turn.
+EndCard
+
+Character: CS/S28-038
+Name Masao-kun in Swimsuit
+JPName 水着のマサオくん
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Kindergarten
+Trait2 Swimsuit
+Act:
+{
+
+}
+Text Act: [(1)] Choose 1 of your characters with either «Family» or «Kindergarten». That character gets +2000 power until end of turn.
+EndCard
+
+Character: CS/S28-039
+Name Bo-chan in Swimsuit
+JPName 水着のボーちゃん
+Color G
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Kindergarten
+Trait2 Swimsuit
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+EndCard
+
+Character: CS/S28-040
+Name Saitama Crimson Scorpions
+JPName 埼玉紅さそり隊
+Color G
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Delinquent
+Auto:
+{
+
+}
+Text Auto: When your other "Saitama Crimson Scorpions" attacks, this card gets +2500 power until end of turn.
+EndCard
+
+Character: CS/S28-041
+Name Talented, Shinnosuke
+JPName 芸達者なしんのすけ
+Color G
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+EndCard
+
+Character: CS/S28-042
+Name Mimiko Sakura
+JPName 桜 ミミ子
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Assistant
+Trait2 Science
+Auto:
+{
+
+}
+Text Auto: [(3) Put the top card of your deck in your clock] When this card becomes reversed, you may pay the cost. If you do, choose an "Action Mask" in your waiting room and put it Rested in a vacant position on the stage, and put this card face down onder it as a marker.
+EndCard
+
+Character: CS/S28-043
+Name Timid Personality, Masao-kun
+JPName 気弱な性格 マサオくん
+Color G
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Kindergarten
+Trait2 Crybaby
+EndCard
+
+Character: CS/S28-044
+Name Nene-chan in Swimsuit
+JPName 水着のネネちゃん
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Kindergarten
+Trait2 Swimsuit
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 3000, level 2 [(1) Put this card from hand to the Waiitng Room]
+EndCard
+
+Character: CS/S28-045
+Name Kazama-kun in Swimsuit
+JPName 水着の風間くん
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 8500
+Soul 1
+Trait1 Kindergarten
+Trait2 Swimsuit
+EndCard
+
+Event: CS/S28-046
+Name Plushie Bunny0chan
+JPName ぬいぐるみ ウサちゃん
+Color G
+Level 1
+Cost 0
+Effect: 
+{
+
+}
+Text Repeat the following action until you level-up: "Put the top card of your deck in your clock." Choose 1 level 2 or lower character in your waiting room and put it in any position on the stage. Put this card in stock.
+EndCard
+
+Event: CS/S28-047
+Name World of Dreams
+JPName ゆめみるセカイ
+Color G
+Level 2
+Cost 1
+Effect: 
+{
+
+}
+Text You may discard a card from hand to the waiting room. If you do, choose up to 1 "Action Mask" and up to 1 "Kantam Robo" and up to 1 "Buriburizaemon" in your waiting room and put them in separate positions on the stage.
+EndCard
+
+Climax: CS/S28-048
+Name Singing Time
+JPName うたのじかん
+*BarClimax
+EndCard
+
+Climax: CS/S28-049
+Name All-Star
+JPName オールスター
+Color G
+
+EndCard
+
+Climax: CS/S28-050
+Name Shin-chan's Love
+JPName しんちゃんの恋
+Color G
+
+EndCard
+
+Character: CS/S28-051
+Name as "Hiroshi SUN", Hiroshi
+JPName “ひろしSUN”こと ひろし
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Family
+Trait2 Hero(CS/PY
+Auto:
+{
+
+}
+Text Auto: At the beginning of your encore step, if "Familiar Scent" is in your climax area, you may put this card into memory. If you do, at the beginning of your next draw phase, choose 1 "for the Future, Shinnosuke" in your waiting room and return it to your hand, then choose 1 'as "Hiroshi SUN", Hiroshi' in your memory and put it in any position on the stage. It gets +3500 power for that turn.
+EndCard
+
+Character: CS/S28-052
+Name for the Future, Shinnosuke
+JPName 未来のために しんのすけ
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Family
+Trait2 Kindergarten
+Cont:
+{
+
+}
+Text Cont: If the number of other characters with either «Family» or «Kindergarten» you have is 3 or more, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a character with either «Family» or «Kindergarten», you may deal 1 damage to your opponent. (damage cancel can occur. Put the revealed card back)
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if "I Will Protect the Future" is in your climax area, choose up to 1 card in your opponent's waiting Room and put it on top of the deck, and all your characters get +2000 power until end of turn.
+EndCard
+
+Character: CS/S28-053
+Name Big Brother Taking Care of Little Sister, Shinnosuke
+JPName 妹思いのお兄ちゃん しんのすけ
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 0 or lower, you may reverse that character.
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose 1 character in your waiting room with either «Family» or «Kindergarten» and return it to your hand.
+EndCard
+
+Character: CS/S28-054
+Name Unease Stare, Kazama-kun
+JPName 不安げな眼差し 風間くん
+Color R
+Level 0
+Cost 0
+Power 3500
+Soul 1
+Trait1 Kindergarten
+Trait2 Honor Student
+Cont:
+{
+
+}
+Text Cont: If there are 4 or more cards in your stock, this card cannot attack.
+EndCard
+
+Character: CS/S28-055
+Name as "Magical Girl Misarin", Misae
+JPName “魔法少女みさリン”こと みさえ
+Color R
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Family
+Trait2 Magic
+Auto:
+{
+
+}
+Text Auto: [(3)] When you use this card's BACKUP, you may pay the cost. If you do, choose an opponent's character whose level is higher than your opponent and put it in the waiting room.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 1000, level 1 [Put this card from your hand to the waiting room]
+EndCard
+
+Character: CS/S28-056
+Name Driver, Shinnosuke
+JPName 運転手 しんのすけ
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Cont:
+{
+
+}
+Text Cont: If the number of other characters with either «Family» or «Kindergarten» you have is 3 or more, this card gets +1000 power.
+EndCard
+
+Character: CS/S28-057
+Name Greeting Everyone, Shinnosuke
+JPName みんなに挨拶 しんのすけ
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 4000
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +1000 power.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your characters with either «Family» or «Kindergarten». That character gets +1000 power until end of turn.
+EndCard
+
+Character: CS/S28-058
+Name Greeting Everyone, Himawari
+JPName みんなに挨拶 ひまわり
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Family
+Trait2 Gem
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck and put it either on top of the deck or in the waiting room.
+Auto:
+{
+
+}
+Text Auto: BOND/"Driver, Shinnosuke" [(1)]
+EndCard
+
+Character: CS/S28-059
+Name Divider, Bo-chan
+JPName 仕切り役 ボーちゃん
+Color R
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Kindergarten
+Trait2 Mystery
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, you may reverse that character.
+EndCard
+
+Character: CS/S28-060
+Name Joy of Having Family, Hiroshi
+JPName 家族がいる幸せ ひろし
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Family
+Trait2 Salaryman
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card attacks, if "Floating Happiness" is in your climax area, you may pay the cost. If you do, choose 1 character in your waiting room with either «Family» or «Kindergarten» and return it to your hand, and this card gets +1000 power until end of turn.
+EndCard
+
+Character: CS/S28-061
+Name Driver!?, Shiro
+JPName 運転手!? シロ
+Color R
+Level 1
+Cost 1
+Power 6500
+Soul 1
+Trait1 Family
+Trait2 Animal
+Cont:
+{
+
+}
+Text Cont: If there are 3 or less cards in your stock, this card gets +1000 power.
+EndCard
+
+Character: CS/S28-062
+Name Ken & Chako
+JPName ケン＆チャコ
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Glasses
+Trait2 Science
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card is placed on the stage from your hand, if there are 5 or less cards in your deck, you may pay the cost. If you do, return all cards in your waiting room to the deck, shuffle your deck, then choose 1 of your opponent's level 1 or lower characters and send it to memory.
+EndCard
+
+Character: CS/S28-063
+Name World's Fair Defense Squad, Shinnosuke
+JPName 万博防衛隊 しんのすけ
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Auto:
+{
+
+}
+Text Auto: [Put this card in the waiting room] When this card is frontal attacked, you may pay the cost. If you do, choose up to 1 "Driver, Shinnosuke" in your hand and put it in the position this card was in as Defending character.
+EndCard
+
+Character: CS/S28-064
+Name Crane's Roar, Nene-chan
+JPName 鶴のひとこえ ネネちゃん
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Kindergarten
+Trait2 Doll
+Cont:
+{
+
+}
+Text Cont: If you have no other characters, this card gets +1 level and +1500 power.
+Act:
+{
+
+}
+Text Act: [(1)] Choose 1 of your opponent's level 0 or lower character in the center stage and put it in the waiting room.
+EndCard
+
+Character: CS/S28-065
+Name Ageo & Matsuzaka & Yoshinaga
+JPName 上尾＆まつざか＆よしなが
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Teacher
+Trait2 Kindergarten
+Cont:
+{
+
+}
+Text Cont: For each of your other "Ageo & Matsuzaka & Yoshinaga", this card gets +2000 power.
+EndCard
+
+Character: CS/S28-066
+Name World's Fair Defense Squad, Misae
+JPName 万博防衛隊 みさえ
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Family
+Trait2 Housewife
+Auto:
+{
+
+}
+Text Auto: When your other character with either «Family» or «Kindergarten» attacks, this card gets +1000 power until end of turn.
+EndCard
+
+Character: CS/S28-067
+Name World's Fair Defense Squad, Hiroshi
+JPName 万博防衛隊 ひろし
+Color R
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Family
+Trait2 Salaryman
+EndCard
+
+Character: CS/S28-068
+Name World's Fair Defense Squad, Himawari
+JPName 万博防衛隊 ひまわり
+Color R
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Family
+Trait2 Gem
+EndCard
+
+Character: CS/S28-069
+Name Carrying out the Mission, Shinnosuke
+JPName 任務遂行 しんのすけ
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Family
+Trait2 Kindergarten
+EndCard
+
+Character: CS/S28-070
+Name Berserking, Masao-kun
+JPName 大暴走 マサオくん
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Kindergarten
+Trait2 Crybaby
+Cont:
+{
+
+}
+Text Cont: If there are 1 or less characters in your backstage, this card cannot attack.
+EndCard
+
+Event: CS/S28-071
+Name Hiroshi's Boots
+JPName ひろしの靴
+Color R
+Level 2
+Cost 1
+Effect: 
+{
+
+}
+Text Choose 1 of your characters with either «Family» or «Kindergarten». That character gets +4500 power until end of turn.
+EndCard
+
+Event: CS/S28-072
+Name Snack, Cascabian
+JPName スナック カスカビアン
+Color R
+Level 2
+Cost 1
+Effect: 
+{
+
+}
+Text Choose up to 2 characters in your waiting room and return them to your hand, and discard a card from your hand to the waiting room.
+EndCard
+
+Climax: CS/S28-073
+Name Floating Happiness
+JPName 浮かぶ幸せ
+Color R
+
+EndCard
+
+Climax: CS/S28-074
+Name Familiar Scent
+JPName なつかしいニオイ
+Color R
+
+EndCard
+
+Climax: CS/S28-075
+Name I Will Protect the Future
+JPName 未来はオラが守る
+*DoorClimax
+EndCard
+
+Character: CS/S28-076
+Name Silly Samurai, Shinnosuke
+JPName おバカ侍 しんのすけ
+Color B
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Cont:
+{
+
+}
+Text Cont: If the number of other characters with either «Family» or «Yukata» you have is 3 or more, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+EndCard
+
+Character: CS/S28-077
+Name Battle Preparation, Hiroshi
+JPName 戦闘準備 ひろし
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Family
+Trait2 Salaryman
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, for each of your other characters with either «Family» or «Yukata», this card gets +500 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand or by CHANGE to the stage, look at up to 4 cards from the top of your deck, search for up to 1 «Family» character, reveal it, put it in your hand, then put the rest into your waiting room. This gets +4000 power until end of turn.
+EndCard
+
+Character: CS/S28-078
+Name Looking up at the Blue Sky, Hiroshi
+JPName 青空を見上げるひろし
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Family
+Trait2 Salaryman
+Cont:
+{
+
+}
+Text Cont: All your other characters with either «Family» or «Yukata» get +500 power.
+Auto:
+{
+
+}
+Text Auto: BOND/"Not Afraid of Anything, Shinnosuke" [Put 1 card from hand to the waiting room]
+EndCard
+
+Character: CS/S28-079
+Name Big-But, Shinnosuke
+JPName 豪ケツ！しんのすけ
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's attack phase, you may put the top card of your deck in the waiting room. If it's a character with either «Family» or «Yukata», you may move this card to a vacant position in the center stage.
+EndCard
+
+Character: CS/S28-080
+Name Blue Sky Samurai, Matabei
+JPName 青空侍 又兵衛
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Weapon
+Trait2 Yukata
+Auto:
+{
+
+}
+Text Auto: When your other character with either «Family» or «Yukata» attacks, this card gets +1000 Pwoer until end of turn.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, if "Uncontainable Feelings" is in your climax area, you may draw a card.
+EndCard
+
+Character: CS/S28-081
+Name Positioning Weapon, Hiroshi
+JPName 武器を構えるひろし
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Family
+Trait2 Salaryman
+Auto:
+{
+
+}
+Text Auto: CHANGE [(2) Put 1 card from hand to the waiting room, put this card in the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose 1 "battle Preparation, Hiroshi" in your waiting room and put it in the position this card was in.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: CS/S28-082
+Name Not Afraid of Anything, Shinnosuke
+JPName 怖いもの知らずなしんのすけ
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Cont:
+{
+
+}
+Text Cont: character facing this card gets "Cont: This cannot side attack".
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, for each of your other characters with either «Family» or «Yukata», this card gets +500 power.
+EndCard
+
+Character: CS/S28-083
+Name Battle Preparation, Misae
+JPName 戦闘準備 みさえ
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Family
+Trait2 Housewife
+Cont:
+{
+
+}
+Text Cont: If there are 6 or more cards in your hand, this card gets +1500 power.
+EndCard
+
+Character: CS/S28-084
+Name Ancestor, Kazuma
+JPName ご先祖 かずま
+Color B
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Yukata
+Auto:
+{
+
+}
+Text Auto: When this card attacks, chosose 1 of your other characters with either «Family» or «Yukata». That character gets +1000 power until end of turn.
+EndCard
+
+Character: CS/S28-085
+Name Princess of Kasuga Castle, Ren
+JPName 春日城の姫様 廉
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 3000
+Soul 1
+Trait1 Yukata
+Trait2 Love
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's attack phase, choose 1 of your characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: CS/S28-086
+Name Strict Ijiri, Matabei
+JPName 鬼の井尻 又兵衛
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Weapon
+Trait2 Yukata
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 1 of your opponent's level 3 or lower characters and return it to hand, and at the end of the turn, put this card in the waiting room.
+EndCard
+
+Character: CS/S28-087
+Name Oath of a Man, Shinnosuke
+JPName 男の約束 しんのすけ
+Color B
+Level 2
+Cost 2
+Trigger Soul
+Power 8000
+Soul 2
+Trait1 Family
+Trait2 Kindergarten
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if "Extended Time" is in your climax area, this card gets +3500 power and "Auto: When this card's battle opponent becomes reverse, you may put it on the bottom of the deck" until end of turn.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put the top card of your deck in your clock]
+EndCard
+
+Character: CS/S28-088
+Name Watching over, Himawari
+JPName 見守るひまわり
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Family
+Trait2 Gem
+Cont:
+{
+
+}
+Text Cont: All your other «Family» characters get +500 power.
+EndCard
+
+Character: CS/S28-089
+Name Ancestor, Oomasa
+JPName ご先祖 オオマサ
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Yukata
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your other characters with either «Family» or «Yukata». That character gets +1000 power until end of turn.
+Act:
+{
+
+}
+Text Act: [(1)] draw a card, and discard a card from your hand to the waiting room.
+EndCard
+
+Character: CS/S28-090
+Name Ancestor, Boushichi
+JPName ご先祖 ぼうしち
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Yukata
+Auto:
+{
+
+}
+Text Auto: When the battle opponent of your other character whose name includes "Shinnosuke" becomes reversed, this card gets +1500 power for hte turn.
+EndCard
+
+Character: CS/S28-091
+Name Dig Here Woof Woof!, Shiro
+JPName ここ掘れワンワン！シロ
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Family
+Trait2 Animal
+EndCard
+
+Character: CS/S28-092
+Name Feelings to the Sky, Shinnosuke
+JPName 空にかかげた想い しんのすけ
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Cont:
+{
+
+}
+Text Cont: character facing this card gets "Auto: ENCORE [Put 1 character from your hand to the waiting room]"
+Auto:
+{
+
+}
+Text Auto: When "One Drop" is placed on your climax area, if this card is in the center stage, draw a card, discard a card from your hand to the waiting room, then look at the top of your deck and put it either on top or bottom of the deck.
+EndCard
+
+Character: CS/S28-093
+Name Escort Role, Shinnosuke
+JPName 護衛役 しんのすけ
+Color B
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Auto:
+{
+
+}
+Text Auto: [(1)] At the beginning of your opponent's attack phase, if this card is in the center stage, you may pay the cost. If you do, choose 1 of your characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: CS/S28-094
+Name Hiroshi. Thinking of Child
+JPName 子を思う心 ひろし
+Color B
+Level 1
+Cost 1
+Power 7000
+Soul 1
+Trait1 Family
+Trait2 Salaryman
+EndCard
+
+Character: CS/S28-095
+Name Ancestor, Nene
+JPName ご先祖 ねね
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Yukata
+Auto:
+{
+
+}
+Text Auto: During battles involving this card acrd, when the damage taken by you is not canceled, this card gets +1500 Pwoer until end of turn.
+EndCard
+
+Event: CS/S28-096
+Name Letter from Myself
+JPName オラからの手紙
+Color B
+Level 1
+Cost 1
+Effect: 
+{
+
+}
+Text Rest 1 of your standing characters with either «Family» or «Yukata». If you do, search your deck for up to 2 characters with either «Family» or «Yukata», reveal them, put them in your hand, shuffle your deck, and discard a card from your hand to the waiting room.
+EndCard
+
+Event: CS/S28-097
+Name Oath of Warrior
+JPName 武士の誓い
+Color B
+Level 1
+Cost 1
+Effect: 
+{
+
+}
+Text Choose 1 of your «Family» characters and 1 of your «Yukata» characters (must target different characters). They get +2500 power until the end of your opponent's next turn.
+EndCard
+
+Climax: CS/S28-098
+Name Extended Time
+JPName のばされた時間
+*BookClimax
+EndCard
+
+Climax: CS/S28-099
+Name Uncontainable Feelings
+JPName 抑えきれない気持ち
+Color B
+
+EndCard
+
+Climax: CS/S28-100
+Name One Drop
+JPName ひとしずく
+Color B
+
+EndCard
+
+Character: CS/S28-101
+Name Kasukabe Defense Organization, Shinnosuke
+JPName かすかべ防衛隊 しんのすけ
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+EndCard
+
+Character: CS/S28-102
+Name Kasukabe Defense Organization, Kazama-kun
+JPName かすかべ防衛隊 風間くん
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Kindergarten
+Trait2 Honor Student
+Cont:
+{
+
+}
+Text Cont: All your other «Kindergarten» characters get +500 power.
+EndCard
+
+Character: CS/S28-103
+Name Kasukabe Defense Organization, Nene-chan
+JPName かすかべ防衛隊 ネネちゃん
+Color G
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Kindergarten
+Trait2 Doll
+Act:
+{
+
+}
+Text Act: [Rest 2 of your characters with either «Family» or «Kindergarten::] This gets +2500 power until end of turn.
+EndCard
+
+Character: CS/S28-104
+Name Kasukabe Defense Organization, Masao-kun
+JPName かすかべ防衛隊 マサオくん
+Color G
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Kindergarten
+Trait2 Crybaby
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 1500, level 1 [Put this card from your hand to the waiting room]
+EndCard
+
+Character: CS/S28-105
+Name Kasukabe Defense Organization, Bo-chan
+JPName かすかべ防衛隊 ボーちゃん
+Color G
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Kindergarten
+Trait2 Mystery
+Auto:
+{
+
+}
+Text Auto: When your climax is placed on your climax area, this card gets +1500 power until end of turn.
+EndCard
+
+Character: CS/S28-P01
+Name Sealed Fist, Action Mask
+JPName 封印された拳 アクション仮面
+Color G
+Level 1
+Cost 0
+Power 7500
+Soul 2
+Trait1 Mask
+Trait2 Hero(CS/PY
+Cont:
+{
+
+}
+Text Cont: If there are 2 or less cards in your clock, this card cannot attack.
+EndCard
+
+Character: CS/S28-P02
+Name "My Robotic Father" Shinnosuke
+JPName “オラのロボとーちゃん” しんのすけ
+Color R
+Level 1
+Cost 1
+Power 3500
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Cont:
+{
+
+}
+Text Cont: This cannot be reversed by effects of Auto: abilities of your opponent's characters.
+EndCard
+
+Character: CS/S28-P03
+Name "Stand-Up Robotic Father" Hiroshi
+JPName “立ち上がれロボとーちゃん” ひろし
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Family
+Trait2 Mecha
+Act:
+{
+
+}
+Text Act: [(1)] This gets the following ability until end of turn. "Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, you may reverse that character."
+EndCard
+
+Character: CS/S28-P04
+Name "Revenging Robotic Father" Hiroshi
+JPName “逆襲のロボとーちゃん” ひろし
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Family
+Trait2 Mecha
+Cont:
+{
+
+}
+Text Cont: If there are 4 or less cards in your stock, this card gets +1000 power.
+EndCard
+
+Character: CS/S28-P05
+Name "Robotic Shin-chan" Shinnosuke
+JPName “ロボしんちゃん” しんのすけ
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Act:
+{
+
+}
+Text Act: [(2) Rest this card] Choose a character with either «Family» or «Kindergarten» in your waiting room and return it to your hand.
+EndCard
+
+Character: CS/S28-P06
+Name "A Little Convenient Robotic Father" Hiroshi
+JPName “ちょー便利なロボとーちゃん” ひろし
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Family
+Trait2 Mecha
+Act:
+{
+
+}
+Text Act: [Rest 1 of your characters with ASSIST] This gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put it on top of the deck."
+EndCard
+
+Character: CS/S28-P07
+Name Controller, Shinnosuke
+JPName 操縦者しんのすけ
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Auto:
+{
+
+}
+Text Auto: This ability activates up to twice per turn. When your other character with either «Family» or «Mecha» is placed on the stage from your hand, this card gets +1000 power until end of turn.
+EndCard
+
+Character: CS/S28-P08
+Name "Strongest Robotic Father" Hiroshi
+JPName “最強のロボとーちゃん” ひろし
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Family
+Trait2 Mecha
+Cont:
+{
+
+}
+Text Cont: If there are markers under this card and this card is in the middle position of your center stage, this card gets +3500 power and the following ability. "Cont: This cannot be reversed by effects of Auto: abilities of your opponent's characters."
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Family» characters, reveal it, put it in your hand, and choose up to 1 '"My Robotic Father" Shinnosuke' in your hand, reveal it, and put it face down underneath this card as a marker, and shuffle your deck.
+EndCard
+
+Character: CS/S28-P09
+Name Summer Memory, Shinnosuke & Shiro
+JPName 夏の思い出 しんのすけ&シロ
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Family
+Trait2 Animal
+Cont:
+{
+
+}
+Text Cont: During your turn, your other character in the middle position of your center stage gets +1500 power.
+Act:
+{
+
+}
+Text Act: [(1)] Choose 1 of your characters with either «Family» or «Kindergarten», and that character gets +1 soul until end of turn.
+EndCard
+
+Character: CS/S28-T01
+Name Perplexed, Shiro
+JPName 戸惑うシロ
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Family
+Trait2 Animal
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +500 power.
+EndCard
+
+Character: CS/S28-T02
+Name No. 1 Japanese Salaryman, Hiroshi
+JPName 日本一のサラリーマン ひろし
+Color Y
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Family
+Trait2 Salaryman
+EndCard
+
+Character: CS/S28-T03
+Name Cotton Candy Dog, Shiro
+JPName わたあめ犬 シロ
+Color Y
+Level 0
+Cost 0
+Power 3500
+Soul 1
+Trait1 Family
+Trait2 Animal
+Auto:
+{
+
+}
+Text Auto: When your opponent levels-up, put this card in the waiting room.
+EndCard
+
+Character: CS/S28-T04
+Name Child's Puppy-Eye Attack, Himawari
+JPName 子どもの眼差し攻撃 ひまわり
+Color Y
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Family
+Trait2 Gem
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 1500, level 1 [Put this card from your hand to the waiting room]
+EndCard
+
+Character: CS/S28-T05
+Name Full of Energy, Himawari
+JPName 元気いっぱい ひまわり
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Family
+Trait2 Gem
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with either «Family» or «Kindergarten», reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: CS/S28-T06
+Name Strong Mother, Misae
+JPName 強き母 みさえ
+Color Y
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Family
+Trait2 Housewife
+EndCard
+
+Character: CS/S28-T07
+Name Friendly Siblings, Shinnosuke
+JPName 仲良し兄妹 しんのすけ
+Color Y
+Level 1
+Cost 1
+Power 7000
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+EndCard
+
+Character: CS/S28-T08
+Name Adorable Little Sister, Himawari
+JPName 可愛い妹 ひまわり
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 8500
+Soul 1
+Trait1 Family
+Trait2 Gem
+EndCard
+
+Character: CS/S28-T09
+Name Kindergartener Who Summons the Storm, Shinnosuke
+JPName 嵐を呼ぶ園児 しんのすけ
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Family
+Trait2 Kindergarten
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at up to 3 cards from the top of your deck and choose up to 1 of them and put in your hand. Put the rest in the waiting room.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 500 times number of your characters with either «Family» or «Kindergarten».
+EndCard
+
+Event: CS/S28-T10
+Name Nohara Household Go-!
+JPName 野原一家ファイヤー！
+Color Y
+Level 1
+Cost 1
+Effect: 
+{
+
+}
+Text Choose up to 1 level 3 or lower characters in your opponent's center stage and return it to hand, and choose 1 of your characters with either «Family» or «Kindergarten». and that character gets +3000 power until end of turn.
+EndCard
+
+Climax: CS/S28-T11
+Name Family is Nice to Have
+JPName 家族はやっぱりいいもんだゾ
+Color Y
+
+EndCard
+
+Climax: CS/S28-T12
+Name Always Together
+JPName いつだって一緒
+Color Y
+
+EndCard
+
+Character: CS/S28-T13
+Name Full of Energy, Shinnosuke
+JPName 元気いっぱい しんのすけ
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a character with either «Family» or «Kindergarten», put in your hand and discard a card from your hand to the waiting room. 
+EndCard
+
+Character: CS/S28-T14
+Name Shinnosuke in Pajama
+JPName パジャマのしんのすけ
+Color G
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Act:
+{
+
+}
+Text Act: [Rest 2 of your characters] Choose 1 of your characters with either «Family» or «Kindergarten», and that character gets +1500 power until end of turn.
+EndCard
+
+Character: CS/S28-T15
+Name Wannabe Hero, Shinnosuke
+JPName なりきりヒーロー しんのすけ
+Color G
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+EndCard
+
+Character: CS/S28-T16
+Name Snack Time, Shinnosuke
+JPName おやつの時間 しんのすけ
+Color G
+Level 1
+Cost 1
+Trigger Soul
+Power 3500
+Soul 1
+Trait1 Family
+Trait2 Kindergarten
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters with either «Family» or «Kindergarten» in front of this card get +X power. X equals 500 times level of that character.
+Act:
+{
+
+}
+Text Act: [(2)] Choose 1 of your characters, and that character gets +4500 power until end of turn.
+EndCard
+
+Character: CS/S28-T17
+Name Shinnosuke Nohara
+JPName 野原 しんのすけ
+Color G
+Level 2
+Cost 2
+Trigger Soul
+Power 8000
+Soul 2
+Trait1 Family
+Trait2 Kindergarten
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if "Butt Alien" is in your climax area, all your characters get +2000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put the top card of your deck in your clock]
+EndCard
+
+Climax: CS/S28-T18
+Name Butt Alien
+JPName ケツだけ星人
+Color G
+
+EndCard
+
