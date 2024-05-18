@@ -2045,8 +2045,8 @@ Cont: GiveSelf
         GainSoul 1
     }
 }
-Text Cont: During your turn, if you have another "Precious Manga, Lucy" in the center stage, this card gets +4000 power.
-*Bond1(Premonition of Love Talks\, Yayoi)
+During your turn, if you have another "Premonition of Love Talks, Yayoi" in the center stage, this gains +2000 Power and +1 Soul.
+*BondDiscard(Premonition of Love Talks\, Yayoi)
 EndCard
 
 Character: AYT/W110-085
