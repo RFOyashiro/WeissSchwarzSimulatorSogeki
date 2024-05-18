@@ -2513,7 +2513,7 @@ Auto: OnSpecificClimaxPlay Carmina! On stage!
         *GlobalPower(500,Landosol)
     }
 }
-Text Auto: CxCombo When "Carmina! On stage!" is placed on your climax area, this card gets the following ability until next end of your opponent's turn. "Cong:All your other «Landosol» characters get +500 power."
+Text Auto: CxCombo When "Carmina! On stage!" is placed on your climax area, this card gets the following ability until next end of your opponent's turn. "Cont: All your other «Landosol» characters get +500 power."
 Act: 1 Discard 1 IsClimax
 {
     SearchWaitingRoom IsCharacter
