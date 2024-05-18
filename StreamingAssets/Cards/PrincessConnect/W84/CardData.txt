@@ -739,7 +739,6 @@ Auto: OnSpecificClimaxPlay Bond of Sisters
         TargetLocation Stage
         NarrowTargets HasTrait Landosol
         ChooseCharacterFromTargets Choose a character to give the effect.
-        AddSelfToTargets
         GainEffect
         {
             Auto: OnAttack
@@ -754,7 +753,7 @@ Auto: OnSpecificClimaxPlay Bond of Sisters
         }
     }
 }
-Text Auto: CxCombo When "Bond of Sisters" is placed on your climax area, this card is in your center stage, and you have another «Landosol» character, choose 1 of your characters and that character gets the following ability until end of turn. "Auto:[(2)] This ability activates up to once per turn. When this card attacks, you may pay the cost. If you do, deal 2 damage to your opponent."
+Text Auto: CxCombo When "Bond of Sisters" is placed on your climax area, this card is in your center stage, and you have another «Landosol» character, choose 1 of your characters and that character gets the following ability until end of turn. "Auto: [(2)] This ability activates up to once per turn. When this card attacks, you may pay the cost. If you do, deal 2 damage to your opponent."
 EndCard
 
 Character: PRD/W84-031
