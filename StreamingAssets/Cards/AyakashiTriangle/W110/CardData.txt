@@ -2045,7 +2045,7 @@ Cont: GiveSelf
         GainSoul 1
     }
 }
-During your turn, if you have another "Premonition of Love Talks, Yayoi" in the center stage, this gains +2000 Power and +1 Soul.
+Text During your turn, if you have another "Premonition of Love Talks, Yayoi" in the center stage, this gains +2000 Power and +1 Soul.
 *BondDiscard(Premonition of Love Talks\, Yayoi)
 EndCard
 
