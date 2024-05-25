@@ -2081,13 +2081,12 @@ Auto: OnPlay
 			Else
 			{
 				MoveCard Deck
-				ShuffleLocation Deck
 			}
 		}
 		ShuffleLocation Deck
 	}
 }
-Text Auto: [Put 1 other «Music» character from your stage into your waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 climax, reveal it, choose 1 climax in your hand, reveal it, swap them and shuffle your deck.
+Text Auto: [Put 1 other «Music» character from your stage into your waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 climax, reveal it, choose 1 climax in your hand, reveal it, exchange them and shuffle your deck.
 EndCard
 
 Character: PJS/S109-090

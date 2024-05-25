@@ -1957,9 +1957,10 @@ Auto: StartClimaxPhase
 {
     PayCost 2
     {
-        PayCost Discard 1 IsClimax
+        SearchLocationForTargets Hand 0 1 IsClimax
+        MoveCard WaitingRoom
+        If HasTarget
         {
-            TargetSentToPayCost
             IfTarget HasTrigger Bag
             {
                 SearchWaitingRoom HasTrigger Bag && IsClimax

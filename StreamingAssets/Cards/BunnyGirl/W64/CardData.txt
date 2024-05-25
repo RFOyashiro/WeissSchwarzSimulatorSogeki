@@ -28,8 +28,10 @@ Trait2 Animal
 Auto: OnPlay 
 {
 	Mill 2
-	If TargetsContain 1 IsClimax
+	NarrowTargets IsClimax
+	If HasTarget
 	{
+		TargetSelf
 		GainPower 3000
 	}
 }
