@@ -644,7 +644,7 @@ Combo The Strongest Tag Team
 *StockHealer
 Auto: OnEndOfOtherCharactersAttack
 {
-    IfOther InLocation CenterStage
+    IfOther InLocation MiddleCenterStage
     {
         If Climax The Strongest Tag Team && InLocation CenterStage && LocationContains Memory 2 HasTrait Knocker Up && IsCharacter
         {
@@ -2363,6 +2363,7 @@ JPName 馳せる想い
 Color B
 Level 2
 Cost 4
+Counter
 Effect: 
 {
     TargetLocation OpponentStage

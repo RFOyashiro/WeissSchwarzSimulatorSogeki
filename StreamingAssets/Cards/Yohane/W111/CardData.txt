@@ -506,7 +506,7 @@ Act: SendSelf WaitingRoom
     }
 }
 ActivationRequirement CardPosition Stand
-Text Act: [Put this card stand into waiting room] Choose a character with "Yohane" or "Lailaps" in its card name and place this card face up underneath that card as a marker.
+Text Act: [Put this standing card into waiting room] Choose a character with "Yohane" or "Lailaps" in its card name and place this card face up underneath that card as a marker.
 EndCard
 
 Character: YHN/W111-021

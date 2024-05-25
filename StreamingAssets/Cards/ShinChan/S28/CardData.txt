@@ -443,9 +443,12 @@ Soul 1
 Trait1 Family
 Trait2 Kindergarten
 Combo All-Star
-Auto:
+Auto: OnAttack
 {
-
+    *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait Family|Kindergarten)
+    TargetSelf
+    UntilEndOfOpponentsTurn
+    GainPower 3000
 }
 Text Auto: When this card attacks, if "All-Star" is in your climax area, choose up to 1 character in your waiting room with either «Family» or «Kindergarten» and put it in stock, and this card gets +3000 power until the end of your opponent's next turn.
 EndCard
