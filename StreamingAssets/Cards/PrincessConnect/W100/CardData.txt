@@ -1,5 +1,5 @@
 Character: PRD/W100-001
-Name WeiB Flugel, Monika
+Name Weiß Flugel, Monika
 Color Y
 Level 0
 Cost 0
