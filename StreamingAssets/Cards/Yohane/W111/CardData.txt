@@ -3221,6 +3221,7 @@ Auto: StartClimaxPhase
         SearchWaitingRoom IsCharacter && HasTrait Sound of Heart
     }
 }
+Alarm
 Text Auto: ALARM [Put 1 card from your hand to the waiting room] If this card is on top of your clock, at the beginning of your climax phase, you may pay the cost. If you do, choose a «Sound of Heart» character in your waiting room and return it to your hand.
 EndCard
 
