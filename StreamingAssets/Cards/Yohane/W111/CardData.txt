@@ -2229,8 +2229,32 @@ Cost 1
 Trigger Soul
 Power 5500
 Soul 1
+Combo Glimpse of Harmony
 Trait1 Sound of Heart
 *GlobalPower(1000,Sound of Heart)
+Auto: OnSpecificClimaxPlay Glimpse of Harmony
+{
+    If InLocation Backstage
+    {
+        TargetLocation Stage
+        NarrowTargets NameEquals Hearts Connecting, Friendship Beginning, Yohane
+        ChooseCharacterFromTargets Choose a character to give +1000 power and the effect.
+        GainPower 1000
+        GainEffect
+        {
+            Auto: OnAttack
+            {
+                PayCost Rest 1 Any
+                {
+                    GainSpecialEffect AdditionalTrigger
+                    GainSpecialEffect AdditionalTrigger
+                }
+            }
+            Text Auto: [Rest 1 of your standing character] When this card attacks, you may pay the cost. If you do, perform trigger check 3 times during this card's trigger step.
+        }
+    }
+}
+Text Auto: CxCombo When "Glimpse of Harmony" is placed in your climax area, if this card is in your backstage, choose 1 of your "Hearts Connecting, Friendship Beginning, Yohane" and that character gets +1000 power and the following ability until end of turn. "Auto: [Rest 1 of your standing character] When this card attacks, you may pay the cost. If you do, perform trigger check 3 times during this card's trigger step."
 Act: Discard 2 Any &&& RestSelf
 {
     Peek Deck 6
