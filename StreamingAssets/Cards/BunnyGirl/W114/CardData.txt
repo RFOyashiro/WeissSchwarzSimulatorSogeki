@@ -2033,7 +2033,7 @@ Effect:
     SearchWaitingRoom NameContains 麻衣
     SearchWaitingRoom NameContains 麻衣
     Discard 1 Any
-    If LocationContains WaitingRoom 6 HasTrigger && IsClimax
+    If LocationContains WaitingRoom 6 HasTrigger Door && IsClimax
     {
         PayCost 1
         {

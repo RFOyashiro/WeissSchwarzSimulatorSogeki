@@ -964,7 +964,6 @@ Auto: OnPlay
         If Yes
         {
             SearchLocationForTargets WaitingRoom 1 1 IsCharacter && HasTrait Omiko City
-            RevealTargets
             SaveTargets
             TargetBottom Clock 1
             RevealTargets
@@ -1634,7 +1633,7 @@ Auto: OnPlay
     {
         RevealTargets
         MoveCard Hand
-        TargetTop Deck 1
+        SearchLocationForTargets Hand 1 1 Any
         MoveCard Clock
     }
 }

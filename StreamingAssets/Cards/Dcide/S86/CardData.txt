@@ -543,7 +543,6 @@ Effect:
     MoveCard Clock
 }
 Text You may discard a card from your hand to the waiting room. If you do, all your opponent's characters get -1500 power until end of turn. Put this card in clock.
-Text <color=red> * This card is part of a 3C1 restriction alongside W89-028 and W89-034 in JP. </color>
 EndCard
 
 Event: DCT/S86-020
