@@ -2295,7 +2295,16 @@ Soul 1
 Trait1 Sound of Heart
 Auto: OnPlay
 {
-    MillUpTo Deck 2
+    Question Mill 1 ?
+    If Yes
+    {
+        Mill 1
+        Question Mill 1 ?
+        If Yes
+        {
+             Mill 1
+        }
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, put up to 2 cards from the top of your deck to the waiting room.
 *OnPlayTradeClimaxForCharacter(Sound of Heart)
