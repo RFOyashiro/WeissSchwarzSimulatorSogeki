@@ -2120,7 +2120,7 @@ Text Auto: [Put 1 card from your hand to the waiting room] When this card is pla
 EndCard
 
 Character: SBY/W114-079
-Name Shape of the Continuing Dream, Rio Futaba
+Name Shape of the Continuing Dream, Shoko Makinohara
 JPName これから続く夢のカタチ 牧之原 翔子
 Color B
 Level 0
