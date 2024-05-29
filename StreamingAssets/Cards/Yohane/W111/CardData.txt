@@ -1027,11 +1027,11 @@ Auto: OnSpecificClimaxPlay Glimpse of Harmony
                 *OptionalDraw
                 Discard 1 Any
             }
-            Text Auto: When this card attacks, draw 2 cards, put up to 1 card from your hand into waiting room.
+            Text Auto: When this card attacks, draw up to 2 cards, put up to 1 card from your hand into waiting room.
         }
     }
 }
-Text Auto: CxCombo When "Glimpse of Harmony" is placed to your climax area, if this card is in your center stage, this card gets +1000 power until end of turn, and this card gets the following 2 abilities until end of your opponent's turn. "Cont: During your opponent's turn, this card cannot be reverse." "Auto: When this card attacks, draw 2 cards, put up to 1 card from your hand into waiting room."
+Text Auto: CxCombo When "Glimpse of Harmony" is placed to your climax area, if this card is in your center stage, this card gets +1000 power until end of turn, and this card gets the following 2 abilities until end of your opponent's turn. "Cont: During your opponent's turn, this card cannot be reverse." "Auto: When this card attacks, draw up to 2 cards, put up to 1 card from your hand into waiting room."
 EndCard
 
 Character: YHN/W111-037
