@@ -60,6 +60,7 @@ Auto: OnAttack
     {
         PayCost 2 Discard 2 Any
         {
+            GainPower 2000
             GainEffect
             {
                 Auto: OnDamageCanceled
