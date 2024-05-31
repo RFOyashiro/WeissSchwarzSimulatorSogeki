@@ -2087,7 +2087,7 @@ Cont: GiveAll
 {
     IfOwner InLocation CenterStage
     {
-        If HasTrait HasTrait Sound of Heart
+        If HasTrait Sound of Heart
         {
             GainPower 1500
         }
