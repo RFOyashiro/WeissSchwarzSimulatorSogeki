@@ -602,7 +602,7 @@ Trait1 Sports
 Combo Who Are You?
 Auto: OnSpecificClimaxPlay Who Are You?
 {
-    PayCost SendFromHand 1 Memory NameEquals Girl from an Alien World, Black Rock Shooter &&& SendSelf Memory
+    PayCost SendFromHand 1 Memory NameEquals Girl from an Alien World, Black Rock Shooter &&& SendSelf WaitingRoom
     {
         SearchLocationForTargets WaitingRoom 1 1 NameEquals "Comet" Black Rock Shooter
         If HasTarget
