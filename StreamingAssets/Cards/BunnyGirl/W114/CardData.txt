@@ -306,7 +306,7 @@ Cont: GiveSelf
     AddToOtherCardsTriggerIcon Soul NameEquals The Dream Remained
 }
 Text Cont: "The Dream Remained" in all your other Zones get a soul trigger icon.
-*LevelAssistTrait(Asolescence)
+*LevelAssistTrait(Adolescence)
 EndCard
 
 Character: SBY/W114-011
