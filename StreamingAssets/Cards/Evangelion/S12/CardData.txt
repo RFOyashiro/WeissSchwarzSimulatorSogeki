@@ -1154,7 +1154,7 @@ Auto: OnAttack
     {
         TargetLocation OpponentStage
         NarrowTargets CardPosition Reverse
-        Burn X
+        Burn TargetCount
     }
 }
 Text Auto: CxCombo When this card attacks, if "Three People Needed" is in your climax area, you may deal X damage to your opponent. X equals the number of your opponent's reversed characters.
