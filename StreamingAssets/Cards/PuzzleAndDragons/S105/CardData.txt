@@ -2612,7 +2612,7 @@ Trait3 Attacker
 *Level3Assist
 Auto: OnTriggerCheckClimax
 {
-    Peek Deck 2
+    TargetTop Deck 2
     Reorder
     TargetLocation Stage
     ChooseCharacterFromTargets Choose a character to give +1 soul.
