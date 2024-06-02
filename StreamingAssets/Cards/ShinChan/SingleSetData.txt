@@ -1,0 +1,4 @@
+Series: Crayon Shin-Chan
+Folder: ShinChan/S28
+Prefix: CS/S28
+SetName: Crayon Shin-Chan (S28)

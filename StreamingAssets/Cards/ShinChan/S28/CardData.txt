@@ -906,7 +906,7 @@ Color G
 EndCard
 
 Character: CS/S28-051
-Name as "Hiroshi SUN", Hiroshi
+Name As "Hiroshi SUN", Hiroshi
 JPName “ひろしSUN”こと ひろし
 Color R
 Level 2
@@ -916,15 +916,40 @@ Power 8000
 Soul 1
 Trait1 Family
 Trait2 Hero
-Auto:
+Combo Familiar Scent
+Auto: StartEncoreStep
 {
-
+    If Climax Familiar Scent
+    {
+        Question Put this card into memory ?
+        If Yes
+        {
+            MoveCard Memory
+            ScheduleEffect StartDrawPhase
+            {
+                Effect:
+                {
+                    SearchWaitingRoom NameEquals For the Future, Shinnosuke
+					TargetLocation Memory
+					NarrowTargets NameEquals As "Hiroshi SUN", Hiroshi
+					FirstTarget
+					If HasTarget
+					{
+						Message As "Hiroshi SUN", Hiroshi returns from memory.
+						PlaceOnStage False True True False
+						GainPower 3500
+					}
+                }
+                Text Choose 1 "For the Future, Shinnosuke" in your waiting room and return it to your hand, then choose 1 'As "Hiroshi SUN", Hiroshi' in your memory, put it in any position on the stage and this card gets +3500 power until end of turn.
+            }
+        }
+    }
 }
-Text Auto: At the beginning of your encore step, if "Familiar Scent" is in your climax area, you may put this card into memory. If you do, at the beginning of your next draw phase, choose 1 "for the Future, Shinnosuke" in your waiting room and return it to your hand, then choose 1 'as "Hiroshi SUN", Hiroshi' in your memory and put it in any position on the stage. It gets +3500 power for that turn.
+Text Auto: At the beginning of your encore step, if "Familiar Scent" is in your climax area, you may put this card into memory. If you do, at the beginning of your next draw phase, choose 1 "For the Future, Shinnosuke" in your waiting room and return it to your hand, then choose 1 'As "Hiroshi SUN", Hiroshi' in your memory, put it in any position on the stage and this card gets +3500 power until end of turn.
 EndCard
 
 Character: CS/S28-052
-Name for the Future, Shinnosuke
+Name For the Future, Shinnosuke
 JPName 未来のために しんのすけ
 Color R
 Level 3
@@ -934,21 +959,21 @@ Power 10000
 Soul 2
 Trait1 Family
 Trait2 Kindergarten
-Cont:
+Combo I Will Protect the Future
+*GainPowerWithEnoughCharacters(1000,3,Family|Kindergarten)
+*OnPlayRevealBurnIfTrait(Family|Kindergarten)
+Auto: OnAttack
 {
-
+    If Climax I Will Protect the Future
+    {
+        Message Choose a card to put on top of your opponent's deck.
+        SearchLocationForTargets OpponentWaitingRoom 0 1 Any
+        MoveCard OpponentDeck
+        TargetLocation Stage
+        GainPower 2000
+    }
 }
-Text Cont: If the number of other characters with either «Family» or «Kindergarten» you have is 3 or more, this card gets +1000 power.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a character with either «Family» or «Kindergarten», you may deal 1 damage to your opponent. (damage cancel can occur. Put the revealed card back)
-Auto:
-{
-
-}
-Text Auto: When this card attacks, if "I Will Protect the Future" is in your climax area, choose up to 1 card in your opponent's waiting Room and put it on top of the deck, and all your characters get +2000 power until end of turn.
+Text Auto: When this card attacks, if "I Will Protect the Future" is in your climax area, choose up to 1 card in your opponent's waiting room, put it on top of their deck, and all your characters get +2000 power until end of turn.
 EndCard
 
 Character: CS/S28-053
@@ -961,14 +986,13 @@ Power 1000
 Soul 1
 Trait1 Family
 Trait2 Kindergarten
-Auto:
+*RedLevel0Bomb
+Auto: OnPlay
 {
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 0 or lower, you may reverse that character.
-Auto:
-{
-
+    PayCost 2
+    {
+        SearchWaitingRoom IsCharacter && HasTrait Family|Kindergarten
+    }
 }
 Text Auto: [(2)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose 1 character in your waiting room with either «Family» or «Kindergarten» and return it to your hand.
 EndCard
@@ -983,9 +1007,12 @@ Power 3500
 Soul 1
 Trait1 Kindergarten
 Trait2 Honor Student
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains Stock 4 Any
+    {
+        GainSpecialEffect CannotAttack
+    }
 }
 Text Cont: If there are 4 or more cards in your stock, this card cannot attack.
 EndCard
@@ -1000,16 +1027,21 @@ Power 2500
 Soul 1
 Trait1 Family
 Trait2 Magic
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    PayCost 3
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen && EarlyPlay
+        If HasTarget
+        {
+            ChooseCharacterFromTargets Choose 1 of your opponent's characters whose level is higher than your opponent.
+            MoveCard OpponentWaitingRoom
+        }
+    }
 }
-Text Auto: [(3)] When you use this card's BACKUP, you may pay the cost. If you do, choose an opponent's character whose level is higher than your opponent and put it in the waiting room.
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 1000, level 1 [Put this card from your hand to the waiting room]
+Text Auto: [(3)] When you use this card's "BACKUP", you may pay the cost. If you do,  choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
+Backup 1000
 EndCard
 
 Character: CS/S28-056
@@ -1022,11 +1054,7 @@ Power 5000
 Soul 1
 Trait1 Family
 Trait2 Kindergarten
-Cont:
-{
-
-}
-Text Cont: If the number of other characters with either «Family» or «Kindergarten» you have is 3 or more, this card gets +1000 power.
+*GainPowerWithEnoughCharacters(1000,3,Family|Kindergarten)
 EndCard
 
 Character: CS/S28-057
@@ -1040,16 +1068,8 @@ Power 4000
 Soul 1
 Trait1 Family
 Trait2 Kindergarten
-Cont:
-{
-
-}
-Text Cont: ASSIST Your characters in front of this card get +1000 power.
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your characters with either «Family» or «Kindergarten». That character gets +1000 power until end of turn.
+*1000Assist
+*RestGivePower(1000,Family|Kindergarten)
 EndCard
 
 Character: CS/S28-058
@@ -1062,16 +1082,8 @@ Power 500
 Soul 1
 Trait1 Family
 Trait2 Gem
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck and put it either on top of the deck or in the waiting room.
-Auto:
-{
-
-}
-Text Auto: BOND/"Driver, Shinnosuke" [(1)]
+*OnPlayScry
+*Bond1(Driver\, Shinnosuke)
 EndCard
 
 Character: CS/S28-059
@@ -1084,11 +1096,7 @@ Power 3500
 Soul 1
 Trait1 Kindergarten
 Trait2 Mystery
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, you may reverse that character.
+*RedLevel1Bomb
 EndCard
 
 Character: CS/S28-060
@@ -1101,9 +1109,18 @@ Power 5000
 Soul 1
 Trait1 Family
 Trait2 Salaryman
-Auto:
+Combo Floating Happiness
+Auto: OnAttack
 {
-
+    If Climax Floating Happiness
+    {
+        PayCost 1
+        {
+            SearchWaitingRoom IsCharacter && HasTrait Family|Kindergarten
+            TargetSelf
+            GainPower 1000
+        }
+    }
 }
 Text Auto: [(1)] When this card attacks, if "Floating Happiness" is in your climax area, you may pay the cost. If you do, choose 1 character in your waiting room with either «Family» or «Kindergarten» and return it to your hand, and this card gets +1000 power until end of turn.
 EndCard
@@ -1118,9 +1135,12 @@ Power 6500
 Soul 1
 Trait1 Family
 Trait2 Animal
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContainsOrLess Stock 3 Any
+    {
+        GainPower 1000
+    }
 }
 Text Cont: If there are 3 or less cards in your stock, this card gets +1000 power.
 EndCard
@@ -1136,9 +1156,19 @@ Power 8000
 Soul 1
 Trait1 Glasses
 Trait2 Science
-Auto:
+Auto: OnPlay
 {
-
+    If LocationContainsOrLess Deck 5 Any
+    {
+        PayCost 2
+        {
+            Refresh
+            TargetLocation OpponentStage
+            NarrowTargets CanBeChosen && Compare ThatCardsLevel 1 OrLess
+            ChooseCharacterFromTargets Choose a character to put into memory.
+            MoveCard OpponentMemory
+        }
+    }
 }
 Text Auto: [(2)] When this card is placed on the stage from your hand, if there are 5 or less cards in your deck, you may pay the cost. If you do, return all cards in your waiting room to the deck, shuffle your deck, then choose 1 of your opponent's level 1 or lower characters and send it to memory.
 EndCard
@@ -1153,11 +1183,18 @@ Power 2000
 Soul 1
 Trait1 Family
 Trait2 Kindergarten
-Auto:
+Auto: OnFrontalAttacked
 {
-
+    PayCost SendSelf WaitingRoom
+    {
+        SearchLocationForTargets Hand 0 1 NameEquals Driver, Shinnosuke
+        If HasTarget
+        {
+            Change
+        }
+    }
 }
-Text Auto: [Put this card in the waiting room] When this card is frontal attacked, you may pay the cost. If you do, choose up to 1 "Driver, Shinnosuke" in your hand and put it in the position this card was in as Defending character.
+Text Auto: [Put this card in the waiting room] When this card is frontal attacked, you may pay the cost. If you do, choose up to 1 "Driver, Shinnosuke" in your hand and put it in the position this card was in as the defending character.
 EndCard
 
 Character: CS/S28-064
@@ -1170,14 +1207,21 @@ Power 2000
 Soul 1
 Trait1 Kindergarten
 Trait2 Doll
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContainsOrLess 0 Other
+    {
+        GainLevel 1
+        GainPower 1500
+    }
 }
 Text Cont: If you have no other characters, this card gets +1 level and +1500 power.
-Act:
+Act: 1
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen && Compare ThatCardsLevel 0 OrLess
+    ChooseCharacterFromTargets Choose a character to put into waiting room.
+    MoveCard OpponentWaitingRoom
 }
 Text Act: [(1)] Choose 1 of your opponent's level 0 or lower character in the center stage and put it in the waiting room.
 EndCard
@@ -1192,11 +1236,13 @@ Power 2000
 Soul 1
 Trait1 Teacher
 Trait2 Kindergarten
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters Other && NameEquals Ageo & Matsuzaka & Yoshinaga
+    MultiplyXValue 2000
+    GainPower X
 }
-Text Cont: This card gets +2000 pow for each of your other "Ageo & Matsuzaka & Yoshinaga"
+Text Cont: This card gets +2000 power for each of your other "Ageo & Matsuzaka & Yoshinaga"
 EndCard
 
 Character: CS/S28-066
@@ -1209,11 +1255,7 @@ Power 2500
 Soul 1
 Trait1 Family
 Trait2 Housewife
-Auto:
-{
-
-}
-Text Auto: When your other character with either «Family» or «Kindergarten» attacks, this card gets +1000 power until end of turn.
+*GainPowerWhenOtherAttacks(1000,Family|Kindergarten)
 EndCard
 
 Character: CS/S28-067
@@ -1264,9 +1306,12 @@ Power 9500
 Soul 2
 Trait1 Kindergarten
 Trait2 Crybaby
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContainsOrLess Backstage 1 Any
+    {
+        GainSpecialEffect CannotAttack
+    }
 }
 Text Cont: If there are 1 or less characters in your backstage, this card cannot attack.
 EndCard
@@ -1277,11 +1322,12 @@ JPName ひろしの靴
 Color R
 Level 2
 Cost 1
+Counter
 Effect:
 {
-
+    *GiveCharacterPower(4500,Family|Kindergarten)
 }
-Text Choose 1 of your characters with either «Family» or «Kindergarten». That character gets +4500 power until end of turn.
+Text COUNTER Choose 1 of your characters with either «Family» or «Kindergarten» and that character gets +4500 power until end of turn.
 EndCard
 
 Event: CS/S28-072
@@ -1292,23 +1338,24 @@ Level 2
 Cost 1
 Effect:
 {
-
+    SearchWaitingRoom IsCharacter
+    SearchWaitingRoom IsCharacter
+    Discard 1 Any
 }
-Text Choose up to 2 characters in your waiting room and return them to your hand, and discard a card from your hand to the waiting room.
+Text Choose up to 2 characters in your waiting room and return them to your hand, and put 1 card from your hand to the waiting room.
 EndCard
 
 Climax: CS/S28-073
 Name Floating Happiness
 JPName 浮かぶ幸せ
-Color R
-
+*RedStockSoul
 EndCard
 
 Climax: CS/S28-074
 Name Familiar Scent
 JPName なつかしいニオイ
 Color R
-
+*DrawClimax
 EndCard
 
 Climax: CS/S28-075
@@ -1327,16 +1374,8 @@ Power 6000
 Soul 1
 Trait1 Family
 Trait2 Kindergarten
-Cont:
-{
-
-}
-Text Cont: If the number of other characters with either «Family» or «Yukata» you have is 3 or more, this card gets +1000 power.
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+*GainPowerWithEnoughCharacters(1000,3,Family|Kindergarten)
+*HandEncore
 EndCard
 
 Character: CS/S28-077
@@ -1350,16 +1389,23 @@ Power 10000
 Soul 2
 Trait1 Family
 Trait2 Salaryman
-Cont:
+Cont: GiveSelf
 {
-
+    If Not MyTurn
+    {
+        SetXToNumberOfCharacters Other && HasTrait Family|Yukata
+        MultiplyXValue 500
+        GainPower X
+    }
 }
-Text Cont: During your opponent's turn, this card gets +500 pow for each of your other characters with either «Family» or «Yukata»
-Auto:
+Text Cont: During your opponent's turn, this card gets +500 power for each of your other characters with either «Family» or «Yukata»
+Auto: OnPlay|PlacedBy CHANGE
 {
-
+    *Check4Add1(Family)
+    TargetSelf
+    GainPower 4000
 }
-Text Auto: When this card is placed on the stage from your hand or by CHANGE to the stage, look at up to the top 4 cards of your deck, choose up to 1 «Family» character among them, reveal it, put it in your hand, then put the rest into your waiting room. This gets +4000 power until end of turn.
+Text Auto: When this card is placed on the stage from your hand or by "CHANGE" to the stage, look at up to the top 4 cards of your deck, choose up to 1 «Family» character among them, reveal it, put it in your hand, then put the rest into your waiting room. This gets +4000 power until end of turn.
 EndCard
 
 Character: CS/S28-078
@@ -1372,16 +1418,8 @@ Power 500
 Soul 1
 Trait1 Family
 Trait2 Salaryman
-Cont:
-{
-
-}
-Text Cont: All your other characters with either «Family» or «Yukata» get +500 power.
-Auto:
-{
-
-}
-Text Auto: BOND/"Not Afraid of Anything, Shinnosuke" [Put 1 card from hand to the waiting room]
+*GlobalPower(500,Family|Yukata)
+*BondDiscard(Not Afraid of Anything\, Shinnosuke)
 EndCard
 
 Character: CS/S28-079
@@ -1394,11 +1432,7 @@ Power 2500
 Soul 1
 Trait1 Family
 Trait2 Kindergarten
-Auto:
-{
-
-}
-Text Auto: At the beginning of your opponent's attack phase, you may put the top card of your deck in the waiting room. If it's a character with either «Family» or «Yukata», you may move this card to a vacant position in the center stage.
+*MillRunner(Family|Yukata)
 EndCard
 
 Character: CS/S28-080
@@ -1411,14 +1445,14 @@ Power 4500
 Soul 1
 Trait1 Weapon
 Trait2 Yukata
-Auto:
+Combo Uncontainable Feelings
+*GainPowerWhenOtherAttacks(1000,Family|Yukata)
+Auto: OnReverseOpponent
 {
-
-}
-Text Auto: When your other character with either «Family» or «Yukata» attacks, this card gets +1000 Pwoer until end of turn.
-Auto:
-{
-
+    If Climax Uncontainable Feelings
+    {
+        *OptionalDraw
+    }
 }
 Text Auto: When this card's battle opponent becomes reverse, if "Uncontainable Feelings" is in your climax area, you may draw a card.
 EndCard
@@ -1434,16 +1468,15 @@ Power 2000
 Soul 1
 Trait1 Family
 Trait2 Salaryman
-Auto:
+Auto: StartClimaxPhase
 {
-
+    PayCost 2 Discard 1 Any &&& SendSelf WaitingRoom
+    {
+        *ChangeWaitingRoom(Battle Preparation\, Hiroshi)
+    }
 }
-Text Auto: CHANGE [(2) Put 1 card from hand to the waiting room, put this card in the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose 1 "battle Preparation, Hiroshi" in your waiting room and put it in the position this card was in.
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+Text Auto: CHANGE [(2) Put 1 card from hand to the waiting room, put this card in the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose 1 "Battle Preparation, Hiroshi" in your waiting room and put it in the position this card was in.
+Backup 3000
 EndCard
 
 Character: CS/S28-082
@@ -1457,16 +1490,28 @@ Power 7500
 Soul 1
 Trait1 Family
 Trait2 Kindergarten
-Cont:
+Cont: GiveFacing
 {
-
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            GainSpecialEffect CannotSideAttack
+        }
+        Text Cont: This card cannot side attack
+    }
 }
-Text Cont: character facing this card gets "Cont: This cannot side attack".
-Cont:
+Text Cont: character facing this card gets "Cont: This card cannot side attack".
+Cont: GiveSelf
 {
-
+    If Not MyTurn
+    {
+        SetXToNumberOfCharacters Other && HasTrait Family|Yukata
+        MultiplyXValue 500
+        GainPower X
+    }
 }
-Text Cont: During your opponent's turn, this card gets +500 pow for each of your other characters with either «Family» or «Yukata»
+Text Cont: During your opponent's turn, this card gets +500 power for each of your other characters with either «Family» or «Yukata»
 EndCard
 
 Character: CS/S28-083
@@ -1479,9 +1524,12 @@ Power 2500
 Soul 1
 Trait1 Family
 Trait2 Housewife
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains Hand 6 Any
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If there are 6 or more cards in your hand, this card gets +1500 power.
 EndCard
@@ -1495,11 +1543,7 @@ Cost 0
 Power 5000
 Soul 1
 Trait1 Yukata
-Auto:
-{
-
-}
-Text Auto: When this card attacks, chosose 1 of your other characters with either «Family» or «Yukata». That character gets +1000 power until end of turn.
+*OnAttackGiveOtherPower(1000,Family|Yukata)
 EndCard
 
 Character: CS/S28-085
@@ -1513,9 +1557,9 @@ Power 3000
 Soul 1
 Trait1 Yukata
 Trait2 Love
-Auto:
+Auto: StartOpponentAttackPhase
 {
-
+    *GiveCharacterPower(2000,Any)
 }
 Text Auto: At the beginning of your opponent's attack phase, choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
@@ -1531,9 +1575,29 @@ Power 8000
 Soul 1
 Trait1 Weapon
 Trait2 Yukata
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen && Compare ThatCardsLevel 3 OrLess
+        ChooseCharacterFromTargets_Optional Choose up to 1 character to return to hand.
+        Bounce
+        TargetSelf
+        ScheduleEffectForTargets EndOfTurn
+        {
+            Effect:
+            {
+                If OnStage
+                {
+                    MoveCard WaitingRoom
+                }
+            }
+            Quick
+            Text At the end of the turn, put this card in the waiting room.
+        }
+        
+    }
 }
 Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 1 of your opponent's level 3 or lower characters and return it to hand, and at the end of the turn, put this card in the waiting room.
 EndCard
@@ -1549,16 +1613,32 @@ Power 8000
 Soul 2
 Trait1 Family
 Trait2 Kindergarten
-Auto:
+Combo Extended Time
+Auto: OnAttack
 {
-
+    If Climax Extended Time
+    {
+        GainPower 3500
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                TargetBattleOpponent
+                IfTarget OnStage
+                {
+                    Question Put the battle opponent to the bottom of the deck ?
+                    If Yes
+                    {
+                        MoveCardToBottom OpponentDeck
+                    }
+                }
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may put it on the bottom of the deck
+        }
+    }
 }
-Text Auto: When this card attacks, if "Extended Time" is in your climax area, this card gets +3500 power and "Auto: When this card's battle opponent becomes reverse, you may put it on the bottom of the deck" until end of turn.
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put the top card of your deck in your clock]
+Text Auto: When this card attacks, if "Extended Time" is in your climax area, this card gets +3500 power and the following effect until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put it on the bottom of the deck"
+*ClockEncore
 EndCard
 
 Character: CS/S28-088
@@ -1571,11 +1651,7 @@ Power 2000
 Soul 1
 Trait1 Family
 Trait2 Gem
-Cont:
-{
-
-}
-Text Cont: All your other «Family» characters get +500 power.
+*GlobalPower(500,Family)
 EndCard
 
 Character: CS/S28-089
@@ -1587,16 +1663,13 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Yukata
-Auto:
+*OnAttackGiveOtherPower(1000,Family|Yukata)
+Act: 1
 {
-
+    DrawCard
+    Discard 1 Any
 }
-Text Auto: When this card attacks, choose 1 of your other characters with either «Family» or «Yukata». That character gets +1000 power until end of turn.
-Act:
-{
-
-}
-Text Act: [(1)] draw a card, and discard a card from your hand to the waiting room.
+Text Act: [(1)] Draw a card, and discard a card from your hand to the waiting room.
 EndCard
 
 Character: CS/S28-090
@@ -1608,11 +1681,15 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Yukata
-Auto:
+Auto: OnOtherOpponentReversed
 {
-
+    IfOther NameContains しんのすけ
+    {
+        TargetSelf
+        GainPower 1500
+    }
 }
-Text Auto: When the battle opponent of your other character whose name includes "Shinnosuke" becomes reversed, this card gets +1500 power for hte turn.
+Text Auto: When the battle opponent of your other character with "Shinnosuke" in its card name becomes reversed, this card gets +1500 power until end of turn.
 EndCard
 
 Character: CS/S28-091
@@ -1637,14 +1714,23 @@ Power 3000
 Soul 1
 Trait1 Family
 Trait2 Kindergarten
-Cont:
+Combo One Drop
+Cont: GiveFacing
 {
-
+    GainEffect
+    {
+        *HandEncore
+    }
 }
-Text Cont: character facing this card gets "Auto: ENCORE [Put 1 character from your hand to the waiting room]"
-Auto:
+Text Cont: Character facing this card gets "Auto: ENCORE [Put 1 character from your hand to the waiting room]"
+Auto: OnSpecificClimaxPlay One Drop
 {
-
+    If InLocation CenterStage
+    {
+        DrawCard
+        Discard 1 Any
+        *ScryToBottom
+    }
 }
 Text Auto: When "One Drop" is placed on your climax area, if this card is in the center stage, draw a card, discard a card from your hand to the waiting room, then look at the top of your deck and put it either on top or bottom of the deck.
 EndCard
@@ -1659,9 +1745,15 @@ Power 5000
 Soul 1
 Trait1 Family
 Trait2 Kindergarten
-Auto:
+Auto: StartOpponentAttackPhase
 {
-
+    If InLocation CenterStage
+    {
+        PayCost 1
+        {
+            *GiveCharacterPower(1000,Any)
+        }
+    }
 }
 Text Auto: [(1)] At the beginning of your opponent's attack phase, if this card is in the center stage, you may pay the cost. If you do, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
@@ -1688,10 +1780,14 @@ Trigger Soul
 Power 8000
 Soul 1
 Trait1 Yukata
-Auto:
+Auto: OnReceiveDamage
 {
-
+    If InBattle
+    {
+        GainPower 1500
+    }
 }
+Quick
 Text Auto: During battles involving this card acrd, when the damage taken by you is not canceled, this card gets +1500 Pwoer until end of turn.
 EndCard
 
@@ -1703,7 +1799,14 @@ Level 1
 Cost 1
 Effect:
 {
-
+    PayCost Rest 1 HasTrait Family|Yukata
+    {
+        SearchLocationForTargets Deck 0 2 IsCharacter && HasTrait Family|Yukata
+        RevealTargets
+        MoveCard Hand
+        ShuffleLocation Deck
+        Discard 1 Any
+    }
 }
 Text Rest 1 of your standing characters with either «Family» or «Yukata». If you do, search your deck for up to 2 characters with either «Family» or «Yukata», reveal them, put them in your hand, shuffle your deck, and discard a card from your hand to the waiting room.
 EndCard
@@ -1716,9 +1819,18 @@ Level 1
 Cost 1
 Effect:
 {
-
+    TargetLocation Stage
+    NarrowTargets HasTrait Family
+    ChooseCharacterFromTargets Choose a character to give +2500 power.
+    SaveTargets
+    TargetLocation Stage
+    NarrowTargets HasTrait Yukata && Not InSavedTargets
+    ChooseCharacterFromTargets Choose a character to give +2500 power.
+    AddSavedToCurrentTargets
+    UntilEndOfOpponentsTurn
+    GainPower 2500
 }
-Text Choose 1 of your «Family» characters and 1 of your «Yukata» characters (must target different characters). They get +2500 power until the end of your opponent's next turn.
+Text Choose 1 of your «Family» characters and 1 of your «Yukata» characters and those characters get +2500 power until the end of your opponent's next turn.
 EndCard
 
 Climax: CS/S28-098
@@ -1731,14 +1843,14 @@ Climax: CS/S28-099
 Name Uncontainable Feelings
 JPName 抑えきれない気持ち
 Color B
-
+*2SoulClimax
 EndCard
 
 Climax: CS/S28-100
 Name One Drop
 JPName ひとしずく
 Color B
-
+*DrawClimax
 EndCard
 
 Character: CS/S28-101
@@ -1752,11 +1864,7 @@ Power 8000
 Soul 1
 Trait1 Family
 Trait2 Kindergarten
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+*OnPlayGainPower(1500)
 EndCard
 
 Character: CS/S28-102
@@ -1769,11 +1877,7 @@ Power 2000
 Soul 1
 Trait1 Kindergarten
 Trait2 Honor Student
-Cont:
-{
-
-}
-Text Cont: All your other «Kindergarten» characters get +500 power.
+*GlobalPower(500,Kindergarten)
 EndCard
 
 Character: CS/S28-103
@@ -1786,11 +1890,11 @@ Power 2500
 Soul 1
 Trait1 Kindergarten
 Trait2 Doll
-Act:
+Act: Rest 2 HasTrait Family|Kindergarten
 {
-
+    GainPower 2500
 }
-Text Act: [Rest 2 of your characters with either «Family» or «Kindergarten::] This gets +2500 power until end of turn.
+Text Act: [Rest 2 of your characters with either «Family» or «Kindergarten»] This gets +2500 power until end of turn.
 EndCard
 
 Character: CS/S28-104
@@ -1803,11 +1907,7 @@ Power 1500
 Soul 1
 Trait1 Kindergarten
 Trait2 Crybaby
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 1500, level 1 [Put this card from your hand to the waiting room]
+Backup 1500
 EndCard
 
 Character: CS/S28-105
@@ -1820,10 +1920,11 @@ Power 5000
 Soul 1
 Trait1 Kindergarten
 Trait2 Mystery
-Auto:
+Auto: OnClimaxPlay
 {
-
+    GainPower 1500
 }
+Quick
 Text Auto: When your climax is placed on your climax area, this card gets +1500 power until end of turn.
 EndCard
 
@@ -1837,9 +1938,12 @@ Power 7500
 Soul 2
 Trait1 Mask
 Trait2 Hero
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContainsOrLess Clock 2 Any
+    {
+        GainSpecialEffect CannotAttack
+    }
 }
 Text Cont: If there are 2 or less cards in your clock, this card cannot attack.
 EndCard
@@ -1854,9 +1958,9 @@ Power 3500
 Soul 1
 Trait1 Family
 Trait2 Kindergarten
-Cont:
+Cont: GiveSelf
 {
-
+    GainSpecialEffect CannotBeReversedByAutoEffects
 }
 Text Cont: This cannot be reversed by effects of Auto: abilities of your opponent's characters.
 EndCard
@@ -1871,9 +1975,12 @@ Power 5000
 Soul 1
 Trait1 Family
 Trait2 Mecha
-Act:
+Act: 1
 {
-
+    GainEffect
+    {
+        *RedLevel1Bomb
+    }
 }
 Text Act: [(1)] This gets the following ability until end of turn. "Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, you may reverse that character."
 EndCard
@@ -1889,9 +1996,12 @@ Power 8000
 Soul 1
 Trait1 Family
 Trait2 Mecha
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContainsOrLess Stock 4 Any
+    {
+        GainPower 1000
+    }
 }
 Text Cont: If there are 4 or less cards in your stock, this card gets +1000 power.
 EndCard
@@ -1906,9 +2016,9 @@ Power 2500
 Soul 1
 Trait1 Family
 Trait2 Kindergarten
-Act:
+Act: 2 RestSelf
 {
-
+    SearchWaitingRoom IsCharacter && HasTrait Family|Kindergarten
 }
 Text Act: [(2) Rest this card] Choose a character with either «Family» or «Kindergarten» in your waiting room and return it to your hand.
 EndCard
@@ -1923,11 +2033,26 @@ Power 2500
 Soul 1
 Trait1 Family
 Trait2 Mecha
-Act:
+Act: Rest 1 With ASSIT
 {
-
+    GainEffect
+    {
+        Auto: OnReverseOpponent
+        {
+            TargetBattleOpponent
+            If OnStage
+            {
+                Question Put that character on top of your opponent's deck ?
+                If Yes
+                {
+                    MoveCard OpponentDeck
+                }
+            }
+        }
+        Text Auto: When this card's battle opponent becomes reverse, you may put it on top of the deck.
+    }
 }
-Text Act: [Rest 1 of your characters with ASSIST] This gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put it on top of the deck."
+Text Act: [Rest 1 of your characters with "ASSIST"] This gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put it on top of the deck."
 EndCard
 
 Character: CS/S28-P07
@@ -1940,10 +2065,18 @@ Power 2500
 Soul 1
 Trait1 Family
 Trait2 Kindergarten
-Auto:
+Auto: OnOtherPlacedOnStageFromHand
 {
-
+    If Other HasTrait Family|Mecha
+    {
+        GainPower 1000
+    }
+    Else
+    {
+        RefundTimesPerTurn
+    }
 }
+TimesPerTurn 2
 Text Auto: This ability activates up to twice per turn. When your other character with either «Family» or «Mecha» is placed on the stage from your hand, this card gets +1000 power until end of turn.
 EndCard
 
@@ -1957,14 +2090,33 @@ Power 4500
 Soul 1
 Trait1 Family
 Trait2 Mecha
-Cont:
+Cont: GiveSelf
 {
-
+    If HasMarker && InLocation MiddleCenterStage
+    {
+        GainPower 3500
+        GainEffect
+        {
+            Cont: GiveSelf
+            {
+                GainSpecialEffect CannotBeReversedByAutoEffects
+            }
+        }
+    }
 }
-Text Cont: If there are markers under this card and this card is in the middle position of your center stage, this card gets +3500 power and the following ability. "Cont: This cannot be reversed by effects of Auto: abilities of your opponent's characters."
-Auto:
+Text Cont: If there are markers underneath this card and this card is in the middle position of your center stage, this card gets +3500 power and the following ability. "Cont: This cannot be reversed by effects of Auto: abilities of your opponent's characters."
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchDeck IsCharacter && HasTrait Family
+        SearchLocationForTargets Hand 0 1 NameEquals "My Robotic Father" Shinnosuke
+        If HasTarget
+        {
+            RevealTargets
+            Marker_FaceDown
+        }
+    }
 }
 Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Family» characters, reveal it, put it in your hand, and choose up to 1 '"My Robotic Father" Shinnosuke' in your hand, reveal it, and put it face down underneath this card as a marker, and shuffle your deck.
 EndCard
@@ -1979,14 +2131,20 @@ Power 500
 Soul 1
 Trait1 Family
 Trait2 Animal
-Cont:
+Cont: GiveAll
 {
-
+    If MyTurn && InLocation MiddleCenterStage && Other
+    {
+        GainPower 1500
+    }
 }
 Text Cont: During your turn, your other character in the middle position of your center stage gets +1500 power.
-Act:
+Act: 1
 {
-
+    TargetLocation Stage
+    NarrowTargets HasTrait Family|Kindergarten
+    ChooseCharacterFromTargets Choose a character to give +1 soul.
+    GainSoul 1
 }
 Text Act: [(1)] Choose 1 of your characters with either «Family» or «Kindergarten», and that character gets +1 soul until end of turn.
 EndCard
@@ -2001,11 +2159,7 @@ Power 1000
 Soul 1
 Trait1 Family
 Trait2 Animal
-Cont:
-{
-
-}
-Text Cont: ASSIST Your characters in front of this card get +500 power.
+*500Assist
 EndCard
 
 Character: CS/S28-T02
@@ -2030,11 +2184,12 @@ Power 3500
 Soul 1
 Trait1 Family
 Trait2 Animal
-Auto:
+Auto: OnOpponentLevelUp
 {
-
+    MoveCard WaitingRoom
 }
-Text Auto: When your opponent levels-up, put this card in the waiting room.
+Quick
+Text Auto: When your opponent level up, put this card in the waiting room.
 EndCard
 
 Character: CS/S28-T04
@@ -2047,11 +2202,7 @@ Power 1500
 Soul 1
 Trait1 Family
 Trait2 Gem
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 1500, level 1 [Put this card from your hand to the waiting room]
+Backup 1500
 EndCard
 
 Character: CS/S28-T05
@@ -2064,11 +2215,7 @@ Power 4500
 Soul 1
 Trait1 Family
 Trait2 Gem
-Auto:
-{
-
-}
-Text Auto: [(1) Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with either «Family» or «Kindergarten», reveal it, put it in your hand, and shuffle your deck.
+*DropSearch(Family|Kindergarten)
 EndCard
 
 Character: CS/S28-T06
@@ -2119,16 +2266,8 @@ Power 10000
 Soul 2
 Trait1 Family
 Trait2 Kindergarten
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, look at up to the top 3 cards of your deck, choose up to 1 cards among them and put in your hand. Put the rest in the waiting room.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 500 times number of your characters with either «Family» or «Kindergarten».
+*OnPlayCheck3
+*OnPlayGainPowerForEach(500,Family|Kindergarten)
 EndCard
 
 Event: CS/S28-T10
@@ -2139,23 +2278,26 @@ Level 1
 Cost 1
 Effect:
 {
-
+    TargetLocation OpponentCenterStage
+    NarrowTargets CanBeChosen && Compare ThatCardsLevel 3 OrLess
+    ChooseCharacterFromTargets_Optional Choose up to 1 character to return to hand.
+    Bounce
+    *GiveCharacterPower(3000,Family|Kindergarten)
 }
-Text Choose up to 1 level 3 or lower characters in your opponent's center stage and return it to hand, and choose 1 of your characters with either «Family» or «Kindergarten». and that character gets +3000 power until end of turn.
+Text Choose up to 1 level 3 or lower characters in your opponent's center stage and return it to hand, choose 1 of your characters with either «Family» or «Kindergarten» and that character gets +3000 power until end of turn.
 EndCard
 
 Climax: CS/S28-T11
 Name Family is Nice to Have
 JPName 家族はやっぱりいいもんだゾ
 Color Y
-
+*2SoulClimax
 EndCard
 
 Climax: CS/S28-T12
 Name Always Together
 JPName いつだって一緒
-Color Y
-
+*YellowStockSoul
 EndCard
 
 Character: CS/S28-T13
@@ -2168,11 +2310,7 @@ Power 2000
 Soul 1
 Trait1 Family
 Trait2 Kindergarten
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a character with either «Family» or «Kindergarten», put in your hand and discard a card from your hand to the waiting room.
+*OnPlayCheckTopAddDiscard(Family|Kindergarten)
 EndCard
 
 Character: CS/S28-T14
@@ -2185,9 +2323,9 @@ Power 2500
 Soul 1
 Trait1 Family
 Trait2 Kindergarten
-Act:
+Act: Rest 2 Any
 {
-
+    *GiveCharacterPower(1500,Family|Kindergarten)
 }
 Text Act: [Rest 2 of your characters] Choose 1 of your characters with either «Family» or «Kindergarten», and that character gets +1500 power until end of turn.
 EndCard
@@ -2202,11 +2340,7 @@ Power 5000
 Soul 1
 Trait1 Family
 Trait2 Kindergarten
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+*OnPlayGainPower(1500)
 EndCard
 
 Character: CS/S28-T16
@@ -2220,14 +2354,10 @@ Power 3500
 Soul 1
 Trait1 Family
 Trait2 Kindergarten
-Cont:
+*LevelAssistTrait(Family|Kindergarten)
+Act: 2
 {
-
-}
-Text Cont: ASSIST Your characters with either «Family» or «Kindergarten» in front of this card get +X power. X equals 500 times level of that character.
-Act:
-{
-
+    *GiveCharacterPower(4500,Any)
 }
 Text Act: [(2)] Choose 1 of your characters, and that character gets +4500 power until end of turn.
 EndCard
@@ -2243,22 +2373,22 @@ Power 8000
 Soul 2
 Trait1 Family
 Trait2 Kindergarten
-Auto:
+Combo Butt Alien
+Auto: OnAttack
 {
-
+    If Climax Butt Alien
+    {
+        TargetLocation Stage
+        GainPower 2000
+    }
 }
 Text Auto: When this card attacks, if "Butt Alien" is in your climax area, all your characters get +2000 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put the top card of your deck in your clock]
+*ClockEncore
 EndCard
 
 Climax: CS/S28-T18
 Name Butt Alien
 JPName ケツだけ星人
-Color G
-
+*GreenStockSoul
 EndCard
 
