@@ -489,7 +489,7 @@ Auto: OnSentFromStageToWaitingRoom
 {
     PayCost Discard 1 Any
     {
-        *Check4Add1(Sound of Heart)
+        *Check4Add1Level1OrHigher
     }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card among them, reveal it, put it in your hand, and put the rest into your waiting room.
