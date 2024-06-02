@@ -91,11 +91,12 @@ Auto: OnAttack
         {
             Mill 7
             NarrowTargets HasTrigger Soul
-            If Compare TargetCount 3 OrMore
+            SetXValue TargetCount
+            If Compare X 3 OrMore
             {
                 Burn 4
             }
-            If Compare TargetCount 4 OrMore
+            If Compare X 4 OrMore
             {
                 Message Choose cards to return to your opponent's deck.
                 SearchLocationForTargets OpponentWaitingRoom 0 3 Any
@@ -103,7 +104,7 @@ Auto: OnAttack
                 MoveCard OpponentDeck
                 ShuffleLocation OpponentDeck
             }
-            If Compare TargetCount 6 OrMore
+            If Compare X 6 OrMore
             {
                 Burn 4
             }
