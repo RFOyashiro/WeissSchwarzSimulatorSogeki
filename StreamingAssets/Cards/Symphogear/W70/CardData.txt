@@ -1643,7 +1643,7 @@ Cont: GiveSelf
     MultiplyXValue 1000
     GainPower X
 }
-Text Cont: This card gets +1000 power, for each of your other level 0 or lower back stage characters.
+Text Cont: This card gets +1000 power for each of your other level 0 or lower back stage characters.
 Auto: OnPlay|PlacedBy Saint-Germain, Confrontation with Symphogear
 {
     *OptionalHeal
@@ -1669,7 +1669,7 @@ Cont: GiveSelf
     MultiplyXValue 1000
     GainPower X
 }
-Text Cont: This card gets +1000 power, for each of your other level 0 or lower back stage characters.
+Text Cont: This card gets +1000 power for each of your other level 0 or lower back stage characters.
 Auto: OnPlay
 {
     PayCost 1
