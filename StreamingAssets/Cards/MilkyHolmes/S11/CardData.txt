@@ -1,0 +1,2263 @@
+Character: MK/S11-001
+Name Apron Nero
+JPName エプロン姿のネロ
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 3500
+Soul 1
+Trait1 Detective
+Trait2 Sweets
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +1 soul.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Detective» character, put it in your hand and discard a card from your hand to the waiting room. 
+EndCard
+
+Character: MK/S11-002
+Name Uniform Nero
+JPName 制服のネロ
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Detective
+Trait2 Sweets
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +4000 power and +1 soul until end of turn.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if there are less cards in your hand than your opponent's hand, you may put the top card of your deck in your stock.
+EndCard
+
+Character: MK/S11-003
+Name Opera Kobayashi
+JPName 小林 オペラ
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Detective
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +500 power.
+Act:
+{
+
+}
+Text Act: [(2) Rest this card] Choose up to 2 of your «Detective» characters, and those characters get +1 soul until end of turn.
+EndCard
+
+Character: MK/S11-004
+Name Sports Festival Nero & Elly
+JPName 運動会のネロ＆エリー
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Detective
+Trait2 Sports
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your characters, and that character gets +1 soul until end of turn.
+EndCard
+
+Character: MK/S11-005
+Name Nero Yuzurizaki
+JPName 譲崎 ネロ
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Detective
+Trait2 Sweets
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card attacks, if "A Date with Just the Two of Us" is in your climax area, you may pay the cost. If you do, choose up to 2 of your other characters and return them to your hand.
+EndCard
+
+Character: MK/S11-006
+Name Yukata Sheryl
+JPName 浴衣のシャロ
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Detective
+Trait2 Yukata
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if "First Encounter with Opera" is in your climax area, your opponent may not play events from hand until the end of your opponent's next turn.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if "First Encounter with Opera" is in your climax area, this card gets +1500 power until end of turn.
+EndCard
+
+Character: MK/S11-007
+Name Cat-Ear Nero
+JPName ネコミミ ネロ
+Color Y
+Level 2
+Cost 2
+Trigger Soul
+Power 8000
+Soul 2
+Trait1 Detective
+Trait2 Animal
+Cont:
+{
+
+}
+Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if "Stealth And Toys" is in your climax area, you may choose an opponent's character and return it to hand.
+EndCard
+
+Character: MK/S11-008
+Name Chief Chef Mr. Ishinagare
+JPName 調理長 石流さん
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Phantom Thief
+Trait2 Cook
+Act:
+{
+
+}
+Text Act: [(1) Rest 2 of your characters] This gets +1500 power and +1 soul until end of turn.
+EndCard
+
+Character: MK/S11-009
+Name "Three-Card" Rat
+JPName “スリーカード”ラット
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Phantom Thief
+Trait2 Flame
+Cont:
+{
+
+}
+Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets +500 power and the following ability. "Auto: When this card's battle opponent becomes reverse, you may put that character in stock."
+EndCard
+
+Character: MK/S11-010
+Name Narcisscist Nijyuri Sensei
+JPName ナルシスト 二十里先生
+Color Y
+Level 1
+Cost 1
+Trigger Soul
+Power 1000
+Soul 1
+Trait1 Phantom Thief
+Trait2 Narcisscist
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, put the top 3 cards of your deck in the waiting room.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 2000, level 1 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: MK/S11-011
+Name Sugar Rush Nero
+JPName 糖分補給 ネロ
+Color Y
+Level 1
+Cost 2
+Trigger Soul
+Power 4000
+Soul 1
+Trait1 Detective
+Trait2 Sweets
+Cont:
+{
+
+}
+Text Cont: During your turn, all your other characters get +1000 power.
+Auto:
+{
+
+}
+Text Auto: CHANGE [Put this card in the waiting room] At the beginning of your draw phase, you may pay the cost. If you do so, choose a "Cat-Ear Nero" in your waiting room and put it in the position that this card was in.
+EndCard
+
+Character: MK/S11-012
+Name Always Smiling Sheryl
+JPName いつも笑顔 シャロ
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Detective
+Trait2 Camera
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+Act:
+{
+
+}
+Text Act: [Rest 1 of your «Detective» characters] This gets +1000 power until end of turn.
+EndCard
+
+Character: MK/S11-013
+Name Sheryl & Kamaboko
+JPName シャロ＆かまぼこ
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Detective
+Trait2 Animal
+Cont:
+{
+
+}
+Text Cont: During your turn, for each of your other «Detective» characters, this card gets +500 power.
+Auto:
+{
+
+}
+Text Auto: BOND/"Cat-Ear Nero" [(1)]
+EndCard
+
+Character: MK/S11-014
+Name Controlling Nero
+JPName コンソール操作 ネロ
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Detective
+Trait2 Sweets
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If its a «Detective» character, put it in your hand and discard a card from your hand to the waiting room. 
+EndCard
+
+Character: MK/S11-015
+Name "Three-Card" Twenty
+JPName “スリーカード”トゥエンティ
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Phantom Thief
+Trait2 Narcisscist
+Cont:
+{
+
+}
+Text Cont: During your turn, this card gets +1000 power.
+EndCard
+
+Character: MK/S11-016
+Name Yukata Nero
+JPName 浴衣のネロ
+Color Y
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Detective
+Trait2 Yukata
+EndCard
+
+Character: MK/S11-017
+Name Nero & Sheryl
+JPName ネロ＆シャロ
+Color Y
+Level 1
+Cost 1
+Power 7000
+Soul 1
+Trait1 Detective
+Trait2 Sweets
+EndCard
+
+Character: MK/S11-018
+Name Classmate Nezu-kun
+JPName クラスメイト 根津くん
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Phantom Thief
+Trait2 Flame
+Act:
+{
+
+}
+Text Act: [(1)] This gets +1 soul until end of turn.
+EndCard
+
+Character: MK/S11-019
+Name "Three-Card" Stone River
+JPName “スリーカード”ストーンリバー
+Color Y
+Level 2
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Phantom Thief
+Trait2 Weapon
+EndCard
+
+Event: MK/S11-020
+Name Almighty Toys?
+JPName 万能のトイズ？
+Color Y
+Level 1
+Cost 1
+Effect: 
+{
+
+}
+Text Choose 1 of your «Detective» characters, and that character gets +2500 power and +1 soul until end of turn.
+EndCard
+
+Event: MK/S11-021
+Name Snacky Detective
+JPName お菓子な探偵
+Color Y
+Level 3
+Cost 4
+Effect: 
+{
+
+}
+Text Choose up to 6 cards in your opponent's waiting room and return them to the deck. Your opponent shuffles that deck.
+EndCard
+
+Event: MK/S11-022
+Name Gathering Foodstuffs
+JPName 食料集め
+Color Y
+Level 2
+Cost 0
+Effect: 
+{
+
+}
+Text ENCORE" until end of turn. (This includes "Auto: ENCORE [(3)]" provided by the rules.)
+EndCard
+
+Climax: MK/S11-023
+Name Stealth And Toys
+JPName こっそりとトイズ
+*WindClimax
+EndCard
+
+Climax: MK/S11-024
+Name A Date with Just the Two of Us
+JPName ふたりっきりのデート
+*ShotClimax
+EndCard
+
+Climax: MK/S11-025
+Name First Encounter with Opera
+JPName オペラとの出会い
+Color Y
+
+EndCard
+
+Character: MK/S11-026
+Name Book-Loving Elly
+JPName 本好きなエリー
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Detective
+Trait2 Book
+Auto:
+{
+
+}
+Text Auto: CHANGE [(1) Put this card in the waiting room] At the beginning of your draw phase, you may pay the cost. If you do, choose a "Halloween Night Elly" in your waiting room and put it in the position this card was in.
+Act:
+{
+
+}
+Text Act: [Rest this card] Put the top card of your deck in your stock.
+EndCard
+
+Character: MK/S11-027
+Name Embarassed Elly
+JPName 恥ずかしがり屋 エリー
+Color G
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Detective
+Trait2 Book
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your «Detective» characters, and that character gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if "Tri-Ascend" is in your climax area, choose a character in your opponent's center stage, and that character gets -2000 power until end of turn.
+EndCard
+
+Character: MK/S11-028
+Name Jumping the Gun Cordelia
+JPName 早とちり コーデリア
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Detective
+Trait2 Sports
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at the top card of the opponent's deck and put it either on top or bottom of the deck.
+Auto:
+{
+
+}
+Text Auto: BOND/"Embarrassed Elly" [Put the top card of your deck in your clock]
+EndCard
+
+Character: MK/S11-029
+Name Elly & Nero
+JPName エリー＆ネロ
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Detective
+Trait2 Book
+Auto:
+{
+
+}
+Text Auto: This abilty activates up to twice per turn. When your other «Detective» character is placed on the stage from your hand, this card gets +1500 power until end of turn.
+EndCard
+
+Character: MK/S11-030
+Name Hirano & Saku
+JPName 平乃＆咲
+Color G
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Police
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets +1000 power.
+EndCard
+
+Character: MK/S11-031
+Name Hercule Barton
+JPName エルキュール・バートン
+Color G
+Level 2
+Cost 2
+Trigger Soul
+Power 8000
+Soul 2
+Trait1 Detective
+Trait2 Book
+Cont:
+{
+
+}
+Text Cont: If there are 6 or more cards in your stock, this card gets +1500 power.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if "Plushies And Hercule" is in your climax area, choose up to 1 «Detective» character in your waiting room and put it in your stock, and this card gets +3000 power until end of turn.
+EndCard
+
+Character: MK/S11-032
+Name Halloween Night Elly
+JPName ハロウィンナイト エリー
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Detective
+Trait2 Book
+Cont:
+{
+
+}
+Text Cont: EXPERIENCE If the sum of levels of cards in your level is 6 or higher, this card gets +1500 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand or by CHANGE to the stage, you may put the top card of your clock in the waiting room.
+EndCard
+
+Character: MK/S11-033
+Name Rei Kamitsu
+JPName 神津 玲
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Police
+Trait2 Glasses
+Cont:
+{
+
+}
+Text Cont: All your other «Police» characters get +500 power.
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a character in your clock and return it to your hand, and put the top card of your deck in your clock.
+EndCard
+
+Character: MK/S11-034
+Name Enjoy Cleaning Cordelia
+JPName そうじ好きなコーデリア
+Color G
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Detective
+Trait2 Sports
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if "Merry-Go-Round" is in your climax area, look at the top card of your opponent's deck and put it either on top or bottom of the deck.
+EndCard
+
+Character: MK/S11-035
+Name Saku Tooyama
+JPName 遠山 咲
+Color G
+Level 1
+Cost 1
+Trigger Soul
+Power 1500
+Soul 1
+Trait1 Police
+Trait2 Headphones
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, reveal the top card of your deck. If it is a «Police» character, put it in your hand and discard a card from your hand. 
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 1500, level 1 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: MK/S11-036
+Name No-Good Cordelia
+JPName ダメダメなコーデリア
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 6000
+Soul 1
+Trait1 Detective
+Trait2 Sports
+Cont:
+{
+
+}
+Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, all your other characters get +500 power.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+EndCard
+
+Character: MK/S11-037
+Name Hirano Hasegawa
+JPName 長谷川 平乃
+Color G
+Level 2
+Cost 2
+Trigger Soul
+Power 8500
+Soul 2
+Trait1 Police
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: For each marker under this card, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck under this card as a marker.
+EndCard
+
+Character: MK/S11-038
+Name Yukata Elly
+JPName 浴衣のエリー
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Detective
+Trait2 Yukata
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +500 power.
+EndCard
+
+Character: MK/S11-039
+Name My Pace Saku
+JPName マイペース 咲
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Police
+Trait2 Headphones
+Act:
+{
+
+}
+Text Act: [(2)] Choose 1 of your characters, and that character gets +4000 power until end of turn.
+EndCard
+
+Character: MK/S11-040
+Name Close Combat Hirano
+JPName 接近戦担当 平乃
+Color G
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Police
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If there are 3 or less cards in your stock, this card gets +1000 power.
+EndCard
+
+Character: MK/S11-041
+Name Casual Cloth Elly
+JPName 私服のエリー
+Color G
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Detective
+Trait2 Book
+EndCard
+
+Character: MK/S11-042
+Name Uniform Elly
+JPName 制服のエリー
+Color G
+Level 1
+Cost 1
+Trigger Soul
+Power 5000
+Soul 1
+Trait1 Detective
+Trait2 Book
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put the top card of your deck in your clock]
+Act:
+{
+
+}
+Text Act: [(1)] This gets +2000 power until end of turn.
+EndCard
+
+Character: MK/S11-043
+Name Tenacious Cordelia
+JPName 頑張り屋 コーデリア
+Color G
+Level 1
+Cost 1
+Power 7000
+Soul 1
+Trait1 Detective
+Trait2 Sports
+EndCard
+
+Character: MK/S11-044
+Name Information Gatherer Saku
+JPName 情報収集担当 咲
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 8500
+Soul 1
+Trait1 Police
+Trait2 Headphones
+EndCard
+
+Event: MK/S11-045
+Name Ideal Room
+JPName 理想の部屋
+Color G
+Level 1
+Cost 0
+Effect: 
+{
+
+}
+Text Search your deck for up to 1 «Police» character, reveal it, and put it in your hand. Shuffle your deck. Choose 1 of your characters, and that character gets +2000 power until end of turn. Put this card in your clock.
+EndCard
+
+Event: MK/S11-046
+Name Sudden Dazzle
+JPName とつぜんの目眩
+Color G
+Level 2
+Cost 0
+Effect: 
+{
+
+}
+Text Look at the top card of your opponent's deck and put it either on top or bottom of the deck. Put this card in your stock.
+EndCard
+
+Event: MK/S11-047
+Name Stubbornly Opened Door
+JPName こじ開けられたドア
+Color G
+Level 1
+Cost 0
+Effect: 
+{
+
+}
+Text Choose 1 of your characters, and that character gets +X power until end of turn. X equals 500 times the number of your «Detective» characters.
+EndCard
+
+Climax: MK/S11-048
+Name Tri-Ascend
+JPName トライアセンド
+Color G
+
+EndCard
+
+Climax: MK/S11-049
+Name Plushie And Hercule
+JPName ヌイグルミとエルキュール
+*BagClimax
+EndCard
+
+Climax: MK/S11-050
+Name Merry-Go-Round
+JPName メリーゴーランド
+*BarClimax
+EndCard
+
+Character: MK/S11-051
+Name Sherlock Shellingford
+JPName シャーロック・シェリンフォード
+Color R
+Level 1
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 Detective
+Trait2 Camera
+Cont:
+{
+
+}
+Text Cont: ASSIST Your «Detective» characters in front of this card get +X power. X equals 500 times level of that character.
+Auto:
+{
+
+}
+Text Auto: CHANGE [(1) Put this card in your waiting room] At the beginning of your draw phase, you may pay the cost. If you do, choose a "Clumsy Detective Sheryl" in your waiting room and put it in the position this card was in.
+EndCard
+
+Character: MK/S11-052
+Name Clumsy Detective Sheryl
+JPName ドジっ子探偵 シャロ
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 8500
+Soul 2
+Trait1 Detective
+Trait2 Camera
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if "Sherlock's Lap Pillow" is in your climax area, choose up to 1 card in your opponent's waiting room and put it on top of the deck, and this card gets +3000 power until end of turn.
+EndCard
+
+Character: MK/S11-053
+Name "IQ1300?" Kokoro
+JPName “IQ1300？”小衣
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Police
+Cont:
+{
+
+}
+Text Cont: If you have another "Rei Kamitsu", this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 0 or lower, you may reverse that character.
+EndCard
+
+Character: MK/S11-054
+Name Snack-offering Nero
+JPName お菓子を差し出すネロ
+Color R
+Level 0
+Cost 0
+Power 3500
+Soul 1
+Trait1 Detective
+Trait2 Sweets
+Cont:
+{
+
+}
+Text Cont: All your other characters get the following ability. "Cont: This cannot side attack".
+EndCard
+
+Character: MK/S11-055
+Name Natural Girl Sheryl
+JPName 天然少女 シャロ
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Detective
+Trait2 Camera
+Cont:
+{
+
+}
+Text Cont: For each of your other «Detective» characters, this card gets +500 power.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+EndCard
+
+Character: MK/S11-056
+Name Tsugiko Zenigata
+JPName 銭形 次子
+Color R
+Level 1
+Cost 1
+Power 6500
+Soul 1
+Trait1 Police
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card's battle opponent becomes reverse, you may pay the cost. If you do, choose a card in your opponent's waiting room and put it on top of the deck.
+EndCard
+
+Character: MK/S11-057
+Name Kokoro Akechi
+JPName 明智 小衣
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 7500
+Soul 2
+Trait1 Police
+Auto:
+{
+
+}
+Text Auto: EXPERIENCE When your opponent's standing character becomes Rested, if the sum of levels of cards in your level is 3 or higher, this card gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+EndCard
+
+Character: MK/S11-058
+Name Energetic Nero
+JPName 活発なネロ
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Detective
+Trait2 Sweets
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Detective» character in your waiting room and return it to your hand.
+Auto:
+{
+
+}
+Text Auto: BOND/"Brave yet Single Minded Sheryl" [(1)]
+EndCard
+
+Character: MK/S11-059
+Name Recording Sheryl
+JPName 収録中のシャロ
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Detective
+Trait2 Headphones
+Auto:
+{
+
+}
+Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Detective» character in your waiting room and return it to your hand.
+EndCard
+
+Character: MK/S11-060
+Name Kobayashi's Rival Kamitsu
+JPName 小林のライバル 神津
+Color R
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Police
+Trait2 Glasses
+Cont:
+{
+
+}
+Text Cont: When your other character becomes reversed in battle, choose 1 of your characters, and that character gets +1000 power until end of turn.
+Act:
+{
+
+}
+Text Act: [(2) Rest this card] Choose a «Police» character in your waiting room and return it to your hand.
+EndCard
+
+Character: MK/S11-061
+Name Sister Role Tsugiko
+JPName お姉さん役 次子
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 6500
+Soul 1
+Trait1 Police
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: All your other «Police» characters get +1000 power.
+EndCard
+
+Character: MK/S11-062
+Name Brave yet Single Minded Sheryl
+JPName けなげでひたむき シャロ
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Detective
+Trait2 Camera
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card attacks, if "Psychokinesis" is in your climax area, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand, and all your «Detective» characters get +2000 power until end of turn.
+EndCard
+
+Character: MK/S11-063
+Name Fortune Cookie Tsugiko
+JPName フォーチュンクッキー 次子
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Police
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If the number of other «Police» characters you have is 2 or more, this card gets +1000 power.
+EndCard
+
+Character: MK/S11-064
+Name Joint Investigation Kokoro & Sheryl
+JPName 合同捜査 小衣＆シャロ
+Color R
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Detective
+Trait2 Police
+Auto:
+{
+
+}
+Text Auto: [Rest 1 of your standing characters] When this card is placed on the stage from your hand, if your opponent has a "Joint Investigation Kokoro & Sheryl", you may pay the cost. If you do, play Rock-Paper-Scissors with your opponent until someone wins, and the winner draws 1 card.
+EndCard
+
+Character: MK/S11-065
+Name Sheryl Amongst Cherry Blossoms
+JPName 桜並木のシャロ
+Color R
+Level 0
+Cost 0
+Power 3500
+Soul 1
+Trait1 Detective
+Trait2 Camera
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it is not a «Detective» character, put that card in clock. 
+EndCard
+
+Character: MK/S11-066
+Name Problem Child Nero
+JPName 困った子 ネロ
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Detective
+Trait2 Sweets
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card attacks, if "Direct Hack" is in your climax area, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
+EndCard
+
+Character: MK/S11-067
+Name G4's Leader Kokoro
+JPName Ｇ４のリーダー 小衣
+Color R
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Police
+Trait2 Umbrella
+EndCard
+
+Character: MK/S11-068
+Name Toys Activated! Sheryl
+JPName トイズ発動！ シャロ
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Detective
+Trait2 Camera
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: MK/S11-069
+Name Gluttonous Nero
+JPName とても食いしん坊 ネロ
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Detective
+Trait2 Sweets
+EndCard
+
+Event: MK/S11-070
+Name Inhale!
+JPName 吸いましょう！
+Color R
+Level 1
+Cost 2
+Effect: 
+{
+
+}
+Text Choose 1 of your standing characters with "Sheryl" in its card name and Rest it. If you do, choose a card in your opponent's waiting room and send it to memory, and Put this card into memory.
+EndCard
+
+Event: MK/S11-071
+Name Critical Chop
+JPName 会心のチョップ
+Color R
+Level 2
+Cost 0
+Effect: 
+{
+
+}
+Text When this card becomes reversed, if the level of the battle opponent's of this card is equal to or lower than the level of this card, you may reverse that character."
+EndCard
+
+Event: MK/S11-072
+Name PDA
+JPName PDA
+Color R
+Level 1
+Cost 0
+Effect: 
+{
+
+}
+Text Choose 2 of your standing characters and Rest them. If you do, choose a «Detective» character in your waiting room and return it to your hand.
+EndCard
+
+Climax: MK/S11-073
+Name Psychokinesis
+JPName サイコキネシス
+*DoorClimax
+EndCard
+
+Climax: MK/S11-074
+Name Sherlock's Lap Pillow
+JPName シャーロックの膝枕
+Color R
+
+EndCard
+
+Climax: MK/S11-075
+Name Direct Hack
+JPName ダイレクトハック
+Color R
+
+EndCard
+
+Character: MK/S11-076
+Name Uniform Cordelia
+JPName 制服のコーデリア
+Color B
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 Detective
+Trait2 Sports
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
+Auto:
+{
+
+}
+Text Auto: When "Cordelia's Proposal" is placed on your climax area, choose 1 of your «Detective» characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: MK/S11-077
+Name Team Unifier Cordelia
+JPName チームのまとめ役 コーデリア
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 5000
+Soul 1
+Trait1 Detective
+Trait2 Sports
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, all your other characters get +1000 power.
+Auto:
+{
+
+}
+Text Auto: CHANGE [(1) Put this card in the waiting room] At the beginning of your draw phase, you may pay the cost. If you do, choose a "Reliable Sister Cordelia" in your waiting room and put it in the position this card was in.
+EndCard
+
+Character: MK/S11-078
+Name Halloween Night Henriette
+JPName ハロウィンナイト アンリエット
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Detective
+Trait2 Mask
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +500 power.
+Auto:
+{
+
+}
+Text Auto: CHANGE [Put this card in the waiting room] At the beginning of your draw phase, you may pay the cost. If you do, choose a "Phantom Thief Arsene" in your waiting room and put it in the position this card was in.
+EndCard
+
+Character: MK/S11-079
+Name Panicking Cordelia
+JPName 慌てるコーデリア
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Detective
+Trait2 Sports
+Cont:
+{
+
+}
+Text Cont: All your other «Detective» characters get +500 power.
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a card in your level and a card in your waiting room and exchange them.
+EndCard
+
+Character: MK/S11-080
+Name Timid Elly
+JPName 怖がりなエリー
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Detective
+Trait2 Book
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 500 times the number of your «Detective» characters.
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card attacks, if "Black Cat Bookmark" is in your climax area, you may pay the cost. If you do, draw a card.
+EndCard
+
+Character: MK/S11-081
+Name Black Tea Loving Cordelia
+JPName 紅茶好き コーデリア
+Color B
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 Detective
+Trait2 Sports
+Cont:
+{
+
+}
+Text Cont: EXPERIENCE During your opponent's turn, if the sum of levels in your level is 1 or higher, all your other characters get +500 power.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+EndCard
+
+Character: MK/S11-082
+Name Deep Sigh Cordelia
+JPName 深い溜息 コーデリア
+Color B
+Level 2
+Cost 2
+Trigger Soul
+Power 8000
+Soul 2
+Trait1 Detective
+Trait2 Sports
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, for each of your other «Detective» characters, this card gets +500 power.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if "Hypersensitive" is in your climax area, search your deck for up to 1 «Detective» character, reveal it, and put it in your hand. Shuffle your deck.
+EndCard
+
+Character: MK/S11-083
+Name Chief Admiring Elly
+JPName 会長への憧れ エリー
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Detective
+Trait2 Book
+Auto:
+{
+
+}
+Text Auto: BOND/"Black Tea Loving Cordelia" [Put the top card of your deck in your clock]
+EndCard
+
+Character: MK/S11-084
+Name Leader of the Phantom Thief Empire Arsene
+JPName 怪盗帝国の首領 アルセーヌ
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Phantom Thief
+Trait2 Mask
+Cont:
+{
+
+}
+Text Cont: All your other '"Three Card" Twenty', '"Three Card" Stone River', and '"Three Card" Rat' get +1000 power.
+EndCard
+
+Character: MK/S11-085
+Name Perfect Butler Tachi
+JPName 完璧な執事 舘
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Butler
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card is placed from the stage to the Waitng Room, you may pay the cost. If you do, search your deck for up to 1 «Phantom Thief» character, reveal it, and put it in your hand. Shuffle your deck.
+EndCard
+
+Character: MK/S11-086
+Name Student Council President Henriette
+JPName 生徒会長 アンリエット
+Color B
+Level 2
+Cost 2
+Trigger Soul
+Power 8500
+Soul 2
+Trait1 Detective
+Trait2 Student Council
+Cont:
+{
+
+}
+Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets "Auto: ENCORE [Put 1 character from your hand to the waiting room".
+EndCard
+
+Character: MK/S11-087
+Name Reliable Sister Cordelia
+JPName 頼れるお姉さん コーデリア
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Detective
+Trait2 Sports
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand or by CHANGE to the stage, you may put the top card in your clock in the waiting room.
+Act:
+{
+
+}
+Text Act: [(4) Rest 2 of your characters] Search your deck for up to 2 «Detective» characters, reveal them, and put them in your hand. Shuffle your deck.
+EndCard
+
+Character: MK/S11-088
+Name Arsene's Butler Yutaka
+JPName アルセーヌの執事 ユタカ
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Phantom Thief
+Trait2 Butler
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your «Phantom Thief» characters, and that character gets +1500 power until end of turn.
+EndCard
+
+Character: MK/S11-089
+Name Cordelia & Elly
+JPName コーデリア＆エリー
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Detective
+Trait2 Sports
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, this card gets +1000 power.
+EndCard
+
+Character: MK/S11-090
+Name Cordelica Glauca
+JPName コーデリア・グラウカ
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Detective
+Trait2 Sports
+EndCard
+
+Character: MK/S11-091
+Name Lost in Thought Elly
+JPName 引っこみ思案 エリー
+Color B
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Detective
+Trait2 Book
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 1500, level 1 [Put this card from your hand to the waiting room]
+EndCard
+
+Character: MK/S11-092
+Name Phantom Thief Arsene
+JPName 怪盗 アルセーヌ
+Color B
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Phantom Thief
+Trait2 Mask
+EndCard
+
+Character: MK/S11-093
+Name Former Great Detective Kobayashi
+JPName 元名探偵 小林
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 3500
+Soul 1
+Trait1 Detective
+Cont:
+{
+
+}
+Text Cont: ASSIST Your level 2 or higher characters in front of this card get +1000 power.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your «Detective» characters, and that character gets +1 level until end of turn.
+EndCard
+
+Character: MK/S11-094
+Name Shy Girl Elly
+JPName 内気な少女 エリー
+Color B
+Level 2
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Detective
+Trait2 Book
+EndCard
+
+Event: MK/S11-095
+Name Repay Kindness with Hatred
+JPName 恩を仇で返す
+Color B
+Level 2
+Cost 2
+Effect: 
+{
+
+}
+Text Choose 1 of your standing «Sports» characters and Rest it. If you do, choose a level 3 or lower character in your opponent's center stage and put it on the bottom of the deck.
+EndCard
+
+Event: MK/S11-096
+Name Cordelia's Garden
+JPName コーデリアのお花畑
+Color B
+Level 3
+Cost 2
+Effect: 
+{
+
+}
+Text Put up to 2 cards from the top of your clock and put them in your waiting room. Choose 1 of your characters, and that character gets +3000 power until end of turn. Put this card into memory.
+EndCard
+
+Event: MK/S11-097
+Name Cat-eared Magnifying Glass
+JPName ネコミミ虫メガネ
+Color B
+Level 2
+Cost 2
+Effect: 
+{
+
+}
+Text Search your deck for up to 2 «Detective» characters, reveal them, and put them in your hand. Shuffle your deck.
+EndCard
+
+Climax: MK/S11-098
+Name Hypersensitive
+JPName ハイパーセンシティブ
+Color B
+
+EndCard
+
+Climax: MK/S11-099
+Name Cordelia's Proposal
+JPName コーデリアの告白
+Color B
+
+EndCard
+
+Climax: MK/S11-100
+Name Black Cat Bookmark
+JPName 黒猫のしおり
+*BookClimax
+EndCard
+
+Character: MK/S11-101
+Name "Milky Holmes" Sheryl
+JPName “ミルキィホームズ”シャロ
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Detective
+Trait2 Camera
+Cont:
+{
+
+}
+Text Cont: If all your characters are «Detective», this card gets +1000 power.
+EndCard
+
+Character: MK/S11-102
+Name "Milky Holmes" Cordelia
+JPName “ミルキィホームズ”コーデリア
+Color B
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Detective
+Trait2 Sports
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, this card gets +1000 power.
+EndCard
+
+Character: MK/S11-103
+Name "Milky Holmes" Elly
+JPName “ミルキィホームズ”エリー
+Color B
+Level 1
+Cost 1
+Power 7000
+Soul 1
+Trait1 Detective
+Trait2 Book
+EndCard
+
+Climax: MK/S11-104
+Name "Milky Holmes" Assemble!
+JPName ミルキィホームズ結成！
+Color B
+
+EndCard
+
+Character: MK/S11-105
+Name "Milky Holmes" Nero
+JPName “ミルキィホームズ”ネロ
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Detective
+Trait2 Sweets
+Cont:
+{
+
+}
+Text Cont: Assist All your characters in front of this card get +500 power.
+EndCard
+
+Character: MK/S11-106
+Name Detective Team, Milky Holmes
+JPName 探偵チーム ミルキィホームズ
+Color R
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Detective
+EndCard
+
+Character: MK/S11-107
+Name Clothing Change!?, Sheryl & Yume
+JPName 衣装変更！？ シャロ＆由夢
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Detective
+Trait2 Magic
+Auto:
+{
+
+}
+Text Auto: When this card attacks, reveal the top card of your deck. If it's a climax card, this card gets +6000 power until end of turn. 
+EndCard
+
+Character: MK/S11-108
+Name Straightforward Girl, Sheryl
+JPName まっすぐな少女 シャロ
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Detective
+Trait2 Camera
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your «Detective» characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: MK/S11-109
+Name Hints to Solving the Case, Cordelia
+JPName 解決への手がかり コーデリア
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Detective
+Trait2 Sports
+Cont:
+{
+
+}
+Text Cont: If the number of other «Detective» characters you have is 2 or more, this card gets "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
+EndCard
+
+Character: MK/S11-110
+Name Egg of Detective, Sheryl
+JPName 探偵の卵 シャロ
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Detective
+Trait2 Camera
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+EndCard
+
+Character: MK/S11-111
+Name Hidden Strength, Elly
+JPName 秘められた力 エリー
+Color G
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Detective
+Trait2 Book
+Act:
+{
+
+}
+Text Act: [(3)] This gets +8000 power until end of turn.
+EndCard
+
+Character: MK/S11-112
+Name Future Renowned Detective?, Milky Holmes
+JPName 未来の名探偵？ミルキィホームズ
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Detective
+Cont:
+{
+
+}
+Text Cont: For each of your other Rested characters, this card gets +500 power.
+EndCard
+
+Character: MK/S11-113
+Name Gathering of Talent, Genius 4
+JPName 才能の集合 Genius4
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Police
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: MK/S11-114
+Name Thieves With Aesthetics, Phantom Thief Empire
+JPName 美学に生きる賊 怪盗帝国
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Phantom Thief
+Trait2 Mask
+EndCard
+
+Character: MK/S11-115
+Name Carefree Self-Confidence, Nero
+JPName のんきな自信 ネロ
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Detective
+Trait2 Sweets
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: MK/S11-116
+Name Milky Holmes in the Detective Academy
+JPName 探偵学院のミルキィホームズ
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Detective
+Cont:
+{
+
+}
+Text Cont: All your other «Detective» characters get +500 power.
+EndCard
+
+Character: MK/S11-117
+Name Sheryl in the Detective Academy
+JPName 探偵学院のシャロ
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Detective
+Trait2 Camera
+Auto:
+{
+
+}
+Text Auto: When your other character becomes reversed in battle, this card gets +1000 power until end of turn.
+EndCard
+
+Character: MK/S11-118
+Name Elly in the Detective Academy
+JPName 探偵学院のエリー
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Detective
+Trait2 Book
+Auto:
+{
+
+}
+Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +1000 power until end of turn.
+EndCard
+
+Character: MK/S11-119
+Name Cordelia in the Detective Academy
+JPName 探偵学院のコーデリア
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Detective
+Trait2 Sports
+Cont:
+{
+
+}
+Text Cont: If there are more cards in your hand than your opponent's hand, this card gets +1000 power.
+EndCard
+
+Character: MK/S11-120
+Name Nero in the Detective Academy
+JPName 探偵学院のネロ
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Detective
+Trait2 Sweets
+Cont:
+{
+
+}
+Text Cont: During your turn, this card gets +1000 power.
+EndCard
+
+Character: MK/S11-121
+Name Henriette & Milky Holmes
+JPName アンリエット＆ミルキィホームズ
+Color B
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Detective
+Trait2 Student Council
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Phantom Thief» character, reveal it, and put it in your hand. Shuffle your deck.
+EndCard
+
+Character: MK/S11-122
+Name Important Thngs, Sheryl
+JPName 大切なもの シャロ
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Detective
+Trait2 Camera
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +1 level.
+EndCard
+
+Character: MK/S11-123
+Name Very Energetic, Sheryl
+JPName とっても元気 シャロ
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Detective
+Trait2 Camera
+Cont:
+{
+
+}
+Text Cont: For each of your other «Detective» characters, this card gets +500 power.
+EndCard
+
+Character: MK/S11-T01
+Name Energetic Nero
+JPName 活発なネロ
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Detective
+Trait2 Sweets
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Detective» character in your waiting room and return it to your hand.
+Auto:
+{
+
+}
+Text Auto: Bond/"Brave yet Single Minded Sheryl" [(1)]
+EndCard
+
+Character: MK/S11-T02
+Name Joint Investigation Kokoro & Sheryl
+JPName 合同捜査 小衣＆シャロ
+Color R
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Detective
+Trait2 Police
+Auto:
+{
+
+}
+Text Auto: [Rest 1 of your standing characters] When this card is placed on the stage from your hand, if your opponent has a "Joint Investigation Kokoro & Sheryl", you may pay the cost. If you do, play Rock-Paper-Scissors with your opponent until someone wins, and the winner draws 1 card.
+EndCard
+
+Character: MK/S11-T03
+Name Sheryl Amongst Cherry Blossoms
+JPName 桜並木のシャロ
+Color R
+Level 0
+Cost 0
+Power 3500
+Soul 1
+Trait1 Detective
+Trait2 Camera
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's not a «Detective» character, put it in your clock. (Otherwise put the card back where it was)
+EndCard
+
+Character: MK/S11-T04
+Name Problem Child Nero
+JPName 困った子 ネロ
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Detective
+Trait2 Sweets
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card attacks, if "Direct Hack" is in your climax area, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
+EndCard
+
+Character: MK/S11-T05
+Name G4's Leader Kokoro
+JPName Ｇ４のリーダー 小衣
+Color R
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Police
+Trait2 Umbrella
+EndCard
+
+Character: MK/S11-T06
+Name Gluttonous Nero
+JPName とても食いしん坊 ネロ
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Detective
+Trait2 Sweets
+EndCard
+
+Character: MK/S11-T07
+Name Brave yet Single Minded Sheryl
+JPName けなげでひたむき シャロ
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Detective
+Trait2 Camera
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card attacks, if "Psychokinesis" is in your climax area, you may pay the cost. If you do, choose up to 1 character in your waiting room and return it to your hand, and all your «Detective» characters get +2000 power until end of turn.
+EndCard
+
+Climax: MK/S11-T08
+Name Direct Hack
+JPName ダイレクトハック
+Color R
+
+EndCard
+
+Climax: MK/S11-T09
+Name Psychokinesis
+JPName サイコキネシス
+*DoorClimax
+EndCard
+
+Character: MK/S11-T10
+Name Cordelica Glauca
+JPName コーデリア・グラウカ
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Detective
+Trait2 Sports
+EndCard
+
+Character: MK/S11-T11
+Name Lost in Thought Elly
+JPName 引っこみ思案 エリー
+Color B
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Detective
+Trait2 Book
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 1500, level 1 [Put this card from your hand to the waiting room]
+EndCard
+
+Character: MK/S11-T12
+Name Phantom Thief Arsene
+JPName 怪盗 アルセーヌ
+Color B
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Phantom Thief
+Trait2 Mask
+EndCard
+
+Character: MK/S11-T13
+Name Former Great Detective Kobayashi
+JPName 元名探偵 小林
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 3500
+Soul 1
+Trait1 Detective
+Cont:
+{
+
+}
+Text Cont: ASSIST Your level 2 or higher characters in front of this card get +1000 power.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your «Detective» characters, and that character gets +1 level until end of turn.
+EndCard
+
+Character: MK/S11-T14
+Name Shy Girl Elly
+JPName 内気な少女 エリー
+Color B
+Level 2
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Detective
+Trait2 Book
+EndCard
+
+Event: MK/S11-T15
+Name Cat-eared Magnifying Glass
+JPName ネコミミ虫メガネ
+Color B
+Level 2
+Cost 2
+Effect: 
+{
+
+}
+Text Search your deck for up to 2 «Detective» characters, reveal them, and put them in your hand. Shuffle your deck.
+EndCard
+

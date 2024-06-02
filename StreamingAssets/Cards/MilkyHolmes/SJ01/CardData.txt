@@ -1,0 +1,151 @@
+Character: MK/SJ01-055
+Name "Future After the Rain" Nero
+JPName “雨上がりのミライ”ネロ
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Detective
+Trait2 Sweets
+Cont:
+{
+
+}
+Text Cont: For each of your other «Detective» characters, this card gets +500 power.
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, put the top card of your clock in your stock.
+EndCard
+
+Character: MK/SJ01-056
+Name "Future After the Rain" Elly
+JPName “雨上がりのミライ”エリー
+Color G
+Level 1
+Cost 1
+Power 7500
+Soul 1
+Trait1 Detective
+Trait2 Book
+Cont:
+{
+
+}
+Text Cont: If the level of the character facing this card is higher than the level of this card, this card cannot frontal attack.
+Auto:
+{
+
+}
+Text Auto: This ability activates up to once per turn. When your climax is placed in the level, this card gets +2500 power until end of turn.
+EndCard
+
+Character: MK/SJ01-057
+Name "Future After the Rain" Sheryl
+JPName “雨上がりのミライ”シャロ
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Detective
+Trait2 Camera
+Auto:
+{
+
+}
+Text Auto: BOND/'"Future After the Rain" Nero' [(1)]
+Act:
+{
+
+}
+Text Act: [(1) Put 1 climax from your hand to the waiting room] Choose a «Detective» character in your waiting room and return it to your hand.
+EndCard
+
+Character: MK/SJ01-058
+Name "Possible Future" Kokoro
+JPName “もしものミライ”小衣
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Police
+Trait2 Mask
+Auto:
+{
+
+}
+Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a «Police» character in your waiting room and return it to your hand.
+EndCard
+
+Character: MK/SJ01-059
+Name "Possible Future" Arsene
+JPName “もしものミライ”アルセーヌ
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Phantom Thief
+Trait2 Mask
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Phantom Thief» character, put it in your hand and discard a card from your hand to the waiting room. 
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 «Phantom Thief» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: MK/SJ01-060
+Name "Future After the Rain" Cordelia
+JPName “雨上がりのミライ”コーデリア
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Detective
+Trait2 Sports
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, put the top 5 cards of your deck in your waiting room, and deal X damage to your opponent. X is the number of climax cards put in the waiting room this way. 
+EndCard
+
+Character: MK/SJ01-P01
+Name Cherry Blossom Viewing, Milky Holmes
+JPName お花見 ミルキィホームズ
+Color R
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Detective
+Auto:
+{
+
+}
+Text Auto: When this card is played from hand to stage, your opponent wants to purchase Monthly Bushiroad magazine. If you and your opponent are cherry blossom viewing, the loser of the game goes to purchase it. (Note: This card is not tournament-legal.)
+EndCard
+
+Climax: MK/SJ01-P02
+Name Milky Holmes Has Arrived!
+JPName ミルキィホームズ、到着です！
+*StandbyClimax
+EndCard
+

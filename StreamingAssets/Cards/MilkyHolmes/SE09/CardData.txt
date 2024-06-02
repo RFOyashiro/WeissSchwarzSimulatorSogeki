@@ -1,0 +1,560 @@
+Character: MK/SE09-01
+Name "Flame Toys" Rat
+JPName “炎のトイズ”ラット
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 Phantom Thief
+Trait2 Flame
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times level of that character.
+Auto:
+{
+
+}
+Text Auto: [(4)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose an opponent's center stage character whose level is 3 or lower and put it in the stock.
+EndCard
+
+Character: MK/SE09-02
+Name Doing Great with Toys, Nero
+JPName トイズで大活躍 ネロ
+Color Y
+Level 2
+Cost 2
+Trigger Soul
+Power 8000
+Soul 2
+Trait1 Detective
+Trait2 Sweets
+Cont:
+{
+
+}
+Text Cont: If the number of other «Detective» characters you have is 2 or more, this card gets "Auto: ENCORE [Put 1 character from your hand to the waiting room".
+Auto:
+{
+
+}
+Text Auto: [(1)] When "Flying Nero" is placed on your climax area, you may pay the cost. If you do, this card gets "Cont: When this card attacks, you may instead choose a character in your opponent's backstage and have this card frontal attack the chosen character." until end of turn.
+EndCard
+
+Character: MK/SE09-03
+Name Mary & Kate
+JPName メアリー＆ケイト
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Phantom Thief
+Trait2 Love
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at the top 2 cards of your opponent's deck and put the back in any order.
+Auto:
+{
+
+}
+Text Auto: [Put a «Sweets» character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, this card gets +4000 power until end of turn.
+EndCard
+
+Character: MK/SE09-04
+Name Treasure Robber, Stone River
+JPName お宝強奪 ストーンリバー
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Phantom Thief
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: For each other of your «Phantom Thief» characters, this card gets +500 power.
+EndCard
+
+Character: MK/SE09-05
+Name Rebelling, Rat
+JPName 反逆のラット
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Phantom Thief
+Trait2 Flame
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, search your deck for up to 1 «Phantom Thief» character, reveal it, and put it in your hand. Shuffle your deck.
+EndCard
+
+Character: MK/SE09-06
+Name Twenty & Twenty
+JPName トゥエンティ＆トゥエンティ
+Color Y
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 Phantom Thief
+Trait2 Narcisscist
+Auto:
+{
+
+}
+Text Auto: BOND'"Self-Loving" Twenty' [(1)]
+Auto:
+{
+
+}
+Text Auto: CHANGE [(1) Put this card in the waiting room] At the beginning of your draw phase, you may pay the cost. If you do, choose an "Bewitching Gaze, Arsene" in your waiting room and put it in the position this card was in.
+EndCard
+
+Character: MK/SE09-07
+Name "Oxidized Silver" Stone River
+JPName “いぶし銀”ストーンリバー
+Color Y
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Phantom Thief
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand in clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, this card gets +2500 power until end of turn, and opponent may not use BACKUP from hand until end of turn.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put 1 character from had to the waiting room]
+EndCard
+
+Character: MK/SE09-08
+Name Tanned Skin, Nero
+JPName 小麦色の素肌 ネロ
+Color Y
+Level 1
+Cost 2
+Trigger Soul
+Power 6000
+Soul 2
+Trait1 Detective
+Trait2 Sweets
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put the top card of your deck in your clock]
+EndCard
+
+Character: MK/SE09-09
+Name "Self-Loving" Twenty
+JPName “自分大好き”トゥエンティ
+Color Y
+Level 2
+Cost 2
+Trigger Soul
+Power 8000
+Soul 2
+Trait1 Phantom Thief
+Trait2 Narcisscist
+Cont:
+{
+
+}
+Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or more, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: ENCORE [(1) Put 1 of your "Twenty & Twenty" from stage to the bottom of your deck]
+EndCard
+
+Climax: MK/SE09-10
+Name Flying Nero
+JPName 空飛ぶネロ
+Color Y
+
+EndCard
+
+Character: MK/SE09-11
+Name Trembling, Elly
+JPName おどおどエリー
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Detective
+Trait2 Book
+Act:
+{
+
+}
+Text Act: [(1)] Choose 1 of your «Detective» characters, and that character gets +1500 power until end of turn.
+EndCard
+
+Character: MK/SE09-12
+Name Embarrassing Swimsuit, Elly
+JPName 恥じらいの水着姿 エリー
+Color G
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Detective
+Trait2 Book
+Cont:
+{
+
+}
+Text Cont: If there are 5 or more cards in your stock, all your other «Book» characters get +500 power.
+EndCard
+
+Character: MK/SE09-13
+Name Sheryl in June
+JPName 6月のシャロ
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Detective
+Trait2 Camera
+Act:
+{
+
+}
+Text Act: [Rest 2 of your «Detective» characters] Choose 1 of your characters, and that character gets +1500 power until end of turn.
+EndCard
+
+Character: MK/SE09-14
+Name Petit Body, Sheryl
+JPName 幼児体型 シャロ
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Detective
+Trait2 Swimsuit
+Cont:
+{
+
+}
+Text Cont: All your other «Detective» characters get "Auto: ENCORE [(2)]"
+Auto:
+{
+
+}
+Text Auto: When this card attacks, Rest all of your other standing characters.
+EndCard
+
+Character: MK/SE09-15
+Name Henriette in Yukata
+JPName 和服のアンリエット
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Detective
+Trait2 Yukata
+Cont:
+{
+
+}
+Text Cont: This gets «Phantom Thief» while on the stage.
+Cont:
+{
+
+}
+Text Cont: All your other «Phantom Thief» gets +500 power.
+Act:
+{
+
+}
+Text Act: [(1)] Choose 1 of your «Detective» characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: MK/SE09-16
+Name Carelessly Overslept, Henriette
+JPName うっかりお寝坊さん アンリエット
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Detective
+Trait2 Student Council
+Cont:
+{
+
+}
+Text Cont: This gets «Phantom Thief» while on the stage.
+Cont:
+{
+
+}
+Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+EndCard
+
+Character: MK/SE09-17
+Name Seeking Good Rivals, Arsene
+JPName 好敵手を求めるアルセーヌ
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Phantom Thief
+Trait2 Mask
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, choose 1 of your «Phantom Thief» characters, and that character gets +1000 power until end of turn.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 1500, level 1 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: MK/SE09-18
+Name Tragic Heroine?, Cordelia
+JPName 悲劇のヒロイン？ コーデリア
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 4000
+Soul 1
+Trait1 Detective
+Trait2 Sports
+Auto:
+{
+
+}
+Text Auto: [(1) Put a "I Did It" from hand in your clock] When another of your «Animal» or «Detective» characters becomes reversed in battle, you may pay the cost. If you do, Rest that character, draw up to 2 cards, and this card doesn't stand during your next stand phase.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your «Detective» characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: MK/SE09-19
+Name Charming Phantom Thief, Arsene
+JPName 魅惑の怪盗 アルセーヌ
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Phantom Thief
+Trait2 Mask
+Cont:
+{
+
+}
+Text Cont: If you have 4 or more characters with either «Phantom Thief» or "Henriette" in the name, this card gets -1 level in your hand.
+Cont:
+{
+
+}
+Text Cont: This gets +1000 power during your opponent's turn.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if "Decisive battle! Phantom Thief VS Detective" is in your climax area, put the top card of your clock in your waiting room, and this card gets +1500 power until the end of your opponent's next turn.
+EndCard
+
+Character: MK/SE09-20
+Name Cute Swimsuit, Cordelia
+JPName キュートな水着姿 コーデリア
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Detective
+Trait2 Swimsuit
+Act:
+{
+
+}
+Text Act: [(1)] draw a card, then discard a card from your hand to the waiting room.
+EndCard
+
+Character: MK/SE09-21
+Name Provoking Gaze, Arsene
+JPName 挑発的な視線 アルセーヌ
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Phantom Thief
+Trait2 Mask
+EndCard
+
+Character: MK/SE09-22
+Name Poyoyon's Girl, Henriette
+JPName ボヨヨンの女 アンリエット
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Detective
+Trait2 Student Council
+Cont:
+{
+
+}
+Text Cont: This gets «Phantom Thief» while on the stage.
+Cont:
+{
+
+}
+Text Cont: character opposite this card gets +1 soul.
+Auto:
+{
+
+}
+Text Auto: During the battle involving this card, if the damage you are dealt is canceled, this card gets +3000 power until end of turn.
+EndCard
+
+Character: MK/SE09-23
+Name Bewitching Gaze, Arsene
+JPName 悩殺の視線 アルセーヌ
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Phantom Thief
+Trait2 Mask
+Auto:
+{
+
+}
+Text Auto: When "Bewitching Toys" is placed on your climax area, if this card is in the center stage, this card gets +3000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: When "Bewitching Toys" is placed on your climax area, if this card is in the center stage, you may return all cards in your opponent's waiting room to their deck. If you do, your opponent shuffles that deck.
+EndCard
+
+Event: MK/SE09-24
+Name Mysterious Shadow
+JPName ミステリアス・シャドウ
+Color B
+Level 1
+Cost 1
+Effect: 
+{
+
+}
+Text Search your deck for up to 1 «Phantom Thief» character, reveal it, and put it in your hand. Shuffle your deck.
+EndCard
+
+Climax: MK/SE09-25
+Name I Did It
+JPName 私がやりました
+Color B
+
+EndCard
+
+Climax: MK/SE09-26
+Name Decisive Battle! Phantom Thief VS Detective
+JPName 決戦！怪盗VS探偵
+Color B
+
+EndCard
+
+Climax: MK/SE09-27
+Name Bewitching Toys
+JPName 幻惑のトイズ
+*BookClimax
+EndCard
+
+Character: MK/SE09-28
+Name Loves Fish Sausage, Sheryl
+JPName かまぼこ大好きシャロ
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Detective
+Trait2 Camera
+Auto:
+{
+
+}
+Text Auto: When your other character becomes reversed in battle, this card gets +1000 power until end of turn.
+EndCard
+
+Character: MK/SE09-29
+Name "Soft Touch" Henriette
+JPName “柔らかな感触”アンリエット
+Color B
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Detective
+Trait2 Student Council
+Cont:
+{
+
+}
+Text Cont: If this card is on the stage, this card gets «Phantom Thief».
+Auto:
+{
+
+}
+Text Auto: [(4)] When this card is frontal attacked, you may pay the cost. If you do, choose the character facing this card, and that character gets +6 soul until end of turn.
+EndCard
+
+Character: MK/SE09-30
+Name Always Optimistic, Sheryl
+JPName いつでも前向き シャロ
+Color Y
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Detective
+Trait2 Camera
+EndCard
+
