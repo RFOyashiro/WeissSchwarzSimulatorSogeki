@@ -826,7 +826,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: When this card attacks, if "Hedgehog's Dilemma" is in your climax area, you may put the top card of your clock in your stock.
+Text Auto: CxCombo When this card attacks, if "Hedgehog's Dilemma" is in your climax area, you may put the top card of your clock in your stock.
 EndCard
 
 Character: OMS/S41-037
