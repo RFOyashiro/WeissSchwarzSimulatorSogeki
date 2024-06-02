@@ -980,7 +980,7 @@ Cont: GiveSelf
         GainPower 3000
     }
 }
-Text Cont: If all your characters have "Matsu" or "matsu" in its card name, this card gets +3000 power.
+Text Cont: If all your characters have "Matsu" in its card name, this card gets +3000 power.
 EndCard
 
 Character: OMS/S41-044
@@ -2353,6 +2353,7 @@ Cont: GiveAll
         GainPower 500
     }
 }
+Text Cont: All your other characters with "Matsu" in its card name gets +500 power.
 Act: RestSelf
 {
     TargetLocation Stage
