@@ -1305,14 +1305,22 @@ Auto: OnAttack
     {
         GainPower 3000
         GainSpecialEffect DoubleTrigger
+        ScheduleEffectUntilEndOfTurnForTargets OnTriggerCheck
+        {
+            Effect:
+            {
+                TargetTop Stock 1
+                MoveCard WaitingRoom
+            }
+            Quick
+        }
         ScheduleEffectForTargets OnEndOfAttack
         {
             Effect:
             {
                 LosePower 3000
-                TargetTop Stock 1
-                MoveCard WaitingRoom
             }
+            Quick
         }
     }
 }
