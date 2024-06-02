@@ -263,7 +263,10 @@ Auto: StartClimaxPhase
 {
     PayCost 2 Discard 1 Any &&& SendSelf WaitingRoom
     {
-        *ChangeWaitingRoom(EVA-01 (Awaken State 1))
+        AIChoice Random
+        Message Choose a character to place on stage.
+        SearchLocationForTargets WaitingRoom 1 1 NameEquals EVA-01 (Awaken State 1)
+        Change
     }
 }
 Text Auto: CHANGE [(2) Put 1 card from the hand to the waiting room, put this card in the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose a "EVA-01 (Awaken State 1)" in your waiting room and put it in the position this card was in.
@@ -1360,7 +1363,14 @@ Power 3000
 Soul 1
 Trait1 Pilot
 *OnPlayScryToBottom
-*Bond1(Test Model (Remodeled)\, EVA-00)
+Auto: OnPlayedNormally
+{
+    PayCost 1
+    {
+        Bond Test Model (Remodeled), EVA-00
+    }
+}
+Text Auto: BOND/ <b>"Test Model (Remodeled), EVA-00"</b>" [(1)] (<i>When this card is played and placed on the stage, you may pay the cost, choose 1 "CARDNAME" in your waiting room, and return it to your hand</i>)
 EndCard
 
 Character: EV/S12-078
