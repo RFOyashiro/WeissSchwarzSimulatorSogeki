@@ -877,14 +877,14 @@ Act: 1 SendFromWaitingRoom 1 Memory NameEquals Secret Art "Gender exchange Awake
 {
     If Compare MyLevel 2 OrMore
     {
-        SearchLocationForTargets WaitingRoom 1 1 NameEquals Exposing His power, Shirogane
+        SearchLocationForTargets WaitingRoom 1 1 NameEquals Exposing His Power, Shirogane
         If HasTarget
         {
             Change
         }
     }
 }
-Text Act: [(1) Send 1 'Secret Art "Gender exchange Awakened"' from your waiting room to memory, put this card in the waiting room] If you are level 2 or higher, choose 1 "Exposing His power, Shirogane" in your waiting room and put it in the position this card was in.
+Text Act: [(1) Send 1 'Secret Art "Gender exchange Awakened"' from your waiting room to memory, put this card in the waiting room] If you are level 2 or higher, choose 1 "Exposing His Power, Shirogane" in your waiting room and put it in the position this card was in.
 EndCard
 
 Character: AYT/W110-036

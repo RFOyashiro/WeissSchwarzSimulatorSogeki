@@ -18,7 +18,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Detective» character, put it in your hand and discard a card from your hand to the waiting room. 
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Detective» character, put it in your hand and discard a card from your hand to the waiting room.
 EndCard
 
 Character: MK/S11-002
@@ -261,7 +261,7 @@ Cont:
 {
 
 }
-Text Cont: During your turn, for each of your other «Detective» characters, this card gets +500 power.
+Text Cont: During your turn, this card gets +500 power for each of your other «Detective» characters
 Auto:
 {
 
@@ -283,7 +283,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If its a «Detective» character, put it in your hand and discard a card from your hand to the waiting room. 
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If its a «Detective» character, put it in your hand and discard a card from your hand to the waiting room.
 EndCard
 
 Character: MK/S11-015
@@ -364,7 +364,7 @@ JPName 万能のトイズ？
 Color Y
 Level 1
 Cost 1
-Effect: 
+Effect:
 {
 
 }
@@ -377,7 +377,7 @@ JPName お菓子な探偵
 Color Y
 Level 3
 Cost 4
-Effect: 
+Effect:
 {
 
 }
@@ -390,7 +390,7 @@ JPName 食料集め
 Color Y
 Level 2
 Cost 0
-Effect: 
+Effect:
 {
 
 }
@@ -617,7 +617,7 @@ Auto:
 {
 
 }
-Text Auto: When you use this card's BACKUP, reveal the top card of your deck. If it is a «Police» character, put it in your hand and discard a card from your hand. 
+Text Auto: When you use this card's BACKUP, reveal the top card of your deck. If it is a «Police» character, put it in your hand and discard a card from your hand.
 Act:
 {
 
@@ -663,7 +663,7 @@ Cont:
 {
 
 }
-Text Cont: For each marker under this card, this card gets +1000 power.
+Text Cont: This card gets +1000 power for each marker under this card
 Auto:
 {
 
@@ -788,7 +788,7 @@ JPName 理想の部屋
 Color G
 Level 1
 Cost 0
-Effect: 
+Effect:
 {
 
 }
@@ -801,7 +801,7 @@ JPName とつぜんの目眩
 Color G
 Level 2
 Cost 0
-Effect: 
+Effect:
 {
 
 }
@@ -814,7 +814,7 @@ JPName こじ開けられたドア
 Color G
 Level 1
 Cost 0
-Effect: 
+Effect:
 {
 
 }
@@ -933,7 +933,7 @@ Cont:
 {
 
 }
-Text Cont: For each of your other «Detective» characters, this card gets +500 power.
+Text Cont: This card gets +500 power for each of your other «Detective» characters
 Auto:
 {
 
@@ -1130,7 +1130,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it is not a «Detective» character, put that card in clock. 
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it is not a «Detective» character, put that card in clock.
 EndCard
 
 Character: MK/S11-066
@@ -1199,7 +1199,7 @@ JPName 吸いましょう！
 Color R
 Level 1
 Cost 2
-Effect: 
+Effect:
 {
 
 }
@@ -1212,7 +1212,7 @@ JPName 会心のチョップ
 Color R
 Level 2
 Cost 0
-Effect: 
+Effect:
 {
 
 }
@@ -1225,7 +1225,7 @@ JPName PDA
 Color R
 Level 1
 Cost 0
-Effect: 
+Effect:
 {
 
 }
@@ -1400,7 +1400,7 @@ Cont:
 {
 
 }
-Text Cont: During your opponent's turn, for each of your other «Detective» characters, this card gets +500 power.
+Text Cont: During your opponent's turn, this card gets +500 power for each of your other «Detective» characters
 Auto:
 {
 
@@ -1616,7 +1616,7 @@ JPName 恩を仇で返す
 Color B
 Level 2
 Cost 2
-Effect: 
+Effect:
 {
 
 }
@@ -1629,7 +1629,7 @@ JPName コーデリアのお花畑
 Color B
 Level 3
 Cost 2
-Effect: 
+Effect:
 {
 
 }
@@ -1642,7 +1642,7 @@ JPName ネコミミ虫メガネ
 Color B
 Level 2
 Cost 2
-Effect: 
+Effect:
 {
 
 }
@@ -1766,7 +1766,7 @@ Auto:
 {
 
 }
-Text Auto: When this card attacks, reveal the top card of your deck. If it's a climax card, this card gets +6000 power until end of turn. 
+Text Auto: When this card attacks, reveal the top card of your deck. If it's a climax card, this card gets +6000 power until end of turn.
 EndCard
 
 Character: MK/S11-108
@@ -1851,7 +1851,7 @@ Cont:
 {
 
 }
-Text Cont: For each of your other Rested characters, this card gets +500 power.
+Text Cont: This card gets +500 power for each of your other Rested characters
 EndCard
 
 Character: MK/S11-113
@@ -2035,7 +2035,7 @@ Cont:
 {
 
 }
-Text Cont: For each of your other «Detective» characters, this card gets +500 power.
+Text Cont: This card gets +500 power for each of your other «Detective» characters
 EndCard
 
 Character: MK/S11-T01
@@ -2254,7 +2254,7 @@ JPName ネコミミ虫メガネ
 Color B
 Level 2
 Cost 2
-Effect: 
+Effect:
 {
 
 }
