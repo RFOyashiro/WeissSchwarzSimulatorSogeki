@@ -114,7 +114,7 @@ Auto: OnSpecificClimaxPlay Handkerchief of Important Memories
         }
     }
 }
-Text Auto: [(1)] When "Handkerchief of Important Memories" is placed on your climax area, you may pay the cost. If you do, choose 1 "Father of the House, Hiroshi" in your waiting room and put it in any position on the stage.
+Text Auto: CxCombo [(1)] When "Handkerchief of Important Memories" is placed on your climax area, you may pay the cost. If you do, choose 1 "Father of the House, Hiroshi" in your waiting room and put it in any position on the stage.
 EndCard
 
 Character: CS/S28-007
@@ -176,7 +176,7 @@ Auto: OnSpecificClimaxPlay New Family
         }
     }
 }
-Text Auto: [Put 1 card from hand to the waiting room] When "New Family" is placed on your climax area, if the number of other «Famiyl» characters you have is 2 or more, you may pay the cost. If you do, choose up to 1 "Mischievous Child, Himawari" in your hand and put it in any position on the stage.
+Text Auto: CxCombo [Put 1 card from hand to the waiting room] When "New Family" is placed on your climax area, if the number of other «Famiyl» characters you have is 2 or more, you may pay the cost. If you do, choose up to 1 "Mischievous Child, Himawari" in your hand and put it in any position on the stage.
 EndCard
 
 Character: CS/S28-010
@@ -314,7 +314,7 @@ Auto: StartEncoreStep
         }
     }
 }
-Text Auto: At the beginning of your encore step, if "My House is Gone" is in your climax area, put the top card of your deck in the waiting room. If it's a level 0 character, you may choose this card and up to 2 of your other characters and return them to your hand.
+Text Auto: CxCombo At the beginning of your encore step, if "My House is Gone" is in your climax area, put the top card of your deck in the waiting room. If it's a level 0 character, you may choose this card and up to 2 of your other characters and return them to your hand.
 EndCard
 
 Character: CS/S28-017
@@ -450,7 +450,7 @@ Auto: OnAttack
     UntilEndOfOpponentsTurn
     GainPower 3000
 }
-Text Auto: When this card attacks, if "All-Star" is in your climax area, choose up to 1 character in your waiting room with either «Family» or «Kindergarten» and put it in stock, and this card gets +3000 power until the end of your opponent's next turn.
+Text Auto: CxCombo When this card attacks, if "All-Star" is in your climax area, choose up to 1 character in your waiting room with either «Family» or «Kindergarten» and put it in stock, and this card gets +3000 power until the end of your opponent's next turn.
 EndCard
 
 Character: CS/S28-027
@@ -484,7 +484,7 @@ Auto: OnReverseOpponent
 		}
     }
 }
-Text Auto: When this card's battle opponent becomes reverse, if "Singing Time" is in your climax area, you may put that character in clock.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Singing Time" is in your climax area, you may put that character in clock.
 EndCard
 
 Character: CS/S28-028
@@ -552,7 +552,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [(2)] When this card attacks, if "Shin-chan's Love" is in your climax area, you may pay the cost. If you do, choose a card in your clock and return it to your hand, then put the top card of your deck in your clock, and this card gets +2000 power until end of turn.
+Text Auto: CxCombo [(2)] When this card attacks, if "Shin-chan's Love" is in your climax area, you may pay the cost. If you do, choose a card in your clock and return it to your hand, then put the top card of your deck in your clock, and this card gets +2000 power until end of turn.
 EndCard
 
 Character: CS/S28-031
@@ -945,7 +945,7 @@ Auto: StartEncoreStep
         }
     }
 }
-Text Auto: At the beginning of your encore step, if "Familiar Scent" is in your climax area, you may put this card into memory. If you do, at the beginning of your next draw phase, choose 1 "For the Future, Shinnosuke" in your waiting room and return it to your hand, then choose 1 'As "Hiroshi SUN", Hiroshi' in your memory, put it in any position on the stage and this card gets +3500 power until end of turn.
+Text Auto: CxCombo At the beginning of your encore step, if "Familiar Scent" is in your climax area, you may put this card into memory. If you do, at the beginning of your next draw phase, choose 1 "For the Future, Shinnosuke" in your waiting room and return it to your hand, then choose 1 'As "Hiroshi SUN", Hiroshi' in your memory, put it in any position on the stage and this card gets +3500 power until end of turn.
 EndCard
 
 Character: CS/S28-052
@@ -973,7 +973,7 @@ Auto: OnAttack
         GainPower 2000
     }
 }
-Text Auto: When this card attacks, if "I Will Protect the Future" is in your climax area, choose up to 1 card in your opponent's waiting room, put it on top of their deck, and all your characters get +2000 power until end of turn.
+Text Auto: CxCombo When this card attacks, if "I Will Protect the Future" is in your climax area, choose up to 1 card in your opponent's waiting room, put it on top of their deck, and all your characters get +2000 power until end of turn.
 EndCard
 
 Character: CS/S28-053
@@ -1122,7 +1122,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [(1)] When this card attacks, if "Floating Happiness" is in your climax area, you may pay the cost. If you do, choose 1 character in your waiting room with either «Family» or «Kindergarten» and return it to your hand, and this card gets +1000 power until end of turn.
+Text Auto: CxCombo [(1)] When this card attacks, if "Floating Happiness" is in your climax area, you may pay the cost. If you do, choose 1 character in your waiting room with either «Family» or «Kindergarten» and return it to your hand, and this card gets +1000 power until end of turn.
 EndCard
 
 Character: CS/S28-061
@@ -1454,7 +1454,7 @@ Auto: OnReverseOpponent
         *OptionalDraw
     }
 }
-Text Auto: When this card's battle opponent becomes reverse, if "Uncontainable Feelings" is in your climax area, you may draw a card.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Uncontainable Feelings" is in your climax area, you may draw a card.
 EndCard
 
 Character: CS/S28-081
@@ -1637,7 +1637,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: When this card attacks, if "Extended Time" is in your climax area, this card gets +3500 power and the following effect until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put it on the bottom of the deck"
+Text Auto: CxCombo When this card attacks, if "Extended Time" is in your climax area, this card gets +3500 power and the following effect until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put it on the bottom of the deck"
 *ClockEncore
 EndCard
 
@@ -1732,7 +1732,7 @@ Auto: OnSpecificClimaxPlay One Drop
         *ScryToBottom
     }
 }
-Text Auto: When "One Drop" is placed on your climax area, if this card is in the center stage, draw a card, discard a card from your hand to the waiting room, then look at the top of your deck and put it either on top or bottom of the deck.
+Text Auto: CxCombo When "One Drop" is placed on your climax area, if this card is in the center stage, draw a card, discard a card from your hand to the waiting room, then look at the top of your deck and put it either on top or bottom of the deck.
 EndCard
 
 Character: CS/S28-093
@@ -2382,7 +2382,7 @@ Auto: OnAttack
         GainPower 2000
     }
 }
-Text Auto: When this card attacks, if "Butt Alien" is in your climax area, all your characters get +2000 power until end of turn.
+Text Auto: CxCombo When this card attacks, if "Butt Alien" is in your climax area, all your characters get +2000 power until end of turn.
 *ClockEncore
 EndCard
 
