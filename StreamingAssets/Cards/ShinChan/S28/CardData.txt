@@ -2067,7 +2067,7 @@ Trait1 Family
 Trait2 Kindergarten
 Auto: OnOtherPlacedOnStageFromHand
 {
-    If Other HasTrait Family|Mecha
+    IfOther HasTrait Family|Mecha
     {
         GainPower 1000
     }

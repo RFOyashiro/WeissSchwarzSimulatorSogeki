@@ -75,9 +75,14 @@ Power 2000
 Soul 1
 Trait1 Detective
 Trait2 Sports
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give +1 soul.
+        GainSoul 1
+    }
 }
 Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your characters, and that character gets +1 soul until end of turn.
 EndCard
@@ -92,9 +97,19 @@ Power 5000
 Soul 1
 Trait1 Detective
 Trait2 Sweets
-Auto:
+Combo A Date with Just the Two of Us
+Auto: OnAttack
 {
-
+    If Climax A Date with Just the Two of Us
+    {
+        PayCost 2
+        {
+            TargetLocation Stage
+            NarrowTargets Other
+            ChooseCharactersFromTargets 0 2 Choose up to 2 characters to return to hand.
+            Bounce
+        }
+    }
 }
 Text Auto: [(2)] When this card attacks, if "A Date with Just the Two of Us" is in your climax area, you may pay the cost. If you do, choose up to 2 of your other characters and return them to your hand.
 EndCard
@@ -109,15 +124,25 @@ Power 5000
 Soul 1
 Trait1 Detective
 Trait2 Yukata
-Auto:
+Combo First Encounter with Opera
+Auto: OnAttack
 {
-
+    If Climax First Encounter with Opera
+    {
+        UntilEndOfOpponentsTurn
+        BlockOpponentEvents
+    }
 }
+Quick
 Text Auto: When this card attacks, if "First Encounter with Opera" is in your climax area, your opponent may not play events from hand until the end of your opponent's next turn.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax First Encounter with Opera
+    {
+        GainPower 1500
+    }
 }
+Quick
 Text Auto: When this card attacks, if "First Encounter with Opera" is in your climax area, this card gets +1500 power until end of turn.
 EndCard
 
@@ -132,14 +157,24 @@ Power 8000
 Soul 2
 Trait1 Detective
 Trait2 Animal
-Cont:
+Combo Stealth And Toys
+Cont: GiveSelf
 {
-
+    If Compare Experience 3 OrMore
+    {
+        GainPower 1000
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets +1000 power.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Stealth And Toys
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen
+        ChooseCharacterFromTargets_Optional Choose up to 1 character to return to hand.
+        Bounce
+    }
 }
 Text Auto: When this card attacks, if "Stealth And Toys" is in your climax area, you may choose an opponent's character and return it to hand.
 EndCard
@@ -154,11 +189,12 @@ Power 2500
 Soul 1
 Trait1 Phantom Thief
 Trait2 Cook
-Act:
+Act: 1 Rest 2 Any
 {
-
+    GainPower 1500
+    GainSoul 1
 }
-Text Act: [(1) Rest 2 of your characters] This gets +1500 power and +1 soul until end of turn.
+Text Act: [(1) Rest 2 of your characters] This card gets +1500 power and +1 soul until end of turn.
 EndCard
 
 Character: MK/S11-009
@@ -171,9 +207,28 @@ Power 5000
 Soul 1
 Trait1 Phantom Thief
 Trait2 Flame
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 2 OrMore
+    {
+        GainPower 500
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                TargetBattleOpponent
+                IfTarget OnStage
+                {
+                    Question Put that character in stock ?
+                    If Yes
+                    {
+                        MoveCard OpponentStock
+                    }
+                }
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may put that character in stock.
+        }
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets +500 power and the following ability. "Auto: When this card's battle opponent becomes reverse, you may put that character in stock."
 EndCard
@@ -189,16 +244,12 @@ Power 1000
 Soul 1
 Trait1 Phantom Thief
 Trait2 Narcisscist
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    Mill 3
 }
 Text Auto: When you use this card's BACKUP, put the top 3 cards of your deck in the waiting room.
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 2000, level 1 [(1) Put this card from your hand to the waiting room]
+Backup 2000
 EndCard
 
 Character: MK/S11-011
@@ -212,14 +263,20 @@ Power 4000
 Soul 1
 Trait1 Detective
 Trait2 Sweets
-Cont:
+Cont: GiveAll
 {
-
+    If MyTurn && Other
+    {
+        GainPower 1000
+    }
 }
 Text Cont: During your turn, all your other characters get +1000 power.
-Auto:
+Auto: StartDrawPhase
 {
-
+    PayCost SendSelf WaitingRoom
+    {
+        *ChangeWaitingRoom(Cat-Ear Nero)
+    }
 }
 Text Auto: CHANGE [Put this card in the waiting room] At the beginning of your draw phase, you may pay the cost. If you do so, choose a "Cat-Ear Nero" in your waiting room and put it in the position that this card was in.
 EndCard
@@ -235,14 +292,10 @@ Power 7000
 Soul 1
 Trait1 Detective
 Trait2 Camera
-Auto:
+*HandEncore
+Act: Rest 1 HasTrait Detective
 {
-
-}
-Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
-Act:
-{
-
+    GainPower 1000
 }
 Text Act: [Rest 1 of your «Detective» characters] This gets +1000 power until end of turn.
 EndCard
@@ -257,16 +310,17 @@ Power 500
 Soul 1
 Trait1 Detective
 Trait2 Animal
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn
+    {
+        SetXToNumberOfCharacters Other && HasTrait Detective
+        MultiplyXValue 500
+        GainPower X
+    }
 }
 Text Cont: During your turn, this card gets +500 power for each of your other «Detective» characters
-Auto:
-{
-
-}
-Text Auto: BOND/"Cat-Ear Nero" [(1)]
+*Bond1(Cat-Ear Nero)
 EndCard
 
 Character: MK/S11-014
@@ -279,11 +333,7 @@ Power 2000
 Soul 1
 Trait1 Detective
 Trait2 Sweets
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If its a «Detective» character, put it in your hand and discard a card from your hand to the waiting room.
+*OnPlayCheckTopAddDiscard(Detective)
 EndCard
 
 Character: MK/S11-015
@@ -296,11 +346,7 @@ Power 2500
 Soul 1
 Trait1 Phantom Thief
 Trait2 Narcisscist
-Cont:
-{
-
-}
-Text Cont: During your turn, this card gets +1000 power.
+*PowerOnMyTurn(1000)
 EndCard
 
 Character: MK/S11-016
@@ -338,9 +384,9 @@ Power 8000
 Soul 1
 Trait1 Phantom Thief
 Trait2 Flame
-Act:
+Act: 1
 {
-
+    GainSoul 1
 }
 Text Act: [(1)] This gets +1 soul until end of turn.
 EndCard
@@ -364,11 +410,13 @@ JPName 万能のトイズ？
 Color Y
 Level 1
 Cost 1
+Counter
 Effect:
 {
-
+    *GiveCharacterPower(2500,Detective)
+    GainSoul 1
 }
-Text Choose 1 of your «Detective» characters, and that character gets +2500 power and +1 soul until end of turn.
+Text COUNTER Choose 1 of your «Detective» characters, and that character gets +2500 power and +1 soul until end of turn.
 EndCard
 
 Event: MK/S11-021
@@ -379,7 +427,10 @@ Level 3
 Cost 4
 Effect:
 {
-
+    SearchLocationForTargets OpponentWaitingRoom 0 6 Any
+    RevealTargets
+    MoveCard OpponentDeck
+    ShuffleLocation OpponentDeck
 }
 Text Choose up to 6 cards in your opponent's waiting room and return them to the deck. Your opponent shuffles that deck.
 EndCard
@@ -392,9 +443,13 @@ Level 2
 Cost 0
 Effect:
 {
-
+    *GiveCharacterPower(5000,Any)
+    If LocationContainsOrLess OpponentClock 0 Any
+    {
+        BlockOpponentEncore
+    }
 }
-Text ENCORE" until end of turn. (This includes "Auto: ENCORE [(3)]" provided by the rules.)
+Text Choose 1 of your characters, and that character gets +5000 power until end of turn.\nIf your opponent has 0 or less cards in clock, your opponent cannot use "Auto: ENCORE" until end of turn.
 EndCard
 
 Climax: MK/S11-023
@@ -413,7 +468,7 @@ Climax: MK/S11-025
 Name First Encounter with Opera
 JPName オペラとの出会い
 Color Y
-
+*2SoulClimax
 EndCard
 
 Character: MK/S11-026
@@ -427,14 +482,17 @@ Power 2000
 Soul 1
 Trait1 Detective
 Trait2 Book
-Auto:
+Auto: StartDrawPhase
 {
-
+    PayCost 1 SendSelf WaitingRoom
+    [
+        *ChangeWaitingRoom(Halloween Night Elly)
+    ]
 }
 Text Auto: CHANGE [(1) Put this card in the waiting room] At the beginning of your draw phase, you may pay the cost. If you do, choose a "Halloween Night Elly" in your waiting room and put it in the position this card was in.
-Act:
+Act: RestSelf
 {
-
+    BlindStock
 }
 Text Act: [Rest this card] Put the top card of your deck in your stock.
 EndCard
@@ -449,14 +507,17 @@ Power 4000
 Soul 1
 Trait1 Detective
 Trait2 Book
-Auto:
+Combo Tri-Ascend
+*OnPlayGivePower(1500,Detective)
+Auto: OnAttack
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your «Detective» characters, and that character gets +1500 power until end of turn.
-Auto:
-{
-
+    If Climax Tri-Ascend
+    {
+        TargetLocation OpponentCenterStage
+        NarrowTargets CanBeChosen
+        ChooseCharacterFromTargets Choose a character to give -2000 power.
+        LosePower 2000
+    }
 }
 Text Auto: When this card attacks, if "Tri-Ascend" is in your climax area, choose a character in your opponent's center stage, and that character gets -2000 power until end of turn.
 EndCard
@@ -471,16 +532,24 @@ Power 500
 Soul 1
 Trait1 Detective
 Trait2 Sports
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1
+    {
+        PeekTop OpponentDeck
+        Question Place this card on the bottom of the deck? (Press no to return it to the top)
+        If Yes
+        {
+            MoveCardToBottom OpponentDeck
+        }
+        If No
+        {
+            EndPeek OpponentDeck
+        }
+    }
 }
 Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at the top card of the opponent's deck and put it either on top or bottom of the deck.
-Auto:
-{
-
-}
-Text Auto: BOND/"Embarrassed Elly" [Put the top card of your deck in your clock]
+*BondClock(Embarrassed Elly)
 EndCard
 
 Character: MK/S11-029
@@ -493,10 +562,18 @@ Power 2000
 Soul 1
 Trait1 Detective
 Trait2 Book
-Auto:
+Auto: OnOtherPlacedOnStageFromHand
 {
-
+    IfOther HasTrait Detective
+    {
+        GainPower 1000
+    }
+    Else
+    {
+        RefundTimesPerTurn
+    }
 }
+TimesPerTurn 2
 Text Auto: This abilty activates up to twice per turn. When your other «Detective» character is placed on the stage from your hand, this card gets +1500 power until end of turn.
 EndCard
 
