@@ -376,6 +376,7 @@ Trait2 Guild
 Cont: GiveSelf
 {
     GainName Hecate of the Gale
+    GainJPName 疾風の冥姫
 }
 Text Cont: While on the stage, this card's name is also regarded as "Hecate of the Gale".
 Auto: OnPlay

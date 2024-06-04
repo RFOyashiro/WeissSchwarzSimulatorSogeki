@@ -527,6 +527,7 @@ Trait1 Mystery
 Cont: GiveSelf
 {
     GainName NEW Osomatsu Nii-san
+    GainJPName NEWおそ松兄さん
 }
 Text Cont: While on the stage, this card's name is also regarded as "NEW Osomatsu Nii-san".
 EndCard
@@ -1536,6 +1537,7 @@ Cont: GiveAll
     If StageContains 2 Other && NameContains 松
     {
         GainName Jyushimatsu
+        GainJPName 十四松
     }
 }
 Text Cont: If the number of other characters with "Matsu" in its card name you have is 2 or more, this card gets +2000 power, and all your characters' card name are also regarded as "Jyushimatsu".
@@ -1709,6 +1711,7 @@ Cont: GiveSelf
         GainPower 2000
         GainTrait Matchmaking Party
         GainName Totty
+        GainJPName トッティ
     }
 }
 Text Cont: If you have no other characters, this card gets +2000 power, «Matchmaking Party», and this card's name is also regarded as "Totty".

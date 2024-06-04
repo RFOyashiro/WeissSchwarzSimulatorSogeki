@@ -1042,6 +1042,7 @@ Trait2 Animal
 Cont: GiveSelf 
 {
 	GainName Kaede Azusagawa 
+	GainJPName 梓川 かえで
 }
 Text Cont: If this card is in the stage, this card's card name is also regarded as "Kaede Azusagawa".
 Auto: OnPlay 
