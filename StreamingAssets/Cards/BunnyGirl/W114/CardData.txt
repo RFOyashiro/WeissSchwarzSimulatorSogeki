@@ -1469,6 +1469,7 @@ Auto: OnTriggerCheckClimax
             {
                 EndPeek
             }
+            *GiveCharacterPower(1500,Any)
         }
     }
 }
