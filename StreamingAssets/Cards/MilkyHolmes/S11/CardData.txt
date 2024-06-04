@@ -548,7 +548,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at the top card of the opponent's deck and put it either on top or bottom of the deck.
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at the top card of your opponent's deck and put it either on top or bottom of the deck.
 *BondClock(Embarrassed Elly)
 EndCard
 
@@ -566,7 +566,7 @@ Auto: OnOtherPlacedOnStageFromHand
 {
     IfOther HasTrait Detective
     {
-        GainPower 1000
+        GainPower 1500
     }
     Else
     {
@@ -587,9 +587,12 @@ Power 5000
 Soul 1
 Trait1 Police
 Trait2 Weapon
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 2 OrMore
+    {
+        GainPower 1000
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets +1000 power.
 EndCard
@@ -605,14 +608,23 @@ Power 8000
 Soul 2
 Trait1 Detective
 Trait2 Book
-Cont:
+Combo Plushies And Hercule
+Cont: GiveSelf
 {
-
+    If LocationContains Stock 6 Any
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If there are 6 or more cards in your stock, this card gets +1500 power.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Plushies And Hercule
+    [
+        *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait Detective)
+        TargetSelf
+        GainPower 3000
+    ]
 }
 Text Auto: When this card attacks, if "Plushies And Hercule" is in your climax area, choose up to 1 «Detective» character in your waiting room and put it in your stock, and this card gets +3000 power until end of turn.
 EndCard
@@ -628,16 +640,19 @@ Power 10000
 Soul 2
 Trait1 Detective
 Trait2 Book
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 6 OrMore
+    {
+        GainPower 1500
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 6 or higher, this card gets +1500 power.
-Auto:
+Auto: OnPlay|PlacedBy CHANGE
 {
-
+    *OptionalHeal
 }
-Text Auto: When this card is placed on the stage from your hand or by CHANGE to the stage, you may put the top card of your clock in the waiting room.
+Text Auto: When this card is placed on the stage from your hand or by "CHANGE" to the stage, you may put the top card of your clock in the waiting room.
 EndCard
 
 Character: MK/S11-033
@@ -650,14 +665,16 @@ Power 1500
 Soul 1
 Trait1 Police
 Trait2 Glasses
-Cont:
+*GlobalPower(500,Police)
+Auto: OnPlay
 {
-
-}
-Text Cont: All your other «Police» characters get +500 power.
-Auto:
-{
-
+    PayCost 2
+    {
+        SearchLocationForTargets Clock 1 1 IsCharacter
+        MoveCard Hand
+        TargetTop Deck 1
+        MoveCard Clock
+    }
 }
 Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a character in your clock and return it to your hand, and put the top card of your deck in your clock.
 EndCard
@@ -672,9 +689,19 @@ Power 5000
 Soul 1
 Trait1 Detective
 Trait2 Sports
-Auto:
+Combo Merry-Go-Round
+Auto: OnAttack
 {
-
+    PeekTop OpponentDeck
+    Question Place this card on the bottom of the deck? (Press no to return it to the top)
+    If Yes
+    {
+        MoveCardToBottom OpponentDeck
+    }
+    If No
+    {
+        EndPeek OpponentDeck
+    }
 }
 Text Auto: When this card attacks, if "Merry-Go-Round" is in your climax area, look at the top card of your opponent's deck and put it either on top or bottom of the deck.
 EndCard
@@ -690,16 +717,8 @@ Power 1500
 Soul 1
 Trait1 Police
 Trait2 Headphones
-Auto:
-{
-
-}
-Text Auto: When you use this card's BACKUP, reveal the top card of your deck. If it is a «Police» character, put it in your hand and discard a card from your hand.
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 1500, level 1 [(1) Put this card from your hand to the waiting room]
+*ScryBackup(Police)
+Backup 1500
 EndCard
 
 Character: MK/S11-036
@@ -713,16 +732,15 @@ Power 6000
 Soul 1
 Trait1 Detective
 Trait2 Sports
-Cont:
+Cont: GiveAll
 {
-
+    If Compare Experience 3 OrMore && Other
+    {
+        GainPower 500
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, all your other characters get +500 power.
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+*HandEncore
 EndCard
 
 Character: MK/S11-037
@@ -736,16 +754,23 @@ Power 8500
 Soul 2
 Trait1 Police
 Trait2 Weapon
-Cont:
+Cont: GiveSelf
 {
-
+    SetXValue MarkersUnderThis
+    MultiplyXValue 1000
+    GainPower X
 }
-Text Cont: This card gets +1000 power for each marker under this card
-Auto:
+Text Cont: This card gets +1000 power for each marker underneath this card
+Auto: OnReverseOpponent
 {
-
+    Question Put the top card of your deck underneath this card as marker ?
+    If Yes
+    {
+        TargetTop Deck 1
+        Marker_FaceDown
+    }
 }
-Text Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck under this card as a marker.
+Text Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck underneath this card as a marker.
 EndCard
 
 Character: MK/S11-038
@@ -758,11 +783,7 @@ Power 1000
 Soul 1
 Trait1 Detective
 Trait2 Yukata
-Cont:
-{
-
-}
-Text Cont: ASSIST Your characters in front of this card get +500 power.
+*500Assist
 EndCard
 
 Character: MK/S11-039
@@ -775,9 +796,9 @@ Power 2000
 Soul 1
 Trait1 Police
 Trait2 Headphones
-Act:
+Act: 2
 {
-
+    *GiveCharacterPower(4000,Any)
 }
 Text Act: [(2)] Choose 1 of your characters, and that character gets +4000 power until end of turn.
 EndCard
@@ -792,9 +813,12 @@ Power 2500
 Soul 1
 Trait1 Police
 Trait2 Weapon
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContainsOrLess Stock 3 Any
+    {
+        GainPower 1000
+    }
 }
 Text Cont: If there are 3 or less cards in your stock, this card gets +1000 power.
 EndCard
@@ -822,14 +846,10 @@ Power 5000
 Soul 1
 Trait1 Detective
 Trait2 Book
-Auto:
+*ClockEncore
+Act: 1
 {
-
-}
-Text Auto: ENCORE [Put the top card of your deck in your clock]
-Act:
-{
-
+    GainPower 2000
 }
 Text Act: [(1)] This gets +2000 power until end of turn.
 EndCard
@@ -867,7 +887,10 @@ Level 1
 Cost 0
 Effect:
 {
-
+    SearchDeck IsCharacter && HasTrait Police
+    *GiveCharacterPower(2000,Any)
+    TargetSelf
+    MoveCard Clock
 }
 Text Search your deck for up to 1 «Police» character, reveal it, and put it in your hand. Shuffle your deck. Choose 1 of your characters, and that character gets +2000 power until end of turn. Put this card in your clock.
 EndCard
@@ -880,7 +903,18 @@ Level 2
 Cost 0
 Effect:
 {
-
+    PeekTop OpponentDeck
+    Question Place this card on the bottom of the deck? (Press no to return it to the top)
+    If Yes
+    {
+        MoveCardToBottom OpponentDeck
+    }
+    If No
+    {
+        EndPeek OpponentDeck
+    }
+    TargetSelf
+    MoveCard Stock
 }
 Text Look at the top card of your opponent's deck and put it either on top or bottom of the deck. Put this card in your stock.
 EndCard
@@ -891,18 +925,23 @@ JPName こじ開けられたドア
 Color G
 Level 1
 Cost 0
+Counter
 Effect:
 {
-
+    SetXToNumberOfCharacters HasTrait Detective
+    MultiplyXValue 500
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +X power.
+    GainPower X
 }
-Text Choose 1 of your characters, and that character gets +X power until end of turn. X equals 500 times the number of your «Detective» characters.
+Text COUNTER Choose 1 of your characters, and that character gets +X power until end of turn. X equals 500 times the number of your «Detective» characters.
 EndCard
 
 Climax: MK/S11-048
 Name Tri-Ascend
 JPName トライアセンド
 Color G
-
+*DrawClimax
 EndCard
 
 Climax: MK/S11-049
@@ -928,14 +967,13 @@ Power 4500
 Soul 1
 Trait1 Detective
 Trait2 Camera
-Cont:
+*LevelAssistTrait(Detective)
+Auto: StartDrawPhase
 {
-
-}
-Text Cont: ASSIST Your «Detective» characters in front of this card get +X power. X equals 500 times level of that character.
-Auto:
-{
-
+    PayCost 1 SendSelf WaitingRoom
+    {
+        *ChangeWaitingRoom(Clumsy Detective Sheryl)
+    }
 }
 Text Auto: CHANGE [(1) Put this card in your waiting room] At the beginning of your draw phase, you may pay the cost. If you do, choose a "Clumsy Detective Sheryl" in your waiting room and put it in the position this card was in.
 EndCard
