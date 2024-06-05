@@ -631,17 +631,17 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Sound of Heart
-Combo World Filled With Song
+Combo World Filled with Songs
 Auto: OnAttack
 {
     GainPower 4000
-    If Climax World Filled With Song
+    If Climax World Filled with Songs
     {
         *GainBounceWhenFrontalAttacked
     }
 }
 Quick
-Text Auto: CxCombo When this card attacks, this card gets +4000 power until end of turn. If "World Filled With Song" is in your climax area, this card gets the following ability until end of your opponent's turn. "Auto: When this card is frontal attacked, you may return this card to your hand."
+Text Auto: CxCombo When this card attacks, this card gets +4000 power until end of turn. If "World Filled with Songs" is in your climax area, this card gets the following ability until end of your opponent's turn. "Auto: When this card is frontal attacked, you may return this card to your hand."
 Act: Discard 1 IsClimax && HasTrigger Book || IsClimax && HasTrigger Bar &&& SendSelf WaitingRoom
 {
     If LocationContains WaitingRoom 2 IsClimax && HasTrigger Book &&& LocationContains WaitingRoom 2 IsClimax && HasTrigger Bar

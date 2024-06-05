@@ -2181,6 +2181,7 @@ Auto: StartOpponentAttackPhase
             Mill 1
             IfTarget Compare ThatCardsLevel 2 OrMore && IsCharacter || NameEquals Addicting Music
             {
+                TargetSelf
                 *GainBounceWhenFrontalAttacked
             }
         }
