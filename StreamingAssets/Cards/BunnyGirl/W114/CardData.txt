@@ -138,7 +138,11 @@ Soul 1
 Trait1 Adolescence
 Auto: OnPlay
 {
-    *ExchangeCardInLevelWithWaitingRoom(Any,Any)
+    Question Exchagne a card from your level with your waiting room ?
+    If Yes
+    {
+        *ExchangeCardInLevelWithWaitingRoom(Any,Any)
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose a card in your level and a card in your waiting room and exchange them.
 Auto: OnPlay
@@ -798,7 +802,11 @@ Cost 1
 Effect:
 {
     SearchWaitingRoom IsCharacter && HasTrait Adolescence
-    *ExchangeCardInLevelWithWaitingRoom(Any,Any)
+    Question Exchagne a card from your level with your waiting room ?
+    If Yes
+    {
+        *ExchangeCardInLevelWithWaitingRoom(Any,Any)
+    }
 }
 Text Choose 1 «Adolescence» character in your waiting room and return it to your hand.\nYou may choose a card in your level and a card in your waiting room and exchange them.
 Auto: StartOpponentAttackPhase
