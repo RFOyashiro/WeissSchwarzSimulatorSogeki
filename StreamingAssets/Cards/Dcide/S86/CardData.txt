@@ -166,7 +166,7 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont: MEMORY If either "Shrine Girl, Ariya" or "Plan for Tomorrow, Aki" is in your memory, this card gets +2000 power and the following ability. "Auto: When this card is placed on the stage from your hand or memory, choose 1 of your other character, and that character gets +1 level until end of turn."
+Text Cont: MEMORY If either "Shrine Girl, Ariya" or "Plan for Tomorrow, Aki" is in your memory, this card gets +2000 power and the following ability. "Auto: When this card is placed on the stage from your hand or memory, choose 1 other character, and that character gets +1 level until end of turn."
 *YellowEarlyPlayBomb
 EndCard
 
