@@ -946,8 +946,11 @@ Auto: OnPlay
 {
     If Compare Experience 3 OrMore
     {
-        SearchWaitingRoom IsCharacter
-        Discard 1 Any
+        PayCost 1
+        {
+            SearchWaitingRoom IsCharacter
+            Discard 1 Any
+        }
     }
 }
 Text Auto: EXPERIENCE [(1)] When this card is placed on the stage from your hand, if the sum of levels of cards in your level is 3 or higher, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand, and discard a card from your hand to the waiting room.
@@ -999,7 +1002,7 @@ Trait1 Pilot
 Trait2 Army
 Cont: GiveSelf
 {
-    If Compare Experience 2
+    If Compare Experience 2 OrMore
     {
         GainPower 1000
     }
@@ -1130,7 +1133,7 @@ Trait1 Pilot
 Trait2 Army
 Cont: GiveSelf
 {
-    If Compare Experience 3
+    If Compare Experience 3 OrMore
     {
         GainPower 1000
     }
