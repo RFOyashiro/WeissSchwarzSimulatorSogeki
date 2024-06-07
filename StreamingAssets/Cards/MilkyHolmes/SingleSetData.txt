@@ -2,3 +2,6 @@ Series: Milky Holmes
 Folder: MilkyHolmes/S11
 Prefix: MK/S11
 SetName: Milky Holmes (S11)
+Folder: MilkyHolmes/S19
+Prefix: MK2/S19
+SetName: Milky Holmes 2 (S19)
