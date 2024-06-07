@@ -1081,16 +1081,16 @@ Trigger Soul
 Power 7500
 Soul 2
 Trait1 Police
-Auto:
+Auto: OnOpponentRest
 {
-
+    If Compare Experience 3 OrMore
+    {
+        GainPower 1500
+    }
 }
+Quick
 Text Auto: EXPERIENCE When your opponent's standing character becomes rest, if the sum of levels of cards in your level is 3 or higher, this card gets +1500 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+*HandEncore
 EndCard
 
 Character: MK/S11-058
@@ -1103,16 +1103,15 @@ Power 500
 Soul 1
 Trait1 Detective
 Trait2 Sweets
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 2
+    {
+        SearchWaitingRoom IsCharacter && HasTrait Detective
+    }
 }
 Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Detective» character in your waiting room and return it to your hand.
-Auto:
-{
-
-}
-Text Auto: BOND/"Brave yet Single Minded Sheryl" [(1)]
+*Bond1(Brave yet Single Minded Sheryl)
 EndCard
 
 Character: MK/S11-059
@@ -1125,11 +1124,7 @@ Power 2000
 Soul 1
 Trait1 Detective
 Trait2 Headphones
-Auto:
-{
-
-}
-Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Detective» character in your waiting room and return it to your hand.
+*OnPlayTradeClimaxForCharacter(Detective)
 EndCard
 
 Character: MK/S11-060
@@ -1142,14 +1137,14 @@ Power 3500
 Soul 1
 Trait1 Police
 Trait2 Glasses
-Cont:
+Auto: OnOtherReversed
 {
-
+    *GiveCharacterPower(1000,Any)
 }
-Text Cont: When your other character becomes reversed in battle, choose 1 of your characters, and that character gets +1000 power until end of turn.
-Act:
+Text Auto: When your other character becomes reversed in battle, choose 1 of your characters, and that character gets +1000 power until end of turn.
+Act: 2 RestSelf
 {
-
+    SearchWaitingRoom IsCharacter && HasTrait Police
 }
 Text Act: [(2) Rest this card] Choose a «Police» character in your waiting room and return it to your hand.
 EndCard
@@ -1165,11 +1160,7 @@ Power 6500
 Soul 1
 Trait1 Police
 Trait2 Weapon
-Cont:
-{
-
-}
-Text Cont: All your other «Police» characters get +1000 power.
+*GlobalPower(1000,Police)
 EndCard
 
 Character: MK/S11-062
@@ -1183,14 +1174,20 @@ Power 10000
 Soul 2
 Trait1 Detective
 Trait2 Camera
-Auto:
+Combo Psychokinesis
+*Healer
+Auto: OnAttack
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
-Auto:
-{
-
+    If Climax Psychokinesis
+    {
+        PayCost 1
+        {
+            SearchWaitingRoom IsCharacter
+            TargetLocation Stage
+            NarrowTargets HasTrait Detective
+            GainPower 2000
+        }
+    }
 }
 Text Auto: [(1)] When this card attacks, if "Psychokinesis" is in your climax area, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand, and all your «Detective» characters get +2000 power until end of turn.
 EndCard
@@ -1205,11 +1202,7 @@ Power 2500
 Soul 1
 Trait1 Police
 Trait2 Weapon
-Cont:
-{
-
-}
-Text Cont: If the number of other «Police» characters you have is 2 or more, this card gets +1000 power.
+*GainPowerWithEnoughCharacters(1000,2,Police)
 EndCard
 
 Character: MK/S11-064
@@ -1222,11 +1215,31 @@ Power 3000
 Soul 1
 Trait1 Detective
 Trait2 Police
-Auto:
+Auto: OnPlay
 {
-
+    If LocationContains OpponentStage 1 NameEquals Joint Investigation Kokoro & Sheryl
+    {
+        PayCost Rest 1 Any
+        {
+             Repeat 999
+            {
+                *RockPaperScissors
+                If Compare X 0 Exactly && Compare Answer 2 Exactly ||| Compare X 1 Exactly && Compare Answer 0 Exactly ||| Compare X 2 Exactly && Compare Answer 1 Exactly
+                {
+                    StopLoop
+                    DrawCard
+                }
+                If Compare X 2 Exactly && Compare Answer 0 Exactly ||| Compare X 0 Exactly && Compare Answer 1 Exactly ||| Compare X 1 Exactly && Compare Answer 2 Exactly
+                {
+                    TargetTop OpponentDeck 1
+                    MoveCard OpponentHand
+                    StopLoop
+                }
+            }
+        }
+    }
 }
-Text Auto: [Rest 1 of your standing characters] When this card is placed on the stage from your hand, if your opponent has a "Joint Investigation Kokoro & Sheryl", you may pay the cost. If you do, play Rock-Paper-Scissors with your opponent until someone wins, and the winner draws 1 card.
+Text Auto: [Rest 1 of your characters] When this card is placed on the stage from your hand, if your opponent has a "Joint Investigation Kokoro & Sheryl", you may pay the cost. If you do, play Rock-Paper-Scissors with your opponent until someone wins, and the winner draws 1 card.
 EndCard
 
 Character: MK/S11-065
@@ -1239,9 +1252,14 @@ Power 3500
 Soul 1
 Trait1 Detective
 Trait2 Camera
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget Not HasTrait Detective
+    {
+        MoveCard Clock
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it is not a «Detective» character, put that card in clock.
 EndCard
@@ -1256,9 +1274,16 @@ Power 5000
 Soul 1
 Trait1 Detective
 Trait2 Sweets
-Auto:
+Combo Direct Hack
+Auto: OnAttack
 {
-
+    If Climax Direct Hack
+    {
+        PayCost 1
+        {
+            SearchWaitingRoom IsCharacater
+        }
+    }
 }
 Text Auto: [(1)] When this card attacks, if "Direct Hack" is in your climax area, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
 EndCard
@@ -1286,11 +1311,7 @@ Power 2500
 Soul 1
 Trait1 Detective
 Trait2 Camera
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+Backup 3000
 EndCard
 
 Character: MK/S11-069
@@ -1314,9 +1335,15 @@ Level 1
 Cost 2
 Effect:
 {
-
+    PayCost Rest 1 NameContains シャロ
+    {
+        SearchLocationForTargets OpponentWaitingRoom 1 1 Any
+        MoveCard OpponentMemory
+        TargetSelf
+        MoveCard Memory
+    }
 }
-Text Choose 1 of your standing characters with "Sheryl" in its card name and Rest it. If you do, choose a card in your opponent's waiting room and send it to memory, and Put this card into memory.
+Text Choose 1 of your standing characters with "Sheryl" in its card name and rest it. If you do, choose a card in your opponent's waiting room and send it to memory, and put this card into memory.
 EndCard
 
 Event: MK/S11-071
@@ -1327,9 +1354,15 @@ Level 2
 Cost 0
 Effect:
 {
-
+    *GiveCharacterPower(3000,Any)
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give this effect.
+    GainEffect
+    {
+        //ToDo: Get trap effect from common effects
+    }
 }
-Text When this card becomes reversed, if the level of the battle opponent's of this card is equal to or lower than the level of this card, you may reverse that character."
+Text Choose 1 of your characters and that character gets +3000 power until end of turn.\nChoose 1 of your characters and that character gets the following ability until end of turn. "Auto: When this card becomes reversed, if the level of the battle opponent's of this card is equal to or lower than the level of this card, you may reverse that character."
 EndCard
 
 Event: MK/S11-072
@@ -1340,9 +1373,12 @@ Level 1
 Cost 0
 Effect:
 {
-
+    PayCost Rest 2 Any
+    {
+        SearchWaitingRoom IsCharacter && HasTrait Detective
+    }
 }
-Text Choose 2 of your standing characters and Rest them. If you do, choose a «Detective» character in your waiting room and return it to your hand.
+Text Choose 2 of your standing characters and rest them. If you do, choose a «Detective» character in your waiting room and return it to your hand.
 EndCard
 
 Climax: MK/S11-073
@@ -1355,14 +1391,14 @@ Climax: MK/S11-074
 Name Sherlock's Lap Pillow
 JPName シャーロックの膝枕
 Color R
-
+*DrawClimax
 EndCard
 
 Climax: MK/S11-075
 Name Direct Hack
 JPName ダイレクトハック
 Color R
-
+*OldStockSoulClimax
 EndCard
 
 Character: MK/S11-076
@@ -1375,14 +1411,18 @@ Power 3000
 Soul 1
 Trait1 Detective
 Trait2 Sports
-Cont:
+Combo Cordelia's Proposal
+Cont: Assist
 {
-
+    GainEffect
+    {
+        *HandEncore
+    }
 }
 Text Cont: ASSIST Your characters in front of this card get "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
-Auto:
+Auto: OnSpecificClimaxPlay Cordelia's Proposal
 {
-
+    *GiveCharacterPower(2000,Detective)
 }
 Text Auto: When "Cordelia's Proposal" is placed on your climax area, choose 1 of your «Detective» characters, and that character gets +2000 power until end of turn.
 EndCard
@@ -1398,9 +1438,12 @@ Power 5000
 Soul 1
 Trait1 Detective
 Trait2 Sports
-Cont:
+Cont: GiveAll
 {
-
+    If Not MyTurn && Other
+    {
+        GainPower 1000
+    }
 }
 Text Cont: During your opponent's turn, all your other characters get +1000 power.
 Auto:
