@@ -6,10 +6,12 @@ Repo of sets worked on by Sogeki
 - Ayakashi Triangle
 - Black Rock Shooter
 - Day Break Illusion
+- Crayon Shin-chan
 - D_Cide
 - Evangelion Rebuild
 - Heaven Burn Red
 - Kiznaiver
+- Milky Holmes
 - Osomatsu
 - Princess Connect!
 - Project Diva (Project Diva X only)
