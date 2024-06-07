@@ -2189,6 +2189,7 @@ Auto: OnEndOfAttack
         Question Put this card into memory?
         If Yes
         {
+            TargetSelf
             MoveCard Memory
             ScheduleEffect StartDrawPhase
             {

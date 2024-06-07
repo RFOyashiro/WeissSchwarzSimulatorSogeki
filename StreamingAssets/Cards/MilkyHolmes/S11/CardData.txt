@@ -989,9 +989,16 @@ Power 8500
 Soul 2
 Trait1 Detective
 Trait2 Camera
-Auto:
+Combo Sherlock's Lap Pillow
+Auto: OnAttack
 {
-
+    If Climax Sherlock's Lap Pillow
+    {
+        SearchLocationForTargets OpponentWaitingRoom 0 1 Any
+        MoveCard OpponentDeck
+        TargetSelf
+        GainPower 3000
+    }
 }
 Text Auto: When this card attacks, if "Sherlock's Lap Pillow" is in your climax area, choose up to 1 card in your opponent's waiting room and put it on top of the deck, and this card gets +3000 power until end of turn.
 EndCard
@@ -1005,16 +1012,15 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Police
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other NameEquals Rei Kamitsu
+    {
+        GainPower 1000
+    }
 }
 Text Cont: If you have another "Rei Kamitsu", this card gets +1000 power.
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 0 or lower, you may reverse that character.
+*RedLevel0Bomb
 EndCard
 
 Character: MK/S11-054
@@ -1027,11 +1033,7 @@ Power 3500
 Soul 1
 Trait1 Detective
 Trait2 Sweets
-Cont:
-{
-
-}
-Text Cont: All your other characters get the following ability. "Cont: This cannot side attack".
+*OthersCannotSideAttack
 EndCard
 
 Character: MK/S11-055
@@ -1044,16 +1046,8 @@ Power 4000
 Soul 1
 Trait1 Detective
 Trait2 Camera
-Cont:
-{
-
-}
-Text Cont: This card gets +500 power for each of your other «Detective» characters
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+*GainPowerForEachOther(500,Detective)
+*HandEncore
 EndCard
 
 Character: MK/S11-056
@@ -1066,9 +1060,13 @@ Power 6500
 Soul 1
 Trait1 Police
 Trait2 Weapon
-Auto:
+Auto: OnReverseOpponent
 {
-
+    PayCost 1
+    {
+        SearchLocationForTargets OpponentWaitingRoom 0 1 Any
+        MoveCard OpponentDeck
+    }
 }
 Text Auto: [(1)] When this card's battle opponent becomes reverse, you may pay the cost. If you do, choose a card in your opponent's waiting room and put it on top of the deck.
 EndCard
@@ -1087,7 +1085,7 @@ Auto:
 {
 
 }
-Text Auto: EXPERIENCE When your opponent's standing character becomes Rested, if the sum of levels of cards in your level is 3 or higher, this card gets +1500 power until end of turn.
+Text Auto: EXPERIENCE When your opponent's standing character becomes rest, if the sum of levels of cards in your level is 3 or higher, this card gets +1500 power until end of turn.
 Auto:
 {
 
