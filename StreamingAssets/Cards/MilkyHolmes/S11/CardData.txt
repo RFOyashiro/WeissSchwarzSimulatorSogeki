@@ -111,7 +111,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [(2)] When this card attacks, if "A Date with Just the Two of Us" is in your climax area, you may pay the cost. If you do, choose up to 2 of your other characters and return them to your hand.
+Text Auto: CxCombo [(2)] When this card attacks, if "A Date with Just the Two of Us" is in your climax area, you may pay the cost. If you do, choose up to 2 of your other characters and return them to your hand.
 EndCard
 
 Character: MK/S11-006
@@ -134,7 +134,7 @@ Auto: OnAttack
     }
 }
 Quick
-Text Auto: When this card attacks, if "First Encounter with Opera" is in your climax area, your opponent may not play events from hand until the end of your opponent's next turn.
+Text Auto: CxCombo When this card attacks, if "First Encounter with Opera" is in your climax area, your opponent may not play events from hand until the end of your opponent's next turn.
 Auto: OnAttack
 {
     If Climax First Encounter with Opera
@@ -143,7 +143,7 @@ Auto: OnAttack
     }
 }
 Quick
-Text Auto: When this card attacks, if "First Encounter with Opera" is in your climax area, this card gets +1500 power until end of turn.
+Text Auto: CxCombo When this card attacks, if "First Encounter with Opera" is in your climax area, this card gets +1500 power until end of turn.
 EndCard
 
 Character: MK/S11-007
@@ -176,7 +176,7 @@ Auto: OnAttack
         Bounce
     }
 }
-Text Auto: When this card attacks, if "Stealth And Toys" is in your climax area, you may choose an opponent's character and return it to hand.
+Text Auto: CxCombo When this card attacks, if "Stealth And Toys" is in your climax area, you may choose an opponent's character and return it to hand.
 EndCard
 
 Character: MK/S11-008
@@ -519,7 +519,7 @@ Auto: OnAttack
         LosePower 2000
     }
 }
-Text Auto: When this card attacks, if "Tri-Ascend" is in your climax area, choose a character in your opponent's center stage, and that character gets -2000 power until end of turn.
+Text Auto: CxCombo When this card attacks, if "Tri-Ascend" is in your climax area, choose a character in your opponent's center stage, and that character gets -2000 power until end of turn.
 EndCard
 
 Character: MK/S11-028
@@ -626,7 +626,7 @@ Auto: OnAttack
         GainPower 3000
     }
 }
-Text Auto: When this card attacks, if "Plushies And Hercule" is in your climax area, choose up to 1 «Detective» character in your waiting room and put it in your stock, and this card gets +3000 power until end of turn.
+Text Auto: CxCombo When this card attacks, if "Plushies And Hercule" is in your climax area, choose up to 1 «Detective» character in your waiting room and put it in your stock, and this card gets +3000 power until end of turn.
 EndCard
 
 Character: MK/S11-032
@@ -703,7 +703,7 @@ Auto: OnAttack
         EndPeek OpponentDeck
     }
 }
-Text Auto: When this card attacks, if "Merry-Go-Round" is in your climax area, look at the top card of your opponent's deck and put it either on top or bottom of the deck.
+Text Auto: CxCombo When this card attacks, if "Merry-Go-Round" is in your climax area, look at the top card of your opponent's deck and put it either on top or bottom of the deck.
 EndCard
 
 Character: MK/S11-035
@@ -1000,7 +1000,7 @@ Auto: OnAttack
         GainPower 3000
     }
 }
-Text Auto: When this card attacks, if "Sherlock's Lap Pillow" is in your climax area, choose up to 1 card in your opponent's waiting room and put it on top of the deck, and this card gets +3000 power until end of turn.
+Text Auto: CxCombo When this card attacks, if "Sherlock's Lap Pillow" is in your climax area, choose up to 1 card in your opponent's waiting room and put it on top of the deck, and this card gets +3000 power until end of turn.
 EndCard
 
 Character: MK/S11-053
@@ -1189,7 +1189,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [(1)] When this card attacks, if "Psychokinesis" is in your climax area, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand, and all your «Detective» characters get +2000 power until end of turn.
+Text Auto: CxCombo [(1)] When this card attacks, if "Psychokinesis" is in your climax area, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand, and all your «Detective» characters get +2000 power until end of turn.
 EndCard
 
 Character: MK/S11-063
@@ -1285,7 +1285,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [(1)] When this card attacks, if "Direct Hack" is in your climax area, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
+Text Auto: CxCombo [(1)] When this card attacks, if "Direct Hack" is in your climax area, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
 EndCard
 
 Character: MK/S11-067
@@ -1436,7 +1436,7 @@ Auto: OnSpecificClimaxPlay Cordelia's Proposal
 {
     *GiveCharacterPower(2000,Detective)
 }
-Text Auto: When "Cordelia's Proposal" is placed on your climax area, choose 1 of your «Detective» characters, and that character gets +2000 power until end of turn.
+Text Auto: CxCombo When "Cordelia's Proposal" is placed on your climax area, choose 1 of your «Detective» characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: MK/S11-077
@@ -1532,7 +1532,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [(1)] When this card attacks, if "Black Cat Bookmark" is in your climax area, you may pay the cost. If you do, draw a card.
+Text Auto: CxCombo [(1)] When this card attacks, if "Black Cat Bookmark" is in your climax area, you may pay the cost. If you do, draw a card.
 EndCard
 
 Character: MK/S11-081
@@ -1585,7 +1585,7 @@ Auto: OnAttack
         SearchDeck IsCharacter && HasTrait Detective
     }
 }
-Text Auto: When this card attacks, if "Hypersensitive" is in your climax area, search your deck for up to 1 «Detective» character, reveal it, and put it in your hand. Shuffle your deck.
+Text Auto: CxCombo When this card attacks, if "Hypersensitive" is in your climax area, search your deck for up to 1 «Detective» character, reveal it, and put it in your hand. Shuffle your deck.
 EndCard
 
 Character: MK/S11-083
