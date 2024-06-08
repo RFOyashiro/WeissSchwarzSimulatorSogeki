@@ -1738,7 +1738,7 @@ Trait1 Detective
 Trait2 Deep-Fried Kebab
 Cont: GiveAll
 {
-    If StageContains 1 Not Other && InLocation CenterStage
+    IfOwner InLocation CenterStage
     {
         If Other && HasTrait Detective
         {
