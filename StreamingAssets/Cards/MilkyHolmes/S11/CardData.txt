@@ -1221,7 +1221,7 @@ Auto: OnPlay
     {
         PayCost Rest 1 Any
         {
-             Repeat 999
+            Repeat 999
             {
                 *RockPaperScissors
                 If Compare X 0 Exactly && Compare Answer 2 Exactly ||| Compare X 1 Exactly && Compare Answer 0 Exactly ||| Compare X 2 Exactly && Compare Answer 1 Exactly

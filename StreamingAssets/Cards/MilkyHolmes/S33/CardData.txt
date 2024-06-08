@@ -8,9 +8,9 @@ Power 1500
 Soul 1
 Trait1 Detective
 Trait2 Camera
-Act:
+Act: Rest 2 HasTrait Detective
 {
-
+    *ExchangeCardInLevelWithWaitingRoom(Any,Any)
 }
 Text Act: [Rest 2 of your «Detective» characters] Choose a card in your level and a card in your waiting room and exchange them.
 Act:

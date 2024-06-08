@@ -2812,11 +2812,11 @@ Power 5500
 Soul 1
 Trait1 Demon
 Trait2 Attacker
-Combo Zero Dimension Creator, Big Bang"
+Combo Zero Dimension Creator, Big Bang
 *CannotSideAttack
 Auto: OnReverseOpponent
 {
-    If Climax Zero Dimension Creator, Big Bang"
+    If Climax Zero Dimension Creator, Big Bang
     {
         RevealUpTo Deck 4
         ChooseCardsFromTargets 0 2 Compare ThatCardsLevel 1 OrMore
