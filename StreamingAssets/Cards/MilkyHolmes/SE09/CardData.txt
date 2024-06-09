@@ -249,9 +249,9 @@ Trait2 Book
 Cont: GiveAll
 {
     If LocationContains Stock 5 Any &&& Other && HasTrait Book
-    [
+    {
         GainPower 500
-    ]
+    }
 }
 Text Cont: If there are 5 or more cards in your stock, all your other «Book» characters get +500 power.
 EndCard

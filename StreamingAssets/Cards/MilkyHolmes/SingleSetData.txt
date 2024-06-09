@@ -8,3 +8,6 @@ SetName: Milky Holmes 2 (S19)
 Folder: MilkyHolmes/S33
 Prefix: MK/S33
 SetName: Milky Holmes Second Stage (S33)
+Folder: MilkyHolmes/SE09
+Prefix: MK/SE09
+SetName: Milky Holmes: The Phantom Thief Empire Strikes Back (SE09)
