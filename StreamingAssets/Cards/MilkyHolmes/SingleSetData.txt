@@ -5,3 +5,6 @@ SetName: Milky Holmes (S11)
 Folder: MilkyHolmes/S19
 Prefix: MK2/S19
 SetName: Milky Holmes 2 (S19)
+Folder: MilkyHolmes/S33
+Prefix: MK/S33
+SetName: Milky Holmes Second Stage (S33)

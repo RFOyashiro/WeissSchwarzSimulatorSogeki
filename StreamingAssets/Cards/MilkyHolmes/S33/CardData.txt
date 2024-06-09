@@ -13,11 +13,7 @@ Act: Rest 2 HasTrait Detective
     *ExchangeCardInLevelWithWaitingRoom(Any,Any)
 }
 Text Act: [Rest 2 of your «Detective» characters] Choose a card in your level and a card in your waiting room and exchange them.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1)] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 «Detective» character, reveal it, put it in your hand, discard a card from your hand to the waiting room, and shuffle your deck.
+*Act1SearchBrainstorm(Detective)
 EndCard
 
 Character: MK/S33-002
@@ -31,14 +27,22 @@ Power 10000
 Soul 2
 Trait1 Detective
 Trait2 Sweets
-Auto:
+Auto: OnPlay
 {
-
+    If StageContains 4 Other && HasTrait Detective
+    {
+        *OptionalBlindStock
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, if the number of other «Detective:, characters you have is 4 or more, you may put the top card of your deck in your stock.
-Auto:
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Detective», characters you have is 4 or more, you may put the top card of your deck in your stock.
+Auto: OnPlay
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to return to hand.
+    Bounce
+    TargetSelf
+    GainPower 2000
 }
 Text Auto: When this card is placed on the stage from your hand, choose up to 1 of your opponent's characters and return it to hand, and this card gets +2000 power until end of turn.
 EndCard
@@ -53,9 +57,11 @@ Power 2000
 Soul 1
 Trait1 Detective
 Trait2 Sweets
-Act:
+Act: Rest 2 HasTrait Detective
 {
-
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +1 soul.
+    GainSoul 1
 }
 Text Act: [Rest 2 of your «Detective» characters] Choose 1 of your characters, and that character gets +1 soul until end of turn.
 EndCard
@@ -70,16 +76,12 @@ Power 2500
 Soul 1
 Trait1 Detective
 Trait2 Sweets
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    *ExchangeCardInLevelWithWaitingRoom(Any,IsClimax)
 }
-Text Auto: When you use this card's BACKUP, choose a card in your level and a climax in your waiting room and exchange them.
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 3000, level 1 [Put this card ard from hand to the waiting room]
+Text Auto: When you use this card's "BACKUP", choose a card in your level and a climax in your waiting room and exchange them.
+Backup 3000
 EndCard
 
 Character: MK/S33-005
@@ -92,16 +94,15 @@ Trigger Soul
 Power 4500
 Soul 1
 Trait1 Detective
-Cont:
+*LevelAssistTrait(Detective)
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchDeck IsCharacter && With EXPERIENCE
+    }
 }
-Text Cont: ASSIST Your «Detective» characters in front of this card get +X power. X equals 500 times level of that character.
-Auto:
-{
-
-}
-Text Auto: [(1) Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with EXPERIENCE, reveal it, put it in your hand, and shuffle your deck.
+Text Auto: [(1) Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with "EXPERIENCE", reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: MK/S33-006
@@ -113,16 +114,8 @@ Cost 1
 Power 6000
 Soul 1
 Trait1 Detective
-Cont:
-{
-
-}
-Text Cont: During your turn, this card gets +1000 power.
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put the top card of your deck in your clock]
+*PowerOnMyTurn(1000)
+*ClockEncore
 EndCard
 
 Character: MK/S33-007
@@ -135,16 +128,20 @@ Trigger Soul
 Power 10000
 Soul 2
 Trait1 Detective
-Auto:
+Combo Two's Inference
+*Healer
+Auto: OnAttack
 {
-
+    If Climax Two's Inference
+    {
+        *GiveOtherCharacterPower(3000,Detective)
+        GainEffect
+        {
+            *OnCancelBurn1
+        }
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, if "Two's Inference" is in your climax area, choose 1 of your other «Detective» characters, and that character gets +3000 power and the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent." 
+Text Auto: When this card attacks, if "Two's Inference" is in your climax area, choose 1 of your other «Detective» characters, and that character gets +3000 power and the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
 EndCard
 
 Character: MK/S33-008
@@ -157,14 +154,23 @@ Power 4000
 Soul 1
 Trait1 Detective
 Trait2 Camera
-Auto:
+Combo Let's Eat Something Then Head Back
+Auto: OnCardEntersLevel
 {
-
+    IfOther IsClimax
+    {
+        GainPower 2500
+    }
 }
+Quick
 Text Auto: This ability activates up to once per turn. When your climax is placed in your level, this card gets +2500 power until end of turn.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Let's Eat Something Then Head Back
+    {
+        TargetLocation Stage
+        GainSoul 1
+    }
 }
 Text Auto: When this card attacks, if "Let's Eat Something Then Head Back" is in your climax area, all your characters get +1 soul until end of turn.
 EndCard
@@ -177,17 +183,21 @@ Level 1
 Cost 0
 Power 4500
 Soul 1
-Trait 1: 特徴なし (No
-Cont:
+Cont: GiveSelf
 {
-
+    SetXValue MarkersUnderThis
+    GainLevel X
+    MultiplyXValue 1500
+    GainPower X
 }
-Text Cont: For each marker under this card, this card gets +1 level and +1500 power.
-Auto:
+Text Cont: This card gets +1 level and +1500 powe for each marker under this card
+Auto: OnReverseOpponent
 {
-
+    SearchLocationForTargets WaitingRoom 0 1 NameEquals Melodia
+    RevealTargets
+    Marker_FaceDown
 }
-Text Auto: When this card's battle opponent becomes reverse, you may choose a "Melodia" in your Waiting room and put it face down underneath this card as a marker.
+Text Auto: When this card's battle opponent becomes reverse, you may choose a "Melodia" in your waiting room and put it face down underneath this card as a marker.
 EndCard
 
 Character: MK/S33-010
@@ -199,17 +209,23 @@ Cost 1
 Trigger Soul
 Power 2000
 Soul 1
-Trait 1: 特徴なし (No
-Cont:
+Cont: GiveAll
 {
-
+    If MyTurn && Other
+    {
+        IfOwner HasTrait Music
+        {
+            GainPower 2000
+        }
+    }
 }
 Text Cont: During your turn, if this card has «Music», all your other characters get +2000 power.
-Auto:
+Auto: OnOtherOpponentReversed
 {
-
+    TargetLocation Stage
+    GainTrait Music
 }
-Text Auto: When the battle opponent of 1 of your other characters becomes reversed, all your characters get «Music» until end of turn.
+Text Auto: When the battle opponent of your other characters becomes reversed, all your characters get «Music» until end of turn.
 EndCard
 
 Character: MK/S33-011
@@ -223,14 +239,18 @@ Power 7500
 Soul 1
 Trait1 Detective
 Trait2 Sweets
-Auto:
+Combo Fluffy Things in the Forest
+*ClimaxExchange
+Auto: OnSpecificClimaxPlay Fluffy Things in the Forest
 {
-
-}
-Text Auto: [(1) Put 1 climax from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 climax in your waiting room and return it to your hand.
-Auto:
-{
-
+    PayCost SendSelf WaitingRoom
+    {
+        SearchLocationForTargets Hand 0 1 NameEquals Yukata Dress, Nero || NameEquals Sora Tokui, Overdrive!
+        If HasTarget
+        {
+            Change
+        }
+    }
 }
 Text Auto: [Put this card in the waiting room] When "Fluffy Things in the Forest" is placed on your climax area, you may pay the cost. If you do, choose up to 1 "Yukata Dress, Nero" or "Sora Tokui, Overdrive!" in your hand and put it in the position this card was in.
 EndCard
@@ -245,9 +265,12 @@ Trigger Soul
 Power 8000
 Soul 1
 Trait1 Detective
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn && Compare Experience 3 OrMore
+    {
+        GainPower 2000
+    }
 }
 Text Cont: EXPERIENCE During your turn, if the sum of levels of cards in your level is 3 or higher, this card gets +2000 power.
 EndCard
@@ -262,14 +285,16 @@ Power 1500
 Soul 1
 Trait1 Element
 Trait2 Music
-Cont:
+Army
+Cont: GiveAll
 {
-
-}
-Text Cont: You can have as many copies of card with the same name as this card in your Deck.
-Cont:
-{
-
+    If Other
+    {
+        If NameEquals Melodia || NameEquals "Not Just Songs" Marine
+        {
+            GainPower 1000
+        }
+    }
 }
 Text Cont: All your other "Melodia" and '"Not Just Songs" Marine' get +1000 power.
 EndCard
@@ -284,16 +309,8 @@ Power 1500
 Soul 1
 Trait1 Detective
 Trait2 Sweets
-Auto:
-{
-
-}
-Text Auto: [(1) Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Sweets» character, reveal it, put it in your hand, and shuffle your deck.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, choose 1 of your other characters, and that character gets +X power until end of turn. X equals 1000 times soul of that character.
+*DropSearch(Sweets)
+*OnAttackGivePowerTimesSoul
 EndCard
 
 Character: MK/S33-015
@@ -305,9 +322,12 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Detective
-Auto:
+Auto: OnAttack
 {
-
+    TargetLocation Stage
+    NarrowTargets NameContains カズミ && Other
+    ChooseCharacterFromTargets Choose a character to give +1 soul.
+    GainSoul 1
 }
 Text Auto: When this card attacks, choose 1 of your other characters with "Kazumi" in its card name, and that character gets +1 soul until end of turn.
 EndCard
@@ -322,14 +342,19 @@ Power 2000
 Soul 1
 Trait1 Phantom Thief
 Trait2 Mask
-Cont:
+Cont: GiveSelf
 {
-
+    GainTrait Detective
 }
-Text Cont: If this card is on the stage, this card gets «Detective».
-Auto:
+Text Cont: This card gets «Detective».
+Auto: OnPlay
 {
-
+	If LocationContainsOrLess OpponentCenterStage 1 Any
+	{
+		TargetLocation OpponentCenterStage
+		NarrowTargets CanBeChosen && Compare ThatCardsLevel 1 OrLess
+		MoveCard WaitingRoom
+	}
 }
 Text Auto: When this card is placed on the stage from your hand, if there's 1 or less characters in your opponent's center stage, you may choose 1 level 1 or lower character in your opponent's center stage and put it in stock.
 EndCard
@@ -343,11 +368,13 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Detective
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters Other && NameEquals Warm Air, Alice
+    MultiplyXValue 1000
+    GainPower X
 }
-Text Cont: For each of your other "Warm Air, Alice", this card gets +1000 power.
+Text Cont: This card gets +1000 powe for each of your other "Warm Air, Alice"
 EndCard
 
 Character: MK/S33-018
@@ -361,9 +388,13 @@ Power 7500
 Soul 1
 Trait1 Detective
 Trait2 Camera
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 2 Other && NameContains シャロ|シャーロック
+    {
+        GainPower 1000
+        GainSoul 1
+    }
 }
 Text Cont: If the number of other characters with either "Sheryl" or "Sherlock" in its card name you have is 2 or more, this card gets +1000 power and +1 soul.
 EndCard
@@ -377,10 +408,14 @@ Cost 1
 Trigger Soul
 Power 8000
 Soul 1
-Trait 1: 特徴なし (No
-Auto:
+Auto: OnAttack
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        TargetLocation Stage
+        GainPower 500
+        GainSoul 1
+    }
 }
 Text Auto: [(1) Put 1 card from hand to the waiting room] When this card attacks, you may pay the cost. If you do, all your characters get +500 power and +1 soul until end of turn.
 EndCard
@@ -395,9 +430,12 @@ Trigger Soul
 Power 8000
 Soul 1
 Trait1 Phantom Thief
-Auto:
+Auto: OnAttack
 {
-
+    TargetLocation Stage
+    NarrowTargets Compare ThatCardsLevel 1 OrLess
+    ChooseCharacterFromTargets Choose a charcter to give +1 soul.
+    GainSoul 1
 }
 Text Auto: When this card attacks, choose 1 of your other level 1 or lower characters, and that character gets +1 soul until end of turn.
 EndCard
@@ -408,11 +446,14 @@ JPName あからさまな伏線
 Color Y
 Level 1
 Cost 0
-Effect: 
+Effect:
 {
-
+    PayCost Rest 1 HasTrait Detective
+    {
+        SearchDeck IsCharacter && HasTrait Detective
+    }
 }
-Text Choose 1 1 of your standing «Detective» characters and Rest it. If you do, search your deck for up to 1 «Detective» character, reveal it, put it in your hand, and shuffle your deck.
+Text Choose 1 1 of your standing «Detective» characters and rest it. If you do, search your deck for up to 1 «Detective» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Event: MK/S33-022
@@ -421,25 +462,46 @@ JPName バウンドのトイズ
 Color Y
 Level 2
 Cost 3
-Effect: 
+Counter
+Effect:
 {
-
+    SearchLocationForTargets 0 2 IsCharacter && NameContains アリス
+    SaveTargets
+    SearchLocationForTargets 0 2 IsCharacter && NameContains カズミ && Not InSavedTargets
+    AddSavedToCurrentTargets
+    RevealTargets
+    MoveCard Deck
+    Reorder
+    If Compare TargetCount 4 OrMore
+    {
+        TargetBattleOpponent
+        IfTarget CanBeChosen
+        {
+            GainEffect
+            {
+                Cont: GiveSelf
+                {
+                    GainSpecialEffect CannotDealDamage
+                }
+                Text Cont: This cannot deal damage to players.
+            }
+        }
+    }
 }
-Text Choose up to 2 characters with "Alice" in its card name in your waiting room and up to 2 characters with "Kazumi" in its card name in your waiting room and put them on top of the deck in any order. If 4 cards were put on top of the deck in this way, choose 1 character in battle, and that character gets the following ability until end of turn. "Cont: This cannot deal damage to players."
+Text COUNTER Choose up to 2 characters with "Alice" in its card name in your waiting room and up to 2 characters with "Kazumi" in its card name in your waiting room and put them on top of the deck in any order. If 4 cards were put on top of the deck in this way, choose 1 character in battle, and that character gets the following ability until end of turn. "Cont: This cannot deal damage to players."
 EndCard
 
 Climax: MK/S33-023
 Name Fluffy Things in the Forest
 JPName 森の中のモフモフ
-Color Y
-
+*YellowStockSoul
 EndCard
 
 Climax: MK/S33-024
 Name Let's Eat Something Then Head Back
 JPName 何か食べて帰ろう
 Color Y
-
+*DrawClimax
 EndCard
 
 Climax: MK/S33-025
@@ -458,16 +520,8 @@ Power 1500
 Soul 1
 Trait1 Detective
 Trait2 Police
-Auto:
-{
-
-}
-Text Auto: When your climax is placed on your climax area, choose 1 of your characters, and that character gets +1000 power until end of turn.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. for each climax revealed this way, perform the following action. "Choose a card in your clock and return it to your hand, and put the top card of your deck in your clock."
+*OnClimaxPlayGivePower(1000)
+*Act1RestSelfClockBrainstorm
 EndCard
 
 Character: MK/S33-027
@@ -481,16 +535,31 @@ Power 10000
 Soul 2
 Trait1 Detective
 Trait2 Book
-Auto:
+Combo Deck of Slumber
+Auto: OnPlay
 {
-
+    *OptionalDraw
+    TargetSelf
+    GainPower 2000
 }
 Text Auto: When this card is placed on the stage from your hand, draw up to 1 card, and this card gets +2000 power until end of turn.
-Auto:
+Auto: OnReverseOpponent
 {
-
+	If Climax Deck of Slumber
+	{
+		TargetBattleOpponent
+		IfTarget OnStage
+		{
+			Question_Obvious Put the battle opponent to clock ?
+			If Yes
+			{
+				MoveCard OpponentClock
+			}
+		}
+	}
 }
-Text Auto: When this card's battle opponent becomes reverse, if "deck of Slumber" is in your climax area, you may put that character in clock.
+Quick
+Text Auto: When this card's battle opponent becomes reverse, if "Deck of Slumber" is in your climax area, you may put that character in clock.
 EndCard
 
 Character: MK/S33-028
@@ -502,14 +571,13 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Detective
-Cont:
+*GlobalPower(500,Detective)
+Act: 1 Rest 2 Any
 {
-
-}
-Text Cont: All your other «Detective» characters get +500 power.
-Act:
-{
-
+    SearchLocationForTargets Clock 1 1 Any
+    MoveCard Hand
+    SearchLocationForTargets Hand 1 1 Any
+    MoveCard Clock
 }
 Text Act: [(1) Rest 2 of your characters] Choose a card in your clock and return it to your hand. Choose a card in your hand and put it in your clock.
 EndCard
@@ -524,11 +592,14 @@ Power 2000
 Soul 1
 Trait1 Police
 Trait2 Headphones
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        *Check4Add1(Police)
+    }
 }
-Text Auto: [Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 «Police: character, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: [Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Police» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: MK/S33-030
@@ -541,9 +612,12 @@ Power 2500
 Soul 1
 Trait1 Detective
 Trait2 Book
-Auto:
+Auto: OnAttack
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchDeck IsCharacter && HasTrait Detective
+    }
 }
 Text Auto: [(1) Put 1 card from hand to the waiting room] When this card attacks, you may pay the cost. If you do, search your deck for up to 1 «Detective» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -558,19 +632,21 @@ Power 2500
 Soul 1
 Trait1 Detective
 Trait2 Book
-Cont:
+*500Assist
+Auto: OnTriggerCheckClimax
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchLocationForTargets Clock 1 1 Any
+        MoveCard Hand
+        TargetTop Deck 1
+        MoveCard Clock
+    }
 }
-Text Cont: ASSIST Your Charcaters in front of this card get +500 power.
-Auto:
+Text Auto: [Put 1 card from hand to the waiting room] When your characters' trigger checks reveal a climax with a Gold trigger icon, you may pay the cost. If you do, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
+Act: Rest 2 HasTrait Detective
 {
-
-}
-Text Auto: [Put 1 card from hand to the Waiting room] When your characters' trigger checks reveal a climax card, if it has a Treasure icon,you may pay the cost. If you do, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
-Act:
-{
-
+    *ExchangeCardInLevelWithWaitingRoom(Any,Any)
 }
 Text Act: [Rest 2 of your «Detective» characters] Choose a card in your level and a card in your waiting room and exchange them.
 EndCard
@@ -585,16 +661,15 @@ Trigger Soul
 Power 10000
 Soul 2
 Trait1 Detective
-Cont:
+Cont: InHand
 {
-
+    If LocationContains Level 1 NameEquals Admiration Towards Detectives, Alice &&& LocationContains Level 1 NameEquals Admiration Towards Detectives, Kazumi
+    {
+        LoseLevel 1
+    }
 }
 Text Cont: EXPERIENCE If "Admiration Towards Detectives, Alice" and "Admiration Towards Detectives, Kazumi" are in your level, this card gets -1 level while in your hand.
-Auto:
-{
-
-}
-Text Auto: When this card is frontal attacked, look at the top card of your deck and put it either on top of the deck or in the waiting room.
+*ScryWhenAttacked
 EndCard
 
 Character: MK/S33-033
@@ -607,9 +682,12 @@ Power 5000
 Soul 1
 Trait1 Detective
 Trait2 Pajama
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains Level 1 NameEquals Admiration Towards Detectives, Kazumi
+    {
+        GainPower 1500
+    }
 }
 Text Cont: EXPERIENCE If "Admiration Towards Detectives, Kazumi" is in your level, this card gets +1500 power.
 EndCard
@@ -624,9 +702,19 @@ Power 5000
 Soul 1
 Trait1 Detective
 Trait2 Pajama
-Auto:
+Combo Toys of Arrows
+Auto: OnAttack
 {
-
+    If Climax Toys of Arrows
+    {
+        PayCost 1
+        {
+            TargetLocation OpponentStage
+            NarrowTargets CanBeChosen
+            ChooseCharacterFromTargets Choose a character to give -2000 power.
+            LosePower 2000
+        }
+    }
 }
 Text Auto: [(1)] When this card attacks, if "Toys of Arrows" is in your climax area, you may pay the cost. If you do, choose 1 of your opponent's characters, and that character gets -2000 power until end of turn.
 EndCard
@@ -642,9 +730,16 @@ Power 4500
 Soul 1
 Trait1 Police
 Trait2 Weapon
-Cont:
+Cont: Assist
 {
-
+    If HasTrait Police
+    {
+        GainPower 500
+        GainEffect
+        {
+            *ClockEncore
+        }
+    }
 }
 Text Cont: ASSIST Your «Police» characters in front of this card get +500 power and "Auto: ENCORE [Put the top card of your deck in your clock]".
 EndCard
@@ -659,16 +754,17 @@ Trigger Soul
 Power 2000
 Soul 1
 Trait1 Detective
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    If StageContains 1 NameContains アリス|カズミ
+    {
+        TargetMyCharacterInBattle
+        GainPower 1000
+    }
 }
-Text Auto: When you use this card's BACKUP, if you have a character with either "Alice" or "Kazumi" in its card name, choose 1 of your characters in battle, and that character gets +1000 power for hte turn.
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+Quick
+Text Auto: When you use this card's "BACKUP", if you have a character with either "Alice" or "Kazumi" in its card name, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
+Backup 2500
 EndCard
 
 Character: MK/S33-037
@@ -682,14 +778,39 @@ Power 7500
 Soul 1
 Trait1 Detective
 Trait2 Sports
-Auto:
+Combo Secret Ingredient of Curry
+Auto: OnCardEntersLevel
 {
-
+    IfOther IsClimax
+    {
+        GainPower 2500
+    }
 }
+Quick
+TimesPerTurn 1
 Text Auto: This ability activates up to once per turn. When your climax is placed in your level, this card gets +2500 power until end of turn.
-Auto:
+Auto: OnSpecificClimaxPlay Secret Ingredient of Curry
 {
-
+    PayCost 1
+    {
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                TargetBattleOpponent
+                IfTarget OnStage
+                {
+                    Question_Obvious Put the battle opponent to clock ?
+                    If Yes
+                    {
+                        MoveCard OpponentClock
+                    }
+                }
+            }
+            Quick
+            Text Auto: When this card's battle opponent becomes reverse, you may put that character in clock
+        }
+    }
 }
 Text Auto: [(1)] When "Secret Ingredient of Curry" is placed on your climax area, you may pay the cost. If you do, this card gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character in clock."
 EndCard
@@ -703,16 +824,14 @@ Cost 0
 Power 500
 Soul 1
 Trait1 Detective
-Auto:
+Auto: OnAttack
 {
-
+    TargetLocation Stage
+    NarrowTargets NameContains アリス
+    GainPower 500
 }
 Text Auto: When this card attacks, all your other characters with "Alice" in its card name get +500 power.
-Auto:
-{
-
-}
-Text Auto: BOND/"Admiration Towards Detectives, Alice" [(1)]
+*Bond1(Admiration Towards Detectives\, Alice)
 EndCard
 
 Character: MK/S33-039
@@ -725,14 +844,15 @@ Power 500
 Soul 1
 Trait1 Detective
 Trait2 Sports
-Auto:
+*OnPlayCheckTopAddDiscard(Sports)
+Auto: OnPlay
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Sports» character, put it in your hand, and discard a card from your hand to the waiting room. (Otherwise put the card back where it was)
-Auto:
-{
-
+	If LocationContainsOrLess OpponentCenterStage 1 Any
+	{
+		TargetLocation OpponentCenterStage
+		NarrowTargets CanBeChosen
+		LosePower 3000
+	}
 }
 Text Auto: When this card is placed on the stage from your hand, if there is 1 or less characters in your opponent's center stage, choose a character in your opponent's center stage, and that character gets -3000 power until end of turn.
 EndCard
@@ -747,11 +867,17 @@ Power 4000
 Soul 1
 Trait1 Detective
 Trait2 Book
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsClimax
+    {
+        TargetSelf
+        MoveCard WaitingRoom
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a climax card, put this card in the waiting room. 
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a climax card, put this card in the waiting room.
 EndCard
 
 Character: MK/S33-041
@@ -764,16 +890,15 @@ Power 4500
 Soul 1
 Trait1 Detective
 Trait2 Sports
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains Stock 5 Any
+    {
+        GainPower 1000
+    }
 }
 Text Cont: If there are 5 or more cards in your stock, this card gets +1000 power.
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put the top card of your deck in your clock]
+*ClockEncore
 EndCard
 
 Character: MK/S33-042
@@ -786,9 +911,12 @@ Power 5000
 Soul 1
 Trait1 Detective
 Trait2 Glasses
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchWaitingRoom NameEquals First Phantom Thief
+    }
 }
 Text Auto: [Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "First Phantom Thief" in your waiting room and return it to your hand.
 EndCard
@@ -804,9 +932,18 @@ Power 2500
 Soul 1
 Trait1 Detective
 Trait2 Police
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchLocationForTargets Deck 0 1 IsCharacter && HasTrait Detective
+        SaveTargets
+        SearchLocationForTargets Deck 0 1 IsCharacter && HasTrait Police && Not InSavedTargets
+        AddSavedToCurrentTargets
+        RevealTargets
+        MoveCard Hand
+        ShuffleLocation Deck
+    }
 }
 Text Auto: [(1) Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Detective» character and up to 1 «Police» character, reveal them, put them in your hand, and shuffle your deck.
 EndCard
@@ -821,9 +958,12 @@ Trigger Soul
 Power 7500
 Soul 1
 Trait1 Police
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 2 Any
+    {
+        StockSwap
+    }
 }
 Text Auto: [Put 2 cards from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, put all cards in your opponent's stock in the waiting room, and your opponent puts the same number of cards from top of their deck in stock.
 EndCard
@@ -839,9 +979,16 @@ Power 7500
 Soul 2
 Trait1 Detective
 Trait2 Book
-Cont:
+Cont: GiveSelf
 {
-
+    If AllYourCharacters HasTrait Book
+    {
+        GainPower 2000
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
 Text Cont: If all your characters have «Book», this card gets +2000 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
 EndCard
@@ -852,11 +999,15 @@ JPName 初めての怪盗
 Color G
 Level 1
 Cost 0
-Effect: 
+Effect:
 {
-
+    RevealUpTo Deck 4
+	ChooseCardsFromTargets 0 1 NameContains アリス|カズミ && IsCharacter
+	RevealTargets
+	MoveCard Hand
+	PutTheRestIntoTheWaitingRoom
 }
-Text Look at up to 4 cards from the top of your deck and search for up to 1 character with either "Alice" or "Kazumi" in its card name, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Look at up to the top 4 cards of your deck, choose up to 1 character with either "Alice" or "Kazumi" in its card name among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Event: MK/S33-047
@@ -865,9 +1016,12 @@ JPName 食材集め
 Color G
 Level 2
 Cost 2
-Effect: 
+Effect:
 {
-
+    SearchLocationForTargets Clock 1 1 IsCharacter
+    MoveCard Hand
+    TargetSelf
+    MoveCard Memory
 }
 Text Choose a character in your clock and return it to your hand. Put this card into memory.
 EndCard
@@ -881,8 +1035,7 @@ EndCard
 Climax: MK/S33-049
 Name Secret Ingredient of Curry
 JPName カレーの隠し味
-Color G
-
+*GreenStockSoul
 EndCard
 
 Climax: MK/S33-050
@@ -902,21 +1055,16 @@ Power 9500
 Soul 2
 Trait1 Detective
 Trait2 Camera
-Cont:
+Cont: InHand
 {
-
+	If Compare ClimaxInWaitingRoom 6 OrMore
+	{
+		LoseLevel 1
+	}
 }
 Text Cont: If there are 6 or more climax cards in your waiting room, this card gets -1 level while in your hand.
-Cont:
-{
-
-}
-Text Cont: If the number of other «Detective» characters you have is 2 or more, this card gets +1000 power.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+*GainPowerWithEnoughCharacters(1000,2,Detective)
+*Healer
 EndCard
 
 Character: MK/S33-052
@@ -930,20 +1078,20 @@ Power 10000
 Soul 2
 Trait1 Police
 Trait2 Mask
-Cont:
+Cont: InHand
 {
-
+    If StageContains 2 NameEquals 5 Seconds Before Snapping, Kokoro
+    {
+        LoseLevel 1
+    }
 }
 Text Cont: If you have 2 or more "5 Seconds Before Snapping, Kokoro", this card gets -1 level while in your hand.
-Auto:
+*OnPlayRevealBurnIfTrait(Police)
+Auto: OnClimaxPlay
 {
-
+    GainPower 1500
 }
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Police» character, you may deal 1 damage to your opponent. 
-Auto:
-{
-
-}
+Quick
 Text Auto: When your climax is placed on your climax area, this card gets +1500 power until end of turn.
 EndCard
 
@@ -957,16 +1105,8 @@ Power 2000
 Soul 1
 Trait1 Police
 Trait2 Mask
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your other «Police» characters, and that character gets +1000 power for th turn.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 «Police» character in your waiting room and return it to your hand.
+*OnPlayGiveOtherPower(1000,Police)
+*Act1RestSelfSalvageBrainstorm(Police)
 EndCard
 
 Character: MK/S33-054
@@ -979,11 +1119,7 @@ Power 3500
 Soul 1
 Trait1 Police
 Trait2 Weapon
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, you may reverse that character.
+*RedLevel1Bomb
 EndCard
 
 Character: MK/S33-055
@@ -996,10 +1132,15 @@ Power 5000
 Soul 1
 Trait1 Detective
 Trait2 Sweets
-Auto:
+Auto: OnCardEntersLevel
 {
-
+    IfOther IsClimax
+    {
+        GainPower 2500
+    }
 }
+Quick
+TimesPerTurn 1
 Text Auto: This ability activates up to once per turn. When your climax is placed in your level, this card gets +2500 power until end of turn.
 EndCard
 
@@ -1013,16 +1154,15 @@ Power 6000
 Soul 1
 Trait1 Police
 Trait2 Music
-Auto:
+Auto: OnPlay
 {
-
+    If StageContains 4 Other && HasTrait Police
+    {
+        *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait Police)
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, if the number of other «Police» characters you have is 4 or more, you may choose a «Police» character in your waiting room and put it in your stock.
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+*HandEncore
 EndCard
 
 Character: MK/S33-057
@@ -1035,11 +1175,7 @@ Power 6500
 Soul 1
 Trait1 Detective
 Trait2 Camera
-Cont:
-{
-
-}
-Text Cont: If the number of other «Detective» characters you have is 2 or more, this card gets +1000 power.
+*GainPowerWithEnoughCharacters(1000,2,Detective)
 EndCard
 
 Character: MK/S33-058
@@ -1051,19 +1187,18 @@ Cost 0
 Power 1000
 Soul 1
 Trait1 Police
-Cont:
+Cont: GiveSelf
 {
-
+    GainTrait Phantom Thief
 }
-Text Cont: If this card is on the stage, this card gets «Phantom Thief».
-Cont:
+Text Cont: This card gets «Phantom Thief».
+*GlobalPower(500,Police|Phantom Thief)
+Auto: StartDrawPhase
 {
-
-}
-Text Cont: All your other characters with either «Police» or «Phantom Thief» get +500 power.
-Auto:
-{
-
+    PayCost SendSelf WaitingRoom
+    {
+        *ChangeWaitingRoom(Pink Phantom Thief "Pink Lovely Doom")
+    }
 }
 Text Auto: CHANGE [Put this card in the waiting room] At the beginning of your draw phase, you may pay the cost. If you do, choose 1 'Pink Phantom Thief "Pink Lovely Doom"' in your waiting room and put it in the position this card was in.
 EndCard
@@ -1078,11 +1213,7 @@ Power 2500
 Soul 1
 Trait1 Detective
 Trait2 Camera
-Auto:
-{
-
-}
-Text Auto: When this card attacks, choose 1 of your other «Detective» characters, and that character gets +X power until end of turn. X equals 500 times the number of your other «Detective» characters.
+*OnAttackGivePowerForEachOther(500,Detective)
 EndCard
 
 Character: MK/S33-060
@@ -1095,14 +1226,15 @@ Power 6500
 Soul 1
 Trait1 Phantom Thief
 Trait2 Mask
-Cont:
+Cont: GiveSelf
 {
-
+    GainTrait Police
 }
-Text Cont: If this card is on the stage, this card gets «Police».
-Auto:
+Text Cont: This card gets «Police».
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    MoveCard Clock
 }
 Text Auto: When this card is placed on the stage from your hand, put the top card of your deck in your clock.
 EndCard
@@ -1118,14 +1250,14 @@ Power 3500
 Soul 1
 Trait1 Detective
 Trait2 Glasses
-Auto:
+Auto: OnOtherReversed
 {
-
+    *GiveCharacterPower(3000,Any)
 }
 Text Auto: When your other character becomes reversed in battle, choose 1 of your characters, and that character gets +3000 power until end of turn.
-Act:
+Act: Rest 2 HasTrait Detective
 {
-
+    *ExchangeCardInLevelWithWaitingRoom(Any,Any)
 }
 Text Act: [Rest 2 of your «Detective» characters] Choose a card in your level and a card in your waiting room and exchange them.
 EndCard
@@ -1141,19 +1273,26 @@ Power 4000
 Soul 1
 Trait1 Detective
 Trait2 Camera
-Cont:
+Combo Hilly Path to Spring
+Cont: GiveAll
 {
-
+    If Other && InLocation MiddleCenterStage
+    {
+        TargetLocation Marker
+        SetXValue TargetCount
+        MultiplyXValue 1000
+        GainPower X
+    }
 }
-Text Cont: Your other character in your center stage Center position gets +X power. X equals 1000 times the number of markers under this card.
-Cont:
+Text Cont: Your other character in the middle postion of your center stage gets +X power. X equals 1000 times the number of markers under this card.
+*1000Assist
+Auto: OnSpecificClimaxPlay Hilly Path to Spring
 {
-
-}
-Text Cont: ASSIST Your characters in front of this card get +1000 power.
-Auto:
-{
-
+    SearchLocationForTargets WaitingRoom 0 1 IsCharacter && HasTrait Detective
+    If HasTarget
+    {
+        Marker_FaceDown
+    }
 }
 Text Auto: When "Hilly Path to Spring" is placed on your climax area, you may choose a «Detective» character in your waiting room and put it face down underneath this card as a marker.
 EndCard
@@ -1168,14 +1307,16 @@ Power 2000
 Soul 1
 Trait1 Detective
 Trait2 Sweets
-Auto:
+Combo Play Count 65
+*OnPlayGiveOtherPower(1000,Sweets)
+Auto: OnSpecificClimaxPlay Play Count 65
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your other «Sweets» characters, and that character gets +1000 power until end of turn.
-Auto:
-{
-
+    PayCost 1 SendSelf Clock
+    {
+        SearchLocationForTargets Deck 0 1 IsCharacter && Compare ThatCardsLevel 1 OrLess && HasTrait Sweets
+        Change
+        ShuffleLocation Deck
+    }
 }
 Text Auto: [(1) Put this card in your clock] When "Play Count 65" is placed on your climax area, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower «Sweets» character and put it in the position this card was in, and shuffle your deck.
 EndCard
@@ -1189,16 +1330,19 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Police
-Cont:
+Cont: GiveSelf
 {
-
+    GainTrait Pahntom Thief
 }
-Text Cont: If this card is on the stage, this card gets «Phantom Thief».
-Auto:
+Text Cont: This card gets «Phantom Thief».
+Auto: OnPlay
 {
-
+    PayCost Send 1 Clock Other && HasTrait Police
+    {
+        SearchDeck IsCharacter && HasTrait Phantom Thief
+    }
 }
-Text Auto: [Choose 1 of your other «Police» characters from your stage and put it in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Phantom Thief» character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto: [Put 1 of your other «Police» characters into clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Phantom Thief» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: MK/S33-065
@@ -1211,10 +1355,19 @@ Power 2500
 Soul 1
 Trait1 Phantom Thief
 Trait2 Mask
-Auto:
+Auto: OnOtherPlacedOnStageFromHand
 {
-
+    IfOther HasTrait Phantom Thief
+    {
+        GainPower 1000
+    }
+    Else
+    {
+        RefundTimesPerTurn
+    }
 }
+Quick
+TimesPerTurn 2
 Text Auto: This ability activates up to twice per turn. When your other «Phantom Thief» character is placed on the stage from your hand, this card gets +1000 power until end of turn.
 EndCard
 
@@ -1240,14 +1393,17 @@ Power 4000
 Soul 1
 Trait1 Detective
 Trait2 Camera
-Cont:
+Cont: GiveAll
 {
-
+    If Other && NameContains シャロ|シャーロック
+    {
+        GainPower 500
+    }
 }
 Text Cont: All your other characters with either "Sheryl" or "Sherlock" in its card name get +500 power.
-Act:
+Act: 2 RestSelf
 {
-
+    SearchWaitingRoom IsCharacter && NameContains シャロ|シャーロック
 }
 Text Act: [(2) Rest this card] Choose a character with either "Sheryl" or "Sherlock" in its card name in your waiting room and return it to your hand.
 EndCard
@@ -1263,11 +1419,7 @@ Power 2500
 Soul 1
 Trait1 Police
 Trait2 Mask
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+Backup 3000
 EndCard
 
 Character: MK/S33-069
@@ -1281,14 +1433,37 @@ Power 7500
 Soul 1
 Trait1 Phantom Thief
 Trait2 Mask
-Cont:
+Combo Toys of Forgetfulness
+Cont: GiveSelf
 {
-
+    If Compare Experience 3 OrMore
+    {
+        GainTrait Police
+        GainEffect
+        {
+            *ClockEncore
+        }
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets «Police» and "Auto: ENCORE [Put the top card of your deck in your clock]".
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Toys of Forgetfulness
+    {
+        If LocationContains OpponentStock 1 Any
+        {
+            Question Put the top card of your opponent's stock into the waiting room ?
+            If Yes
+            {
+                TargetTop OpponentStock
+                MoveCard OpponentWaitingRoom
+                SearchLocationForTargets OpponentWaitingRoom 1 1 Any
+                RevealTargets
+                MoveCard OpponentStock
+                ShuffleLocation OpponentStock
+            }
+        }
+    }
 }
 Text Auto: When this card attacks, if "Toys of Forgetfulness" is in your climax area, you may put the top card of your opponent's stock in the waiting room. If you do, choose a card in your opponent's waiting room and put it in stock, and your opponent shuffles that stock.
 EndCard
@@ -1304,10 +1479,15 @@ Power 8000
 Soul 1
 Trait1 Detective
 Trait2 Sweets
-Auto:
+Auto: OnCardEntersLevel
 {
-
+    IfOther IsClimax
+    {
+        GainPower 2500
+    }
 }
+Quick
+TimesPerTurn 1
 Text Auto: This ability activates up to once per turn. When your climax is placed in your level, this card gets +2500 power until end of turn.
 EndCard
 
@@ -1317,11 +1497,16 @@ JPName 玉ねぎみじん切り
 Color R
 Level 2
 Cost 1
-Effect: 
+Counter
+Effect:
 {
-
+    SetXToNumberOfCharacters HasTrait Detective
+    MultiplyXValue 1000
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +X power.
+    GainPower X
 }
-Text Choose 1 of your characters, and that character gets +X power until end of turn. X equals 1000 times the number of your «Detective» characters.
+Text COUNTER Choose 1 of your characters, and that character gets +X power until end of turn. X equals 1000 times the number of your «Detective» characters.
 EndCard
 
 Event: MK/S33-072
@@ -1330,11 +1515,13 @@ JPName ニセ小衣
 Color R
 Level 3
 Cost 3
-Effect: 
+Requirement StageContains 1 HasTrait Police
+Effect:
 {
-
+    Burn ClimaxInWaitingRoom
+    *GiveCharacterPower(4000,Any)
 }
-Text If you don't have a «Police» character, you cannot play this card from hand. deal X damage to your opponent. X equals the number of climax cards in your waiting room.  Choose 1 of your characters, and that character gets +4000 power until end of turn.
+Text If you don't have a «Police» character, you cannot play this card from hand. Deal X damage to your opponent. X equals the number of climax cards in your waiting room.\nChoose 1 of your characters, and that character gets +4000 power until end of turn.
 EndCard
 
 Climax: MK/S33-073
@@ -1346,15 +1533,14 @@ EndCard
 Climax: MK/S33-074
 Name Play Count 65
 JPName 再生数65
-Color R
-
+*RedStockSoul
 EndCard
 
 Climax: MK/S33-075
 Name Toys of Forgetfulness
 JPName 忘却のトイズ
 Color R
-
+*DrawClimax
 EndCard
 
 Character: MK/S33-076
@@ -1367,14 +1553,14 @@ Power 4500
 Soul 1
 Trait1 Detective
 Trait2 Sports
-Cont:
+Combo King of Carnage
+*GainPowerWithEnoughCharacters(1000,2,Detective)
+Auto: OnReverseOpponent
 {
-
-}
-Text Cont: If the number of other «Detective» characters you have is 2 or more, this card gets +1000 power.
-Auto:
-{
-
+    If Climax King of Carnage
+    {
+        SearchDeck IsCharacter && HasTrait Sports
+    }
 }
 Text Auto: When this card's battle opponent becomes reverse, if "King of Carnage" is in your climax area, search your deck for up to 1 «Sports» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -1390,16 +1576,19 @@ Power 9500
 Soul 2
 Trait1 Detective
 Trait2 Sports
-Auto:
+*Healer
+Auto: OnCardEntersLevel
 {
-
+    PayCost 1
+    {
+        Peek Deck 2
+        ChooseCardsFromTargets 1 1 Any
+        MoveCard Hand
+        EndPeek
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
-Auto:
-{
-
-}
-Text Auto: [(1)] This ability activates up to once per turn. When your card is placed in the level, you may pay the cost. If you do, look at up to 2 cards from the top of your deck and choose 1 of them and put it in your hand, and put the rest on top of the deck.
+TimesPerTurn 1
+Text Auto: [(1)] This ability activates up to once per turn. When your card is placed in the level, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose 1 of them and put it in your hand, and put the rest on top of the deck.
 EndCard
 
 Character: MK/S33-078
@@ -1412,14 +1601,18 @@ Power 500
 Soul 1
 Trait1 Detective
 Trait2 Book
-Cont:
+Cont: Assist
 {
-
+    If Not MyTurn
+    {
+        GainLevel 1
+        GainPower 500
+    }
 }
-Text Cont: ASSIST During your opponent's turn, all your characters in front of this card get +1 level and +500 power.
-Act:
+Text Cont: ASSIST During your opponent's turn, your characters in front of this card get +1 level and +500 power.
+Act: 2 RestSelf
 {
-
+    SearchDeck IsCharacter && HasTrait Book
 }
 Text Act: [(2) Rest this card] Search your deck for up to 1 «Book» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -1434,16 +1627,9 @@ Power 1000
 Soul 1
 Trait1 Detective
 Trait2 Sports
-Cont:
-{
-
-}
-Text Cont: Your other character in your center stage Center position gets +500 power.
-Auto:
-{
-
-}
-Text Auto: [Put this card in the waiting room] When your other character is placed from the stage to the waiting room, if this card is in the backstage, you may pay the cost. If you do, put that character Rested in the position it was in.
+*GiveMiddlePower(500,Any)
+*SacrificeToSave(Other)
+Text Auto: [Put this card in the waiting room] When your other character is placed from the stage to the waiting room, if this card is in the backstage, you may pay the cost. If you do, put that character rest in the position that card was in.
 EndCard
 
 Character: MK/S33-080
@@ -1456,9 +1642,12 @@ Power 2000
 Soul 1
 Trait1 Phantom Thief
 Trait2 Mask
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Clock
+    {
+        DrawCard
+    }
 }
 Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw a card.
 EndCard
@@ -1474,16 +1663,21 @@ Power 2500
 Soul 1
 Trait1 Detective
 Trait2 Sports
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    PayCost 2 Discard 1 IsClimax
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen && EarlyPlay
+        If HasTarget
+        {
+            ChooseCharacterFromTargets Choose 1 of your Opponent's Characters whose Level is higher than your Opponent and put to the bottom of their deck.
+            MoveCardToBottom OpponentDeck
+        }
+    }
 }
-Text Auto: [(2) Put 1 climax from hand to the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent's level and put it on the bottom of the deck.
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 2500, level 2 [(1) Put this card from hand to the Watiign Room]
+Text Auto: [(2) Put 1 climax from hand to the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent's level and put it on the bottom of the deck.
+Backup 2500
 EndCard
 
 Character: MK/S33-082
@@ -1497,16 +1691,25 @@ Power 10000
 Soul 2
 Trait1 Phantom Thief
 Trait2 Mask
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation Stage
+    NarrowTargets HasTrait Phantom Thief || NameContains アリス
+    SetXToNumberOfCharacters
+    Peek Deck X
+    ChooseCardsFromTargets 0 1 Any
+    MoveCard Hand
+    PutTheRestIntoTheWaitingRoom
 }
-Text Auto: When this card is placed on the stage from your hand, look at up to X cards from the top of your deck and choose up to 1 of them and put it in your hand. Put the rest in the waiting room. X equals the number of your characters with either «Phantom Thief» or with "Alice" in its card name.
-Auto:
+Text Auto: When this card is placed on the stage from your hand, look at up to X cards from the top of your deck and choose up to 1 card among them, put it in your hand and put the rest in the waiting room. X equals the number of your characters with either «Phantom Thief» or with "Alice" in its card name.
+Auto: OnReverseOpponent
 {
-
+    PayCost 3 Discard 2 Any &&& Send 1 WaitingRoom Other
+    {
+        Stand
+    }
 }
-Text Auto: [(3) Put 2 cards from hand to the waiting room, choose 1 of your other characters from stage and put it in the waiting room] This ability activates up to once per turn. When this card's battle opponent becomes reverse, you may pay the cost. If you do, stand this card.
+Text Auto: [(3) Put 2 cards from hand to the waiting room, put 1 of your other characters into waiting room] This ability activates up to once per turn. When this card's battle opponent becomes reverse, you may pay the cost. If you do, stand this card.
 EndCard
 
 Character: MK/S33-083
@@ -1517,22 +1720,27 @@ Level 0
 Cost 0
 Power 1000
 Soul 1
-Trait 1: 特徴なし (No
-Cont:
+Cont: GiveSelf
 {
-
+    GainTrait Phantom Thief
 }
-Text Cont: If this card is on the stage, this card gets «Phantom Thief».
-Cont:
+Text Cont: This card gets «Phantom Thief».
+Cont: GiveAll
 {
-
+    If Other
+    {
+        If HasTrait Phantom Thief || NameContains アリス
+        {
+            GainPower 500
+        }
+    }
 }
 Text Cont: All your other characters with either «Phantom Thief» or with "Alice" in its card name get +500 power.
-Act:
+Act: 2 RestSelf
 {
-
+    DrawCard
 }
-Text Act: [(2) Rest this card] draw a card.
+Text Act: [(2) Rest this card] Draw a card.
 EndCard
 
 Character: MK/S33-084
@@ -1543,22 +1751,13 @@ Level 1
 Cost 0
 Power 4500
 Soul 1
-Trait 1: 特徴なし (No
-Cont:
+Cont: GiveSelf
 {
-
+    GainTrait Phantom Thief
 }
-Text Cont: If this card is on the stage, this card gets «Phantom Thief».
-Auto:
-{
-
-}
-Text Auto: When your other «Phantom Thief» character attacks, this card gets +1000 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+Text Cont: This card gets «Phantom Thief».
+*GainPowerWhenOtherAttacks(1000,Phantom Thief)
+*HandEncore
 EndCard
 
 Character: MK/S33-085
@@ -1571,14 +1770,30 @@ Power 4500
 Soul 1
 Trait1 Phantom Thief
 Trait2 Mask
-Cont:
+Combo Color the Phantom
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other NameEquals Black Phantom Thief "Darkside Revolution"
+    {
+        GainPower 4000
+        GainEffect
+        {
+            Auto: EndOfTurn
+            {
+                MoveCard WaitingRoom
+            }
+            Quick
+            Text Auto: At the end of the turn, put this card in the waiting room.
+        }
+    }
 }
 Text Cont: If you have another 'Black Phantom Thief "Darkside Revolution"', this card gets +4000 power and the following ability. "Auto: At the end of the turn, put this card in the waiting room."
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If Climax Color the Phantom
+    {
+        SearchDeck IsCharacter && HasTrait Phantom Thief
+    }
 }
 Text Auto: When this card's battle opponent becomes reverse, if "Color the Phantom" is in your climax area, search your deck for up to 1 «Phantom Thief» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -1593,21 +1808,26 @@ Power 6500
 Soul 1
 Trait1 Detective
 Trait2 Student Council
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 2 Other && HasTrait Phantom Thief
+    {
+        GainPower 500
+        GainLevel 1
+    }
 }
 Text Cont: If the number of other «Phantom Thief» characters you have is 2 or more, this card gets +1 level and +500 power.
-Cont:
+Cont: GiveSelf
 {
-
+    GainTrait Phantom Thief
 }
-Text Cont: If this card is on the stage, this card gets «Phantom Thief».
+Text Cont: This card gets «Phantom Thief».
 EndCard
 
 Character: MK/S33-087
 Name Purple Phantom Thief "Violet Shadow"
 JPName 紫怪盗“バイオレット・シャドウ”
+Image mk_s33_087
 Color B
 Level 2
 Cost 1
@@ -1616,16 +1836,47 @@ Power 6000
 Soul 1
 Trait1 Phantom Thief
 Trait2 Mask
-Cont:
+Combo Color the Phantom
+Cont: Assist
 {
-
+    If HasTrait Phantom Thief || NameContains アリス
+    {
+        GainPower 1500
+    }
 }
 Text Cont: ASSIST Your characters in front of this card with either «Phantom Thief» or with "Alice" in its card name get +1500 power.
-Auto:
+Auto: StartEncoreStep
 {
-
+    If Climax Color the Phantom
+    {
+        TargetLocation Stage
+        NarrowTargets Other
+        NarrowTargets HasTrait Phantom Thief || NameContains アリス
+        ChooseCharactersFromTargets 0 2 Choose up to 2 characters to put into memory during your opponent's turn.
+        SaveTargets
+        ScheduleEffect StartDrawPhase
+        {
+            Effect:
+            {
+                LoadTargets
+                ForEachTarget
+                {
+                    IfTarget InLocation Memory
+                    {
+                        PushTargets
+                    }
+                }
+                PopTargets
+                SaveTargets
+                PopTargets
+                AddSavedToCurrentTargets
+                PlaceOnStage false true true false
+                GainPower 2000
+            }
+            Text At the beginning of your next draw phase, put those characters from your memory in separate positions on the stage and get +2000 power until end of turn.
+    }
 }
-Text Auto: At the beginning of your encore step, if "Color the Phantom" is in your climax area, choose up to 2 of your other characters with either «Phantom Thief» or with "Alice" in its card name and send them to memory. At the beginning of your next draw phase, put those characters in separate positions on the stage, and those characters get +2000 power for that turn.
+Text Auto: At the beginning of your encore step, if "Color the Phantom" is in your climax area, choose up to 2 of your other characters with either «Phantom Thief» or with "Alice" in its card name and send them to memory. At the beginning of your next draw phase, put those characters in separate positions on the stage, and those characters get +2000 power until end of turn.
 EndCard
 
 Character: MK/S33-088
@@ -1638,14 +1889,14 @@ Power 1500
 Soul 1
 Trait1 Detective
 Trait2 Sports
-Auto:
+Auto: StartClimaxPhase
 {
-
+    *GiveCharacterPower(1000,Detective)
 }
 Text Auto: At the beginning of your climax phase, choose 1 of your «Detective» characters, and that character gets +1000 power until end of turn.
-Act:
+Act: Rest 2 HasTrait Detective
 {
-
+    *ExchangeCardInLevelWithWaitingRoom(Any,Any)
 }
 Text Act: [Rest 2 of your «Detective» characters] Choose a card in your level and a card in your waiting room and exchange them.
 EndCard
@@ -1659,16 +1910,19 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Detective
-Auto:
+Auto: OnUseAct
 {
-
+    GainLevel 1
+    GainPower 1500
 }
+Quick
+TimesPerTurn 1
 Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +1 level and +1500 power until end of turn.
 EndCard
 
 Character: MK/S33-090
 Name Blue Phantom Thief "The Fearsome Blue Hunter"
-JPName Card No.: MK/S33-090  Rarity: C
+JPName 青怪盗“鮮烈なる蒼き狩人”
 Color B
 Level 0
 Cost 0
@@ -1676,11 +1930,20 @@ Power 2500
 Soul 1
 Trait1 Phantom Thief
 Trait2 Mask
-Auto:
+Combo Color the Phantom
+Auto: OnSpecificClimaxPlay Color the Phantom
 {
-
+    If InLocation CenterStage
+    {
+        PayCost Rest 1 Any
+        {
+            SearchLocationForTargets Deck 0 1 NameEquals Blue Phantom Thief "The Fearsome Blue Hunter"
+            PlaceOnStage false true true false
+            ShuffleLocation Deck
+        }
+    }
 }
-Text Auto: [Rest 1 of your standing characters] When "Color the Phantom" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, search your deck for up to 1 'Blue Phantom Thief "The Fearsome Blue Hunter"' and put it in any position on the stage, and shuffle your deck.
+Text Auto: [Rest 1 of your characters] When "Color the Phantom" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, search your deck for up to 1 'Blue Phantom Thief "The Fearsome Blue Hunter"' and put it in any position on the stage, and shuffle your deck.
 EndCard
 
 Character: MK/S33-091
@@ -1693,15 +1956,21 @@ Power 2000
 Soul 1
 Trait1 Detective
 Trait2 Book
-Cont:
+Cont: GiveAll
 {
-
+    If Other && HasTrait Detective && InLocation MiddleCenterStage
+    {
+        GainLevel 1
+        GainPower 1500
+    }
 }
-Text Cont: Your other «Detective» character in your center stage Center position gets +1 level and +1500 power.
-Auto:
+Text Cont: Your other «Detective» character in the middle position of your center stage gets +1 level and +1500 power.
+Auto: OnCardEntersLevel
 {
-
+    DrawCard
+    Discard 1 Any
 }
+TimesPerTurn 1
 Text Auto: This ability activates up to once per turn. When your card is placed in the level, draw a card, and discard a card from your hand to the waiting room.
 EndCard
 
@@ -1715,14 +1984,30 @@ Power 4500
 Soul 1
 Trait1 Phantom Thief
 Trait2 Mask
-Cont:
+Combo Color the Phantom
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other NameEquals White Phantom Thief "Great White Fallen Angel"
+    {
+        GainPower 4000
+        GainEffect
+        {
+            Auto: EndOfTurn
+            {
+                MoveCard WaitingRoom
+            }
+            Quick
+            Text Auto: At the end of the turn, put this card in the waiting room.
+        }
+    }
 }
 Text Cont: If you have another 'White Phantom Thief "Great White Fallen Angel"', this card gets +4000 power and the following ability. "Auto: At the end of the turn, put this card in the waiting room."
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Color the Phantom
+    {
+        *GiveCharacterPower(2500,Phantom Thief)
+    }
 }
 Text Auto: When this card attacks, if "Color the Phantom" is in your climax area, choose 1 of your «Phantom Thief» characters, and that character gets +2500 power until end of turn.
 EndCard
@@ -1738,11 +2023,21 @@ Power 8000
 Soul 1
 Trait1 Detective
 Trait2 Book
-Auto:
+Combo I Am Male
+Auto: OnAttack
 {
-
+    If Climax I Am Male
+    {
+        PayCost Clock Discard 1 Any
+        {
+            TargetLocation OpponentStage
+            NarrowTargets CanBeChosen && Compare ThatCardsLevel 3 OrMore
+            ChooseCharacterFromTargets Choose a character to put to the bottom of deck.
+            MoveCardToBottom OpponentDeck
+        }
+    }
 }
-Text Auto: [Put the top card of your deck in your clock, discard a card from your hand to the Waiitng Room] When this card attacks, if "I Am Male" is in your climax area, you may pay the cost. If you do, choose 1 of your opponent's level 3 or lower characters and put it on the bottom of the deck.
+Text Auto: [Put the top card of your deck in your clock, put 1 card from your hand to the waiting room] When this card attacks, if "I Am Male" is in your climax area, you may pay the cost. If you do, choose 1 of your opponent's level 3 or lower characters and put it on the bottom of the deck.
 EndCard
 
 Character: MK/S33-094
@@ -1756,9 +2051,9 @@ Power 9500
 Soul 1
 Trait1 Phantom Thief
 Trait2 Mask
-Cont:
+Cont: GiveSelf
 {
-
+    LoseLevel 1
 }
 Text Cont: This gets -1 level while on the stage.
 EndCard
@@ -1781,11 +2076,13 @@ JPName 怪盗への誘い
 Color B
 Level 1
 Cost 0
-Effect: 
+Counter
+Requirement LocationContains WaitingRoom 2 IsClimax
+Effect:
 {
-
+    *Check4Add1(Phantom Thief)
 }
-Text If you have 1 or less climax cards in your waiting room, you cannot play this card from your hand. Look at up to 4 cards from the top of your deck and search for up to 1 «Phantom Thief» character, reveal it, put it in your hand, and put the rest into your waiting room.
+Text COUNTER If you have 1 or less climax cards in your waiting room, you cannot play this card from your hand.\nLook at up to the top 4 cards of your deck, choose up to 1 «Phantom Thief» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Event: MK/S33-097
@@ -1794,9 +2091,12 @@ JPName 突然の襲撃
 Color B
 Level 2
 Cost 2
-Effect: 
+Effect:
 {
-
+    SearchLocationForTargets Hand 0 1 NameEquals Yukata Dress, Cordelia || NameEquals Izumi Kitta, Overdrive!
+    PlaceOnStage false true true false
+    TargetSelf
+    MoveCard Memory
 }
 Text Choose up to 1 "Yukata Dress, Cordelia" or "Izumi Kitta, Overdrive!" in your hand and put it in any position on the stage. Put this card into memory.
 EndCard
@@ -1810,8 +2110,7 @@ EndCard
 Climax: MK/S33-099
 Name I Am Male
 JPName 私は男子
-Color B
-
+*BlueStockSoul
 EndCard
 
 Climax: MK/S33-100
@@ -1830,9 +2129,17 @@ Power 2000
 Soul 1
 Trait1 Detective
 Trait2 Sweets
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop OpponentDeck 2
+    If Compare TargetCount 2 OrMore
+    {
+        Reorder
+    }
+    Else
+    {
+        View
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, look at up to 2 cards from the top of your opponent's deck and put them on top of the deck in any order.
 EndCard
@@ -1847,15 +2154,23 @@ Power 2000
 Soul 1
 Trait1 Detective
 Trait2 Book
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContainsOrLess 0 Other
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If you have no other characters, this card gets +2000 power.
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation OpponentStage
+    SetXValue TargetCount
+    MultiplyXValue 500
+    TargetSelf
+    GainPower X
 }
+Quick
 Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 500 times the number of your opponent's characters.
 EndCard
 
@@ -1869,10 +2184,12 @@ Power 5000
 Soul 1
 Trait1 Detective
 Trait2 Camera
-Auto:
+Auto: OnPlay
 {
-
+    GainLevel 1
+    GainPower 1000
 }
+Quick
 Text Auto: When this card is placed on the stage from your hand, this card gets +1 level and +1000 power until end of turn.
 EndCard
 
@@ -1886,9 +2203,12 @@ Power 6500
 Soul 1
 Trait1 Detective
 Trait2 Sports
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains Hand 5 Any
+    {
+        GainPower 1000
+    }
 }
 Text Cont: If there are 5 or more cards in your hand, this card gets +1000 power.
 EndCard
@@ -1899,12 +2219,6 @@ JPName ミルキィ A GO GO
 *DoorClimax
 EndCard
 
-Climax: MK/S33-P01
-Name Milky A GO GO
-JPName ミルキィ A GO GO
-*DoorClimax
-EndCard
-
 Character: MK/S33-P02
 Name Alice in Swimsuits
 JPName 水着のアリス
@@ -1915,26 +2229,12 @@ Power 1000
 Soul 1
 Trait1 Detective
 Trait2 Swimsuit
-Cont:
+Cont: GiveAll
 {
-
-}
-Text Cont: If you have another character with "Kazumi" in its card name, your other character in the middle position of your center stage gets +1500 power.
-EndCard
-
-Character: MK/S33-P02
-Name Alice in Swimsuits
-JPName 水着のアリス
-Color G
-Level 0
-Cost 0
-Power 1000
-Soul 1
-Trait1 Detective
-Trait2 Swimsuit
-Cont:
-{
-
+    If Other && NameContains カズミ && InLocation MiddleCenterStage
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If you have another character with "Kazumi" in its card name, your other character in the middle position of your center stage gets +1500 power.
 EndCard
@@ -1948,25 +2248,18 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Detective
-Auto:
+Auto: OnAttack
 {
-
-}
-Text Auto: When this card attacks, you may put the top card of your deck in the waiting room. If it's a «Detective» character, this card gets +2000 power until end of turn.
-EndCard
-
-Character: MK/S33-P03
-Name Alice & Kazumi on the Beach at Sunset
-JPName 夕映えの砂浜 アリス＆カズミ
-Color Y
-Level 0
-Cost 0
-Power 2500
-Soul 1
-Trait1 Detective
-Auto:
-{
-
+    Question Put the top card of your deck into waiting room ?
+    If Yes
+    {
+        Mill 1
+        IfTarget IsCharacter && HasTrait Detective
+        {
+            TargetSelf
+            GainPower 2000
+        }
+    }
 }
 Text Auto: When this card attacks, you may put the top card of your deck in the waiting room. If it's a «Detective» character, this card gets +2000 power until end of turn.
 EndCard
@@ -1981,9 +2274,13 @@ Power 4500
 Soul 1
 Trait1 Detective
 Trait2 Swimsuit
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && NameContains カズミ
+    {
+        GainLevel 1
+        GainPower 1000
+    }
 }
 Text Cont: If you have another character with "Alice" in its card name, this card gets +1 level and +1000 power.
 EndCard
@@ -1999,9 +2296,12 @@ Power 8000
 Soul 1
 Trait1 Detective
 Trait2 Music
-Cont:
+Cont: GiveSelf
 {
-
+    If AllYourCharacters HasTrait Detective
+    {
+        GainPower 1000
+    }
 }
 Text Cont: If all your characters are «Detective», this card gets +1000 power.
 EndCard
@@ -2010,14 +2310,7 @@ Climax: MK/S33-P06
 Name Sheryl Crying Like a Man
 JPName 漢泣き シャロ
 Color R
-
-EndCard
-
-Climax: MK/S33-P06
-Name Sheryl Crying Like a Man
-JPName 漢泣き シャロ
-Color R
-
+*2SoulClimax
 EndCard
 
 Character: MK/S33-P07
@@ -2030,15 +2323,23 @@ Power 4500
 Soul 1
 Trait1 Detective
 Trait2 Music
-Auto:
+Auto: OnPlay
 {
-
+    Question Put the top 3 cards of your deck into waiting room ?
+    If Yes
+    {
+        Mill 3
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, you may put the top 3 cards of your deck in the waiting room.
-Auto:
+Auto: OnAttack
 {
-
+    If StageContains 1 Other && HasTrait Music
+    {
+        GainPower 1500
+    }
 }
+Quick
 Text Auto: When this card attacks, if you have another «Music» character, this card gets +1500 power until end of turn.
 EndCard
 
@@ -2058,16 +2359,28 @@ Power 5000
 Soul 1
 Trait1 Detective
 Trait2 Police
-Cont:
+Cont: GiveSelf
 {
-
+    GainTrait Phantom Thief
 }
-Text Cont: If this card is on the stage, this card gets «Phantom Thief».
-Auto:
+Text Cont: This card gets «Phantom Thief».
+Auto: OnPlay
 {
-
+    PayCost Rest 2 Any
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give the effect.
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                *OptionalBlindStock
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock
+        }
+    }
 }
-Text Auto: [Rest 2 of your standing characters] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When the battle opponent of this card becomes Reveresd, you may put the top card of your deck in your stock."
+Text Auto: [Rest 2 of your characters] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
 EndCard
 
 Character: MK/S33-P10
@@ -2080,9 +2393,12 @@ Power 1500
 Soul 1
 Trait1 Detective
 Trait2 Music
-Auto:
+Auto: OnSentFromStageToWaitingRoom
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchDeck IsCharacter && HasTrait Music || IsCharacter && HasTrait None
+    }
 }
 Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, search your deck for up to 1 character that is either traitless or «Music», reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -2098,16 +2414,22 @@ Power 7000
 Soul 1
 Trait1 Detective
 Trait2 Music
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains Level 2 HasTrait Music
+    {
+        GainPower 1500
+    }
 }
 Text Cont: EXPERIENCE If there are 2 or more «Music» characters in your level, this card gets +1500 power.
-Auto:
+Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
 {
-
+    PayCost 1
+    {
+        DrawCard
+    }
 }
-Text Auto: [(1)] When a level 2 or higher battle opponent of this card becomes reversed, you may pay the cost. If you do, draw a card.
+Text Auto: [(1)] When this card's level 2 or higher battle opponent becomes reverse, you may pay the cost. If you do, draw a card.
 EndCard
 
 Character: MK/S33-P12
@@ -2120,9 +2442,13 @@ Power 5000
 Soul 1
 Trait1 Detective
 Trait2 Music
-Auto:
+Combo Detective Opera Live!
+Auto: OnAttack
 {
-
+    If Climax Detective Opera Live!
+    {
+        *GiveCharacterPower(2500,Detective)
+    }
 }
 Text Auto: When this card attacks, if "Detective Opera Live!" is in your climax area, choose 1 of your «Detective» characters, and that character gets +2500 power until end of turn.
 EndCard
@@ -2130,8 +2456,7 @@ EndCard
 Climax: MK/S33-P13
 Name Detective Opera Live!
 JPName 探偵歌劇上演！
-Color R
-
+*RedStockSoul
 EndCard
 
 Character: MK/S33-P15
@@ -2144,14 +2469,13 @@ Power 500
 Soul 1
 Trait1 Detective
 Trait2 Music
-Cont:
+*500Assist
+Act: 1 RestSelf
 {
-
-}
-Text Cont: ASSIST Your characters in front of this card get +500 power.
-Act:
-{
-
+    TargetLocation Stage
+    NarrowTargets HasMarker
+    ChooseCharacterFromTargets Choose a character to give +2500 power.
+    GainPower 2500
 }
 Text Act: [(1) Rest this card] Choose 1 of your characters with markers, and that character gets +2500 power until end of turn.
 EndCard
@@ -2166,9 +2490,12 @@ Power 6000
 Soul 1
 Trait1 Detective
 Trait2 Music
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContainsOrLess 0 Other && HasTrait Music
+    {
+        GainSpecialEffect CannotStand
+    }
 }
 Text Cont: If you don't have another «Music» character, this card does not stand during your stand phase.
 EndCard
@@ -2182,16 +2509,8 @@ Cost 0
 Power 500
 Soul 1
 Trait1 Detective
-Cont:
-{
-
-}
-Text Cont: All your other "Mysterious Detective, Kazumi" get +1000 power.
-Cont:
-{
-
-}
-Text Cont: ASSIST Your characters in front of this card get +500 power.
+*GiveNamePower(1000,Mysterious Detective\, Kazumi)
+*500Assist
 EndCard
 
 Character: MK/S33-T02
@@ -2203,9 +2522,12 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Detective
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && NameContains アリス
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If you have another character with "Alice" in its card name, this card gets +1500 power.
 EndCard
@@ -2218,17 +2540,15 @@ Level 0
 Cost 0
 Power 2000
 Soul 1
-Trait 1: 特徴なし (No
-Cont:
+Cont: GiveSelf
 {
-
+    If HasTrait Music
+    {
+        GainSoul 1
+    }
 }
 Text Cont: If this card has «Music», this card gets +1 soul.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+*OnPlayGainPower(1500)
 EndCard
 
 Character: MK/S33-T04
@@ -2253,11 +2573,16 @@ Power 5000
 Soul 1
 Trait1 Detective
 Trait2 Camera
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn
+    {
+        SetXToNumberOfCharacters Other && HasTrait Detective
+        MultiplyXValue 500
+        GainPower X
+    }
 }
-Text Cont: During your turn, for each of your other «Detective» characters, this card gets +500 power.
+Text Cont: During your turn, this card gets +500 power for each of your other «Detective» characters
 EndCard
 
 Character: MK/S33-T06
@@ -2270,9 +2595,12 @@ Power 5000
 Soul 1
 Trait1 Detective
 Trait2 Sweets
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 2 OrMore
+    {
+        GainPower 1000
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets +1000 power.
 EndCard
@@ -2310,9 +2638,12 @@ Power 8000
 Soul 1
 Trait1 Detective
 Trait2 Camera
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 3 OrMore
+    {
+        GainPower 1000
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets +1000 power.
 EndCard
@@ -2327,14 +2658,25 @@ Trigger Soul
 Power 7500
 Soul 2
 Trait1 Detective
-Cont:
+Combo Feathers Dispatch!
+Cont: GiveSelf
 {
-
+    If Compare Experience 3 OrMore
+    {
+        GainPower 1000
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets +1000 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
-Auto:
+Auto: OnSpecificClimaxPlay Feathers Dispatch!
 {
-
+    If InLocation CenterStage
+    {
+        SearchDeck IsCharacter && HasTrait Detective
+    }
 }
 Text Auto: When "Feathers Dispatch!" is placed on your climax area, if this card is in the center stage, search your deck for up to 1 «Detective» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -2348,20 +2690,19 @@ Cost 2
 Trigger Soul
 Power 10000
 Soul 2
-Trait 1: 特徴なし (No
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn && HasTrait Music
+    {
+        GainPower 1500
+    }
 }
 Text Cont: During your turn, if this card has «Music», this card gets +1500 power.
-Auto:
+*Healer
+Act: Rest 1 Any
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
-Act:
-{
-
+    TargetLocation Stage
+    GainTrait Music
 }
 Text Act: [Rest 1 of your characters] All your characters get «Music» until end of turn.
 EndCard
@@ -2376,7 +2717,7 @@ Climax: MK/S33-T13
 Name Miraculous Song
 JPName 奇跡の歌
 Color Y
-
+*2SoulClimax
 EndCard
 
 Character: MK/S33-T14
@@ -2389,9 +2730,9 @@ Power 2000
 Soul 1
 Trait1 Detective
 Trait2 Sports
-Act:
+Act: Rest 2 HasTrait Detective
 {
-
+    *GiveCharacterPower(2000,Any)
 }
 Text Act: [Rest 2 of your «Detective» characters] Choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
@@ -2406,9 +2747,16 @@ Power 2500
 Soul 1
 Trait1 Detective
 Trait2 Book
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains Hand 6 Any
+    {
+        GainPower 1000
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
 Text Cont: If there are 6 or more cards in your hand, this card gets +1000 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
 EndCard
@@ -2423,11 +2771,11 @@ Power 3000
 Soul 1
 Trait1 Detective
 Trait2 Student Council
-Cont:
+Cont: GiveSelf
 {
-
+    GainTrait Phantom Thief
 }
-Text Cont: If this card is on the stage, this card gets «Phantom Thief::
+Text Cont: This card gets «Phantom Thief»
 EndCard
 
 Character: MK/S33-T17
@@ -2452,16 +2800,12 @@ Power 4500
 Soul 1
 Trait1 Detective
 Trait2 Sports
-Cont:
+*LevelAssist
+Act: 2 RestSelf
 {
-
+    DrawCard
 }
-Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times level of that character.
-Act:
-{
-
-}
-Text Act: [(2) Rest this card] draw a card.
+Text Act: [(2) Rest this card] Draw a card.
 EndCard
 
 Character: MK/S33-T19
@@ -2475,11 +2819,7 @@ Power 2500
 Soul 1
 Trait1 Detective
 Trait2 Book
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+Backup 3000
 EndCard
 
 Event: MK/S33-T20
@@ -2488,17 +2828,22 @@ JPName 懺悔の慈母
 Color B
 Level 1
 Cost 1
-Effect: 
+Effect:
 {
-
+    *OptionalDraw
+    *OptionalDraw
+    Discard 1 Any
+    *GiveCharacterPower(3000,Any)
+    TargetSelf
+    MoveCard Clock
 }
-Text draw up to 2 cards, discard a card from your hand to the waiting room, choose 1 of your characters, and that character gets +3000 power until end of turn. Put this card in clock.
+Text Draw up to 2 cards, discard a card from your hand to the waiting room, choose 1 of your characters, and that character gets +3000 power until end of turn. Put this card in clock.
 EndCard
 
 Climax: MK/S33-T21
 Name We Are Detectives!
 JPName 私たちは探偵です！
 Color B
-
+*DrawClimax
 EndCard
 
