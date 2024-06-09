@@ -60,7 +60,7 @@ Auto: OnSpecificClimaxPlay Flying Nero
         }
     }
 }
-Text Auto: [(1)] When "Flying Nero" is placed on your climax area, you may pay the cost. If you do, this card gets "Cont: When this card attacks, you may instead choose a character in your opponent's backstage and have this card frontal attack the chosen character." until end of turn.
+Text Auto: CxCombo [(1)] When "Flying Nero" is placed on your climax area, you may pay the cost. If you do, this card gets "Cont: When this card attacks, you may instead choose a character in your opponent's backstage and have this card frontal attack the chosen character." until end of turn.
 EndCard
 
 Character: MK/SE09-03
@@ -397,7 +397,7 @@ Auto: OnOtherReversed
         }
     }
 }
-Text Auto: [(1) Put a "I Did It" from hand in your clock] When another of your «Animal» or «Detective» characters becomes reversed in battle, you may pay the cost. If you do, rest that character, draw up to 2 cards, and this card doesn't stand during your next stand phase.
+Text Auto: CxCombo [(1) Put a "I Did It" from hand in your clock] When another of your «Animal» or «Detective» characters becomes reversed in battle, you may pay the cost. If you do, rest that character, draw up to 2 cards, and this card doesn't stand during your next stand phase.
 *RestGivePower(2000,Detective)
 EndCard
 
@@ -440,7 +440,7 @@ Auto: OnAttack
     }
 }
 Quick
-Text Auto: When this card attacks, if "Decisive battle! Phantom Thief VS Detective" is in your climax area, put the top card of your clock in your waiting room, and this card gets +1500 power until the end of your opponent's next turn.
+Text Auto: CxCombo When this card attacks, if "Decisive battle! Phantom Thief VS Detective" is in your climax area, put the top card of your clock in your waiting room, and this card gets +1500 power until the end of your opponent's next turn.
 EndCard
 
 Character: MK/SE09-20
@@ -524,7 +524,7 @@ Auto: OnSpecificClimaxPlay Bewitching Toys
     }
 }
 Quick
-Text Auto: When "Bewitching Toys" is placed on your climax area, if this card is in the center stage, this card gets +3000 power until end of turn.
+Text Auto: CxCombo When "Bewitching Toys" is placed on your climax area, if this card is in the center stage, this card gets +3000 power until end of turn.
 Auto: OnSpecificClimaxPlay Bewitching Toys
 {
     If InLocation CenterStage
@@ -532,7 +532,7 @@ Auto: OnSpecificClimaxPlay Bewitching Toys
         OpponentRefresh
     }
 }
-Text Auto: When "Bewitching Toys" is placed on your climax area, if this card is in the center stage, you may return all cards in your opponent's waiting room to their deck. If you do, your opponent shuffles that deck.
+Text Auto: CxCombo When "Bewitching Toys" is placed on your climax area, if this card is in the center stage, you may return all cards in your opponent's waiting room to their deck. If you do, your opponent shuffles that deck.
 EndCard
 
 Event: MK/SE09-24
