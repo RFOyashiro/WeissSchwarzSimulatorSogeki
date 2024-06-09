@@ -141,7 +141,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: When this card attacks, if "Two's Inference" is in your climax area, choose 1 of your other «Detective» characters, and that character gets +3000 power and the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
+Text Auto: CxCombo When this card attacks, if "Two's Inference" is in your climax area, choose 1 of your other «Detective» characters, and that character gets +3000 power and the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
 EndCard
 
 Character: MK/S33-008
@@ -172,7 +172,7 @@ Auto: OnAttack
         GainSoul 1
     }
 }
-Text Auto: When this card attacks, if "Let's Eat Something Then Head Back" is in your climax area, all your characters get +1 soul until end of turn.
+Text Auto: CxCombo When this card attacks, if "Let's Eat Something Then Head Back" is in your climax area, all your characters get +1 soul until end of turn.
 EndCard
 
 Character: MK/S33-009
@@ -252,7 +252,7 @@ Auto: OnSpecificClimaxPlay Fluffy Things in the Forest
         }
     }
 }
-Text Auto: [Put this card in the waiting room] When "Fluffy Things in the Forest" is placed on your climax area, you may pay the cost. If you do, choose up to 1 "Yukata Dress, Nero" or "Sora Tokui, Overdrive!" in your hand and put it in the position this card was in.
+Text Auto: CxCombo [Put this card in the waiting room] When "Fluffy Things in the Forest" is placed on your climax area, you may pay the cost. If you do, choose up to 1 "Yukata Dress, Nero" or "Sora Tokui, Overdrive!" in your hand and put it in the position this card was in.
 EndCard
 
 Character: MK/S33-012
@@ -559,7 +559,7 @@ Auto: OnReverseOpponent
 	}
 }
 Quick
-Text Auto: When this card's battle opponent becomes reverse, if "Deck of Slumber" is in your climax area, you may put that character in clock.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Deck of Slumber" is in your climax area, you may put that character in clock.
 EndCard
 
 Character: MK/S33-028
@@ -716,7 +716,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [(1)] When this card attacks, if "Toys of Arrows" is in your climax area, you may pay the cost. If you do, choose 1 of your opponent's characters, and that character gets -2000 power until end of turn.
+Text Auto: CxCombo [(1)] When this card attacks, if "Toys of Arrows" is in your climax area, you may pay the cost. If you do, choose 1 of your opponent's characters, and that character gets -2000 power until end of turn.
 EndCard
 
 Character: MK/S33-035
@@ -812,7 +812,7 @@ Auto: OnSpecificClimaxPlay Secret Ingredient of Curry
         }
     }
 }
-Text Auto: [(1)] When "Secret Ingredient of Curry" is placed on your climax area, you may pay the cost. If you do, this card gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character in clock."
+Text Auto: CxCombo [(1)] When "Secret Ingredient of Curry" is placed on your climax area, you may pay the cost. If you do, this card gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character in clock."
 EndCard
 
 Character: MK/S33-038
@@ -1294,7 +1294,7 @@ Auto: OnSpecificClimaxPlay Hilly Path to Spring
         Marker_FaceDown
     }
 }
-Text Auto: When "Hilly Path to Spring" is placed on your climax area, you may choose a «Detective» character in your waiting room and put it face down underneath this card as a marker.
+Text Auto: CxCombo When "Hilly Path to Spring" is placed on your climax area, you may choose a «Detective» character in your waiting room and put it face down underneath this card as a marker.
 EndCard
 
 Character: MK/S33-063
@@ -1318,7 +1318,7 @@ Auto: OnSpecificClimaxPlay Play Count 65
         ShuffleLocation Deck
     }
 }
-Text Auto: [(1) Put this card in your clock] When "Play Count 65" is placed on your climax area, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower «Sweets» character and put it in the position this card was in, and shuffle your deck.
+Text Auto: CxCombo [(1) Put this card in your clock] When "Play Count 65" is placed on your climax area, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower «Sweets» character and put it in the position this card was in, and shuffle your deck.
 EndCard
 
 Character: MK/S33-064
@@ -1465,7 +1465,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: When this card attacks, if "Toys of Forgetfulness" is in your climax area, you may put the top card of your opponent's stock in the waiting room. If you do, choose a card in your opponent's waiting room and put it in stock, and your opponent shuffles that stock.
+Text Auto: CxCombo When this card attacks, if "Toys of Forgetfulness" is in your climax area, you may put the top card of your opponent's stock in the waiting room. If you do, choose a card in your opponent's waiting room and put it in stock, and your opponent shuffles that stock.
 EndCard
 
 Character: MK/S33-070
@@ -1562,7 +1562,7 @@ Auto: OnReverseOpponent
         SearchDeck IsCharacter && HasTrait Sports
     }
 }
-Text Auto: When this card's battle opponent becomes reverse, if "King of Carnage" is in your climax area, search your deck for up to 1 «Sports» character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "King of Carnage" is in your climax area, search your deck for up to 1 «Sports» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: MK/S33-077
@@ -1795,7 +1795,7 @@ Auto: OnReverseOpponent
         SearchDeck IsCharacter && HasTrait Phantom Thief
     }
 }
-Text Auto: When this card's battle opponent becomes reverse, if "Color the Phantom" is in your climax area, search your deck for up to 1 «Phantom Thief» character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Color the Phantom" is in your climax area, search your deck for up to 1 «Phantom Thief» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: MK/S33-086
@@ -1874,9 +1874,10 @@ Auto: StartEncoreStep
                 GainPower 2000
             }
             Text At the beginning of your next draw phase, put those characters from your memory in separate positions on the stage and get +2000 power until end of turn.
+        }
     }
 }
-Text Auto: At the beginning of your encore step, if "Color the Phantom" is in your climax area, choose up to 2 of your other characters with either «Phantom Thief» or with "Alice" in its card name and send them to memory. At the beginning of your next draw phase, put those characters in separate positions on the stage, and those characters get +2000 power until end of turn.
+Text Auto: CxCombo At the beginning of your encore step, if "Color the Phantom" is in your climax area, choose up to 2 of your other characters with either «Phantom Thief» or with "Alice" in its card name and send them to memory. At the beginning of your next draw phase, put those characters in separate positions on the stage, and those characters get +2000 power until end of turn.
 EndCard
 
 Character: MK/S33-088
@@ -1943,7 +1944,7 @@ Auto: OnSpecificClimaxPlay Color the Phantom
         }
     }
 }
-Text Auto: [Rest 1 of your characters] When "Color the Phantom" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, search your deck for up to 1 'Blue Phantom Thief "The Fearsome Blue Hunter"' and put it in any position on the stage, and shuffle your deck.
+Text Auto: CxCombo [Rest 1 of your characters] When "Color the Phantom" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, search your deck for up to 1 'Blue Phantom Thief "The Fearsome Blue Hunter"' and put it in any position on the stage, and shuffle your deck.
 EndCard
 
 Character: MK/S33-091
@@ -2009,7 +2010,7 @@ Auto: OnAttack
         *GiveCharacterPower(2500,Phantom Thief)
     }
 }
-Text Auto: When this card attacks, if "Color the Phantom" is in your climax area, choose 1 of your «Phantom Thief» characters, and that character gets +2500 power until end of turn.
+Text Auto: CxCombo When this card attacks, if "Color the Phantom" is in your climax area, choose 1 of your «Phantom Thief» characters, and that character gets +2500 power until end of turn.
 EndCard
 
 Character: MK/S33-093
@@ -2037,7 +2038,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [Put the top card of your deck in your clock, put 1 card from your hand to the waiting room] When this card attacks, if "I Am Male" is in your climax area, you may pay the cost. If you do, choose 1 of your opponent's level 3 or lower characters and put it on the bottom of the deck.
+Text Auto: CxCombo [Put the top card of your deck in your clock, put 1 card from your hand to the waiting room] When this card attacks, if "I Am Male" is in your climax area, you may pay the cost. If you do, choose 1 of your opponent's level 3 or lower characters and put it on the bottom of the deck.
 EndCard
 
 Character: MK/S33-094
@@ -2450,7 +2451,7 @@ Auto: OnAttack
         *GiveCharacterPower(2500,Detective)
     }
 }
-Text Auto: When this card attacks, if "Detective Opera Live!" is in your climax area, choose 1 of your «Detective» characters, and that character gets +2500 power until end of turn.
+Text Auto: CxCombo When this card attacks, if "Detective Opera Live!" is in your climax area, choose 1 of your «Detective» characters, and that character gets +2500 power until end of turn.
 EndCard
 
 Climax: MK/S33-P13
@@ -2678,7 +2679,7 @@ Auto: OnSpecificClimaxPlay Feathers Dispatch!
         SearchDeck IsCharacter && HasTrait Detective
     }
 }
-Text Auto: When "Feathers Dispatch!" is placed on your climax area, if this card is in the center stage, search your deck for up to 1 «Detective» character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto: CxCombo When "Feathers Dispatch!" is placed on your climax area, if this card is in the center stage, search your deck for up to 1 «Detective» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: MK/S33-T11
