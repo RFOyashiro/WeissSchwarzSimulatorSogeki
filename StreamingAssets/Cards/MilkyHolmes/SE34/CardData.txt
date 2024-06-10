@@ -9,21 +9,16 @@ Power 9500
 Soul 2
 Trait1 Detective
 Trait2 Sweets
-Cont:
+Cont: InHand
 {
-
+    If LocationContains Level 1 IsClimax
+    {
+        LoseLevel 1
+    }
 }
-Text Cont: EXPERIENCE If there is a climax Card in your level, this card gets -1 level while in hand.
-Cont:
-{
-
-}
-Text Cont: If the number of other «Detective» characters you have is 2 or more, this card gets +1000 power.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, draw up to 2 cards, and discard 1 card from hand to the waiting room.
+Text Cont: EXPERIENCE If there is a climax in your level, this card gets -1 level while in hand.
+*GainPowerWithEnoughCharacters(1000,2,Detective)
+*OnPlayDraw2Discard1
 EndCard
 
 Character: MK/SE34-02
@@ -37,11 +32,7 @@ Power 7000
 Soul 1
 Trait1 Detective
 Trait2 Book
-Auto:
-{
-
-}
-Text Auto: When this card is reversed, if this card's battle opponent's level is higher than your opponent's level, you may put the top card of your opponent's clock in to their waiting room. If you do, you may put the this card's battle opponent to their clock.
+*GreenEarlyPlayBomb
 EndCard
 
 Character: MK/SE34-03
@@ -54,16 +45,16 @@ Power 4500
 Soul 1
 Trait1 Detective
 Trait2 Camera
-Auto:
+Combo Psychokinesis
+*OnPlayGainPower(1500)
+Auto: OnReverseOpponent
 {
-
+    If Climax Psychokinesis
+    {
+        SearchWaitingRoom IsCharacter
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: [CxCombo] When this card's battle opponent is reversed, if "Psychokinesis" is in your climax area, you may choose 1 character in your waiting room and return it to your hand.
+Text Auto: CxCombo When this card's battle opponent is reversed, if "Psychokinesis" is in your climax area, you may choose 1 character in your waiting room and return it to your hand.
 EndCard
 
 Character: MK/SE34-04
@@ -76,11 +67,7 @@ Power 2500
 Soul 1
 Trait1 Detective
 Trait2 Sports
-Auto:
-{
-
-}
-Text Auto: At the beginning of your opponent's attack phase, you may put the top card of your deck in the waiting room. If it's a «Detective» character, you may move this card to an open position in your center stage.
+*MillRunner(Detective)
 EndCard
 
 Character: MK/SE34-P01
@@ -94,15 +81,7 @@ Power 2500
 Soul 1
 Trait1 Detective
 Trait2 Police
-Auto:
-{
-
-}
-Text Auto: When you use this card's BACKUP, choose 1 of your characters in battle, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, send that character to memory."
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+*MemoryBackup
+Backup 3000
 EndCard
 

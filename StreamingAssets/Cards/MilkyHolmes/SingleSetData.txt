@@ -17,3 +17,6 @@ SetName: Milky Holmes: Counterattack of the Genius4 (SE11)
 Folder: MilkyHolmes/SE29
 Prefix: MK/SE29
 SetName: Milky Holmes: Milky Holmes Strikes Back (SE29)
+Folder: MilkyHolmes/SE34
+Prefix: MK/SE34
+SetName: Milky Holmes Sleeve Collection (SE34)
