@@ -20,3 +20,6 @@ SetName: Milky Holmes: Milky Holmes Strikes Back (SE29)
 Folder: MilkyHolmes/SE34
 Prefix: MK/SE34
 SetName: Milky Holmes Sleeve Collection (SE34)
+Folder: MilkyHolmes/SJ01
+Prefix: MK/SJ01
+SetName: Milky Holmes Fan Fun Party Pack (SJ01)
