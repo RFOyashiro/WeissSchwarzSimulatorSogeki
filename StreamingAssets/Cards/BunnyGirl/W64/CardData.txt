@@ -1694,33 +1694,36 @@ Combo Blue-Filled Vision
 *OnPlayCheck3
 Auto: OnAttack
 {
-	PayCost Discard 1 Any
-	{
-		UntilEndOfOpponentsTurn
-		GainPower 2500
-		UntilEndOfOpponentsTurn
-		GainEffect
-		{
-			Auto: OnAttacked 
-			{
-				TargetTop Deck 1 
-				RevealTargets
-				SetXValue TargetCardsLevel 
-				Question Send to Bottom? 
-				If Yes
-				{
-					MoveCard BottomOfDeck
-				}
-				Else 
-				{
-					EndPeek
-				}
-				TargetBattleOpponent 
-				LoseSoul X
-			}
-			Auto: When this card is attacked, reveal the top card of your deck, put it on the top or at the bottom of your deck, and the character facing this card gets -X soul until end of turn. X is equal to the level of the revealed card.
-		}
-	}
+    If Climax Blue-Filled Vision
+    {
+        PayCost Discard 1 Any
+        {
+            UntilEndOfOpponentsTurn
+            GainPower 2500
+            UntilEndOfOpponentsTurn
+            GainEffect
+            {
+                Auto: OnAttacked 
+                {
+                    TargetTop Deck 1 
+                    RevealTargets
+                    SetXValue TargetCardsLevel 
+                    Question Send to Bottom? 
+                    If Yes
+                    {
+                        MoveCard BottomOfDeck
+                    }
+                    Else 
+                    {
+                        EndPeek
+                    }
+                    TargetBattleOpponent 
+                    LoseSoul X
+                }
+                Text Auto: When this card is attacked, reveal the top card of your deck, put it on the top or at the bottom of your deck, and the character facing this card gets -X soul until end of turn. X is equal to the level of the revealed card.
+            }
+        }
+    }
 }
 Text Auto: CxCombo [Put 1 card from your hand into your waiting room] When this card attacks, if "Blue-Filled Vision" is in your climax area, you may pay the cost. If you do, this card gets +2500 power and the following ability until the end of your opponent's next turn. "Auto: When this card is attacked, reveal the top card of your deck, put it on the top or at the bottom of your deck, and the character facing this card gets -X soul until end of turn. X is equal to the level of the revealed card." 
 EndCard
