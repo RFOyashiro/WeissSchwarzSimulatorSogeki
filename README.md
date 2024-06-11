@@ -9,6 +9,7 @@ Repo of sets worked on by Sogeki
 - Crayon Shin-chan
 - D_Cide
 - Evangelion Rebuild
+- Gigant Shooter Tsukasa
 - Heaven Burn Red
 - Kiznaiver
 - Milky Holmes
