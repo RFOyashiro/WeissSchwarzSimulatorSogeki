@@ -839,7 +839,7 @@ Cont: GiveSelf
     MultiplyXValue 1000
     GainPower X
 }
-Text Cont: This card gets +1000 power for each of your other «Adventurer» characters in the backstage.
+Text Cont: This card gets +1000 powe for each of your other «Adventurer» characters in the backstage.
 *StockHealer
 EndCard
 
@@ -906,14 +906,10 @@ Power 2000
 Soul 1
 Trait1 Adventurer
 Trait2 Horn
-Cont:
+*GiveNamePower(1000,Girl Possessed by a Ghost\, Pandora)
+Act: Discard 1 NameEquals Girl Possessed by a Ghost, Pandora
 {
-
-}
-Text Cont: All your other "Girl Possessed by a Ghost, Pandora" get +1000 power.
-Act:
-{
-
+    *Check4Add1(Adventurer)
 }
 Text Act: [Put a "Girl Possessed by a Ghost, Pandora" from your hand to the waiting room] Look at up to the top 4 cards of your deck, choose up to 1 «Adventurer» character among them, reveal it, put it in your hand, and discard the remaining cards to the waiting room.
 EndCard
@@ -928,9 +924,13 @@ Power 2500
 Soul 1
 Trait1 Adventurer
 Trait2 Weapon
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchWaitingRoom IsCharacter && HasTrait Adventurer
+        *GiveOtherCharacterPower(1000,Adventurer)
+    }
 }
 Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Adventurer» character in your waiting room and return it to your hand, choose 1 of your other «Adventurer» characters, and that character gets +1000 power until end of turn.
 EndCard
@@ -945,9 +945,12 @@ Power 4000
 Soul 1
 Trait1 Adventurer
 Trait2 Yukata
-Cont:
+Cont: GiveSelf
 {
-
+    If HasMarkerWhere Not FaceDown
+    {
+        GainPower 3000
+    }
 }
 Text Cont: If there is a face up marker under this card, this card gets +3000 power.
 EndCard
@@ -962,11 +965,7 @@ Power 4500
 Soul 1
 Trait1 Adventurer
 Trait2 Angel
-Cont:
-{
-
-}
-Text Cont: This card gets +500 power for each of your other «Adventurer» characters
+*GainPowerForEachOther(500,Adventurer)
 EndCard
 
 Character: LOD/S74-044
@@ -980,16 +979,12 @@ Power 1500
 Soul 1
 Trait1 Adventurer
 Trait2 Snake
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    *ScryToBottom
 }
-Text Auto: When you use this card's BACKUP, look at the top card of your deck and put it either on top or bottom of the deck.
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 1500, level 1 [(1) Put this card from your hand to the waiting room]
+Text Auto: When you use this card's "BACKUP", look at the top card of your deck and put it either on top or bottom of the deck.
+Backup 1500
 EndCard
 
 Character: LOD/S74-045
@@ -1003,21 +998,35 @@ Power 5000
 Soul 1
 Trait1 Adventurer
 Trait2 Flame
-Cont:
+Cont: GiveSelf
 {
-
+    If HasMarkerWhere ColorIs Red
+    {
+        GainPower 4000
+    }
 }
 Text Cont: If there is a Red marker underneath this card, this card gets +4000 power.
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 2 Any
+    {
+        SearchLocationForTargets WaitingRoom 0 2 IsCharacter && HasTrait Adventurer
+        RevealTargets
+        MoveCard Hand
+        ShuffleLocation Deck
+    }
 }
 Text Auto: [(1) Put 2 cards from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 2 «Adventurer» characters, reveal them, put them in your hand, and shuffle your deck.
-Auto:
+Auto: OnAttack
 {
-
+    Mill 2
+    NarrowTargets IsClimax
+    If HasTarget
+    {
+        GainSoul 2
+    }
 }
-Text Auto: When this card attacks, put the top 2 cards of your deck in the waiting room. If there were at least 1 climax among them, this card gets +2 soul until end of turn.
+Text Auto: When this card attacks, put the top 2 cards of your deck in the waiting room. If there is at least 1 climax among them, this card gets +2 soul until end of turn.
 EndCard
 
 Character: LOD/S74-046
@@ -1031,14 +1040,14 @@ Power 6000
 Soul 1
 Trait1 Adventurer
 Trait2 Flame
-Auto:
+Auto: OnPlay
 {
-
+    *OptionalDrawDiscard
 }
-Text Auto: When this card is placed on the stage from your hand, you may draw 1 card. If you draw at least 1 card in this card manner, discard a card.
-Act:
+Text Auto: When this card is placed on the stage from your hand, you may draw 1 card. If you do, put 1 card from your hand into waiting room.
+Act: SendSelf Memory
 {
-
+    *Check4Add1(Adventurer)
 }
 Text Act: [Put this card into memory] Look at up to the top 4 cards of your deck, choose up to 1 «Adventurer» character among them, reveal it, put it in your hand, and put the rest into waiting room.
 EndCard
@@ -1053,16 +1062,8 @@ Power 1500
 Soul 1
 Trait1 Adventurer
 Trait2 Angel
-Cont:
-{
-
-}
-Text Cont: All your other «Adventurer» characters get +500 power.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck and put it either on top of the deck or in the waiting room.
+*GlobalPower(500,Adventurer)
+*OnPlayScry
 EndCard
 
 Character: LOD/S74-048
@@ -1075,16 +1076,8 @@ Power 1500
 Soul 1
 Trait1 Adventurer
 Trait2 Muscle
-Cont:
-{
-
-}
-Text Cont: All your other "Hayate, Nomadic Swordsma" get +2000 power.
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your «Adventurer» characters, and that character gets +1000 power until end of turn.
+*GiveNamePower(2000,Exiled Noble Swordsman\, Hayate)
+*RestGivePower(1000,Adventurer)
 EndCard
 
 Character: LOD/S74-049
@@ -1097,16 +1090,8 @@ Power 2000
 Soul 1
 Trait1 Adventurer
 Trait2 Weapon
-Cont:
-{
-
-}
-Text Cont: character facing this card cannot move to another position.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+*CharacterFacingThisCannotMove
+*OnPlayGainPower(1500)
 EndCard
 
 Character: LOD/S74-050
@@ -1119,11 +1104,26 @@ Power 2500
 Soul 1
 Trait1 Adventurer
 Trait2 Death
-Auto:
+Combo Raven of the Underworld
+Auto: OnAttack
 {
-
+    If Climax Raven of the Underworld
+    {
+        ChooseNumber 0 2 Choose a number to reveal cards of that level.
+        SearchLocationForTargets Hand 0 50 IsCharacter && Compare ThatCardsLevel Answer Exactly
+        RevealTargets
+        MoveCard Deck
+        SetXValue Answer
+        AddToXValue 1
+        SearchLocationForTargets Deck TargetCount TargetCount IsCharacter && Compare ThatCardsLevel X Exactly
+        RevealTargets
+        MoveCard Hand
+        ShuffleLocation Deck
+        TargetSelf
+        GainLevel 1
+    }
 }
-Text Auto: CxCombo When this card attacks, if "Raven of the Underworld" is in your climax area and you have another «Adventurer» character, choose a number, 0 1 or 2. Reveal as many characters of that level from your hand as you want, return them to your deck, search your deck for an equal number of characters that are 1 level higher than the chosen number, reveal them, put them in your hand, shuffle your deck, and until end of turn this card gets +1 level.
+Text Auto: CxCombo When this card attacks, if "Raven of the Underworld" is in your climax area and you have another «Adventurer» character, choose a number betwwen 0, 1 or 2. Reveal as many characters from your hand as you want whose level is equal to that number, return them to your deck, search your deck for the same amount of characters that are 1 level higher than the chosen number, reveal them, put them in your hand, shuffle your deck, and this card gets +1 level until end of turn.
 EndCard
 
 Character: LOD/S74-051
@@ -1148,11 +1148,35 @@ Power 5000
 Soul 1
 Trait1 Adventurer
 Trait2 Death
-Auto:
+Auto: OnReverseOpponent
 {
-
+    PayCost Resonate Damaged Raven, Airin
+    {
+        Question Put this card into memory ?
+        If Yes
+        {
+            MoveCard Memory
+            ScheduleEffect StartDrawPhase
+            {
+                Effect:
+                {
+                    TargetLocation Memory
+                    NarrowTargets NameEquals Death Knight of the Town on the Border Between Worlds, Abaddon
+                    FirstTarget
+                    If HasTarget
+                    {
+                        Message Death Knight of the Town on the Border Between Worlds, Abaddon returns from memory.
+                        PlaceOnStage False True True False
+                        UntilEndOfOpponentsTurn
+                        *GiveCharacterPower(2000,Any)
+                    }
+                }
+                Text At the beginning of your next draw phase, choose a "Death Knight of the Town on the Border Between Worlds, Abaddon" in your memory and put it in any position on the stage.
+            }
+        }
+    }
 }
-Text Auto: RESONATE [Reveal a "damaged Raven, Airin" from your hand] When this card's battle opponent becomes reverse, you may pay the cost. If you do, you may put this card into memory. If you do, at the beginning of your next draw phase choose a "Death Knight of the Town on the Border Between Worlds, Abaddon" in your memory, place it to any slot on your stage, choose 1 of your characters, and until the end of your opponent's next turn, that character gets +1000 power.
+Text Auto: RESONATE [Reveal a "Damaged Raven, Airin" from your hand] When this card's battle opponent becomes reverse, you may pay the cost. If you do, you may put this card into memory. If you do, at the beginning of your next draw phase choose a "Death Knight of the Town on the Border Between Worlds, Abaddon" in your memory, place it to any position on your stage, choose 1 of your characters, and that character gets +1000 power until the end of your opponent's next turn.
 EndCard
 
 Character: LOD/S74-053
@@ -1177,16 +1201,15 @@ Power 5500
 Soul 1
 Trait1 Adventurer
 Trait2 Alchemy
-Auto:
+Auto: OnAttack
 {
-
+    If HasMarkerWhere Not FaceDown
+    {
+        *GiveCharacterPower(3000,Adventurer)
+    }
 }
-Text Auto: When this card attacks, if this card has a face up marker underneath it, choose 1 of your «Adventurer» characters, and until end of turn that character gets +3000 power.
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+Text Auto: When this card attacks, if this card has a face up marker underneath it, choose 1 of your «Adventurer» characters, and that character gets +3000 power until end of turn.
+*HandEncore
 EndCard
 
 Character: LOD/S74-055
@@ -1200,14 +1223,13 @@ Power 7000
 Soul 1
 Trait1 Adventurer
 Trait2 Royalty
-Cont:
+*GainPowerForEachOther(500,Adventurer)
+Auto: OnReverseOpponent
 {
-
-}
-Text Cont: This card gets +500 power for each of your other «Adventurer» characters
-Auto:
-{
-
+    PayCost Discard 1 NameEquals One Who Breaks the Star, Trifa
+    {
+        Burn 1
+    }
 }
 Text Auto: [Put a "One Who Breaks the Star, Trifa" from your hand to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 1 damage to your opponent.
 EndCard
@@ -1223,16 +1245,21 @@ Power 5500
 Soul 2
 Trait1 Adventurer
 Trait2 Dragon
-Auto:
+Auto: OnReversed
 {
-
+    TargetBattleOpponent
+    IfTarget Compare ThatCardsLevel 3 Exactly && OnStage && Not CardPosition Reverse
+    {
+        Question Reverse the battle opponent?
+        If Yes
+        {
+            Reverse
+        }
+    }
 }
+Quick
 Text Auto: When this card becomes reversed, if this card's battle opponent is level 3, you may reverse that character.
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put a «Adventurer» character from your hand to the waiting room]
+*HandEncoreTrait(Adventurer)
 EndCard
 
 Event: LOD/S74-057
@@ -1243,14 +1270,34 @@ Level 2
 Cost 0
 Effect:
 {
-
+    TargetLocation Stage
+    NarrowTargets Not HasMarker
+    ChooseCharacterFromTargets Choose a character to put this card underneath as a marker.
+    SaveTargets
+    TargetSelf
+    MarkerTargetsUnderSavedTarget_FaceUp
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharactersFromTargets 0 2 Choose up to 2 characters to give -500 power.
+    LosePower 500
 }
-Text When this card is placed into waiting room from marker, if the number of «Adventurer» characters you have is 2 or more, put this card into memory.
-Effect:
+Text Choose 1 of your characters without marker underneath, put this card face up underneath that card as a marker, Choose up to 2 of your opponent's characters and those characters get -500 power until end of turn.
+Auto: OnSentFromAToB Marker WaitingRoom
 {
-
+    If StageContains 2 HasTrait Adventurer
+    {
+        MoveCard Memory
+    }
 }
-Text MEMORY At the beginning of your main phase, if this card is in your memory, return it to hand.
+Quick
+Text Auto: When this card is placed from marker to waiting room, if the number of «Adventurer» characters you have is 2 or more, put this card into memory.
+Auto: StartMainPhase
+{
+    MoveCard Hand
+}
+Quick
+InMemory
+Text Auto: MEMORY At the beginning of your main phase, if this card is in your memory, return it to your hand.
 EndCard
 
 Event: LOD/S74-058
@@ -1259,11 +1306,16 @@ JPName 酒場 竜の枕亭
 Color R
 Level 3
 Cost 1
+Requirement StageContains 1 NameContains オフィーリア
+Text If you do not have a character with "Ophelia" in its card name, you cannot play this card from hand.
 Effect:
 {
-
+    RevealUpTo Deck 10
+    ChooseCardsFromTargets 0 1 IsCharacter && HasTrait Adventurer
+    PlaceOnStage false true true false
+    GainPower 2000
 }
-Text If you do not have a character with "Ophelia" in its card name, you cannot play this card from hand. Look at the up to 10 cards from the top of your deck, choose up to 1 «Adventurer» character among them, place it to any slot on the stage, put the remaining card in your waiting room, and until end of turn, that character gets +2000 power.
+Text Look at the up to 10 cards from the top of your deck, choose up to 1 «Adventurer» character among them, place it to any slot on the stage, put the remaining card in your waiting room, and that character gets +2000 power until end of turn.
 EndCard
 
 Climax: LOD/S74-059
@@ -1294,7 +1346,15 @@ Climax: LOD/S74-063
 Name Raven of the Underworld
 JPName 冥界のワタリガラス
 Color R
-
+Trigger DoubleSoul
+Auto: OnPlay
+{
+    SearchWaitingRoom IsCharacter && Compare ThatCardsLevel MyLevel OrLess
+    TargetLocation Stage
+    ChooseCharactersFromTargets 0 2 Choose up to 2 characters to give +1 soul.
+    GainSoul 1
+}
+Text Auto: When this card is placed in your climax area, choose up to 1 character whose level is equal or lower than your level from your waiting room, return it to your hand, choose up to 2 of your characters and those characters get +1 soul until end of turn.
 EndCard
 
 Character: LOD/S74-064
@@ -1307,11 +1367,18 @@ Power 2500
 Soul 1
 Trait1 Adventurer
 Trait2 Angel
-Auto:
+Auto: OnReversed
 {
-
+	RevealUpTo Deck 3
+	If Compare TargetCount 1 OrMore
+	{
+		ChooseCardsFromTargets 1 1 HasTrait Adventurer
+		MoveCard Hand
+		PutTheRestIntoTheWaitingRoom
+		Discard 1 Any
+	}
 }
-Text Auto: When this card becomes reversed in battle, you may reveal up to 3 cards from the top of your deck. If you reveal at least 1 card this way, choose up to 1 «Adventurer» character among them, put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
+Text Auto: When this card becomes reversed in battle, you may reveal up to 3 cards from the top of your deck. If you reveal 1 or more cards, choose up to 1 «Adventurer» among them, add it to your hand, put the remaining cards in your waiting room and discard a card.
 EndCard
 
 Character: LOD/S74-065
@@ -1324,14 +1391,14 @@ Power 4500
 Soul 1
 Trait1 Adventurer
 Trait2 Knight
-Auto:
+Combo Shine of the Holy Sword
+*OnPlayGainPower(1500)
+Auto: OnReverseOpponent
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
-Auto:
-{
-
+    If Climax Shine of the Holy Sword
+    {
+        SearchDeck IsCharacter && HasTrait Adventurer
+    }
 }
 Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Shine of the Holy Sword" is in your climax area, search your deck for up to 1 «Adventurer» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -1347,24 +1414,45 @@ Power 3500
 Soul 2
 Trait1 Adventurer
 Trait2 Exploration
-Cont:
+Cont: GiveSelf
 {
-
+    If HasMarkerWhere ColorIs Blue
+    {
+        GainPower 7000
+    }
 }
 Text Cont: If this card has a Blue marker underneath it, this card gets +7000 power.
-Cont:
+Cont: GiveSelf
 {
-
+    If HasMarkerWhere ColorIs Yellow
+    {
+        GainSoul 1
+    }
 }
 Text Cont: If this card has a Yellow marker underneath it, this card gets +1 soul.
-Auto:
+Auto: OnPlay
 {
-
+    SearchLocationForTargets Hand 0 3 IsEvent && NameContains アイテム
+    If HasTarget
+    {
+        RevealTargets
+        Marker_FaceUp
+        Repeat TargetCount
+        {
+            *OptionalDraw
+        }
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, you may reveal up to 3 events with the word "Item" in its card name and place them face up underneathneath this card as a marker. For each card placed underneath this card as a marker, draw up to 1 card.
-Auto:
+Text Auto: When this card is placed on the stage from your hand, you may reveal up to 3 events with "Item" in its card name and place them face up underneath this card as a marker. For each card placed underneath this card as a marker, draw up to 1 card.
+Auto: OnAttack
 {
-
+    If HasMarkerWhere ColorIs Red
+    {
+        PayCost Discard 1 Any
+        {
+            Burn 1
+        }
+    }
 }
 Text Auto: [Put 1 card from hand to the waiting room] When this card attacks, if this card has a Red marker under it, you may pay the cost. If you do, deal 1 damage to your opponent.
 EndCard
@@ -1380,16 +1468,36 @@ Power 9000
 Soul 2
 Trait1 Adventurer
 Trait2 Magic
-Auto:
+Combo Magic Mirror Mephisto
+Auto: OnPlay
 {
-
+    SearchWaitingRoom IsCharacter && HasTrait Adventurer || NameEquals "Item" Knight Armor
+    TargetTop Deck 1
+    Reveal
+    IfTarget Compare ThatCardsLevel 0 OrLess && IsCharacter
+    {
+        MoveCard Stock
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, select up to 1 «Adventurer character» or '"Item" Knight Armor' in your waiting room, return it to hand, reveal the top card of your deck, and if that card is a level 0 or lower character place it to stock. (otherwise put it back)
-Auto:
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 «Adventurer» character or '"Item" Knight Armor' in your waiting room, return it to hand, reveal the top card of your deck. If that card is a level 0 or lower character, put it into stock.
+Auto: OnSpecificClimaxPlay Magic Mirror Mephisto
 {
-
+    If InLocation CenterStage && HasMarkerWhere ColorIs Blue
+    {
+        PayCost 1 Discard 1 Any
+        {
+            Peek OpponentDeck 5
+            Message Choose up to 5 cards to put into waiting room.
+            ChooseCardsFromTargets 0 5 Any
+            MoveCard OpponentWaitingRoom
+            EndPeek
+            ShuffleLocation OpponentDeck
+            TargetSelf
+            GainPower 1000
+        }
+    }
 }
-Text Auto: CxCombo [(1) Put 1 card from hand to the waiting room] When "Magic Mirror Mephisto" is placed to your climax area, this card is in your center stage, and has a Blue marker underneath it, has you may pay the cost. If you do, look at up to the top 5 cards of your opponent's deck, choose up to 5 cards among them, put them in your opponent's waiting room, return the remaining cards to their deck, your opponent shuffles their deck, and until end of turn this card gets +1000 power.
+Text Auto: CxCombo [(1) Put 1 card from hand to the waiting room] When "Magic Mirror Mephisto" is placed to your climax area, this card is in your center stage, and has a Blue marker underneath it, has you may pay the cost. If you do, look at up to the top 5 cards of your opponent's deck, choose up to 5 cards among them, put them in your opponent's waiting room, return the remaining cards to their deck, your opponent shuffles their deck, and this card gets +1000 power until end of turn.
 EndCard
 
 Character: LOD/S74-068
@@ -1402,16 +1510,22 @@ Power 1000
 Soul 1
 Trait1 Adventurer
 Trait2 Thunder
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    UntilEndOfOpponentsTurn
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            GainSpecialEffect CannotBeReversedByAutoEffects
+        }
+        Text Cont: This cannot be reversed by your opponent's Auto: abilities.
+    }
 }
-Text Auto: When this card is placed from the hand to the stage, choose one of your characters, and that character gets the following ability until the end of your opponent's next turn. "Cont: This cannot be reversed by your opponent's Auto: abilities."
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 «Adventurer» character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto: When this card is placed from the hand to the stage, choose 1 of your characters, and that character gets the following ability until the end of your opponent's next turn. "Cont: This cannot be reversed by your opponent's Auto: abilities."
+*Act1RestSelfSearchBrainstorm(Adventurer)
 EndCard
 
 Character: LOD/S74-069
@@ -1424,14 +1538,20 @@ Power 1500
 Soul 1
 Trait1 Adventurer
 Trait2 Flame
-Cont:
+*GainPowerWithEnoughCharacters(1000,2,Adventurer)
+Auto: StartOpponentDrawPhase
 {
-
-}
-Text Cont: If the number of other «Adventurer» characters you have is 2 or more, this card gets +1000 power.
-Auto:
-{
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget Compare ThatCardsLevel 1 OrMore
+    {
+        Question Put this card into hand ?
+        If Yes
+        {
+            TargetSelf
+            MoveCard Hand
+        }
+    }
 }
 Text Auto: At the beginning of your opponent's draw phase, reveal the top card of your deck. If it's level 1 or higher, you may return this card to your hand.
 EndCard
@@ -1446,14 +1566,10 @@ Power 2000
 Soul 1
 Trait1 Adventurer
 Trait2 Horn
-Auto:
+*DropSearch(Adventurer)
+Auto: OnAttack
 {
-
-}
-Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Adventurer» character, reveal it, put it in your hand, and shuffle your deck.
-Auto:
-{
-
+    *ScryToBottom
 }
 Text Auto: When this card attacks, look at the top card of your deck, and put it either on top or bottom of the deck.
 EndCard
@@ -1468,16 +1584,17 @@ Power 2000
 Soul 1
 Trait1 Adventurer
 Trait2 Weapon
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Adventurer
+    {
+        *GiveCharacterPower(2000,Any)
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Adventurer» character, choose 1 of your characters, that character gets +2000 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the cost of the battle opponent of this card is 0 or lower, you may put that character on the bottom of the deck.
+*BlueCost0Bomb
 EndCard
 
 Character: LOD/S74-072
@@ -1490,14 +1607,21 @@ Power 4000
 Soul 1
 Trait1 Adventurer
 Trait2 Royalty
-Auto:
+Auto: OnPlay
 {
-
+    If StageContains 1 Other && HasTrait Adventurer
+    {
+        GainPower 2000
+    }
 }
+Quick
 Text Auto: When this card is placed on the stage from your hand, if you have another «Adventurer» character, this card gets +2000 power until end of turn.
-Auto:
+Auto: OnGainMarker
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        *CheckAndAdd(3)
+    }
 }
 Text Auto: [(1) Put 1 card from hand to the waiting room] When a face up marker is placed underneath this card, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 card among them, put it in your hand, and put the rest into waiting room.
 EndCard
@@ -1513,16 +1637,21 @@ Power 2500
 Soul 1
 Trait1 Adventurer
 Trait2 Science
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    PayCost 2 Send 1 WaitingRoom Any
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen && EarlyPlay
+        If HasTarget
+        {
+            ChooseCharacterFromTargets Choose 1 of your Opponent's Characters whose Level is higher than your Opponent and put it in the Waiting Room.
+            MoveCard WaitingRoom
+        }
+    }
 }
-Text Auto: [(2) Put 1 character from your stage in the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent and put it in the waiting room.
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+Text Auto: [(2) Put 1 character from your stage in the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent and put it in the waiting room.
+Backup 2500
 EndCard
 
 Character: LOD/S74-074
@@ -1536,16 +1665,13 @@ Power 7000
 Soul 1
 Trait1 Adventurer
 Trait2 Dragon
-Auto:
+Auto: OnClimaxPlay
 {
-
+    GainPower 1500
 }
+Quick
 Text Auto: When your climax is placed on your climax area, this card gets +1500 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, if the level of the character facing this card is 3 or higher, this card gets +6000 power until end of turn.
+*GainPowerWhenAttackingLevel3(6000)
 EndCard
 
 Character: LOD/S74-075
@@ -1559,21 +1685,18 @@ Power 9500
 Soul 2
 Trait1 Adventurer
 Trait2 Magic
-Cont:
+*EarlyPlay2OrLessClimax
+Cont: GiveSelf
 {
-
-}
-Text Cont: If there are 2 or less climax cards in your waiting room, this card gets -1 level while in your hand.
-Cont:
-{
-
+    If MyTurn
+    {
+        SetXToNumberOfCharacters Other && HasTrait Adventurer
+        MultiplyXValue 500
+        GainPower X
+    }
 }
 Text Cont: During your turn, this card gets +500 power for each of your other «Adventurer» characters
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+*Healer
 EndCard
 
 Character: LOD/S74-076
@@ -1586,16 +1709,8 @@ Power 1000
 Soul 1
 Trait1 Adventurer
 Trait2 Magic
-Cont:
-{
-
-}
-Text Cont: ASSIST Your characters in front of this card get +500 power.
-Auto:
-{
-
-}
-Text Auto: When your climax is placed on your climax area, choose 1 of your characters, and that character gets +1000 power until end of turn.
+*500Assist
+*OnClimaxPlayGivePower(1000)
 EndCard
 
 Character: LOD/S74-077
@@ -1608,16 +1723,16 @@ Power 2000
 Soul 1
 Trait1 Adventurer
 Trait2 Rogue
-Auto:
+Auto: OnPlay
 {
-
+    Question Put the top 3 cards of your deck into waiting room ?
+    If Yes
+    {
+        Mill 3
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, you may put the top 3 cards of your deck in the waiting room.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, choose 1 of your other «Adventurer» characters, and that character gets +1000 power until end of turn.
+*OnAttackGiveOtherPower(1000,Adventurer)
 EndCard
 
 Character: LOD/S74-078
@@ -1630,9 +1745,12 @@ Power 2500
 Soul 1
 Trait1 Adventurer
 Trait2 Melee
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContainsOrLess Stock 2 Any
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If there are 2 or less cards in your stock, this card gets +1500 power.
 EndCard
@@ -1647,11 +1765,18 @@ Power 4000
 Soul 1
 Trait1 Adventurer
 Trait2 Rogue
-Auto:
+Auto: OnReversed
 {
-
+    If StageContains 2 HasMarkerWhere Not FaceDown
+    {
+        Question Put this card into stock ?
+        If Yes
+        {
+            MoveCard Stock
+        }
+    }
 }
-Text Auto: When this card becomes reversed, if you have 2 or more characters with face up markers underneath them, you may put this card into your stock.
+Text Auto: When this card becomes reversed, if the number of characters with face up markers underneath them you have is 2 or more, you may put this card into your stock.
 EndCard
 
 Character: LOD/S74-080
@@ -1665,16 +1790,12 @@ Power 1000
 Soul 1
 Trait1 Adventurer
 Trait2 Genius
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    Mill 3
 }
-Text Auto: When you use this card's BACKUP, put the top 3 cards of your deck in the waiting room.
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 2000, level 1 [(1) Put this card from your hand to the waiting room]
+Text Auto: When you use this card's "BACKUP", put the top 3 cards of your deck in the waiting room.
+Backup 2000
 EndCard
 
 Character: LOD/S74-081
@@ -1688,16 +1809,24 @@ Power 5000
 Soul 1
 Trait1 Adventurer
 Trait2 Flame
-Cont:
+Combo Yearning for Flames
+Cont: GiveSelf
 {
-
+    If LocationContains Memory 1 NameEquals Lord of the Fiery Throne, Fear
+    {
+        GainPower 4500
+    }
 }
 Text Cont: MEMORY if "Lord of the Fiery Throne, Fear" is in your memory, this card gets +4500 power.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Yearning for Flames && LocationContains Memory 1 NameEquals Lord of the Fiery Throne, Fear
+    {
+        *Check4Add1(Adventurer)
+        *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait Adventurer)
+    }
 }
-Text Auto: CxCombo MEMORY When this card attacks, if "Yearning for Flames" is in your climax area, and "Lord of the Fiery Throne, Fear" is in your memory, look at up to the top 4 cards of your deck, choose up to 1 «Adventurer» character among them, reveal it, put it in your hand, put the rest into waiting room. choose up to 1 «Adventurer» character in your waiting room and place it to stock.
+Text Auto: CxCombo MEMORY When this card attacks, if "Yearning for Flames" is in your climax area, and "Lord of the Fiery Throne, Fear" is in your memory, look at up to the top 4 cards of your deck, choose up to 1 «Adventurer» character among them, reveal it, put it in your hand, put the rest into waiting room. choose up to 1 «Adventurer» character in your waiting room and put it into stock.
 EndCard
 
 Character: LOD/S74-082
@@ -1711,15 +1840,12 @@ Power 6500
 Soul 1
 Trait1 Adventurer
 Trait2 Gun
-Cont:
+*Level3Assist
+Auto: OnUseEvent
 {
-
+    *GiveCharacterPower(1000,Any)
 }
-Text Cont: ASSIST Your level 3 or higher characters in front of this card get +2000 power.
-Auto:
-{
-
-}
+TimesPerTurn 1
 Text Auto: This ability activates up to once per turn. When you play an event, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
 
@@ -1734,21 +1860,19 @@ Power 7000
 Soul 1
 Trait1 Adventurer
 Trait2 Weapon
-Cont:
+*GainPowerForEachOther(1000,Adventurer)
+Auto: OnAttack
 {
-
-}
-Text Cont: This card gets +1000 power for each of your other «Adventurer» characters
-Auto:
-{
-
+    If HasMarkerWhere ColorIs Blue
+    {
+        PayCost 1
+        {
+            GainSpecialEffect DoubleTrigger
+        }
+    }
 }
 Text Auto: [(1)] When this card attacks, if there is a Blue marker underneath this card, you may pay the cost. If you do, perform trigger check twice during this card attack Step.
-Auto:
-{
-
-}
-Text Auto: [(1)] At the beginning of encore step, if you have no other Rested characters in the center stage, you may pay the cost. If you do, rest this card.
+*EncoreStepIfNoneRestedPayToRest
 EndCard
 
 Character: LOD/S74-084
@@ -1761,15 +1885,26 @@ Power 1000
 Soul 1
 Trait1 Adventurer
 Trait2 Demon
-Cont:
+Cont: GiveAll
 {
-
+    If Other && NameEquals Demon Hunter, Argent
+    {
+        GainSoul 1
+    }
 }
 Text Cont: All your other "Demon Hunter, Argent" get +1 soul.
-Auto:
+Auto: OnOtherPlacedOnStageFromHand
 {
-
+    IfOther NameEquals Demon Hunter, Argent
+    {
+        *OptionalBlindStock
+    }
+    Else
+    {
+        RefundTimesPerTurn
+    }
 }
+TimesPerTurn 1
 Text Auto: This ability activates up to once per turn. When your other "Demon Hunter, Argent" is placed on the stage from your hand, you may put the top card of your deck in your stock.
 EndCard
 
@@ -1783,16 +1918,22 @@ Power 1500
 Soul 1
 Trait1 Adventurer
 Trait2 Sweets
-Cont:
+Combo Alice's Tea Party
+*GlobalPower(500,Adventurer)
+Auto: OnAttack
 {
-
+    If Climax Alice's Tea Party
+    {
+        TargetTop Deck 1
+        Reveal
+        IfTarget Compare ThatCardsLevel 1 OrMore
+        {
+            MoveCard Stock
+            *GiveCharacterPower(500,Any)
+        }
+    }
 }
-Text Cont: All your other «Adventurer» characters get +500 power.
-Auto:
-{
-
-}
-Text Auto: CxCombo When this card attacks, if "Alice's Tea Party" is in your climax area, reveal the top card of your deck. If that card is level 1 or higher, place it in your stock and choose 1 of your characters, until end of turn they get +500 power. (climax cards are considered level 0. Otherwise, put it back)
+Text Auto: CxCombo When this card attacks, if "Alice's Tea Party" is in your climax area, reveal the top card of your deck. If that card is level 1 or higher, put it in your stock, choose 1 of your characters, and that character gets +500 power until end of turn.
 EndCard
 
 Character: LOD/S74-086
@@ -1805,16 +1946,30 @@ Power 1500
 Soul 1
 Trait1 Adventurer
 Trait2 Exploration
-Cont:
+Cont: GiveAll
 {
-
+    If Not MyTurn && Other && InLocation CenterStage && HasTrait Adventurer
+    {
+        GainPower 1000
+    }
 }
 Text Cont: During your turn, your other «Adventurer» character in the middle position of your center stage gets +1000 power.
-Act:
+Act: 1 RestSelf
 {
-
+    TargetLocation Stage
+    NarrowTargets NameEquals Life Alchemist, Irui
+    ChooseCharacterFromTargets Choose a character to give +1000 power and the effect.
+    GainPower 1000
+    GainEffect
+    {
+        Auto: OnReverseOpponent
+        {
+            SearchDeck IsCharacter && HasTrait Adventurer
+        }
+        Text Auto: When this card's battle opponent becomes reverse, search your deck for up to 1 «Adventurer» character, reveal it, put it in your hand, and shuffle your deck.
+    }
 }
-Text Act: [(1) Rest this card] Choose 1 of your "Life Alchemist, Irui", and until end of turn it gets +1000 power and the following ability. "Auto: When this card's battle opponent becomes reverse, search your deck for up to 1 «Adventurer» character, reveal it, put it in your hand, and shuffle your deck."
+Text Act: [(1) Rest this card] Choose 1 of your "Life Alchemist, Irui", and that character gets +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, search your deck for up to 1 «Adventurer» character, reveal it, put it in your hand, and shuffle your deck."
 EndCard
 
 Character: LOD/S74-087
@@ -1827,11 +1982,7 @@ Power 2000
 Soul 1
 Trait1 Adventurer
 Trait2 Weapon
-Auto:
-{
-
-}
-Text Auto: When your other «Adventurer» character attacks, this card gets +1500 power until end of turn.
+*GainPowerWhenOtherAttacks(1500,Adventurer)
 EndCard
 
 Character: LOD/S74-088
@@ -1844,14 +1995,10 @@ Power 2000
 Soul 1
 Trait1 Adventurer
 Trait2 Animal
-Auto:
+*OnPlayMill2GainPowerForEachCharacter(1000,Adventurer)
+Auto: OnReverseOpponent
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room, and this card gets +X power until end of turn. X equals 1000 times the number of «Adventurer» characters among those cards.
-Auto:
-{
-
+    *GiveCharacterPower(1000,Any)
 }
 Text Auto: When battle opponent of this card is reversed, choose 1 of your characters, that character gets +1000 power until end of turn.
 EndCard
@@ -1878,9 +2025,12 @@ Power 4000
 Soul 1
 Trait1 Adventurer
 Trait2 Order
-Cont:
+Cont: GiveSelf
 {
-
+    If HasMarkerWhere Not FaceDown
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If there is a face up marker underneath this card, this card gets +2000 power and +1 soul.
 EndCard
@@ -1895,16 +2045,8 @@ Power 5000
 Soul 1
 Trait1 Adventurer
 Trait2 Cool
-Cont:
-{
-
-}
-Text Cont: This cannot side attack.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your «Adventurer» characters, and that character gets +1500 power until end of turn.
+*CannotSideAttack
+*OnPlayGivePower(1500,Adventurer)
 EndCard
 
 Character: LOD/S74-092
@@ -1918,16 +2060,15 @@ Power 1000
 Soul 1
 Trait1 Adventurer
 Trait2 Smithing
-Cont:
+*LevelAssistTrait(Adventurer)
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchDeck IsEvent && NameContains アイテム
+    }
 }
-Text Cont: ASSIST Your «Adventurer» characters in front of this card get +X power. X equals 500 times level of that character.
-Auto:
-{
-
-}
-Text Auto: [(1) Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 event with "Item" in the name, reveal it, put it in your hand, and shuffle you deck.
+Text Auto: [(1) Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 event with "Item" in its card name, reveal it, put it in your hand, and shuffle you deck.
 EndCard
 
 Character: LOD/S74-093
@@ -1940,16 +2081,15 @@ Power 7000
 Soul 1
 Trait1 Adventurer
 Trait2 Knight
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContainsOrLess 0 Other && HasTrait Adventurer
+    {
+        GainSpecialEffect CannotStand
+    }
 }
 Text Cont: If you have no other «Adventurer» characters, this card does not stand during your stand phase.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+*OnPlayGainPower(1500)
 EndCard
 
 Character: LOD/S74-094
@@ -1973,9 +2113,23 @@ Level 1
 Cost 1
 Effect:
 {
-
+    *Check4Add1(Adventurer)
+    TargetSelf
+    MoveCard Memory
 }
-Text MEMORY [Put a "Time to Patrol!" from memory into your waiting room, put this card in your waiting room] At the beginning of your main phase, if this card is in your memory, you may pay the cost. If you do, select up to 3 «Adventurer» characters in your waiting room and place them to your stock in any order.
+Text Look at up to the top 4 cards of your deck, choose up to 1 «Adventurer» character among them, reveal it, put it in your hand, and place the remaining cards in the waiting room. Put this card into memory.
+Auto: StartMainPhase
+{
+    PayCost SendFromMemoryToWaitingRoom 1 NameEquals Time to Patrol! && Other &&& SendSelf WaitingRoom
+    {
+        *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait Adventurer)
+        *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait Adventurer)
+        *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait Adventurer)
+        TargetTop Stock 3
+        Reorder
+    }
+}
+Text MEMORY [Put another "Time to Patrol!" from memory into your waiting room, put this card in your waiting room] At the beginning of your main phase, if this card is in your memory, you may pay the cost. If you do, select up to 3 «Adventurer» characters in your waiting room and place them to your stock in any order.
 EndCard
 
 Event: LOD/S74-096
@@ -1986,14 +2140,35 @@ Level 2
 Cost 0
 Effect:
 {
-
+    TargetLocation Stage
+    NarrowTargets Not HasMarker
+    ChooseCharacterFromTargets Choose a character to put this card underneath as a marker.
+    SaveTargets
+    TargetSelf
+    MarkerTargetsUnderSavedTarget_FaceUp
+    If LocationContains WaitingRoom 2 IsClimax
+    {
+        SearchDeck IsCharacter
+        Discard 1 Any
+    }
 }
-Text When this card is placed into the waiting room from marker, if the number of «Adventurer» characters you have is 2 or more, Put this card into memory.
-Effect:
+Text Choose 1 of your characters without marker underneath, put this card face up underneath that card as a marker. If you have 2 or more climax in waiting room, search your deck for up to 1 character, reveal it, put it in your hand, choose 1 card from your hand, put it into waiting room, and shuffle your deck.
+Auto: OnSentFromAToB Marker WaitingRoom
 {
-
+    If StageContains 2 HasTrait Adventurer
+    {
+        MoveCard Memory
+    }
 }
-Text MEMORY At the beginning of your main phase, if this card is in your memory, return it to your hand.
+Quick
+Text Auto: When this card is placed from marker to waiting room, if the number of «Adventurer» characters you have is 2 or more, put this card into memory.
+Auto: StartMainPhase
+{
+    MoveCard Hand
+}
+Quick
+InMemory
+Text Auto: MEMORY At the beginning of your main phase, if this card is in your memory, return it to your hand.
 EndCard
 
 Climax: LOD/S74-097
@@ -2017,8 +2192,7 @@ EndCard
 Climax: LOD/S74-100
 Name Alice's Tea Party
 JPName アリスのお茶会
-Color B
-
+*BlueStockSoul
 EndCard
 
 Character: LOD/S74-101
@@ -2030,9 +2204,12 @@ Cost 0
 Power 5000
 Soul 1
 Trait1 Adventurer
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn && AllYourCharacters HasTrait Adventurer
+    {
+        GainPower 2000
+    }
 }
 Text Cont: During your turn, if all your characters are «Adventurer», this card gets +2000 power.
 EndCard
@@ -2047,9 +2224,14 @@ Power 2500
 Soul 1
 Trait1 Adventurer
 Trait2 Love
-Auto:
+Auto: OnAttack
 {
-
+    TargetLocation Stage
+    NarrowTargets Other && HasTrait Adventurer
+    ChooseCharacterFromTargets Choose a character to give power to.
+    SetXValue TargetCardsSoul
+    MultiplyXValue 1000
+    GainPower X
 }
 Text Auto: When this card attacks, choose 1 of your other «Adventurer» characters, and that character gets +X power until end of turn. X equals 1000 times soul of that character.
 EndCard
@@ -2065,16 +2247,8 @@ Power 6000
 Soul 1
 Trait1 Adventurer
 Trait2 Science
-Cont:
-{
-
-}
-Text Cont: This card gets +1000 power for each of your other «Adventurer» characters
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put a «Adventurer» character from your hand to the waiting room]
+*GainPowerForEachOther(1000,Adventurer)
+*HandEncoreTrait(Adventurer)
 EndCard
 
 Character: LOD/S74-104
@@ -2088,11 +2262,7 @@ Power 6500
 Soul 1
 Trait1 Adventurer
 Trait2 Kenjutsu
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is higher than the level of your opponent, you may put that character on the bottom of the deck.
+*BlueEarlyPlayBomb
 EndCard
 
 Character: LOD/S74-P01
@@ -2105,33 +2275,41 @@ Power 1500
 Soul 1
 Trait1 Adventurer
 Trait2 Queen
-Auto:
+*OnPlayCheckTopAddDiscard(Adventurer)
+Auto: OnPlay
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's an «Adventurer» character, put it in your hand and discard a card from your hand to the waiting room.
-Auto:
-{
-
+    Mill 2
+    NarrowTargets IsClimax
+    If HasTarget
+    {
+        TargetSelf
+        GainPower 3000
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there were at least 1 climax among them, this card gets +3000 power until end of turn.
 EndCard
 
 Character: LOD/S74-P02
-Name GetCard!!!
-JPName 双生の天使 サリエル＆ミカエル
-Color B
-Level 1
-Cost 0
-Power 4000
-Soul 1
+Name Friendship Beyond Species, Sandra & Fel
+JPName 種を超えた友情 サンドラ＆フェル
+Color Y
+Level 3
+Cost 2
+Power 10000
+Soul 2
+Trigger Soul
 Trait1 Adventurer
-Trait2 Angel
-Auto:
+Cont: GiveSelf
 {
-
+    If MyTurn
+    {
+        SetXToNumberOfCharacters Other && HasTrait Adventurer
+        MultiplyXValue 500
+        GainPower X
+    }
 }
-Text Auto: When your other «Adventurer» character attacks, this card gets +2000 power until end of turn.
+Text Cont: During your turn, this card gets +500 power for each of your other «Adventurer» characters.
+*OnPlayCheckX(Adventurer)
 EndCard
 
 Character: LOD/S74-P03
@@ -2144,11 +2322,32 @@ Power 4000
 Soul 1
 Trait1 Adventurer
 Trait2 Angel
-Auto:
-{
+*GainPowerWhenOtherAttacks(2000,Adventurer)
+EndCard
 
+Character: LOD/S74-P04
+Name Playing by the Waterfront, Elena
+JPName 水辺の戯れ エレーナ
+Color B
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Adventurer
+Trait2 Kenjutsu
+Auto: OnUseEvent
+{
+    IfOther NameEquals Item "Knight's Sword"
+    {
+        *GiveCharacterPower(2000,Any)
+    }
+    Else
+    {
+        RefundTimesPerTurn
+    }
 }
-Text Auto: When your other «Adventurer» character attacks, this card gets +2000 power until end of turn.
+TimesPerTurn 1
+Text Auto: This ability activates up to once per turn. When you use "Item "Knight's Sword"", choose 1 of your characters and that character gets +2000 power until end of turn. 
 EndCard
 
 Character: LOD/S74-T01
@@ -2161,14 +2360,10 @@ Power 1000
 Soul 1
 Trait1 Adventurer
 Trait2 Maid
-Cont:
+*500Assist
+Act: 1 SendSelf WaitingRoom
 {
-
-}
-Text Cont: ASSIST Your characters in front of this card get +500 power.
-Act:
-{
-
+    *Check4Add1(Adventurer)
 }
 Text Act: [(1) Put this card in the waiting room] Look at up to the top 4 cards of your deck, choose up to 1 «Adventurer» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
@@ -2183,14 +2378,10 @@ Power 1500
 Soul 1
 Trait1 Adventurer
 Trait2 Love
-Auto:
+*OnPlayTradeClimaxForCharacter(Adventurer)
+Act: 1 SendSelf WaitingRoom
 {
-
-}
-Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose an «Adventurer» character in your waiting room and return it to your hand.
-Act:
-{
-
+    SearchWaitingRoom NameEquals Item "Knight's Sword"
 }
 Text Act: [(1) Put this card in the waiting room] Choose an 'Item "Knight's Sword"' in your waiting room and return it to your hand.
 EndCard
@@ -2205,11 +2396,7 @@ Power 2000
 Soul 1
 Trait1 Adventurer
 Trait2 Gun
-Cont:
-{
-
-}
-Text Cont: If the number of other «Adventurer» characters you have is 2 or more, this card gets +2000 power.
+*GainPowerWithEnoughCharacters(2000,2,Adventurer)
 EndCard
 
 Character: LOD/S74-T04
@@ -2222,16 +2409,16 @@ Power 3000
 Soul 1
 Trait1 Adventurer
 Trait2 Gun
-Auto:
+Auto: OnPlay
 {
-
+    If StageContains 1 Other && HasTrait Adventurer
+    {
+        GainPower 2000
+    }
 }
+Quick
 Text Auto: When this card is placed on the stage from your hand, if you have another «Adventurer» character, this card gets +2000 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, you may reverse that character.
+*RedLevel1Bomb
 EndCard
 
 Character: LOD/S74-T05
@@ -2243,14 +2430,28 @@ Cost 0
 Power 4500
 Soul 1
 Trait1 Adventurer
-Cont:
+Combo Adventure's Beginning
+Cont: GiveSelf
 {
-
+    If MyTurn
+    {
+        SetXToNumberOfCharacters Other && HasTrait Adventurer
+        MultiplyXValue 500
+        GainPower X
+    }
 }
-Text Cont: During your turn, this card gets +500 power for each of your other «Adventurer» characters
-Auto:
+Text Cont: During your turn, this card gets +500 power for each of your other «Adventurer» characters.
+Auto: OnAttack
 {
-
+    If Climax Adventure's Beginnin
+    {
+        TargetTop Deck 1
+        Reveal
+        IfTarget IsCharacter && HasTrait Adventurer || NameEquals Item "Knight's Sword"
+        {
+            MoveCard Hand
+        }
+    }
 }
 Text Auto: CxCombo When this card attacks, if "Adventure's Beginning" is in your climax area, reveal the top card of your deck. If it's a «Adventurer» character or 'Item "Knight's Sword"', put it in your hand.
 EndCard
@@ -2266,14 +2467,10 @@ Power 5000
 Soul 1
 Trait1 Adventurer
 Trait2 Heal
-Cont:
+*1000Assist
+Act: 2 RestSelf
 {
-
-}
-Text Cont: ASSIST Your characters in front of this card get +1000 power.
-Act:
-{
-
+    SearchDeck IsCharacter && HasTrait Adventurer
 }
 Text Act: [(2) Rest this card] Search your deck for up to 1 «Adventurer» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -2289,16 +2486,8 @@ Power 7500
 Soul 2
 Trait1 Adventurer
 Trait2 Dragon
-Auto:
-{
-
-}
-Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 1000 times the number of your other «Adventurer» characters.
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put a «TRAIT» character from your hand to the waiting room]
+*OnAttackGainPowerForEachOther(1000,Adventurer)
+*HandEncoreTrait(Adventurer)
 EndCard
 
 Character: LOD/S74-T08
@@ -2312,16 +2501,8 @@ Power 9500
 Soul 2
 Trait1 Adventurer
 Trait2 Science
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, choose 1 of your «Adventurer» characters, and that character gets +X power until end of turn. X equals 500 times the number of your «Adventurer» characters.
+*Healer
+*OnAttackGivePowerForEachOther(500,Adventurer)
 EndCard
 
 Climax: LOD/S74-T09
@@ -2340,16 +2521,8 @@ Power 500
 Soul 1
 Trait1 Adventurer
 Trait2 Angel
-Cont:
-{
-
-}
-Text Cont: All your other "Friend of Fel, Sandra" get +1000 power.
-Auto:
-{
-
-}
-Text Auto: BOND/"Friend of Fel, Sandra" [Put the top card of your deck in your clock]
+*GiveNamePower(1000,Friend of Fel\, Sandra)
+*BondClock(Friend of Fel\, Sandra)
 EndCard
 
 Character: LOD/S74-T11
@@ -2361,16 +2534,8 @@ Cost 0
 Power 1000
 Soul 1
 Trait1 Adventurer
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's an «Adventurer» character, put it in your hand and discard a card from your hand to the waiting room.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, draw up to 1 card.
+*OnPlayCheckTopAddDiscard(Adventurer)
+*Act1RestSelfDrawBrainstorm
 EndCard
 
 Character: LOD/S74-T12
@@ -2383,16 +2548,8 @@ Power 3000
 Soul 1
 Trait1 Adventurer
 Trait2 Kenjutsu
-Cont:
-{
-
-}
-Text Cont: This cannot side attack.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, choose 1 of your other «Adventurer» characters, and that character gets +X power until end of turn. X equals 500 times the number of your other «Adventurer» characters.
+*CannotSideAttack
+*OnAttackGivePowerForEachOther(500,Adventurer)
 EndCard
 
 Character: LOD/S74-T13
@@ -2405,16 +2562,15 @@ Power 4000
 Soul 1
 Trait1 Adventurer
 Trait2 Knight
-Cont:
+Cont: GiveSelf
 {
-
+    If HasMarkerWhere Not FaceDown
+    {
+        GainPower 2000
+    }
 }
-Text Cont: If there is a face up marker under this card, this card gets +2000 power.
-Auto:
-{
-
-}
-Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Adventurer» character, reveal it, put it in your hand, and shuffle your deck.
+Text Cont: If there is a face up marker underneath this card, this card gets +2000 power.
+*DropSearch(Adventurer)
 EndCard
 
 Character: LOD/S74-T14
@@ -2428,11 +2584,7 @@ Power 1000
 Soul 1
 Trait1 Adventurer
 Trait2 Expedition
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 2500, level 1 [(1) Put this card from your hand to the waiting room]
+Backup 2500
 EndCard
 
 Character: LOD/S74-T15
@@ -2457,16 +2609,24 @@ Trigger Soul
 Power 7500
 Soul 1
 Trait1 Adventurer
-Cont:
+Combo Adventure's Beginning
+Cont: GiveSelf
 {
-
+    If HasMarkerWhere ColorIs Blue
+    {
+        GainPower 1000
+    }
 }
-Text Cont: If there is a Blue marker under this card, this card gets +1000 power.
-Auto:
+Text Cont: If there is a Blue marker underneath this card, this card gets +1000 power.
+Auto: OnReverseOpponent
 {
-
+    If Climax Adventure's Beginning
+    {
+        *OptionalDraw
+        *OptionalBlindStock
+    }
 }
-Text Auto: CxCombo When this card's battle opponent becomes reverse, if "NAME" is in your climax area, draw up to 1 card, and put up to 1 card from the top of your deck in your stock.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Adventure's Beginning" is in your climax area, draw up to 1 card, and put up to 1 card from the top of your deck in your stock.
 EndCard
 
 Character: LOD/S74-T17
@@ -2480,15 +2640,25 @@ Power 9500
 Soul 2
 Trait1 Adventurer
 Trait2 Knight
-Cont:
+Cont: GiveSelf
 {
-
+    If HasMarkerWhere ColorIs Blue
+    {
+        GainPower 2000
+    }
 }
-Text Cont: If there is a Blue marker under this card, this card gets +2000 power.
-Auto:
+Text Cont: If there is a Blue marker underneath this card, this card gets +2000 power.
+Auto: OnReverseOpponent
 {
-
+    If PlayedThisTurn
+    {
+        PayCost 3 Discard 1 Any
+        {
+            Stand
+        }
+    }
 }
+TimesPerTurn 1
 Text Auto: [(3) Put 1 card from your hand to the waiting room] This ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, stand this card.
 EndCard
 
@@ -2500,30 +2670,37 @@ Level 1
 Cost 0
 Effect:
 {
-
+    TargetLocation Stage
+    NarrowTargets Not HasMarker
+    ChooseCharacterFromTargets Choose a character to put this card underneath as a marker.
+    SaveTargets
+    TargetSelf
+    MarkerTargetsUnderSavedTarget_FaceUp
+    LoadTargets
+    GainPower 1000
 }
-Text When this card is placed into the waiting room from marker, if the number of «Adventurer» characters you have is 2 or more, Put this card into memory.
-Effect:
+Text Choose 1 of your characters without marker underneath, put this card face up underneath that card as a marker and that character gets +1000 power until end of turn.
+Auto: OnSentFromAToB Marker WaitingRoom
 {
-
+    If StageContains 2 HasTrait Adventurer
+    {
+        MoveCard Memory
+    }
 }
-Text MEMORY At the beginning of your main phase, if this card is in your memory, return it to your hand.
+Quick
+Text Auto: When this card is placed from marker to waiting room, if the number of «Adventurer» characters you have is 2 or more, put this card into memory.
+Auto: StartMainPhase
+{
+    MoveCard Hand
+}
+Quick
+InMemory
+Text Auto: MEMORY At the beginning of your main phase, if this card is in your memory, return it to your hand.
 EndCard
 
-Character: LOD/S74-T19
+Climax: LOD/S74-T19
 Name Adventure Continent Melchior, Land of the Beginning
 JPName はじまりの地 冒険大陸メルキオール
-Color B
-Level 0
-Cost 0
-Trigger Draw
-Power 0
-Soul 0
-Trait1 No Traits
-Cont:
-{
-
-}
-Text Cont: All your characters get +1000 power and +1 soul.
+*BookClimax
 EndCard
 
