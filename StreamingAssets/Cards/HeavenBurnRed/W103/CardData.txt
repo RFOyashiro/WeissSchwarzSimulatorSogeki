@@ -2182,7 +2182,18 @@ Auto: StartOpponentAttackPhase
             IfTarget Compare ThatCardsLevel 2 OrMore && IsCharacter || NameEquals Addicting Music
             {
                 TargetSelf
-                *GainBounceWhenFrontalAttacked
+                GainEffect
+                {
+                    Auto: OnFrontalAttacked
+                    {
+                        Question Return the attacked target to your hand?
+                        If Yes
+                        {
+                            MoveCard Hand
+                        }
+                    }
+                    Text Auto: When this card is frontal attacked, you may return this card to your hand.
+                }
             }
         }
     }

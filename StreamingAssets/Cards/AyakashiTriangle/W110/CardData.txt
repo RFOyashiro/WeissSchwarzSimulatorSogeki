@@ -964,11 +964,13 @@ Auto: OnPlay
         If Yes
         {
             SearchLocationForTargets WaitingRoom 1 1 IsCharacter && HasTrait Omiko City
-            SaveTargets
-            TargetBottom Clock 1
-            RevealTargets
-            AddSavedToCurrentTargets
-            Exchange
+            If HasTarget
+            {
+                SaveTargets
+                TargetBottom Clock 1
+                AddSavedToCurrentTargets
+                Exchange
+            }
         }
     }
 }
@@ -2344,8 +2346,10 @@ Effect:
             GainSpecialEffect NoBackupOnAttack
         }
     }
+    TargetSelf
+    MoveCard Stock
 }
-Text Choose up to 2 of your «Omiko City» characters and those characters get the following ability until end of turn. "Cont: During battles involving this card, your opponent may not play BACKUP from hand."\nPut this card in your stock.
+Text Choose up to 2 of your «Omiko City» characters and those characters get the following ability until end of turn. "Cont: During battles involving this card, your opponent may not play "BACKUP" from hand."\nPut this card in your stock.
 EndCard
 
 Climax: AYT/W110-097
