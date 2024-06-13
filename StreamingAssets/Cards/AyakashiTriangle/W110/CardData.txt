@@ -869,11 +869,11 @@ Auto: OnPlay
 {
     PayCost Discard 1 Any
     {
-        SearchWaitingRoom NameEquals Secret Art "Gender exchange Awakened"
+        SearchWaitingRoom NameEquals Secret Art "Gender Swap Awakened"
     }
 }
-Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 'Secret Art "Gender exchange Awakened"' in your waiting room and return it to your hand.
-Act: 1 SendFromWaitingRoom 1 Memory NameEquals Secret Art "Gender exchange Awakened" &&& SendSelf WaitingRoom
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 'Secret Art "Gender Swap Awakened"' in your waiting room and return it to your hand.
+Act: 1 SendFromWaitingRoom 1 Memory NameEquals Secret Art "Gender Swap Awakened" &&& SendSelf WaitingRoom
 {
     If Compare MyLevel 2 OrMore
     {
@@ -884,7 +884,7 @@ Act: 1 SendFromWaitingRoom 1 Memory NameEquals Secret Art "Gender exchange Awake
         }
     }
 }
-Text Act: [(1) Send 1 'Secret Art "Gender exchange Awakened"' from your waiting room to memory, put this card in the waiting room] If you are level 2 or higher, choose 1 "Exposing His Power, Shirogane" in your waiting room and put it in the position this card was in.
+Text Act: [(1) Send 1 'Secret Art "Gender Swap Awakened"' from your waiting room to memory, put this card in the waiting room] If you are level 2 or higher, choose 1 "Exposing His Power, Shirogane" in your waiting room and put it in the position this card was in.
 EndCard
 
 Character: AYT/W110-036
@@ -1476,12 +1476,12 @@ Trait2 Ayakashi
 *500Assist
 Cont: GiveAll
 {
-    If LocationContains Memory 1 NameEquals Secret Art "Gender exchange Awakened" &&& Other && HasTrait Omiko City
+    If LocationContains Memory 1 NameEquals Secret Art "Gender Swap Awakened" &&& Other && HasTrait Omiko City
     {
         GainPower 1500
     }
 }
-Text Cont: MEMORY If 'Secret Art "Gender exchange Awakened"' is in your memory, all your other «Omiko City» character get +1500 power.
+Text Cont: MEMORY If 'Secret Art "Gender Swap Awakened"' is in your memory, all your other «Omiko City» character get +1500 power.
 EndCard
 
 Character: AYT/W110-060
