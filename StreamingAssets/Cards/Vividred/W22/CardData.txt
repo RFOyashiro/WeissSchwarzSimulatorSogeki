@@ -340,7 +340,29 @@ Counter
 Effect:
 {
     *GiveCharacterPower(4000,Shield)
-    //ToDo
+    ClearTargets
+    RememberTargets
+    ScheduleEffectUntilEndOfTurn OnCancel
+    {
+        Effect:
+        {
+            TargetRemembered
+            If Not HasTarget
+            {
+                Burn 1
+            }
+        }
+        Quick
+    }
+    ScheduleEffectUntilEndOfTurn OnReceiveDamage
+    {
+        Effect:
+        {
+            TargetSelf
+            RememberTargets
+        }
+        Quick
+    }
 }
 Text COUNTER Choose 1 of your «Shield» characters, and that character gets +4000 power until end of turn. The next time you are dealt damage this turn, if that damage is canceled, deal 1 damage to your opponent.
 EndCard
