@@ -631,7 +631,7 @@ Cont: Alarm
 {
 	SetXValue CardsInStock
 	MultiplyXValue 500
-	If NameEquals Noise (Episode 4)
+	If NameEquals Noise (Episode 4) && InLocation Stage
 	{
 		GainPower X
 	}
