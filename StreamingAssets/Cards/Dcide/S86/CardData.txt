@@ -2556,6 +2556,7 @@ Level 3
 Cost 2
 Power 9500
 Soul 2
+Trigger Soul
 Trait1 Knocker Up
 Trait2 Weapon
 *EarlyPlay2OrLessClimax
