@@ -78,7 +78,7 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Family
-Trait2 Gem
+Trait2 Jewel
 Cont: GiveAll
 {
     If StageContainsOrLess 1 Other &&& Other
@@ -188,7 +188,7 @@ Cost 0
 Power 5000
 Soul 1
 Trait1 Family
-Trait2 Gem
+Trait2 Jewel
 Cont: GiveSelf
 {
     If MyTurn
@@ -360,7 +360,7 @@ Trigger Soul
 Power 7500
 Soul 1
 Trait1 Family
-Trait2 Gem
+Trait2 Jewel
 *GainPowerWithEnoughCharacters(1000,3,Family|Kindergarten)
 *ClockEncore
 EndCard
@@ -1081,7 +1081,7 @@ Cost 0
 Power 500
 Soul 1
 Trait1 Family
-Trait2 Gem
+Trait2 Jewel
 *OnPlayScry
 *Bond1(Driver\, Shinnosuke)
 EndCard
@@ -1279,7 +1279,7 @@ Cost 0
 Power 5500
 Soul 1
 Trait1 Family
-Trait2 Gem
+Trait2 Jewel
 EndCard
 
 Character: CS/S28-069
@@ -1650,7 +1650,7 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Family
-Trait2 Gem
+Trait2 Jewel
 *GlobalPower(500,Family)
 EndCard
 
@@ -2201,7 +2201,7 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Family
-Trait2 Gem
+Trait2 Jewel
 Backup 1500
 EndCard
 
@@ -2214,7 +2214,7 @@ Cost 0
 Power 4500
 Soul 1
 Trait1 Family
-Trait2 Gem
+Trait2 Jewel
 *DropSearch(Family|Kindergarten)
 EndCard
 
@@ -2252,7 +2252,7 @@ Trigger Soul
 Power 8500
 Soul 1
 Trait1 Family
-Trait2 Gem
+Trait2 Jewel
 EndCard
 
 Character: CS/S28-T09
