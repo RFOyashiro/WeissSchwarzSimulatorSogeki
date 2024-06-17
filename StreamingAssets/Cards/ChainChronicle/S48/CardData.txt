@@ -1,0 +1,2541 @@
+Character: CC/S48-001
+Name Witch of Fate, Fatima
+JPName 運命の魔女 ファティマ
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Mana
+Trait2 Magic
+Auto: OnPlay
+{
+    PayCost 1 Discard 1 Any
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give the effect.
+        GainEffect
+        {
+            *OnCancelBurn1
+        }
+    }
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
+Auto: OnDamageCanceled
+{
+    If PlayedThisTurn
+    {
+        *OptionalBurn(1)
+    }
+}
+TimesPerTurn 1
+Text Auto: This ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when the damage dealt by this card is canceled, you may deal 1 damage to your opponent.
+EndCard
+
+Character: CC/S48-002
+Name Magic Corps Commander, Werner
+JPName 魔法兵団師団長 ヴェルナー
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Mana
+Trait2 Magic
+Combo Burn!!
+*OnPlayCheck3
+Auto: OnAttack
+{
+    If Climax Burn!! && Compare AttacksThisTurn 3 Exactly
+    {
+        GainPower 2000
+        GainEffect
+        {
+            Auto: OnDamageCanceled
+            {
+                If StageContains 4 Other && ColorIs Yellow
+                {
+                    PayCost 3
+                    {
+                        Burn 1
+                        Burn 4
+                    }
+                }
+            }
+            TimesPerTurn 1
+            Text Auto: [(3)] This ability activates up to once per turn. When damage dealt by this card is cancelled, if the number of other Yellow characters you have is 4 or more, you may pay the cost. If you do, deal 1 damage to your opponent, and deal 4 damage to your opponent.
+        }
+    }
+}
+Text Auto: CxCombo When this card attacks, if "Burn!!" is in your climax area and this is the 3rd attack of the turn, this card gets +2000 power and the following ability until end of turn. "Auto: [(3)] This ability activates up to once per turn. When damage dealt by this card is cancelled, if the number of other Yellow characters you have is 4 or more, you may pay the cost. If you do, deal 1 damage to your opponent, and deal 4 damage to your opponent."
+EndCard
+
+Character: CC/S48-003
+Name Three Sages, Fatima
+JPName 三賢者 ファティマ
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Mana
+Trait2 Magic
+Auto: OnClimaxPlay
+{
+    PayCost Rest 2 Any
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give +1 soul.
+        GainSoul 1
+    }
+}
+Text Auto: [Rest 2 of your characters] When your climax is placed on your climax area, you may pay the cost. If you do, choose 1 of your characters, and that character gets +1 soul until end of turn.
+Auto: OnClimaxPlay
+{
+    RevealUpTo Deck 4
+    ChooseCardsFromTargets 0 1 IsCharacter && ColorIs Yellow
+    RevealTargets
+    MoveCard Hand
+    PutTheRestIntoTheWaitingRoom
+}
+Text Auto: [(1)] When your climax is placed on your climax area, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 Yellow character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: CC/S48-004
+Name Sage of Life, Dilma
+JPName 生命の賢者 ディルマ
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Mana
+Trait2 Magic
+Auto: OnPlay
+{
+    PayCost Discard 1 Any
+    {
+        RevealUpTo Deck 4
+        ChooseCardsFromTargets 0 1 IsCharacter && ColorIs Yellow
+        RevealTargets
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
+}
+Text Auto: [Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 Yellow character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: CC/S48-005
+Name Golden Witch, Fatima
+JPName 黄金の魔女 ファティマ
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Mana
+Trait2 Magic
+Combo To Produce New Light
+*OnPlayGainPower(1500)
+Auto: OnReverseOpponent
+{
+    If Climax To Produce New Light
+    {
+        SearchDeck IsCharacter && HasTrait Mana
+    }
+}
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "To Produce New Light" is in your climax area, search your deck for up to 1 «Mana» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: CC/S48-006
+Name Fated Swordsman, Haruaki
+JPName 宿命の剣士 ハルアキ
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+*OnPlayGainPowerForEach(500,Mana)
+EndCard
+
+Character: CC/S48-007
+Name Three Sages, Melchior
+JPName 三賢者 メルティオール
+Color Y
+Level 1
+Cost 1
+Trigger Soul
+Power 4000
+Soul 1
+Trait1 Mana
+Trait2 Magic
+Cont: Assist
+{
+    If ColorIs Yellow
+    {
+        SetXValue ThatCardsLevel
+        MultiplyXValue 500
+        GainPower X
+    }
+}
+Text Cont: ASSIST Your Yellow characters in front of this card get +X power. X equals 500 times level of that character.
+Auto: OnPlay
+{
+    PayCost Clock Discard 1 Any
+    {
+        SearchDeck IsClimax && ColorIs Yellow
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give +1 soul.
+        GainSoul 1
+    }
+}
+Text Auto: [Put the top card of your deck in your clock, discard a card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 Yellow climax, reveal it, put it in your hand, shuffle your deck, choose 1 of your characters, and that character gets +1 soul until end of turn.
+EndCard
+
+Character: CC/S48-008
+Name Three Sages, Dilma
+JPName 三賢者 ディルマ
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Mana
+Trait2 Magic
+Cont: InHand
+{
+    If StageContains 1 NameEquals Three Sages, Fatima &&& StageContains 1 NameEquals Three Sages, Melchior
+    {
+        LoseLevel 1
+    }
+}
+Text Cont: If you have "Three Sages, Fatima" and "Three Sages, Melchior", this card gets -1 level while in your hand.
+*Healer
+Auto: OnDamageCanceled
+{
+    If StageContains 1 Other && ColorIs Yellow
+    {
+        PayCost Discard 1 IsCharacter && ColorIs Yellow
+        {
+            Heal
+        }
+    }
+}
+TimesPerTurn 1
+Text Auto: [Put a Yellow character from your hand to the waiting room] This ability activates up to once per turn. When damage dealt by this card is canceled, if you have another Yellow character, you may pay the cost. If you do, put the top card of your clock in the waiting room.
+EndCard
+
+Character: CC/S48-009
+Name Lord of the Nine Territories, Shuza
+JPName 九領筆頭 シュザ
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Mana
+Trait2 Weapon
+Cont: GiveSelf
+{
+    SetXValue MarkersUnderThis
+    MultiplyXValue 1500
+    GainPower X
+    If HasMarker
+    {
+        GainEffect
+        {
+            Cont: GiveSelf
+            {
+                GainSpecialEffect NoBackupOnAttack
+            }
+            Text Cont: During battles involving this card, your opponent cannot play "BACKUP" from hand. 
+        }
+    }
+}
+Text Cont: This card gets +1500 power and the following ability for each marker underneath this card. "Cont: During battles involving this card, your opponent cannot play "BACKUP" from hand."
+*Healer
+Auto: StartMainPhase
+{
+    If InLocation CenterStage
+    {
+        SearchLocationForTargets Hand 0 1 Any
+        If HasTarget
+        {
+            Marker_FaceDown
+        }
+    }
+}
+Text Auto: At the beginning of your main phase, if this card is in the center stage, you may choose a card in your hand and put it face down underneath this card as a marker.
+EndCard
+
+Character: CC/S48-010
+Name Ninth Lord, Tsuru
+JPName 第九領主 ツル
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+*500Assist
+*DropSearch(Mana)
+EndCard
+
+Character: CC/S48-011
+Name Sage of Might, Melchior
+JPName 力の賢者 メルティオール
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Mana
+Trait2 Magic
+Combo To Produce New Light
+Auto: OnPlay
+{
+    TargetLocation Stage
+    NarrowTargets Compare ThatCardsLevel 1 OrMore
+    ChooseCharacterFromTargets Choose a character to give +1 soul.
+    GainSoul 1
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your level 1 or higher characters, and that character gets +1 soul until end of turn.
+Auto: OnSpecificClimaxPlay To Produce New Light
+{
+    PayCost SendSelf Hand
+    {
+        *GiveCharacterPower(3000,Any)
+    }
+}
+Text Auto: CxCombo [Return this card to your hand] When "To Produce New Light" is placed on your climax area, you may pay the cost. If you do, choose 1 of your characters, and that character gets +3000 power until end of turn.
+EndCard
+
+Character: CC/S48-012
+Name Fated Swordsman, Touka
+JPName 宿命の剣士 トウカ
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto: OnSentFromStageToWaitingRoom
+{
+    PayCost 1 Discard NameEquals Fated Swordsman, Haruaki
+    {
+        Heal
+    }
+}
+Text Auto: [(1) Put a "Fated Swordsman, Haruaki" from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, put the top card of your clock in the waiting room.
+*BondDiscard(Fated Swordsman\, Haruaki)
+EndCard
+
+Character: CC/S48-013
+Name Second Lord, Yoshitsugu
+JPName 第二領主 ヨシツグ
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: [Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, you may choose a cost 0 or lower character in your opponent's center stage and put it in stock. If you do, put the bottom card of your opponent's stock in the waiting room.
+EndCard
+
+Character: CC/S48-014
+Name Magic Corps Commander, Katya
+JPName 魔法兵団師団長 カティア
+Color Y
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Mana
+Trait2 Magic
+Cont:
+{
+
+}
+Text Cont: If the number of other characters in the center stage you have is 2 or more, this card gets +1000 power.
+Cont:
+{
+
+}
+Text Cont: If the number of other characters in the backstage you have is 2 or more, this card gets +1000 power.
+EndCard
+
+Character: CC/S48-015
+Name Ogre Lord Commanding the Nine Territories, Shuza
+JPName 九領を統べる鬼王 シュザ
+Color Y
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: This card gets +1000 power for each marker under this card
+Auto:
+{
+
+}
+Text Auto: At the beginning of your main phase, if this card is in the center stage, you may choose a «Mana» character in your waiting room and put it face down underneath this card as a marker.
+Auto:
+{
+
+}
+Text Auto: CxCombo When "Strength Reigns Supreme" is placed on your climax area, if this card is in your center stage and the number of other «Mana» characters you have is 2 or more, choose up to 2 «Mana» characters in your waiting room and put them face down underneath this card as a marker in any order.
+EndCard
+
+Character: CC/S48-016
+Name Magic Corps Captain, Juni
+JPName 魔法兵団隊長 ユニ
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Mana
+Trait2 Magic
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 character from your stage in the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's level 2 or higher characters, and that character gets -1 soul until end of turn.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: CC/S48-017
+Name Queen of the Lake of Sand, Ashrina
+JPName 湖都の女王 アシュリナ
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 5500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: ASSIST Your level 3 or higher characters in front of this card get +2000 power.
+Auto:
+{
+
+}
+Text Auto: [(2)] At the beginning of your draw phase, you may pay the cost. If you do, choose a "Lord of the Nine Territories, Shuza" in your hand and put it in any position on the stage.
+EndCard
+
+Character: CC/S48-018
+Name Magic Corps Captain, Clauss
+JPName 魔法兵団隊長 クラウス
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Mana
+Trait2 Magic
+Cont:
+{
+
+}
+Text Cont: During your turn, all your other "Magic Corps Commander, Katya" and "Blue Ice Sealer, Juni" get +1000 power.
+Cont:
+{
+
+}
+Text Cont: All your other «Mana» characters get +500 power.
+EndCard
+
+Character: CC/S48-019
+Name Young Commander, Katya
+JPName 若き師団長 カティア
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Mana
+Trait2 Magic
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your other «Magic» characters, and that character gets +1000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your other «Weapon» characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: CC/S48-020
+Name Fire Sprite, Lolo
+JPName 火妖精 ロロ
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If there are 3 or more cards in your clock, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's attack phase, if this card is in the middle position of your center stage, you may move this card to an open position in the center stage.
+EndCard
+
+Character: CC/S48-021
+Name Queen's Associate, Farrah
+JPName 女王の側近 ファラ
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, search your deck for up to 1 "Magical Voice, Musica" and put it Rested in any position on the stage, and shuffle your deck.
+EndCard
+
+Character: CC/S48-022
+Name Ogre Swordsman, Haruaki
+JPName 鬼剣士 ハルアキ
+Color Y
+Level 0
+Cost 0
+Power 4000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: You cannot play event or BACKUP from hand.
+EndCard
+
+Character: CC/S48-023
+Name Queen's Dagger, Khalifa
+JPName 女王の懐刀 カリファ
+Color Y
+Level 1
+Cost 0
+Power 1000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, choose 1 of your characters in battle, and that character gets +X power until end of turn. X equals 1000 times the number of your reversed characters.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 500, level 1 [Put this card from your hand to the waiting room]
+EndCard
+
+Character: CC/S48-024
+Name Shura Swordsman, Shido
+JPName 修羅の剣士 シドウ
+Color Y
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: This cannot be chosen as target of opponent's effects.
+Cont:
+{
+
+}
+Text Cont: Your other character in the middle position of your center stage gets +1500 power.
+Auto:
+{
+
+}
+Text Auto: [(1) Put this card face down underneath the battling character as a marker] When your other character with "Shuza" in its card name that has a marker becomes reversed in battle, if this card is in the backstage, you may pay the cost. If you do, Rest that character.
+EndCard
+
+Character: CC/S48-025
+Name Combustion Sealer, Werner
+JPName 炎の刻印者 ヴェルナー
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Mana
+Trait2 Magic
+Auto:
+{
+
+}
+Text Auto: When the battle opponent of your other Yellow characters becomes reversed, this card gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+EndCard
+
+Character: CC/S48-026
+Name Blue Ice Sealer, Juni
+JPName 氷の刻印者 ユニ
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Mana
+Trait2 Magic
+Auto:
+{
+
+}
+Text Auto: [(1)] During your turn, when this card's battle opponent becomes reverse, you may pay the cost. If you do, choose 1 of your opponent's level 3 or lower characters. That character does not stand during your opponent's next stand phase.
+EndCard
+
+Character: CC/S48-027
+Name Blood of Shura, Yoshitsugu
+JPName 修羅の血 ヨシツグ
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: During your turn, if there are 3 or more cards in your clock, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the character facing this card is level 3 or higher, this card gets +4000 power and +1 soul until end of turn.
+EndCard
+
+Event: CC/S48-028
+Name Ark, Blade That Cuts Through the Darkness
+JPName 闇を引き裂く刃 方舟
+Color Y
+Level 2
+Cost 2
+Effect:
+{
+
+}
+Text Choose 1 of your standing «Mana» characters and Rest it. If you do, return the character in your opponent's center stage Center position and all characters in your opponent's backstage to hand.
+EndCard
+
+Climax: CC/S48-029
+Name Burn!!
+JPName 爆ぜろぉ！！
+Color Y
+
+EndCard
+
+Climax: CC/S48-030
+Name To Produce New Light
+JPName 新たな光を生むために
+Color Y
+
+EndCard
+
+Climax: CC/S48-031
+Name Strength Reigns Supreme
+JPName 強さこそが至上
+*WindClimax
+EndCard
+
+Character: CC/S48-032
+Name Fearless Smile, Black King
+JPName 不敵な笑み 黒の王
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Black Army
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, draw up to 1 card, and this card gets +2000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: CxCombo When "Dyeing Everything in Black" is placed on your climax area, if this card is in the center stage, put the top 3 cards of your deck in the waiting room. For each "Black Soldier" put in the waiting room this way, choose up to 3 cards in your opponent's waiting room and return them to the deck, and your opponent shuffles that deck.
+Auto:
+{
+
+}
+Text Auto: During your turn, when the battle opponent of your other characters becomes reversed, this card gets +2000 power until the end of your opponent's next turn.
+EndCard
+
+Character: CC/S48-033
+Name Black Army, Eirneus
+JPName 黒の軍勢 エイレヌス
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Black Army
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed in battle, you may put the top card of your deck in the waiting room. If it's a "Black Soldier", you may return this card to your hand.
+EndCard
+
+Character: CC/S48-034
+Name Demon of Destruction, Eirneus
+JPName 破壊の魔神 エイレヌス
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Black Army
+Act:
+{
+
+}
+Text Act: [(1) Put 1 climax from your hand to the waiting room] Choose a card in your clock and return it to your hand, put the top card of your deck in your clock, choose 1 of your characters, and that character gets +1 level until end of turn.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 2 "Black Solider" in your waiting room and return them to your hand.
+EndCard
+
+Character: CC/S48-035
+Name Darkness of the Abyss, Blac Knight
+JPName 深淵の闇 黒騎士
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Black Army
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 500 times the number of your «Black Army» characters.
+Auto:
+{
+
+}
+Text Auto: CxCombo [(1) Put a "Black Soldier" from your hand to the waiting room] When this card attacks, if "power of Blackening" is in your climax area and you have another «Black Army» character, you may pay the cost. If you do, search your deck for up to 2 «Black Army» characters, reveal them, put them in your hand, and shuffle your deck.
+EndCard
+
+Character: CC/S48-036
+Name King Dyeing Things in Black, Black King
+JPName 黒に染める王 黒の王
+Color G
+Level 1
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 Black Army
+Cont:
+{
+
+}
+Text Cont: ASSIST If there's a marker under this card, all your «Black Army» characters in front of this card get +1500 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose 1 of your other "Black Soldier" and put it face down underneath this card as a marker.
+EndCard
+
+Character: CC/S48-037
+Name Black Knight in the Twilight
+JPName 夕闇の中で 黒騎士
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Black Army
+Cont:
+{
+
+}
+Text Cont: If there's a marker under this card, this card gets +1000 power for each of your other «Black Army» characters
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose 1 of your other "Black Soldier" and put it face down underneath this card as a marker.
+Auto:
+{
+
+}
+Text Auto: [(1)] During battles involving this card, when damage taken by you is canceled, put the top card of your deck in the waiting room. If it's a "Black Soldier", you may pay the cost. If you do, deal the same amount of damage to your opponent.
+EndCard
+
+Character: CC/S48-038
+Name Demon, Burckhardt
+JPName 魔神 ブルクハルト
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Black Army
+Cont:
+{
+
+}
+Text Cont: Your other «Black Army» character in the middle position of your center stage gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Black Army» character in your clock and return it to your hand, and put the top card of your deck in your clock.
+EndCard
+
+Character: CC/S48-039
+Name Black Soldier
+JPName 黒の兵士
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Black Army
+Cont:
+{
+
+}
+Text Cont: You may have as many copies of cards with the same name as this card in your deck.
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 0 or lower, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock.
+EndCard
+
+Character: CC/S48-040
+Name Ancient Golem, Olzada
+JPName 古のゴーレム オルツァーダ
+Color G
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Black Army
+Cont:
+{
+
+}
+Text Cont: If the number of other «Black Army» characters you have is 2 or more, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, put the top card of your deck in the waiting room. If it's a "Black Soldier", you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock.
+EndCard
+
+Character: CC/S48-041
+Name Black Army, Burckhardt
+JPName 黒の軍勢 ブルクハルト
+Color G
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Black Army
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the number of other «Black Army» characters you have is 2 or more, this card gets +2000 power until end of turn.
+EndCard
+
+Character: CC/S48-042
+Name Black Soldier of the Black Army
+JPName 黒の軍勢 黒の兵士
+Color G
+Level 1
+Cost 1
+Power 7500
+Soul 1
+Trait1 Black Army
+Cont:
+{
+
+}
+Text Cont: If there's a marker under this card, this card gets +1 level and +1500 power.
+Cont:
+{
+
+}
+Text Cont: All your characters get the following ability. "Cont: This cannot side attack."
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose 1 of your other "Black Soldier" and put it face down underneath this card as a marker.
+EndCard
+
+Character: CC/S48-043
+Name Rampaging Blade, Olzada
+JPName 乱れ飛ぶ刃 オルツァーダ
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Black Army
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, put the top card of your deck in the waiting room. If it's a "Black Soldier", you may deal 1 damage to your opponent.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Event: CC/S48-044
+Name Demon Assault
+JPName 魔神襲来
+Color G
+Level 1
+Cost 0
+Effect:
+{
+
+}
+Text Choose 1 of your standing «Black Army» characters and Rest it. If you do, search your deck for up to 2 "Black Soldier" and put them in separate positions on the stage, and shuffle your deck.
+EndCard
+
+Climax: CC/S48-045
+Name Power of Blackening
+JPName 黒化の力
+*BarClimax
+EndCard
+
+Climax: CC/S48-046
+Name Dyeing Everything in Black
+JPName 全ては黒に染まる
+Color G
+
+EndCard
+
+Character: CC/S48-047
+Name Light of Hope, Pirika
+JPName 希望の光 ピリカ
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Mana
+Trait2 Fairy
+Cont:
+{
+
+}
+Text Cont: All your other «Mana» characters get +500 power.
+Auto:
+{
+
+}
+Text Auto: [Rest this card] At the beginning of your climax phase, if this card is standing, you may pay the cost. If you do, put the top card of your deck in the waiting room. If it's a character with the same card name as a character on your stage, put that card in your stock.
+EndCard
+
+Character: CC/S48-048
+Name Live Together And Fight Together, Phoena
+JPName 共に生き、共に戦い フィーナ
+Color R
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Mana
+Trait2 Chronicle
+Cont:
+{
+
+}
+Text Cont: If the number of other «Mana» characters you have is 2 or more, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo [(1)] When "power of the Chain Chronicle" is placed on your climax area, if this card is in the center stage and there are 5 or less cards in your hand, you may pay the cost. If you do, choose up to 2 cost 0 or lower characters in your waiting room and put them in separate positions on the stage.
+EndCard
+
+Character: CC/S48-049
+Name Grasping the Light!, Yuri
+JPName 光を掴む！ ユーリ
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Light That Overwhelms the Darkness" is in your climax area, choose up to 1 character in your waiting room and return it to your hand, and this card gets +3000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [Put 3 cards from your hand to the waiting room] When this card attacks, if this card is the 3rd attack of the turn, you may pay the cost. If you do, deal 4 damage to your opponent.
+EndCard
+
+Character: CC/S48-050
+Name New Possibilities, Aram
+JPName 新たな可能性 アラム
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, draw up to 2 cards, and discard a card from your hand to the waiting room.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Light That Pierces the Darkness" is in your climax area, choose up to 1 «Mana» character in your waiting room and put it in your stock, choose up to 1 card in your opponent's waiting room and put it on top of the deck, and this card gets +1000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [(4) Put 2 cards from your hand to the waiting room] When this card attacks, if this card is the 3rd attack of the turn and the number of other «Mana» characters you have is 4 or more, you may pay the cost. If you do, stand this card.
+EndCard
+
+Character: CC/S48-051
+Name Breaking the Chains, Yuri
+JPName 鎖を断ち切る ユーリ
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: Your other character in the middle position of your center stage gets +500 power.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 character in your waiting room and return it to your hand.
+EndCard
+
+Character: CC/S48-052
+Name Hot-Blooded Arms Dealer, Dusty
+JPName 熱血武器商人 ダスティ
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: This card gets +500 power for each of your other «Mana» characters
+EndCard
+
+Character: CC/S48-053
+Name Virtuous Mercenary, Kain
+JPName 善良なる傭兵 カイン
+Color R
+Level 1
+Cost 0
+Power 6500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If the level of the character facing this card is higher than the level of this card, this card cannot frontal attack.
+EndCard
+
+Character: CC/S48-054
+Name Fervent Healer, Marina
+JPName 熱き癒し手 マリナ
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 6000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: ASSIST Your level 3 or higher character in front of this card get +2000 power.
+Act:
+{
+
+}
+Text Act: [(1) Rest this card] Choose 1 of your "Grasping the Light!, Yuri", and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your clock in the waiting room."
+EndCard
+
+Character: CC/S48-055
+Name From Darkness to Light, Yuri
+JPName 闇から光へ ユーリ
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If "Breaking the Chains, Yuri" is in your clock, this card gets -1 level while in your hand.
+Cont:
+{
+
+}
+Text Cont: If the level of the character facing this card is 3 or higher, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at up to X cards from the top of your deck, choose up to 1 of them and put it in your hand. Put the rest in the waiting room. X equals the number of your «Mana» characters.
+EndCard
+
+Character: CC/S48-056
+Name Bond of Allies, Aram
+JPName 仲間の絆 アラム
+Color S
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If there are 2 or less climax cards in your waiting room, this card gets -1 level while in your hand.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+Auto:
+{
+
+}
+Text Auto: When your opponent's card is placed in stock, if the number of other «Mana» characters you have is 2 or more, this card gets +1000 power until end of turn.
+EndCard
+
+Character: CC/S48-057
+Name Power of Bond, Pirika
+JPName 絆の力 ピリカ
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Mana
+Trait2 Fairy
+Auto:
+{
+
+}
+Text Auto: BOND/"Breaking the Chains, Yuri" [Put 1 card from your hand to the waiting room]
+Auto:
+{
+
+}
+Text Auto: BOND/"Live Together And Fight Together, Phoena" [Put 1 card from your hand to the waiting room]
+EndCard
+
+Character: CC/S48-058
+Name Turning Prayers into Power, Phoena
+JPName 祈りは力に フィーナ
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Mana
+Trait2 Chronicle
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there were at least 1 climax among them, this card gets +3000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your «Mana» characters, and that character gets +1500 power until end of turn.
+EndCard
+
+Character: CC/S48-059
+Name Universal Mage, Aludra
+JPName 万象の魔導師 アルドラ
+Color R
+Level 1
+Cost 0
+Power 2000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, if you have a «Mana» character, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 1000, level 1 [Put this card from your hand to the waiting room]
+EndCard
+
+Character: CC/S48-060
+Name White Mana, Aram
+JPName 白きマナ アラム
+Color S
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's level 2 or higher, put it in your stock.
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, you may reverse that character.
+EndCard
+
+Character: CC/S48-061
+Name Reliable Archer, Michidia
+JPName 頼れる弓兵 ミシディア
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 6500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card is placed on the stage from your hand, put the top card of your deck in the waiting room. If it's a climax card, you may pay the cost. If you do, this card gets the following ability until end of turn. "Cont: When this card attacks, you may instead choose a character in your opponent's backstage and have this card frontal attack that character as Defending character."
+Auto:
+{
+
+}
+Text Auto: When your other «Mana» character attacks, this card gets +1500 power until end of turn.
+EndCard
+
+Character: CC/S48-062
+Name Guild Alliance Chairman, Gilbert
+JPName ギルド同盟議会議長 ギルバート
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: All your other "Guild Alliance Vice-Chairman, Selene" get +500 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
+Auto:
+{
+
+}
+Text Auto: BOND/"Guild Alliance Vice-Chairman, Selene" [Put the top card of your deck in your clock]
+EndCard
+
+Character: CC/S48-063
+Name Archer, Michidia
+JPName 弓使い ミシディア
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck and put it either on top of the deck or in the waiting room.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1)] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 cost 0 character in your opponent's center stage and put it in the waiting room.
+EndCard
+
+Character: CC/S48-064
+Name Excellent Assistant, Selene
+JPName 優秀な補佐役 セリーヌ
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 0 or lower, you may reverse that character.
+EndCard
+
+Character: CC/S48-065
+Name Arms Dealer of the Vice Capital, Dusty
+JPName 副都の武器商人 ダスティ
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Mana» character in your waiting room and return it to your hand.
+EndCard
+
+Character: CC/S48-066
+Name Healing Magic, Marina
+JPName 癒しの魔法 マリナ
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose a character in your opponent's center stage whose power is 1000 or lower and put it in the waiting room.
+EndCard
+
+Character: CC/S48-067
+Name Leader of the Warrior Guild, Silva
+JPName 戦士ギルド長 シルヴァ
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If there are 2 or less cards in your stock, this card gets +1 level and +1000 power.
+EndCard
+
+Character: CC/S48-068
+Name Guild Alliance Vice-Chairman, Selene
+JPName ギルド同盟副議長 セリーヌ
+Color R
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If the number of other «Mana» characters you have is 2 or more, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, if there are 3 or less cards in your stock, you may put that character on top of the deck.
+EndCard
+
+Character: CC/S48-069
+Name For the Ones Who Believed, Kain
+JPName 信じた者のために カイン
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: CC/S48-070
+Name Leader of the Magic Guild, Aludra
+JPName 魔導ギルド長 アルドラ
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Mana» characters you have is 4 or more, you may put the top card of your deck in your stock.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 1000 times the number of your other «Mana» characters.
+EndCard
+
+Character: CC/S48-071
+Name "Dragon Slayer" Vorg
+JPName “龍殺し” ヴォルグ
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is higher than the level of your opponent, you may reverse that character.
+EndCard
+
+Event: CC/S48-072
+Name Pirika's Voice
+JPName ピリカの声
+Color R
+Level 1
+Cost 1
+Effect:
+{
+
+}
+Text Choose 1 of your «Mana» characters, and that character gets +3500 power until end of turn.
+EndCard
+
+Event: CC/S48-073
+Name Roar of the Guardian Dragon
+JPName 守護竜の咆哮
+Color R
+Level 3
+Cost 4
+Effect:
+{
+
+}
+Text You may discard 2 cards from your hand to the waiting room. If you do, choose a level 3 or lower character in your opponent's center stage and put it in the waiting room.
+EndCard
+
+Climax: CC/S48-074
+Name Light That Overwhelms the Darkness
+JPName 闇を凌駕する光
+*DoorClimax
+EndCard
+
+Climax: CC/S48-075
+Name Light That Pierces the Darkness
+JPName 闇に差す光
+*DoorClimax
+EndCard
+
+Climax: CC/S48-076
+Name Power of the Chain Chronicle
+JPName チェインクロニクルの力
+Color R
+
+EndCard
+
+Character: CC/S48-077
+Name Queen of the Holy Kingdom, Juliana
+JPName 聖王 ユリアナ
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+Auto:
+{
+
+}
+Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +X power until end of turn. X equals 500 times the number of your other Blue characters.
+Auto:
+{
+
+}
+Text Auto: CxCombo [(3)] When this card attacks, if "Light of Hope in That Heart!" is in your climax area and this card is the 3rd attack of the turn, you may pay the cost. If you do, choose 1 of your other characters and this card, and they get the following ability until the end of your opponent's next turn. "Cont: character facing this card gets -2 soul."
+EndCard
+
+Character: CC/S48-078
+Name Swordmaster of Slaughter, Teresa
+JPName 殺戮の剣聖 テレサ
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: [(2) Put 1 card from your hand to the waiting room] During the turn this card is placed on the stage from your hand, when this card attacks, you may pay the cost. If you do, put the top 9 cards of your deck in the waiting room, and deal X damage to your opponent. X equals sum of the number of soul triggers of the cards put in the waiting room this way.
+Auto:
+{
+
+}
+Text Auto: When damage dealt by this card is not canceled, this card gets +2000 power until end of turn.
+EndCard
+
+Character: CC/S48-079
+Name Magical Voice, Musica
+JPName 魔法の歌声 ムジカ
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: This ability activates up to once per turn. When you use an Act: ability, choose 1 of your characters, and that character gets +500 power until end of turn.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 Blue character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: CC/S48-080
+Name to Recapture the Capital, Juliana
+JPName 王都奪還へ ユリアナ
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: CC/S48-081
+Name Blade That Protects the Queen of the Holy Kingdom, Einslot
+JPName 聖王を守る刃 アインスロット
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, choose 1 of your other Blue characters, Rest it, and move it to an open position in the backstage.
+EndCard
+
+Character: CC/S48-082
+Name Holy Savior, Lilith
+JPName 救世の聖女 リリス
+Color B
+Level 1
+Cost 0
+Power 1000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: Your other character in the middle position of your center stage gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: This ability activates up to once per turn. When you use an Act: ability, choose 1 of your Blue characters, and that character gets +1000 power until end of turn.
+Act:
+{
+
+}
+Text Act: [(2) Rest this card] Put the top card of your clock in the waiting room.
+EndCard
+
+Character: CC/S48-083
+Name Natural Sword Skills, Teresa
+JPName 天性の剣技 テレサ
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "You're Next!" is in your climax area and all your characters are Blue, look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: CC/S48-084
+Name Thousand Rivers Overseer, Vienta
+JPName 千河の指揮官 ビエンタ
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Mana
+Trait2 Magic
+Cont:
+{
+
+}
+Text Cont: All your other «Mana» characters get +500 power.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your characters, and that character gets +500 power until end of turn.
+EndCard
+
+Character: CC/S48-085
+Name Captain of the "Holy Blade" Knights, Einslot
+JPName “聖剣”騎士団団長 アインスロット
+Color B
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +X power until end of turn. X equals 500 times the number of your Blue characters.
+Act:
+{
+
+}
+Text Act: [Rest 1 of your characters] This gets +1000 power until end of turn.
+EndCard
+
+Character: CC/S48-086
+Name Legendary Songstress, Musica
+JPName 伝説の歌姫 ムジカ
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 5000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: ASSIST Your level 3 or higher characters in front of this card get +2000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo When "Song of Purification" is placed on your climax area, choose 1 of your characters, and that character gets +X power until the end of your opponent's next turn. X equals 500 times the number of your «Mana» characters.
+Act:
+{
+
+}
+Text Act: [Rest this card] All your characters get the following ability until the end of your opponent's next turn. "Cont: character facing this card cannot side attack."
+EndCard
+
+Character: CC/S48-087
+Name Maid of Holy Princess, Louise
+JPName 聖王女の侍女 ルイーゼ
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: [(1) Put this card in the waiting room] When this card is frontal attacked, you may pay the cost. If you do, choose up to 1 "Female Knight, Juliana" in your hand and put it in the position this card was in as Defending character.
+Auto:
+{
+
+}
+Text Auto: RESONATE [Reveal a "Female Knight, Juliana" from your hand] At the beginning of your climax phase, you may pay the cost. If you do, this card gets +2000 power until end of turn.
+EndCard
+
+Character: CC/S48-088
+Name Power of the Chronicle, Yggdra
+JPName 年代記の力 ユグド
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Mana
+Cont:
+{
+
+}
+Text Cont: Your other «Mana» character in the middle position of your center stage gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck and put it either on top of the deck or in the waiting room.
+EndCard
+
+Character: CC/S48-089
+Name Prayer of the Young Savior, Lilith
+JPName 幼き聖女の祈り リリス
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your «Mana» characters, and that character gets +2000 power until the end of your opponent's next turn.
+EndCard
+
+Character: CC/S48-090
+Name "Holy Guard" Knights, Wayne
+JPName “聖域”騎士団 ウェイン
+Color B
+Level 0
+Cost 0
+Power 4000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if there are 3 or more climax cards in your opponent's waiting room, Rest this card.
+EndCard
+
+Character: CC/S48-091
+Name Body Double, Louise
+JPName 影武者 ルイーゼ
+Color B
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose a "Body Double, Louise" in your waiting room and return it to your hand.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 1000, level 1 [Put this card from your hand to the waiting room]
+EndCard
+
+Character: CC/S48-092
+Name Bond of Father And Daughter, Vienta
+JPName 父娘の絆 ビエンタ
+Color B
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Mana
+Trait2 Magic
+Cont:
+{
+
+}
+Text Cont: This card gets +2000 power for each of your other "Thousand Rivers Chieftain, Rafaga" in the center stage
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Thousand Rivers Chieftain, Rafaga" and put it in any position on the stage, and shuffle your deck.
+EndCard
+
+Character: CC/S48-093
+Name Thousand Rivers Chieftain, Rafaga
+JPName 千河の氏族長 ラファーガ
+Color B
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If the number of other «Weapon» characters and 2 or more other «Magic» characters you have is 2 or more, this card gets +1500 power.
+EndCard
+
+Character: CC/S48-094
+Name Full Power Strike, Yuliana
+JPName 渾身の一撃 ユリアナ
+Color B
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If the number of other «Mana» characters you have is 2 or more, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, if there are 4 or less cards in your stock, you may put that character on the bottom of the deck.
+EndCard
+
+Character: CC/S48-095
+Name "Holy Blade" Knights, Aries
+JPName “聖剣”騎士団 アレス
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, if you have a «Mana» character, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+EndCard
+
+Character: CC/S48-096
+Name "Holy Psalm", Rowendia
+JPName “聖典”騎士団 ローエンディア
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the level of the character facing this card is 3 or higher, this card gets +6000 power until end of turn.
+Act:
+{
+
+}
+Text Act: [Rest 1 of your «Mana» characters] This gets +1000 power until end of turn.
+EndCard
+
+Event: CC/S48-097
+Name Determined to BEcome King
+JPName 王となる決意
+Color B
+Level 2
+Cost 1
+Effect:
+{
+
+}
+Text Choose 2 of your characters and Rest them. If you Rest 2 characters this way, draw a card, and all your «Mana» characters get +2000 power until end of turn.
+EndCard
+
+Climax: CC/S48-098
+Name Light of Hope in That Heart!
+JPName その心に希望の光を！
+*GateClimax
+EndCard
+
+Climax: CC/S48-099
+Name Song of Purification
+JPName 浄化の歌
+*BookClimax
+EndCard
+
+Climax: CC/S48-100
+Name You're Next!
+JPName 次はキミだ！
+Color B
+
+EndCard
+
+Character: CC/S48-101
+Name Puchi Verner
+JPName ぷちヴェルナー
+Color Y
+Level 0
+Cost 0
+Power 3500
+Soul 1
+Trait1 Mana
+Trait2 Magic
+Cont:
+{
+
+}
+Text Cont: This cannot side attack.
+EndCard
+
+Character: CC/S48-102
+Name Puchi Eirneus
+JPName ぷちエイレヌス
+Color G
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Black Army
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 1500, level 1 [Put this card from your hand to the waiting room]
+EndCard
+
+Character: CC/S48-103
+Name Puchi Phoena
+JPName ぷちフィーナ
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Mana
+Trait2 Chronicle
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
+EndCard
+
+Character: CC/S48-104
+Name Puchi Yuri
+JPName ぷちユーリ
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: This gets +1 level.
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's attack phase, you may move this card to an open position in your center stage that has an opponent's character Opposite that position.
+EndCard
+
+Character: CC/S48-105
+Name Puchi Juliana
+JPName ぷちユリアナ
+Color B
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If the number of other «Mana» characters you have is 2 or more, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put 1 character from your hand to the waiting room]
+EndCard
+
+Character: CC/S48-P01
+Name Eyes of Unwavering Determination, Yuri
+JPName 諦めない瞳 ユーリ
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If you are level 3 or higher, this card gets the following ability. "Act:
+EndCard
+
+Character: CC/S48-P02
+Name Guardian Dragon's Flaming Sword, Aram
+JPName 守護竜の焔剣 アラム
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your other «Mana» characters, and that character gets +X power until end of turn. X equals 500 times the number of your other «Mana» characters.
+EndCard
+
+Character: CC/S48-T01
+Name Along With the Hero, Phoena
+JPName 英雄とともに フィーナ
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Mana
+Trait2 Chronicle
+Cont:
+{
+
+}
+Text Cont: During your turn, all your other "Chain attack, Yuri" get +2000 power.
+Auto:
+{
+
+}
+Text Auto: BOND/"Chain attack, Yuri" [(1)]
+EndCard
+
+Character: CC/S48-T02
+Name Kind Healer, Marina
+JPName 心優しき癒し手 マリナ
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +500 power.
+Auto:
+{
+
+}
+Text Auto: [Put this card in the waiting room] When your other «Mana» character is placed from the stage to the waiting room, if this card is in the backstage, you may pay the cost. If you do, put that character Rested in the position it was in.
+EndCard
+
+Character: CC/S48-T03
+Name New Face of the Volunteer Army, Aram
+JPName 義勇軍の新顔 アラム
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When this card attacks, reveal the top card of your deck. If it's a «Mana» character, put it in your hand and discard a card from your hand to the waiting room.
+EndCard
+
+Character: CC/S48-T04
+Name New Hope, Aram
+JPName 新しい希望 アラム
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's attack phase, you may move this card to an open position in your center stage.
+EndCard
+
+Character: CC/S48-T05
+Name Chronicle User, Phoena
+JPName 年代記の使い手　フィーナ
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Mana
+Trait2 Chronicle
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at up to 2 cards from the top of your deck and put them back in the same order.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, draw up to 1 card.
+EndCard
+
+Character: CC/S48-T06
+Name Will of the World, Pirika
+JPName 世界の意思 ピリカ
+Color R
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Mana
+Trait2 Fairy
+Act:
+{
+
+}
+Text Act: [Counter] BACKUP 1500, level 1 [Put this card from your hand to the waiting room]
+EndCard
+
+Character: CC/S48-T07
+Name Big Sister-Like Archer, Michidia
+JPName 姐御肌の弓兵 ミシディア
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Auto:
+{
+
+}
+Text Auto: When your other «Mana» character attacks, this card gets +1000 power until end of turn.
+EndCard
+
+Character: CC/S48-T08
+Name Chain Attack, Yuri
+JPName チェイン攻撃 ユーリ
+Color R
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+EndCard
+
+Character: CC/S48-T09
+Name Young Knight, Kain
+JPName 若き騎士 カイン
+Color R
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: This card gets +500 power for each of your other «Mana» characters
+EndCard
+
+Character: CC/S48-T10
+Name Girl Who Owns the Chronicle, Phoena
+JPName 年代記を持つ少女 フィーナ
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 Mana
+Trait2 Chronicle
+Cont:
+{
+
+}
+Text Cont: Your other character in the middle position of your center stage gets "Auto: ENCORE
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times level of that character.
+EndCard
+
+Character: CC/S48-T11
+Name Counting on the Future, Yuri
+JPName 未来へ託す ユーリ
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 6500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: During your turn, if you have another "Mana Talent, Aram", this card gets +4000 power.
+Auto:
+{
+
+}
+Text Auto: [Put a «Mana» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose an "Mana Talent, Aram" in your waiting room and put it in any position on the stage.
+EndCard
+
+Character: CC/S48-T12
+Name Mana Talent, Aram
+JPName マナの才能 アラム
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 6500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: During your turn, if you have another "Counting on the Future, Yuri", this card gets +4000 power.
+Cont:
+{
+
+}
+Text Cont: This card gets +500 power for each of your other «Mana» characters
+EndCard
+
+Character: CC/S48-T13
+Name Yuri of the Volunteer Army
+JPName 義勇軍のユーリ
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: If this card is in the center stage, all your «Mana» characters get +1500 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo [(1)] When this card attacks, if "Light that Shows Bond" is in your climax area, you may pay the cost. If you do, this card gets +1000 power until end of turn, and you reveal the top card of your deck. If it's level 1 or lower, deal 1 damage to your opponent. If not, deal 2 damage to your opponent.
+EndCard
+
+Climax: CC/S48-T14
+Name Light that Shows Bond
+JPName 絆が見せる光
+Color R
+
+EndCard
+
+Climax: CC/S48-T15
+Name White Flash
+JPName 白き閃光
+*DoorClimax
+EndCard
+
+Character: CC/S48-T16
+Name Shield of the Holy Princess, Burckhardt
+JPName 聖王女の楯 ブルクハルト
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: character facing this card cannot move to another position.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+EndCard
+
+Character: CC/S48-T17
+Name Holy Princess, Juliana
+JPName 聖王女 ユリアナ
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, if all your characters are «Mana», this card gets +1 level and +1500 power.
+EndCard
+
+Character: CC/S48-T18
+Name Head of the Holy Paladin, Einslot
+JPName 聖騎士団総帥 アインスロット
+Color B
+Level 2
+Cost 2
+Trigger Soul
+Power 8000
+Soul 2
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, if all your characters are «Mana», this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put a «Mana» character from your hand to the waiting room]
+EndCard
+
+Character: CC/S48-T19
+Name Female Knight, Juliana
+JPName 女騎士 ユリアナ
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Mana
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, if all your characters are «Mana», this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
+EndCard
+
+Event: CC/S48-T20
+Name The Fate Starts to Turn...
+JPName 運命は廻りはじめる…
+Color B
+Level 2
+Cost 0
+Effect:
+{
+
+}
+Text Reveal the top card of your deck. If it's a «Mana» character, put it in any position on the stage.
+EndCard
+
+Climax: CC/S48-T21
+Name Retake This Castle!
+JPName この城を奪還する！
+Color B
+
+EndCard
+
