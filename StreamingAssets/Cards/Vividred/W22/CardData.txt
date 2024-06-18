@@ -2223,7 +2223,7 @@ Auto: OnHealToWaitingRoom|OnOpponentHealToWaitingRoom
 	}
 }
 Text Auto: When a card in either player's clock is put into their waiting room due to it's owner's card effect, that player may put the top 2 cards of their stock into the waiting room. If they do not, that player puts the top card of their deck into their clock.
-Auto: OnReverseOpponent
+Auto: OnReversed
 {
     If StageContains 2 Other && HasTrait Key
     {
