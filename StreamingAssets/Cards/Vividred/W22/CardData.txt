@@ -1584,7 +1584,7 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Key
-Trait2 Daughter
+Trait2 Heiress
 Cont: Assist
 {
     If HasTrait Key
@@ -1667,7 +1667,7 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Key
-Trait2 Daughter
+Trait2 Heiress
 Act: 1
 {
     DrawCard
@@ -1708,7 +1708,7 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Key
-Trait2 Daughter
+Trait2 Heiress
 Cont: GiveSelf
 {
     TargetFacing
@@ -1750,7 +1750,7 @@ Trigger Soul
 Power 8000
 Soul 2
 Trait1 Key
-Trait2 Daughter
+Trait2 Heiress
 Auto: StartClimaxPhase
 {
     PayCost 1 Discard 1 Any &&& SendSelf Memory
@@ -1797,7 +1797,7 @@ Cost 0
 Power 3000
 Soul 1
 Trait1 Key
-Trait2 Daughter
+Trait2 Heiress
 EndCard
 
 Character: VR/W22-094
@@ -1809,7 +1809,7 @@ Cost 0
 Power 5000
 Soul 1
 Trait1 Key
-Trait2 Daughter
+Trait2 Heiress
 *GainPowerWithEnoughCharacters(1000,2,Key)
 EndCard
 
@@ -2074,7 +2074,7 @@ Cost 0
 Power 3500
 Soul 1
 Trait1 Key
-Trait2 Daughter
+Trait2 Heiress
 Cont: GiveSelf
 {
     TargetLocation Level
