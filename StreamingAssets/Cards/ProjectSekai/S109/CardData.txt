@@ -2155,7 +2155,7 @@ Cont: GiveSelf
         GainColor Blue
     }
 }
-Text Cont: This gets all colors of face-up markers underneath this card.
+Text Cont: This gets all colors of face up markers underneath this card.
 Auto: OnPlay
 {
     SearchLocationForTargets WaitingRoom 1 1 Any
