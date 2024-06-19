@@ -493,7 +493,7 @@ Effect:
     }
 }
 Text Choose 1 of your characters without marker underneath, put this card face up underneath that card as a marker and put the top card of your deck into waiting room. If that is not a level 2 or higher character, that character gets +1 soul until end of turn.
-Auto: OnSentFromAToB Marker WaitingRoom
+Auto: OnSentFromMarkerToWaitingRoom
 {
     If StageContains 2 HasTrait Adventurer
     {
@@ -1282,7 +1282,7 @@ Effect:
     LosePower 500
 }
 Text Choose 1 of your characters without marker underneath, put this card face up underneath that card as a marker, Choose up to 2 of your opponent's characters and those characters get -500 power until end of turn.
-Auto: OnSentFromAToB Marker WaitingRoom
+Auto: OnSentFromMarkerToWaitingRoom
 {
     If StageContains 2 HasTrait Adventurer
     {
@@ -2153,7 +2153,7 @@ Effect:
     }
 }
 Text Choose 1 of your characters without marker underneath, put this card face up underneath that card as a marker. If you have 2 or more climax in waiting room, search your deck for up to 1 character, reveal it, put it in your hand, choose 1 card from your hand, put it into waiting room, and shuffle your deck.
-Auto: OnSentFromAToB Marker WaitingRoom
+Auto: OnSentFromMarkerToWaitingRoom
 {
     If StageContains 2 HasTrait Adventurer
     {
@@ -2680,7 +2680,7 @@ Effect:
     GainPower 1000
 }
 Text Choose 1 of your characters without marker underneath, put this card face up underneath that card as a marker and that character gets +1000 power until end of turn.
-Auto: OnSentFromAToB Marker WaitingRoom
+Auto: OnSentFromMarkerToWaitingRoom
 {
     If StageContains 2 HasTrait Adventurer
     {
