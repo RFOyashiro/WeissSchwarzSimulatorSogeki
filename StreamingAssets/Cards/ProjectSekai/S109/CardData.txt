@@ -2138,36 +2138,22 @@ Cont: GiveAll
 Text Cont: If the number of colors among characters on your stage is 4 or more, all your other «Music» characters get +X power. X equals that character's level times 500
 Cont: GiveSelf
 {
-    TargetLocation Marker
-    SaveTargets
-    NarrowTargets IsColor Yellow && Not FaceDown
-    If HasTarget
+    If HasMarkerWhere IsColor Yellow
     {
-        TargetSelf
         GainColor Yellow
     }
-    LoadTargets
-    NarrowTargets IsColor Green && Not FaceDown
-    If HasTarget
+    If HasMarkerWhere IsColor Green
     {
-        TargetSelf
         GainColor Green
     }
-    LoadTargets
-    NarrowTargets IsColor Red && Not FaceDown
-    If HasTarget
+    If HasMarkerWhere IsColor Red
     {
-        TargetSelf
         GainColor Red
     }
-    LoadTargets
-    NarrowTargets IsColor Blue && Not FaceDown
-    If HasTarget
+    If HasMarkerWhere IsColor Blue
     {
-        TargetSelf
         GainColor Blue
     }
-    LoadTargets
 }
 Text Cont: This gets all colors of face-up markers underneath this card.
 Auto: OnPlay
