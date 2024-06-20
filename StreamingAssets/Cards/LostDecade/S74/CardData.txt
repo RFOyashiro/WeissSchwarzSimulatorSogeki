@@ -181,10 +181,7 @@ Trait2 Heal
 *EarlyPlay2OrLessClimax
 Auto: OnPlay
 {
-    TargetLocation Stage
-    NarrowTargets NameEquals Guardian Angel of Aurora, Fel
-    ChooseCharacterFromTargets_Optional Choose up to 1 character to return to hand
-    MoveCard Hand
+    SearchWaitingRoom NameEquals Guardian Angel of Aurora, Fel
     TargetSelf
     GainPower 3000
 }
