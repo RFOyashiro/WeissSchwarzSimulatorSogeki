@@ -185,7 +185,7 @@ Auto: OnPlay
     TargetSelf
     GainPower 3000
 }
-Text Auto: When this card is placed on the stage from your hand, choose up to 1 "Guardian Angel of Aurora, Fel", return it to hand, and this card gets +3000 power until end of turn.
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 "Guardian Angel of Aurora, Fel" in your waiting room, return it to hand, and this card gets +3000 power until end of turn.
 Auto: OnAttack
 {
     If StageContains 4 Other && HasTrait Adventurer
@@ -498,6 +498,7 @@ Auto: OnSentFromMarkerToWaitingRoom
     }
 }
 Quick
+InWaitingRoom
 Text Auto: When this card is placed from marker to waiting room, if the number of «Adventurer» characters you have is 2 or more, put this card into memory.
 Auto: StartMainPhase
 {
@@ -1287,6 +1288,7 @@ Auto: OnSentFromMarkerToWaitingRoom
     }
 }
 Quick
+InWaitingRoom
 Text Auto: When this card is placed from marker to waiting room, if the number of «Adventurer» characters you have is 2 or more, put this card into memory.
 Auto: StartMainPhase
 {
@@ -2158,6 +2160,7 @@ Auto: OnSentFromMarkerToWaitingRoom
     }
 }
 Quick
+InWaitingRoom
 Text Auto: When this card is placed from marker to waiting room, if the number of «Adventurer» characters you have is 2 or more, put this card into memory.
 Auto: StartMainPhase
 {
@@ -2685,6 +2688,7 @@ Auto: OnSentFromMarkerToWaitingRoom
     }
 }
 Quick
+InWaitingRoom
 Text Auto: When this card is placed from marker to waiting room, if the number of «Adventurer» characters you have is 2 or more, put this card into memory.
 Auto: StartMainPhase
 {
