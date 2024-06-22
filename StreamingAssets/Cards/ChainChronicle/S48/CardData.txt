@@ -896,16 +896,22 @@ Cost 0
 Power 4500
 Soul 1
 Trait1 Black Army
-Auto:
+Combo Power of Blackening
+*OnPlayGainPowerForEach(500,Black Army)
+Auto: OnAttack
 {
-
+    If Climax Power of Blackening && StageContains 1 Other && HasTrait Black Army
+    {
+        PayCost 1 Discard 1 NameEquals Black Soldier
+        {
+            SearchLocationForTargets Deck 0 2 IsCharacter && HasTrait Black Army
+            RevealTargets
+            MoveCard Hand
+            ShuffleLocation Deck
+        }
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 500 times the number of your «Black Army» characters.
-Auto:
-{
-
-}
-Text Auto: CxCombo [(1) Put a "Black Soldier" from your hand to the waiting room] When this card attacks, if "power of Blackening" is in your climax area and you have another «Black Army» character, you may pay the cost. If you do, search your deck for up to 2 «Black Army» characters, reveal them, put them in your hand, and shuffle your deck.
+Text Auto: CxCombo [(1) Put a "Black Soldier" from your hand to the waiting room] When this card attacks, if "Power of Blackening" is in your climax area and you have another «Black Army» character, you may pay the cost. If you do, search your deck for up to 2 «Black Army» characters, reveal them, put them in your hand, and shuffle your deck.
 EndCard
 
 Character: CC/S48-036
@@ -918,14 +924,26 @@ Trigger Soul
 Power 4500
 Soul 1
 Trait1 Black Army
-Cont:
+Cont: Assist
 {
-
+    IfOwner HasMarker
+    {
+        If HasTrait Black Army
+        {
+            GainPower 1500
+        }
+    }
 }
-Text Cont: ASSIST If there's a marker under this card, all your «Black Army» characters in front of this card get +1500 power.
-Auto:
+Text Cont: ASSIST If there's a marker underneath this card, your «Black Army» characters in front of this card get +1500 power.
+Auto: OnPlay
 {
-
+    TargetLocation Stage
+    NarrowTargets NameEquals Black Soldier && Other
+    ChooseCharacterFromTargets_Optional Choose up to 1 character to put face down undearneath this card as a marker.
+    If HasTarget
+    {
+        Marker_FaceDown
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose 1 of your other "Black Soldier" and put it face down underneath this card as a marker.
 EndCard
@@ -940,19 +958,40 @@ Trigger Soul
 Power 7500
 Soul 1
 Trait1 Black Army
-Cont:
+Cont: GiveSelf
 {
-
+    If HasMarker
+    {
+        SetXToNumberOfCharacters Other && HasTrait Black Army
+        MultiplyXValue 1000
+        GainPower X
+    }
 }
-Text Cont: If there's a marker under this card, this card gets +1000 power for each of your other «Black Army» characters
-Auto:
+Text Cont: If there's a marker underneath this card, this card gets +1000 power for each of your other «Black Army» characters
+Auto: OnPlay
 {
-
+    TargetLocation Stage
+    NarrowTargets NameEquals Black Soldier && Other
+    ChooseCharacterFromTargets_Optional Choose up to 1 character to put face down undearneath this card as a marker.
+    If HasTarget
+    {
+        Marker_FaceDown
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose 1 of your other "Black Soldier" and put it face down underneath this card as a marker.
-Auto:
+Auto: OnCancel
 {
-
+    If InBattle
+    {
+        Mill 1
+        IfTarget NameEquals Black Soldier
+        {
+            PayCost 1
+            {
+                Burn LastDamageTaken
+            }
+        }
+    }
 }
 Text Auto: [(1)] During battles involving this card, when damage taken by you is canceled, put the top card of your deck in the waiting room. If it's a "Black Soldier", you may pay the cost. If you do, deal the same amount of damage to your opponent.
 EndCard
@@ -966,14 +1005,13 @@ Cost 0
 Power 1000
 Soul 1
 Trait1 Black Army
-Cont:
+*GiveMiddlePower(1000,Black Army)
+Auto: OnPlay
 {
-
-}
-Text Cont: Your other «Black Army» character in the middle position of your center stage gets +1000 power.
-Auto:
-{
-
+    SearchLocationForTargets Clock 1 1 IsCharacter && HasTrait Black Army
+    MoveCard Hand
+    TargetTop Deck 1
+    MoveCard Clock
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Black Army» character in your clock and return it to your hand, and put the top card of your deck in your clock.
 EndCard
@@ -987,16 +1025,8 @@ Cost 0
 Power 1000
 Soul 1
 Trait1 Black Army
-Cont:
-{
-
-}
-Text Cont: You may have as many copies of cards with the same name as this card in your deck.
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 0 or lower, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock.
+Army
+*GreenLevel0Bomb
 EndCard
 
 Character: CC/S48-040
@@ -1008,14 +1038,33 @@ Cost 0
 Power 4000
 Soul 1
 Trait1 Black Army
-Cont:
+*GainPowerWithEnoughCharacters(2000,2,Black Army)
+Auto: OnReversed
 {
-
-}
-Text Cont: If the number of other «Black Army» characters you have is 2 or more, this card gets +2000 power.
-Auto:
-{
-
+    TargetBattleOpponent
+    IfTarget Compare ThatCardsLevel 1 OrLess
+    {
+        Mill 1
+        IfTarget NameEquals Black Soldier
+        {
+            TargetLocation OpponentClock
+            If HasTarget
+            {
+                TargetBattleOpponent
+                IfTarget OnStage
+                {
+                    Question Put the top card of the opponent's clock into the waiting room to put the battle opponent into clock?
+                    If Yes
+                    {
+                        TargetTop OpponentClock 1
+                        MoveCard OpponentWaitingRoom
+                        TargetBattleOpponent
+                        MoveCard OpponentClock
+                    }
+                }
+            }
+        }
+    }
 }
 Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, put the top card of your deck in the waiting room. If it's a "Black Soldier", you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock.
 EndCard
@@ -1029,10 +1078,14 @@ Cost 0
 Power 5000
 Soul 1
 Trait1 Black Army
-Auto:
+Auto: OnAttack
 {
-
+    If StageContains 2 Other && HasTrait Black Army
+    {
+        GainPower 2000
+    }
 }
+Quick
 Text Auto: When this card attacks, if the number of other «Black Army» characters you have is 2 or more, this card gets +2000 power until end of turn.
 EndCard
 
@@ -1045,19 +1098,35 @@ Cost 1
 Power 7500
 Soul 1
 Trait1 Black Army
-Cont:
+Cont: GiveSelf
 {
-
+    If HasMarker
+    {
+        GainLevel 1
+        GainPower 1500
+    }
 }
-Text Cont: If there's a marker under this card, this card gets +1 level and +1500 power.
-Cont:
+Text Cont: If there's a marker underneath this card, this card gets +1 level and +1500 power.
+Cont: GiveAll
 {
-
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            GainSpecialEffect CannotSideAttack
+        }
+    }
 }
-Text Cont: All your characters get the following ability. "Cont: This cannot side attack."
-Auto:
+Text Cont: All your characters get the following ability "Cont: This cannot side attack."
+Auto: OnPlay
 {
-
+    TargetLocation Stage
+    NarrowTargets NameEquals Black Soldier && Other
+    ChooseCharacterFromTargets_Optional Choose up to 1 character to put face down undearneath this card as a marker.
+    If HasTarget
+    {
+        Marker_FaceDown
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose 1 of your other "Black Soldier" and put it face down underneath this card as a marker.
 EndCard
@@ -1072,16 +1141,16 @@ Trigger Soul
 Power 2500
 Soul 1
 Trait1 Black Army
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    Mill 1
+    IfTarget NameEquals Black Soldier
+    {
+        *OptionalBurn(1)
+    }
 }
-Text Auto: When you use this card's BACKUP, put the top card of your deck in the waiting room. If it's a "Black Soldier", you may deal 1 damage to your opponent.
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 2500, level 2 [(1) Put this card from your hand to the waiting room]
+Text Auto: When you use this card's "BACKUP", put the top card of your deck in the waiting room. If it's a "Black Soldier", you may deal 1 damage to your opponent.
+Backup 2500
 EndCard
 
 Event: CC/S48-044
@@ -1092,9 +1161,14 @@ Level 1
 Cost 0
 Effect:
 {
-
+    PayCost Rest 1 HasTrait Black Army
+    {
+        SearchLocationForTargets Deck 0 2 NameEquals Black Army
+        PlaceOnStage
+        ShuffleLocation Deck
+    }
 }
-Text Choose 1 of your standing «Black Army» characters and Rest it. If you do, search your deck for up to 2 "Black Soldier" and put them in separate positions on the stage, and shuffle your deck.
+Text Choose 1 of your standing «Black Army» characters and rest it. If you do, search your deck for up to 2 "Black Soldier" and put them in separate positions on the stage, and shuffle your deck.
 EndCard
 
 Climax: CC/S48-045
@@ -1106,8 +1180,7 @@ EndCard
 Climax: CC/S48-046
 Name Dyeing Everything in Black
 JPName 全ては黒に染まる
-Color G
-
+*GreenStockSoul
 EndCard
 
 Character: CC/S48-047
@@ -1120,14 +1193,19 @@ Power 1000
 Soul 1
 Trait1 Mana
 Trait2 Fairy
-Cont:
+*GlobalPower(500,Mana)
+Auto: StartClimaxPhase
 {
-
-}
-Text Cont: All your other «Mana» characters get +500 power.
-Auto:
-{
-
+    PayCost RestSelf
+    {
+        TargetLocation Stage
+        SaveTargets
+        Mill 1
+        IfTarget IsCharacter && SameNameAsSavedTarget
+        {
+            MoveCard Stock
+        }
+    }
 }
 Text Auto: [Rest this card] At the beginning of your climax phase, if this card is standing, you may pay the cost. If you do, put the top card of your deck in the waiting room. If it's a character with the same card name as a character on your stage, put that card in your stock.
 EndCard
@@ -1142,16 +1220,20 @@ Power 3500
 Soul 1
 Trait1 Mana
 Trait2 Chronicle
-Cont:
+Combo Power of the Chain Chronicle
+*GainPowerWithEnoughCharacters(2000,2,Mana)
+Auto: OnSpecificClimaxPlay Power of the Chain Chronicle
 {
-
+    If InLocation CenterStage && LocationContainsOrLess Hand 5 Any
+    {
+        PayCost 1
+        {
+            SearchLocationForTargets WaitingRoom 0 2 IsCharacter && Compare ThatCardsCost 0 OrLess
+            PlaceOnStage false true true false
+        }
+    }
 }
-Text Cont: If the number of other «Mana» characters you have is 2 or more, this card gets +2000 power.
-Auto:
-{
-
-}
-Text Auto: CxCombo [(1)] When "power of the Chain Chronicle" is placed on your climax area, if this card is in the center stage and there are 5 or less cards in your hand, you may pay the cost. If you do, choose up to 2 cost 0 or lower characters in your waiting room and put them in separate positions on the stage.
+Text Auto: CxCombo [(1)] When "Power of the Chain Chronicle" is placed on your climax area, if this card is in the center stage and there are 5 or less cards in your hand, you may pay the cost. If you do, choose up to 2 cost 0 or lower characters in your waiting room and put them in separate positions on the stage.
 EndCard
 
 Character: CC/S48-049
@@ -1165,19 +1247,27 @@ Power 9500
 Soul 2
 Trait1 Mana
 Trait2 Weapon
-Auto:
+Combo Light That Overwhelms the Darkness
+*Healer
+Auto: OnAttack
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
-Auto:
-{
-
+    If Climax Light That Overwhelms the Darkness
+    {
+        SearchWaitingRoom IsCharacter
+        TargetSelf
+        GainPower 3000
+    }
 }
 Text Auto: CxCombo When this card attacks, if "Light That Overwhelms the Darkness" is in your climax area, choose up to 1 character in your waiting room and return it to your hand, and this card gets +3000 power until end of turn.
-Auto:
+Auto: OnAttack
 {
-
+    If Compare AttacksThisTurn 3 Exactly
+    {
+        PayCost Discard 3 Any
+        {
+            Burn 4
+        }
+    }
 }
 Text Auto: [Put 3 cards from your hand to the waiting room] When this card attacks, if this card is the 3rd attack of the turn, you may pay the cost. If you do, deal 4 damage to your opponent.
 EndCard
@@ -1193,19 +1283,29 @@ Power 9500
 Soul 2
 Trait1 Mana
 Trait2 Weapon
-Auto:
+Combo Light That Pierces the Darkness
+*OnPlayDraw2Discard1
+Auto: OnAttack
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, draw up to 2 cards, and discard a card from your hand to the waiting room.
-Auto:
-{
-
+    If Climax Light That Pierces the Darkness
+    {
+        *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait Mana)
+        SearchLocationForTargets OpponentWaitingRoom 0 1 Any
+        MoveCard OpponentDeck
+        TargetSelf
+        GainPower 1000
+    }
 }
 Text Auto: CxCombo When this card attacks, if "Light That Pierces the Darkness" is in your climax area, choose up to 1 «Mana» character in your waiting room and put it in your stock, choose up to 1 card in your opponent's waiting room and put it on top of the deck, and this card gets +1000 power until end of turn.
-Auto:
+Auto: OnAttack
 {
-
+    If Compare AttacksThisTurn 3 Exactly && StageContains 4 Other && HasTrait Mana
+    {
+        PayCost 4 Discard 2 Any
+        {
+            Stand
+        }
+    }
 }
 Text Auto: [(4) Put 2 cards from your hand to the waiting room] When this card attacks, if this card is the 3rd attack of the turn and the number of other «Mana» characters you have is 4 or more, you may pay the cost. If you do, stand this card.
 EndCard
@@ -1220,16 +1320,8 @@ Power 1000
 Soul 1
 Trait1 Mana
 Trait2 Weapon
-Cont:
-{
-
-}
-Text Cont: Your other character in the middle position of your center stage gets +500 power.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 character in your waiting room and return it to your hand.
+*GiveMiddlePower(500,Any)
+*Act1RestSelfSalvageBrainstorm(Any)
 EndCard
 
 Character: CC/S48-052
@@ -1242,11 +1334,7 @@ Power 4500
 Soul 1
 Trait1 Mana
 Trait2 Weapon
-Cont:
-{
-
-}
-Text Cont: This card gets +500 power for each of your other «Mana» characters
+*GainPowerForEachOther(500,Mana)
 EndCard
 
 Character: CC/S48-053
@@ -1259,9 +1347,13 @@ Power 6500
 Soul 1
 Trait1 Mana
 Trait2 Weapon
-Cont:
+Cont: GiveSelf
 {
-
+    TargetFacing
+    If Compare TargetCardsLevel ThisCardsLevel GreaterThan
+    {
+        GainSpecialEffect CannotFrontalAttack
+    }
 }
 Text Cont: If the level of the character facing this card is higher than the level of this card, this card cannot frontal attack.
 EndCard
@@ -1277,14 +1369,20 @@ Power 6000
 Soul 1
 Trait1 Mana
 Trait2 Weapon
-Cont:
+*Level3Assist
+Act: 1 RestSelf
 {
-
-}
-Text Cont: ASSIST Your level 3 or higher character in front of this card get +2000 power.
-Act:
-{
-
+    TargetLocation Stage
+    NarrowTargets NameEquals Grasping the Light!, Yuri
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        Auto: OnReverseOpponent
+        {
+            *OptionalHeal
+        }
+        Text Auto: When this card's battle opponent becomes reverse, you may put the top card of your clock in the waiting room.
+    }
 }
 Text Act: [(1) Rest this card] Choose 1 of your "Grasping the Light!, Yuri", and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your clock in the waiting room."
 EndCard
@@ -1300,27 +1398,23 @@ Power 9000
 Soul 2
 Trait1 Mana
 Trait2 Weapon
-Cont:
+*EarlyPlayInClock(Breaking the Chains\, Yuri)
+Cont: GiveSelf
 {
-
-}
-Text Cont: If "Breaking the Chains, Yuri" is in your clock, this card gets -1 level while in your hand.
-Cont:
-{
-
+    TargetFacing
+    IfTarget Compare ThatCardsLevel 3 OrMore
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If the level of the character facing this card is 3 or higher, this card gets +2000 power.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, look at up to X cards from the top of your deck, choose up to 1 of them and put it in your hand. Put the rest in the waiting room. X equals the number of your «Mana» characters.
+*OnPlayCheckX(Mana)
 EndCard
 
 Character: CC/S48-056
 Name Bond of Allies, Aram
 JPName 仲間の絆 アラム
-Color S
+Color R
 Level 3
 Cost 2
 Trigger Soul
@@ -1328,20 +1422,16 @@ Power 9500
 Soul 2
 Trait1 Mana
 Trait2 Weapon
-Cont:
+*EarlyPlay2OrLessClimax
+*Healer
+Auto: OnCardEntersLocation OpponentStock
 {
-
+    If StageContains 2 Other && HasTrait Mana
+    {
+        GainPower 1000
+    }
 }
-Text Cont: If there are 2 or less climax cards in your waiting room, this card gets -1 level while in your hand.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock in the waiting room.
-Auto:
-{
-
-}
+Quick
 Text Auto: When your opponent's card is placed in stock, if the number of other «Mana» characters you have is 2 or more, this card gets +1000 power until end of turn.
 EndCard
 
@@ -1355,16 +1445,8 @@ Power 1000
 Soul 1
 Trait1 Mana
 Trait2 Fairy
-Auto:
-{
-
-}
-Text Auto: BOND/"Breaking the Chains, Yuri" [Put 1 card from your hand to the waiting room]
-Auto:
-{
-
-}
-Text Auto: BOND/"Live Together And Fight Together, Phoena" [Put 1 card from your hand to the waiting room]
+*BondDiscard(Breaking the Chains\, Yuri)
+*BondDiscard(Live Together And Fight Together\, Phoena)
 EndCard
 
 Character: CC/S48-058
@@ -1377,16 +1459,17 @@ Power 1500
 Soul 1
 Trait1 Mana
 Trait2 Chronicle
-Auto:
+Auto: OnPlay
 {
-
+    Mill 2
+    NarrowTargets IsClimax
+    If HasTarget
+    {
+        GainPower 3000
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there were at least 1 climax among them, this card gets +3000 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your «Mana» characters, and that character gets +1500 power until end of turn.
+*OnPlayGivePower(1500,Mana)
 EndCard
 
 Character: CC/S48-059
@@ -1399,16 +1482,8 @@ Power 2000
 Soul 1
 Trait1 Mana
 Trait2 Weapon
-Auto:
-{
-
-}
-Text Auto: When you use this card's BACKUP, if you have a «Mana» character, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 1000, level 1 [Put this card from your hand to the waiting room]
+*BackupBonus1000(Mana)
+Backup 1000
 EndCard
 
 Character: CC/S48-060
@@ -1421,16 +1496,17 @@ Power 2500
 Soul 1
 Trait1 Mana
 Trait2 Weapon
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget Compare ThatCardsLevel 2 OrMore
+    {
+        MoveCard Stock
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's level 2 or higher, put it in your stock.
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, you may reverse that character.
+*RedLevel1Bomb
 EndCard
 
 Character: CC/S48-061
@@ -1444,16 +1520,26 @@ Power 6500
 Soul 1
 Trait1 Mana
 Trait2 Weapon
-Auto:
+Auto: OnPlay
 {
-
+    Mill 1
+    IfTarget IsClimax
+    {
+        PayCost 1
+        {
+            GainEffect
+            {
+                Cont: GiveSelf
+                {
+                    GainSpecialEffect CanAttackBackstage
+                }
+                Text Cont: When this card attacks, you may choose a character in your opponent's backstage and frontal attack that character instead. 
+            }
+        }
+    }
 }
-Text Auto: [(1)] When this card is placed on the stage from your hand, put the top card of your deck in the waiting room. If it's a climax card, you may pay the cost. If you do, this card gets the following ability until end of turn. "Cont: When this card attacks, you may instead choose a character in your opponent's backstage and have this card frontal attack that character as Defending character."
-Auto:
-{
-
-}
-Text Auto: When your other «Mana» character attacks, this card gets +1500 power until end of turn.
+Text Auto: [(1)] When this card is placed on the stage from your hand, put the top card of your deck in the waiting room. If it's a climax card, you may pay the cost. If you do, this card gets the following ability until end of turn. "Cont: When this card attacks, you may choose a character in your opponent's backstage and frontal attack that character instead."
+*GainPowerWhenOtherAttacks(1500,Mana)
 EndCard
 
 Character: CC/S48-062
@@ -1466,16 +1552,19 @@ Power 500
 Soul 1
 Trait1 Mana
 Trait2 Weapon
-Cont:
+Cont: GiveAll
 {
-
+    If NameEquals Guild Alliance Vice-Chairman, Selene
+    {
+        GainPower 500
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
 Text Cont: All your other "Guild Alliance Vice-Chairman, Selene" get +500 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
-Auto:
-{
-
-}
-Text Auto: BOND/"Guild Alliance Vice-Chairman, Selene" [Put the top card of your deck in your clock]
+*BondClock(Guild Alliance Vice-Chairman\, Selene)
 EndCard
 
 Character: CC/S48-063
@@ -1488,14 +1577,17 @@ Power 1500
 Soul 1
 Trait1 Mana
 Trait2 Weapon
-Auto:
+*OnPlayScry
+Act: 1
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck and put it either on top of the deck or in the waiting room.
-Act:
-{
-
+    Brainstorm 4
+    Repeat BrainstormedClimax
+    {
+        TargetLocation OpponentCenterStage
+        NarrowTargets CanBeChosen && Compare ThatCardsCost 0 OrLess
+        ChooseCharacterFromTargets Choose a character to put into waiting room.
+        MoveCard OpponentWaitingRoom
+    }
 }
 Text Act: BRAINSTORM [(1)] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 cost 0 character in your opponent's center stage and put it in the waiting room.
 EndCard
@@ -1510,11 +1602,7 @@ Power 2000
 Soul 1
 Trait1 Mana
 Trait2 Weapon
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 0 or lower, you may reverse that character.
+*RedLevel0Bomb
 EndCard
 
 Character: CC/S48-065
@@ -1527,11 +1615,7 @@ Power 2000
 Soul 1
 Trait1 Mana
 Trait2 Weapon
-Auto:
-{
-
-}
-Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Mana» character in your waiting room and return it to your hand.
+*OnPlayTradeClimaxForCharacter(Mana)
 EndCard
 
 Character: CC/S48-066
@@ -1544,11 +1628,14 @@ Power 2500
 Soul 1
 Trait1 Mana
 Trait2 Weapon
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation OpponentCenterStage
+    NarrowTargets CanBeChosen && Compare ThatCardsPower 1000 OrLess
+    ChooseCharacterFromTargets_Optional Choose up to 1 character to put into waiting room.
+    MoveCard OpponentWaitingRoom
 }
-Text Auto: When this card is placed on the stage from your hand, you may choose a character in your opponent's center stage whose power is 1000 or lower and put it in the waiting room.
+Text Auto: When this card is placed on the stage from your hand, you may choose a character in your opponent's center stage whose power is 1000 or less and put it in the waiting room.
 EndCard
 
 Character: CC/S48-067
@@ -1561,9 +1648,13 @@ Power 2500
 Soul 1
 Trait1 Mana
 Trait2 Weapon
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContainsOrLess Stock 2 Any
+    {
+        GainLevel 1
+        GainPower 1000
+    }
 }
 Text Cont: If there are 2 or less cards in your stock, this card gets +1 level and +1000 power.
 EndCard
@@ -1578,15 +1669,23 @@ Power 5500
 Soul 1
 Trait1 Mana
 Trait2 Weapon
-Cont:
+*GainPowerWithEnoughCharacters(2000,2,Mana)
+Auto: OnReverseOpponent
 {
-
+    If LocationContainsOrLess Stock 3 Any
+    {
+        TargetBattleOpponent
+        IfTarget OnStage
+        {
+            Question Put this card on top of the deck ?
+            If Yes
+            {
+                MoveCard OpponentDeck
+            }
+        }
+    }
 }
-Text Cont: If the number of other «Mana» characters you have is 2 or more, this card gets +2000 power.
-Auto:
-{
-
-}
+Quick
 Text Auto: When this card's battle opponent becomes reverse, if there are 3 or less cards in your stock, you may put that character on top of the deck.
 EndCard
 
@@ -1601,11 +1700,7 @@ Power 2500
 Soul 1
 Trait1 Mana
 Trait2 Weapon
-Act:
-{
-
-}
-Text Act: [Counter] BACKUP 3000, level 2 [(1) Put this card from your hand to the waiting room]
+Backup 3000
 EndCard
 
 Character: CC/S48-070
@@ -1619,16 +1714,15 @@ Power 7000
 Soul 1
 Trait1 Mana
 Trait2 Weapon
-Auto:
+Auto: OnPlay
 {
-
+    If StageContains 4 Other && HasTrait Mana
+    {
+        *OptionalBlindStock
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, if the number of other «Mana» characters you have is 4 or more, you may put the top card of your deck in your stock.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 1000 times the number of your other «Mana» characters.
+*OnAttackGainPowerForEachOther(1000,Mana)
 EndCard
 
 Character: CC/S48-071
@@ -1642,11 +1736,7 @@ Power 7500
 Soul 1
 Trait1 Mana
 Trait2 Weapon
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is higher than the level of your opponent, you may reverse that character.
+*RedEarlyPlayBomb
 EndCard
 
 Event: CC/S48-072
@@ -1655,11 +1745,12 @@ JPName ピリカの声
 Color R
 Level 1
 Cost 1
+Counter
 Effect:
 {
-
+    *GiveCharacterPower(3500,Mana)
 }
-Text Choose 1 of your «Mana» characters, and that character gets +3500 power until end of turn.
+Text COUNTER Choose 1 of your «Mana» characters, and that character gets +3500 power until end of turn.
 EndCard
 
 Event: CC/S48-073
@@ -1668,11 +1759,18 @@ JPName 守護竜の咆哮
 Color R
 Level 3
 Cost 4
+Counter
 Effect:
 {
-
+    PayCost Discard 2 Any
+    {
+        TargetLocation OpponentCenterStage
+        NarrowTargets CanBeChosen && Compare ThatCardsLevel 3 OrLess
+        ChooseCharacterFromTargets Choose a character to put into waiting room.
+        MoveCard OpponentWaitingRoom
+    }
 }
-Text You may discard 2 cards from your hand to the waiting room. If you do, choose a level 3 or lower character in your opponent's center stage and put it in the waiting room.
+Text COUNTER You may discard 2 cards from your hand to the waiting room. If you do, choose a level 3 or lower character in your opponent's center stage and put it in the waiting room.
 EndCard
 
 Climax: CC/S48-074
@@ -1690,8 +1788,7 @@ EndCard
 Climax: CC/S48-076
 Name Power of the Chain Chronicle
 JPName チェインクロニクルの力
-Color R
-
+*RedStockSoul
 EndCard
 
 Character: CC/S48-077

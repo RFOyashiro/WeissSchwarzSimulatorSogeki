@@ -27,7 +27,7 @@ Trait2 Book
 Cont: GiveSelf
 {
     TargetFacing
-    If Compare ThatCardsLevel ThisCardsLevel GreaterThan
+    If Compare TargetCardsLevel ThisCardsLevel GreaterThan
     {
         GainSpecialEffect CannotFrontalAttack
     }
