@@ -1233,7 +1233,7 @@ Trait1 Omiko City
 Trait2 Exorcist Ninja
 Cont: GiveSelf
 {
-    If StageContains 2 Other && HasTrait 
+    If StageContains 2 Other && HasTrait Omiko City
     {
         GainPower 1500
         GainEffect
@@ -1361,7 +1361,7 @@ Power 1000
 Soul 1
 Trait1 Omiko City
 Trait2 Ayakashi Medium
-Auto: OnAttack
+Auto: OnPlay|OnAttack
 {
     PayCost Discard 1 HasTrait Omiko City
     {
@@ -1859,7 +1859,7 @@ Trait2 Ayakashi Medium
 Combo Dream-like Time
 Auto: OnPlay
 {
-    PayCost SendFromWaitingRoom 1 BottomOfClock IsCharacter && HasTrait Omiko City
+    PayCost SendFromWaitingRoomToBottom 1 Clock IsCharacter && HasTrait Omiko City
     {
         DrawCard
     }
