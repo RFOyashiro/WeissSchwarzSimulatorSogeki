@@ -246,11 +246,11 @@ Power 1000
 Soul 1
 Trait1 Landosol
 Trait2 Guild
-ConditionalTrigger Soul StageContains 1 Other && NameEquals For Somebody, Pecorine
 Cont: GiveSelfEverywhere
 {
     If StageContains 1 Other && NameEquals For Somebody, Pecorine
     {
+        GainTriggerIcon Soul
         GainEffect
 		{
 			Act_Backup: 0

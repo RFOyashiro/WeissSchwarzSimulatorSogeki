@@ -2687,11 +2687,14 @@ Soul 1
 Trait1 Saga
 Trait2 Music
 *GlobalPower(500,Saga)
-Cont: GiveSelf
+Cont: GiveAllYourCards
 {
-    AddToOtherCardsTriggerIcon Soul NameEquals Revenge on Fate
+    If NameEquals Revenge on Fate
+    {
+        GainTriggerIcon Soul
+    }
 }
-Text Cont: All your "Revenge on Fate" in any zone get 1 soul trigger icon.
+Text Cont: All your "Revenge on Fate" in all your other areas get a Soul trigger icon.
 Auto: StartMainPhase
 {
     If AllYourCharacters HasTrait Saga

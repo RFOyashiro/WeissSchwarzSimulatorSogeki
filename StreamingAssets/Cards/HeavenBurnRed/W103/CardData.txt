@@ -1079,9 +1079,15 @@ Soul 1
 Trait1 Seraph
 Trait2 Unit 31D
 Combo Unit 31D
-ConditionalTrigger Bag Climax Unit 31D
-ConditionalTrigger Bag Climax Unit 31D
-ConditionalTrigger Bag Climax Unit 31D
+Cont: GiveSelfEverywhere
+{
+    If Climax Unit 31D
+    {
+        GainTriggerIcon Bag
+        GainTriggerIcon Bag
+        GainTriggerIcon Bag
+    }
+}
 Text Cont: CxCombo If "Unit 31D" is in your climax area, this card gets Bag Bag Bag trigger icons while in any zone.
 Auto: OnPlay
 {

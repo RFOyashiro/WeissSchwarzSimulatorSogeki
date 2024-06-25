@@ -234,11 +234,14 @@ Soul 1
 Trait1 Music
 Trait2 Wonderlands × Showtime
 *GlobalPower(500,Music)
-Cont: GiveSelf
+Cont: GiveAllYourCards
 {
-    AddToOtherCardsTriggerIcon Soul NameEquals Unforeseen Keynotes, Rui Kamishiro
+    If NameEquals Unforeseen Keynotes, Rui Kamishiro
+    {
+        GainTriggerIcon Soul
+    }
 }
-Text Cont: "Unforeseen Keynotes, Rui Kamishiro" in all your location get a soul trigger icon.
+Text Cont: All of your "Unforeseen Keynotes, Rui Kamishiro" in all your other areas get a soul trigger icon.
 Act: 1 SendSelf WaitingRoom
 {
     SearchWaitingRoom NameEquals Tell Me About Everyone's Christmas || NameEquals Wonder Christmas!

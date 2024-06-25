@@ -179,11 +179,14 @@ Power 3000
 Soul 1
 Trait1 Dragon
 Combo Super Reincarnated Ra Dragon
-Cont: GiveSelf
+Cont: GiveAllYourCards
 {
-    AddToOtherCardsTriggerIcon Soul NameEquals Super Reincarnated Ra Dragon
+    If NameEquals Super Reincarnated Ra Dragon
+    {
+        GainTriggerIcon Soul
+    }
 }
-Text Cont: CxCombo Your other "Super Reincarnated Ra Dragon" in all your zones get a soul trigger icon.
+Text Cont: CxCombo All of your "Super Reincarnated Ra Dragon" in all your zones get a soul trigger icon.
 *LevelAssist
 Act: RestSelf
 {
@@ -2574,8 +2577,14 @@ Trigger Soul
 Power 3000
 Soul 1
 Trait1 Demon
-ConditionalTrigger Gate LocationContains Climax 1 HasTrigger Gate
-Text Cont: If there is a climax with a Gate trigger icon in your climax area, this card gets [Gate trigger] trigger icon while in any zone.
+Cont: GiveSelfEverywhere
+{
+    If LocationContains Climax 1 HasTrigger Gate
+    {
+        GainTriggerIcon LoneGate
+    }
+}
+Text Cont: If there is a climax with a Gate trigger icon in your climax area, this card gets Gate trigger icon while in any zone.
 Cont: Assist
 {
     If IsColor Blue

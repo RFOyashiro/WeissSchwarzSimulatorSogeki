@@ -580,9 +580,15 @@ Power 1000
 Soul 1
 Trait1 Sound of Heart
 Combo The Days I Walked With You
-ConditionalTrigger Bag Climax The Days I Walked With You
-ConditionalTrigger Bag Climax The Days I Walked With You
-ConditionalTrigger Bag Climax The Days I Walked With You
+Cont: GiveSelfEverywhere
+{
+    If Climax The Days I Walked With You
+    {
+        GainTriggerIcon Bag
+        GainTriggerIcon Bag
+        GainTriggerIcon Bag
+    }
+}
 Text Cont: CxCombo If "The Days I Walked With You" is in your climax area, this card gets Bag Bag Bag trigger icons while in any zone.
 Auto: OnPlay
 {

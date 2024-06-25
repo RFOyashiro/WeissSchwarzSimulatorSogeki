@@ -305,11 +305,14 @@ Cont: GiveHand
     }
 }
 Text Cont: "The Dream Remained" in your hand gets -1 cost.
-Cont: GiveSelf
+Cont: GiveAllYourCards
 {
-    AddToOtherCardsTriggerIcon Soul NameEquals The Dream Remained
+    If NameEquals The Dream Remained
+    {
+        GainTriggerIcon Soul
+    }
 }
-Text Cont: "The Dream Remained" in all your other Zones get a soul trigger icon.
+Text Cont: all of your "The Dream Remained" in all your other areas get a soul trigger icon.
 *LevelAssistTrait(Adolescence)
 EndCard
 

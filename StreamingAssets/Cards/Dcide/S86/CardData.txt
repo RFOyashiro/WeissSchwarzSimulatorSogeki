@@ -1353,7 +1353,13 @@ Soul 2
 Trait1 Knocker Up
 Trait2 Weapon
 Combo Battle for Pudding
-ConditionalTrigger LoneStandby Climax Battle for Pudding
+Cont: GiveSelfEverywhere
+{
+    If Climax Battle for Pudding
+    {
+        GainTriggerIcon LoneStandby
+    }
+}
 Text CxCombo If "Battle for Pudding" is in your climax area, this card get a Standby trigger icon in all location.
 *Healer
 Auto: OnAttack
