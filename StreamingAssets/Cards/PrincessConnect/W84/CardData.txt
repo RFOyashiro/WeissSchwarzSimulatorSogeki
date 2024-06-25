@@ -1875,9 +1875,12 @@ Effect:
     UntilEndOfOpponentsTurn
     GainEffect
     {
-        Cont: GiveSelf
+        Cont: GiveAllOpponentsCards
         {
-            CardsInAreaLoseAllNames AllOpponentsCards IsCharacter
+            If IsCharacter
+            {
+                GainSpecialEffect Nameless
+            }
         }
         Text Cont: All of your opponent's characters in all areas lose their name. They cannot get names.
     }
