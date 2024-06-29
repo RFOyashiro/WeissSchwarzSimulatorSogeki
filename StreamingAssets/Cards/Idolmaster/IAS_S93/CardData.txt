@@ -753,7 +753,7 @@ JPName 瞳の中のシリウス
 *GateClimax
 EndCard
 
-Character: IAS/S93-P01
+Character: IAS/S93-P02
 Name Bunbu Ryodo! Haruka & Chihaya & Miki
 JPName 文舞両道！　春香＆千早＆美希
 Color R
