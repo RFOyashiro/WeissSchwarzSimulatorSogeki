@@ -1,0 +1,5 @@
+DLC: Sogeki's Den
+Series: Sogeki's Den
+Folder: Headpat Party/Wx01
+Prefix: HP/Wx01
+SetName: <Headpat Party!>

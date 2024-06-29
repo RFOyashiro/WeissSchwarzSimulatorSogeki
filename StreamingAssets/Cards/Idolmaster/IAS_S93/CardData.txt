@@ -752,3 +752,23 @@ Name Sirius in Your Eyes
 JPName 瞳の中のシリウス
 *GateClimax
 EndCard
+
+Character: IAS/S93-P01
+Name Bunbu Ryodo! Haruka & Chihaya & Miki
+JPName 文舞両道！　春香＆千早＆美希
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Music
+*OnPlayGivePower(1500,Music)
+Auto: OnPlay
+{
+    PayCost Discard 1 IsCharacter && HasTrait Music
+    {
+        DrawCard
+    }
+}
+Text Auto: [Put 1 «Music» character from your hand into waiting room] When this card is placed on the stage from you hand, you may pay the cost. If you do, draw a card.
+EndCard
