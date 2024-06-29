@@ -28,9 +28,15 @@ Series: Idolm@ster Million Live
 Folder: Idolmaster/IMS_S61
 Prefix: IMS/S61
 SetName: Million Live (IMS) (S61)
+Folder: Idolmaster/IAS_S61
+Prefix: IAS/S61
+SetName: Million Live (IAS) (S61)
 Folder: Idolmaster/IMS_S93
 Prefix: IMS/S93
 SetName: Million Live! Welcome to the New Stage (IMS) (S93)
+Folder: Idolmaster/IAS_S93
+Prefix: IAS/S93
+SetName: Million Live! Welcome to the New Stage (IAS) (S93)
 
 Series: Idolm@ster Cinderella Girls
 Folder: Idolmaster/W41
