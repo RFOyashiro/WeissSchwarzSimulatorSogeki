@@ -94,11 +94,14 @@ Auto: OnClimaxPlay
 Text Auto: [Rest 2 of your characters] When your climax is placed on your climax area, you may pay the cost. If you do, choose 1 of your characters, and that character gets +1 soul until end of turn.
 Auto: OnClimaxPlay
 {
-    RevealUpTo Deck 4
-    ChooseCardsFromTargets 0 1 IsCharacter && ColorIs Yellow
-    RevealTargets
-    MoveCard Hand
-    PutTheRestIntoTheWaitingRoom
+    PayCost 1
+    {
+        RevealUpTo Deck 4
+        ChooseCardsFromTargets 0 1 IsCharacter && ColorIs Yellow
+        RevealTargets
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
 }
 Text Auto: [(1)] When your climax is placed on your climax area, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 Yellow character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
@@ -1163,7 +1166,7 @@ Effect:
 {
     PayCost Rest 1 HasTrait Black Army
     {
-        SearchLocationForTargets Deck 0 2 NameEquals Black Army
+        SearchLocationForTargets Deck 0 2 NameEquals Black Soldier
         PlaceOnStage
         ShuffleLocation Deck
     }
