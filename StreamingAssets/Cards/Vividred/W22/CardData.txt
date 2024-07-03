@@ -71,7 +71,7 @@ Power 3500
 Soul 1
 Trait1 Key
 Trait2 Weapon
-*BondClock(Opening up Her Heart\, Himawari)
+*BondDiscard(Opening up Her Heart\, Himawari)
 Act: 3 Send 1 Memory NameEquals Opening up Her Heart, Himawari &&& SendSelf Memory
 {
     *ChangeWaitingRoom(Vivid Yellow)
@@ -678,7 +678,7 @@ Auto: OnClimaxPlay
 {
     *GiveCharacterPower(1500,Key)
 }
-Text Auto: When a climax is placed in you climax area, choose 1 of your «Key» characters, it gets +POWER power until end of turn.
+Text Auto: When a climax is placed in you climax area, choose 1 of your «Key» characters, it gets +1500 power until end of turn.
 EndCard
 
 Character: VR/W22-036
@@ -1436,12 +1436,12 @@ Level 2
 Cost 2
 Effect:
 {
-    SearchLocationForTargets WaitingRoom 1 1 NameEquals Mysterious Being, Akane
+    SearchLocationForTargets WaitingRoom 1 1 NameEquals Mysterious Being, Alone
     PlaceOnStage false true true false
     TargetSelf
     MoveCard Memory
 }
-Text Choose a "Mysterious Being, Akane" in your waiting room and put it into any position on the stage. Put this card into memory.
+Text Choose a "Mysterious Being, Alone" in your waiting room and put it into any position on the stage. Put this card into memory.
 DeckLimit 10
 Text Cont: You may have up to 10 cards sharing the same name as this card in your Deck.
 Cont: Memory
@@ -2222,7 +2222,8 @@ Auto: OnHealToWaitingRoom|OnOpponentHealToWaitingRoom
 		}
 	}
 }
-Text Auto: When a card in either player's clock is put into their waiting room due to it's owner's card effect, that player may put the top 2 cards of their stock into the waiting room. If they do not, that player puts the top card of their deck into their clock.
+InMemory
+Text Auto: MEMORY When a card in either player's clock is put into their waiting room due to it's owner's card effect, that player may put the top 2 cards of their stock into the waiting room. If they do not, that player puts the top card of their deck into their clock.
 Auto: OnReversed
 {
     If StageContains 2 Other && HasTrait Key
