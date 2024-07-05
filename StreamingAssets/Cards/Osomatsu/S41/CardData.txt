@@ -168,7 +168,7 @@ Auto: OnReversed
 {
     PayCost 1 Discard 1 Any &&& SendSelf Memory
     {
-        SearchDeck NameEquals Jyushimatsu
+        SearchDeck NameContains 十四松
     }
 }
 Text Auto: [(1) Put 1 card from your hand to the waiting room, put this card into memory] When this card becomes reverse in battle, you may pay the cost. If you do, search your deck for up to 1 character with "Jyushimatsu" in its card name, reveal it, put it in your hand, and shuffle your deck.

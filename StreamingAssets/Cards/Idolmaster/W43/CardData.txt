@@ -251,14 +251,30 @@ Power 4000
 Soul 1
 Trait1 Music
 Trait2 Happy-Happy
-Auto:
+Combo Two Are the Same Age
+Auto: OnAttack
 {
-
+    SetXToNumberOfCharacters Other && NameContains 杏|きらり
+    MultiplyXValue 1000
+    GainPower X
 }
+Quick
 Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 1000 times the number of your other characters with either "Anzu" or "Kirari" in its card name.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Two Are the Same Age
+    {
+        GainEffect
+        {
+            Auto: OnDamageCanceled
+            {
+                *PutCardFromWaitingRoomIntoStock(IsCharacter && && NameContains 杏|きらり)
+                *PutCardFromWaitingRoomIntoStock(IsCharacter && && NameContains 杏|きらり)
+            }
+            TimesPerTurn 1
+            Text Auto: This card ability activates up to once per turn. When the damage dealt by this card is canceled, choose up to 2 characters in your waiting room with either "Anzu" or "Kirari" in its card name and put them in your stock in any order.
+        }
+    }
 }
 Text Auto: When this card attacks, if "Two Are the Same Age" is in your climax area, this card gets the following ability until end of turn. "Auto: This card ability activates up to once per turn. When the damage dealt by this card is canceled, choose up to 2 characters in your waiting room with either "Anzu" or "Kirari" in its card name and put them in your stock in any order."
 EndCard
@@ -273,11 +289,7 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 Gal
-Cont:
-{
-
-}
-Text Cont: This card gets +500 power for each of your other «Music» characters
+*GainPowerForEachOther(500,Music)
 EndCard
 
 Character: IMC/W43-011
@@ -291,16 +303,16 @@ Power 7000
 Soul 1
 Trait1 Music
 Trait2 Kigurumi
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to choose a trait from.
+    ChooseTraitFromTarget
+    GainTrait CHOSEN_TRAIT
 }
 Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters and 1 of that character's traits, and this card gets the chosen trait until end of turn.
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is higher than the level of the battle opponent, you may put that character in stock. If you do, put the bottom card of your opponent's stock in the waiting room.
+*YellowEarlyPlayBomb
 EndCard
 
 Character: IMC/W43-012
@@ -314,16 +326,26 @@ Power 10000
 Soul 2
 Trait1 Music
 Trait2 Sports
-Auto:
+*OnPlayCheck3
+Auto: OnReverseOpponent
 {
-
+    TargetLocation Stage
+    NarrowTargets Other
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        Auto: OnDamageCanceled
+        {
+            PayCost 1
+            {
+                Burn 1
+            }
+        }
+        TimesPerTurn 1
+        Text Auto: [(1)] This ability activates up to once per turn. When the damage dealt by this card is canceled, you may pay the cost. If you do, deal 1 damage to your opponent.
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
-Auto:
-{
-
-}
-Text Auto: When this card's battle opponent becomes reverse, choose 1 of your other characters, and that character gets the following ability until end of turn. "Auto:
+Text Auto: When this card's battle opponent becomes reverse, choose 1 of your other characters, and that character gets the following ability until end of turn. "Auto: [(1)] This ability activates up to once per turn. When the damage dealt by this card is canceled, you may pay the cost. If you do, deal 1 damage to your opponent."
 EndCard
 
 Character: IMC/W43-013
@@ -336,14 +358,13 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Comedy
-Cont:
+*500Assist
+Auto: OnTriggerCheckClimax
 {
-
-}
-Text Cont: ASSIST Your characters in front of this card get +500 power.
-Auto:
-{
-
+    TargetLocation Stage
+    NarrowTargets HasTrait Music
+    ChooseCharacterFromTargets Choose a character to give +1 soul.
+    GainSoul 1
 }
 Text Auto: When your characters' trigger check reveals a climax card, choose 1 of your «Music» characters, and that character gets +1 soul until end of turn.
 EndCard
@@ -357,9 +378,15 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Music
-Auto:
+Auto: OnAttack
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Music
+    {
+        MoveCard Hand
+        Discard 1 Any
+    }
 }
 Text Auto: When this card attacks, reveal the top card of your deck. If it's a «Music» character, put it in your hand and discard a card from your hand to the waiting room.
 EndCard
@@ -374,9 +401,15 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Gal
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && ColorIs Yellow
+    {
+        TargetSelf
+        GainSoul 1
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a Yellow character, this card gets +1 soul until end of turn.
 EndCard
@@ -390,14 +423,24 @@ Cost 0
 Power 4500
 Soul 1
 Trait1 Music
-Cont:
+Combo Gift of My Color
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters Other && InLocation CenterStage && NameEquals Making Up, Rika
+    MultiplyXValue 2000
+    GainPower X
 }
 Text Cont: This card gets +2000 power for each of your other "Making Up, Rika" in the center stage
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Gift of My Color
+    {
+        PayCost 1
+        {
+            TargetLocation Stage
+            GainSoul 1
+        }
+    }
 }
 Text Auto: [(1)] When this card attacks, if "Gift of My Color" is in your climax area, you may pay the cost. If you do, all your characters get +1 soul until end of turn.
 EndCard
@@ -413,19 +456,30 @@ Power 9500
 Soul 2
 Trait1 Music
 Trait2 Usamin
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 3 Other && ColorIs Red
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If the number of other Red characters you have is 3 or more, this card gets +2000 power.
-Cont:
+Cont: GiveFacing
 {
-
+    LoseSoul 1
 }
-Text Cont: character facing this card gets -1 soul.
-Auto:
+Text Cont: The character facing this card gets -1 soul.
+Auto: StartOpponentAttackPhase
 {
-
+    PayCost 1
+    {
+        TargetLocation Stage
+        NarrowTargets Other && HasTrait Music
+        ChooseCharacterFromTargets Choose a character to exchange with this card.
+        AddSelfToTargets
+        Stand
+        Exchange
+    }
 }
 Text Auto: [(1)] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your «Music» characters and this card, then stand and exchange them.
 EndCard
@@ -440,14 +494,23 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 Gal
-Cont:
+Combo Gift of My Color
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters Other && InLocation CenterStage && NameEquals Fluffy Tail, Miria
+    MultiplyXValue 2000
+    GainPower X
 }
 Text Cont: This card gets +2000 power for each of your other "Fluffy Tail, Miria" in the center stage
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If Climax Gift of My Color
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen
+        ChooseCharacterFromTargets Choose a character to return to hand.
+        Bounce
+    }
 }
 Text Auto: When this card's battle opponent becomes reverse, if "Gift of My Color" is in your climax area, you may choose 1 of your opponent's characters and return it to hand.
 EndCard
@@ -461,9 +524,16 @@ Cost 1
 Power 6000
 Soul 1
 Trait1 Music
-Cont:
+Cont: GiveSelf
 {
-
+    If AllYourCharacters ColorIs Yellow
+    {
+        GainPower 1500
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
 Text Cont: If all your characters are Yellow, this card gets +1500 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
 EndCard
@@ -478,19 +548,22 @@ Trigger Soul
 Power 5000
 Soul 1
 Trait1 Music
-Cont:
+Combo Reliable Big Sister
+*LevelAssist
+Cont: Assist
 {
-
+    If MyTurn
+    {
+        SetXValue MarkersUnderThis
+        MultiplyXValue 1000
+        GainPower X
+    }
 }
-Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times level of that character.
-Cont:
+Text Cont: ASSIST During your turn, your characters in front of this card get +X power. X equals 1000 times the number of markers under this card.
+Auto: OnSpecificClimaxPlay
 {
-
-}
-Text Cont: ASSIST During your turn, all your characters in front of this card get +X power. X equals 1000 times the number of markers under this card.
-Auto:
-{
-
+    SearchLocationForTargets WaitingRoom 0 1 IsCharacter && HasTrait Music
+    Marker_FaceDown
 }
 Text Auto: When "Reliable Big Sister" is placed on your climax area, you may choose a «Music» character in your waiting room and put it face down underneath this card as a marker.
 EndCard
@@ -506,14 +579,21 @@ Power 6000
 Soul 1
 Trait1 Music
 Trait2 Gal
-Cont:
+Cont: Assist
 {
-
+    If NameContains Krone
+    {
+        GainPower 500
+        GainSoul 1
+    }
 }
 Text Cont: ASSIST Your characters with "Krone" in its card name in front of this card get +500 power and +1 soul.
-Act:
+Act: 1 RestSelf
 {
-
+    TargetLocation Stage
+    NarrowTargets HasTrait Music
+    ChooseCharacterFromTargets Choose a character to give +1 soul.
+    GainSoul 1
 }
 Text Act: [(1) Rest this card] Choose 1 of your «Music» characters, and that character gets +1 soul until end of turn.
 EndCard
@@ -529,9 +609,20 @@ Power 8000
 Soul 1
 Trait1 Music
 Trait2 Rock
-Auto:
+Combo Rockin' Emotion
+Auto: OnReverseOpponent
 {
-
+    If Climax Rockin' Emotion
+    {
+        PayCost 1
+        {
+            TargetLocation CenterStage
+            GainEffect
+            {
+                *OnCancelBurn1
+            }
+        }
+    }
 }
 Text Auto: [(1)] When this card's battle opponent becomes reverse, if "Rockin' Emotion" is in your climax area, you may pay the cost. If you do, all your characters in the center stage get the following ability until end of turn. "Auto: This card ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
 EndCard
@@ -546,21 +637,14 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Happy-Happy
-Auto:
+Combo Gift of My Color
+Auto: OnSpecificClimaxPlay Gift of My Color
 {
-
+    *GiveCharacterPower(2000,Any)
 }
 Text Auto: When "Gift of My Color" is placed on your climax area, choose 1 of your characters, and that character gets +2000 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: BOND/"Making Up, Rika" [Put 1 card from your hand to the waiting room]
-Auto:
-{
-
-}
-Text Auto: BOND/"Fluffy Tail, Miria" [Put 1 card from your hand to the waiting room]
+*BondDiscard(Making Up\, Rika)
+*BondDiscard(Fluffy Tail\, Miria)
 EndCard
 
 Character: IMC/W43-024
@@ -573,14 +657,15 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Rock
-Cont:
+Combo Wonder goes on!!
+*500Assist
+Auto: OnSpecificClimaxPlay Wonder goes on!!
 {
-
-}
-Text Cont: ASSIST Your characters in front of this card get +500 power.
-Auto:
-{
-
+    If StageContains 1 Other && ColorIs Red &&& StageContains 1 Other && ColorIs Blue
+    {
+        UntilEndOfOpponentsTurn
+        *GiveCharacterPower(2000,Any)
+    }
 }
 Text Auto: When "Wonder goes on!!" is placed on your climax area, if you have another Red character and another Blue character, choose 1 of your characters, and that character gets +2000 power until the end of your opponent's next turn.
 EndCard
