@@ -253,7 +253,7 @@ Trait2 Glasses
 *GainPowerWithEnoughCharacters(1000,2,Kizuna)
 Cont: GiveSelf
 {
-    SetXValue MarkersUnderThis
+    SetXValue ThisCardsMarkers
     MultiplyXValue 1000
     GainPower X
 }
@@ -331,7 +331,7 @@ Soul 1
 Army
 Cont: GiveSelf
 {
-    SetXValue MarkersUnderThis
+    SetXValue ThisCardsMarkers
     MultiplyXValue 1500
     GainPower X
 }
@@ -398,7 +398,7 @@ Trait1 Kizuna
 Trait2 Delinquent
 Cont: GiveSelf
 {
-    SetXValue MarkersUnderThis
+    SetXValue ThisCardsMarkers
     MultiplyXValue 1500
     GainPower X
 }
@@ -1653,7 +1653,7 @@ Combo Opened Wound
 *Healer
 Auto: OnSpecificClimaxPlay Opened Wound
 {
-    If Compare MarkersUnderThis 0 OrLess
+    If Compare ThisCardsMarkers 0 OrLess
     {
         SearchLocationForTargets WaitingRoom 0 1 IsCharacter && HasTrait Kizuna
         If HasTarget
@@ -1787,7 +1787,7 @@ Cont: InHand
 Text Cont: If there are 6 or more "Gomorin" in your waiting room, this card gets -1 level while in your hand.
 Cont: GiveSelf
 {
-    SetXValue MarkersUnderThis
+    SetXValue ThisCardsMarkers
     MultiplyXValue 1000
     GainPower X
 }

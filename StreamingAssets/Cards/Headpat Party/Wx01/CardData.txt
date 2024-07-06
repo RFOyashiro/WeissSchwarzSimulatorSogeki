@@ -2377,7 +2377,7 @@ Trait1 Headpat
 Trait2 Bot
 Cont: GiveSelf
 {
-    SetXValue MarkersUnderThis
+    SetXValue ThisCardsMarkers
     MultiplyXValue 1500
     GainPower X
 }
@@ -2385,7 +2385,7 @@ Text Cont: This card gets +1500 power for each marker underneath.
 *GreatPerformance
 Auto: OnReverseOpponent
 {
-    If Compare MarkersUnderThis 5 OrMore
+    If Compare ThisCardsMarkers 5 OrMore
     {
         Burn 1
     }

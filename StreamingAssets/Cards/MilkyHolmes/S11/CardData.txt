@@ -756,7 +756,7 @@ Trait1 Police
 Trait2 Weapon
 Cont: GiveSelf
 {
-    SetXValue MarkersUnderThis
+    SetXValue ThisCardsMarkers
     MultiplyXValue 1000
     GainPower X
 }

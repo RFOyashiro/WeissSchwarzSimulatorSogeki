@@ -304,7 +304,7 @@ Auto: StartClimaxPhase
 Text Auto: At the beginning of your climax phase, if this card is in the backstage, you may put the top card of your deck underneath this card as a marker.
 Auto: OnAttack
 {
-    SetXValue MarkersUnderThis
+    SetXValue ThisCardsMarkers
     MultiplyXValue 1500
     GainPower X
 }
@@ -574,7 +574,7 @@ Trait1 Glasses
 Trait2 Gigant
 Cont: GiveSelf
 {
-    If Compare MarkersUnderThis 1 OrMore
+    If Compare ThisCardsMarkers 1 OrMore
     {
         GainPower 3500
         GainSoul 1

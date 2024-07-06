@@ -246,7 +246,7 @@ Trait1 Mana
 Trait2 Weapon
 Cont: GiveSelf
 {
-    SetXValue MarkersUnderThis
+    SetXValue ThisCardsMarkers
     MultiplyXValue 1500
     GainPower X
     If HasMarker
@@ -410,7 +410,7 @@ Trait2 Weapon
 Combo Strength Reigns Supreme
 Cont: GiveSelf
 {
-    SetXValue MarkersUnderThis
+    SetXValue ThisCardsMarkers
     MultiplyXValue 1000
     GainPower X
 }

@@ -835,7 +835,7 @@ Soul 2
 Trait1 No Traits
 Cont: GiveSelf
 {
-	SetXValue MarkersUnderThis
+	SetXValue ThisCardsMarkers
 	GainLevel X
 	MultiplyXValue 1500
 	GainPower X

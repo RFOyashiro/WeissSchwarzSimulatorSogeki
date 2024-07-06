@@ -32,7 +32,7 @@ Auto: OnUseAct
 {
     PayCost 1 Discard 1 Any
     {
-        If MyTurn && Compare MarkersUnderThis 1 OrLess
+        If MyTurn && Compare ThisCardsMarkers 1 OrLess
         {
             TargetTop Deck 1
             Marker_FaceUp
@@ -51,7 +51,7 @@ Auto: OnAttack
     {
         PayCost 1
         {
-            Repeat MarkersUnderThis
+            Repeat ThisCardsMarkers
             {
                 Burn 2
             }
@@ -555,7 +555,7 @@ Auto: OnAttack
         {
             Auto: StartMyEncoreStep
             {
-                If Compare MarkersUnderThis 1 OrMore
+                If Compare ThisCardsMarkers 1 OrMore
                 {
                     PayCost 2 Discard 1 Any
                     {
@@ -754,7 +754,7 @@ Trait1 Sound of Heart
 *LevelAssistTrait(Sound of Heart)
 Auto: StartAttackPhase
 {
-    If Compare MarkersUnderThis 1 OrMore
+    If Compare ThisCardsMarkers 1 OrMore
     {
         *GiveCharacterPower(1000,Sound of Heart)
         GainSoul 1
@@ -764,7 +764,7 @@ Text Auto: At the beginning of your attack phase, if this card has a marker unde
 Act: RestSelf
 {
     TargetLocation Stage
-    NarrowTargets NameEquals Miraculous Song Spun With Bonds, Yohane && Compare MarkersUnderThis 0 OrMore
+    NarrowTargets NameEquals Miraculous Song Spun With Bonds, Yohane && Compare ThatCardsMarkers 0 OrMore
     ChooseCharacterFromTargets Choose 1 of your Miraculous Song Spun With Bonds, Yohane to give a marker.
     SaveTargets
     MultipleChoiceQuestion Put a marker from underneath this card or a "Promise We Made, Lailaps" from your waiting room underneath that card as a marker|This card|"Promise We Made, Lailaps"
@@ -1270,7 +1270,7 @@ HandAction 0
         If LocationContains Stock X Any
         {
             TargetLocation Stage
-            NarrowTargets NameEquals Similar People, Yohane && Compare MarkersUnderThis 1 OrMore
+            NarrowTargets NameEquals Similar People, Yohane && Compare ThatCardsMarkers 1 OrMore
             ChooseCharacterFromTargets Choose a character to pay cost with its markers.
             TargetMarkersUnderTargets
             ChooseCardsFromTargets 1 1 Any
@@ -1286,7 +1286,7 @@ HandAction 0
         PlaceOnStage false true true false
     }
 }
-ActivationRequirement StageContains 1 NameEquals Similar People, Yohane && Compare MarkersUnderThis 1 OrMore &&& Compare MyLevel 2 OrMore &&& LocationContains Level 1 IsColor Green || LocationContains Clock 1 IsColor Green
+ActivationRequirement StageContains 1 NameEquals Similar People, Yohane && Compare ThatCardsMarkers 1 OrMore &&& Compare MyLevel 2 OrMore &&& LocationContains Level 1 IsColor Green || LocationContains Clock 1 IsColor Green
 EndCard
 
 Event: YHN/W111-045

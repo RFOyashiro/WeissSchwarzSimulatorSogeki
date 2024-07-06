@@ -2019,7 +2019,7 @@ Trait1 Adolescence
 *Level3Assist
 Auto: StartClimaxPhase
 {
-    If Compare MarkersUnderThis 3 OrMore
+    If Compare ThisCardsMarkers 3 OrMore
     {
         TargetLocation Marker
         MoveCard WaitingRoom
@@ -2029,7 +2029,8 @@ Auto: StartClimaxPhase
 Text Auto: At the beginning of your climax phase, if there are 3 or more markers under this card, put all markers from under this card in the waiting room, and deal 1 damage to your opponent.
 Auto: OnCancel
 {
-    If Phase Attack && Not MyTurn && StageContains 1 Other && NameEquals Future Promise, Mai Sakurajima &&& Compare MarkersUnderThis 2 OrLess
+    TargetLocation Stage
+    If Phase Attack && Not MyTurn && StageContains 1 Other && NameEquals Future Promise, Mai Sakurajima &&& Compare TargetCardsMarkers 2 OrLess
     {
         SearchLocationForTargets WaitingRoom 0 1 IsCharacter && HasTrait Adolescence
         If HasTarget
@@ -2359,7 +2360,7 @@ Trait2 Mystery
 *EarlyPlay4OrMore(Adolescence)
 Cont: GiveSelf
 {
-    SetXValue MarkersUnderThis
+    SetXValue ThisCardsMarkers
     MultiplyXValue 1000
     GainPower X
 }

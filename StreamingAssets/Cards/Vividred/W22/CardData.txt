@@ -621,7 +621,7 @@ Trait1 Key
 Trait2 Sports
 Cont: GiveSelf
 {
-    SetXValue MarkersUnderThis
+    SetXValue ThisCardsMarkers
     GainLevel X
     MultiplyXValue 1500
     GainPower X
@@ -1050,7 +1050,7 @@ Trait1 Mystery
 Trait2 Animal
 Cont: GiveSelf
 {
-    SetXValue MarkersUnderThis
+    SetXValue ThisCardsMarkers
     GainLevel X
     MultiplyXValue 2000
     GainPower X

@@ -586,7 +586,7 @@ Trait1 Mask
 Trait2 Hero
 Cont: GiveSelf
 {
-    SetXValue MarkersUnderThis
+    SetXValue ThisCardsMarkers
     MultiplyXValue 2000
     GainPower X
 }

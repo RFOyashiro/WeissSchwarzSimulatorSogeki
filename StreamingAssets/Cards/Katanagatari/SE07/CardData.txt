@@ -239,7 +239,7 @@ Trait1 Fan
 Trait2 Yukata
 Cont: GiveSelf
 {
-    SetXValue MarkersUnderThis
+    SetXValue ThisCardsMarkers
     MultiplyXValue 1000
     GainPower X
 }
@@ -794,7 +794,7 @@ Trait1 Weapon
 Trait2 Yukata
 Cont: GiveSelf
 {
-    SetXValue MarkersUnderThis
+    SetXValue ThisCardsMarkers
     GainLevel X
     MultiplyXValue 2000
     GainPower X

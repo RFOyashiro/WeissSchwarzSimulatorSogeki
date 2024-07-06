@@ -185,7 +185,7 @@ Power 4500
 Soul 1
 Cont: GiveSelf
 {
-    SetXValue MarkersUnderThis
+    SetXValue ThisCardsMarkers
     GainLevel X
     MultiplyXValue 1500
     GainPower X

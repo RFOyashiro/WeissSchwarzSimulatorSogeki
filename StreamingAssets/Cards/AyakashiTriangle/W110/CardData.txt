@@ -2450,7 +2450,7 @@ Trait1 Omiko City
 Trait2 Ayakashi Medium
 Cont: GiveSelf
 {
-    SetXValue MarkersUnderThis
+    SetXValue ThisCardsMarkers
     GainLevel X
     MultiplyXValue 1500
     GainPower X
