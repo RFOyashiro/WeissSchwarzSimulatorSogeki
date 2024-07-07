@@ -42,6 +42,9 @@ Series: Idolm@ster Cinderella Girls
 Folder: Idolmaster/W41
 Prefix: IMC/W41
 SetName: Cinderella Girls (W41)
+Folder: Idolmaster/W43
+Prefix: IMC/W43
+SetName: Cinderella Girls 2nd Season (W43)
 
 Series: Idolm@ster Shiny Colors
 Folder: Idolmaster/S81
