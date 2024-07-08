@@ -276,7 +276,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: When this card attacks, if "Two Are the Same Age" is in your climax area, this card gets the following ability until end of turn. "Auto: This card ability activates up to once per turn. When the damage dealt by this card is canceled, choose up to 2 characters in your waiting room with either "Anzu" or "Kirari" in its card name and put them in your stock in any order."
+Text Auto: CxCombo When this card attacks, if "Two Are the Same Age" is in your climax area, this card gets the following ability until end of turn. "Auto: This card ability activates up to once per turn. When the damage dealt by this card is canceled, choose up to 2 characters in your waiting room with either "Anzu" or "Kirari" in its card name and put them in your stock in any order."
 EndCard
 
 Character: IMC/W43-010
@@ -442,7 +442,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [(1)] When this card attacks, if "Gift of My Color" is in your climax area, you may pay the cost. If you do, all your characters get +1 soul until end of turn.
+Text Auto: CxCombo [(1)] When this card attacks, if "Gift of My Color" is in your climax area, you may pay the cost. If you do, all your characters get +1 soul until end of turn.
 EndCard
 
 Character: IMC/W43-017
@@ -512,7 +512,7 @@ Auto: OnReverseOpponent
         Bounce
     }
 }
-Text Auto: When this card's battle opponent becomes reverse, if "Gift of My Color" is in your climax area, you may choose 1 of your opponent's characters and return it to hand.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Gift of My Color" is in your climax area, you may choose 1 of your opponent's characters and return it to hand.
 EndCard
 
 Character: IMC/W43-019
@@ -565,7 +565,7 @@ Auto: OnSpecificClimaxPlay
     SearchLocationForTargets WaitingRoom 0 1 IsCharacter && HasTrait Music
     Marker_FaceDown
 }
-Text Auto: When "Reliable Big Sister" is placed on your climax area, you may choose a «Music» character in your waiting room and put it face down underneath this card as a marker.
+Text Auto: CxCombo When "Reliable Big Sister" is placed on your climax area, you may choose a «Music» character in your waiting room and put it face down underneath this card as a marker.
 EndCard
 
 Character: IMC/W43-021
@@ -624,7 +624,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto: [(1)] When this card's battle opponent becomes reverse, if "Rockin' Emotion" is in your climax area, you may pay the cost. If you do, all your characters in the center stage get the following ability until end of turn. "Auto: This card ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
+Text Auto: CxCombo [(1)] When this card's battle opponent becomes reverse, if "Rockin' Emotion" is in your climax area, you may pay the cost. If you do, all your characters in the center stage get the following ability until end of turn. "Auto: This card ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
 EndCard
 
 Character: IMC/W43-023
@@ -642,7 +642,7 @@ Auto: OnSpecificClimaxPlay Gift of My Color
 {
     *GiveCharacterPower(2000,Any)
 }
-Text Auto: When "Gift of My Color" is placed on your climax area, choose 1 of your characters, and that character gets +2000 power until end of turn.
+Text Auto: CxCombo When "Gift of My Color" is placed on your climax area, choose 1 of your characters, and that character gets +2000 power until end of turn.
 *BondDiscard(Making Up\, Rika)
 *BondDiscard(Fluffy Tail\, Miria)
 EndCard
@@ -667,7 +667,7 @@ Auto: OnSpecificClimaxPlay Wonder goes on!!
         *GiveCharacterPower(2000,Any)
     }
 }
-Text Auto: When "Wonder goes on!!" is placed on your climax area, if you have another Red character and another Blue character, choose 1 of your characters, and that character gets +2000 power until the end of your opponent's next turn.
+Text Auto: CxCombo When "Wonder goes on!!" is placed on your climax area, if you have another Red character and another Blue character, choose 1 of your characters, and that character gets +2000 power until the end of your opponent's next turn.
 EndCard
 
 Character: IMC/W43-025
@@ -1456,7 +1456,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: When this card attacks, if "Fairy Tale Debut!" is in your climax area, look at up to the top 4 cards of your deck, choose up to 1 Red character among them, reveal it, put it in your hand, put the rest into your waiting room, and this card gets +2000 power until end of turn. Afterwards, at the beginning of encore step, if this card is rest, put this card in the waiting room, choose up to 1 "Doing Idol Activities, Nana" in your hand and put it in the position this card was in.
+Text Auto: CxCombo When this card attacks, if "Fairy Tale Debut!" is in your climax area, look at up to the top 4 cards of your deck, choose up to 1 Red character among them, reveal it, put it in your hand, put the rest into your waiting room, and this card gets +2000 power until end of turn. Afterwards, at the beginning of encore step, if this card is rest, put this card in the waiting room, choose up to 1 "Doing Idol Activities, Nana" in your hand and put it in the position this card was in.
 EndCard
 
 Character: IMC/W43-060
@@ -1481,7 +1481,7 @@ Auto: OnUseThisCardsBackup
         }
     }
 }
-Text Auto: [Put a «Music» character from your hand to the waiting room] When you use this card's "BACKUP", if "Heart Voice" is in your waiting room, you may pay the cost. If you do, deal 1 damage to your opponent.
+Text Auto: CxCombo [Put a «Music» character from your hand to the waiting room] When you use this card's "BACKUP", if "Heart Voice" is in your waiting room, you may pay the cost. If you do, deal 1 damage to your opponent.
 Backup 2500
 EndCard
 
@@ -1724,7 +1724,7 @@ Auto: StartAttackPhase|StartOpponentAttackPhase
         GainPower 3000
     }
 }
-Text Auto: At the beginning of any player's attack phase, if "Heart Voice" is in your waiting room, this card gets +3000 power until end of turn.
+Text Auto: CxCombo At the beginning of any player's attack phase, if "Heart Voice" is in your waiting room, this card gets +3000 power until end of turn.
 EndCard
 
 Character: IMC/W43-071
@@ -2158,7 +2158,7 @@ Auto: OnAttack
 }
 Quick
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When this card attacks, if "Triad Primus" is in your climax area, this card gets the following ability until end of turn. "Auto: [(3) Put 1 card from your hand to the waiting room] This card ability activates up to once per turn. When your other character attacks, if the number of other Blue characters you have is 3 or more, you may pay the cost. If you do, stand this card."
+Text Auto: CxCombo This card ability activates up to once per turn. When this card attacks, if "Triad Primus" is in your climax area, this card gets the following ability until end of turn. "Auto: [(3) Put 1 card from your hand to the waiting room] This card ability activates up to once per turn. When your other character attacks, if the number of other Blue characters you have is 3 or more, you may pay the cost. If you do, stand this card."
 EndCard
 
 Character: IMC/W43-091
@@ -2237,7 +2237,7 @@ Auto: OnTriggerCheck
         }
     }
 }
-Text Auto: [(1)] When your characters' trigger check reveals either "Shooting Star Miracle" or "Brand New Evo! Revo! Generation!", you may pay the cost. If you do, draw a card.
+Text Auto: CxCombo [(1)] When your characters' trigger check reveals either "Shooting Star Miracle" or "Brand New Evo! Revo! Generation!", you may pay the cost. If you do, draw a card.
 EndCard
 
 Character: IMC/W43-094
@@ -2332,7 +2332,7 @@ Auto: StartAttackPhase|StartOpponentAttackPhase
         GainPower 4500
     }
 }
-Text Auto: At the beginning of any player's attack phase, if "Project:Krone" is in your waiting room, this card gets +4500 power until end of turn.
+Text Auto: CxCombo At the beginning of any player's attack phase, if "Project:Krone" is in your waiting room, this card gets +4500 power until end of turn.
 *HandEncore
 EndCard
 
@@ -2359,7 +2359,7 @@ Auto: OnSpecificClimaxPlay Under This Sky
         }
     }
 }
-Text Auto: [(1) Rest 1 of your standing «Music» characters] When "Under This Sky" is placed on your climax area, if this card is in your center stage, you may pay the cost. If you do, search your deck for either up to 1 "Accepting the Determination, Minami" or up to 1 "In Order to Change, Anastasia" and put it in any position on the stage, and shuffle your deck.
+Text Auto: CxCombo [(1) Rest 1 of your standing «Music» characters] When "Under This Sky" is placed on your climax area, if this card is in your center stage, you may pay the cost. If you do, search your deck for either up to 1 "Accepting the Determination, Minami" or up to 1 "In Order to Change, Anastasia" and put it in any position on the stage, and shuffle your deck.
 EndCard
 
 Character: IMC/W43-100
@@ -2411,7 +2411,7 @@ Auto: StartAttackPhase|StartOpponentAttackPhase
         }
     }
 }
-Text Auto: At the beginning of any player's attack phase, if "Under This Sky" is in your waiting room, choose 1 of your characters, and that character gets "Auto: ENCORE [Put 1 character from your hand into waiting room]" until end of turn.
+Text Auto: CxCombo At the beginning of any player's attack phase, if "Under This Sky" is in your waiting room, choose 1 of your characters, and that character gets "Auto: ENCORE [Put 1 character from your hand into waiting room]" until end of turn.
 EndCard
 
 Character: IMC/W43-102
@@ -2465,7 +2465,7 @@ Auto: OnSpecificClimaxPlay Wonder goes on!!
         }
     }
 }
-Text Auto: When "Wonder goes on!!" is placed on your climax area, if you have another Yellow character and another Red character, you may choose 2 of your opponent's characters, stand and exchange them.
+Text Auto: CxCombo When "Wonder goes on!!" is placed on your climax area, if you have another Yellow character and another Red character, you may choose 2 of your opponent's characters, stand and exchange them.
 Auto: StartOpponentAttackPhase
 {
     TargetLocation Stage
@@ -2511,7 +2511,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: When this card attacks, if "Trancing Pulse" is in your climax area, this card gets +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may draw a card."
+Text Auto: CxCombo When this card attacks, if "Trancing Pulse" is in your climax area, this card gets +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may draw a card."
 Auto: OnAttack
 {
     TargetFacing
@@ -2795,7 +2795,7 @@ Auto: OnUseThisCardsBackup
         GainPower 1500
     }
 }
-Text Auto: When you use this card's "BACKUP", if both "Trancing Pulse" and "Triad Primus" are in your waiting room, choose 1 of your characters in battle, and that character gets +1500 power until end of turn.
+Text Auto: CxCombo When you use this card's "BACKUP", if both "Trancing Pulse" and "Triad Primus" are in your waiting room, choose 1 of your characters in battle, and that character gets +1500 power until end of turn.
 Backup 2500
 EndCard
 
@@ -2869,7 +2869,7 @@ Auto: StartAttackPhase|StartOpponentAttackPhase
         }
     }
 }
-Text Auto: At the beginning of any player's attack phase, if "Trancing Pulse" is in your waiting room, reveal the top card of your deck. If it's a «Music» character, this card gets +4500 power until end of turn.
+Text Auto: CxCombo At the beginning of any player's attack phase, if "Trancing Pulse" is in your waiting room, reveal the top card of your deck. If it's a «Music» character, this card gets +4500 power until end of turn.
 EndCard
 
 Character: IMC/W43-119
