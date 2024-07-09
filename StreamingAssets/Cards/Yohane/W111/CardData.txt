@@ -58,7 +58,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CX Combo [(1)] When this card attacks, if "For Those in Need" is in your climax area, you may pay the cost. If you do, deal 2 damage to your opponent X times. X is equal to the number of markers under this card.
+Text Auto: CxCombo [(1)] When this card attacks, if "For Those in Need" is in your climax area, you may pay the cost. If you do, deal 2 damage to your opponent X times. X is equal to the number of markers under this card.
 EndCard
 
 Character: YHN/W111-003

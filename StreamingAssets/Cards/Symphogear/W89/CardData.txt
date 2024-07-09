@@ -45,7 +45,7 @@ Auto: OnAttack
 		}
 	}
 }
-Text Auto: CX COMBO When this card attacks, if "Courage to Bloom" is in your climax area and the number of other «Music» characters you have is 2 or more, choose and perform 1 of the following 2 effects. "Look at up to the top 4 cards of your deck, choose up to 1 «Music» character among them, show it to your opponent, put it in your hand, and put the remaining cards into the waiting room." "Perform trigger check twice during this card attack's trigger step."
+Text Auto: CxComboWhen this card attacks, if "Courage to Bloom" is in your climax area and the number of other «Music» characters you have is 2 or more, choose and perform 1 of the following 2 effects. "Look at up to the top 4 cards of your deck, choose up to 1 «Music» character among them, show it to your opponent, put it in your hand, and put the remaining cards into the waiting room." "Perform trigger check twice during this card attack's trigger step."
 EndCard
 
 Character: SG/W89-003
@@ -81,7 +81,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CX COMBO [(1) Put a card from hand to the waiting room] When this card attacks, if "METANOIA" is in your climax area, you may pay the cost. If you do, until end of turn this card gets the following ability. "Auto: This ability activates up to once per turn. When this card's damage is cancelled, you may deal 3 damage to your opponent. If that damage is cancelled, you may deal 1 damage to your opponent."
+Text Auto: CxCombo[(1) Put a card from hand to the waiting room] When this card attacks, if "METANOIA" is in your climax area, you may pay the cost. If you do, until end of turn this card gets the following ability. "Auto: This ability activates up to once per turn. When this card's damage is cancelled, you may deal 3 damage to your opponent. If that damage is cancelled, you may deal 1 damage to your opponent."
 EndCard
 
 Character: SG/W89-004
@@ -1377,7 +1377,7 @@ Auto: OnEndOfAttack
     }
 }
 TimesPerTurn 1
-Text Auto: CX COMBO [(1) Put a «Music» character from hand to the waiting room] This ability activates up to once per turn. At the end of this card's attack, If "Highest Good: Rose Cross" is in your climax area and you have another «Music» character, you may pay the cost. If you do, choose either 1 of your other "Tsubasa, Resurrected Phoenix" or this card, stand that card, and that card gets the following 2 abilities until end of turn. "Cont: During this card's battle, your opponent may not use "BACKUP" from hand." "Cont: This cannot be chosen by your opponent's abilities."
+Text Auto: CxCombo[(1) Put a «Music» character from hand to the waiting room] This ability activates up to once per turn. At the end of this card's attack, If "Highest Good: Rose Cross" is in your climax area and you have another «Music» character, you may pay the cost. If you do, choose either 1 of your other "Tsubasa, Resurrected Phoenix" or this card, stand that card, and that card gets the following 2 abilities until end of turn. "Cont: During this card's battle, your opponent may not use "BACKUP" from hand." "Cont: This cannot be chosen by your opponent's abilities."
 EndCard
 
 Character: SG/W89-056
