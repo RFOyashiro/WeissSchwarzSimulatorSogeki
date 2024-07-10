@@ -1277,15 +1277,15 @@ Auto: OnAttack
 	{
 		PayCost 3 Discard 1 HasTrait Music
 		{
+			TargetLocation OpponentDeck
+			SetXValue TargetCount
 			Burn 3
-			GainEffect
+			TargetLocation OpponentDeck
+			If Not Compare X TargetCount Exactly && LastDamageCanceled
 			{
-				Auto: OnCancel
-				{
-					*OptionalHeal
-					*OptionalHeal
-					*OptionalHeal
-				}
+				*OptionalHeal
+				*OptionalHeal
+				*OptionalHeal
 			}
 		}
 	}
