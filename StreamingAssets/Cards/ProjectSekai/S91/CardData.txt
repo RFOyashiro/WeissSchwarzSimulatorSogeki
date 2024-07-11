@@ -3941,7 +3941,7 @@ Auto: OnPlay
 Text Auto: When this card is placed on the stage from your hand, you may put the top 3 cards of your deck into waiting room.
 Auto: OnPlay
 {
-    PayCost Discard 1 Any
+    PayCost 1 Discard 1 Any
     {
         SearchWaitingRoom HasTrait Music
         *GiveOtherCharacterPower(1000,Music)
