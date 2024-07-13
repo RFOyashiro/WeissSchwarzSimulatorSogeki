@@ -1282,6 +1282,7 @@ Text If you have no character with "Matsu" in its card name, you cannot play thi
 Effect: 
 {
     SearchLocationForTargets WaitingRoom 0 1 NameContains 松 && IsCharacter
+    MoveCard Stock
     *GiveCharacterPower(2000,Any)
     TargetSelf
     MoveCard Stock
