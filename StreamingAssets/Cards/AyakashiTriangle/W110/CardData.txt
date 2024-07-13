@@ -2853,7 +2853,7 @@ Auto: OnPlay|PlacedBy Been Waiting for This Moment, Shirogane
 {
     *OptionalHeal
 }
-Text Auto: When this card is placed on the stage from your hand or by the effect of Act: of "Been Waiting for This Moment, Shirogane" to the stage, you may put the top card of your clock in the waiting room.
+Text Auto: When this card is placed on the stage from your hand or by the effect of "Act:" of "Been Waiting for This Moment, Shirogane" to the stage, you may put the top card of your clock in the waiting room.
 Auto: OnAttack
 {
     If Climax Exorcist Ninja and Ayakashi Medium

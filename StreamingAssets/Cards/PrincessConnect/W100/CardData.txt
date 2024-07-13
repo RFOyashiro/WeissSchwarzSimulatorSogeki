@@ -2634,7 +2634,7 @@ Auto: OnUseAct
     GainPower 1000
 }
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When you use an Act: ability, choose 1 of your «Landosol» characters, and that character gets +1000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, choose 1 of your «Landosol» characters, and that character gets +1000 power until end of turn.
 Act: RestSelf
 {
     TargetLocation OpponentCenterStage

@@ -768,7 +768,7 @@ Auto: OnUseAct
     }
 }
 TimesPerTurn 2
-Text Auto: This ability activates up to twice per turn. When you use an Act: ability, this card gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck into stock."
+Text Auto: This ability activates up to twice per turn. When you use an "Act:" ability, this card gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck into stock."
 Auto: OnSpecificClimaxPlay Tomboyish Maiden
 {
     *OptionalBlindStock
@@ -3001,7 +3001,7 @@ Auto: OnUseAct|OnOpponentUsesAct
     GainPower 1000
 }
 Quick
-Text Auto: When any player use an Act: ability, this card gets +1000 power until end of turn.
+Text Auto: When any player use an "Act:" ability, this card gets +1000 power until end of turn.
 Auto: OnPlacedOnStageFromWaitingRoom
 {
     GainEffect
@@ -3247,7 +3247,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 2
-Text Auto: This abilitiy activates up to twice per turn. When you use an Act: ability, this card gets +500 power until end of turn.
+Text Auto: This abilitiy activates up to twice per turn. When you use an "Act:" ability, this card gets +500 power until end of turn.
 EndCard
 
 Character: HP/Wx01-297
@@ -3388,7 +3388,7 @@ Auto: OnOpponentUsesAct
     SearchWaitingRoom IsClimax
 }
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When your opponent uses an Act: ability, choose up to 1 climax in your waiting room and return it to your hand.
+Text Auto: This ability activates up to once per turn. When your opponent uses an "Act:" ability, choose up to 1 climax in your waiting room and return it to your hand.
 Auto: StartOpponentAttackPhase
 {
     PayCost 1 Discard 1 NameEquals Shrine Visit
@@ -4474,7 +4474,7 @@ Auto:
 {
 
 }
-Text Auto: This ability active up to once per turn. When you use an Act: ability, this card gets the following ability until end of turn. "Auto: [(1)] When this card's battle opponent becomes reverse, you may pay the cost. If you do, choose 1 «Headpat» character in your waiting room and return it to your hand."
+Text Auto: This ability active up to once per turn. When you use an "Act:" ability, this card gets the following ability until end of turn. "Auto: [(1)] When this card's battle opponent becomes reverse, you may pay the cost. If you do, choose 1 «Headpat» character in your waiting room and return it to your hand."
 Auto:
 {
 
@@ -5644,7 +5644,7 @@ Act:
 {
 
 }
-Text Act: [(1)] Your opponent may not use Act: abilities of the characters on stage until end of your opponent's turn.
+Text Act: [(1)] Your opponent may not use "Act:" abilities of the characters on stage until end of your opponent's turn.
 EndCard
 
 Character: HP/Wx01-
@@ -7114,7 +7114,7 @@ Auto:
 {
 
 }
-Text Auto: When your opponent uses an Act: ability, this card get +X power until end of turn. X equals number of characters you have times 1500.
+Text Auto: When your opponent uses an "Act:" ability, this card get +X power until end of turn. X equals number of characters you have times 1500.
 Auto:
 {
 

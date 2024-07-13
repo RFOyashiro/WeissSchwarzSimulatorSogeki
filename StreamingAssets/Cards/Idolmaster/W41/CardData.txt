@@ -1008,7 +1008,7 @@ Auto: OnPlay|PlacedBy Our Lyrics, Miku
 	TargetSelf
 	GainPower 1000
 }
-Text Auto: CxCombo When this card is placed on the stage from your hand or by the Act: effect of "Our Lyrics, Miku", choose up to one card named "OwOver!!" in your waiting room, return it to your hand, and this card gets +1000 power until end of turn. 
+Text Auto: CxCombo When this card is placed on the stage from your hand or by the "Act:" effect of "Our Lyrics, Miku", choose up to one card named "OwOver!!" in your waiting room, return it to your hand, and this card gets +1000 power until end of turn. 
 Auto: OnAttack
 {
 	If Climax OwOver!!
@@ -1892,7 +1892,7 @@ Auto: OnUseAct
 	GainPower 500
 }
 TimesPerTurn 1
-Text Auto: This ability activates up to one time per turn. When you use an Act:, choose one of your characters, it gets +500 power until end of turn.
+Text Auto: This ability activates up to one time per turn. When you use an "Act:", choose one of your characters, it gets +500 power until end of turn.
 EndCard
 
 Character: IMC/W41-E083

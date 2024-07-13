@@ -791,7 +791,7 @@ Auto: OnUseAct
         SearchWaitingRoom IsCharacter && HasTrait Detective
     }
 }
-Text Auto: [(2)] This ability activates up to once per turn. When you use an Act: ability, you may pay the cost. If you do, choose a «Detective» character in your waiting room and return it to your hand.
+Text Auto: [(2)] This ability activates up to once per turn. When you use an "Act:" ability, you may pay the cost. If you do, choose a «Detective» character in your waiting room and return it to your hand.
 Auto: OnCardEntersLevel
 {
     *GiveCharacterPower(2500,Any)

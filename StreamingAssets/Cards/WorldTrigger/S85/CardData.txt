@@ -765,7 +765,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +1500 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, this card gets +1500 power until end of turn.
 Auto: OnAttack
 {
     If Climax Despinis && LocationContainsOrLess Stock 6 Any
@@ -802,7 +802,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +X power until end of turn. X equals 500 times the number of your other «Trion» characters.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, this card gets +X power until end of turn. X equals 500 times the number of your other «Trion» characters.
 Auto: OnAttack
 {
     If Climax Destruction of the Expedition Vessel
@@ -940,7 +940,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When you use an Act: ability, all your characters get +2000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, all your characters get +2000 power until end of turn.
 Auto: OnFrontalAttacked
 {
     PayCost Discard 2 Any
@@ -1359,7 +1359,7 @@ Auto: OnUseAct
     }
 }
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, this card gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
 Auto: OnReversed
 {
     MoveCardToBottom Deck
@@ -1682,7 +1682,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +2000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, this card gets +2000 power until end of turn.
 EndCard
 
 Character: WTR/S85-067
@@ -1728,7 +1728,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +X power until end of turn. X equals 500 times the number of your other «Trion» characters.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, this card gets +X power until end of turn. X equals 500 times the number of your other «Trion» characters.
 Auto: OnFrontalAttacked
 {
     Mill 1
@@ -1757,7 +1757,7 @@ Auto: OnUseAct
     *GiveCharacterPower(1000,Any)
 }
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When you use an Act: ability, choose 1 of your characters, and that character gets +1000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: WTR/S85-070
@@ -1834,7 +1834,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +X power until end of turn. X equals 1000 times the number of your other «Trion» characters.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, this card gets +X power until end of turn. X equals 1000 times the number of your other «Trion» characters.
 Auto: OnAttack
 {
     Question Announce "Asteroid" ?

@@ -1815,7 +1815,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +X power until end of turn. X equals 500 times the number of your other Blue characters.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, this card gets +X power until end of turn. X equals 500 times the number of your other Blue characters.
 Auto: OnAttack
 {
     If Climax Light of Hope in That Heart! && Compare AttacksThisTurn 3 Exactly
@@ -1887,7 +1887,7 @@ Auto: OnUseAct
     *GiveCharacterPower(500,Any)
 }
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When you use an Act: ability, choose 1 of your characters, and that character gets +500 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, choose 1 of your characters, and that character gets +500 power until end of turn.
 Act: 1 RestSelf
 {
     Brainstorm 4
@@ -1962,7 +1962,7 @@ Auto: OnUseAct
     GainPower 1000
 }
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When you use an Act: ability, choose 1 of your Blue characters, and that character gets +1000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, choose 1 of your Blue characters, and that character gets +1000 power until end of turn.
 Act: 2 RestSelf
 {
     Heal
@@ -1986,7 +1986,7 @@ Auto: OnUseAct
     GainPower 1500
 }
 Quick
-Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +1500 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, this card gets +1500 power until end of turn.
 Auto: OnReverseOpponent
 {
     If Climax You're Next! && AllYourCharacters IsColor Blue
@@ -2029,7 +2029,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +X power until end of turn. X equals 500 times the number of your Blue characters.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, this card gets +X power until end of turn. X equals 500 times the number of your Blue characters.
 Act: Rest 1 Any
 {
     GainPower 1000

@@ -2156,7 +2156,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +1000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, this card gets +1000 power until end of turn.
 EndCard
 
 Character: MK/S11-119

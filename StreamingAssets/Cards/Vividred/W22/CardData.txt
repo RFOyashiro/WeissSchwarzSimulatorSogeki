@@ -445,7 +445,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When you use an Act: ability, this card gets +1500 power until the end of turn.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, this card gets +1500 power until the end of turn.
 EndCard
 
 Character: VR/W22-025
@@ -499,7 +499,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When you use an Act: ability, all your characters gets +2000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, all your characters gets +2000 power until end of turn.
 Auto: OnAttack
 {
     PayCost 2
@@ -974,7 +974,7 @@ Auto: OnPlay|PlacedBy Docking with Akane!, Rei
     *OptionalDraw
     Discard 1 Any
 }
-Text Auto: When this card is placed on the stage from your hand of by the effect of the Act: ability of "Docking with Akane!, Rei" to the stage, draw up to 2 cards and discard a card from hand to the waiting room.
+Text Auto: When this card is placed on the stage from your hand of by the effect of the "Act:" ability of "Docking with Akane!, Rei" to the stage, draw up to 2 cards and discard a card from hand to the waiting room.
 Auto: OnSpecificClimaxPlay Vivid Punch
 {
     If InLocation CenterStage
@@ -1996,7 +1996,7 @@ Auto: OnPlay|PlacedBy First Docking, Akane
     MoveCard Hand
     PutTheRestIntoTheWaitingRoom
 }
-Text Auto: When this card is placed on the stage from your hand or by the effect of the Act: ability of "First Docking, Akane" to the stage, look at up to X card from the top of your deck and choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your «Key» characters.
+Text Auto: When this card is placed on the stage from your hand or by the effect of the "Act:" ability of "First Docking, Akane" to the stage, look at up to X card from the top of your deck and choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your «Key» characters.
 EndCard
 
 Character: VR/W22-105

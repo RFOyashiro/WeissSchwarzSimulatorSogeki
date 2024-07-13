@@ -44,7 +44,7 @@ Auto: OnUseAct
     }
 }
 TimesPerTurn 2
-Text Auto: [(1) Put 1 card from hand to the waiting room] This ability activates up to twice per turn. When you use an Act: ability, you may pay the cost. If you do, if it's your turn and there is 1 or less markers underneath this card and put the top card of your deck underneath this card face up as a marker, if it's your opponent's turn, put the top card of your clock into waiting room.
+Text Auto: [(1) Put 1 card from hand to the waiting room] This ability activates up to twice per turn. When you use an "Act:" ability, you may pay the cost. If you do, if it's your turn and there is 1 or less markers underneath this card and put the top card of your deck underneath this card face up as a marker, if it's your opponent's turn, put the top card of your clock into waiting room.
 Auto: OnAttack
 {
     If Climax For Those in Need
@@ -81,7 +81,7 @@ Auto: OnUseAct
     }
 }
 TimesPerTurn 1
-Text Auto: This ability activates up to once per turn. When you use an Act: ability, if you have another «Sound of Heart» character, choose 1 of your characters with «Sound of Heart» and until end of turn that character gets +1 soul.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, if you have another «Sound of Heart» character, choose 1 of your characters with «Sound of Heart» and until end of turn that character gets +1 soul.
 Act: RestSelf
 {
     TargetLocation Stage
@@ -163,7 +163,7 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont: If the number of rest characters in your backstage with Act: abilities you have is 2 or more, this card gets the following ability. "Cont: ASSIST Your characters in front of this card get +1500 power."
+Text Cont: If the number of rest characters in your backstage with "Act:" abilities you have is 2 or more, this card gets the following ability. "Cont: ASSIST Your characters in front of this card get +1500 power."
 Auto: StartClimaxPhase
 {
     If Compare MyLevel 2 OrMore && StageContains 1 Any
@@ -305,7 +305,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 2
-Text Auto: This ability activates up to twice per turn. When you use an Act: ability, this card gets +X power until end of turn. X equals 500 times the number of your other «Sound of Heart» characters.
+Text Auto: This ability activates up to twice per turn. When you use an "Act:" ability, this card gets +X power until end of turn. X equals 500 times the number of your other «Sound of Heart» characters.
 Act: Discard 1 Any
 {
     TargetLocation Marker
@@ -337,7 +337,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 2
-Text Auto: This ability activates up to twice per turn. When you use an Act: ability, and you have another «Sound of Heart» character, this card gets +1000 power until the next of your opponent's turn.
+Text Auto: This ability activates up to twice per turn. When you use an "Act:" ability, and you have another «Sound of Heart» character, this card gets +1000 power until the next of your opponent's turn.
 Act: Rest 1 Other && HasTrait Sound of Heart
 {
     GainPower 1500

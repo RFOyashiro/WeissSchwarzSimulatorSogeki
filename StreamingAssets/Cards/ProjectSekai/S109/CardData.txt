@@ -172,7 +172,7 @@ Auto: OnDamageCanceled
     }
 }
 TimesPerTurn 2
-Text Auto: This ability activates up to twice per turn. During the turn this card is placed on the stage from your hand or by the Act: ability of "Thinking About Friends, Honami Mochizuki", when this card's damage is canceled, you may deal 1 damage to your opponent.
+Text Auto: This ability activates up to twice per turn. During the turn this card is placed on the stage from your hand or by the "Act:" ability of "Thinking About Friends, Honami Mochizuki", when this card's damage is canceled, you may deal 1 damage to your opponent.
 Auto: OnPlay|PlacedBy Thinking About Friends, Honami Mochizuki
 {
     TempLabel PlayedPlaced
@@ -660,7 +660,7 @@ Auto: OnPlay|PlacedBy Thinking About Friends, Honami Mochizuki
     TargetSelf
     GainPower 1500
 }
-Text Auto: When this card is placed on the stage from your hand or by the Act: effect of "Thinking About Friends, Honami Mochizuki", you may put the top card of your clock into waiting room and this card gets +1500 power until end of turn.
+Text Auto: When this card is placed on the stage from your hand or by the "Act:" effect of "Thinking About Friends, Honami Mochizuki", you may put the top card of your clock into waiting room and this card gets +1500 power until end of turn.
 Auto: OnAttack
 {
     If Climax Lunch Break Talk && Compare ColorsOnStage 4 OrMore
