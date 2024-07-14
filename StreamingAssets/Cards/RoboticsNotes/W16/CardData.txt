@@ -594,11 +594,11 @@ Cont: GiveSelf
             }
             Quick
             TimesPerTurn 1
-            Text Auto: This card ability may be activated up to once per turn. When you use an "Act:" ability, this card gets +1 level and +1500 power until end of turn.
+            Text Auto: This ability activates up to 1 time per turn.. When you use an "Act:" ability, this card gets +1 level and +1500 power until end of turn.
         }
     }
 }
-Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets the following ability. "Auto: This card ability may be activated up to once per turn. When you use an "Act:" ability, this card gets +1 level and +1500 power until end of turn."
+Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets the following ability. "Auto: This ability activates up to 1 time per turn.. When you use an "Act:" ability, this card gets +1 level and +1500 power until end of turn."
 Auto: OnAttack
 {
     If Climax Extended Hand
@@ -671,7 +671,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 1
-Text Auto: This card ability may be activated up to once per turn. When you use an "Act:" ability, all your characters get +2000 power until end of turn.
+Text Auto: This ability activates up to 1 time per turn.. When you use an "Act:" ability, all your characters get +2000 power until end of turn.
 EndCard
 
 Character: RN/W16-033
@@ -685,9 +685,12 @@ Soul 1
 Trait1 Science
 Trait2 Otaku
 *500Assist
-Act:
+Act: RestSelf
 {
-
+    If LocationContains OpponentStage 1 Compare ThatCardsLevel 2 OrMore
+    {
+        *GiveCharacterPower(1000,Science)
+    }
 }
 Text Act: [Rest this card] If your opponent has a level 2 or higher character, choose 1 of your «Science» characters, and that character gets +1000 power until end of turn.
 EndCard
@@ -702,16 +705,8 @@ Power 500
 Soul 1
 Trait1 Science
 Trait2 Mecha
-Auto:
-{
-
-}
-Text Auto: BOND/"Junna, Past Trama" [Put the top card of your deck in your clock]
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your «Science» characters, and that character gets +500 power until end of turn.
+*BondClock(Past Trauma\, Junna)
+*RestGivePower(500,Science)
 EndCard
 
 Character: RN/W16-035
@@ -728,12 +723,7 @@ Auto:
 {
 
 }
-Text Auto: This card ability may be activated up to once per turn. When you use an
-Act:
-{
-
-}
-Text Act: ability, choose 1 of your characters, and that character gets +1000 power until end of turn.
+Text Auto: This ability may be activated up to once per turn. When you use an "Act:" ability, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: RN/W16-036
@@ -785,7 +775,7 @@ Cont:
 {
 
 }
-Text Cont: This card gets +1000 power for each other Rested character you have
+Text Cont: For each other Rested character you have, this card gets +1000 power.
 EndCard
 
 Character: RN/W16-039
@@ -903,8 +893,7 @@ JPName 閃光の一撃
 Color G
 Level 1
 Cost 0
-Counter
-Effect:
+Effect: 
 {
 
 }
@@ -917,8 +906,7 @@ JPName スーパーリンペイ
 Color G
 Level 2
 Cost 0
-Counter
-Effect:
+Effect: 
 {
 
 }
@@ -955,7 +943,11 @@ Power 6000
 Soul 1
 Trait1 Science
 Trait2 Sports
-*GlobalPower(1000,Science)
+Cont:
+{
+
+}
+Text Cont: All your other «Science» characters get +1000 power.
 Cont:
 {
 
@@ -1192,11 +1184,7 @@ Cont:
 
 }
 Text Cont: All your other "Mister Pleiades" get +1000 power.
-Auto:
-{
-
-}
-Text Auto: BOND/"Mister Pleiades" [(1)]
+*Bond1(Mister Pleiades)
 EndCard
 
 Character: RN/W16-064
@@ -1304,8 +1292,7 @@ JPName 密室でふたりきり
 Color R
 Level 1
 Cost 1
-Counter
-Effect:
+Effect: 
 {
 
 }
@@ -1318,8 +1305,7 @@ JPName ゲンキ＆ロゼッタ
 Color R
 Level 1
 Cost 1
-Counter
-Effect:
+Effect: 
 {
 
 }
@@ -1434,7 +1420,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's not a «Science» character, this card gets "Cont: This card cannot attack" until end of turn.
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's not a «Science» character, this card gets "Cont: This card cannot attack" until end of turn. 
 EndCard
 
 Character: RN/W16-080
@@ -1594,11 +1580,7 @@ Power 1000
 Soul 1
 Trait1 Science
 Trait2 Net
-Auto:
-{
-
-}
-Text Auto: BOND/"Airi Yukifune" [(1)]
+*Bond1(Airi Yukifune)
 EndCard
 
 Character: RN/W16-089
@@ -1714,8 +1696,7 @@ JPName 「あねもね」号集団失神事件
 Color B
 Level 2
 Cost 0
-Counter
-Effect:
+Effect: 
 {
 
 }
@@ -1728,8 +1709,7 @@ JPName 居ル夫。
 Color B
 Level 2
 Cost 0
-Counter
-Effect:
+Effect: 
 {
 
 }

@@ -25,11 +25,11 @@ Auto: OnAttack
                 }
             }
             TimesPerTurn 1
-            Text Auto: [(2)] This card ability activates up to once per turn. When the damage dealt by this card is canceled, you may pay the cost. If you do, deal 5 damage to your opponent.
+            Text Auto: [(2)] This ability activates up to once per turn. When the damage dealt by this card is canceled, you may pay the cost. If you do, deal 5 damage to your opponent.
         }
     }
 }
-Text Auto: CxCombo When this card attacks, if "Tsubomi" is in your climax area and the number of other Yellow characters you have is 4 or more, this card gets +2000 power and the following ability until end of turn. "Auto: [(2)] This card ability activates up to once per turn. When the damage dealt by this card is canceled, you may pay the cost. If you do, deal 5 damage to your opponent."
+Text Auto: CxCombo When this card attacks, if "Tsubomi" is in your climax area and the number of other Yellow characters you have is 4 or more, this card gets +2000 power and the following ability until end of turn. "Auto: [(2)] This ability activates up to once per turn. When the damage dealt by this card is canceled, you may pay the cost. If you do, deal 5 damage to your opponent."
 EndCard
 
 Character: IMC/W43-002
@@ -272,11 +272,11 @@ Auto: OnAttack
                 *PutCardFromWaitingRoomIntoStock(IsCharacter && && NameContains 杏|きらり)
             }
             TimesPerTurn 1
-            Text Auto: This card ability activates up to once per turn. When the damage dealt by this card is canceled, choose up to 2 characters in your waiting room with either "Anzu" or "Kirari" in its card name and put them in your stock in any order.
+            Text Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, choose up to 2 characters in your waiting room with either "Anzu" or "Kirari" in its card name and put them in your stock in any order.
         }
     }
 }
-Text Auto: CxCombo When this card attacks, if "Two Are the Same Age" is in your climax area, this card gets the following ability until end of turn. "Auto: This card ability activates up to once per turn. When the damage dealt by this card is canceled, choose up to 2 characters in your waiting room with either "Anzu" or "Kirari" in its card name and put them in your stock in any order."
+Text Auto: CxCombo When this card attacks, if "Two Are the Same Age" is in your climax area, this card gets the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, choose up to 2 characters in your waiting room with either "Anzu" or "Kirari" in its card name and put them in your stock in any order."
 EndCard
 
 Character: IMC/W43-010
@@ -624,7 +624,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto: CxCombo [(1)] When this card's battle opponent becomes reverse, if "Rockin' Emotion" is in your climax area, you may pay the cost. If you do, all your characters in the center stage get the following ability until end of turn. "Auto: This card ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
+Text Auto: CxCombo [(1)] When this card's battle opponent becomes reverse, if "Rockin' Emotion" is in your climax area, you may pay the cost. If you do, all your characters in the center stage get the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
 EndCard
 
 Character: IMC/W43-023
@@ -795,7 +795,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, this card gets +1500 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, this card gets +1500 power until end of turn.
 EndCard
 
 Character: IMC/W43-031
@@ -932,7 +932,7 @@ Effect:
         *OnCancelBurn1
     }
 }
-Text All your characters gain +1000 power and the following ability until end of turn. "Auto: This card ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
+Text All your characters gain +1000 power and the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
 EndCard
 
 Climax: IMC/W43-036
@@ -1025,7 +1025,7 @@ Auto: OnReversed
         }
     }
 }
-Text Auto: CxCombo [(2) Put a «Music» character from your hand to the waiting room] This card ability activates up to once per turn. When this card becomes reversed in battle, if "S(mile)ING!" is in your climax area and all your characters are «Music», you may pay the cost. If you do, stand this card, and this card gets +3000 power until end of turn.
+Text Auto: CxCombo [(2) Put a «Music» character from your hand to the waiting room] This ability activates up to once per turn. When this card becomes reversed in battle, if "S(mile)ING!" is in your climax area and all your characters are «Music», you may pay the cost. If you do, stand this card, and this card gets +3000 power until end of turn.
 EndCard
 
 Character: IMC/W43-044
@@ -1056,12 +1056,12 @@ Auto: OnSpecificClimaxPlay As Senpai, As Rival
                 }
                 Quick
                 TimesPerTurn 1
-                Text Auto: This card ability activates up to once per turn. When this card becomes reversed in battle, rest this card.
+                Text Auto: This ability activates up to once per turn. When this card becomes reversed in battle, rest this card.
             }
         }
     }
 }
-Text Auto: CxCombo [Rest 1 of your other standing «Music» character] When "As Senpai, As Rival" is placed on your climax area, if this card is in your center stage, you may pay the cost. If you do, choose up to 2 of your «Music» characters, and those characters get the following ability until end of turn. "Auto: This card ability activates up to once per turn. When this card becomes reversed in battle, rest this card."
+Text Auto: CxCombo [Rest 1 of your other standing «Music» character] When "As Senpai, As Rival" is placed on your climax area, if this card is in your center stage, you may pay the cost. If you do, choose up to 2 of your «Music» characters, and those characters get the following ability until end of turn. "Auto: This ability activates up to once per turn. When this card becomes reversed in battle, rest this card."
 *RedLevel1Bomb
 EndCard
 
@@ -1221,12 +1221,12 @@ Auto: OnSpecificClimaxPlay Two Are the Same Age
                     }
                 }
                 TimesPerTurn 1
-                Text Auto: This card ability activates up to once per turn. When this card's battle opponent becomes reverse, stand this card, and you may choose an 'Anzu Being Awkward' in your center stage and this card and exchange them.
+                Text Auto: This ability activates up to once per turn. When this card's battle opponent becomes reverse, stand this card, and you may choose an 'Anzu Being Awkward' in your center stage and this card and exchange them.
             }
         }
     }
 }
-Text Auto: CxCombo [Rest this card] When "Two Are the Same Age" is placed on your climax area, if this card is in the center stage and this card is standing, you may pay the cost. If you do, choose 1 of your character with "Kirari" in its card name, and that character gets the following ability until end of turn. "Auto: This card ability activates up to once per turn. When this card's battle opponent becomes reverse, stand this card, and you may choose an 'Anzu Being Awkward' in your center stage and this card and exchange them."
+Text Auto: CxCombo [Rest this card] When "Two Are the Same Age" is placed on your climax area, if this card is in the center stage and this card is standing, you may pay the cost. If you do, choose 1 of your character with "Kirari" in its card name, and that character gets the following ability until end of turn. "Auto: This ability activates up to once per turn. When this card's battle opponent becomes reverse, stand this card, and you may choose an 'Anzu Being Awkward' in your center stage and this card and exchange them."
 EndCard
 
 Character: IMC/W43-051
@@ -2004,7 +2004,7 @@ Auto: OnOtherPlacedOnStageFromWaitingRoom
 }
 Quick
 TimesPerTurn 3
-Text Auto: This card ability activates up to 3 times per turn. When your other character is placed on the stage from your waiting room, that character gets +500 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room" until end of turn.
+Text Auto: This ability activates up to 3 times per turn. When your other character is placed on the stage from your waiting room, that character gets +500 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room" until end of turn.
 EndCard
 
 Character: IMC/W43-086
@@ -2114,7 +2114,7 @@ Auto: OnOtherPlacedOnStageFromWaitingRoom
     GainSoul 1
 }
 TimesPerTurn 3
-Text Auto: This card ability activates up to 3 times per turn. When your other character is placed on the stage from your waiting room, choose 1 of your characters, and that character gets +1 soul until end of turn.
+Text Auto: This ability activates up to 3 times per turn. When your other character is placed on the stage from your waiting room, choose 1 of your characters, and that character gets +1 soul until end of turn.
 EndCard
 
 Character: IMC/W43-090
@@ -2152,13 +2152,13 @@ Auto: OnAttack
                 }
             }
             TimesPerTurn 1
-            Text Auto: [(3) Put 1 card from your hand to the waiting room] This card ability activates up to once per turn. When your other character attacks, if the number of other Blue characters you have is 3 or more, you may pay the cost. If you do, stand this card.
+            Text Auto: [(3) Put 1 card from your hand to the waiting room] This ability activates up to once per turn. When your other character attacks, if the number of other Blue characters you have is 3 or more, you may pay the cost. If you do, stand this card.
         }
     }
 }
 Quick
 TimesPerTurn 1
-Text Auto: CxCombo This card ability activates up to once per turn. When this card attacks, if "Triad Primus" is in your climax area, this card gets the following ability until end of turn. "Auto: [(3) Put 1 card from your hand to the waiting room] This card ability activates up to once per turn. When your other character attacks, if the number of other Blue characters you have is 3 or more, you may pay the cost. If you do, stand this card."
+Text Auto: CxCombo This ability activates up to once per turn. When this card attacks, if "Triad Primus" is in your climax area, this card gets the following ability until end of turn. "Auto: [(3) Put 1 card from your hand to the waiting room] This ability activates up to once per turn. When your other character attacks, if the number of other Blue characters you have is 3 or more, you may pay the cost. If you do, stand this card."
 EndCard
 
 Character: IMC/W43-091

@@ -225,7 +225,7 @@ Auto: OnUseAct
     GainPower X
 }
 Quick
-Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, this card gets +X power until end of turn. X equals 500 times the number of your other Green characters.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, this card gets +X power until end of turn. X equals 500 times the number of your other Green characters.
 Auto: OnReverseOpponent
 {
     If PlayedThisTurn
@@ -288,7 +288,7 @@ Auto: OnUseAct
     GainPower X
 }
 Quick
-Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, this card gets +X power until end of turn. X equals 500 times the number of your Green characters.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, this card gets +X power until end of turn. X equals 500 times the number of your Green characters.
 *GreenLevel0Bomb
 EndCard
 

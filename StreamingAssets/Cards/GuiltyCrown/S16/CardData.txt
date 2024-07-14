@@ -110,7 +110,7 @@ Auto: OnUseShift
 }
 Quick
 TimesPerTurn 1
-Text Auto: This card ability may be activated up to once per turn. When you use "SHIFT", this card gets the following ability until the end of your opponent's next turn. "Cont: ASSIST Your characters in front of this card get +500 power"
+Text Auto: This ability may be activated up to once per turn. When you use "SHIFT", this card gets the following ability until the end of your opponent's next turn. "Cont: ASSIST Your characters in front of this card get +500 power"
 EndCard
 
 Character: GC/S16-006
@@ -1012,7 +1012,7 @@ Auto: OnUseShift
 }
 Quick
 TimesPerTurn 1
-Text Auto: This card ability may activate up to once per turn. When you use "SHIFT", this card gets the following ability until the end of your opponent's next turn. "Cont: All your other characters get +500 power."
+Text Auto: This ability may activate up to once per turn. When you use "SHIFT", this card gets the following ability until the end of your opponent's next turn. "Cont: All your other characters get +500 power."
 EndCard
 
 Character: GC/S16-055
@@ -1040,7 +1040,7 @@ Auto: OnOtherPlacedOnStageFromHand
 }
 Quick
 TimesPerTurn 1
-Text Auto: This card ability may activate up to once per turn. When your other character with "SHIFT" is placed on the stage from your hand, this card gets +2000 power until the end of your opponent's next turn.
+Text Auto: This ability may activate up to once per turn. When your other character with "SHIFT" is placed on the stage from your hand, this card gets +2000 power until the end of your opponent's next turn.
 EndCard
 
 Character: GC/S16-056
@@ -1503,7 +1503,7 @@ Auto: OnOtherPlacedOnStageFromHand
     }
 }
 TimesPerTurn 2
-Text Auto: This card ability may be activated up to 2 times per turn. When your other «Funeral Parlor» character is placed on the stage from your hand, look at the top card of your deck and put it either on top or bottom of the deck.
+Text Auto: This ability may be activated up to 2 times per turn. When your other «Funeral Parlor» character is placed on the stage from your hand, look at the top card of your deck and put it either on top or bottom of the deck.
 EndCard
 
 Character: GC/S16-082
@@ -2202,7 +2202,7 @@ Auto: OnUseShift
 }
 Quick
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When you use "SHIFT", this card gets the following ability until end of turn. "Cont: All your other characters get +1000 power."
+Text Auto: This ability activates up to once per turn. When you use "SHIFT", this card gets the following ability until end of turn. "Cont: All your other characters get +1000 power."
 EndCard
 
 Character: GC/S16-123
