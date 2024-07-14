@@ -1085,7 +1085,7 @@ Auto: OnAttack
         GainPower X
     }
 }
-Text Auto: When this card attacks, if "Conflict with Father" is in your climax area, this card gets +X power until end of turn. X equals number of your other characters with either "Hiromu" in its card name or «Science» times 1000.
+Text Auto: When this card attacks, if "Conflict with Father" is in your climax area, this card gets +X power until end of turn. X equals 1000 times number of your other characters with either "Hiromu" in its card name or «Science».
 EndCard
 
 Character: RN/W16-056
@@ -1150,11 +1150,7 @@ Power 2000
 Soul 1
 Trait1 Science
 Trait2 Otaku
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is 0 or lower, you may reverse that character.
+*RedLevel0Bomb
 EndCard
 
 Character: RN/W16-059
@@ -1167,11 +1163,27 @@ Power 5000
 Soul 1
 Trait1 Science
 Trait2 Mask
-Act:
+Act: 1
 {
-
+    GainPower 1000
+    GainEffect
+    {
+        Auto: OnReverseOpponent
+        {
+            TargetBattleOpponent
+            IfTarget OnStage
+            {
+                Question Put that character on top of the deck ?
+                If Yes
+                {
+                    MoveCard OpponentDeck
+                }
+            }
+        }
+        Text Auto: When this card's battle opponent becomes reverse, you may put it on top of the deck.
+    }
 }
-Text Act: [(1)] This card gets +1000 power and "Auto: When this card's battle opponent becomes reverse, you may put it on top of the deck" until end of turn.
+Text Act: [(1)] This card gets +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put it on top of the deck."
 EndCard
 
 Character: RN/W16-060
@@ -1182,12 +1194,7 @@ Level 1
 Cost 1
 Power 6500
 Soul 1
-Trait 1: 特徴なし (No
-Cont:
-{
-
-}
-Text Cont: All your other "Abandoned Dream, Subaru" get +1000 power.
+*GiveNamePower(1000,Abandoned Dream\, Subaru)
 EndCard
 
 Character: RN/W16-061
@@ -1201,9 +1208,12 @@ Power 8000
 Soul 1
 Trait1 Science
 Trait2 Glasses
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 3 OrMore
+    {
+        GainPower 1000
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets +1000 power.
 EndCard
@@ -1219,14 +1229,13 @@ Power 8000
 Soul 2
 Trait1 Science
 Trait2 Otaku
-Auto:
+*OnPlayGiveOtherPower(1000,Science)
+Auto: StartClimaxPhase
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your other «Science» characters, and that character gets +1000 power until end of turn.
-Auto:
-{
-
+    PayCost 1 Discard 1 Any &&& SendSelf WaitingRoom
+    {
+        *ChangeWaitingRoom(Frau Koujiro)
+    }
 }
 Text Auto: CHANGE [(1) Put 1 card from your hand to the waiting room, put this card in waiting room] At the beginning of the climax phase, you may pay the cost. If you do, choose a "Frau Koujiro" in your waiting room and put it in the position this card was in.
 EndCard
@@ -1241,11 +1250,7 @@ Power 500
 Soul 1
 Trait1 Science
 Trait2 Mecha
-Cont:
-{
-
-}
-Text Cont: All your other "Mister Pleiades" get +1000 power.
+*GiveNamePower(1000,Mister Pleiades)
 *Bond1(Mister Pleiades)
 EndCard
 
@@ -1272,9 +1277,9 @@ Power 2500
 Soul 1
 Trait1 Science
 Trait2 Glasses
-Act:
+Act: 1
 {
-
+    *GiveCharacterPower(1500,Science)
 }
 Text Act: [(1)] Choose 1 of your «Science» characters, and that character gets +1500 power until end of turn.
 EndCard
@@ -1289,10 +1294,14 @@ Power 2500
 Soul 1
 Trait1 Science
 Trait2 Glasses
-Auto:
+Auto: OnOtherAttacks
 {
-
+    IfOther HasTrait Science
+    {
+        GainPower 1000
+    }
 }
+Quick
 Text Auto: When your other «Science» character attacks, this card gets +1000 power until end of turn.
 EndCard
 
@@ -1356,7 +1365,10 @@ Level 1
 Cost 1
 Effect:
 {
-
+    SearchWaitingRoom IsCharacter
+    *GiveCharacterPower(1000,Any)
+    TargetSelf
+    MoveCard Memory
 }
 Text Choose 1 «Science» character in your waiting room and return it to your hand. Choose 1 of your characters, and that character gets +1000 power until end of turn. Put this card into memory.
 EndCard
@@ -1369,9 +1381,24 @@ Level 1
 Cost 1
 Effect:
 {
-
+    MultipleChoiceQuestion Choose 1 of the following 2 effects and perform it.\n1: Rest 2 of your standing characters. If you do, choose an opponent's level 0 or lower character and put it on top of the deck.\n2: Choose 1 of your characters, and that character gets +1 level and +5500 power until end of turn.|1|2
+    If Answer 0
+    {
+        PayCost Rest 2 CardPosition Stand
+        {
+            TargetLocation OpponentStage
+            NarrowTargets CanBeChosen && Compare ThatCardsLevel 0 OrLess
+            ChooseCharacterFromTargets Choose a character to put on top of the deck.
+            MoveCard OpponentDeck
+        }
+    }
+    If Answer 1
+    {
+        *GiveCharacterPower(5500,Any)
+        GainLevel 1
+    }
 }
-Text Perform 1 of the following effects of your choice. "Rest 2 of your standing characters. If you do, choose an opponent's level 0 or lower character and put it on top of the deck." "Choose 1 of your characters, and that character gets +1 level and +5500 power until end of turn."
+Text Choose 1 of the following 2 effects and perform it.\n"Rest 2 of your standing characters. If you do, choose an opponent's level 0 or lower character and put it on top of the deck."\n"Choose 1 of your characters, and that character gets +1 level and +5500 power until end of turn."
 EndCard
 
 Climax: RN/W16-073
@@ -1404,16 +1431,8 @@ Power 1500
 Soul 1
 Trait1 Science
 Trait2 Net
-Cont:
-{
-
-}
-Text Cont: Your other «Science» character in the middle position of your center stage gets +500 power.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, draw a card.
+*GiveMiddlePower(500,Science)
+*Act1RestSelfDrawBrainstorm
 EndCard
 
 Character: RN/W16-077
@@ -1428,21 +1447,26 @@ Soul 2
 Trait1 Science
 Trait2 Net
 Combo White Christmas Eve
-Combo White Christmas Eve
-Auto:
+*OnPlayDraw2Discard1
+Auto: OnSpecificClimaxPlay White Christmas Eve
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, draw up to 2 cards, and discard a card from your hand to the waiting room.
-Auto:
-{
-
+    If InLocation CenterStage
+    {
+        SearchLocationForTargets Hand 0 1 Compare ThatCardsCost 2 OrMore && IsCharacter
+        PlaceOnStage false true true false
+    }
 }
 Text Auto: When "White Christmas Eve" is placed on your climax area, if this card is in the center stage, choose up to 1 cost 2 or lower character in your hand and put it in any position on the stage.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax White Christmas Eve
+    {
+        SetXToNumberOfCharacters Other && CardPosition Rest
+        MultiplyXValue 1000
+        GainPower 1000
+    }
 }
+Quick
 Text Auto: When this card attacks, if "White Christmas Eve" is in your climax area, this card gets +X power until end of turn. X equals 1000 times number of your other rest characters.
 EndCard
 
@@ -1456,14 +1480,11 @@ Power 1000
 Soul 1
 Trait1 Science
 Trait2 Mecha
-Auto:
+*OnAttackGiveOtherPower(1000,Science)
+Act: 1 Rest 2 HasTrait Science
 {
-
-}
-Text Auto: When this card attacks, choose 1 of your other «Science» characters, and that character gets +1000 power until end of turn.
-Act:
-{
-
+    SearchLocationForTargets Hand 1 1 IsCharacter && Compare ThatCardsCost 2 OrLess && Compare ThatCardsLevel MyLevel OrLess
+    PlaceOnStage false true true false
 }
 Text Act: [(1) Rest 2 of your «Science» characters] Choose a cost 2 or lower character in your hand whose level is equal to or lower than your level and put it in any position on the stage.
 EndCard
@@ -1478,11 +1499,27 @@ Power 3500
 Soul 1
 Trait1 Science
 Trait2 Mecha
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Science
+    {
+    }
+    Else
+    {
+        TargetSelf
+        GainEffect
+        {
+            Cont: GiveSelf
+            {
+                GainSpecialEffect CannotAttack
+            }
+            Text Cont: This card cannot attack.
+        }
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's not a «Science» character, this card gets "Cont: This card cannot attack" until end of turn.
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's not a «Science» character, this card gets the following ability until end of turn. "Cont: This card cannot attack."
 EndCard
 
 Character: RN/W16-080
@@ -1495,9 +1532,12 @@ Power 5000
 Soul 1
 Trait1 Science
 Trait2 Net
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 2 OrMore
+    {
+        GainPower 1000
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets +1000 power.
 EndCard
@@ -1513,11 +1553,11 @@ Power 1500
 Soul 1
 Trait1 Science
 Trait2 Net
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    *GiveCharacterPower(1000,Science)
 }
-Text Auto: When you use this card's BACKUP, choose 1 of your «Science» characters, and that character gets +1000 power until end of turn.
+Text Auto: When you use this card's "BACKUP", choose 1 of your «Science» characters, and that character gets +1000 power until end of turn.
 Backup 1500
 EndCard
 
@@ -1531,9 +1571,12 @@ Power 6500
 Soul 1
 Trait1 Science
 Trait2 Mecha
-Cont:
+Cont: GiveSelf
 {
-
+    If Not MyTurn && StageContains 2 Other && HasTrait Science
+    {
+        GainPower 1500
+    }
 }
 Text Cont: During your opponent's turn, if the number of other «Science» characters you have is 2 or more, this card gets +1500 power.
 EndCard
@@ -1548,9 +1591,13 @@ Power 1500
 Soul 1
 Trait1 Sports
 Trait2 Mecha
-Auto:
+Auto: OnReversed
 {
-
+    PayCost 1 SendSelf Memory
+    {
+        DrawCard
+        Discard 1 Any
+    }
 }
 Text Auto: [(1) Put this card into memory] When this card becomes reversed in battle, you may pay the cost. If you do, draw a card, and discard a card from your hand to the waiting room.
 EndCard
@@ -1566,11 +1613,33 @@ Soul 1
 Trait1 Science
 Trait2 Mecha
 Combo Irreplacable Memory
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Irreplacable Memory
+    {
+        PayCost 1
+        {
+            GainPower 4500
+            GainEffect
+            {
+                Auto: OnReverseOpponent
+                {
+                    TargetBattleOpponent
+                    IfTarget OnStage
+                    {
+                        Question Put that character on top of the deck ?
+                        If Yes
+                        {
+                            MoveCardToBottom OpponentDeck
+                        }
+                    }
+                }
+                Text Auto: When this card's battle opponent becomes reverse, you may put it on bottom of the deck.
+            }
+        }
+    }
 }
-Text Auto: [(1)] When this card attacks, if "Irreplacable memory" is in your climax area, you may pay the cost. If you do, this card gets +4500 power and "Auto: When this card's battle opponent becomes reverse, you may put it on bottom of the deck" until end of turn.
+Text Auto: [(1)] When this card attacks, if "Irreplacable Memory" is in your climax area, you may pay the cost. If you do, this card gets +4500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put it on bottom of the deck."
 EndCard
 
 Character: RN/W16-085
@@ -1584,14 +1653,20 @@ Power 1500
 Soul 1
 Trait1 Science
 Trait2 Net
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1
+    {
+        DrawCard
+    }
 }
 Text Auto: [(1)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, draw a card.
-Auto:
+Auto: StartClimaxPhase
 {
-
+    PayCost 2 Discard 1 Any &&& SendSelf WaitingRoom
+    {
+        *ChangeWaitingRoom(Mode Change\, Geji-nee)
+    }
 }
 Text Auto: CHANGE [(2) Put 1 card from your hand to the waiting room, put this card in the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose a "Mode Change, Geji-nee" in your waiting room and put it in the position this card was in.
 EndCard
@@ -1607,9 +1682,12 @@ Power 7500
 Soul 1
 Trait1 Science
 Trait2 Death
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && NameContains みさ希
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If you have another character with "Misaki" in its card name, this card gets +1500 power.
 EndCard
@@ -1625,10 +1703,15 @@ Power 8000
 Soul 1
 Trait1 Science
 Combo Cold Sleep
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Cold Sleep
+    {
+        UntilEndOfOpponentsTurn
+        GainPower 3000
+    }
 }
+Quick
 Text Auto: When this card attacks, if "Cold Sleep" is in your climax area, this card gets +3000 power until the end of your opponent's next turn.
 EndCard
 
@@ -1655,9 +1738,12 @@ Power 2000
 Soul 1
 Trait1 Science
 Trait2 Death
-Auto:
+Auto: OnSentFromStageToWaitingRoom
 {
-
+    PayCost 2
+    {
+        DrawCard
+    }
 }
 Text Auto: [(2)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, draw a card.
 EndCard
@@ -1672,9 +1758,9 @@ Power 2500
 Soul 1
 Trait1 Science
 Trait2 Weapon
-Act:
+Act: Rest 2 HasTrait Science
 {
-
+    GainPower 2500
 }
 Text Act: [Rest 2 of your «Science» characters] This card gets +2500 power until end of turn.
 EndCard
@@ -1727,9 +1813,12 @@ Power 8500
 Soul 2
 Trait1 Science
 Trait2 Net
-Cont:
+Cont: GiveSelf
 {
-
+    If Not MyTurn && StageContains 2 Other && CardPosition Rest
+    {
+        GainPower 1500
+    }
 }
 Text Cont: During your opponent's turn, if the number of other rest characters you have is 2 or more, this card gets +1500 power.
 EndCard
@@ -1745,9 +1834,12 @@ Power 7500
 Soul 2
 Trait1 Science
 Trait2 Mecha
-Cont:
+Cont: InHand
 {
-
+    If StageContains 3 HasTrait Science
+    {
+        LoseLevel 1
+    }
 }
 Text Cont: If the number of «Science» characters you have is 3 or more, this card gets -1 level in your hand.
 EndCard
@@ -1758,11 +1850,16 @@ JPName 「あねもね」号集団失神事件
 Color B
 Level 2
 Cost 0
+Requirement StageContains 1 HasTrait Science
+Text If you have no «Science» characters, you cannot play this card from your hand. 
 Effect:
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets Compare ThatCardsLevel 3 OrLess && CanBeChosen
+    ChooseCharacterFromTargets Choose a character to not stand at the next stand phase.
+    DontStand
 }
-Text If you have no «Science» characters, you cannot play this card from your hand. Choose an opponent's level 3 or lower character. That character does not stand during your opponent's next stand phase.
+Text Choose an opponent's level 3 or lower character. That character does not stand during your opponent's next stand phase.
 EndCard
 
 Event: RN/W16-097
@@ -1773,7 +1870,20 @@ Level 2
 Cost 0
 Effect:
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Science
+    {
+        *OptionalDraw
+        *OptionalDraw
+        *OptionalDraw
+        Discard 1 Any
+    }
+    Else
+    {
+        DrawCard
+        Discard 1 Any
+    }
 }
 Text Reveal the top card of your deck. If it's a «Science» character, draw up to 3 cards and discard 2 cards from your hand to the waiting room. Otherwise, draw a card, and discard a card from your hand to the waiting room.
 EndCard
@@ -1808,10 +1918,15 @@ Power 5000
 Soul 1
 Trait1 Science
 Trait2 Otaku
-Auto:
+Auto: OnPlay
 {
-
+    If StageContains 2 Other && HasTrait Science
+    {
+        GainPower 1500
+        GainLevel 1
+    }
 }
+Quick
 Text Auto: When this card is placed on the stage from your hand, if the number of other «Science» characters you have is 2 or more, this card gets +1 level and +1500 power until end of turn.
 EndCard
 
@@ -1826,10 +1941,14 @@ Power 8000
 Soul 1
 Trait1 Science
 Trait2 Mecha
-Auto:
+Auto: OnOtherAttacks
 {
-
+    IfOther HasTrait Science
+    {
+        GainPower 1000
+    }
 }
+Quick
 Text Auto: When your other «Science» character attacks, this card gets +1000 power until end of turn.
 EndCard
 
@@ -1844,11 +1963,7 @@ Power 4000
 Soul 1
 Trait1 Science
 Trait2 Net
-Cont:
-{
-
-}
-Text Cont: This card cannot be chosen as the target of your opponent's effects.
+*HexProof
 *1000Assist
 EndCard
 
@@ -1876,14 +1991,20 @@ Power 10000
 Soul 2
 Trait1 Science
 Trait2 Mecha
-Cont:
+Cont: GiveFacing
 {
-
+    LoseSoul 1
 }
-Text Cont: character facing this card gets -1 soul.
-Cont:
+Text Cont: The character facing this card gets -1 soul.
+Cont: GiveAll
 {
-
+    IfOwner InLocation CenterStage
+    {
+        If MyTurn && Other
+        {
+            GainPower 1000
+        }
+    }
 }
 Text Cont: During your turn, if this card is in the middle position of your center stage, all your other characters get +1000 power.
 EndCard
@@ -1898,9 +2019,13 @@ Power 2500
 Soul 1
 Trait1 Science
 Trait2 Mecha
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && NameEquals Sneijder &&& StageContains 1 Other && NameEquals Volt Valley En &&& StageContains 1 Other && NameEquals Sting-Ma
+    {
+        GainPower 1500
+        GainSoul 1
+    }
 }
 Text Cont: If you have another "Sneijder", "Volt Valley En, and "Sting-Ma", this card gets +1500 power and +1 soul.
 EndCard
@@ -1915,9 +2040,13 @@ Power 2500
 Soul 1
 Trait1 Science
 Trait2 Mecha
-Cont:
+Trait2 Mecha
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && NameEquals Sneijder &&& StageContains 1 Other && NameEquals Star Raptor &&& StageContains 1 Other && NameEquals Sting-Ma
+    {
+        GainPower 2500
+    }
 }
 Text Cont: If you have another "Sneijder", "Star Raptor", and "Sting-Ma", this card gets +2500 power.
 EndCard
@@ -1932,9 +2061,15 @@ Power 1500
 Soul 1
 Trait1 Science
 Trait2 Mecha
-Cont:
+Cont: GiveAll
 {
-
+    If Other
+    {
+        If NameEquals Volt Valley En || NameEquals Star Raptor || NameEquals Sting-Ma
+        {
+            GainPower 1000
+        }
+    }
 }
 Text Cont: All your other "Volt Valley En", "Star Raptor", and "Sting-Ma" get +1000 power.
 EndCard
@@ -1949,11 +2084,14 @@ Power 2000
 Soul 1
 Trait1 Science
 Trait2 Mecha
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 2
+    {
+        SearchDeck NameEquals Sneijder || NameEquals Volt Valley En || NameEquals Star Raptor
+    }
 }
-Text Auto: [(2)] When this card is palced on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Sneijder", "Volt Valley En", or "Star Raptor", reveal it, and put it in your hand. Shuffle your deck.
+Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Sneijder", "Volt Valley En", or "Star Raptor", reveal it, and put it in your hand. Shuffle your deck.
 EndCard
 
 Character: RN/W16-P01
@@ -1991,11 +2129,12 @@ Trigger Soul
 Power 8000
 Soul 1
 Trait1 Science
-Auto:
+Auto: OnOtherReversed
 {
-
+    GainPower 1000
 }
-Text Auto: When another character of yours becomes reversed in battle, this card gets +1000 power until end of turn.
+Quick
+Text Auto: When your other character becomes reversed in battle, this card gets +1000 power until end of turn.
 EndCard
 
 Character: RN/W16-P04
@@ -2009,9 +2148,9 @@ Power 8000
 Soul 1
 Trait1 Science
 Trait2 Mecha
-Act:
+Act: 1
 {
-
+    GainSoul 1
 }
 Text Act: [(1)] This card gets +1 soul until end of turn.
 EndCard
