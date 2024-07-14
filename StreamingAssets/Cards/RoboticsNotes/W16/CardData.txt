@@ -89,7 +89,6 @@ Trait2 Game
 Auto: OnLevelUp
 {
     MoveCard WaitingRoom
-
 }
 Text Auto: When you level Up, put this card in the waiting room.
 Act: 1
@@ -101,7 +100,7 @@ Act: 1
         GainSoul 1
     }
 }
-Text Act: BRAINSTORM [(1)] Flip over the top 4 cards of your deck and put them in the waiting room. This card gets +1000 power and +1 soul for each climax you reveal this way
+Text Act: BRAINSTORM [(1)] Flip over the top 4 cards of your deck and put them in the waiting room. This card gets +1000 power and +1 sou for each climax you reveal this way
 EndCard
 
 Character: RN/W16-005
@@ -719,10 +718,11 @@ Power 1000
 Soul 1
 Trait1 Science
 Trait2 Mecha
-Auto:
+Auto: OnUseAct
 {
-
+    *GiveCharacterPower(1000,Science)
 }
+TimesPerTurn 1
 Text Auto: This ability may be activated up to once per turn. When you use an "Act:" ability, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
 
@@ -736,11 +736,14 @@ Power 2500
 Soul 1
 Trait1 Science
 Trait2 Sports
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains Other && HasTrait Science && CardPosition Rest
+    {
+        GainPower 1000
+    }
 }
-Text Cont: If you have another Rested «Science» character, this card gets +1000 power.
+Text Cont: If you have another rest «Science» character, this card gets +1000 power.
 EndCard
 
 Character: RN/W16-037
@@ -753,11 +756,14 @@ Power 1000
 Soul 1
 Trait1 Science
 Trait2 Sports
-Auto:
+Auto: StartClimaxPhase
 {
-
+    PayCost 3 SendSelf Clock
+    {
+        *ChangeWaitingRoom(Dispersed Feelings\, Junna)
+    }
 }
-Text Auto: CHANGE [(3) Put this card in clock] At the beginning of your climax phase, you may pay the cost. If you do, choose a "Junna, Dispersed Feeling" in your waiting room and put it in the position this card was in.
+Text Auto: CHANGE [(3) Put this card in clock] At the beginning of your climax phase, you may pay the cost. If you do, choose a "Dispersed Feelings, Junna" in your waiting room and put it in the position this card was in.
 Backup 1500
 EndCard
 
@@ -771,11 +777,13 @@ Power 1000
 Soul 1
 Trait1 Science
 Trait2 Otaku
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters CardPosition Rest && Other
+    MultiplyXValue 1000
+    GainPower X
 }
-Text Cont: For each other Rested character you have, this card gets +1000 power.
+Text Cont: This card gets +1000 power for each other rest character you have
 EndCard
 
 Character: RN/W16-039
@@ -788,9 +796,13 @@ Power 2000
 Soul 1
 Trait1 Science
 Trait2 Teacher
-Act:
+Act: 1 RestSelf
 {
-
+    SearchLocationForTargets Clock 1 1 Any
+    RevealTargets
+    MoveCard Hand
+    SearchLocationForTargets Hand 1 1 Any
+    MoveCard Clock
 }
 Text Act: [(1) Rest this card] Choose a card in your clock and return it to your hand. Choose a card in your hand and put it in clock.
 EndCard
@@ -805,9 +817,9 @@ Power 2500
 Soul 1
 Trait1 Science
 Trait2 Sports
-Act:
+Act: 1
 {
-
+    GainPower 2000
 }
 Text Act: [(1)] This card gets +2000 power until end of turn.
 EndCard
@@ -834,9 +846,10 @@ Power 5000
 Soul 1
 Trait1 Sweets
 Trait2 Animal
-Act:
+Act: 3 Rest 2 Any
 {
-
+    TargetLocation Stage
+    GainPower 3000
 }
 Text Act: [(3) Rest 2 of your characters] All your characters get +3000 power until end of turn.
 EndCard
@@ -863,9 +876,9 @@ Power 6000
 Soul 1
 Trait1 Science
 Trait2 Mecha
-Auto:
+Auto: OnPlay|OnPlacedOnStageFromWaitingRoom
 {
-
+    *GiveOtherCharacterPower(2000,Science)
 }
 Text Auto: When this card is placed on the stage from your hand or waiting room, choose 1 of your other «Science» characters, and that character gets +2000 power until end of turn.
 EndCard
@@ -880,9 +893,15 @@ Trigger Soul
 Power 8500
 Soul 2
 Trait1 Teacher
-Auto:
+Auto: OnReversed
 {
-
+    TargetLocation Stage
+    NarrowTargets Other && HasTrait Science
+    ChooseCharactersFromTargets Choose up to 2 characters to give the effect.
+    GainEffect
+    {
+        *HandEncore
+    }
 }
 Text Auto: When this card becomes reversed in battle, choose up to 2 of your other «Science» characters, and those characters get "Auto: ENCORE [Put 1 character from your hand to the waiting room]" until end of turn.
 EndCard
@@ -893,9 +912,12 @@ JPName 閃光の一撃
 Color G
 Level 1
 Cost 0
-Effect: 
+Effect:
 {
-
+    TargetLocation Stage
+    NarrowTargets HasTrait Science
+    ChooseCharactersFromTargets Choose up to 2 characters to stand.
+    Stand
 }
 Text Choose up to 2 of your «Science» characters and stand them.
 EndCard
@@ -906,9 +928,12 @@ JPName スーパーリンペイ
 Color G
 Level 2
 Cost 0
-Effect: 
+Effect:
 {
-
+    UntilEndOfOpponentsTurn
+    *GiveCharacterPower(1500,Any)
+    TargetSelf
+    MoveCard Stock
 }
 Text Choose 1 of your characters, and that character gets +1500 power until the end of your opponent's next turn. Put this card in stock.
 EndCard
@@ -943,14 +968,20 @@ Power 6000
 Soul 1
 Trait1 Science
 Trait2 Sports
-Cont:
+*GlobalPower(1000,Science)
+Cont: GiveSelf
 {
-
-}
-Text Cont: All your other «Science» characters get +1000 power.
-Cont:
-{
-
+    If Compare Experience 4 OrMore
+    {
+        GainEffect
+        {
+            Act: Rest 2 Any
+            {
+                *GiveCharacterPower(1000,Any)
+            }
+            Text Act: [Rest 2 of your characters] Choose 1 of your characters, and that character gets 1000 power until end of turn
+        }
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 4 or higher, this card gets the following ability. "Act: [Rest 2 of your characters] Choose 1 of your characters, and that character gets 1000 power until end of turn".
 EndCard
@@ -967,19 +998,32 @@ Soul 2
 Trait1 Science
 Trait2 Otaku
 Combo To Make Gunvarrel Shine
-Cont:
+Cont: GiveSelf
 {
-
+    GainSpecialEffect CannotBeReversedByAutoEffects
 }
-Text Cont: This card cannot be reversed by your opponent's Auto: effects.
-Auto:
+Text Cont: This card cannot be reversed by your opponent's "Auto:" effects.
+Auto: OnAttack
 {
-
+    If Climax To Make Gunvarrel Shine
+    {
+        SearchWaitingRoom IsCharacter
+        GainPower 3000
+    }
 }
 Text Auto: When this card attacks, if "To Make Gunvarrel Shine" is in your climax area, choose a character in your waiting room and return it to your hand, and this card gets +3000 power until end of turn.
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If MyTurn
+    {
+        PayCost 1
+        {
+            TargetLocation OpponentCenterStage
+            NarrowTargets CanBeChosen && Compare ThatCardsLevel 2 OrLess
+            ChooseCharacterFromTargets Choose a character to put on top of the deck.
+            MoveCard OpponentDeck
+        }
+    }
 }
 Text Auto: [(1)] During your turn, when this card's battle opponent becomes reverse, you may pay the cost. If you do, choose a level 2 or lower character in your opponent's center stage and put it on top of the deck.
 EndCard
@@ -994,16 +1038,8 @@ Power 1500
 Soul 1
 Trait1 Science
 Trait2 Sports
-Auto:
-{
-
-}
-Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Science» character in your waiting room and return it to your hand.
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your Characers, and that character gets +500 power until end of turn.
+*OnPlayTradeClimaxForCharacter(Science)
+*RestGivePower(500,Any)
 EndCard
 
 Character: RN/W16-054
@@ -1016,9 +1052,12 @@ Power 2500
 Soul 1
 Trait1 Science
 Trait2 Otaku
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContainsOrLess 0 Other
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If you have no other characters, this card gets +2000 power.
 EndCard
@@ -1034,11 +1073,19 @@ Soul 1
 Trait1 Science
 Trait2 Glasses
 Combo Conflict with Father
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Conflict with Father
+    {
+        TargetLocation Stage
+        NarrowTargets Other
+        NarrowTargets NameContains 宏武 || HasTrait Science
+        SetXValue TargetCount
+        MultiplyXValue 1000
+        GainPower X
+    }
 }
-Text Auto: When this card attacks, if "Conflict with Father" is in your climax area, this card gets +X power until end of turn. X equals number of your other characters with either "Hiromu" in its card name or «Science».
+Text Auto: When this card attacks, if "Conflict with Father" is in your climax area, this card gets +X power until end of turn. X equals number of your other characters with either "Hiromu" in its card name or «Science» times 1000.
 EndCard
 
 Character: RN/W16-056
@@ -1052,9 +1099,9 @@ Soul 1
 Trait1 Science
 Trait2 Otaku
 *HandEncore
-Act:
+Act: Rest 1 HasTrait Science
 {
-
+    GainPower 1000
 }
 Text Act: [Rest 1 of your «Science» characters] This card gets +1000 power until end of turn.
 EndCard
@@ -1071,11 +1118,26 @@ Soul 1
 Trait1 Science
 Trait2 Sports
 Combo Kind Big Sister of Children
-Auto:
+Auto: OnSpecificClimaxPlay Kind Big Sister of Children
 {
-
+    If InLocation CenterStage
+    {
+        PayCost 1
+        {
+            TargetLocation Stage
+            GainPower 2000
+            GainEffect
+            {
+                Auto: OnReverseOpponent
+                {
+                    *Scry
+                }
+                Text Auto: When this card's battle opponent becomes reverse, look at the top card of your deck and put it either on top of the deck or in the waiting room.
+            }
+        }
+    }
 }
-Text Auto: [(1)] When "Kind Big Sister of Children" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, all your characters get +2000 power and "Auto: When this card's battle opponent becomes reverse, look at the top card of your deck and put it either on top of the deck or in the waiting room" until end of turn.
+Text Auto: [(1)] When "Kind Big Sister of Children" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, all your characters get +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, look at the top card of your deck and put it either on top of the deck or in the waiting room."
 EndCard
 
 Character: RN/W16-058
@@ -1292,7 +1354,7 @@ JPName 密室でふたりきり
 Color R
 Level 1
 Cost 1
-Effect: 
+Effect:
 {
 
 }
@@ -1305,7 +1367,7 @@ JPName ゲンキ＆ロゼッタ
 Color R
 Level 1
 Cost 1
-Effect: 
+Effect:
 {
 
 }
@@ -1381,7 +1443,7 @@ Auto:
 {
 
 }
-Text Auto: When this card attacks, if "White Christmas Eve" is in your climax area, this card gets +X power until end of turn. X equals 1000 times number of your other Rested characters.
+Text Auto: When this card attacks, if "White Christmas Eve" is in your climax area, this card gets +X power until end of turn. X equals 1000 times number of your other rest characters.
 EndCard
 
 Character: RN/W16-078
@@ -1420,7 +1482,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's not a «Science» character, this card gets "Cont: This card cannot attack" until end of turn. 
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's not a «Science» character, this card gets "Cont: This card cannot attack" until end of turn.
 EndCard
 
 Character: RN/W16-080
@@ -1669,7 +1731,7 @@ Cont:
 {
 
 }
-Text Cont: During your opponent's turn, if the number of other Rested characters you have is 2 or more, this card gets +1500 power.
+Text Cont: During your opponent's turn, if the number of other rest characters you have is 2 or more, this card gets +1500 power.
 EndCard
 
 Character: RN/W16-095
@@ -1696,7 +1758,7 @@ JPName 「あねもね」号集団失神事件
 Color B
 Level 2
 Cost 0
-Effect: 
+Effect:
 {
 
 }
@@ -1709,7 +1771,7 @@ JPName 居ル夫。
 Color B
 Level 2
 Cost 0
-Effect: 
+Effect:
 {
 
 }

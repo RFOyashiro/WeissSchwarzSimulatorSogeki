@@ -7,26 +7,11 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Wonderlands × Showtime
-Cont: GiveSelf
+Cont: GiveWaitingRoom
 {
-    OverrideTriggerIconEffect Choice
+    If NameEquals Where Does the Crying Come From?|In the way You're the Best At!
     {
-        Effect:
-        {
-            SearchLocationForTargets WaitingRoom 0 1 IsCharacter && HasTrigger Soul || NameEquals Where Does the Crying Come From?|In the way You're the Best At!
-            If HasTarget
-            {
-                MultipleChoiceQuestion Put that card into stock or hand ?|Stock|Hand
-                If Answer 0
-                {
-                    MoveCard Stock
-                }
-                If Answer 1
-                {
-                    MoveCard Hand
-                }
-            }
-        }
+        SelectableWithTriggerIcon Choice
     }
 }
 Text Cont: You may choose "Where Does the Crying Come From?" or "In the way You're the Best At!" in your waiting room for the effect of Choice trigger icon
