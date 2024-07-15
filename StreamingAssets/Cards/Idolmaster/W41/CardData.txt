@@ -1,3 +1,23 @@
+Character: IMC/W41-PE01
+Name Sunset Glow Present, Kirari
+JPName 夕映えプレゼント きらり
+Color Y
+Level 0
+Cost 0
+Power 500
+Trait1 Music
+Trait2 Happy Happy
+*500Assist
+Auto: OnPlay
+{
+	TargetLocation Stage
+	ChooseCharacterFromTargets Choose a character to give +X power.
+	SetXValue TargetCardsLevel
+	MultiplyXValue 500
+	GainPower X
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your characters and that character gets +X power until end of turn. X equals 500 times the level of that character.
+EndCard
 
 Character: IMC/W41-PE02
 Name Sunset Glow Present, Anzu
@@ -13,8 +33,95 @@ Auto: OnPlay
 {
 	*Scry
 }
-EndCard
 Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck, and put it on the top of your deck or into your waiting room.
+EndCard
+
+Character: IMC/W41-P03
+Name Sunset Glow Present, Rin
+JPName 夕映えプレゼント 凛
+Color B
+Level 1
+Cost 0
+Power 1500
+Trait1 Music
+Backup 1500
+EndCard
+
+Character: IMC/W41-P04
+Name Becoming Who I Want to Be, Ranko
+JPName なりたい自分に 蘭子
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Trait1 Music
+Trait2 Darkness
+Auto: OnPlay
+{
+	PayCost 1 SendSelf Memory
+	{
+		Message Choose up to 1 "Time of Awakening, Ranko"
+		SearchLocationForTargets WaitingRoom 0 1 NameEquals Time of Awakening, Ranko
+		SaveTargets
+		Message Choose up to 1 "Black Fallen Angel, Ranko"
+		SearchLocationForTargets WaitingRoom 0 1 NameEquals Black Fallen Angel, Ranko
+		AddSavedToCurrentTargets
+		PlaceOnStage false true true false
+	}
+}
+Text Auto: [(1) Put this card into memory] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 1 "Time of Awakening, Ranko" and up to 1 "Black Fallen Angel, Ranko" in your waiting room and put them into seperate position on your stage.
+EndCard
+
+Character: IMC/W41-P05
+Name Sunset Glow Present, Mio & Riina
+JPName 夕映えプレゼント 未央＆李衣菜
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Trait1 Music
+Trait2 Rock
+*PowerOnMyTurn(1000)
+Auto: OnPlay
+{
+	If StageContains 4 Other && HasTrait Music
+	{
+		*OptionalBlindStock
+	}
+}
+Text Auto: When this card is placed on the stage from your hand, if the nummber of other 《Music》 characters you have is 4 or more, you may put the top card of your deck into stock.
+EndCard
+
+Character: IMC/W41-P06
+Name Summer Idol Festival, Koume
+JPName サマーアイドルフェス 小梅
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Occult
+Combo Please! Cinderella
+Auto: OnPlay
+{
+	SearchDeck IsCharacter && HasTrait Music
+}
+Text Auto: When this card is placed on the stage from your hand, search your deck for up to 1 《Music》 characters, reveal it, add it to your hand and shuffle your deck.
+Auto: OnAttack
+{
+	If Climax Please! Cinderella
+	{
+		UntilEndOfOpponentsTurn
+		GainPower 4500
+	}
+}
+Quick
+Text Auto: CxCombo When this card attacks, if "Please! Cinderella" is in your climax area, this card gets +4500 power until the end of your opponent's next turn.
+EndCard
 
 Character: IMC/W41-E001
 Name Mio Honda
@@ -1914,11 +2021,15 @@ Cont: GiveAll
 Text Cont: All of your other 《Music》 characters get +500 power. 
 Auto: OnSpecificClimaxPlay OwOver!!
 {
-	Peek Deck 3
-	If Compare TargetCount 1 OrMore
-	{
+	TargetTop Deck 3
+	If Compare TargetCount 2 OrMore
+	{		
 		Message Select card order (first is on top)
 		Reorder
+	}
+	Else
+	{
+		View
 	}
 }
 Text Auto: CxCombo When a card named "OwOver!!" is placed on your climax area, look at up to three cards from the top of your deck, and put them on the top of your deck in any order.
