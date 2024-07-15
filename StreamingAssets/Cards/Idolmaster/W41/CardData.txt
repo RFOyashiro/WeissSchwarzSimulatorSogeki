@@ -1063,21 +1063,8 @@ Cont: InHand
 	}
 }
 Text Cont: If the number of cards in your deck is five or less, this card gets -1 level while in your hand.
-Cont: GiveSelf
-{
-	TargetLocation Stage
-	NarrowTargets Other && HasTrait Music
-	SetXValue TargetCount
-	TargetSelf
-	MultiplyXValue 500
-	GainPower X
-}
-Text Cont: This card gets +500 power for each of your other 《Music》 characters. 
-Auto: OnPlay
-{
-	*OptionalHeal
-}
-Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock into your waiting room.
+*GainPowerForEachOther(500,Music)
+*Healer
 EndCard
 
 Character: IMC/W41-E044
