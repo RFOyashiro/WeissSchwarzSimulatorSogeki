@@ -19,7 +19,7 @@ Auto: OnAttack
         GainPower 3000
     }
 }
-Text Auto: When this card attacks, if "Robot Will Save the World!" is in your climax area, choose up to 1 "Super Gan-tsuku 1" in your waiting room and return it to your hand, and this card gets +3000 power until end of turn.
+Text Auto: CxCombo When this card attacks, if "Robot Will Save the World!" is in your climax area, choose up to 1 "Super Gan-tsuku 1" in your waiting room and return it to your hand, and this card gets +3000 power until end of turn.
 EndCard
 
 Character: RN/W16-002
@@ -187,7 +187,7 @@ Auto: StartMyEncoreStep
         }
     }
 }
-Text Auto: At the beginning of your encore step, if "Circle of Determination" is in your climax area, you may put this card into memory. If you do, at the beginning of your next draw phase, choose up to 1 "Last Battle, Kaito" in your memory and put it in any position on the stage, and that character gets +4500 power and +1 soul until end of turn.
+Text Auto: CxCombo At the beginning of your encore step, if "Circle of Determination" is in your climax area, you may put this card into memory. If you do, at the beginning of your next draw phase, choose up to 1 "Last Battle, Kaito" in your memory and put it in any position on the stage, and that character gets +4500 power and +1 soul until end of turn.
 EndCard
 
 Character: RN/W16-008
@@ -382,7 +382,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [(1)] When this card attacks, if "The Dream Being Chased Constantly" is in your climax area, you may pay the cost. If you do, this card gets +4000 power and +1 soul until end of turn.
+Text Auto: CxCombo [(1)] When this card attacks, if "The Dream Being Chased Constantly" is in your climax area, you may pay the cost. If you do, this card gets +4000 power and +1 soul until end of turn.
 *HandEncore
 EndCard
 
@@ -507,7 +507,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [(2)] When this card attacks, if "Taking the Step" is in your climax area, you may pay the cost. If you do, choose a cost 1 or lower «Science» character in your waiting room and put it rest in any position on the stage.
+Text Auto: CxCombo [(2)] When this card attacks, if "Taking the Step" is in your climax area, you may pay the cost. If you do, choose a cost 1 or lower «Science» character in your waiting room and put it rest in any position on the stage.
 *HandEncore
 EndCard
 
@@ -565,7 +565,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [Put the top card of your deck in your clock] When this card attacks, if "A Summer Adventure" is in your climax area, you may pay the cost. If you do, choose a «Science» character in your waiting room and put it in stock, then choose 1 of your «Science» characters, and that character gets +3500 power until end of turn.
+Text Auto: CxCombo [Put the top card of your deck in your clock] When this card attacks, if "A Summer Adventure" is in your climax area, you may pay the cost. If you do, choose a «Science» character in your waiting room and put it in stock, then choose 1 of your «Science» characters, and that character gets +3500 power until end of turn.
 EndCard
 
 Character: RN/W16-029
@@ -606,7 +606,7 @@ Auto: OnAttack
         *GiveOtherCharacterPower(3000,Any)
     }
 }
-Text Auto: When this card attacks, if "Extended Hand" is in your climax area, choose 1 of your other characters, that character and this card gets +3000 power until end of turn.
+Text Auto: CxCombo When this card attacks, if "Extended Hand" is in your climax area, choose 1 of your other characters, that character and this card gets +3000 power until end of turn.
 EndCard
 
 Character: RN/W16-030
@@ -1011,7 +1011,7 @@ Auto: OnAttack
         GainPower 3000
     }
 }
-Text Auto: When this card attacks, if "To Make Gunvarrel Shine" is in your climax area, choose a character in your waiting room and return it to your hand, and this card gets +3000 power until end of turn.
+Text Auto: CxCombo When this card attacks, if "To Make Gunvarrel Shine" is in your climax area, choose a character in your waiting room and return it to your hand, and this card gets +3000 power until end of turn.
 Auto: OnReverseOpponent
 {
     If MyTurn
@@ -1085,7 +1085,7 @@ Auto: OnAttack
         GainPower X
     }
 }
-Text Auto: When this card attacks, if "Conflict with Father" is in your climax area, this card gets +X power until end of turn. X equals 1000 times number of your other characters with either "Hiromu" in its card name or «Science».
+Text Auto: CxCombo When this card attacks, if "Conflict with Father" is in your climax area, this card gets +X power until end of turn. X equals 1000 times number of your other characters with either "Hiromu" in its card name or «Science».
 EndCard
 
 Character: RN/W16-056
@@ -1137,7 +1137,7 @@ Auto: OnSpecificClimaxPlay Kind Big Sister of Children
         }
     }
 }
-Text Auto: [(1)] When "Kind Big Sister of Children" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, all your characters get +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, look at the top card of your deck and put it either on top of the deck or in the waiting room."
+Text Auto: CxCombo [(1)] When "Kind Big Sister of Children" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, all your characters get +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, look at the top card of your deck and put it either on top of the deck or in the waiting room."
 EndCard
 
 Character: RN/W16-058
@@ -1456,7 +1456,7 @@ Auto: OnSpecificClimaxPlay White Christmas Eve
         PlaceOnStage false true true false
     }
 }
-Text Auto: When "White Christmas Eve" is placed on your climax area, if this card is in the center stage, choose up to 1 cost 2 or lower character in your hand and put it in any position on the stage.
+Text Auto: CxCombo When "White Christmas Eve" is placed on your climax area, if this card is in the center stage, choose up to 1 cost 2 or lower character in your hand and put it in any position on the stage.
 Auto: OnAttack
 {
     If Climax White Christmas Eve
@@ -1467,7 +1467,7 @@ Auto: OnAttack
     }
 }
 Quick
-Text Auto: When this card attacks, if "White Christmas Eve" is in your climax area, this card gets +X power until end of turn. X equals 1000 times number of your other rest characters.
+Text Auto: CxCombo When this card attacks, if "White Christmas Eve" is in your climax area, this card gets +X power until end of turn. X equals 1000 times number of your other rest characters.
 EndCard
 
 Character: RN/W16-078
@@ -1639,7 +1639,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [(1)] When this card attacks, if "Irreplacable Memory" is in your climax area, you may pay the cost. If you do, this card gets +4500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put it on bottom of the deck."
+Text Auto: CxCombo [(1)] When this card attacks, if "Irreplacable Memory" is in your climax area, you may pay the cost. If you do, this card gets +4500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put it on bottom of the deck."
 EndCard
 
 Character: RN/W16-085
@@ -1712,7 +1712,7 @@ Auto: OnAttack
     }
 }
 Quick
-Text Auto: When this card attacks, if "Cold Sleep" is in your climax area, this card gets +3000 power until the end of your opponent's next turn.
+Text Auto: CxCombo When this card attacks, if "Cold Sleep" is in your climax area, this card gets +3000 power until the end of your opponent's next turn.
 EndCard
 
 Character: RN/W16-088
