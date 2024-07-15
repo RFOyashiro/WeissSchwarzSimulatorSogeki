@@ -61,7 +61,7 @@ Power 500
 Soul 1
 Trait1 Modification
 Trait2 Electricity
-*CheckTopAddDiscard(Modification)
+*OnPlayCheckTopAddDiscard(Modification)
 Auto: OnPlay
 {
     PayCost 1
@@ -100,7 +100,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto: [(1) Put 1 character from your stage in the waiting room] When this card's battle opponent becomes reverse, if "DESIRE Wish" is in your climax area, you may pay the cost. If you do, search your deck for up to 1 '"Officer" Adolf' and up to 1 «Modification» character, reveal them, put them in your hand, and shuffle your deck.
+Text Auto: CxCombo [(1) Put 1 character from your stage in the waiting room] When this card's battle opponent becomes reverse, if "DESIRE Wish" is in your climax area, you may pay the cost. If you do, search your deck for up to 1 '"Officer" Adolf' and up to 1 «Modification» character, reveal them, put them in your hand, and shuffle your deck.
 EndCard
 
 Character: TF/S32-005
@@ -150,7 +150,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [Put the top card of your deck in your clock] When this card attacks, if "DER ZITTERAAL Lightning Creature" is in your climax area, you may pay the cost. If you do, search your deck for up to 1 «Modification» character, reveal it, put it in your hand, shuffle your deck, this card gets +2000 power and your opponent cannot use "Auto: ENCORE" until end of turn.
+Text Auto: CxCombo [Put the top card of your deck in your clock] When this card attacks, if "DER ZITTERAAL Lightning Creature" is in your climax area, you may pay the cost. If you do, search your deck for up to 1 «Modification» character, reveal it, put it in your hand, shuffle your deck, this card gets +2000 power and your opponent cannot use "Auto: ENCORE" until end of turn.
 EndCard
 
 Character: TF/S32-007
@@ -193,7 +193,7 @@ Auto: OnAttack
     }
 }
 Quick
-Text Auto: When this card attacks, if "CRAB Fierce Fighter" is in your climax area, all your characters get +3000 power until end of turn.
+Text Auto: CxCombo When this card attacks, if "CRAB Fierce Fighter" is in your climax area, all your characters get +3000 power until end of turn.
 EndCard
 
 Character: TF/S32-008
@@ -508,7 +508,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto: When this card's battle opponent becomes reverse, if "frontalline of the battle" is in your climax area, you may choose a card in your clock and return it to your hand. If you do, put the top card of your deck in your clock.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "frontalline of the Battle" is in your climax area, you may choose a card in your clock and return it to your hand. If you do, put the top card of your deck in your clock.
 EndCard
 
 Character: TF/S32-027
@@ -547,7 +547,7 @@ Auto: OnAttack
         GainPower 3000
     }
 }
-Text Auto: When this card attacks, if "Last Words" is in your climax area, put the top card of your deck in stock, and this card gets +3000 power until the end of your opponent's next turn.
+Text Auto: CxCombo When this card attacks, if "Last Words" is in your climax area, put the top card of your deck in stock, and this card gets +3000 power until the end of your opponent's next turn.
 EndCard
 
 Character: TF/S32-028
@@ -653,7 +653,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: When this card attacks, if "ANIMA Admiration" is in your climax area and you have another character with "Alex" in its card name, you may choose 1 '"Bright Like the Sun" Sheila' in your memory and put it face down underneath this card as a marker.
+Text Auto: CxCombo When this card attacks, if "ANIMA Admiration" is in your climax area and you have another character with "Alex" in its card name, you may choose 1 '"Bright Like the Sun" Sheila' in your memory and put it face down underneath this card as a marker.
 EndCard
 
 Character: TF/S32-033
@@ -943,7 +943,12 @@ Level 1
 Cost 0
 Effect:
 {
-
+    PayCost Rest 1 CardPosition Stand && NameContains 小吉
+    {
+        TargetLocation Stage
+        UntilEndOfOpponentsTurn
+        GainPower 1000
+    }
 }
 Text Rest 1 of your standing characters with "Shoukichi" in its card name. If you do, all your characters get +1000 power until the end of your opponent's next turn.
 EndCard
@@ -956,7 +961,16 @@ Level 3
 Cost 4
 Effect:
 {
-
+    If StageContains 5 NameContains テラフォーマー
+    {
+        PayCost Rest 2 CardPosition Stand
+        {
+            TargetLocation OpponentStage
+            NarrowTargets CanBeChosen && Compare ThatCardsLevel 3 OrLess
+            ChooseCharacterFromTargets Choose a character to put into clock.
+            MoveCard OpponentClock
+        }
+    }
 }
 Text If you have 5 or more characters with "Terraformar" in its card name, rest 2 of your standing characters. If you do, choose 1 of your opponent's level 3 or lower characters and put it in clock.
 EndCard
@@ -990,14 +1004,17 @@ Power 3500
 Soul 1
 Trait1 Modification
 Trait2 Sports
-Cont:
+*GlobalPower(500,Modification)
+Act: 1
 {
-
-}
-Text Cont: All your other «Modification» characters get +500 power.
-Act:
-{
-
+    Brainstorm 4
+    Repeat BrainstormedClimax
+    {
+        TargetLocation OpponentCenterStage
+        NarrowTargets CanBeChosen && Compare ThatCardsCost 0 OrLess
+        ChooseCharacterFromTargets_Optional Choose up to 1 character to put into waiting room.
+        MoveCard OpponentWaitingRoom
+    }
 }
 Text Act: BRAINSTORM [(1)] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 cost 0 or lower character in your opponent's center stage and put it in the waiting room.
 EndCard
@@ -1014,19 +1031,30 @@ Soul 2
 Trait1 Modification
 Trait2 Bug
 Combo M.O. Operation
-Auto:
+Auto: OnPlay|PlacedBy An Extended Hand
 {
-
+    *OptionalHeal
 }
 Text Auto: When this card is placed on the stage from your hand or by the effect of "An Extended hand" to the stage, you may put the top card of your clock in the waiting room.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax M.O. Operation
+    {
+        PayCost 1
+        {
+            Burn 1
+            SearchWaitingRoom IsCharacter
+        }
+    }
 }
-Text Auto: [(1)] When this card attacks, if "M.O. Operation" is in your climax area, you may pay the cost. If you do, deal 1 damage to your opponent, and choose up to 1 character in your waiting room and return it to your hand.
-Auto:
+Text Auto: CxCombo [(1)] When this card attacks, if "M.O. Operation" is in your climax area, you may pay the cost. If you do, deal 1 damage to your opponent, and choose up to 1 character in your waiting room and return it to your hand.
+Auto: OnReversed
 {
-
+    If StageContainsOrLess 1 Other && HasTrait Modification
+    {
+        TargetTop Deck 1
+        MoveCard Clock
+    }
 }
 Text Auto: When this card becomes reversed in battle, if you have 1 or less other «Modification» characters, put the top card of your deck in your clock.
 EndCard
@@ -1041,9 +1069,12 @@ Power 1500
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets CardPosition Stand && CanBeChosen
+    ChooseCharacterFromTargets_Optional Choose up to 1 character to rest.
+    Rest
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose 1 of your opponent's standing characters and rest it.
 *RedLevel0Bomb
@@ -1059,16 +1090,15 @@ Power 4000
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContainsOrLess 0 Other && NameContains 燈
+    {
+        GainSpecialEffect CannotStand
+    }
 }
 Text Cont: If you have no other characters with "Akari" in its card name, this card does not stand during your stand phase.
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of htis is 1 or lower, you may reverse that character.
+*RedLevel1Bomb
 EndCard
 
 Character: TF/S32-055
@@ -1082,16 +1112,35 @@ Soul 1
 Trait1 Modification
 Trait2 Sports
 Combo Things to Be Done
-Auto:
+Auto: OnPlay
 {
-
+    If StageContains 1 Other && NameContains マルコス
+    {
+        GainPower 2000
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, if you have another character with "Marcos" in its card name, this card gets +2000 power until end of turn.
-Auto:
+Auto: OnSpecificClimaxPlay Things to Be Done
 {
-
+    GainPower 1000
+    GainEffect
+    {
+        Auto: OnReverseOpponent
+        {
+            TargetBattleOpponent
+            IfTarget OnStage
+            {
+                Question Put that character on top of the deck ?
+                If Yes
+                {
+                    MoveCard OpponentDeck
+                }
+            }
+        }
+        Text Auto: When this card's battle opponent becomes reverse, you may put that character on top of the deck.
+    }
 }
-Text Auto: When "Things to Be Done" is placed on your climax area, this card gets +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character on top of the deck."
+Text Auto: CxCombo When "Things to Be Done" is placed on your climax area, this card gets +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character on top of the deck."
 EndCard
 
 Character: TF/S32-056
@@ -1104,15 +1153,20 @@ Power 5500
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Auto:
+Auto: OnOtherAttacks
 {
-
+    IfOther HasTrait Modification
+    {
+        GainPower 1000
+    }
 }
+Quick
 Text Auto: When your other «Modification» character attacks, this card gets +1000 power until end of turn.
-Auto:
+Auto: OnOpponentRest
 {
-
+    GainPower 1500
 }
+Quick
 Text Auto: When your opponent's standing character becomes rest, this card gets +1500 power until end of turn.
 EndCard
 
@@ -1128,9 +1182,20 @@ Soul 1
 Trait1 Modification
 Trait2 Bug
 *LevelAssist
-Auto:
+Auto: EndOfMyTurn
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to give the ability.
+    UntilEndOfOpponentsTurn
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            GainSpecialEffect CannotMove
+        }
+        Text Cont: This card cannot move to another position.
+    }
 }
 Text Auto: At the end of your turn, choose 1 of your opponent's characters, and that character gets the following ability until the end of your opponent's next turn. "Cont: This card cannot move to another position."
 EndCard
@@ -1146,9 +1211,9 @@ Soul 1
 Trait1 Modification
 Trait2 Bug
 *500Assist
-Act:
+Act: Rest 2 Any
 {
-
+    *GiveCharacterPower(1000,Modification)
 }
 Text Act: [Rest 2 of your characters] Choose 1 of your «Modification» characters, and that character gets +1000 power until end of turn.
 EndCard
@@ -1163,9 +1228,16 @@ Power 500
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Auto:
+Auto: OnOtherFrontalAttacked
 {
-
+    IfOther NameContains ミッシェル
+    {
+        PayCost SendSelf WaitingRoom
+        {
+            TargetOther
+            GainPower 1000
+        }
+    }
 }
 Text Auto: [Put this card in the waiting room] When your other character with "Michelle" in its card name is frontal attacked, you may pay the cost. If you do, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
 *Bond1("Miracle Child" Michelle)
@@ -1181,9 +1253,13 @@ Power 4000
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Cont:
+Cont: GiveSelf
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets CardPosition Rest
+    SetXValue TargetCount
+    MultiplyXValue 500
+    GainPower X
 }
 Text Cont: This card gets +500 power for each of your opponent's rest characters
 *ClockEncore
@@ -1200,11 +1276,14 @@ Power 1500
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    PayCost 1
+    {
+        SearchWaitingRoom NameEquals "Prologue to Battle" Michelle
+    }
 }
-Text Auto: [(1)] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 '"Prologue to battle" Michelle' in your waiting room and return it to your hand.
+Text Auto: [(1)] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 '"Prologue to battle" Michelle' in your waiting room and return it to your hand.
 Backup 2500
 EndCard
 
@@ -1219,16 +1298,22 @@ Power 6500
 Soul 1
 Trait1 Modification
 Trait2 Sports
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains CenterStage 1 NameContains マルコス
+    {
+        GainPower 3000
+    }
 }
-Text Cont: If you have another center stage character with "Marcos" in its card name, this card gets +3000 power.
-Auto:
+Text Cont: If you have another character with "Marcos" in its card name in your center stage, this card gets +3000 power.
+Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
 {
-
+    PayCost 1
+    {
+        SearchWaitingRoom IsCharacter
+    }
 }
-Text Auto: [(1)] When a level 2 or higher battle opponent of this card becomes reversed, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
+Text Auto: [(1)] When this card's level 2 or higher battle opponent becomes reverse, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
 EndCard
 
 Character: TF/S32-063
@@ -1241,14 +1326,18 @@ Power 500
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1
+    {
+        SearchWaitingRoom NameEquals An Extended Hand
+    }
 }
 Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 "An Extended hand" in your waiting room and return it to your hand.
-Auto:
+Auto: OnAttack
 {
-
+    *GiveCharacterPower(1000,Modification)
+    GainLevel 1
 }
 Text Auto: When this card attacks, choose 1 of your «Modification» characters, and that character gets +1 level and +1000 power until end of turn.
 EndCard
@@ -1263,11 +1352,7 @@ Power 500
 Soul 1
 Trait1 Modification
 Trait2 Sports
-Cont:
-{
-
-}
-Text Cont: All your other '"Trip to Mars" Marcos' get +1000 power.
+*GiveNamePower(1000,"Trip to Mars" Marcos)
 *BondClock("Trip to Mars" Marcos)
 EndCard
 
@@ -1281,11 +1366,13 @@ Power 2500
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Auto:
+Auto: OnUseAct
 {
-
+    GainPower 2000
 }
-Text Auto: This card ability activates up to once per turn. When you use an Act: ability, this card gets +2000 power until end of turn.
+Quick
+TimesPerTurn 1
+Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, this card gets +2000 power until end of turn.
 EndCard
 
 Character: TF/S32-066
@@ -1310,9 +1397,12 @@ Power 3500
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Auto:
+Auto: OnReversed
 {
-
+    If StageContainsOrLess 1 Other && HasTrait Modification && OnStage
+    {
+        MoveCard Clock
+    }
 }
 Text Auto: When this card becomes reversed in battle, if you have 1 or less other «Modification» character, put this card in clock.
 EndCard
@@ -1327,9 +1417,19 @@ Power 6500
 Soul 1
 Trait1 Modification
 Trait2 Animal
-Auto:
+Auto: OnPlay
 {
-
+    OpponentQuestion Reveal your hand to your opponent ? (If you reveal a climax, rest that character)
+    If Yes
+    {
+        TargetLocation OpponentHand
+        View
+        If TargetsContain 1 IsClimax
+        {
+            TargetSelf
+            Rest
+        }
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, your opponent may reveal their hand. If you do, and there is at least 1 climax revealed this way, rest this card.
 EndCard
@@ -1357,21 +1457,40 @@ Power 7000
 Soul 2
 Trait1 Modification
 Trait2 Bug
-Cont:
+Combo TERRAFORMARS Them And Us
+Cont: GiveSelf
 {
-
+    If StageContains 2 Other && HasTrait Modification
+    {
+        GainPower 1000
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
 Text Cont: If the number of other «Modification» characters you have is 2 or more, this card gets +1000 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
-Auto:
+Auto: OnUseAct
 {
-
+    GainPower 1000
 }
-Text Auto: This card ability activates up to once per turn. When you use an Act: ability, this card gets +1000 power until end of turn.
-Auto:
+Quick
+TimesPerTurn 1
+Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, this card gets +1000 power until end of turn.
+Auto: OnAttack
 {
-
+    If Climax TERRAFORMARS Them And Us
+    {
+        PayCost 1
+        {
+            TargetLocation OpponentCenterStage
+            NarrowTargets CanBeChosen && Compare ThatCardsLevel 2 OrLess
+            ChooseCharacterFromTargets Choose a character to put into waiting room.
+            MoveCard WaitingRoom
+        }
+    }
 }
-Text Auto: [(1)] When this card attacks, if "TERRAFORMAS Them And Us" is in your climax area, you may pay the cost. If you do, choose a level 2 or lower character in your opponent's center stage and put it in the waiting room.
+Text Auto: CxCombo [(1)] When this card attacks, if "TERRAFORMARS Them And Us" is in your climax area, you may pay the cost. If you do, choose a level 2 or lower character in your opponent's center stage and put it in the waiting room.
 EndCard
 
 Event: TF/S32-071
@@ -1382,7 +1501,9 @@ Level 2
 Cost 1
 Effect:
 {
-
+    SearchWaitingRoom IsCharacter
+    SearchWaitingRoom IsCharacter
+    Discard 1 Any
 }
 Text Choose up to 2 characters in your waiting room and return them to your hand, and discard a card from your hand to the waiting room.
 EndCard
@@ -1395,7 +1516,11 @@ Level 2
 Cost 2
 Effect:
 {
-
+    PayCost Discard 1 NameContains 燈 && IsCharacter
+    {
+        SearchLocationForTargets WaitingRoom 1 1 NameEquals "Crew of Annex I" Akari Hizamaru
+        PlaceOnStage false true true false
+    }
 }
 Text You may discard a character with "Akari" in its card name from hand to the waiting room. If you do, choose 1 '"Crew of Annex I" Akari Hizamaru' in your waiting room and put it in any position on the stage.
 EndCard
@@ -1431,16 +1556,26 @@ Power 5500
 Soul 2
 Trait1 Bug
 Combo BLACK BEETLE Deceased And Bug
-Cont:
+Cont: GiveAll
 {
-
+    If Other && NameContains テラフォーマー
+    {
+        GainPower 1500
+    }
 }
-Text Cont: All your other characters with "Terraformar" in its card name giain +1500 power.
-Auto:
+Text Cont: All your other characters with "Terraformar" in its card name gain +1500 power.
+Auto: OnSpecificClimaxPlay BLACK BEETLE Deceased And Bug
 {
-
+    If CardPosition Stand
+    {
+        PayCost 1 Discard 1 Any &&& RestSelf
+        {
+            SearchLocationForTargets Deck 0 1 IsCharacter && NameContains テラフォーマー && Compare ThatCardsLevel 2 OrLess
+            PlaceOnStage false true true false
+        }
+    }
 }
-Text Auto: [(1) Put 1 card from hand to the waiting room, rest this card] When "BLACK BEETLE Deceased And Bug" is placed on your climax area, if this card is standing, you may pay the cost. If you do, search your deck for up to 1 level 2 or lower character with "Terraformar" in its card name and put it in any position on the stage, and shuffle your deck.
+Text Auto: CxCombo [(1) Put 1 card from hand to the waiting room, rest this card] When "BLACK BEETLE Deceased And Bug" is placed on your climax area, if this card is standing, you may pay the cost. If you do, search your deck for up to 1 level 2 or lower character with "Terraformar" in its card name and put it in any position on the stage, and shuffle your deck.
 EndCard
 
 Character: TF/S32-077
@@ -1455,16 +1590,29 @@ Soul 2
 Trait1 Modification
 Trait2 Bug
 *CannotSideAttack
-Auto:
+Auto: OnPlay|PlacedBy Administrating Drugs
 {
-
+    PayCost 1
+    {
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                *OptionalHeal
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may put the top card of your clock in the waiting room.
+        }
+    }
 }
 Text Auto: [(1)] When this card is placed on the stage from your hand or by effect of "Administering Drugs" to the stage, you may pay the cost. If you do, this card gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your clock in the waiting room."
-Auto:
+Auto: OnUseAct
 {
-
+    TargetLocation Stage
+    GainPower 2000
 }
-Text Auto: This card ability activates up to once per turn. When you use an Act: ability, all your characters get +2000 power until end of turn.
+Quick
+TimesPerTurn 1
+Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, all your characters get +2000 power until end of turn.
 EndCard
 
 Character: TF/S32-078
@@ -1477,16 +1625,15 @@ Power 500
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1
+    {
+        SearchWaitingRoom NameEquals Adminstering Drugs
+    }
 }
 Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 "Administering Drugs" in your waiting room and return it to your hand.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1)] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 «Modification» character, reveal it, put it in your hand, discard a card from your hand to the waiting room, and shuffle your deck.
+*Act1SearchBrainstorm(Modification)
 EndCard
 
 Character: TF/S32-079
@@ -1499,9 +1646,13 @@ Power 2500
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Cont:
+Cont: GiveSelf
 {
-
+    If Not MyTurn && LocationContainsOrLess OpponentStage 3 Any
+    {
+        GainLevel 1
+        GainPower 1500
+    }
 }
 Text Cont: During your opponent's turn, if your opponent has 3 or less characters, this card gets +1 level and +1500 power.
 EndCard
@@ -1516,11 +1667,7 @@ Power 3500
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If at least 1 climax is put in the waiting room this way, rest this card.
+*OnPlayMill2RestIfClimax
 *HandEncore
 EndCard
 
@@ -1534,11 +1681,7 @@ Power 4500
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Cont:
-{
-
-}
-Text Cont: This card gets +500 power for each of your other «Modification» characters
+*GainPowerForEachOther(500,Modification)
 EndCard
 
 Character: TF/S32-082
@@ -1552,14 +1695,19 @@ Power 5000
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Cont:
+Cont: GiveAll
 {
-
+    If Not MyTurn && Other
+    {
+        SetXValue ThatCardsLevel
+        MultiplyXValue 500
+        GainPower X
+    }
 }
 Text Cont: During your opponent's turn, all your other characters get +X power. X equals 500 times level of that character.
-Act:
+Act: 2 RestSelf
 {
-
+    Refresh
 }
 Text Act: [(2) Rest this card] Return all cards in your waiting room to the deck. Shuffle your deck.
 EndCard
@@ -1574,14 +1722,13 @@ Power 500
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Auto:
+*OnPlayGiveOtherPower(1000,Modification)
+Auto: OnPlay
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your other «Modification» characters, and that character gets +1000 power until end of turn.
-Auto:
-{
-
+    PayCost 1 Rest 2 CardPosition Stand && HasTrait Modification
+    {
+        DrawCard
+    }
 }
 Text Auto: [(1) Rest 2 of your standing «Modification» characters] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw a card.
 EndCard
@@ -1597,9 +1744,11 @@ Soul 1
 Trait1 Bug
 Army
 *CannotSideAttack
-Auto:
+Auto: OnPlay
 {
-
+    SetXToNumberOfCharacters Other && NameContains テラフォーマー
+    MultiplyXValue 500
+    GainPower X
 }
 Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 500 times the number of your characters with "Terraformar" in its card name.
 EndCard
@@ -1614,11 +1763,13 @@ Power 4500
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Auto:
+Auto: OnUseAct
 {
-
+    GainPower 1500
 }
-Text Auto: This card ability activates up to once per turn. When you use an Act: ability, this card gets +1500 power until end of turn.
+Quick
+TimesPerTurn 1
+Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, this card gets +1500 power until end of turn.
 *HandEncore
 EndCard
 
@@ -1633,15 +1784,25 @@ Power 7000
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 2 Other && HasTrait Modification
+    {
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
 Text Cont: If the number of other «Modification» characters you have is 2 or more, this card gets "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
-Auto:
+Auto: OnOtherAttacks
 {
-
+    IfOther HasTrait Modification
+    {
+        GainPower 1500
+    }
 }
+Quick
 Text Auto: When your other «Modification» character attacks, this card gets +1500 Pwoer until end of turn.
 EndCard
 
@@ -1657,15 +1818,39 @@ Soul 1
 Trait1 Modification
 Trait2 Bug
 Combo The Second
-Auto:
+Auto: OnAttack
 {
-
+    If Climax The Second
+    {
+        PayCost 1 Discard 1 Any
+        {
+            TargetLocation OpponentStage
+            NarrowTargets CardPosition Stand
+            Rest
+            TargetLocation OpponentStage
+            NarrowTargets CanBeChosen && Compare ThatCardsLevel 3 OrMore
+            ChooseCharacterFromTargets Choose a character to not stand during the next stand phase.
+            DontStand
+            TargetLocation Stage
+            NarrowTargets Other && HasTrait Modification
+            ChooseCharactersFromTargets 0 2 Choose up to 2 characters to give the ability.
+            GainEffect
+            {
+                Cont: GiveSelf
+                {
+                    GainSpecialEffect FreeSideAttack
+                }
+                Text Cont: This card's soul does not decrease when side attacking.
+            }
+        }
+    }
 }
-Text Auto: [(1) Put 1 card from hand to the waiting room] When this card attacks, if "The Second" is in your climax area, you may pay the cost. If you do, rest all of your opponent's standing characters, choose 1 of your opponent's level 3 or lower characters. That character does not stand during your opponent's next stand phase. Afterward, choose up to 2 of your other «Modification» characters, and they get the following ability until end of turn. "Cont: This card may side attack without the soul Penalty."
-Auto:
+Text Auto: CxCombo [(1) Put 1 card from hand to the waiting room] When this card attacks, if "The Second" is in your climax area, you may pay the cost. If you do, rest all of your opponent's standing characters, choose 1 of your opponent's level 3 or lower characters. That character does not stand during your opponent's next stand phase. Afterward, choose up to 2 of your other «Modification» characters, and they get the following ability until end of turn. "Cont: This card's soul does not decrease when side attacking."
+Auto: OnOpponentRest
 {
-
+    GainPower 1500
 }
+Quick
 Text Auto: When your opponent's standing character becomes rest, this card gets +1500 power until end of turn.
 EndCard
 
@@ -1679,14 +1864,13 @@ Power 1500
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Cont:
+*GlobalPower(500,Modification)
+Act: RestSelf
 {
-
-}
-Text Cont: All your other «Modification» characters get +500 power.
-Act:
-{
-
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen && CardPosition Stand
+    ChooseCharacterFromTargets Choose a character to rest.
+    Rest
 }
 Text Act: [Rest this card] Choose 1 of your opponent's standing characters and rest it.
 EndCard
@@ -1712,15 +1896,21 @@ Cost 0
 Power 4500
 Soul 1
 Trait1 Bug
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains OpponentClimax 1 Any
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If there's a climax in your opponent's climax area, this card gets +2000 power.
-Auto:
+Auto: OnPlay
 {
-
+    SetXToNumberOfCharacters Other && NameContains テラフォーマー
+    MultiplyXValue 500
+    GainPower X
 }
+Quick
 Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 500 times the number of your characters with "Terraformar" in its card name.
 EndCard
 
@@ -1761,14 +1951,20 @@ Power 3000
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Auto:
+Auto: StartOpponentAttackPhase
 {
-
+    *GiveCharacterPower(1500,Modification)
 }
 Text Auto: At the beginning of your opponent's attack phase, choose 1 of your «Modification» characters, and that character gets +1500 power until end of turn.
-Auto:
+Auto: StartOpponentDrawPhase
 {
-
+    PayCost 2
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen && Compare ThatCardsLevel 2 OrMore && CardPosition Stand
+        ChooseCharacterFromTargets Choose a character to rest.
+        Rest
+    }
 }
 Text Auto: [(2)] At the beginning of your opponent's draw phase, you may pay the cost. If you do, choose 1 of your opponent's standing level 2 or lower characters and rest it.
 EndCard
@@ -1784,16 +1980,29 @@ Soul 1
 Trait1 Modification
 Trait2 Bug
 Combo The First
-Auto:
+Auto: OnUseAct
 {
-
+    GainPower 1500
 }
-Text Auto: This card ability activates up to once per turn. When you use an Act: ability, this card gets +1500 power until end of turn.
-Auto:
+Quick
+TimesPerTurn 1
+Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, this card gets +1500 power until end of turn.
+Auto: OnAttack
 {
-
+    If Climax The First
+    {
+        PayCost 1 Discard 1 Any
+        {
+            TargetLocation OpponentStage
+            NarrowTargets CanBeChosen && Compare ThatCardsCost 0 OrLess
+            ChooseCharacterFromTargets Choose a character to put to the bottom of the deck.
+            MoveCardToBottom OpponentDeck
+            TargetSelf
+            GainPower 1000
+        }
+    }
 }
-Text Auto: [(1) Put 1 card from hand to the waiting room] When this card attacks, if "The First" is in your climax area, you may pay the cost. If you do, choose up to 1 of your opponent's cost 0 or lower characters and put it on the bottom of the deck, and this card gets +1000 power until end of turn.
+Text Auto: CxCombo [(1) Put 1 card from hand to the waiting room] When this card attacks, if "The First" is in your climax area, you may pay the cost. If you do, choose up to 1 of your opponent's cost 0 or lower characters and put it on the bottom of the deck, and this card gets +1000 power until end of turn.
 EndCard
 
 Character: TF/S32-095
@@ -1807,15 +2016,12 @@ Power 7000
 Soul 2
 Trait1 Modification
 Trait2 Bug
-Cont:
+*GainPowerForEachOther(500,Modification)
+Auto: OnOpponentRest
 {
-
+    GainPower 1500
 }
-Text Cont: This card gets +500 power for each of your other «Modification» characters
-Auto:
-{
-
-}
+Quick
 Text Auto: When your opponent's standing character becomes rest, this card gets +1500 power until end of turn.
 EndCard
 
@@ -1825,11 +2031,21 @@ JPName 悪魔の血脈
 Color B
 Level 1
 Cost 1
+Counter
 Effect:
 {
-
+    PayCost Send 1 WaitingRoom Any
+    {
+        TargetLocation Stage
+        NarrowTargets NameContains テラフォーマー
+        ChooseCharactersFromTargets Choose up to 2 characters to give the effect.
+        GainEffect
+        {
+            *FreeEncore
+        }
+    }
 }
-Text Choose 1 of your characters and put it in the waiting room. If you do, choose up to 2 of your characters with "Terraformar" in its card name, and they get the following ability until end of turn. "Auto: When this card is placed from the stage to the waiting room, you may put this card rest in the position this card was in."
+Text COUNTER Choose 1 of your characters and put it in the waiting room. If you do, choose up to 2 of your characters with "Terraformar" in its card name, and they get the following ability until end of turn. "Auto: When this card is placed from the stage to the waiting room, you may put this card rest in the position this card was in."
 EndCard
 
 Event: TF/S32-097
@@ -1840,7 +2056,11 @@ Level 2
 Cost 2
 Effect:
 {
-
+    PayCost Discard 1 NameContains ミッシェル && IsCharacter
+    {
+        SearchLocationForTargets WaitingRoom 1 1 NameEquals "Crew of Annex I" Michelle
+        PlaceOnStage false true true false
+    }
 }
 Text You may discard a character with "Michelle" in its card name from hand to the waiting room. If you do, choose 1 '"Crew of Annex I" Michelle' in your waiting room and put it in any position on the stage.
 EndCard
@@ -1875,11 +2095,7 @@ Power 8000
 Soul 1
 Trait1 Modification
 Trait2 Electricity
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+*OnPlayGainPower(1500)
 EndCard
 
 Character: TF/S32-102
@@ -1891,9 +2107,12 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Bug
-Cont:
+Cont: GiveAll
 {
-
+    If Other && NameContains テラフォーマー
+    {
+        GainPower 500
+    }
 }
 Text Cont: All your other characters with "Terraformar" in its card name get +500 power.
 EndCard
@@ -1921,9 +2140,12 @@ Power 1500
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 2
+    {
+        SearchDeck IsCharacter && HasTrait Modification
+    }
 }
 Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Modification» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -1939,29 +2161,12 @@ Power 10000
 Soul 2
 Trait1 Modification
 Trait2 Bug
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    MoveCard Clock
 }
 Text Auto: When this card is placed from the stage to the waiting room, put the top card of your deck in your clock.
-EndCard
-
-Character: TF/S32-P0２
-Name "Sturdy Look" Terraformar
-JPName “屈強な姿”テラフォーマー
-Color G
-Level 2
-Cost 1
-Trigger Soul
-Power 2000
-Soul 1
-Trait1 Bug
-Auto:
-{
-
-}
-Text Auto: When you use this card's BACKUP, if you have a character with "Terraformar" in its card name, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
-Backup 2500
 EndCard
 
 Character: TF/S32-P02
@@ -1974,11 +2179,16 @@ Trigger Soul
 Power 2000
 Soul 1
 Trait1 Bug
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    If StageContains 1 NameContains テラフォーマー
+    {
+        TargetMyCharacterInBattle
+        GainPower 1000
+    }
 }
-Text Auto: When you use this card's BACKUP, if you have a character with "Terraformar" in its card name, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
+Quick
+Text Auto: When you use this card's "BACKUP", if you have a character with "Terraformar" in its card name, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
 Backup 2500
 EndCard
 
@@ -2004,9 +2214,11 @@ Power 5000
 Soul 1
 Trait1 Bug
 Army
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters Other && NameEquals "King of Vermin" Terraformar
+    MultiplyXValue 500
+    GainPower X
 }
 Text Cont: This card gets +500 power for each of your other '"King of Vermin" Terraformar'
 *CannotSideAttack
@@ -2033,7 +2245,12 @@ Level 1
 Cost 2
 Effect:
 {
-
+    PayCost Rest 1 HasTrait Bug
+    {
+        SearchLocationForTargets Deck 0 3 NameEquals "King of Vermin" Terraformar
+        PlaceOnStage false true true false
+        ShuffleLocation Deck
+    }
 }
 Text Rest 1 of your «Bug» characters. If you do, search your deck for up to 3 '"King of Vermin" Terraformar' and put them in separate positions on the stage, and shuffle your deck.
 EndCard
@@ -2056,11 +2273,12 @@ Soul 1
 Trait1 Modification
 Trait2 Bug
 *500Assist
-Act:
+Act: 1
 {
-
+    DrawCard
+    Discard 1 Any
 }
-Text Act: [(1)] draw a card, and discard a card from hand to the waiting room.
+Text Act: [(1)] Draw a card, and discard a card from hand to the waiting room.
 EndCard
 
 Character: TF/S32-T07
@@ -2073,11 +2291,7 @@ Power 2000
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Auto:
-{
-
-}
-Text Auto: [(1) Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with either «Modification» or «Bug», reveal it, put it in your hand, and shuffle your deck.
+*DropSearch(Modification|Bug)
 EndCard
 
 Character: TF/S32-T08
@@ -2102,9 +2316,15 @@ Power 4000
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsClimax
+    {
+        TargetSelf
+        MoveCard WaitingRoom
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a climax card, put this card in the waiting room.
 EndCard
@@ -2120,11 +2340,25 @@ Soul 1
 Trait1 Modification
 Trait2 Bug
 Combo Encountering Known Beings
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Encountering Known Beings
+    {
+        PayCost 1
+        {
+            GainPower 2000
+            GainEffect
+            {
+                Auto: OnReverseOpponent
+                {
+                    *OptionalDraw
+                }
+                Text Auto: When this card's battle opponent becomes reverse, you may draw a card.
+            }
+        }
+    }
 }
-Text Auto: [(1)] When this card attacks, if "Encountering Known Beings" is in your climax area, you may pay the cost. If you do, this card gets +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may draw a card."
+Text Auto: CxCombo [(1)] When this card attacks, if "Encountering Known Beings" is in your climax area, you may pay the cost. If you do, this card gets +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may draw a card."
 EndCard
 
 Character: TF/S32-T11
@@ -2165,11 +2399,7 @@ Soul 1
 Trait1 Modification
 Trait2 Bug
 *LevelAssist
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your «Modification» characters, and that character gets +500 power until end of turn.
+*RestGivePower(500,Modification)
 EndCard
 
 Character: TF/S32-T14
@@ -2183,16 +2413,15 @@ Power 7000
 Soul 1
 Trait1 Modification
 Trait2 Bug
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && NameContains 小吉
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If you have another character with "Shoukichi" in its card name, this card gets +1500 power.
-Cont:
-{
-
-}
-Text Cont: If the number of other «Modification» characters you have is 2 or more, this card gets +1000 power.
+*GainPowerWithEnoughCharacters(1000,2,Modification)
 EndCard
 
 Character: TF/S32-T15
@@ -2219,16 +2448,24 @@ Power 8000
 Soul 2
 Trait1 Modification
 Trait2 Bug
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 2 Other && HasTrait Modification
+    {
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
 Text Cont: If the number of other «Modification» characters you have is 2 or more, this card gets "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
-Auto:
+Auto: OnUseAct
 {
-
+    GainPower 1000
 }
-Text Auto: This card ability activates up to once per turn. When you use an Act: ability, this card gets +1000 power until end of turn.
+Quick
+TimesPerTurn 1
+Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, this card gets +1000 power until end of turn.
 EndCard
 
 Character: TF/S32-T17
@@ -2242,14 +2479,10 @@ Power 10000
 Soul 2
 Trait1 Modification
 Trait2 Bug
-Cont:
+*GainPowerWithEnoughCharacters(2000,2,Modification)
+Cont: GiveFacing
 {
-
-}
-Text Cont: If the number of other «Modification» characters you have is 2 or more, this card gets +2000 power.
-Cont:
-{
-
+    LoseSoul 1
 }
 Text Cont: The character facing this card gets -1 soul.
 EndCard
@@ -2265,4 +2498,3 @@ Name Those Who Lost
 JPName 敗れざる者たち
 *BlueStockSoul
 EndCard
-
