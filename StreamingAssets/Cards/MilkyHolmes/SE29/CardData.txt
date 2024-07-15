@@ -428,6 +428,10 @@ Auto: OnCardEntersLevel
     {
         GainPower 2500
     }
+    Else 
+    {
+        RefundTimesPerTurn
+    }
 }
 Quick
 TimesPerTurn 1
@@ -736,6 +740,10 @@ Auto: OnCardEntersLevel
     IfOther IsClimax
     {
         GainPower 2500
+    }
+    Else 
+    {
+        RefundTimesPerTurn
     }
 }
 Quick
@@ -1231,6 +1239,10 @@ Auto: OnCardEntersLevel
     IfOther IsClimax
     {
         GainPower 2500
+    }
+    Else 
+    {
+        RefundTimesPerTurn
     }
 }
 Quick
