@@ -1824,6 +1824,7 @@ Auto: OnAttack
     TargetLocation OpponentStage
     SetXValue TargetCount
     MultiplyXValue 2000
+    TargetSelf
     GainPower X
 }
 Quick
