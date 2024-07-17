@@ -1,0 +1,4 @@
+Series: Gargantia
+Folder: Gargantia/S23
+Prefix: GG/S23
+SetName: Gargantia (S23)
