@@ -1143,19 +1143,31 @@ Soul 2
 Trait1 Striker
 Trait2 Animal
 Combo Amane on Stage!
-Cont:
+Cont: InHand
 {
-
+    If LocationContainsOrLess Deck 5 Any
+    {
+        LoseLevel 1
+    }
 }
 Text Cont: If there are 5 or less cards in your deck, this card gets -1 level while in your hand.
-Auto:
+Auto: OnPlay
 {
-
+    SearchWaitingRoom IsCharacter && HasTrait Striker
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose a «Striker» character in your waiting room and return it to your hand.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Amane on Stage!
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CardPosition Reverse
+        Question_Obvious Deal X damage to your opponent ?
+        If Yes
+        {
+            Burn TargetCount
+        }
+    }
 }
 Text Auto: CxCombo When this card attacks, if "Amane on stage!" is in your climax area, you may deal X damage to your opponent. X equals the number of your opponent's reversed characters.
 EndCard
@@ -1171,15 +1183,25 @@ Power 10000
 Soul 2
 Trait1 Striker
 Trait2 Daughter
-Combo Only Once to My Face
-Cont:
+Combo Only Once to My Face!
+Cont: InHand
 {
-
+    If StageContains 1 NameEquals Isari Haishima &&& StageContains 1 NameEquals Kagari Haishima
+    {
+        LoseLevel 1
+    }
 }
 Text Cont: If you have "Isari Haishima" and "Kagari Haishima", this card gets -1 level while in your hand.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Only Once to My Face! && StageContains 4 Other && ColorIs Red
+    {
+        PayCost 1
+        {
+            Burn 1
+            SearchWaitingRoom IsCharacter
+        }
+    }
 }
 Text Auto: CxCombo [(1)] When this card attacks, if "Only Once to My Face!" is in your climax area and the number of other Red characters you have is 4 or more, you may pay the cost. If you do, deal 1 damage to your opponent, and choose up to 1 character in your waiting room and return it to your hand.
 *ScryWhenAttacked
@@ -1195,9 +1217,12 @@ Power 1500
 Soul 1
 Trait1 Striker
 Trait2 Odd-Eye
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If MyTurn
+    {
+        *Scry
+    }
 }
 Text Auto: During your turn, when this card's battle opponent becomes reverse, look at the top card of your deck and put it either on top of the deck or in the waiting room.
 *RedLevel0Bomb
@@ -1213,19 +1238,28 @@ Power 3000
 Soul 1
 Trait1 Striker
 Trait2 Odd-Eye
-Cont:
+Cont: GiveAll
 {
-
+    If Other
+    {
+        If NameEquals Niho Hinomiya || NameEquals "S" Kagari Haishima
+        {
+            GainPower 500
+        }
+    }
 }
 Text Cont: All your other "Niho Hinomiya" and '"S" Kagari Haishima' get +500 power.
-Cont:
+Cont: GiveAll
 {
-
+    If StageContains 1 Other && NameEquals Kagari Haishima &&& Other && ColorIs Red
+    {
+        GainPower 500
+    }
 }
 Text Cont: If you have another "Kagari Haishima", all your other Red characters get +500 power.
-Act:
+Act: 2 RestSelf
 {
-
+    SearchWaitingRoom IsCharacter
 }
 Text Act: [(2) Rest this card] Choose a character in your waiting room and return it to your hand.
 EndCard
@@ -1240,9 +1274,12 @@ Power 3000
 Soul 1
 Trait1 Striker
 Trait2 Odd-Eye
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 2 OrMore
+    {
+        GainPower 1000
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets +1000 power.
 *RedLevel1Bomb
@@ -1258,19 +1295,35 @@ Power 3000
 Soul 1
 Trait1 Striker
 Trait2 Odd-Eye
-Cont:
+Cont: GiveAll
 {
-
+    If Other
+    {
+        If NameEquals Niho Hinomiya || NameEquals "Biscuit Sirius" Isari Haishima
+        {
+            GainPower 500
+        }
+    }
 }
 Text Cont: All your other "Niho Hinomiya" and '"Biscuit Sirius" Isari Haishima' get +500 power.
-Cont:
+Cont: GiveAll
 {
-
+    If StageContains 1 Other && NameEquals Isari Haishima &&& Other && ColorIs Red
+    {
+        GainPower 500
+    }
 }
 Text Cont: If you have another "Isari Haishima", all your other Red characters get +500 power.
-Act:
+Act: 1
 {
-
+    Brainstorm 4
+    Repeat BrainstormedClimax
+    {
+        TargetLocation OpponentCenterStage
+        NarrowTargets Compare ThatCardsCost 0 OrLess && CanBeChosen
+        ChooseCharacterFromTargets_Optional Choose up to 1 character to put into waiting room.
+        MoveCard OpponentWaitingRoom
+    }
 }
 Text Act: BRAINSTORM [(1)] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 cost 0 or lower character in your opponent's center stage and put it in the waiting room.
 EndCard
@@ -1286,11 +1339,16 @@ Soul 1
 Trait1 Striker
 Trait2 Incredulous
 Combo Pierce!
-Auto:
+Auto: OnSpecificClimaxPlay Pierce!
 {
-
+    If StageContains 4 Other && ColorIs Red &&& InLocation CenterStage
+    {
+        SearchDeck NameEquals Niho Hinomiya
+        GainLevel 1
+        GainPower 2500
+    }
 }
-Text Auto: CxCombo When "Pierce!" is placed on your climax area, if the number of other Red characters and this card is in the center stage you have is 4 or more, search your deck for up to 1 "Niho Hinomiya", reveal it, and put it in your hand. Afterwards, shuffle your deck, and this card gets +1 level and +2500 power until end of turn.
+Text Auto: CxCombo When "Pierce!" is placed on your climax area, if the number of other Red characters you have is 4 or more and this card is in the center stage, search your deck for up to 1 "Niho Hinomiya", reveal it, and put it in your hand. Afterwards, shuffle your deck, and this card gets +1 level and +2500 power until end of turn.
 EndCard
 
 Character: SGS/S37-059
@@ -1304,11 +1362,20 @@ Power 2000
 Soul 1
 Trait1 Striker
 Trait2 Daughter
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    PayCost 2 Send 1 WaitingRoom Any
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen && EarlyPlay
+        If HasTarget
+        {
+            ChooseCharacterFromTargets choose 1 of your opponent's characters whose level is higher than your opponent's level and put it in waiting room.
+            MoveCard WaitingRoom
+        }
+    }
 }
-Text Auto: [(2) Put 1 character from your stage in the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent and put it in the waiting room.
+Text Auto: [(2) Put 1 character from your stage in the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
 Backup 1500
 EndCard
 
@@ -1325,14 +1392,22 @@ Trait1 Striker
 Trait2 Daughter
 Combo This Happens When I Get Serious~!
 *LevelAssist
-Auto:
+Auto: OnSpecificClimaxPlay This Happens When I Get Serious~!
 {
-
+    PayCost 1
+    {
+        SearchWaitingRoom IsCharacter && HasTrait Striker
+        SearchWaitingRoom IsCharacter && HasTrait Striker
+        Discard 1 Any
+    }
 }
-Text Auto: CxCombo [(1)] When "This card Happens When I Get Serious~!" is placed on your climax area, you may pay the cost. If you do, choose up to 2 «Striker» characters in your waiting room and return them to your hand, and discard a card from your hand to the waiting room.
-Auto:
+Text Auto: CxCombo [(1)] When "This Happens When I Get Serious~!" is placed on your climax area, you may pay the cost. If you do, choose up to 2 «Striker» characters in your waiting room and return them to your hand, and discard a card from your hand to the waiting room.
+Auto: OnOpponentUseEvent
 {
-
+    PayCost Discard 1 IsCharacter && HasTrait Striker &&& RestSelf
+    {
+        Burn 1
+    }
 }
 Text Auto: [Put a «Striker» character from your hand to the waiting room, rest this card] When your opponent plays an event, if this card is standing, you may pay the cost. If you do, deal 1 damage to your opponent.
 EndCard
@@ -1349,9 +1424,20 @@ Soul 2
 Trait1 Striker
 Trait2 Card Game
 *Healer
-Auto:
+Auto: OnAttack
 {
-
+    If Compare Experience 4 OrMore
+    {
+        Peek Deck 2
+		If HasTarget
+		{
+			Message Choose a card to put back on top. 
+			AIChoice If Not IsClimax
+			ChooseCardsFromTargets 1 1 Any
+			MoveCard Deck
+			PutTheRestIntoTheWaitingRoom
+		}
+    }
 }
 Text Auto: EXPERIENCE When this card attacks, if the sum of levels of cards in your level is 4 or higher, look at up to the top 2 cards of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room.
 EndCard
@@ -1367,19 +1453,31 @@ Power 10000
 Soul 2
 Trait1 Striker
 Trait2 Incredulous
-Cont:
+Cont: GiveSelf
 {
-
+    If AllYourCharacters IsColor Red
+    {
+        GainPower 1000
+    }
 }
 Text Cont: If all your characters are Red, this card gets +1000 power.
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && ColorIs Red
+    {
+        *OptionalBurn(1)
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a Red character, you may deal 1 damage to your opponent.
-Auto:
+Auto: OnDamageCanceled
 {
-
+    PayCost 1
+    {
+        SearchWaitingRoom IsCharacter
+        Discard 1 Any
+    }
 }
 Text Auto: [(1)] When the damage dealt by this card is canceled, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand, and discard a card from your hand to the waiting room.
 EndCard
@@ -1394,11 +1492,7 @@ Power 500
 Soul 1
 Trait1 Striker
 Trait2 Card Game
-Cont:
-{
-
-}
-Text Cont: All your other '"With Allies That She Opened Her Heart To" Amane' get +1000 power.
+*GiveNamePower(1000,"With Allies That She Opened Her Heart To" Amane)
 *Bond1("With Allies That She Opened Her Heart To" Amane)
 EndCard
 
@@ -1412,16 +1506,22 @@ Power 500
 Soul 1
 Trait1 Striker
 Trait2 Housework
-Cont:
+Cont: GiveAll
 {
-
+    If Other && ColorIs Red
+    {
+        GainPower 500
+    }
 }
 Text Cont: All your other Red characters get +500 power.
-Auto:
+Auto: OnTriggerCheckClimax
 {
-
+    If Compare Experience 3 OrMore
+    {
+        *GiveCharacterPower(2000,Any)
+    }
 }
-Text Auto: EXPERIENCE Auto: When your characters' trigger check reveals a climax card, if the sum of levels of cards in your level is 3 or higher, choose 1 of your characters, and that character gets +2000 power until end of turn.
+Text Auto: EXPERIENCE When your characters' trigger check reveals a climax card, if the sum of levels of cards in your level is 3 or higher, choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: SGS/S37-065
@@ -1435,9 +1535,13 @@ Soul 1
 Trait1 Striker
 Trait2 Incredulous
 *500Assist
-Auto:
+Auto: OnOtherOpponentReversed
 {
-
+    Question Put the top card of your deck into waiting room ?
+    If Yes
+    {
+        Mill 1
+    }
 }
 Text Auto: When the battle opponent of your other character becomes reversed, you may put the top card of your deck in the waiting room.
 EndCard
@@ -1452,11 +1556,7 @@ Power 2000
 Soul 1
 Trait1 Striker
 Trait2 Odd-Eye
-Auto:
-{
-
-}
-Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Striker» character in your waiting room and return it to your hand.
+*OnPlayTradeClimaxForCharacter(Striker)
 EndCard
 
 Character: SGS/S37-067
@@ -1469,9 +1569,12 @@ Power 2500
 Soul 1
 Trait1 Striker
 Trait2 Daughter
-Cont:
+Cont: GiveAll
 {
-
+    If StageContainsOrLess 1 Other &&& Other
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If you have 1 or less other characters, all your other characters get +1500 power.
 EndCard
@@ -1486,9 +1589,12 @@ Power 2500
 Soul 1
 Trait1 Striker
 Trait2 Daughter
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 2
+    {
+        SearchWaitingRoom Compare ThatCardsLevel 1 OrLess && IsCharacter
+    }
 }
 Text Auto: [(2)] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a level 1 or lower character in your waiting room and return it to your hand.
 EndCard
@@ -1503,9 +1609,12 @@ Power 4000
 Soul 1
 Trait1 Striker
 Trait2 Daughter
-Auto:
+Auto: OnPlay
 {
-
+    If LocationContains OpponentWaitingRoom 3 IsClimax
+    {
+        Rest
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, if there are 3 or more climax cards in your opponent's waiting room, rest this card.
 EndCard
@@ -1520,14 +1629,19 @@ Power 4500
 Soul 1
 Trait1 Striker
 Trait2 Daughter
-Auto:
+Auto: OnOtherAttacks
 {
-
+    IfOther HasTrait Striker
+    {
+        GainPower 1000
+    }
 }
+Quick
 Text Auto: When your other «Striker» character attacks, this card gets +1000 power until end of turn.
-Auto:
+Auto: OnReverseOpponent
 {
-
+    SearchWaitingRoom IsCharacter && HasTrait Striker
+    Discard 1 Any
 }
 Text Auto: When this card's battle opponent becomes reverse, choose a «Striker» character in your waiting room and return it to your hand, and discard a card from your hand to the waiting room.
 EndCard
@@ -1542,10 +1656,13 @@ Power 5000
 Soul 1
 Trait1 Striker
 Trait2 Healing
-Auto:
+Auto: OnPlay
 {
-
+    SetXToNumberOfCharacters ColorIs Red
+    MultiplyXValue 500
+    GainPower X
 }
+Quick
 Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 500 times the number of your Red characters.
 EndCard
 
@@ -1560,11 +1677,16 @@ Power 1500
 Soul 1
 Trait1 Striker
 Trait2 Animal
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    TargetMyCharacterInBattle
+    IfTarget ColorIs Red
+    {
+        GainPower 1000
+    }
 }
-Text Auto: When you use this card's BACKUP, choose 1 of your Red characters in battle, and that character gets +1000 power until end of turn.
+Quick
+Text Auto: When you use this card's "BACKUP", choose 1 of your Red characters in battle, and that character gets +1000 power until end of turn.
 Backup 1500
 EndCard
 
@@ -1578,14 +1700,24 @@ Power 6000
 Soul 1
 Trait1 Striker
 Trait2 Odd-Eye
-Cont:
+Cont: GiveSelf
 {
-
+    If AllYourCharacters IsColor Red
+    {
+        GainPower 1000
+    }
 }
 Text Cont: If all your characters are Red, this card gets +1000 power.
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 2 OrMore
+    {
+        GainLevel 1
+        GainEffect
+        {
+            *ClockEncore
+        }
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets +1 level and "Auto: ENCORE [Put the top card of your deck in your clock]".
 EndCard
@@ -1601,11 +1733,14 @@ Power 2500
 Soul 1
 Trait1 Striker
 Trait2 Daughter
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    PayCost 2
+    {
+        Burn 1
+    }
 }
-Text Auto: [(2)] When you use this card's BACKUP, you may pay the cost. If you do, deal 1 damage to your opponent.
+Text Auto: [(2)] When you use this card's "BACKUP", you may pay the cost. If you do, deal 1 damage to your opponent.
 Backup 2500
 EndCard
 
@@ -1620,14 +1755,20 @@ Power 4000
 Soul 1
 Trait1 Striker
 Trait2 Healing
-Cont:
+Cont: GiveAll
 {
-
+    If Other && ColorIs Red
+    {
+        GainPower 1000
+    }
 }
 Text Cont: All your other Red characters get +1000 power.
-Auto:
+Auto: OnOtherReversed
 {
-
+    If Compare Experience 5 OrMore
+    {
+        *GiveCharacterPower(1000,Any)
+    }
 }
 Text Auto: EXPERIENCE When your other character becomes reversed in battle, if the sum of levels of cards in your level is 5 or higher, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
@@ -1643,15 +1784,22 @@ Power 7000
 Soul 1
 Trait1 Striker
 Trait2 Odd-Eye
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 3 OrMore
+    {
+        GainPower 2000
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets +2000 power.
-Auto:
+Auto: OnOtherAttacks
 {
-
+    IfOther ColorIs Red
+    {
+        GainPower 1000
+    }
 }
+Quick
 Text Auto: When your other Red character attacks, this card gets +1000 power until end of turn.
 EndCard
 
@@ -1665,14 +1813,13 @@ Power 500
 Soul 1
 Trait1 Striker
 Trait2 Animal
-Auto:
+*OnPlayGivePower(1000,Any)
+Auto: OnPlay
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your characters, and that character gets +1000 power until end of turn.
-Auto:
-{
-
+    PayCost 1
+    {
+        SearchWaitingRoom NameEquals Captain!?
+    }
 }
 Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Captain!?" in your waiting room and return it to your hand.
 EndCard
@@ -1687,9 +1834,22 @@ Power 500
 Soul 1
 Trait1 Striker
 Trait2 Card Game
-Auto:
+Auto: StartOpponentDrawPhase
 {
-
+    If InLocation CenterStage
+    {
+        PayCost SendSelf Hand
+        {
+            TargetLocation Hand
+            OpponentMessage Your opponent reveals their hand.
+            OpponentView
+            SearchLocationForTargets Hand 1 1 IsCharacter && Compare ThatCardsLevel 0 OrLess
+            If HasTarget
+            {
+                Change
+            }
+        }
+    }
 }
 Text Auto: At the beginning of your opponent's draw phase, if this card is in the center stage, you may return this card to your hand. If you do, reveal your hand, and choose 1 level 0 or lower character in your hand and put it rest in the position this card was in.
 Backup 1000
@@ -1706,14 +1866,41 @@ Soul 1
 Trait1 Striker
 Trait2 Healing
 Combo This Is Farewell
-Auto:
+Auto: OnAttack
 {
-
+    If Climax This Is Farewell
+    {
+        GainEffect
+        {
+            Auto: OnReversed
+            {
+                TargetBattleOpponent
+                IfTarget Compare ThatCardsCost 1 OrLess && OnStage && Not CardPosition Reverse
+                {
+                    Question Reverse the battle opponent?
+                    If Yes
+                    {
+                        Reverse
+                    }
+                }
+            }
+            Quick
+            Text Auto: When this card becomes reversed, if the cost of the battle opponent of this card is 1 or lower, you may reverse that character.
+        }
+    }
 }
-Text Auto: CxCombo When this card attacks, if "This card Is Farewell" is in your climax area, this card gets the following ability until end of turn. "Auto: When this card becomes reversed, if the cost of the battle opponent of this card is 1 or lower, you may reverse that character."
-Auto:
+Text Auto: CxCombo When this card attacks, if "This Is Farewell" is in your climax area, this card gets the following ability until end of turn. "Auto: When this card becomes reversed, if the cost of the battle opponent of this card is 1 or lower, you may reverse that character."
+Auto: OnReverseOpponent
 {
-
+    TargetBattleOpponent
+    IfTarget OnStage
+    {
+        Question Put that character on top of the deck ?
+        If Yes
+        {
+            MoveCard OpponentDeck
+        }
+    }
 }
 Text Auto: When this card's battle opponent becomes reverse, you may put that character on top of the deck.
 EndCard
@@ -1729,9 +1916,9 @@ Soul 1
 Trait1 Striker
 Trait2 Healing
 *OnPlayScry
-Auto:
+Auto: OnReversed
 {
-
+    *GiveCharacterPower(1000,Any)
 }
 Text Auto: When this card becomes reversed in battle, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
@@ -1746,9 +1933,12 @@ Power 2500
 Soul 1
 Trait1 Striker
 Trait2 Sports
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContainsOrLess CenterStage 0 Other
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If you have no other characters in the center stage, this card gets +1500 power.
 EndCard
@@ -1763,10 +1953,14 @@ Power 2500
 Soul 1
 Trait1 Striker
 Trait2 Housework
-Auto:
+Auto: OnOtherAttacks
 {
-
+    IfOther HasTrait Striker
+    {
+        GainPower 1000
+    }
 }
+Quick
 Text Auto: When your other «Striker» character attacks, this card gets +1000 power until end of turn.
 EndCard
 
@@ -1804,9 +1998,14 @@ Power 3500
 Soul 1
 Trait1 Striker
 Trait2 Odd-Eye
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget Not IsCharacter || Not HasTrait Striker
+    {
+        MoveCard Clock
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's not a «Striker» character, put it in clock.
 EndCard
@@ -1821,9 +2020,12 @@ Power 4500
 Soul 1
 Trait1 Striker
 Trait2 Animal
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 2 OrMore
+    {
+        GainPower 1000
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets +1000 power.
 *HandEncore
@@ -1839,10 +2041,14 @@ Power 5000
 Soul 1
 Trait1 Striker
 Trait2 Daughter
-Auto:
+Auto: OnOtherReversed
 {
-
+    If Compare Experience 2 OrMore
+    {
+        GainPower 2000
+    }
 }
+Quick
 Text Auto: EXPERIENCE When your other character becomes reversed in battle, if the sum of levels of cards in your level is 2 or higher, this card gets +2000 power until end of turn.
 EndCard
 
@@ -1856,14 +2062,20 @@ Power 5500
 Soul 1
 Trait1 Striker
 Trait2 Daughter
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && NameContains 依咲里|華賀利
+    {
+        GainTrait Yakisoba Bread
+    }
 }
 Text Cont: If you have another character with either "Isari" or "Kagari" in its card name, this card gets «Yakisoba Bread».
-Cont:
+Cont: GiveAll
 {
-
+    If Compare Experience 7 OrMore && Other && HasTrait Striker
+    {
+        LoseTrait Incredulous
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 7 or higher, all your other «Striker» characters lose all «Incredulous».
 EndCard
@@ -1878,9 +2090,12 @@ Power 6500
 Soul 1
 Trait1 Striker
 Trait2 Housework
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContainsOrLess Clock 1 Any
+    {
+        GainSpecialEffect CannotAttack
+    }
 }
 Text Cont: If there are 1 or less cards in your clock, this card cannot attack.
 EndCard
@@ -1895,10 +2110,16 @@ Power 6000
 Soul 1
 Trait1 Striker
 Trait2 Sports
-Auto:
+Auto: OnAttack
 {
-
+    TargetLocation CenterStage
+    NarrowTargets Other
+    If TargetsContainOrLess 0 Not CardPosition Stand
+    {
+        TargetSelf GainPower 2000
+    }
 }
+Quick
 Text Auto: When this card attacks, if all your other characters in the center stage are standing, this card gets +2000 power until end of turn.
 *HandEncore
 EndCard
@@ -2045,7 +2266,7 @@ JPName 天音 オンステージ！
 EndCard
 
 Climax: SGS/S37-100
-Name Only Once to My Face
+Name Only Once to My Face!
 JPName あたしの顔は一度までだ！
 *DoorClimax
 EndCard
