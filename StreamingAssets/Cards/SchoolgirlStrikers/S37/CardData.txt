@@ -2116,7 +2116,8 @@ Auto: OnAttack
     NarrowTargets Other
     If TargetsContainOrLess 0 Not CardPosition Stand
     {
-        TargetSelf GainPower 2000
+        TargetSelf
+        GainPower 2000
     }
 }
 Quick
@@ -2135,15 +2136,30 @@ Power 6000
 Soul 1
 Trait1 Striker
 Trait2 Sports
-Cont:
+Cont: InHand
 {
-
+    If StageContains 4 ColorIs Red
+    {
+        LoseLevel 1
+    }
 }
 Text Cont: If the number of Red characters you have is 4 or more, this card gets -1 level while in your hand.
-Auto:
+Auto: OnReversed
 {
-
+    If Compare Experience 3 OrMore
+    {
+        TargetBattleOpponent
+        IfTarget Compare ThatCardsLevel 2 OrLess && OnStage && Not CardPosition Reverse
+        {
+            Question Reverse the battle opponent?
+            If Yes
+            {
+                Reverse
+            }
+        }
+    }
 }
+Quick
 Text Auto: EXPERIENCE When this card becomes reversed, if the sum of levels of cards in your level is 3 or higher and the level of the battle opponent of this card is 2 or lower, you may reverse that character.
 EndCard
 
@@ -2171,9 +2187,12 @@ Power 9000
 Soul 1
 Trait1 Striker
 Trait2 Odd-Eye
-Cont:
+Cont: InHand
 {
-
+    If StageContainsOrLess 3 Any
+    {
+        GainSpecialEffect CannotBePlayed
+    }
 }
 Text Cont: If you have 3 or less characters, you cannot play this card from your hand.
 EndCard
@@ -2189,14 +2208,20 @@ Power 8000
 Soul 2
 Trait1 Striker
 Trait2 Incredulous
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 5 OrMore
+    {
+        GainPower 1500
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 5 or higher, this card gets +1500 power.
-Auto:
+Auto: OnPlay
 {
-
+    If StageContains 4 Other && HasTrait Striker
+    {
+        *OptionalBlindStock
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, if the number of other «Striker» characters you have is 4 or more, you may put the top card of your deck in your stock.
 EndCard
@@ -2213,9 +2238,12 @@ Soul 1
 Trait1 Striker
 Trait2 Card Game
 *CannotSideAttack
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 3 OrMore
+    {
+        GainPower 1000
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets +1000 power.
 EndCard
@@ -2228,9 +2256,10 @@ Level 1
 Cost 0
 Effect:
 {
-
+    Refresh
+    OpponentRefresh
 }
-Text All players return all cards in their waiting rooms to their respective Libraries and shuffle those Libraries.
+Text All players return all cards in their waiting room to their deck and shuffle their deck.
 EndCard
 
 Event: SGS/S37-097
@@ -2241,7 +2270,15 @@ Level 1
 Cost 2
 Effect:
 {
-
+    Message Choose up to 1 "Isari Haishima"
+    SearchLocationForTargets Deck 0 1 NameEquals Isari Haishima
+    SaveTargets
+    Message Choose up to 1 "Kagari Haishima"
+    SearchLocationForTargets Deck 0 1 NameEquals Kagari Haishima
+    AddSavedToCurrentTargets
+    PlaceOnStage false true true false
+    ShuffleLocation Deck
+    *GiveCharacterPower(4000,Any)
 }
 Text Search your deck for up to 1 "Isari Haishima" and up to 1 "Kagari Haishima", put them in separate positions on the stage, shuffle your deck, choose 1 of your characters, and that character gets +4000 power until end of turn.
 EndCard
@@ -2252,11 +2289,31 @@ JPName ブイブイ言わせモシュ！
 Color R
 Level 2
 Cost 1
+Requirement StageContains 1 HasTrait Striker
+Text If you don't have a «Striker» character, you cannot play this card from your hand.
 Effect:
 {
-
+    MultipleChoiceQuestion Choose 1 of the following 3 effects and perform it\n1: Choose 1 of your characters, and that character gets +4000 power until the end of your opponent's next turn.\n2: Draw up to 2 cards, and discard a card from your hand to the waiting room.\n3: Choose a cost 1 or lower character in your opponent's backstage and put it in the waiting room.|1|2|3
+    If Answer 0
+    {
+        UntilEndOfOpponentsTurn
+        *GiveCharacterPower(4000,Any)
+    }
+    If Answer 1
+    {
+        *OptionalDraw
+        *OptionalDraw
+        Discard 1 Any
+    }
+    If Answer 2
+    {
+        TargetLocation OpponentBackstage
+        NarrowTargets CanBeChosen && Compare ThatCardsCost 1 OrLess
+        ChooseCharacterFromTargets Choose a character to put into waiting room.
+        MoveCard OpponentWaitingRoom
+    }
 }
-Text If you don't have a «Striker» character, you cannot play this card from your hand. Perform 1 of the following effects of your choice. "Choose 1 of your characters, and that character gets +4000 power until the end of your opponent's next turn." "draw up to 2 cards, and discard a card from your hand to the waiting room." "Choose a cost 1 or lower character in your opponent's backstage and put it in the waiting room."
+Text Choose 1 of the following 3 effects and perform it\n"Choose 1 of your characters, and that character gets +4000 power until the end of your opponent's next turn."\n"Draw up to 2 cards, and discard a card from your hand to the waiting room."\n"Choose a cost 1 or lower character in your opponent's backstage and put it in the waiting room."
 EndCard
 
 Climax: SGS/S37-099
@@ -2302,11 +2359,7 @@ Soul 1
 Trait1 Striker
 Trait2 Miko
 *OnPlayReorderTop2
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Striker» character, put it in your hand and discard a card from your hand to the waiting room.
+*OnPlayCheckTopAddDiscard(Striker)
 EndCard
 
 Character: SGS/S37-105
@@ -2319,17 +2372,26 @@ Trigger Soul
 Power 9500
 Soul 2
 Trait1 Striker
-Trait2 Chunibyo(SGS
-Cont:
+Trait2 Chunibyo
+Cont: InHand
 {
-
+    If LocationContains WaitingRoom 6 IsClimax
+    {
+        LoseLevel 1
+    }
 }
 Text Cont: If there are 6 or more climax cards in your waiting room, this card gets -1 level while in your hand.
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 5 OrMore
+    {
+        TargetFacing
+        SetXValue TargetCardsLevel
+        MultiplyXValue 500
+        GainPower X
+    }
 }
-Text Cont: EXPERIENCE If the sum of levels of cards in your level is 5 or higher, this card gets +X power. X equals 500 times level of the The character facing this card.
+Text Cont: EXPERIENCE If the sum of levels of cards in your level is 5 or higher, this card gets +X power. X equals 500 times level of the character facing this card.
 *Healer
 EndCard
 
@@ -2344,14 +2406,24 @@ Power 10000
 Soul 2
 Trait1 Striker
 Trait2 Manga
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 6 OrMore
+    {
+        GainPower 1500
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 6 or higher, this card gets +1500 power.
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If PlayedThisTurn
+    {
+        PayCost Discard 2 IsCharacter && HasTrait Striker &&& Send 1 WaitingRoom Other
+        {
+            SearchLocationForTargets WaitingRoom 1 1 NameEquals A Summer Moment, Hotaru
+            PlaceOnStage false true true false
+        }
+    }
 }
 Text Auto: [Put 2 «Striker» character cards from your hand to the waiting room, put 1 of your other characters from your stage in the waiting room] This card ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, choose a "A Summer Moment, Hotaru" in your waiting room and put it in any position on the stage.
 EndCard
@@ -2368,21 +2440,43 @@ Soul 2
 Trait1 Striker
 Trait2 Gal
 Combo Hina-chan, Special Attac-k!
-Cont:
+Cont: GiveFacing
 {
-
+    LoseSoul 1
 }
 Text Cont: The character facing this card gets -1 soul.
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 4 OrMore
+    {
+        GainPower 1000
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 4 or higher, this card gets +1000 power.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Hina-chan, Special Attac-k! && StageContains 4 Other && ColorIs Blue
+    {
+        RevealUpTo Deck 4
+        ChooseCardsFromTargets 0 4 IsCharacter && ColorIs Blue
+        RevealTargets
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+        TargetSelf
+        UntilEndOfOpponentsTurn
+        GainPower 1500
+        UntilEndOfOpponentsTurn
+        GainEffect
+        {
+            Cont: GiveFacing
+            {
+                LoseSoul 1
+            }
+            Text Cont: The character facing this card gets -1 soul.
+        }
+    }
 }
-Text Auto: CxCombo When this card attacks, if "Hina-chan, Special Attac-k!" is in your climax area and the number of other Blue characters you have is 4 or more, look at up to the top 4 cards of your deck, choose up to 1 Blue character among them, reveal it, put it in your hand, put the rest into your waiting room, and until the end of your opponent's next turn, this card gets +1500 power and the following ability. "Cont: The character facing this card gets -1 soul."
+Text Auto: CxCombo When this card attacks, if "Hina-chan, Special Attac-k!" is in your climax area and the number of other Blue characters you have is 4 or more, look at up to the top 4 cards of your deck, choose up to 1 Blue character among them, reveal it, put it in your hand, put the rest into your waiting room, and this card gets +1500 power and the following ability until the end of your opponent's next turn. "Cont: The character facing this card gets -1 soul."
 EndCard
 
 Character: SGS/S37-108
@@ -2395,14 +2489,23 @@ Power 500
 Soul 1
 Trait1 Striker
 Trait2 Kenjutsu
-Cont:
+Cont: GiveAll
 {
-
+    If Other && ColorIs Blue
+    {
+        GainPower 500
+    }
 }
 Text Cont: All your other Blue characters get +500 power.
-Auto:
+Auto: StartOpponentDrawPhase
 {
-
+    If Compare Experience 3 OrMore
+    {
+        TargetLocation Stage
+        NarrowTargets ColorIs Blue
+        ChooseCharacterFromTargets Choose a character to give +1000 power.
+        GainPower 1000
+    }
 }
 Text Auto: EXPERIENCE At the beginning of your opponent's draw phase, if the sum of levels of cards in your level is 3 or higher, choose 1 of your Blue characters, and that character gets +1000 power until end of turn.
 EndCard
@@ -2417,16 +2520,15 @@ Power 1500
 Soul 1
 Trait1 Striker
 Trait2 Miko
-Cont:
+Cont: GiveAll
 {
-
+    If Not MyTurn && Other && InLocation MiddleCenterStage
+    {
+        GainPower 1000
+    }
 }
 Text Cont: During your opponent's turn, your other character in the middle position of your center stage gets +1000 power.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest 2 of your characters] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 «Striker» character, reveal it, put it in your hand, and shuffle your deck.
+*Act1Rest2SearchBrainstorm(Striker)
 EndCard
 
 Character: SGS/S37-110
@@ -2452,9 +2554,12 @@ Power 2500
 Soul 1
 Trait1 Striker
 Trait2 Gal
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains Hand 6 Any
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If there are 6 or more cards in your hand, this card gets +1500 power.
 EndCard
@@ -2470,15 +2575,21 @@ Soul 1
 Trait1 Striker
 Trait2 Fireworks
 Combo We Are the Second Generation Student Council!
-Auto:
+Auto: OnSpecificClimaxPlay We Are the Second Generation Student Council!
 {
-
+    If InLocation CenterStage
+    {
+        SearchLocationForTargets Deck 0 1 IsCharacter && Compare ThatCardsLevel 0 OrLess
+        PlaceOnStage false true true false
+        ShuffleLocation Deck
+    }
 }
 Text Auto: CxCombo When "We Are the Second Generation Student Council!" is placed on your climax area, if this card is in the center stage, search your deck for up to 1 level 0 or lower character, put it in any position on the stage, and shuffle your deck.
-Auto:
+Auto: OnClimaxPlay
 {
-
+    GainPower 1500
 }
+Quick
 Text Auto: When your climax is placed on your climax area, this card gets +1500 power until end of turn.
 EndCard
 
@@ -2494,16 +2605,23 @@ Soul 2
 Trait1 Striker
 Trait2 Manga
 Combo Time for Final Battle
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 3 OrMore
+    {
+        GainPower 2000
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets +2000 power.
-Auto:
+Auto: OnSpecificClimaxPlay Time for Final Battle
 {
-
+    PayCost Discard 1 IsCharacter && HasTrait Striker
+    {
+        SearchLocationForTargets WaitingRoom 1 1 IsCharacter && HasTrait Striker && Compare ThatCardsLevel MyLevel OrLess
+        PlaceOnStage false true true false
+    }
 }
-Text Auto: CxCombo [Put a «Striker» character from your hand to the waiting room] When "Time for Final battle" is placed on your climax area, you may pay the cost. If you do, choose a «Striker» character in your waiting room whose level is equal to or lower than your level and put it in any position on the stage.
+Text Auto: CxCombo [Put a «Striker» character from your hand to the waiting room] When "Time for Final Battle" is placed on your climax area, you may pay the cost. If you do, choose a «Striker» character in your waiting room whose level is equal to or lower than your level and put it in any position on the stage.
 EndCard
 
 Character: SGS/S37-114
@@ -2517,16 +2635,36 @@ Power 8500
 Soul 2
 Trait1 Striker
 Trait2 Mystery
-Cont:
+Cont: InHand
 {
-
+    If StageContains 4 ColorIs Blue
+    {
+        LoseLevel 1
+    }
 }
 Text Cont: If the number of Blue characters you have is or 4 or more, this card gets -1 level while in your hand.
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 5 OrMore
+    {
+        GainPower 1500
+        GainEffect
+        {
+            Auto: OnReceiveDamage
+            {
+                If InBattle
+                {
+                    PayCost 3
+                    {
+                        Burn LastDamageTaken
+                    }
+                }
+            }
+            Text Auto: [(3)] During battles involving this card, when the damage taken by you is not canceled, you may pay the cost. If you do, deal the same amount of damage to your opponent.
+        }
+    }
 }
-Text Cont: EXPERIENCE If the sum of levels of cards in your level is 5 or higher, this card gets +1500 power and the following ability. "Auto: [(3)] During battles involving this card, when the damage taken by you is not canceled, you may pay the cost. If you do, deal the same amount of damage to your opponent." (damage cancel can occur)
+Text Cont: EXPERIENCE If the sum of levels of cards in your level is 5 or higher, this card gets +1500 power and the following ability. "Auto: [(3)] During battles involving this card, when the damage taken by you is not canceled, you may pay the cost. If you do, deal the same amount of damage to your opponent."
 *Healer
 EndCard
 
@@ -2542,16 +2680,29 @@ Soul 2
 Trait1 Striker
 Trait2 Kenjutsu
 Combo Time for Final Battle
-Auto:
+Auto: OnPlay|PlacedBy "Schokolade Mira" Hotaru Sakamiya
 {
-
+    *CheckAndAdd(3)
 }
-Text Auto: When this card is placed on the stage from your hand or by the Auto: effect of '"Schokolade Mira" Hotaru Sakamiya' to the stage, look at up to the top 3 cards of your deck, choose up to 1 card and put it in your hand, and put the rest into your waiting room.
-Auto:
+Text Auto: When this card is placed on the stage from your hand or by the "Auto:" effect of '"Schokolade Mira" Hotaru Sakamiya' to the stage, look at up to the top 3 cards of your deck, choose up to 1 card and put it in your hand, and put the rest into your waiting room.
+Auto: OnAttack
 {
-
+    If Climax Time for Final Battle && StageContains 4 Other && NameContains “ショコラーデ・ミラ”
+    {
+        UntilEndOfOpponentsTurn
+        GainPower 2500
+        MultipleChoiceQuestion Choose 1 of the following 2 effects and perform it.\n1: Deal 1 damage to your opponent.\n2: Put the top card of your clock into waiting room.|1|2
+        If Answer 0
+        {
+            Burn 1
+        }
+        If Answer 1
+        {
+            Heal
+        }
+    }
 }
-Text Auto: CxCombo [(1)] When this card attacks, if "Time for Final battle" is in your climax area and the number of other characters with '"Schokolade Mira"' in its card name you have is 4 or more, you may pay the cost. If you do, this card gets +2500 power until the end of your opponent's next turn, and perform 1 of the following effects of your choice. "deal 1 damage to your opponent." "Put the top card of your clock in the waiting room."
+Text Auto: CxCombo [(1)] When this card attacks, if "Time for Final Battle" is in your climax area and the number of other characters with '"Schokolade Mira"' in its card name you have is 4 or more, you may pay the cost. If you do, this card gets +2500 power until the end of your opponent's next turn, and choose 1 of the following 2 effects and perform it. "Deal 1 damage to your opponent." "Put the top card of your clock in the waiting room."
 EndCard
 
 Character: SGS/S37-116
@@ -2566,11 +2717,14 @@ Trait1 Striker
 Trait2 Fireworks
 Combo Time for Final Battle
 *500Assist
-Auto:
+Auto: OnSpecificClimaxPlay Time for Final Battle
 {
-
+    PayCost 1 RestSelf
+    {
+        DrawCard
+    }
 }
-Text Auto: CxCombo [(1) Rest this card] When "Time for Final battle" is placed on your climax area, you may pay the cost. If you do, draw a card.
+Text Auto: CxCombo [(1) Rest this card] When "Time for Final Battle" is placed on your climax area, you may pay the cost. If you do, draw a card.
 EndCard
 
 Character: SGS/S37-117
@@ -2583,14 +2737,17 @@ Power 1000
 Soul 1
 Trait1 Striker
 Trait2 Gal
-Cont:
+Cont: GiveAll
 {
-
+    If Other && NameContains あから|陽奈|小織
+    {
+        GainPower 500
+    }
 }
 Text Cont: All your other characters with either "Akara", "Hina", or "Koori" in its card name get +500 power.
-Act:
+Act: 1 Clock RestSelf
 {
-
+    SearchDeck IsCharacter && NameContains あから|陽奈|小織
 }
 Text Act: [(1) Put the top card of your deck in your clock, rest this card] Search your deck for up to 1 character with either "Akara", "Hina", or "Koori", reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -2605,9 +2762,13 @@ Power 4000
 Soul 1
 Trait1 Striker
 Trait2 Gal
-Auto:
+Auto: OnPlay
 {
-
+    If Compare Experience 2 OrMore
+    {
+        *CheckAndAdd(2)
+        Discard 1 Any
+    }
 }
 Text Auto: EXPERIENCE When this card is placed on the stage from your hand, if the sum of levels of cards in your level is 2 or higher, look at up to the top 2 cards of your deck, choose up to 1 card and put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
 EndCard
@@ -2621,18 +2782,39 @@ Cost 0
 Power 4500
 Soul 1
 Trait1 Striker
-Trait2 Chunibyo(SGS
+Trait2 Chunibyo
 Combo Time for Final Battle
-Auto:
+Auto: OnPlay|PlacedBy "Schokolade Mira" Hotaru Sakamiya
 {
-
+    SetXToNumberOfCharacters HasTrait Striker
+    MultiplyXValue 500
+    GainPower X
 }
 Text Auto: When this card is placed on the stage from your hand or by the Auto: effect of '"Schokolade Mira" Hotaru Sakamiya' to the stage, this card gets +X power until end of turn. X equals 500 times the number of your «Striker» characters.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Time for Final Battle
+    {
+        GainPower 1500
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                TargetBattleOpponent
+                IfTarget OnStage
+                {
+                    Question Put that character to the bottom of the deck ?
+                    If Yes
+                    {
+                        MoveCardToBottom OpponentDeck
+                    }
+                }
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may put that character on the bottom of the deck.
+        }
+    }
 }
-Text Auto: CxCombo When this card attacks, if "Time for Final battle" is in your climax area, this card gets +1500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character on the bottom of the deck."
+Text Auto: CxCombo When this card attacks, if "Time for Final Battle" is in your climax area, this card gets +1500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character on the bottom of the deck."
 EndCard
 
 Character: SGS/S37-120
@@ -2645,16 +2827,31 @@ Power 4500
 Soul 1
 Trait1 Striker
 Trait2 Fireworks
-Cont:
+Cont: GiveSelf
 {
-
+    If Not MyTurn
+    {
+        SetXToNumberOfCharacters Other && HasTrait Striker
+        MultiplyXValue 500
+        GainPower X
+    }
 }
 Text Cont: During your opponent's turn, this card gets +500 power for each of your other «Striker» characters
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 2 OrMore
+    {
+        GainEffect
+        {
+            Act: 1
+            {
+                GainSpecialEffect FreeSideAttack
+            }
+            Text Act: [(1)] This card's soul does not decrease when side attacking until end of turn.
+        }
+    }
 }
-Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets the following ability. "Act: [(1)] For the turn, this card may side attack without soul Penalty."
+Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets the following ability. "Act: [(1)] This card's soul does not decrease when side attacking until end of turn."
 EndCard
 
 Character: SGS/S37-121
@@ -2667,9 +2864,12 @@ Power 4500
 Soul 1
 Trait1 Striker
 Trait2 Passion
-Cont:
+Cont: GiveSelf
 {
-
+    If AllYourCharacters NameContains あから|陽奈|小織
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If all your characters have either "Akara", "Hina", or "Koori" in its card name, this card gets +2000 power.
 EndCard
@@ -2684,14 +2884,20 @@ Power 5500
 Soul 1
 Trait1 Striker
 Trait2 Manga
-Cont:
+Cont: InHand
 {
-
+    If StageContainsOrLess 2 HasTrait Striker
+    {
+        GainSpecialEffect CannotBePlayed
+    }
 }
 Text Cont: If you have 2 or less «Striker» characters, you cannot play this card from your hand.
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 2 OrMore
+    {
+        GainPower 1000
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets +1000 power.
 EndCard
@@ -2706,9 +2912,12 @@ Power 6500
 Soul 1
 Trait1 Striker
 Trait2 Mystery
-Auto:
+Auto: OnReversed
 {
-
+    TargetTop Deck 1
+    MoveCard Clock
+    TargetSelf
+    Rest
 }
 Text Auto: When this card becomes reversed, put the top card of your deck in your clock, and rest this card.
 EndCard
@@ -2724,14 +2933,28 @@ Power 3500
 Soul 1
 Trait1 Striker
 Trait2 Animal
-Cont:
+Cont: Assist
 {
-
+    If ColorIs Blue
+    {
+        SetXValue ThatCardsLevel
+        MultiplyXValue 500
+        GainPower X
+    }
 }
 Text Cont: ASSIST Your Blue characters in front of this card get +X power. X equals 500 times level of that character.
-Auto:
+Auto: StartOpponentEncorePhase
 {
-
+    If Compare Experience 2 OrMore
+    {
+        TargetLocation Stage
+        NarrowTargets Other
+        ChooseCharacterFromTargets Choose a character to give the effect.
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
 Text Auto: EXPERIENCE At the beginning of your opponent's encore step, if the sum of levels of cards in your level is 2 or higher, choose 1 of your other characters, and that character gets "Auto: ENCORE [Put 1 card from your hand to the waiting room]" until end of turn.
 EndCard
@@ -2746,11 +2969,7 @@ Power 5500
 Soul 1
 Trait1 Striker
 Trait2 Kenjutsu
-Cont:
-{
-
-}
-Text Cont: If the cost of the The character facing this card is 0 or lower, this card does not reverse.
+*CannotBeReversedByCost0
 EndCard
 
 Character: SGS/S37-126
@@ -2763,15 +2982,26 @@ Power 6000
 Soul 1
 Trait1 Striker
 Trait2 Miko
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 2 OrMore
+    {
+        GainPower 500
+        GainEffect
+        {
+            *ClockEncore
+        }
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets +500 power and "Auto: ENCORE [Put the top card of your deck in your clock]".
-Auto:
+Auto: OnOtherAttacks
 {
-
+    IfOther ColorIs Blue
+    {
+        GainPower 1000
+    }
 }
+Quick
 Text Auto: When your other Blue character attacks, this card gets +1000 power until end of turn.
 EndCard
 
@@ -2787,21 +3017,19 @@ Soul 1
 Trait1 Striker
 Trait2 Miko
 Combo Time for Final Battle
-Cont:
+*GlobalPower(1000,Striker)
+Auto: OnPlay|PlacedBy "Schokolade Mira" Hotaru Sakamiya
 {
-
+    DrawCard
+    Discard 1 Any
 }
-Text Cont: All your other «Striker» characters get +1000 power.
-Auto:
+Text Auto: When this card is placed on the stage from your hand or by the "Auto:" effect of '"Schokolade Mira" Hotaru Sakamiya' to the stage, draw a card, and discard a card from your hand to the waiting room.
+Auto: OnSpecificClimaxPlay Time for Final Battle
 {
-
+    UntilEndOfOpponentsTurn
+    *GiveCharacterPower(1500,Any)
 }
-Text Auto: When this card is placed on the stage from your hand or by the Auto: effect of '"Schokolade Mira" Hotaru Sakamiya' to the stage, draw a card, and discard a card from your hand to the waiting room.
-Auto:
-{
-
-}
-Text Auto: CxCombo When "Time for Final battle" is placed on your climax area, choose 1 of your characters, and that character gets +1500 power until the end of your opponent's next turn.
+Text Auto: CxCombo When "Time for Final Battle" is placed on your climax area, choose 1 of your characters, and that character gets +1500 power until the end of your opponent's next turn.
 EndCard
 
 Character: SGS/S37-128
@@ -2815,15 +3043,27 @@ Power 6500
 Soul 1
 Trait1 Striker
 Trait2 Teacher
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 4 OrMore
+    {
+        GainPower 1500
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 4 or higher, this card gets +1500 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
-Auto:
+Auto: OnAttack
 {
-
+    If Facing Compare ThatCardsLevel 3 OrMore
+    {
+        UntilEndOfOpponentsTurn
+        GainPower 3000
+    }
 }
+Quick
 Text Auto: When this card attacks, if the level of the The character facing this card is 3 or higher, this card gets +3000 power until the end of your opponent's next turn.
 EndCard
 
@@ -2837,15 +3077,32 @@ Trigger Soul
 Power 7000
 Soul 1
 Trait1 Striker
-Trait2 Chunibyo(SGS
-Cont:
+Trait2 Chunibyo
+Cont: GiveSelf
 {
-
+    If AllYourCharacters IsColor Blue
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If all your characters are Blue, this card gets +2000 power.
-Auto:
+Auto: OnPlay
 {
-
+    SearchLocationForTargets OpponentWaitingRoom 0 1 IsClimax
+    If HasTarget
+    {
+        MoveCard OpponentDeck
+        ShuffleLocation OpponentDeck
+        TargetSelf
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                *OptionalDraw
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may draw a card
+        }
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose a climax in your opponent's waiting room and return it to the deck. If you do, shuffle that deck, and this card gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may draw a card."
 EndCard
@@ -2862,14 +3119,28 @@ Soul 1
 Trait1 Striker
 Trait2 Passion
 Combo Place Where We Belong
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 5 OrMore
+    {
+        GainPower 1500
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 5 or higher, this card gets +1500 power.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Place Where We Belong
+    {
+        GainPower 2000
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                SearchDeck IsCharacter && NameContains あから|陽奈|小織 
+            }
+            Text Auto: When this card's battle opponent becomes reverse, search your deck for up to 1 character with either 'Akara', 'Hina', or 'Koori', reveal it, put it in your hand, and shuffle your deck.
+        }
+    }
 }
 Text Auto: CxCombo When this card attacks, if "Place Where We Belong" is in your climax area, this card gets +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, search your deck for up to 1 character with either 'Akara', 'Hina', or 'Koori', reveal it, put it in your hand, and shuffle your deck."
 EndCard
@@ -2885,19 +3156,30 @@ Power 7500
 Soul 2
 Trait1 Striker
 Trait2 Transformation
-Cont:
+Cont: GiveSelf
 {
-
+    SetXValue ThisCardsMarkers
+    GainLevel X
+    MultiplyXValue 1500
+    GainPower X
 }
 Text Cont: This card gets +1 level and +1500 power for each marker underneath this card
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 3 OrMore
+    {
+        GainPower 1000
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets +1000 power.
-Auto:
+Auto: OnReverseOpponent
 {
-
+    SearchLocationForTargets WaitingRoom 0 1 IsCharacter && HasTrait Striker
+    If HasTarget
+    {
+        RevealTargets
+        Marker_FaceDown
+    }
 }
 Text Auto: When this card's battle opponent becomes reverse, you may choose a «Striker» character in your waiting room and put it face down underneath this card as a marker.
 EndCard
@@ -2911,12 +3193,8 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Striker
-Trait2 Chunibyo(SGS
-Cont:
-{
-
-}
-Text Cont: All your other "Aoi Uraba" get +1000 power.
+Trait2 Chunibyo
+*GiveNamePower(1000,Aoi Uraba)
 *BondDiscard(Aoi Uraba)
 EndCard
 
@@ -2930,14 +3208,16 @@ Power 1500
 Soul 1
 Trait1 Striker
 Trait2 Passion
-Act:
+Act: 1
 {
-
+    DrawCard
+    Discard 1 Any
 }
-Text Act: [(1)] draw a card, and discard a card from your hand to the waiting room.
-Act:
+Text Act: [(1)] Draw a card, and discard a card from your hand to the waiting room.
+Act: Rest 2 Any
 {
-
+    UntilEndOfOpponentsTurn
+    *GiveCharacterPower(1000,Striker)
 }
 Text Act: [Rest 2 of your characters] Choose 1 of your «Striker» characters, and that character gets +1000 power until the end of your opponent's next turn.
 EndCard
@@ -2952,9 +3232,13 @@ Power 2000
 Soul 1
 Trait1 Striker
 Trait2 Manga
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 2 Other && HasTrait Striker
+    {
+        GainLevel 1
+        GainPower 1500
+    }
 }
 Text Cont: If the number of other «Striker» characters you have is 2 or more, this card gets +1 level and +1500 power.
 EndCard
@@ -2968,17 +3252,24 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Striker
-Trait2 Chunibyo(SGS
-Auto:
+Trait2 Chunibyo
+Auto: OnPlay
 {
-
+    If LocationContainsOrLess OpponentWaitingRoom 0 IsClimax
+    {
+        DrawCard
+        Discard 1 Any
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, if there are no climax cards in your opponent's waiting room, draw a card, and discard a card from your hand to the waiting room.
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchDeck IsCharacter && With EXPERIENCE
+    }
 }
-Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, search your deck for up to 1 character with EXPERIENCE, reveal it, put it in your hand, and shuffle your deck.
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, search your deck for up to 1 character with "EXPERIENCE", reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SGS/S37-136
@@ -2992,9 +3283,9 @@ Soul 1
 Trait1 Striker
 Trait2 Mystery
 *HandEncore
-Act:
+Act: Rest 2 HasTrait Striker
 {
-
+    GainPower 2500
 }
 Text Act: [Rest 2 of your «Striker» characters] This card gets +2500 power until end of turn.
 EndCard
@@ -3009,9 +3300,12 @@ Power 2000
 Soul 1
 Trait1 Striker
 Trait2 Animal
-Cont:
+Cont: GiveSelf
 {
-
+    If AllYourCharacters NameContains あから|陽奈|小織
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If all your characters have either "Akara", "Hina", or "Koori" in its card name, this card gets +2000 power.
 EndCard
@@ -3026,16 +3320,19 @@ Power 2000
 Soul 1
 Trait1 Striker
 Trait2 Teacher
-Cont:
+Cont: GiveAll
 {
-
+    If Not MyTurn && Other && HasTrait Striker
+    {
+        GainPower 500
+    }
 }
-Text Cont: During your opponent's turn, all your other «Striker» characters get +500 Powrr.
-Act:
+Text Cont: During your opponent's turn, all your other «Striker» characters get +500 power.
+Act: 2 Rest 2 Any
 {
-
+    DrawCard
 }
-Text Act: [(2) Rest 2 of your characters] draw a card.
+Text Act: [(2) Rest 2 of your characters] Draw a card.
 EndCard
 
 Character: SGS/S37-139
@@ -3048,9 +3345,13 @@ Power 2500
 Soul 1
 Trait1 Striker
 Trait2 Kenjutsu
-Cont:
+Cont: GiveSelf
 {
-
+    If Not MyTurn && LocationContainsOrLess OpponentStage 3 Any
+    {
+        GainLevel 1
+        GainPower 1500
+    }
 }
 Text Cont: During your opponent's turn, if your opponent has 3 or less characters, this card gets +1 level and +1500 power.
 EndCard
@@ -3065,9 +3366,9 @@ Power 3000
 Soul 1
 Trait1 Striker
 Trait2 Miko
-Cont:
+Cont: GiveFacing
 {
-
+    GainTrait Tsubu-an
 }
 Text Cont: The character facing this card gets «Tsubu-an».
 EndCard
@@ -3094,9 +3395,12 @@ Power 3500
 Soul 1
 Trait1 Striker
 Trait2 Fireworks
-Auto:
+Auto: OnReversed
 {
-
+    If StageContainsOrLess 1 Other && HasTrait Striker
+    {
+        MoveCard Clock
+    }
 }
 Text Auto: When this card becomes reversed in battle, if you have 1 or less other «Striker» characters, put this card in your clock.
 EndCard
@@ -3124,9 +3428,11 @@ Power 5000
 Soul 1
 Trait1 Striker
 Trait2 Kenjutsu
-Auto:
+Auto: OnAttack
 {
-
+    SetXToNumberOfCharacters Other && ColorIs Blue
+    MultiplyXValue 500
+    GainPower X
 }
 Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 500 times the number of your other Blue characters.
 EndCard
@@ -3155,9 +3461,16 @@ Soul 1
 Trait1 Striker
 Trait2 Transformation
 Combo Odile Ki--ck!!
-Auto:
+Auto: OnSpecificClimaxPlay Odile Ki--ck!!
 {
-
+    PayCost 1 SendSelf Hand
+    {
+        SearchLocationForTargets Hand 0 1 NameEquals Black Bird Knight, Odile
+        If HasTarget
+        {
+            Change
+        }
+    }
 }
 Text Auto: CxCombo [(1) Return this card to your hand] When "Odile Ki--ck!!" is placed on your climax area, you may pay the cost. If you do, choose up to 1 "Black Bird Knight, Odile" in your hand and put it in the position this card was in.
 Backup 2000
@@ -3186,11 +3499,16 @@ Power 2000
 Soul 1
 Trait1 Striker
 Trait2 Gal
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    If Compare Experience 5 OrMore
+    {
+        TargetMyCharacterInBattle
+        GainPower 1000
+    }
 }
-Text Auto: EXPERIENCE When you use this card's BACKUP, if the sum of levels of cards in your level is 5 or higher, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
+Quick
+Text Auto: EXPERIENCE When you use this card's "BACKUP", if the sum of levels of cards in your level is 5 or higher, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
 Backup 2500
 EndCard
 
@@ -3218,9 +3536,9 @@ Power 9000
 Soul 2
 Trait1 Striker
 Trait2 Fireworks
-Cont:
+Cont: GiveSelf
 {
-
+    LoseLevel 2
 }
 Text Cont: This card gets -2 level while on the stage.
 EndCard
@@ -3233,7 +3551,20 @@ Level 2
 Cost 0
 Effect:
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Striker
+    {
+        *OptionalDraw
+        *OptionalDraw
+        *OptionalDraw
+        Discard 2 Any
+    }
+    Else
+    {
+        DrawCard
+        Discard 1 Any
+    }
 }
 Text Reveal the top card of your deck. If it's a «Striker» character, draw up to 3 cards, and discard 2 cards from your hand to the waiting room. Otherwise, draw a card, and discard a card from your hand to the waiting room.
 EndCard
@@ -3244,11 +3575,17 @@ JPName 隊長!?
 Color B
 Level 1
 Cost 0
+Counter
 Effect:
 {
-
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        *FreeEncore
+    }
 }
-Text Choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card is placed from the stage to the waiting room, you may put this card rest in the position this card was in."
+Text COUNTER Choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card is placed from the stage to the waiting room, you may put this card rest in the position this card was in."
 EndCard
 
 Event: SGS/S37-153
@@ -3259,7 +3596,12 @@ Level 2
 Cost 2
 Effect:
 {
-
+    Peek OpponentDeck 3
+    Message Choose cards to put into waiting room.
+    ChooseCardsFromTargets 0 3 Any
+    MoveCard OpponentWaitingRoom
+    EndPeek
+    ShuffleLocation OpponentDeck
 }
 Text Look at up to the top 3 cards of your opponent's deck, choose up to 3 cards and put them in the waiting room, return the rest to the deck, and your opponent shuffles their deck.
 EndCard
@@ -3306,11 +3648,7 @@ Soul 1
 Trait1 Striker
 Trait2 Mystery
 *CannotSideAttack
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+*OnPlayGainPower(1500)
 EndCard
 
 Character: SGS/S37-160
@@ -3350,11 +3688,13 @@ Power 5000
 Soul 1
 Trait1 Striker
 Trait2 Daughter
-Auto:
+Auto: OnUseAct
 {
-
+    GainPower 1500
 }
-Text Auto: This card ability activates up to once per turn. When you use an Act: ability, this card gets +1500 power until end of turn.
+Quick
+TimesPerTurn 1
+Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, this card gets +1500 power until end of turn.
 EndCard
 
 Character: SGS/S37-163
@@ -3367,11 +3707,11 @@ Power 2000
 Soul 1
 Trait1 Striker
 Trait2 Kenjutsu
-Act:
+Act: Rest 2 HasTrait Striker
 {
-
+    *GiveCharacterPower(2000,Any)
 }
-Text Act: [Rest 2 of your «Striker» characters]] Choose 1 of your characters, and that character gets +2000 power until end of turn.
+Text Act: [Rest 2 of your «Striker» characters] Choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: SGS/S37-P01
@@ -3384,14 +3724,20 @@ Power 1000
 Soul 1
 Trait1 Striker
 Trait2
-Cont:
+Cont: GiveAll
 {
-
+    If Not MyTurn && Other && HasTrait Striker
+    {
+        GainPower 500
+    }
 }
 Text Cont: During your turn, all your other «Strikers» characters get +500 power.
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 2
+    {
+        SearchDeck IsCharacter && HasTrait Striker
+    }
 }
 Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Striker» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -3408,10 +3754,11 @@ Soul 2
 Trait1 Striker
 Trait2 Mystery
 *Healer
-Auto:
+Auto: OnClimaxPlay
 {
-
+    GainPower 1500
 }
+Quick
 Text Auto: When your climax is placed on your climax area, this card gets +1500 power until end of turn.
 EndCard
 
@@ -3424,7 +3771,6 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Striker
-Trait2
 Backup 1500
 EndCard
 
@@ -3437,12 +3783,7 @@ Cost 0
 Power 5000
 Soul 1
 Trait1 Striker
-Trait2
-Auto:
-{
-
-}
-Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Striker» character, reveal it, put it in your hand, and shuffle your deck.
+*DropSearch(Striker)
 EndCard
 
 Climax: SGS/S37-P05
@@ -3462,16 +3803,14 @@ Trigger Soul
 Power 2500
 Soul 1
 Trait1 Striker
-Cont:
+Cont: Assist
 {
-
+    SetXToNumberOfCharacters With ASSIST
+    MultiplyXValue 500
+    GainPower X
 }
-Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times the number of your characters with ASSIST.
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your «Striker» characters, and that character gets +500 power until end of turn.
+Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times the number of your characters with "ASSIST".
+*RestGivePower(500,Striker)
 EndCard
 
 Character: SGS/S37-P07
@@ -3484,10 +3823,14 @@ Power 5000
 Soul 1
 Trait1 Striker
 Trait2 Miko
-Auto:
+Auto: OnOtherAttacks
 {
-
+    IfOther NameContains 夕依|ほたる|サトカ
+    {
+        GainPower 1000
+    }
 }
+Quick
 Text Auto: When your other character with either "Yui", "Hotaru", or "Satoka" in its card name attacks, this card gets +1000 power until end of turn.
 EndCard
 
@@ -3503,11 +3846,11 @@ Trait1 Striker
 Trait2 Card Game
 Combo Battle Formation
 *500Assist
-Auto:
+Auto: OnSpecificClimaxPlay Battle Formation
 {
-
+    *GiveCharacterPower(2000,Any)
 }
-Text Auto: CxCombo When "battle Formation" is placed on your climax area, choose 1 of your characters, and that character gets +2000 power until end of turn.
+Text Auto: CxCombo When "Battle Formation" is placed on your climax area, choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: SGS/S37-T02
@@ -3520,14 +3863,11 @@ Power 1500
 Soul 1
 Trait1 Striker
 Trait2 Sports
-Cont:
+*PowerOnMyTurn(1000)
+Auto: OnAttack
 {
-
-}
-Text Cont: During your turn, this card gets +1000 power.
-Auto:
-{
-
+    *GiveCharacterPower(1000,Striker)
+    GainLevel 1
 }
 Text Auto: When this card attacks, choose 1 of your «Striker» characters, and that character gets +1 level and +1000 power until end of turn.
 EndCard
@@ -3554,9 +3894,13 @@ Power 2500
 Soul 1
 Trait1 Striker
 Trait2 Mystery
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContainsOrLess 0 Other
+    {
+        GainLevel 1
+        GainPower 1500
+    }
 }
 Text Cont: If you have no other characters, this card gets +1 level and +1500 power.
 EndCard
@@ -3595,11 +3939,7 @@ Power 5000
 Soul 1
 Trait1 Striker
 Trait2 Detective
-Cont:
-{
-
-}
-Text Cont: During your turn, this card gets +1000 power.
+*PowerOnMyTurn(1000)
 EndCard
 
 Character: SGS/S37-T08
@@ -3613,11 +3953,18 @@ Soul 1
 Trait1 Striker
 Trait2 Mystery
 Combo Battle Formation
-Auto:
+Auto: OnSpecificClimaxPlay Battle Formation
 {
-
+    If InLocation CenterStage
+    {
+        PayCost 1 Rest 2 HasTrait Striker
+        {
+            SearchLocationForTargets Deck 0 1 IsCharacter && HasTrait Striker && Compare ThatCardsLevel 1 OrLess
+            PlaceOnStage false true true false
+        }
+    }
 }
-Text Auto: CxCombo [(1) Rest 2 of your «Striker» characters] When "battle Formation" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower «Striker» character, put it in any position on the stage, and shuffle your deck.
+Text Auto: CxCombo [(1) Rest 2 of your «Striker» characters] When "Battle Formation" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower «Striker» character, put it in any position on the stage, and shuffle your deck.
 EndCard
 
 Character: SGS/S37-T09
@@ -3643,11 +3990,18 @@ Soul 1
 Trait1 Striker
 Trait2 Cuisine
 Combo Battle Formation
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Battle Formation && StageContains 2 Other && HasTrait Striker
+    {
+        UntilEndOfOpponentsTurn
+        GainLevel 1
+        UntilEndOfOpponentsTurn
+        GainPower 2000
+    }
 }
-Text Auto: CxCombo When this card attacks, if "battle Formation" is in your climax area and the number of other «Striker» characters you have is 2 or more, this card gets +1 level and +2000 power until the end of your opponent's next turn.
+Quick
+Text Auto: CxCombo When this card attacks, if "Battle Formation" is in your climax area and the number of other «Striker» characters you have is 2 or more, this card gets +1 level and +2000 power until the end of your opponent's next turn.
 *HandEncore
 EndCard
 
@@ -3678,11 +4032,14 @@ Trait1 Striker
 Trait2 Detective
 Combo Battle Formation
 *1000Assist
-Auto:
+Auto: OnSpecificClimaxPlay Battle Formation
 {
-
+    PayCost 1
+    {
+        SearchDeck IsCharacter && HasTrait Striker
+    }
 }
-Text Auto: CxCombo [(1)] When "battle Formation" is placed on your climax area, you may pay the cost. If you do, search your deck for up to 1 «Striker» characters, reveal it, put it in your hand, and shuffle your deck.
+Text Auto: CxCombo [(1)] When "Battle Formation" is placed on your climax area, you may pay the cost. If you do, search your deck for up to 1 «Striker» characters, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: SGS/S37-T13
@@ -3696,16 +4053,19 @@ Power 7000
 Soul 1
 Trait1 Striker
 Trait2 Mystery
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 2 Other && HasTrait Striker
+    {
+        GainPower 1000
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
 Text Cont: If the number of other «Striker» characters you have is 2 or more, this card gets +1000 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
-Auto:
-{
-
-}
-Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 500 times the number of your other «Striker» characters.
+*OnAttackGainPowerForEachOther(500,Striker)
 EndCard
 
 Character: SGS/S37-T14
@@ -3747,11 +4107,19 @@ Trait1 Striker
 Trait2 Sports
 Combo Battle Formation
 *OnPlayDraw2Discard1
-Auto:
+Auto: OnSpecificClimaxPlay Battle Formation
 {
-
+    If InLocation CenterStage
+    {
+        TargetLocation Stage
+        GainPower 2500
+        GainEffect
+        {
+            *OnReverseMayMemoryOpponent
+        }
+    }
 }
-Text Auto: CxCombo When "battle Formation" is placed on your climax area, if this card is in the center stage, all your characters get +2500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may send that character to memory."
+Text Auto: CxCombo When "Battle Formation" is placed on your climax area, if this card is in the center stage, all your characters get +2500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may send that character to memory."
 EndCard
 
 Event: SGS/S37-T17
@@ -3760,11 +4128,13 @@ JPName 超絶変形型メモカ管理専用お掃除ロボ《ムネーモシュ�
 Color Y
 Level 1
 Cost 1
+Requirement StageContains 1 HasTrait Striker
+Text If you have no «Striker» characters, you cannot play this card from your hand.
 Effect:
 {
-
+    *CheckAndAdd(3)
 }
-Text If you have no «Striker» characters, you cannot play this card from your hand. Look at up to the top 3 cards of your deck, choose up to 1 and put it in your hand, and put the rest into your waiting room.
+Text Look at up to the top 3 cards of your deck, choose up to 1 and put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Climax: SGS/S37-T18
