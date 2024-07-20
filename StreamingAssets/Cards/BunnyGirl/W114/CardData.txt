@@ -1375,6 +1375,7 @@ Auto: OnAttack
     }
 }
 Text Auto: CxCombo MEMORY [(1) Put an «Adolescence» character from your hand to the waiting room] When this card attacks, if "Kiss Between the Two of Us" is in your climax area, there are 5 or less cards in your hand, and the number of other characters you have is 3 or more, you may pay the cost. If you do, perform the following action X times. "Put the bottom 2 cards of your opponent's deck in the waiting room. If there's a climax among them, deal 2 damage to your opponent." X equals 2 if there are 3 or less different card names among cards in your memory and X equals 3 if there are 4 or more different card names among cards in your memory.
+Text <color=red> * This card is part of a 2C1 restriction alongside SBY/W64-093 in JP. </color>
 EndCard
 
 Character: SBY/W114-050

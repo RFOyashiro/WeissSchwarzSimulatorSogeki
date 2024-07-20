@@ -22,6 +22,7 @@ Auto: OnUseEvent
 TimesPerTurn 1
 Text Auto: This ability activates up to once per turn. When you play an event, choose 1 of your characters and that character gets +1000 power until end of turn.
 *Act1RestSelfSearchBrainstorm(Music)
+Text <color=red> * This card is part of a 2C1 restriction alongside PJS/S109-060 in JP. </color>
 EndCard
 
 Character: PJS/S109-002
@@ -1341,6 +1342,7 @@ Auto: OnAttack
     }
 }
 Text Auto: CxCombo [(1)] When this card attacks, if "One's Honest Stomach" is in your climax area and the number of other «Music» characters you have is 4 or more, you may pay the cost. If you do, put the bottom 6 cards of your opponent's deck into waiting room and deal 1 damage to your opponent X times. X equals the number of climax put into waiting room by this effect.
+Text <color=red> * This card is part of a 2C1 restriction alongside PJS/S109-001 in JP. </color>
 EndCard
 
 Character: PJS/S109-061

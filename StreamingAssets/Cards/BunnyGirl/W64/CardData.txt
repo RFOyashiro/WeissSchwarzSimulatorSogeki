@@ -1925,6 +1925,7 @@ Auto: OnPlay
 	MoveCard Stock
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose 1 "Back From Shopping, Rio Futaba" in your waiting room, and put it into your stock.
+Text <color=red> * This card is part of a 2C1 restriction alongside SBY/W114-049 in JP. </color>
 EndCard
 
 Character: SBY/W64-E095
