@@ -5,20 +5,33 @@ Repo of sets worked on by Sogeki
 - Assault Lily
 - Ayakashi Triangle
 - Black Rock Shooter
-- Day Break Illusion
+- Rascal Does Not Dream of Bunny Girl Senpai
+- Chain Chronicle
 - Crayon Shin-chan
+- Day Break Illusion
 - D_Cide
 - Evangelion Rebuild
+- Gargantia
+- Guikty rown
 - Gigant Shooter Tsukasa
 - Heaven Burn Red
+- Idolm@ster Cinderella Girls
+- Idolm@ster Million Live (Welcome to the New St@ge only)
+- Katanagatari
 - Kiznaiver
+- Lost Decade
 - Milky Holmes
 - Osomatsu
 - Princess Connect!
 - Project Diva (Project Diva X only)
 - Project Sekai
 - Puzzle and Dragons
+- Rin~ne
+- Robotics;Notes
+- Schoolgirl Strikers
 - Senki Zesshou Symphogear
+- Terraformars
+- Vividred
 - World Trigger
 - Yohane
 - Zombie Land Saga
