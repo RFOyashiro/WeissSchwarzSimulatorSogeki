@@ -704,7 +704,7 @@ Auto: OnPlay
 {
 	PayCost Clock
 	{
-	    TargetTop Deck
+	    TargetTop Deck 1
 		Reveal
 		IfTarget HasTrait Music && IsCharacter
 		{
@@ -1334,7 +1334,7 @@ Trait2 Weapon
 *GainPowerWithEnoughCharacters(2000,2,Music)
 Auto: OnPlay
 {
-    TargetTop Deck
+    TargetTop Deck 1
     Reveal
     IfTarget HasTrait Music
     {
@@ -2200,7 +2200,7 @@ Trait2 Weapon
 *OnPlayGainPower(1500)
 Auto: OnAttack
 {
-    TargetTop Deck
+    TargetTop Deck 1
     Reveal
     IfTarget HasTrait Music
     {

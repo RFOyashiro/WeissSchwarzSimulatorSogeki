@@ -561,7 +561,7 @@ Auto: OnAttack
 {
     Repeat 2
     {
-        TargetTop Deck
+        TargetTop Deck 1
         Reveal
         IfTarget HasTrait Omiko City && IsCharacter
         {

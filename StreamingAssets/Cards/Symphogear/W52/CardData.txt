@@ -564,7 +564,7 @@ Trait2 Weapon
 *Level3Assist
 Auto: OnPlay
 {
-    TargetTop Deck
+    TargetTop Deck 1
     Reveal
     IfTarget Compare ThatCardsLevel 1 OrLess
     {
@@ -835,7 +835,7 @@ Trait1 Science
 Trait2 Eye Patch
 Auto: OnPlay
 {
-    TargetTop Deck
+    TargetTop Deck 1
     Reveal
     IfTarget NameContains マリア|セレナ|切歌|調 && IsCharacter
     {
@@ -1752,7 +1752,7 @@ Trait1 Music
 Trait2 Weapon
 Auto: OnPlay
 {
-     TargetTop Deck
+     TargetTop Deck 1
      Reveal
      IfTarget Compare ThatCardsLevel 1 OrLess
      {

@@ -721,7 +721,7 @@ Auto: OnAttack
 {
 	If Climax The Unchanged Pair
 	{
-		TargetTop Deck
+		TargetTop Deck 1
 		Reveal
 		IfTarget HasTrait Music
 		{
@@ -1244,7 +1244,7 @@ Trait1 Music
 Trait2 Weapon
 Auto: OnPlay
 {
-    TargetTop Deck
+    TargetTop Deck 1
     Reveal
     IfTarget HasTrait Music
     {

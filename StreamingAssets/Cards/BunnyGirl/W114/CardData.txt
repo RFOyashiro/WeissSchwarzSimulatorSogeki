@@ -1597,7 +1597,7 @@ Auto: OnPlay
     {
         SearchLocationForTargets Clock 1 1 Any
         MoveCard Hand
-        TargetTop Deck
+        TargetTop Deck 1
         MoveCard Clock
     }
 }

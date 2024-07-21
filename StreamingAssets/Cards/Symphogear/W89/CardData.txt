@@ -876,7 +876,7 @@ Auto: OnPlay
 Text Auto: [Put a «Music» character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Shul Shagana", reveal it, put it in your hand, and shuffle your deck.
 Auto: OnAttack
 {
-    TargetTop Deck
+    TargetTop Deck 1
     Reveal
     IfTarget HasTrait Music
     {
@@ -1572,7 +1572,7 @@ Auto: OnPlay
 Text Auto: [Put a «Music» character card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Ichaival", reveal it, put it in your hand, and shuffle your deck.
 Auto: OnAttack
 {
-    TargetTop Deck
+    TargetTop Deck 1
     Reveal
     IfTarget HasTrait Music
     {
@@ -2099,7 +2099,7 @@ Auto: OnAttack
 {
     PayCost 1
     {
-        TargetTop Deck
+        TargetTop Deck 1
         Reveal
         IfTarget HasTrait Music && IsCharacter || NameEquals Airget-Lamh | Ame-no-Habakiri
         {
