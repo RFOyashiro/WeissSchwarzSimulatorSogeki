@@ -1335,7 +1335,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: MEMORY When this card attacks, if "Compounding Memories, Mai Sakurajima" is in your memory, this card gets +3000 power until end of this card's attack, and perform trigger check twice during this card attack's trigger Step. After the two trigger checks are made, put the top card of your stock in the waiting room.
+Text Auto: MEMORY When this card attacks, if "Compounding Memories, Mai Sakurajima" is in your memory, this card gets +3000 power until end of this card's attack, and perform trigger check twice during this card attack's trigger step. After the two trigger checks are made, put the top card of your stock in the waiting room.
 EndCard
 
 Character: SBY/W114-049

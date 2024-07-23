@@ -332,7 +332,7 @@ Auto: StartOpponentAttackPhase
                 AddSavedToCurrentTargets
                 Stand
                 Exchange
-            }   
+            }
         }
     }
 }
@@ -372,7 +372,7 @@ Cont: GiveSelf
         GainPower X
     }
 }
-Text Cont: During your turn, this card gets +1000 power for each of your other «Music» characters
+Text Cont: During your turn, this card gets +1000 powe for each of your other «Music» characters
 Auto: OnPlay
 {
     PayCost Discard 1 IsCharacter && HasTrait Music
@@ -423,16 +423,15 @@ Power 3000
 Soul 1
 Trait1 Music
 Trait2 Mushroom
-Cont:
+*LevelAssistTrait(Music)
+Act: RestSelf
 {
-
+    TargetLocation Stage
+    NarrowTargets HasTrigger Soul
+    ChooseCharacterFromTargets Choose a character to give +2500 power.
+    GainPower 2500
 }
-Text Cont: ASSIST Your «Music» characters in front of this card get +X power. X equals 500 times level of that character.
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your characters with a soul trigger icon, and that character gets +2500 power until end of turn.
+Text Act: [Rest this card] Choose 1 of your characters with a Soul trigger icon, and that character gets +2500 power until end of turn.
 EndCard
 
 Character: IMC/W115-017
@@ -445,16 +444,19 @@ Power 2000
 Soul 1
 Trait1 Music
 Trait2 Usamin
-Auto:
+*OnPlayMax4Memory
+Auto: OnPlay
 {
-
+    PayCost HandClock Any
+    {
+        SetXToNumberOfCharacters Other && HasTrait Music
+        Peek Deck X
+        ChooseCardsFromTargets 0 1 Any
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, all players perform the following action. "If there are 5 or more cards in your memory, choose 4 cards in your memory, and put all cards in your memory other than those chosen this way in the waiting room."
-Auto:
-{
-
-}
-Text Auto: [Put 1 card from your hand in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at to up to X cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your other «Music» characters.
+Text Auto: [Put 1 card from your hand in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top X cards of your deck, choose up to 1 card among them, put it in your hand and put the rest into your waiting room. X equals the number of your other «Music» characters.
 EndCard
 
 Character: IMC/W115-018
@@ -468,16 +470,15 @@ Power 3500
 Soul 1
 Trait1 Music
 Trait2 Game
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn && Other && HasTrait Music
+    {
+        GainPower 1000
+    }
 }
 Text Cont: During your turn, all your other «Music» characters get +1000 power.
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is higher than the level of your opponent, you may put that character in stock. If you do, put the bottom card of your opponent's stock in the waiting room.
+*YellowEarlyPlayBomb
 EndCard
 
 Character: IMC/W115-019
@@ -491,14 +492,29 @@ Power 3500
 Soul 2
 Trait1 Music
 Trait2 Passion
-Cont:
+Cont: GiveAllYourCards
 {
-
+    If Climax && HasTrigger Choice
+    {
+        GainTriggerIcon Soul
+    }
 }
-Text Cont: All climax with a Choice trigger icon in your other Zones get a soul trigger icon.
-Auto:
+Text Cont: All climax with a Choice trigger icon in all your areas get a Soul trigger icon.
+Auto: StartClimaxPhase
 {
-
+    TargetLocation Stage
+    NarrowTargets HasTrait Music
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            SetXValue ThisCardsSoul
+            MultiplyXValue 1500
+            GainPower X
+        }
+        Text Cont: This card gets +X power. X equals 1500 times the number of soul of this card.
+    }
 }
 Text Auto: At the beginning of your climax phase, choose 1 of your «Music» characters, and that character gets the following ability until end of turn. "Cont: This card gets +X power. X equals 1500 times the number of soul of this card."
 EndCard
@@ -514,16 +530,8 @@ Power 9000
 Soul 2
 Trait1 Music
 Trait2 Sweets
-Cont:
-{
-
-}
-Text Cont: If the number of «Music» characters you have is 4 or more, this card gets -1 level while in your hand.
-Cont:
-{
-
-}
-Text Cont: If the number of other «Music» characters you have is 2 or more, this card gets +1000 power.
+*EarlyPlay4OrMore(Music)
+*GainPowerWithEnoughCharacters(1000,2,Music)
 *Healer
 EndCard
 
@@ -539,14 +547,23 @@ Soul 2
 Trait1 Music
 Trait2 Nickname
 Combo Jounetsu Fun Fanfare
-Auto:
+Auto: OnPlay
 {
-
+    SearchWaitingRoom IsCharacter && HasTrait Music
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose a «Music» character in your waiting room and return it to your hand.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Jounetsu Fun Fanfare
+    {
+        PayCost 4 Discard 2 Any
+        {
+            Repeat 2
+            {
+                Burn 2
+            }
+        }
+    }
 }
 Text Auto: CxCombo [(4) Put 2 cards from your hand to the waiting room] When this card attacks, if "Jounetsu Fun Fanfare" is in your climax area, you may pay the cost. If you do, deal 2 damage to your opponent twice.
 EndCard
@@ -561,14 +578,18 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Nickname
-Cont:
+*GlobalPower(500,Music)
+Act: 2 Discard 1 IsCharacter && HasTrait Music &&& RestSelf
 {
-
-}
-Text Cont: All your other «Music» characters get +500 power.
-Act:
-{
-
+    Message Choose up to 1 Red character.
+    SearchLocationForTargets Deck 0 1 IsCharacter && ColorIs Red
+    SaveTargets
+    Message Choose up to 1 Blue character.
+    SearchLocationForTargets Deck 0 1 IsCharacter && ColorIs Blue
+    AddSavedToCurrentTargets
+    RevealTargets
+    MoveCard Hand
+    ShuffleLocation Deck
 }
 Text Act: [(2) Put a «Music» character from your hand to the waiting room, rest this card] Search your deck for up to 1 Red character and up to 1 Blue character, reveal them, put them in your hand, and shuffle your deck.
 EndCard
@@ -583,11 +604,15 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Gal
-Auto:
+Auto: OnPlay
 {
-
+    Mill 2
+    If TargetsContain 1 IsClimax
+    {
+        *Check4Add1(Music)
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there's a climax among them, look at up to the top 4 cards of your deck, choose from up to 1 «Music» character, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there's a climax among them, look at up to the top 4 cards of your deck, choose up to 1 «Music» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: IMC/W115-024
@@ -600,16 +625,16 @@ Power 3500
 Soul 1
 Trait1 Music
 Trait2 Sewing
-Auto:
+*OnAttackCheck2ChooseTrigger
+Auto: OnThisTriggerCheck
 {
-
+    IfOther HasTrigger Soul
+    {
+        GainPower 4000
+    }
 }
-Text Auto: When this card attacks, look at up to the top 2 cards of your deck, choose 1 of them and put it on top of your deck, and put the rest into your waiting room.
-Auto:
-{
-
-}
-Text Auto: When the trigger check of this card reveals a card with a soul trigger icon, this card gets +4000 power until end of turn.
+Quick
+Text Auto: When this card's trigger check reveals a card with a Soul trigger icon, this card gets +4000 power until end of turn.
 EndCard
 
 Character: IMC/W115-025
@@ -623,16 +648,34 @@ Soul 1
 Trait1 Music
 Trait2 Gal
 Combo Twin kle Tail
-Cont:
+Cont: GiveSelf
 {
-
+    If AllYourCharacters IsColor Yellow
+    {
+        GainPower 3000
+    }
 }
 Text Cont: If all your characters are Yellow, this card gets +3000 power.
-Auto:
+Auto: OnSpecificClimaxPlay Twin kle Tail
 {
-
+    If StageContains 1 Other && ColorIs Yellow
+    {
+        GainEffect
+        {
+            *OnAttackPay1ToDoubleTrigger
+        }
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                SearchWaitingRoom IsCharacter
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand.
+        }
+    }
 }
-Text Auto: CxCombo When "Twin kle Tail" is placed on your climax area, if you have another Yellow character, this card gets the following 2 abilities until end of turn. "Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform the trigger check twice during this attack." "Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand."
+Quick
+Text Auto: CxCombo When "Twin kle Tail" is placed on your climax area, if you have another Yellow character, this card gets the following 2 abilities until end of turn. "Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform trigger check twice during this attack." "Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand."
 EndCard
 
 Character: IMC/W115-026
@@ -646,9 +689,12 @@ Power 5500
 Soul 1
 Trait1 Music
 Trait2 Christmas
-Auto:
+Auto: OnAttack
 {
-
+    PayCost 1 Discard 2 Any
+    {
+        MillOpponent 24
+    }
 }
 Text Auto: [(1) Put 2 cards from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, your opponent puts the top 24 cards of their deck in their waiting room.
 EndCard
@@ -664,16 +710,21 @@ Power 5500
 Soul 1
 Trait1 Music
 Trait2 Queen
-Cont:
+*PowerOnMyTurn(2000)
+Auto: OnReverseOpponent
 {
-
+    If MyTurn
+    {
+        PayCost 1
+        {
+            TargetLocation OpponentStage
+            NarrowTargets CanBeChosen && Compare ThatCardsLevel 3 OrLess
+            ChooseCharacterFromTargets Choose a character to not stand during the next stand phase.
+            DontStand
+        }
+    }
 }
-Text Cont: During your turn, this card gets +2000 power.
-Auto:
-{
-
-}
-Text Auto: [(1)] During your turn, when this card's battle opponent becomes reverse, you may pay the cost. If you do, choose 1 of your opponent's level 3 or lower characters. That character doesn't stand during your opponent's next stand phase.
+Text Auto: [(1)] During your turn, when this card's battle opponent becomes reverse, you may pay the cost. If you do, choose 1 of your opponent's level 3 or lower characters and that character doesn't stand during your opponent's next stand phase.
 EndCard
 
 Character: IMC/W115-028
@@ -688,14 +739,21 @@ Soul 1
 Trait1 Music
 Trait2 Sweets
 Combo Koko Kara Mirai e!
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && ColorIs Red &&& StageContains 1 Other && ColorIs Blue
+    {
+        GainPower 6000
+    }
 }
 Text Cont: If you have another Red character and another Blue character, this card gets +6000 power.
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If Climax Koko Kara Mirai e!
+    {
+        *OptionalBlindStock
+        SearchWaitingRoom IsCharacter
+    }
 }
 Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Koko Kara Mirai e!" is in your climax area, put up to 1 card from the top of your deck in your stock, and choose up to 1 character in your waiting room and return it to your hand.
 EndCard
@@ -712,14 +770,22 @@ Soul 1
 Trait1 Music
 Trait2 ESP
 Combo Chikara! Is! Power!!
-Cont:
+*GainPowerWithEnoughCharacters(4000,3,Any)
+Auto: OnAttack
 {
-
-}
-Text Cont: If the number of other characters you have is 3 or more, this card gets +4000 power.
-Auto:
-{
-
+    If Climax Chikara! Is! Power!! && StageContains 2 Other && HasTrait Music
+    {
+        Repeat 2
+        {
+            Mill 1
+            IfTarget HasTrigger Soul
+            {
+                SearchWaitingRoom IsCharacter && HasTrait Music
+                TargetSelf
+                GainPower 5000
+            }
+        }
+    }
 }
 Text Auto: CxCombo When this card attacks, if "Chikara! Is! power!!" is in your climax area and the number of other «Music» characters you have is 2 or more, perform the following action twice. "Put the top card of your deck in the waiting room. If it has a soul trigger icon, choose up to 1 «Music» character in your waiting room and return it to your hand, and this card gets +5000 power until end of turn."
 EndCard
@@ -735,16 +801,31 @@ Power 10000
 Soul 2
 Trait1 Music
 Trait2 Flower
-Auto:
+*StockHealer
+Auto: OnAttack
 {
-
+    If StageContains 4 Other && ColorIs Yellow
+    {
+        PayCost Discard 2 Any
+        {
+            TargetLocation Stage
+            NarrowTargets Other
+            GainEffect
+            {
+                Auto: OnDamageCanceled
+                {
+                    SearchLocationForTargets OpponentWaitingRoom 0 3 Any
+                    RevealTargets
+                    MoveCard OpponentDeck
+                    ShuffleLocation OpponentDeck
+                }
+                TimesPerTurn 1
+                Text Auto: This card ability activates up to once per turn. When damage dealt by this card is canceled, choose up to 3 cards in your opponent's waiting room, return them to the deck, and your opponent shuffles that deck.
+            }
+        }
+    }
 }
-Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, put the top card of your clock in your stock.
-Auto:
-{
-
-}
-Text Auto: [Put 2 cards from your hand to the waiting room] When this card attacks, if the number of other Yellow characters you have is 4 or more, you may pay the cost. If you do, all your other characters get the following ability. "Auto: This card ability activates up to once per turn. When damage dealt by this card is canceled, choose up to 3 cards in your opponent's waiting room, return them to the deck, and yoiur opponent shuffles that deck.:
+Text Auto: [Put 2 cards from your hand to the waiting room] When this card attacks, if the number of other Yellow characters you have is 4 or more, you may pay the cost. If you do, all your other characters get the following ability. "Auto: This card ability activates up to once per turn. When damage dealt by this card is canceled, choose up to 3 cards in your opponent's waiting room, return them to the deck, and your opponent shuffles that deck."
 EndCard
 
 Character: IMC/W115-031
@@ -758,14 +839,13 @@ Power 10000
 Soul 2
 Trait1 Music
 Trait2 Mushroom
-Auto:
+*OnPlayCheckX(Music)
+Auto: OnPlay
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, look at up to X cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your «Music» characters.
-Auto:
-{
-
+    TargetLocation Stage
+    NarrowTargets Other && HasTrait Music
+    ChooseCharacterFromTargets_Optional Choose up to 1 character to put in stock.
+    MoveCard Stock
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose 1 of your other «Music» character and put it in your stock.
 EndCard
@@ -780,9 +860,12 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Camera
-Auto:
+Auto: OnAttack
 {
-
+    TargetLocation Stage
+    NarrowTargets Other && HasTrait Music
+    ChooseCharactersFromTargets 0 2 Choose up to 2 character to give +2000 power.
+    GainPower 2000
 }
 Text Auto: When this card attacks, choose up to 2 of your other «Music» characters, and those characters get +2000 power until end of turn.
 EndCard
@@ -797,14 +880,22 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Super Disciplinary Committee
-Cont:
+Cont: GiveAll
 {
-
+    If StageContainsOrLess 1 Other &&& Other
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If you have 1 or less other characters, all your other characters get +1500 power.
-Auto:
+Auto: OnPlay
 {
-
+	If LocationContainsOrLess OpponentCenterStage 1 Any
+	{
+		TargetLocation OpponentCenterStage
+		NarrowTargets CanBeChosen && Compare ThatCardsCost 0 OrLower
+		MoveCardToBottom OpponentDeck
+	}
 }
 Text Auto: When this card is placed on the stage from your hand, if there is 1 or less characters in your opponent's center stage, you may choose a cost 0 or lower character in your opponent's center stage and put it on the bottom of the deck.
 EndCard
@@ -819,11 +910,25 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Twins
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 2
+    {
+        MultipleChoiceQuestion Choose 1 of the following 2 effects to perform.\n1: Return all cards from your waiting room to your deck and shuffle your deck.\n2: Choose 1 of your opponent's characters and return it to your hand.|1|2
+        If Answer 0
+        {
+            Refresh
+        }
+        If Answer 1
+        {
+            TargetLocation OpponentStage
+            NarrowTargets CanBeChosen
+            ChooseCharacterFromTargets Choose a character to return to hand.
+            Bounce
+        }
+    }
 }
-Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of the following 2 effects and perform it. "Return all cards from your waiting room to your deck and shuffle your deck. "Choose 1 of your opponent's characters and return it to your hand."
+Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of the following 2 effects to perform. "Return all cards from your waiting room to your deck and shuffle your deck." "Choose 1 of your opponent's characters and return it to your hand."
 EndCard
 
 Character: IMC/W115-035
@@ -837,9 +942,15 @@ Soul 1
 Trait1 Music
 Trait2 Chattery
 *CannotSideAttack
-Auto:
+Auto: OnAttack
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Music
+    {
+        TargetLocation Stage
+        GainPower 1500
+    }
 }
 Text Auto: When this card attacks, reveal the top card of your deck. If it's a «Music» character, all your characters get +1500 power until end of turn.
 EndCard
@@ -854,11 +965,24 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Game
-Auto:
+Auto: StartOpponentDrawPhase
 {
-
+    If InLocation CenterStage
+    {
+        Mill 3
+        NarrowTargets IsCharacter && HasTrait Music
+        If Compare TargetCount 3 Exactly
+        {
+            TargetSelf
+            Question Return this card to your hand ?
+            If Yes
+            {
+                Bounce
+            }
+        }
+    }
 }
-Text Auto: At the beginning of your opponent's draw phase, if this card is in the center stage, put the top 3 cards of your deck in the waiting room. If they're all «Music» characters, you may return this card to your hand.
+Text Auto: At the beginning of your opponent's draw phase, if this card is in the center stage, put the top 3 cards of your deck in the waiting room. If all those cards are «Music» characters, you may return this card to your hand.
 EndCard
 
 Character: IMC/W115-037
@@ -871,16 +995,12 @@ Power 3000
 Soul 1
 Trait1 Music
 Trait2 Passion
-Cont:
+*PowerOnMyTurn(3000)
+Auto: OnFrontalAttacked
 {
-
+    MoveCard WaitingRoom
 }
-Text Cont: During your turn, this card gets +3000 power.
-Auto:
-{
-
-}
-Text Auto: When this card is frontal attacked, put this card in the waiting room. (Even if the battle opponent disappears, the attack doesn't become a Direct attack)
+Text Auto: When this card is frontal attacked, put this card in the waiting room.
 EndCard
 
 Character: IMC/W115-038
@@ -893,9 +1013,9 @@ Power 5000
 Soul 1
 Trait1 Music
 Trait2 Gal
-Act:
+Act: Discard 1 Any &&& SendSelf WaitingRoom
 {
-
+    SearchDeck IsCharacter && HasTrait Music
 }
 Text Act: [Put 1 card from your hand to the waiting room, put this card in the waiting room] Search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -910,14 +1030,26 @@ Power 5500
 Soul 1
 Trait1 Music
 Trait2 Otaku
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContainsOrLess 0 Other && HasTrait Music
+    {
+        GainSpecialEffect CannotStand
+    }
 }
 Text Cont: If you don't have another «Music» character, this card does not stand during your stand phase.
-Auto:
+Auto: OnAttack
 {
-
+    GainSpecialEffect DoubleTrigger
+    ScheduleEffectUntilEndOfTurnForTargets OnTriggerCheck
+    {
+        Effect:
+        {
+            TargetTop Stock 1
+            MoveCard WaitingRoom
+        }
+        Quick
+    }
 }
 Text Auto: When this card attacks, perform the trigger check twice during this attack. After the 2 trigger checks are made, put the top card of your stock in the waiting room.
 EndCard
@@ -1065,12 +1197,12 @@ Cont:
 {
 
 }
-Text Cont: This card gets +500 power for each of your opponent's «Love» characters
+Text Cont: This card gets +500 powe for each of your opponent's «Love» characters
 Cont:
 {
 
 }
-Text Cont: This card gets +1000 power for each of your other «Music» characters in the backstage
+Text Cont: This card gets +1000 powe for each of your other «Music» characters in the backstage
 Auto:
 {
 
@@ -1584,7 +1716,7 @@ Cont:
 {
 
 }
-Text Cont: During your turn, this card gets +1500 power for each of your other «Music» characters
+Text Cont: During your turn, this card gets +1500 powe for each of your other «Music» characters
 Auto:
 {
 
@@ -1766,7 +1898,7 @@ Cont:
 {
 
 }
-Text Cont: This card gets +500 power for each of your other «Music» characters
+Text Cont: This card gets +500 powe for each of your other «Music» characters
 Auto:
 {
 
@@ -1788,7 +1920,7 @@ Cont:
 {
 
 }
-Text Cont: This card gets +500 power for each of your other «Music» characters
+Text Cont: This card gets +500 powe for each of your other «Music» characters
 Auto:
 {
 
@@ -1930,7 +2062,7 @@ Cont:
 {
 
 }
-Text Cont: This card gets +1000 power for each of your other «Music» characters in the backstage
+Text Cont: This card gets +1000 powe for each of your other «Music» characters in the backstage
 Auto:
 {
 
@@ -2412,7 +2544,7 @@ Cont:
 {
 
 }
-Text Cont: During your turn, this card gets +1000 power for each of your other «Music» characters
+Text Cont: During your turn, this card gets +1000 powe for each of your other «Music» characters
 Auto:
 {
 
@@ -3238,7 +3370,7 @@ JPName アタシポンコツアンドロイド
 Color R
 Level 2
 Cost 1
-Effect: 
+Effect:
 {
 
 }
@@ -3369,7 +3501,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Music» character, put it in your hand and discard a card from your hand to the waiting room. 
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Music» character, put it in your hand and discard a card from your hand to the waiting room.
 Auto:
 {
 
@@ -3396,7 +3528,7 @@ Auto:
 {
 
 }
-Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 Blue character, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 Blue character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Character: IMC/W115-T31
@@ -3418,7 +3550,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on the stage from your hand, look at up to 4 cards from the top of your deck and search for up to 1 climax, reveal it, put it in your hand, and put the rest into your waiting room. If you put a card in your hand this way, discard a card from your hand to the waiting room.
+Text Auto: When this card is placed on the stage from your hand, look at up to the top 4 cards of your deck, choose up to 1 climax among them, reveal it, put it in your hand, and put the rest into your waiting room. If you put a card in your hand this way, discard a card from your hand to the waiting room.
 EndCard
 
 Character: IMC/W115-T32
@@ -3497,7 +3629,7 @@ Cont:
 {
 
 }
-Text Cont: For each of your other «Music» characters in the backstage, this card gets +1000 power.
+Text Cont: This card gets +1000 power for each of your other «Music» characters in the backstage
 EndCard
 
 Character: IMC/W115-T36
@@ -3515,7 +3647,7 @@ Auto:
 {
 
 }
-Text Auto: When you use this card's BACKUP, reveal the top card of your deck. If it's a «Music» character, put it in your hand and discard a card from your hand to the waiting room. 
+Text Auto: When you use this card's BACKUP, reveal the top card of your deck. If it's a «Music» character, put it in your hand and discard a card from your hand to the waiting room.
 Backup 2000
 EndCard
 
@@ -3570,7 +3702,7 @@ Cont:
 {
 
 }
-Text Cont: During your turn, for each of your other «Music» characters, this card gets +1500 power.
+Text Cont: During your turn, this card gets +1500 power for each of your other «Music» characters
 EndCard
 
 Character: IMC/W115-T40
@@ -3588,7 +3720,7 @@ Cont:
 {
 
 }
-Text Cont: For each of your other «Music» characters, this card gets +1000 power.
+Text Cont: This card gets +1000 power for each of your other «Music» characters
 *HandEncore
 EndCard
 
@@ -3655,7 +3787,7 @@ Cont:
 {
 
 }
-Text Cont: If this card is in the middle position of your center stage, for each of your other «Music» characters, this card gets +1000 power.
+Text Cont: If this card is in the middle position of your center stage, this card gets +1000 power for each of your other «Music» characters
 Auto:
 {
 
@@ -3669,7 +3801,7 @@ JPName Nation Blue
 Color B
 Level 1
 Cost 1
-Effect: 
+Effect:
 {
 
 }
