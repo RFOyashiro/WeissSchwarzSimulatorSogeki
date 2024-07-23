@@ -86,7 +86,7 @@ Auto: OnPlay|PlacedBy Cutesy Days, Lion
         Text Auto: At the beginning of your opponent's climax phase, choose the character facing this card, and that character gets -4000 power until end of turn.
     }
 }
-Text Auto: When this card is placed on the stage from your hand or by the effect of Act: of "Cutesy Days, Lion", this card gets the following ability until the end of your opponent's next turn. "Auto: At the beginning of your opponent's climax phase, choose the character facing this card, and that character gets -4000 power until end of turn."
+Text Auto: When this card is placed on the stage from your hand or by the effect of "Act:" of "Cutesy Days, Lion", this card gets the following ability until the end of your opponent's next turn. "Auto: At the beginning of your opponent's climax phase, choose the character facing this card, and that character gets -4000 power until end of turn."
 Auto: OnAttack
 {
     If Climax "Gate Access!! Monolium!"
@@ -239,7 +239,7 @@ Act: MarkerOtherUnderThis 1 NameEquals Foreigner Watching Over the Girl, Rosa
 	Fusion
 	ShuffleLocation Deck
 }
-Text Act: FUSION [Put a "Foreigner Watching Over the Girl, Rosa" from your stage face up underneath this card as a marker] Search your deck for up to 1 "Full of Smiles, Lion", put it in the position this card is in, put all markers from under this card as well as this card face up underneath that "Full of Smiles, Lion" as markers in any order, and shuffle your deck.
+Text Act: FUSION [Put a "Foreigner Watching Over the Girl, Rosa" from your stage face up underneath this card as a marker] Search your deck for up to 1 "Full of Smiles, Lion", put it in the position this card is in, put all markers from underneath this card and this card face up underneath that "Full of Smiles, Lion" as markers in any order, and shuffle your deck.
 EndCard
 
 Character: HLL/WE28-09
@@ -413,16 +413,23 @@ Power 2000
 Soul 1
 Trait1 Logicalist
 Trait2 Science
-Cont:
+Cont: GiveAll
 {
-
+    If Other && NameEquals Interest Towards Alien Worlds, Mahiro
+    {
+        GainLevel 1
+        GainPower 500
+    }
 }
 Text Cont: All your other "Interest Towards Alien Worlds, Mahiro" get +1 level and +500 power.
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 2
+    {
+        SearchWaitingRoom IsCharacter && HasTrait Logicalist|Foreigner || NameEquals Mahiro's Inventions
+    }
 }
-Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose from your waiting room either a «Logicalist» character, a «Foreigner» character, or "Mahiro's Inventions" and return it to your hand.
+Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose from your waiting room either a «Logicalist» or «Foreigner» character, or "Mahiro's Inventions" and return it to your hand.
 EndCard
 
 Character: HLL/WE28-18
@@ -434,9 +441,12 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Foreigner
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation Stage
+    NarrowTargets Other && NameContains リオン
+    ChooseCharacterFromTargets Choose a character to give +2000 power.
+    GainPower 2000
 }
 Text Auto: When this card is placed on the stage from your hand, choose 1 of your other characters with "Lion" in its card name, and that character gets +2000 power until end of turn.
 EndCard
@@ -450,9 +460,15 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Foreigner
-Act:
+Act: 1 MarkerSelfUnderOther NameContains 万博
 {
-
+    TargetSelf
+    FlipFaceUp
+    RevealUpTo Deck 4
+    ChooseCardsFromTargets 0 1 NameContains 万博 || NameEquals Mahiro's Inventions
+    RevealTargets
+    MoveCard Hand
+    PutTheRestIntoTheWaitingRoom
 }
 Text Act: [(1) Put this card face up underneath a character with "Mahiro" in its card name as a marker] Look at up to the top 4 cards of your deck, choose up to 1 card that is either a character with "Mahiro" in its card name or "Mahiro's Inventions" among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
@@ -467,9 +483,15 @@ Power 5500
 Soul 1
 Trait1 Logicalist
 Trait2 Student Council
-Cont:
+Cont: GiveSelf
 {
-
+    TargetLocation Stage
+    NarrowTargets Other
+    NarrowTargets HasTrait Student Council || NameContains 夕子
+    If HasTarget
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If you have another character with either «Student Council» or "Yuko" in its card name, this card gets +1500 power.
 *HandEncore
@@ -486,9 +508,12 @@ Power 5500
 Soul 1
 Trait1 Logicalist
 Trait2 Science
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && HasMarker
+    {
+        GainPower 4500
+    }
 }
 Text Cont: If you have another character with marker, this card gets +4500 power.
 EndCard
@@ -499,11 +524,15 @@ JPName 万博の発明品
 Color R
 Level 1
 Cost 0
+Requirement StageContains 1 NameContains 万博
+Text If you have no characters with "Mahiro" in its card name, you cannot play this card from your hand. 
 Effect:
 {
-
+    TargetTop Deck 1
+    Reveal
+    SearchWaitingRoom IsCharacter && Compare ThatCardsLevel TargetCardsLevel OrLess
 }
-Text If you have no characters with "Mahiro" in its card name, you cannot play this card from your hand. Reveal the top card of your deck, choose a level X or lower character in your waiting room and return it to your hand. X equals level of the card revealed this way.
+Text Reveal the top card of your deck, choose a level X or lower character in your waiting room and return it to your hand. X equals level of the card revealed this way.
 EndCard
 
 Event: HLL/WE28-23
@@ -512,11 +541,14 @@ JPName リオンへの愛
 Color R
 Level 2
 Cost 0
+Requirement StageContains 1 NameContains リオン
+Text If you have no characters with "Lion" in its card name, you cannot play this card from your hand. 
 Effect:
 {
-
+    SearchWaitingRoom IsCharacter && NameContains リオン
+    *GiveCharacterPower(3000,Any)
 }
-Text If you have no characters with "Lion" in its card name, you cannot play this card from your hand. Choose a character in your waiting room with "Lion" in its card name and return it to your hand, choose 1 of your characters, and that character gets +3000 power until end of turn.
+Text Choose a character in your waiting room with "Lion" in its card name and return it to your hand, choose 1 of your characters, and that character gets +3000 power until end of turn.
 EndCard
 
 Climax: HLL/WE28-24
@@ -542,14 +574,15 @@ Soul 1
 Trait1 Logicalist
 Trait2 Foreigner
 Combo "Gate Access!! Tetra-Heaven!"
-Auto:
+*OnPlayGainPower(1500)
+Auto: OnReverseOpponent
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
-Auto:
-{
-
+    If Climax "Gate Access!! Tetra-Heaven!"
+    {
+        *Check4Add1(Logicalist|Foreigner)
+        UntilEndOfOpponentsTurn
+        *GiveCharacterPower(1000,Any)
+    }
 }
 Text Auto: CxCombo When this card's battle opponent becomes reverse, if '"Gate Access!! Tetra-Heaven!"' is in your climax area, look at up to the top 4 cards of your deck, choose up to 1 character with either «Logicalist» or «Foreigner» among them, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +1000 power until the end of your opponent's next turn.
 EndCard
@@ -566,20 +599,30 @@ Soul 2
 Trait1 Logicalist
 Trait2 Foreigner
 Combo "Gate Access!! Disfia!"
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn && StageContains 2 Other && HasTrait Logicalist|Foreigner
+    {
+        GainPower 2000
+    }
 }
 Text Cont: During your turn, if the number of other characters with either «Logicalist» or «Foreigner» you have is 2 or more, this card gets +2000 power.
-Auto:
+Auto: OnPlay|PlacedBy Cutesy Days, Yayoi
 {
-
+    *OptionalHeal
 }
-Text Auto: When this card is placed on the stage from your hand or by the effect of Act: of "Cutesy Days, Yayoi" to the stage, you may put the top card of your clock in the waiting room.
-Auto:
+Text Auto: When this card is placed on the stage from your hand or by the effect of "Act:" of "Cutesy Days, Yayoi", you may put the top card of your clock in the waiting room.
+Auto: OnReverseOpponent
 {
-
+    If Climax "Gate Access!! Disfia!"
+    {
+        PayCost 3 Discard 1 Any
+        {
+            Stand
+        }
+    }
 }
+TimesPerTurn 1
 Text Auto: CxCombo [(3) Put 1 card from your hand to the waiting room] This card ability activates up to once per turn. When this card's battle opponent becomes reverse, if '"Gate Access!! Disfia!"' is in your climax area, you may pay the cost. If you do, stand this card.
 EndCard
 
@@ -593,9 +636,13 @@ Power 500
 Soul 1
 Trait1 Logicalist
 Trait2 Daughter
-Auto:
+Auto: OnPlay
 {
-
+    Mill 2
+    If LocationContains 1 IsClimax
+    {
+        *GiveCharacterPower(1500,Any)
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there were at least 1 climax among them, choose 1 of your characters, and that character gets +1500 power until end of turn.
 *BlueLevel0Bomb
@@ -610,16 +657,21 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Foreigner
-Cont:
+Cont: GiveAll
 {
-
+    If Other && NameContains 弥生
+    {
+        GainEffect
+        {
+            Auto: Encore 2
+            {
+            }
+            Text Auto: ENCORE [(2)]
+        }
+    }
 }
-Text Cont: All your other characters with "Yayoi" in its card name get "Auto: ENCORE
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your characters with either «Logicalist» or «Foreigner», and that character gets +1500 power until end of turn.
+Text Cont: All your other characters with "Lion" in its card name get "Auto: ENCORE [(2)]"
+*RestGivePower(1500,Logicalist|Foreigner)
 EndCard
 
 Character: HLL/WE28-30
@@ -632,9 +684,12 @@ Power 2000
 Soul 1
 Trait1 Logicalist
 Trait2 Book
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        *Check4Add1(Logicalist|Foreigner)
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 character with either «Logicalist» or «Foreigner» among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
@@ -649,16 +704,25 @@ Power 3000
 Soul 1
 Trait1 Logicalist
 Trait2 Foreigner
-Auto:
+Auto: OnPlay
 {
-
+    Peek Deck 2
+    ChooseCardsFromTargets 0 2 IsCharacter && HasTrait Logicalist|Foreigner
+    RevealTargets
+    Marker_FaceUp
+    PutTheRestIntoTheWaitingRoom
 }
 Text Auto: When this card is placed on the stage from your hand, look at up to the top 2 cards of your deck, choose up to 2 characters with either «Logicalist» or «Foreigner» among them, reveal them, put them face up underneath this card as a marker, and put the rest into your waiting room.
-Act:
+Act: 1 SendMarkers 2 WaitingRoom
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen && Compare ThatCardsLevel 0 OrLess
+    ChooseCharacterFromTargets Choose a character to put into waiting room.
+    MoveCard OpponentWaitingRoom
+    TargetSelf
+    GainPower 4000
 }
-Text Act: [(1) Put 2 markers from under this card in the waiting room] Choose 1 of your opponent's level 0 or lower characters and put it in the waiting room, and this card gets +4000 power until end of turn.
+Text Act: [(1) Put 2 markers from underneath this card in the waiting room] Choose 1 of your opponent's level 0 or lower characters and put it in the waiting room, and this card gets +4000 power until end of turn.
 EndCard
 
 Character: HLL/WE28-32
@@ -672,16 +736,22 @@ Power 1500
 Soul 1
 Trait1 Logicalist
 Trait2 Daughter
-Auto:
+Auto: OnPlay
 {
-
+    SearchLocationForTargets WaitingRoom 0 2 NameEquals Aiming for the Apex, Yayoi
+    RevealTargets
+    MoveCardToBottom Deck
 }
 Text Auto: When this card is placed on the stage from your hand, choose up to 2 "Aiming for the Apex, Yayoi" in your waiting room and put them on the bottom of your deck in any order.
-Act:
+Act: MarkerOtherUnderThis 1 NameEquals Sexy Foreigner, Qipao
 {
-
+    TargetLocation Marker
+	FlipFaceUp
+    SearchLocationForTargets Deck 0 1 NameEquals Aiming for the Apex, Yayoi
+	Fusion
+	ShuffleLocation Deck
 }
-Text Act: FUSION [Put a "Sexy Foreigner, Qipao" from your stage face up underneath this card as a marker] Search your deck for up to 1 "Aiming for the Apex, Yayoi", put it in the position this card is in, put all markers from under this card as well as this card face up underneath that "Aiming for the Apex, Yayoi" as markers in any order, and shuffle your deck.
+Text Act: FUSION [Put a "Sexy Foreigner, Qipao" from your stage face up underneath this card as a marker] Search your deck for up to 1 "Aiming for the Apex, Yayoi", put it in the position this card is in, put all markers from underneath this card and this card face up underneath that "Aiming for the Apex, Yayoi" as markers in any order, and shuffle your deck.
 EndCard
 
 Character: HLL/WE28-33
@@ -696,11 +766,7 @@ Soul 2
 Trait1 Logicalist
 Trait2 Foreigner
 *EarlyPlay2OrLessClimax
-Cont:
-{
-
-}
-Text Cont: If the number of other characters with either «Logicalist» or «Foreigner» you have is 2 or more, this card gets +1000 power.
+*GainPowerWithEnoughCharacters(1000,2,Logicalist|Foreigner)
 *OnPlayDraw2Discard1
 EndCard
 
@@ -714,15 +780,15 @@ Power 1000
 Soul 1
 Trait1 Logicalist
 Trait2 Ninja
-Cont:
+Cont: GiveAll
 {
-
+    If Other && NameContains 弥生|華凛|華恋
+    {
+        GainPower 500
+    }
 }
 Text Cont: All your other characters with either "Yayoi", "Karin", or "Karen" in its card name get +500 power.
-Auto:
-{
-
-}
+*SacrificeToSave(Any)
 Text Auto: [Put this card in the waiting room] When your other character is placed from the stage to the waiting room, if this card is in the backstage, you may pay the cost. If you do, put that character rest in the position it was in.
 EndCard
 
@@ -736,11 +802,12 @@ Power 4000
 Soul 1
 Trait1 Logicalist
 Trait2 Book
-Cont:
+Cont: GiveSelf
 {
-
+    GainSpecialEffect CannotUseEvents
+    GainSpecialEffect CannotUseBackup
 }
-Text Cont: You cannot play events or BACKUP from hand.
+Text Cont: You cannot play events or "BACKUP" from hand.
 EndCard
 
 Character: HLL/WE28-36
@@ -753,21 +820,34 @@ Power 3500
 Soul 1
 Trait1 Logicalist
 Trait2 Foreigner
-Cont:
+Cont: Assist
 {
-
+    If HasTrait Logicalist|Foreigner
+    {
+        GainLevel 1
+        GainPower 500
+    }
 }
 Text Cont: ASSIST Your characters with either «Logicalist» or «Foreigner» in front of this card get +1 level and +500 power.
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Logicalist|Foreigner
+    {
+        Question Put that card underneath this card as a marker ?
+        If Yes
+        {
+            Marker_FaceUp
+        }
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a character with either «Logicalist» or «Foreigner», you may put it face up underneath this card as a marker.
-Act:
+Act: 1 SendMarker WaitingRoom Rest 2 Any
 {
-
+    SearchWaitingRoom IsCharacter && HasTrait Logicalist|Foreigner
 }
-Text Act: [(1) Put a marker from under this card in the waiting room, rest 2 of your characters] Choose a character in your waiting room with either «Logicalist» or «Foreigner» and return it to your hand.
+Text Act: [(1) Put a marker from underneath this card in the waiting room, rest 2 of your characters] Choose a character in your waiting room with either «Logicalist» or «Foreigner» and return it to your hand.
 EndCard
 
 Character: HLL/WE28-37
@@ -780,9 +860,15 @@ Power 5000
 Soul 1
 Trait1 Logicalist
 Trait2 Ninja
-Auto:
+Auto: OnAttack
 {
-
+    PayCost Discard 1 Any
+    {
+        TargetLocation Stage
+        NarrowTargets Other && HasTrait Logicalist|Foreigner
+        ChooseCharacterFromTargets Choose a charcter to return to your hand.
+        MoveCard Hand
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, choose 1 of your other characters with either «Logicalist» or «Foreigner» and return it to your hand.
 EndCard
@@ -797,14 +883,27 @@ Power 5500
 Soul 1
 Trait1 Logicalist
 Trait2 Foreigner
-Cont:
+Cont: GiveSelf
 {
-
+    If HasMarker
+    {
+        GainLevel 1
+        GainPower 2500
+    }
 }
-Text Cont: If there's a marker under this card, this card gets +1 level and +2500 power.
-Auto:
+Text Cont: If there's a marker underneath this card, this card gets +1 level and +2500 power.
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Logicalist|Foreigner
+    {
+        Question Put that card underneath this card as a marker ?
+        If Yes
+        {
+            Marker_FaceUp
+        }
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a character with either «Logicalist» or «Foreigner», you may put it face up underneath this card as a marker.
 EndCard
@@ -819,16 +918,19 @@ Power 1500
 Soul 1
 Trait1 Logicalist
 Trait2 Daughter
-Auto:
+Auto: OnDirectAttack
 {
-
+    *GiveOtherCharacterPower(1500,Any)
 }
-Text Auto: When this card Direct attacks, choose 1 of your other characters, and that character gets +1500 power until end of turn.
-Auto:
+Text Auto: When this card direct attacks, choose 1 of your other characters, and that character gets +1500 power until end of turn.
+Auto: OnDamageCanceled
 {
-
+    PayCost 1
+    {
+        DrawCard
+    }
 }
-Text Auto: [(1)] When the damage dealt by this card is canceled, you may pay the cost. IF so, draw a card.
+Text Auto: [(1)] When the damage dealt by this card is canceled, you may pay the cost. If you do, draw a card.
 EndCard
 
 Character: HLL/WE28-40
@@ -841,9 +943,13 @@ Power 1500
 Soul 1
 Trait1 Logicalist
 Trait2 Foreigner
-Cont:
+Cont: GiveAll
 {
-
+    If Other && NameEquals Scaling the Cliff, Karen
+    {
+        GainLevel 1
+        GainPower 500
+    }
 }
 Text Cont: All your other "Scaling the Cliff, Karen" get +1 level and +500 power.
 *BondDiscard(Scaling the Cliff\, Karen)
@@ -858,14 +964,27 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Foreigner
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation Stage
+    NarrowTargets Other && NameContains ニーナ
+    ChooseCharacterFromTargets Choose a character to give +1000 power.
+    GainPower 1000
 }
 Text Auto: When this card is placed on the stage from your hand, choose 1 of your other characters with "Nina" in its card name, and that character gets +1000 power until end of turn.
-Auto:
+Auto: OnOtherReversed
 {
-
+	IfOther NameContains ニーナ
+	{
+		If InLocation Backstage
+		{
+			PayCost 1 MarkerSelfUnderOther InBattle
+            {
+                TargetOther
+                Rest
+            }
+		}
+	}
 }
 Text Auto: [(1) Put this card face up underneath the character in battle as a marker] When your other character with "Nina" in its card name becomes reversed in battle, if this card is in the backstage, you may pay the cost. If you do, rest that character.
 EndCard
@@ -880,9 +999,12 @@ Power 2000
 Soul 1
 Trait1 Logicalist
 Trait2 Foreigner
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && NameEquals Victory to the One Making the First Move, Karin
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If you have another "Victory to the One Making the First Move, Karin", this card gets +2000 power.
 EndCard
@@ -898,11 +1020,7 @@ Soul 1
 Trait1 Logicalist
 Trait2 Ninja
 *CannotSideAttack
-Auto:
-{
-
-}
-Text Auto: When this card's battle opponent becomes reverse, choose 1 of your other characters with either «Logicalist» or «Foreigner», rest it, and move it to an open position in the backstage.
+*MoveOtherWithTraitToBackstageOnReverse(Logicalist|Foreigner)
 EndCard
 
 Character: HLL/WE28-44
@@ -915,11 +1033,7 @@ Power 4000
 Soul 1
 Trait1 Logicalist
 Trait2 Ninja
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there were at least 1 climax among them, rest this card.
+*OnPlayMill2RestIfClimax
 EndCard
 
 Character: HLL/WE28-45
@@ -932,14 +1046,22 @@ Power 4000
 Soul 1
 Trait1 Logicalist
 Trait2 Teacher
-Auto:
+Auto: OnOtherAttacks
 {
-
+    IfOther NameEquals Homeroom Teacher of Class 1-S, Shizuha
+    {
+        GainPower 2500
+    }
 }
+Quick
 Text Auto: When your other "Homeroom Teacher of Class 1-S, Shizuha" attacks, this card gets +2500 power until end of turn.
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchLocationForTargets WaitingRoom 1 1 IsCharacter && Compare ThatCardsLevel 1 OrLess && NameContains 静葉
+        PlaceOnStage false true true false
+    }
 }
 Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a level 1 or lower character in your waiting room with "Shizuha" in its card name and put it in any position on the stage.
 EndCard
@@ -954,15 +1076,20 @@ Power 5000
 Soul 1
 Trait1 Logicalist
 Trait2 Daughter
-Auto:
+Auto: OnPlay
 {
-
+    UntilEndOfOpponentsTurn
+    GainPower 1500
 }
+Quick
 Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until the end of your opponent's next turn.
-Auto:
+Auto: OnAttack
 {
-
+    TargetLocation Stage
+    NarrowTargets Other && CardPosition Stand
+    Rest
 }
+Quick
 Text Auto: When this card attacks, rest all your other standing characters.
 EndCard
 
@@ -976,14 +1103,21 @@ Power 5000
 Soul 1
 Trait1 Logicalist
 Trait2 Teacher
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && NameEquals Vice Homeroom Teacher of Class 1-S, Rino
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If you have another "Vice Homeroom Teacher of Class 1-S, Rino", this card gets +2000 power.
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchLocationForTargets WaitingRoom 1 1 IsCharacter && Compare TargetCardsCost 0 OrLess && NameContains 梨乃
+        PlaceOnStage false true true false
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a cost 0 or lower character in your waiting room with "Rino" in its card name and put it in any position on the stage.
 EndCard
@@ -999,15 +1133,24 @@ Power 6000
 Soul 1
 Trait1 Logicalist
 Trait2 Book
-Cont:
+*GainPowerForEachOther(1000,Logicalist|Foreigner)
+Act: 0
 {
-
+    TargetLocation Stage
+    NarrowTargets HasMarker
+    ChooseCharacterFromTargets Choose a character.
+    TargetMarkersUnderTargets
+    Message Choose a marker to put into waiting room.
+    ChooseCardsFromTargets 1 1 Any
+    MoveCard WaitingRoom
+    If StageContains 4 Other && HasTrait Logicalist|Foreigner
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give +1 soul.
+        GainSoul 1
+    }
 }
-Text Cont: This card gets +1000 power for each of your other characters with either «Logicalist» or «Foreigner»
-Act:
-{
-
-}
+ActivationRequirement StageContains 1 HasMarker
 Text Act: [Put a marker from under your character in the waiting room] If the number of other characters with either «Logicalist» or «Foreigner» you have is 4 or more, choose 1 of your characters, and that character gets +1 soul until end of turn.
 EndCard
 
@@ -1021,5 +1164,172 @@ Climax: HLL/WE28-50
 Name "Gate Access!! Disfia!"
 JPName “ゲートアクセス!!ジスフィア!”
 *BookClimax
+EndCard
+
+Character: HLL/WE28-51
+Image hll_we28_051
+Name Hope in Her Chest, Lion
+JPName 期待を胸に リオン
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Logicalist
+Trait2 Royalty
+Cont: GiveAll
+{
+    If MyTurn && Other
+    {
+        GainPower 500
+    }
+}
+Text Cont: During your turn, all your other characters get +500 power.
+*Act1Rest2SearchBrainstorm(Logicalist|Foreigner)
+EndCard
+
+Character: HLL/WE28-P01
+Name Sweetish Lion
+JPName あまくち リオン
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Logicalist
+Trait2 Royalty
+*OnPlayGiveOtherPower(1000,Logicalist|Foreigner)
+Auto: OnOtherOpponentReversed
+{
+    IfOther HasTrait Logicalist|Foreigner
+    {
+        GainPower 2000
+    }
+    Else
+    {
+        RefundTimesPerTurn 1
+    }
+}
+Quick
+TimesPerTurn 1
+Text Auto: This card ability activates up to once per turn. When the battle opponent of your other character with either «Logicalist» or «Foreigner» becomes reversed, this card gets +2000 power until end of turn.
+EndCard
+
+Character: HLL/WE28-P02
+Name Baby Bird Fulfilling Her Dreams, Lion
+JPName 夢を叶えるひな鳥 リオン
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Logicalist
+Trait2 Foreigner
+*PowerInMiddle(3000)
+EndCard
+
+Character: HLL/WE28-P03
+Name Flapping Her Wings, Lion
+JPName 羽ばたく少女 リオン
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Logicalist
+Trait2 Foreigner
+*ScryBackup(Logicalist|Foreigner)
+Backup 2500
+EndCard
+
+Character: HLL/WE28-P04
+Name Baby Bird Fulfilling Her Dreams, Nina
+JPName 夢を叶えるひな鳥 ニーナ
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Logicalist
+Trait2 Foreigner
+Auto: OnPlay
+{
+    PayCost 1
+    {
+        SearchLocationForTargets Deck 0 1 NameEquals Baby Bird Fulfilling Her Dreams, Lion
+        PlaceOnStage false true true false
+        ShuffleLocation Deck
+    }
+}
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Baby Bird Fulfilling Her Dreams, Lion", put in into any position on your stage and shuffle your deck.
+EndCard
+
+Character: HLL/WE28-P05
+Name Flapping Her Wings, Nina
+JPName 羽ばたく少女 ニーナ
+Color B
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Logicalist
+Trait2 Foreigner
+Auto: OnPlay
+{
+    If StageContains 1 Other && HasTrait Logicalist|Foreigner
+    {
+        GainPower 2000
+    }
+}
+Quick
+Text Auto: When this card is placed on the stage from your hand, if you have another character with either «Logicalist» or «Foreigner», this card gets +2000 power until end of turn.
+EndCard
+
+Character: HLL/WE28-P06
+Name Connected Feelings, Nina & Lion
+JPName 繋がる気持ち ニーナ＆リオン
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Logicalist
+Auto: OnAttack
+{
+    TargetFacing
+    IfTarget Compare ThatCardsLevel 3 OrMore
+    {
+        TargetSelf
+        GainPower 6000
+    }
+}
+Quick
+Text Auto: When this card attacks, if the level of the character facing this card is 3 or higher, this card gets +6000 power until end of turn.
+EndCard
+
+Character: HLL/WE28-P07
+Name Two of Them Together, Lion & Nina
+JPName 二人で一緒に リオン＆ニーナ
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Logicalist
+Trait2 Foreigner
+Auto: OnAttack
+{
+    TargetFacing
+    IfTarget Compare ThatCardsLevel 3 OrMore
+    {
+        TargetSelf
+        GainPower 6000
+    }
+}
+Quick
+Text Auto: When this card attacks, if the level of the character facing this card is 3 or higher, this card gets +6000 power until end of turn.
 EndCard
 

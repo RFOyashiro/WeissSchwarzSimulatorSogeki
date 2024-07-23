@@ -1,0 +1,3752 @@
+Character: IMC/W115-001
+Name Riamu Yumemi's Party Night, Riamu Yumemi
+JPName 夢見りあむのパーリナイ 夢見りあむ
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Otaku
+*FreeRunner
+Auto: OnOtherFrontalAttacked
+{
+    PayCost 1 SendSelf WaitingRoom
+    {
+        TargetOther
+        Bounce
+    }
+}
+Text Auto: [(1) Put this card in the waiting room] When your other character is frontal attacked, you may pay the cost. If you do, return that character to your hand.
+EndCard
+
+Character: IMC/W115-002
+Name Sweetie-Cute New Year, Yui Ohtsuki
+JPName 甘カワ☆ニゅーいヤー 大槻 唯
+Color Y
+Level 1
+Cost 0
+Trigger Soul
+Power 3000
+Soul 1
+Trait1 Music
+Trait2 Gal
+Combo Go Just Go!
+*GainPowerWithEnoughCharacters(2000,2,Music)
+Auto: OnAttack
+{
+    If Climax Go Just Go! && StageContains 2 Other && HasTrait Music
+    {
+        *Check3Add1(Music)
+        TargetSelf
+        GainPower 1500
+    }
+}
+Text Auto: CxCombo When this card attacks, if "Go Just Go!" is in your climax area and the number of other «Music» characters you have is 2 or more, look at up to the top 3 cards of your deck, choose up to 1 «Music» character among them, reveal it, put it in your hand, put the rest into your waiting room, and this card gets +1500 power until end of turn.
+EndCard
+
+Character: IMC/W115-003
+Name Smitten Sweetie Summer, Shin Sato
+JPName 恋するスウィーティーサマー 佐藤 心
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Sewing
+Cont: GiveAll
+{
+    If MyTurn && Other && HasTrait Music
+    {
+        SetXValue ThatCardsLevel
+        MultiplyXValue 1000
+        GainPower X
+    }
+}
+Text Cont: During your turn, all your other «Music» characters get +X power. X equals 1000 times your level.
+Auto: StartOpponentAttackPhase
+{
+    PayCost 2 Send 1 WaitingRoom Any &&& RestSelf
+    {
+        TargetLocation Stage
+        NarrowTargets Other
+        ChooseCharacterFromTargets Choose a character to give the effect.
+        GainEffect
+        {
+            Cont: GiveFacing
+            {
+                LoseSoul 2
+            }
+            Text Cont: The character facing this card gets -2 soul.
+        }
+    }
+}
+Text Auto: [(2) Put 1 character from your stage in the waiting room, rest this card] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your other characters, and that character gets the following ability until end of turn. "Cont: The character facing this card gets -2 soul."
+Act: Discard 1 NameEquals Smitten Sweetie Summer, Shin Sato
+{
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to return to hand.
+    Bounce
+}
+TimesPerTurn 1
+Text Act: [Put a "Smitten Sweetie Summer, Shin Sato" from your hand to the waiting room] This card ability is can be activated up to once per turn. Choose 1 of your opponent's characters and return it to their hand.
+EndCard
+
+Character: IMC/W115-004
+Name The Tale of A Very Nagi Life, Nagi Hisakawa
+JPName 凪めく日々のおとぎ話 久川 凪
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 8000
+Soul 2
+Trait1 Music
+Trait2 Twins
+Combo MOTTO!
+Cont: GiveSelf
+{
+    If AllYourCharacters HasTrait Music
+    {
+        GainPower 3000
+    }
+}
+Text Cont: If all your characters are «Music», this card gets +3000 power.
+Auto: OnEndOfAttack
+{
+    If Climax MOTTO! && StageContains 1 Other && HasTrait Music
+    {
+        PayCost 2 Discard 2 Any
+        {
+            Stand
+            *CheckTopXOfOpponentDeckSendAny(3)
+        }
+    }
+}
+Text Auto: CxCombo [(2) Put 2 cards from your hand to the waiting room] This card ability activates up to once per turn. At the end of this card's attack, if "MOTTO!" is in your climax area and you have another «Music» character, you may pay the cost. If you do, stand this card, look at up to the top 3 cards of your opponent's deck, choose up to 3 cards among them and put them in the waiting room, put the rest to the deck, and your opponent shuffles that deck.
+EndCard
+
+Character: IMC/W115-005
+Name Black Forest Maiden, Aiko Takamori
+JPName 黒き森の乙女 高森藍子
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Music
+Trait2 Camera
+*EarlyPlay2OrLessClimax
+Cont: GiveSelf
+{
+    StageContains 2 Other && HasTrait Music
+    [
+        GainPower 1500
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                If MyTurn
+                {
+                    SearchWaitingRoom IsCharacter && HasTrait Music
+                    Discard 1 Any
+                }
+            }
+            Text Auto: During your turn, when this card's battle opponent becomes reverse, choose 1 «Music» character in your waiting room and return it to your hand, and discard a card from your hand to the waiting room.
+        }
+    ]
+}
+Text Cont: If the number of other «Music» characters you have is 2 or more, this card gets +1500 power and the following ability. "Auto: During your turn, when this card's battle opponent becomes reverse, choose 1 «Music» character in your waiting room and return it to your hand, and discard a card from your hand to the waiting room."
+*Healer
+EndCard
+
+Character: IMC/W115-006
+Name Memorial Beachside, Mika Jougasaki
+JPName メモリアル★ビーチサイド 城ヶ崎美嘉
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Gal
+Auto: StartMainPhase
+{
+    PayCost 1
+    {
+        TargetTop Deck 3
+        Reveal
+        If TargetsContain 1 IsClimax
+        {
+            *OptionalBlindStock
+            *OptionalBlindStock
+        }
+    }
+}
+Text Auto: [(1)] At the beginning of your main phase, you may pay the cost. If you do, reveal the top 3 cards of your deck and shuffle your deck. If there is a climax among them, put up to 2 cards from the top of your deck in your stock.
+*Act1RestSelfSalvageBrainstorm(Any)
+EndCard
+
+Character: IMC/W115-007
+Name Sparkling Hot Spring Beauty, Kirari Moroboshi
+JPName きらきら☆湯けむり美人 諸星きらり
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Happy-Happy
+*Level0Assist
+Act: 1
+{
+    Brainstorm 4
+    Repeat BrainstormedClimax
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give +1 soul.
+        GainSoul 1
+    }
+}
+Text Act: BRAINSTORM [(1)] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose 1 of your characters, and that character gets +1 soul until end of turn.
+EndCard
+
+Character: IMC/W115-008
+Name Bouquet of Blessings to You, Eve Santaclaus
+JPName 祝福の花をあなたに イヴ・サンタクロース
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Christmas
+Auto: OnPlay
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Music
+    {
+        *GiveCharacterPower(2000,Any)
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Music» character, choose 1 of your characters, that character gets +2000 power until end of turn.
+Act: 1 SendSelf WaitingRoom
+{
+    *Check4Add1(Music)
+}
+Text Act: [(1) Put this card in the waiting room] Look at up to the top 4 cards of your deck, choose up to 1 «Music» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: IMC/W115-009
+Name Exciting Love Heart, Rika Jougasaki
+JPName トキメキ☆ラブハート 城ヶ崎莉嘉
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Gal
+Combo Twin kle Tail
+Auto: StartClimaxPhase
+{
+    *GiveCharacterPower(1000,Music)
+}
+Text Auto: At the beginning of your climax phase, choose 1 of your «Music» characters, and that character gets +1000 power until end of turn.
+Auto: OnSpecificClimaxPlay Twin kle Tail
+{
+    If StageContains 2 Other && HasTrait Music
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give the effect.
+        *GainBounceWhenFrontalAttacked
+    }
+}
+Text Auto: CxCombo When "Twin kle Tail" is placed on your climax area, if the number of other «Music» characters you have is 2 or more, choose 1 of your characters, and that character gets the following ability until the end of your opponent's next turn. "Auto: When this card is frontal attacked, you may return this card to your hand."
+EndCard
+
+Character: IMC/W115-010
+Name Flower of the Night, Yumi Aiba
+JPName 夜の一輪 相葉夕美
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Flower
+*OnPlayGainPower(1500)
+*DropSearch(Music)
+EndCard
+
+Character: IMC/W115-011
+Name Holy Holiday, Yuko Hori
+JPName ホーリーホリデー 堀 裕子
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 ESP
+Cont: GiveSelf
+{
+    If MyTurn && StageContains 1 Other && HasTrait Music
+    {
+        GainPower 1500
+    }
+}
+Text Cont: During your turn, if you have another «Music» character, this card gets +1500 power.
+*MillRunner(Music)
+EndCard
+
+Character: IMC/W115-012
+Name I Am Parfai-ct, Shiho Makihara
+JPName アイ・アム・ぱーふぇくと 槙原志保
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Sweets
+Auto: StartOpponentAttackPhase
+{
+    PayCost 1
+    {
+        TargetFacing
+        NarrowTargets CanBeChosen && CanMove
+        If HasTarget
+        {
+            SaveTargets
+            TargetLocation OpponentCenterStage
+            NarrowTargets CanBeChosen && Not InSavedTargets && CanMove
+            If HasTarget
+            {
+                ChooseCharacterFromTargets Choose a character to exchange.
+                AddSavedToCurrentTargets
+                Stand
+                Exchange
+            }   
+        }
+    }
+}
+Text Auto: [(1)] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose the character facing this card and another character in your opponent's center stage, then stand and exchange them.
+EndCard
+
+Character: IMC/W115-013
+Name Super Goal Achiever, Kiyomi Saejima
+JPName 超☆志貫徹 冴島清美
+Color Y
+Level 1
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Super Disciplinary Committee
+*BackupBonus1000(Music)
+Backup 1000
+EndCard
+
+Character: IMC/W115-014
+Name Poppin' High, Miria Akagi
+JPName ポッピン・ハイ☆ 赤城みりあ
+Color Y
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Chattery
+Cont: GiveSelf
+{
+    If MyTurn
+    {
+        SetXToNumberOfCharacters Other && HasTrait Music
+        MultiplyXValue 1000
+        GainPower X
+    }
+}
+Text Cont: During your turn, this card gets +1000 power for each of your other «Music» characters
+Auto: OnPlay
+{
+    PayCost Discard 1 IsCharacter && HasTrait Music
+    {
+        SearchLocationForTargets WaitingRoom IsCharacter && Compare ThatCardsLevel 0 OrLess
+        PlaceOnStage false true true false
+    }
+}
+Text Auto: [Put a «Music» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 level 0 or lower character in your waiting room and put it in any position on the stage.
+EndCard
+
+Character: IMC/W115-015
+Name Queen of Queens, Tokiko Zaizen
+JPName クイーン・オブ・クイーン 財前時子
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Queen
+Auto: OnPlay
+{
+    PayCost 1 Discard 1 Any
+    {
+        TargetLocation OpponentStage
+        If Compare TargetCount 4 OrLess
+        {
+            ChooseCharacterFromTargets Choose a character to move to an open position.
+            IfTarget CanMove && OnStage
+            {
+                MoveToOpenPosition True True
+            }
+        }
+    }
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your opponent's characters and move it to an open position on your opponent's stage.
+EndCard
+
+Character: IMC/W115-016
+Name Eternal Mycelium, Syoko Hoshi
+JPName 永劫のマイセリウム 星 輝子
+Color Y
+Level 1
+Cost 1
+Trigger Soul
+Power 3000
+Soul 1
+Trait1 Music
+Trait2 Mushroom
+Cont:
+{
+
+}
+Text Cont: ASSIST Your «Music» characters in front of this card get +X power. X equals 500 times level of that character.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your characters with a soul trigger icon, and that character gets +2500 power until end of turn.
+EndCard
+
+Character: IMC/W115-017
+Name Dress-Up Usamin, Nana Abe
+JPName ドレスアップ☆ウサミン 安部菜々
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Usamin
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, all players perform the following action. "If there are 5 or more cards in your memory, choose 4 cards in your memory, and put all cards in your memory other than those chosen this way in the waiting room."
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at to up to X cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your other «Music» characters.
+EndCard
+
+Character: IMC/W115-018
+Name Battle Valentine, Sana Miyoshi
+JPName バトル☆バレンタイン 三好紗南
+Color Y
+Level 1
+Cost 1
+Trigger Soul
+Power 3500
+Soul 1
+Trait1 Music
+Trait2 Game
+Cont:
+{
+
+}
+Text Cont: During your turn, all your other «Music» characters get +1000 power.
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is higher than the level of your opponent, you may put that character in stock. If you do, put the bottom card of your opponent's stock in the waiting room.
+EndCard
+
+Character: IMC/W115-019
+Name Heart Ignition, Akane Hino
+JPName ハートイグニッション 日野 茜
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 3500
+Soul 2
+Trait1 Music
+Trait2 Passion
+Cont:
+{
+
+}
+Text Cont: All climax with a Choice trigger icon in your other Zones get a soul trigger icon.
+Auto:
+{
+
+}
+Text Auto: At the beginning of your climax phase, choose 1 of your «Music» characters, and that character gets the following ability until end of turn. "Cont: This card gets +X power. X equals 1500 times the number of soul of this card."
+EndCard
+
+Character: IMC/W115-020
+Name Merry Many Present, Airi Totoki
+JPName メリー・メニー・プレゼント 十時愛梨
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Music
+Trait2 Sweets
+Cont:
+{
+
+}
+Text Cont: If the number of «Music» characters you have is 4 or more, this card gets -1 level while in your hand.
+Cont:
+{
+
+}
+Text Cont: If the number of other «Music» characters you have is 2 or more, this card gets +1000 power.
+*Healer
+EndCard
+
+Character: IMC/W115-021
+Name Kaleidosnow, Mio Honda
+JPName カレイドスノー 本田未央
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Nickname
+Combo Jounetsu Fun Fanfare
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose a «Music» character in your waiting room and return it to your hand.
+Auto:
+{
+
+}
+Text Auto: CxCombo [(4) Put 2 cards from your hand to the waiting room] When this card attacks, if "Jounetsu Fun Fanfare" is in your climax area, you may pay the cost. If you do, deal 2 damage to your opponent twice.
+EndCard
+
+Character: IMC/W115-022
+Name EVERLASTING, Mio Honda
+JPName EVERLASTING 本田未央
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Nickname
+Cont:
+{
+
+}
+Text Cont: All your other «Music» characters get +500 power.
+Act:
+{
+
+}
+Text Act: [(2) Put a «Music» character from your hand to the waiting room, rest this card] Search your deck for up to 1 Red character and up to 1 Blue character, reveal them, put them in your hand, and shuffle your deck.
+EndCard
+
+Character: IMC/W115-023
+Name Starry-Go-Round, Yui Ohtsuki
+JPName Starry-Go-Round 大槻 唯
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Gal
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there's a climax among them, look at up to the top 4 cards of your deck, choose from up to 1 «Music» character, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: IMC/W115-024
+Name Decoboco Speedster, Shin Sato
+JPName 凸凹スピードスター 佐藤 心
+Color Y
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Music
+Trait2 Sewing
+Auto:
+{
+
+}
+Text Auto: When this card attacks, look at up to the top 2 cards of your deck, choose 1 of them and put it on top of your deck, and put the rest into your waiting room.
+Auto:
+{
+
+}
+Text Auto: When the trigger check of this card reveals a card with a soul trigger icon, this card gets +4000 power until end of turn.
+EndCard
+
+Character: IMC/W115-025
+Name SUN FLOWER, Mika Jougasaki
+JPName SUN♡FLOWER 城ヶ崎美嘉
+Color Y
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Music
+Trait2 Gal
+Combo Twin kle Tail
+Cont:
+{
+
+}
+Text Cont: If all your characters are Yellow, this card gets +3000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo When "Twin kle Tail" is placed on your climax area, if you have another Yellow character, this card gets the following 2 abilities until end of turn. "Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform the trigger check twice during this attack." "Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand."
+EndCard
+
+Character: IMC/W115-026
+Name Happy Holy Night, Eve Santaclaus
+JPName ハッピーホーリーナイト イヴ・サンタクロース
+Color Y
+Level 1
+Cost 1
+Trigger Soul
+Power 5500
+Soul 1
+Trait1 Music
+Trait2 Christmas
+Auto:
+{
+
+}
+Text Auto: [(1) Put 2 cards from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, your opponent puts the top 24 cards of their deck in their waiting room.
+EndCard
+
+Character: IMC/W115-027
+Name Queen's Grace, Tokiko Zaizen
+JPName 女王の恩寵 財前時子
+Color Y
+Level 2
+Cost 0
+Trigger Soul
+Power 5500
+Soul 1
+Trait1 Music
+Trait2 Queen
+Cont:
+{
+
+}
+Text Cont: During your turn, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: [(1)] During your turn, when this card's battle opponent becomes reverse, you may pay the cost. If you do, choose 1 of your opponent's level 3 or lower characters. That character doesn't stand during your opponent's next stand phase.
+EndCard
+
+Character: IMC/W115-028
+Name Sweet Summer Night, Airi Totoki
+JPName スウィートサマーナイト 十時愛梨
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Sweets
+Combo Koko Kara Mirai e!
+Cont:
+{
+
+}
+Text Cont: If you have another Red character and another Blue character, this card gets +6000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Koko Kara Mirai e!" is in your climax area, put up to 1 card from the top of your deck in your stock, and choose up to 1 character in your waiting room and return it to your hand.
+EndCard
+
+Character: IMC/W115-029
+Name Sea Power, Yuko Hori
+JPName 海のぱわー☆ 堀 裕子
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 6000
+Soul 1
+Trait1 Music
+Trait2 ESP
+Combo Chikara! Is! Power!!
+Cont:
+{
+
+}
+Text Cont: If the number of other characters you have is 3 or more, this card gets +4000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Chikara! Is! power!!" is in your climax area and the number of other «Music» characters you have is 2 or more, perform the following action twice. "Put the top card of your deck in the waiting room. If it has a soul trigger icon, choose up to 1 «Music» character in your waiting room and return it to your hand, and this card gets +5000 power until end of turn."
+EndCard
+
+Character: IMC/W115-030
+Name Fluttering Autumn Foliage, Yumi Aiba
+JPName ひらり花紅葉 相葉夕美
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Flower
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, put the top card of your clock in your stock.
+Auto:
+{
+
+}
+Text Auto: [Put 2 cards from your hand to the waiting room] When this card attacks, if the number of other Yellow characters you have is 4 or more, you may pay the cost. If you do, all your other characters get the following ability. "Auto: This card ability activates up to once per turn. When damage dealt by this card is canceled, choose up to 3 cards in your opponent's waiting room, return them to the deck, and yoiur opponent shuffles that deck.:
+EndCard
+
+Character: IMC/W115-031
+Name Orange Time, Syoko Hoshi
+JPName オレンジタイム 星 輝子
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Mushroom
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at up to X cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your «Music» characters.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose 1 of your other «Music» character and put it in your stock.
+EndCard
+
+Character: IMC/W115-032
+Name Dark Green Witch, Aiko Takamori
+JPName 深緑の魔女 高森藍子
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Camera
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose up to 2 of your other «Music» characters, and those characters get +2000 power until end of turn.
+EndCard
+
+Character: IMC/W115-033
+Name Girls Rocker, Kiyomi Saejima
+JPName ガールズロッカー 冴島清美
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Super Disciplinary Committee
+Cont:
+{
+
+}
+Text Cont: If you have 1 or less other characters, all your other characters get +1500 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if there is 1 or less characters in your opponent's center stage, you may choose a cost 0 or lower character in your opponent's center stage and put it on the bottom of the deck.
+EndCard
+
+Character: IMC/W115-034
+Name Sing the Prologue, Nagi Hisakawa
+JPName Sing the Prologue♪ 久川 凪
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Twins
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of the following 2 effects and perform it. "Return all cards from your waiting room to your deck and shuffle your deck. "Choose 1 of your opponent's characters and return it to your hand."
+EndCard
+
+Character: IMC/W115-035
+Name THE VILLAIN'S NIGHT, Miria Akagi
+JPName THE VILLAIN'S NIGHT 赤城みりあ
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Chattery
+*CannotSideAttack
+Auto:
+{
+
+}
+Text Auto: When this card attacks, reveal the top card of your deck. If it's a «Music» character, all your characters get +1500 power until end of turn.
+EndCard
+
+Character: IMC/W115-036
+Name Game Talk Night, Sana Miyoshi
+JPName ゲームトークナイト 三好紗南
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Game
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's draw phase, if this card is in the center stage, put the top 3 cards of your deck in the waiting room. If they're all «Music» characters, you may return this card to your hand.
+EndCard
+
+Character: IMC/W115-037
+Name After School Try, Akane Hino
+JPName 放課後トライ 日野 茜
+Color Y
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Music
+Trait2 Passion
+Cont:
+{
+
+}
+Text Cont: During your turn, this card gets +3000 power.
+Auto:
+{
+
+}
+Text Auto: When this card is frontal attacked, put this card in the waiting room. (Even if the battle opponent disappears, the attack doesn't become a Direct attack)
+EndCard
+
+Character: IMC/W115-038
+Name Exceptional New Year, Rika Jougasaki
+JPName とびきり☆ニューイヤー 城ヶ崎莉嘉
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Gal
+Act:
+{
+
+}
+Text Act: [Put 1 card from your hand to the waiting room, put this card in the waiting room] Search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: IMC/W115-039
+Name Tropical Girl, Riamu Yumemi
+JPName トロピカルガール 夢見りあむ
+Color Y
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Music
+Trait2 Otaku
+Cont:
+{
+
+}
+Text Cont: If you don't have another «Music» character, this card does not stand during your stand phase.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, perform the trigger check twice during this attack. After the 2 trigger checks are made, put the top card of your stock in the waiting room.
+EndCard
+
+Character: IMC/W115-040
+Name With Love, Kirari Moroboshi
+JPName With Love 諸星きらり
+Color Y
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 Music
+Trait2 Happy-Happy
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 1000 times the number of your «Music» characters.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, you may put that character in your opponent's stock. If you do, put the bottom card of your opponent's stock in the waiting room.
+EndCard
+
+Character: IMC/W115-041
+Name Stage of Magic, Mio Honda
+JPName ステージオブマジック 本田未央
+Color Y
+Level 2
+Cost 0
+Trigger Soul
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Nickname
+Cont:
+{
+
+}
+Text Cont: If you have "stage of Magic, Uzuki Shimamura" and "Pure Valentine, Rin Shibuya", this card gets -1 level while in your hand.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 1000 times the number of your other «TRAIT» characters.
+EndCard
+
+Character: IMC/W115-042
+Name Sweet Moments, Shiho Makihara
+JPName 甘いひととき 槙原志保
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Sweets
+Backup 3500
+EndCard
+
+Climax: IMC/W115-043
+Name Go Just Go!
+JPName Go Just Go!
+*ChoiceClimax
+EndCard
+
+Climax: IMC/W115-044
+Name MOTTO!
+JPName MOTTO!
+*ChoiceClimax
+EndCard
+
+Climax: IMC/W115-045
+Name Twin kle Tail
+JPName Twin☆くるっ★テール
+*WindClimax
+EndCard
+
+Climax: IMC/W115-046
+Name Jounetsu Fun Fanfare
+JPName 情熱ファンファンファーレ
+*ChoiceClimax
+EndCard
+
+Climax: IMC/W115-047
+Name Chikara! Is! Power!!
+JPName チカラ！イズ！ぱわー！！
+*ChoiceClimax
+EndCard
+
+Character: IMC/W115-048
+Name Nyandaful World, Miku Maekawa
+JPName ニャンダフル・ワールド 前川みく
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Cat-Character
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, choose 1 of your other characters, rest it, and move it to an open position in the backstage.
+EndCard
+
+Character: IMC/W115-049
+Name Eternal Love Requiem, Momoka Sakurai
+JPName 永遠の愛のレクイエム 櫻井桃華
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Daughter
+Auto:
+{
+
+}
+Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, choose 1 of your «Music» characters, and that character gets +1500 power until end of turn.
+EndCard
+
+Character: IMC/W115-050
+Name Eternally Bonded Love, Mayu Sakuma
+JPName 永遠の結び愛 佐久間まゆ
+Color R
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Music
+Trait2 Cuisine
+Combo Love Destiny
+Cont:
+{
+
+}
+Text Cont: This card gets +500 power for each of your opponent's «Love» characters
+Cont:
+{
+
+}
+Text Cont: This card gets +1000 power for each of your other «Music» characters in the backstage
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Love Destiny" is in your climax area and the number of other «Music» characters you have is 2 or more, all your opponent's characters get «Love» until end of turn, and this card gets the following ability until end of turn. "Auto: At the beginning of your encore step, if either there is no The character facing this card or the character facing this card is reversed, you may choose a «Music» character in your waiting room and return it to your hand."
+EndCard
+
+Character: IMC/W115-051
+Name Dolce Puella, Shiki Ichinose
+JPName ドルチェ・プエラ 一ノ瀬志希
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Gifted (IMC
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] During the turn this card is placed on the stage from your hand, when this card attacks, you may pay the cost. If you do, deal 2 damage to your opponent.
+Auto:
+{
+
+}
+Text Auto: [Put a "Dolce Puella, Shiki Ichinose" from your hand to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 1 damage to your opponent.
+EndCard
+
+Character: IMC/W115-052
+Name Awakened Akaringo, Akari Tsujino
+JPName おめざめ☆あかりんご 辻野あかり
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Apple
+Combo Mugen LooP da LOVE
+Combo Mugen LooP da LOVE
+Cont:
+{
+
+}
+Text Cont: CxCombo If "Mugen LooP da LOVE" is in your climax area, all your opponent's characters get «Love».
+*Healer
+Auto:
+{
+
+}
+Text Auto: CxCombo [(2)] At the end of this card's attack, if "Mugen LooP da LOVE" is in your climax area, you may pay the cost. If you do, declare any number less than or equal to the number of your «Love» characters, and deal X damage to your opponent. X equals the number you declared for this card effect. (You cannot declare a negative number. )
+EndCard
+
+Character: IMC/W115-053
+Name Dear Floral, Kotoka Saionji
+JPName 愛しきフローラル 西園寺琴歌
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Daughter
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
+Auto:
+{
+
+}
+Text Auto: When your opponent's climax is placed on your climax area, you may put this card in your stock.
+EndCard
+
+Character: IMC/W115-054
+Name Wish Upon A Star, Kozue Yusa
+JPName ほしにねがいを 遊佐こずえ
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Fairy
+Combo Mahou no Makura
+Cont:
+{
+
+}
+Text Cont: All your other «Music» characters get +500 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo [Put a "Mahou no Makura" from your climax area in the waiting room, rest both an "Anzu's Summer Vacation, Anzu Futaba" and this card from standing] At the beginning of your encore step, you may pay the cost. If you do, choose up to 2 «Music» characters in your waiting room and return them to your hand.
+EndCard
+
+Character: IMC/W115-055
+Name Candid Blooming Flowers, Tsubaki Egami
+JPName あるがまま咲く花 江上 椿
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Camera
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your other «Music» characters, and that character gets +X power until end of turn. X equals 500 times the number of your other «Music» characters.
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's attack phase, you may move this card to an open position in your center stage that has an opponent's character Opposite that position.
+EndCard
+
+Character: IMC/W115-056
+Name Panda Fighter, Yao Fueifuei
+JPName パンダ・ファイター 楊 菲菲
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Cuisine
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card among them, reveal it, put it in your hand, and put the rest into your waiting room. (climax are considered to be level 0 for this card effect)
+EndCard
+
+Character: IMC/W115-057
+Name Sunlit Maiden, Miho Kohinata
+JPName 日向の乙女 小日向美穂
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 the Sun
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 climax and reveal it, choose up to 1 climax in your hand and reveal it, exchange the revealed climaxs, and shuffle your deck.
+EndCard
+
+Character: IMC/W115-058
+Name Life Graffiti, Kyoko Igarashi
+JPName ライフ・グラフィティ 五十嵐響子
+Color R
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Housework
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck, choose 1 level X lower character in your waiting room and return it to your hand. X equals level of the card revealed this way. (climax are considered to be level 0 for this card effect. Put the revealed card back where it was)
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your other Red characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: IMC/W115-059
+Name Our Paradise, Chieri Ogata
+JPName 私とあなたの楽園 緒方智絵里
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Clover
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, if there's no climax in your climax area, look at up to the top 4 cards of your deck, choose up to 1 «Music» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: IMC/W115-060
+Name Heart Illumination, Uzuki Shimamura
+JPName ココロ・イルミネーション 島村卯月
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Smile
+Combo Koko Kara Mirai e!
+Cont:
+{
+
+}
+Text Cont: If the number of other «Music» characters you have is 2 or more, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo [Put 2 «Music» characters from your hand to the waiting room] When this card attacks, if "Koko Kara Mirai e!" is in your climax area, you have another Yellow character and another Blue character, you may pay the cost. If you do, choose up to 1 Yellow character, up to 1 Red character, and up to 1 Blue character in your waiting room and return them to your hand.
+EndCard
+
+Character: IMC/W115-061
+Name Daredevil Monster, Mirei Hayasaka
+JPName デアデビル★モンスター 早坂美玲
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Eye Patch
+Auto:
+{
+
+}
+Text Auto: When this card attacks, all your characters get the following ability until end of turn. "Auto: [(1) Put 1 card from your hand to the waiting room] When the trigger check of this card reveals a climax with a Comeback trigger icon, you may pay the cost. If you do, deal 1 damage to your opponent."
+EndCard
+
+Character: IMC/W115-062
+Name The Great Slacklord, Anzu Futaba
+JPName 偉大なる休憩主 双葉 杏
+Color R
+Level 1
+Cost 1
+Trigger Soul
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Candy
+Cont:
+{
+
+}
+Text Cont: ASSIST Your «Music» characters in front of this card get +X power. X equals 500 times level of that character.
+Act:
+{
+
+}
+Text Act: [Rest this card] draw 2 cards, and discard 2 cards from hand to the waiting room. This card does not stand during your next stand phase.
+EndCard
+
+Character: IMC/W115-063
+Name Sunny Day Summer, Kurumi Ohnuma
+JPName サニーデイ・サマー 大沼くるみ
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 6000
+Soul 1
+Trait1 Music
+Trait2 Crybaby
+Auto:
+{
+
+}
+Text Auto: When your other «Music» character is placed on the stage from your hand, that character gets +1000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [(2)] At the beginning of your encore step, you may pay the cost. If you do, return all cards in your waiting room to your deck and shuffle your deck.
+EndCard
+
+Character: IMC/W115-064
+Name Lumiere Etoile, Frederica Miyamoto
+JPName リュミエール・エトワール 宮本フレデリカ
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 4500
+Soul 2
+Trait1 Music
+Trait2 Fashion
+*2000Assist
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 character in your hand whose level is equal to or lower than your level and put it in any position on the stage, and that character gets +2000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a character in your opponent's waiting room and put it in an open position on their stage.
+EndCard
+
+Character: IMC/W115-065
+Name Fantastic Night, Yuuki Otokura
+JPName ファンタスティック・ナイト 乙倉悠貴
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Music
+Trait2 Sports
+Cont:
+{
+
+}
+Text Cont: If the number of «Music» characters you have is 4 or more, this card gets -1 level while in your hand.
+Cont:
+{
+
+}
+Text Cont: During your turn, if the number of other Red characters you have is 4 or more, this card gets +5000 power and the following ability. "Cont: During battles involving this card, your opponent can't play events or BACKUP from hand."
+*OnPlayDraw2Discard2BlindStock
+EndCard
+
+Character: IMC/W115-066
+Name Meticulous Tune-Up, Miyo Harada
+JPName こだわりチューンアップ 原田美世
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Drive
+Cont:
+{
+
+}
+Text Cont: If there are 2 or less climax in your waiting room, this card gets -1 level while in your hand.
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, put the top card of your clock in your stock.
+EndCard
+
+Character: IMC/W115-067
+Name Apple Carnival, Akari Tsujino
+JPName アップル☆カーニバル 辻野あかり
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Apple
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, put up to 2 cards from the top of your deck in the waiting room.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose a card in your clock and return it to your hand. If you do, put a card from your hand in your clock.
+EndCard
+
+Character: IMC/W115-068
+Name Dreamy Wedding, Miyo Harada
+JPName ドリーミーウェディング 原田美世
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Drive
+Auto:
+{
+
+}
+Text Auto: When the battle opponent of your other character becomes reversed, choose 1 of your characters, and that character gets +500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your other characters and put it face up underneath this card as a marker, and at the beginning of your next draw phase, choose 1 of the markers under this card that's a character and put it in any position on the stage.
+EndCard
+
+Character: IMC/W115-069
+Name Shining Star Motien, Yao Fueifuei
+JPName 煌星摩天楼 楊 菲菲
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Cuisine
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +3000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if there's no climax in your climax area, if you have another «Music» character, choose 1 of your other characters, and that character gets +1500 power until end of turn.
+EndCard
+
+Character: IMC/W115-070
+Name Starry-Go-Round, Miku Maekawa
+JPName Starry-Go-Round 前川みく
+Color R
+Level 1
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Cat-Character
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, all characters in battle get the following ability until end of turn. "Auto: When this card is placed from the stage to the waiting room, you may put this card rest in the position this card was in."
+Backup 0
+EndCard
+
+Character: IMC/W115-071
+Name Memory Blossom, Kyoko Igarashi
+JPName メモリーブロッサム 五十嵐響子
+Color R
+Level 1
+Cost 1
+Trigger Soul
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Housework
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose 1 of your other «Music» character and put it in your stock.
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the level of the battle opponent of this card is higher than the level of your opponent, you may send that character to memory.
+EndCard
+
+Character: IMC/W115-072
+Name Tonde Icchaitai no, Frederica Miyamoto
+JPName とんでいっちゃいたいの 宮本フレデリカ
+Color R
+Level 2
+Cost 0
+Power 7000
+Soul 1
+Trait1 Music
+Trait2 Fashion
+*OnAttackPay1ToDoubleTrigger
+EndCard
+
+Character: IMC/W115-073
+Name Kira! Mankai Smile, Uzuki Shimamura
+JPName キラッ！満開スマイル 島村卯月
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Smile
+*LevelAssist
+Auto:
+{
+
+}
+Text Auto: When your climax with a Comeback trigger icon is triggered, choose up to 2 of your characters, and those characters get +1 soul until end of turn.
+EndCard
+
+Character: IMC/W115-074
+Name Autumn Breeze Maiden, Yuuki Otokura
+JPName 秋風乙女 乙倉悠貴
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 6500
+Soul 1
+Trait1 Music
+Trait2 Sports
+Combo Halloween Code
+Cont:
+{
+
+}
+Text Cont: During your turn, this card gets +1500 power for each of your other «Music» characters
+Auto:
+{
+
+}
+Text Auto: CxCombo [(1) Put 1 card from your hand to the waiting room] When this card's battle opponent becomes reverse, if "Halloween Code" is in your climax area and the number of other «Music» characters you have is 2 or more, you may pay the cost. If you do, deal 4 damage to your opponent.
+EndCard
+
+Character: IMC/W115-075
+Name Sayakeki Hana no Inochi ni, Kotoka Saionji
+JPName さやけき花の生命に 西園寺琴歌
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Music
+Trait2 Daughter
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the level of the character facing this card is 3 or higher, this card gets +6000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put a «Music» character from your hand to the waiting room]
+EndCard
+
+Character: IMC/W115-076
+Name Punk Maiden, Mirei Hayasaka
+JPName パンクな乙女 早坂美玲
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 11000
+Soul 2
+Trait1 Music
+Trait2 Eye Patch
+Auto:
+{
+
+}
+Text Auto: During the turn this card is placed on the stage from your hand, at the beginning of your attack phase, you may put all other characters in the waiting room. If you do, put up to 4 cards from the top of your deck in your stock.
+EndCard
+
+Character: IMC/W115-077
+Name Vast world, Chieri Ogata
+JPName Vast world 緒方智絵里
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Clover
+Cont:
+{
+
+}
+Text Cont: If you have another Yellow character and another Blue character, this card gets +3000 power.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, choose a «Music» character in your waiting room and return it to your hand, and discard a card from your hand to the waiting room.
+EndCard
+
+Character: IMC/W115-078
+Name Stage of Magic, Uzuki Shimamura
+JPName ステージオブマジック 島村卯月
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Smile
+*500Assist
+Auto:
+{
+
+}
+Text Auto: [(1) Put this card in your waiting room] When your other «Music» character is placed from the stage to the waiting room, if this card is in the backstage, you may pay the cost. If you do, put that character rest in the position it was in, and that character gets +3000 power until the end of the next turn.
+EndCard
+
+Character: IMC/W115-079
+Name Anzu's Summer Vacation, Anzu Futaba
+JPName 杏の夏休み 双葉 杏
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Candy
+Auto:
+{
+
+}
+Text Auto: When your climax with a Comeback trigger icon is triggered, choose 1 of your characters, and that character gets +2000 power until end of turn.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1)] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, perform the following action. "Look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room."
+EndCard
+
+Character: IMC/W115-080
+Name Crazy Crazy, Shiki Ichinose
+JPName クレイジークレイジー 一ノ瀬志希
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Gifted (IMC
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, perform the following action twice. "Look at the top card of your deck and put it either on top of the deck or in the waiting room."
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there's a climax among them, this card gets +3000 power until end of turn.
+EndCard
+
+Character: IMC/W115-081
+Name Illusionista!, Mayu Sakuma
+JPName イリュージョニスタ！ 佐久間まゆ
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Cuisine
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters, and that character gets the following ability until end of turn. "Cont: This card cannot return to hand, move to another position, or be sent to memory."
+EndCard
+
+Character: IMC/W115-082
+Name Fretful Breakout Emotion, Kurumi Ohnuma
+JPName だだもれエモーション 大沼くるみ
+Color R
+Level 0
+Cost 0
+Power 3500
+Soul 1
+Trait1 Music
+Trait2 Crybaby
+*GiveAllOpponentsEncore2
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's attack phase, you may put the top card of your deck in the waiting room. If it's level 0 or lower, you may move this card to an open position in the center stage. (climax are considered to be level 0 for this card effect)
+EndCard
+
+Character: IMC/W115-083
+Name shabon song, Miho Kohinata
+JPName shabon song 小日向美穂
+Color R
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Music
+Trait2 the Sun
+Cont:
+{
+
+}
+Text Cont: This card gets +500 power for each of your other «Music» characters
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the character facing this card is level 2, this card gets +6000 power until end of turn.
+EndCard
+
+Character: IMC/W115-084
+Name Flowers Through the Viewfinder, Tsubaki Egami
+JPName ファインダー越しの花 江上 椿
+Color R
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 Music
+Trait2 Camera
+Cont:
+{
+
+}
+Text Cont: This card gets +500 power for each of your other «Music» characters
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Music» characters you have is 4 or more, you may choose a «Music» character in your waiting room and put it in your stock.
+EndCard
+
+Character: IMC/W115-085
+Name Magical Angel, Kozue Yusa
+JPName マジカルエンジェル 遊佐こずえ
+Color R
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 Music
+Trait2 Fairy
+Cont:
+{
+
+}
+Text Cont: If the number of other «Music» characters you have is 2 or more, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: ENCORE [(1) Put 1 character from your stage in the waiting room]
+EndCard
+
+Character: IMC/W115-086
+Name Decoboco Speedster, Nana Abe
+JPName 凸凹スピードスター 安部菜々
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Usamin
+Cont:
+{
+
+}
+Text Cont: During your turn, if you have another Yellow character and another Blue character, this card gets +8000 power.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, you may put that character on top of the deck.
+EndCard
+
+Character: IMC/W115-087
+Name Yes! Party Time!!, Momoka Sakurai
+JPName Yes! Party Time!! 櫻井桃華
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 6000
+Soul 1
+Trait1 Music
+Trait2 Daughter
+Cont:
+{
+
+}
+Text Cont: If the number of other «Music» characters you have is 2 or more, this card gets +4000 power.
+Auto:
+{
+
+}
+Text Auto: When this card Direct attacks, you may choose a «Music» character in your waiting room and put it in your stock.
+EndCard
+
+Climax: IMC/W115-088
+Name Love Destiny
+JPName Love∞Destiny
+*DoorClimax
+EndCard
+
+Climax: IMC/W115-089
+Name Mugen LooP da LOVE
+JPName 無限L∞PだLOVE♡
+*DoorClimax
+EndCard
+
+Climax: IMC/W115-090
+Name Mahou no Makura
+JPName まほうのまくら
+*DoorClimax
+EndCard
+
+Climax: IMC/W115-091
+Name Koko Kara Mirai e!
+JPName ココカラミライヘ！
+*DoorClimax
+EndCard
+
+Climax: IMC/W115-092
+Name Halloween Code
+JPName Halloween♥Code
+*DoorClimax
+EndCard
+
+Character: IMC/W115-093
+Name Ravissant Chocolat, Kaede Takagaki
+JPName ラヴィサン・ショコラ 高垣 楓
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Mysterious
+Auto:
+{
+
+}
+Text Auto: When your climax is placed on your climax area look at the top card of your deck and put it either on top or bottom of the deck or in the waiting room.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 character in your waiting room and return it to your hand.
+EndCard
+
+Character: IMC/W115-094
+Name Eternal Bloom, Rin Shibuya
+JPName エターナルブルーム 渋谷 凛
+Color B
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Flower
+Cont:
+{
+
+}
+Text Cont: This card gets +1000 power for each of your other «Music» characters in the backstage
+Auto:
+{
+
+}
+Text Auto: [(1)] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Music» character among them, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: IMC/W115-095
+Name Make Me A Star, Hayate Hisakawa
+JPName メイク・ハー・スター 久川 颯
+Color B
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Twins
+Combo VOY@GER
+Cont:
+{
+
+}
+Text Cont: If all your characters are «Music», this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo At the end of this card's attack, if "VOY@GER" is in your climax area and all your characters are «Music», look at up to the top 2 cards of your deck, choose up to 2 cards among them and put them on top of the deck in any order, put the rest into your waiting room, and reveal the top card of your deck. If it's a «Music» character, put it in your hand.
+EndCard
+
+Character: IMC/W115-096
+Name A Page of the Sea Breeze, Fumika Sagisawa
+JPName 潮風の一頁 鷺沢文香
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 8500
+Soul 2
+Trait1 Music
+Trait2 Book
+Cont:
+{
+
+}
+Text Cont: If the number of «Music» characters you have is 4 or more, this card gets -1 level while in your hand.
+Cont:
+{
+
+}
+Text Cont: During your turn, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, either return the top card of your clock to your hand or put it in your stock.
+EndCard
+
+Character: IMC/W115-097
+Name Celebrate Kaleido, Kanade Hayami
+JPName セレブレイト・カレイド 速水 奏
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Music
+Trait2 Kiss
+Combo Nightwear
+Cont:
+{
+
+}
+Text Cont: During your turn, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power.
+*Healer
+Auto:
+{
+
+}
+Text Auto: CxCombo When "Nightwear" is placed on your climax area, if this card is in the center stage, deal 1 damage to your opponent, and this card gets the following ability until end of turn. "Auto: [(2)] At the beginning of your encore step, you may pay the cost. If you do, choose a reversed The character facing this card and put it in clock."
+EndCard
+
+Character: IMC/W115-098
+Name Phantom Soiree, Honami Nishikawa
+JPName ファントム・ソワレ 西川保奈美
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Opera
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may draw a card. If you do, discard a card from your hand to the waiting room.
+Auto:
+{
+
+}
+Text Auto: [Return this card to your hand] When your climax is placed on your climax area, you may pay the cost. IF so, choose 1 of your characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: IMC/W115-099
+Name Tis Love that Makes Me, Kate
+JPName Tis Love that Makes Me ケイト
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Book
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 of your opponent's characters and send it to memory, and your opponent puts that character from memory in any position on their stage.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters and a Trait on that character, and that character loses all instances of that Trait until end of turn.
+EndCard
+
+Character: IMC/W115-100
+Name Joyful Present, Unknown Tomorrow, Nao Kamiya
+JPName 楽しい今を、未知の明日を 神谷奈緒
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Anime
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your «Music» characters, and that character gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a climax in your waiting room and return it to your hand.
+EndCard
+
+Character: IMC/W115-101
+Name Arisu's Story, Arisu Tachibana
+JPName ありすの物語 橘 ありす
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Book
+Auto:
+{
+
+}
+Text Auto: [Put this card in the waiting room] When your other «Music» character is placed from the stage to the waiting room, if this card is in the backstage, you may pay the cost. If you do, put that character rest in the position it was in.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your «Music» characters, and that character gets +1500 power until end of turn.
+EndCard
+
+Character: IMC/W115-102
+Name Beach Bride, Minami Nitta
+JPName 渚の花嫁 新田美波
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Sports
+Combo Seizon Honnou Valkyria
+Auto:
+{
+
+}
+Text Auto: CxCombo When "Seizon Honnou Valkyria" is placed on your climax area, if the number of other «Music» characters you have is 2 or more, you may choose a level 0 or lower «Music» character in your waiting room and put it in any position on the Stagge.
+Act:
+{
+
+}
+Text Act: [(1) Put this card in the waiting room] If you are level or higher, choose a cost 0 or lower «Music» character in your waiting room and put it in any position on the stage.
+EndCard
+
+Character: IMC/W115-103
+Name Everlasting Bloom, Anastasia
+JPName 永遠に枯れぬ花 アナスタシア
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Star
+Auto:
+{
+
+}
+Text Auto: [(1) Put from your hand to the waiting room] When this card is placed on the stage from your hand or when this card attacks, you may pay the cost. If you do, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: IMC/W115-104
+Name Blessed Strahl, Ranko Kanzaki
+JPName 祝福のシュトラール 神崎蘭子
+Color B
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Music
+Trait2 Darkness
+Combo Souyoku no Aria
+Cont:
+{
+
+}
+Text Cont: If all your characters are «Music», this card gets +3000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo At the beginning of your attack phase, if "Souyoku no Aria" is in your climax area and there is 1 or less other character in your center stage choose up to 1 «Music» character in your waiting room and put it in your stock, look at up to the top 3 cards of your deck, choose up to 2 «Music» characters among them, reveal them, put them in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: IMC/W115-105
+Name Extend World, Asuka Ninomiya
+JPName エクステンド・ワールド 二宮飛鳥
+Color B
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Music
+Trait2 Chunibyo
+Combo Souyoku no Aria
+Cont:
+{
+
+}
+Text Cont: If all your characters are «Music», this card gets +3000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo [Put a «Music» character from your hand to the waiting room] At the beginning of your attack phase, if "Souyoku no Aria" is in your climax area and there is 1 or less other character in your center stage, your may pay the cost. If you do, choose up to 2 characters in your waiting room and return them to your hand, and this card gets +3000 power until end of turn.
+EndCard
+
+Character: IMC/W115-106
+Name After School Rock Star, Riina Tada
+JPName 放課後ロックスター 多田李衣菜
+Color B
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Rock
+Auto:
+{
+
+}
+Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 1000 times the number of your other «Music» characters.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the level of the character facing this card is 2, this card gets +3000 power until end of turn.
+EndCard
+
+Character: IMC/W115-107
+Name Prominence Pride, Karen Hojo
+JPName プロミネンス・プライド 北条加蓮
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Nail
+Cont:
+{
+
+}
+Text Cont: During your turn, if the number of other «Music» characters you have is 2 or more, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if you have another Blue character reveal the top card of your deck. If it's level 2 or higher or "Eternal Bloom, Rin Shibuya", put it in your stock. (climax are considered to be level 0 for this card effect. )
+EndCard
+
+Character: IMC/W115-108
+Name Maiden's Smile, Yoriko Furusawa
+JPName 少女の微笑 古澤頼子
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 3000
+Soul 1
+Trait1 Music
+Trait2 Art
+Cont:
+{
+
+}
+Text Cont: ASSIST Your «Music» characters in front of this card get +X power. X equals 500 times level of that character.
+Auto:
+{
+
+}
+Text Auto: This card ability activates up to once per turn. When your other "A Page of the Sea Breeze, Fumika Sagisawa" is placed on the stage from your hand, you may choose 1 «Music» character in your waiting room and put it to stock.
+Auto:
+{
+
+}
+Text Auto: When your climax with a Gate trigger icon is triggered, you may draw a card. If you do, discard a card from your hand to the waiting room.
+EndCard
+
+Character: IMC/W115-109
+Name Sunset Venus, Miyu Mifune
+JPName サンセットヴィーナス 三船美優
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Aroma
+Auto:
+{
+
+}
+Text Auto: [(1)] When you use this card's BACKUP, you may pay the cost. If you do, choose a "Sunset Venus, Miyu Mifune" in your waiting room and return it to your hand.
+Backup 2500
+EndCard
+
+Character: IMC/W115-110
+Name Layered My Edgy, Akira Sunazuka
+JPName レイヤード・マイ・エッジィ 砂塚あきら
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Music
+Trait2 Fashion
+Cont:
+{
+
+}
+Text Cont: If there are 2 or less climax in your waiting room, this card gets -1 level while in your hand.
+Cont:
+{
+
+}
+Text Cont: During your turn, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: IMC/W115-111
+Name Immortal Network, Noa Takamine
+JPName イモータル・ネットワーク 高峯のあ
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Music
+Trait2 Star
+Cont:
+{
+
+}
+Text Cont: During your turn, this card gets +3000 power.
+Auto:
+{
+
+}
+Text Auto: [(3) Put 1 card from your hand to the waiting room, put 1 of your other characters from the stage in the waiting room] This card ability activates up to once per turn. During the turn this card is placed on the stage from your hand, at the end of this card's attack, you may pay the cost. If you do, stand this card.
+EndCard
+
+Character: IMC/W115-112
+Name A Butterfly's Parting Gift, Syuko Shiomi
+JPName 蝶のはなむけ 塩見周子
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Sweets
+Combo Nightwear
+Auto:
+{
+
+}
+Text Auto: When this card is placed form hand to the stage, you may perform the following effect. "Your opponent chooses a climax in their waiting room, returns all cards other than the chosen card from their waiting room to their deck, and shuffle your deck."
+Auto:
+{
+
+}
+Text Auto: CxCombo [(1)] When "Nightwear" is placed on your climax area, you may pay the cost. If you do, choose 1 of your opponent's characters, and either (a) stand it and move it to another open position on your opponent's stage or (b) choose 1 o your opponent's other characters, then stand and exchange them.
+EndCard
+
+Character: IMC/W115-113
+Name Mikansei no Rekishi, Asuka Ninomiya
+JPName 未完成の歴史 二宮飛鳥
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Chunibyo
+Auto:
+{
+
+}
+Text Auto: When your climax is placed on your climax area, choose up to 2 of your characters, and those characters get +1000 power until end of turn,
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When your climax with a Gate trigger icon is triggered, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: IMC/W115-114
+Name Jet to the Future, Riina Tada
+JPName Jet to the Future 多田李衣菜
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Rock
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Music» characters you have is 2 or more, you may draw a card. If you do, discard a card from your hand to the waiting room.
+Auto:
+{
+
+}
+Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
+EndCard
+
+Character: IMC/W115-115
+Name Sasanoha ni, Utakata ni., Fumika Sagisawa
+JPName ささのはに、うたかたに。 鷺沢文香
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Book
+Cont:
+{
+
+}
+Text Cont: During your turn, this card gets +1000 power for each of your other «Music» characters
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if there's a climax with a draw trigger icon in your climax area, choose up to 1 character in your waiting room and return it to your hand, and discard a card from your hand to the waiting room.
+EndCard
+
+Character: IMC/W115-116
+Name The Night Lit By An Angel, Yoriko Furusawa
+JPName 天使の灯す夜 古澤頼子
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Art
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose a card in your hand and put it in your stock.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1)] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, perform the following action. "Search your deck for up to 1 «Music» character, reveal it, put it in your hand, discard a card from your hand to the waiting room, and shuffle your deck."
+EndCard
+
+Character: IMC/W115-117
+Name Mikansei no Rekishi, Karen Hojo
+JPName 未完成の歴史 北条加蓮
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Music
+Trait2 Nail
+Cont:
+{
+
+}
+Text Cont: During attack phase, you cannot return characters from your waiting room to your hand by your own card effects.
+Act:
+{
+
+}
+Text Act: [Put 1 card from your hand to the waiting room, put this card in the waiting room] Choose a character in your waiting room with either "Rin", "Nao", or "Karen" in its card name and return it to your hand.
+EndCard
+
+Character: IMC/W115-118
+Name Innocent Bride, Nao Kamiya
+JPName 純真の花嫁 神谷奈緒
+Color B
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 Music
+Trait2 Anime
+Cont:
+{
+
+}
+Text Cont: If all your characters are Blue, this card gets +3000 power.
+*OnAttackPay1ToDoubleTrigger
+EndCard
+
+Character: IMC/W115-119
+Name Red Sole, Miyu Mifune
+JPName レッド・ソール 三船美優
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Aroma
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, all your characters get the following ability. "Auto: [Put a Blue card from your hand to the waiting room] When the trigger check of this card reveals a climax, you may pay the cost. If you do, choose 1 «Music» character in your waiting room and return it to your hand."
+EndCard
+
+Character: IMC/W115-120
+Name Street Runway, Akira Sunazuka
+JPName ストリート・ランウェイ 砂塚あきら
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 5500
+Soul 1
+Trait1 Music
+Trait2 Fashion
+Combo Seikansekai
+Cont:
+{
+
+}
+Text Cont: If the number of other characters you have is 3 or more, this card gets +5000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Seikansekai" is in your climax area and you have another Yellow character and another Red character, choose 1 of the following 2 effects and perform it. "Choose 1 «Music» character in your waiting room and return it to your hand, choose 1 of your characters, and that character gets +5000 power until end of turn." "[Put a Blue card from your hand to the waiting room] You may pay the cost. If you do, deal 2 damage to your opponent."
+EndCard
+
+Character: IMC/W115-121
+Name Sincere Cheer, Honami Nishikawa
+JPName シンシアチアー 西川保奈美
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 6500
+Soul 1
+Trait1 Music
+Trait2 Opera
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the level of the character facing this card is 3 or higher, this card gets +6000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, if there's a climax in your climax area, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: IMC/W115-122
+Name Summer Cider, Hayate Hisakawa
+JPName サマーサイダー 久川 颯
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Twins
+Cont:
+{
+
+}
+Text Cont: If there are 2 or more Yellow climax and 2 or more Blue climax in your waiting room, this card gets -1 level while in your hand.
+Cont:
+{
+
+}
+Text Cont: If the number of other «Music» characters you have is 2 or more, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, look at up to the top 4 cards of your deck, choose up to 2 «Music» characters among them, reveal them, put them in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: IMC/W115-123
+Name Pure Valentine, Rin Shibuya
+JPName ピュアバレンタイン 渋谷 凛
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Flower
+Cont:
+{
+
+}
+Text Cont: If you have another Yellow character and another Red character, all your other characters get +500 power.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: IMC/W115-124
+Name Inspect Concordia, Noa Takamine
+JPName インスペクトコンコルディア 高峯のあ
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Star
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at up to the top 2 cards of your deck, choose up to 2 cards among them and put them on top of your deck in any order, and put the rest into your waiting room.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if there is 1 or less characters in your opponent's center stage, you may choose a cost 0 or lower character in your opponent's center stage and put it on the bottom of the deck.
+EndCard
+
+Character: IMC/W115-125
+Name NATSU KOI, Syuko Shiomi
+JPName 夏恋 -NATSU KOI- 塩見周子
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Sweets
+Auto:
+{
+
+}
+Text Auto: [Put 2 climax with Gate trigger icon from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 2 «Music» characters, reveal them, put them in your hand, and shuffle your deck.
+EndCard
+
+Character: IMC/W115-126
+Name Stage of Magic, Rin Shibuya
+JPName ステージオブマジック 渋谷 凛
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Flower
+Cont:
+{
+
+}
+Text Cont: During your turn, if you have another «Music» character, this card gets +3000 power.
+*OnAttackPay1ToDoubleTrigger
+EndCard
+
+Character: IMC/W115-127
+Name Inochi Moyashite Koiseyo Otome, Kaede Takagaki
+JPName 命燃やして恋せよ乙女 高垣 楓
+Color B
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Music
+Trait2 Mysterious
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if you have another Yellow character and another Red character, look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
+EndCard
+
+Character: IMC/W115-128
+Name Admired Lady, Kate
+JPName レディ・アドマイヤ ケイト
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Book
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: IMC/W115-129
+Name Starlight School, Anastasia
+JPName スターライトスクール アナスタシア
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Star
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the cost of the battle opponent of this card is 1 or lower, you may put that character on the bottom of the deck.
+EndCard
+
+Character: IMC/W115-130
+Name Aikurushii, Kanade Hayami
+JPName あいくるしい 速水 奏
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Kiss
+Auto:
+{
+
+}
+Text Auto: When your climax is placed on your climax area, choose 1 of your characters, and that character gets +4000 power until the end of your opponent's next turn.
+Act:
+{
+
+}
+Text Act: [Rest this card] draw a card, and discard a card from your hand to the waiting room.
+EndCard
+
+Character: IMC/W115-131
+Name Crimson Princess of Spring Dawn, Ranko Kanzaki
+JPName 春暁の紅姫 神崎蘭子
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 6500
+Soul 1
+Trait1 Music
+Trait2 Darkness
+*Level3Assist
+Auto:
+{
+
+}
+Text Auto: [(2) Put 2 climax from your hand to the waiting room] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your opponent's characters, and that character gets the following ability until end of turn. "Cont: This card cannot deal damage to players."
+EndCard
+
+Character: IMC/W115-132
+Name Gin no Iruka to Atsui Kaze, Minami Nitta
+JPName 銀のイルカと熱い風 新田美波
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 6500
+Soul 1
+Trait1 Music
+Trait2 Sports
+Auto:
+{
+
+}
+Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 1000 times the number of your other «Music» characters.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your other «Music» characters, and that character gets +X power until end of turn. X equals 1000 times the number of your other «Music» characters.
+EndCard
+
+Character: IMC/W115-133
+Name Christmas Eve Wish, Arisu Tachibana
+JPName 聖夜の願い 橘 ありす
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Book
+Cont:
+{
+
+}
+Text Cont: If your opponent has a level 3 or higher character, this card gets -1 level while in your hand.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Music» character, you may choose 1 of your opponent's level 3 or lower center stage characters and put that character on the bottom of their deck.
+EndCard
+
+Climax: IMC/W115-134
+Name VOY@GER
+JPName VOY@GER
+*GateClimax
+EndCard
+
+Climax: IMC/W115-135
+Name Nightwear
+JPName Nightwear
+*GateClimax
+EndCard
+
+Climax: IMC/W115-136
+Name Seizon Honnou Valkyria
+JPName 生存本能ヴァルキュリア
+*BookClimax
+EndCard
+
+Climax: IMC/W115-137
+Name Souyoku no Aria
+JPName 双翼の独奏歌
+*BookClimax
+EndCard
+
+Climax: IMC/W115-138
+Name Seikansekai
+JPName 星環世界
+*GateClimax
+EndCard
+
+Character: IMC/W115-T01
+Name Come with Me!, Yuuki Otokura
+JPName カム・ウィズミー！ 乙倉悠貴
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Sports
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your characters, and that character gets +1500 power until end of turn.
+*RedLevel0Bomb
+EndCard
+
+Character: IMC/W115-T02
+Name My Fairy Tale, Chieri Ogata
+JPName マイ・フェアリーテイル 緒方智絵里
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Clover
+Auto:
+{
+
+}
+Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
+*StockOnCancel
+EndCard
+
+Character: IMC/W115-T03
+Name Deep Crimson Makeup, Sae Kobayakawa
+JPName 深紅の心化粧 小早川紗枝
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Yukata
+Cont:
+{
+
+}
+Text Cont: Your other character in the middle position of your center stage gets +500 power.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 character in your waiting room and return it to your hand.
+EndCard
+
+Character: IMC/W115-T04
+Name Innocent White, Momoka Sakurai
+JPName イノセント・ホワイト 櫻井桃華
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Daughter
+Cont:
+{
+
+}
+Text Cont: If you have another Red character, this card gets +3000 power.
+EndCard
+
+Character: IMC/W115-T05
+Name Hotter than the Sun!, Yuka Nakano
+JPName 太陽より熱く！ 中野有香
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Karate
+*500Assist
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your Red characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: IMC/W115-T06
+Name individuals, Mirei Hayasaka
+JPName individuals 早坂美玲
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Eye Patch
+Cont:
+{
+
+}
+Text Cont: If you have 1 or less other character, this card gets +1 level and +2500 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters, and that character gets the following ability until the end of your opponent's next turn. "Cont: This card cannot move to another position."
+EndCard
+
+Character: IMC/W115-T07
+Name Serene Essence, Shiki Ichinose
+JPName 清澄のエッセンス 一ノ瀬志希
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Gifted (IMC
+*OnPlayScry
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 character in your waiting room and return it to your hand.
+EndCard
+
+Character: IMC/W115-T08
+Name Self-Proclaimed City Favorite, Sachiko Koshimizu
+JPName 自称・街の人気者 輿水幸子
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Cute
+*OnPlayReorderTop2
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: IMC/W115-T09
+Name Plumes in My Color, Hotaru Shiragiku
+JPName わたし色の羽根で 白菊ほたる
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Smile
+Cont:
+{
+
+}
+Text Cont: During your turn, this card gets +1000 power. \Auto: [(1) Put a «Music» character from your waiting room on the bottom of your clock] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
+EndCard
+
+Character: IMC/W115-T10
+Name Soleil et Lune, Frederica Miyamoto
+JPName ソレイユ・エ・リュヌ 宮本フレデリカ
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Fashion
+Cont:
+{
+
+}
+Text Cont: If all your characters are Red, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, if there's a climax in your climax area, you may put the top card of your deck in your stock.
+EndCard
+
+Character: IMC/W115-T11
+Name Youthful Debut, Hiromi Seki
+JPName 青春デビュー 関 裕美
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Accessory
+Cont:
+{
+
+}
+Text Cont: If all your characters are Red, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Chocolate? Lemonade? Docchi??" is in your climax area and all your characters are Red, you may choose a Red character in your waiting room and return it to your hand.
+EndCard
+
+Character: IMC/W115-T12
+Name Thousand Year Covenant, Chitose Kurosaki
+JPName 千年の誓約 黒埼ちとせ
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Moon
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may reveal up to 3 cards from the top of your deck. If you reveal 1 or more card this way, choose up to 1 Red character among them, put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
+EndCard
+
+Character: IMC/W115-T13
+Name Dolce Classica, Kanako Mimura
+JPName ドルチェ・クラシカ 三村かな子
+Color R
+Level 1
+Cost 1
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Sweets
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your Red characters, and that character gets +2000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put a Red card from your hand to the waiting room]
+EndCard
+
+Character: IMC/W115-T14
+Name Dreamin' Bride, Miku Maekawa
+JPName ドリーミンブライド 前川みく
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Cat-Character
+Cont:
+{
+
+}
+Text Cont: If all your characters are Red, this card gets +5000 power.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the level of the character facing this card is 2 or higher, this card gets +6000 power until end of turn.
+EndCard
+
+Character: IMC/W115-T15
+Name Treat-or-Treat, Mayu Sakuma
+JPName トリート・オア・トリート 佐久間まゆ
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 6000
+Soul 1
+Trait1 Music
+Trait2 Cuisine
+Cont:
+{
+
+}
+Text Cont: ASSIST Your «Music» characters in front of this card get +1500 power.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: IMC/W115-T16
+Name Lazy Fairy, Anzu Futaba
+JPName なまけものフェアリー 双葉 杏
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 7500
+Soul 2
+Trait1 Music
+Trait2 Candy
+Cont:
+{
+
+}
+Text Cont: If the number of other «Music» characters you have is 2 or more, this card gets +3500 power and "Auto: ENCORE [Put a «Music» character from your hand to the waiting room]".
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your standing Red characters and rest it.
+EndCard
+
+Character: IMC/W115-T17
+Name Dreamin' Usamin, Nana Abe
+JPName ドリーミン☆ウサミン 安部菜々
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Usamin
+Auto:
+{
+
+}
+Text Auto: [(2) Put 1 character from your stage in the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
+Backup 2500
+EndCard
+
+Character: IMC/W115-T18
+Name Sweetheart Romance, Kyoko Igarashi
+JPName スウィートハートロマンス 五十嵐響子
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Housework
+*Healer
+Auto:
+{
+
+}
+Text Auto: CxCombo [(1) Put 1 card from your hand to the waiting room] When this card attacks, if "Palette" is in your climax area and all your characters are Red, you may pay the cost. If you do, deal 3 damage to your opponent.
+EndCard
+
+Character: IMC/W115-T19
+Name Youthful Romance, Miho Kohinata
+JPName ユースフルロマンス 小日向美穂
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 the Sun
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 character in your hand whose level is equal to or lower than your level, put it in any position on the stage, and this card gets +3500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Palette" is in your climax area, you may deal 1 damage to your opponent.
+EndCard
+
+Character: IMC/W115-T20
+Name Peaceful Days, Uzuki Shimamura
+JPName ピースフルデイズ 島村卯月
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Smile
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose a climax in your waiting room with a Comeback trigger icon and return it to your hand.
+EndCard
+
+Event: IMC/W115-T21
+Name Atashi Ponkotsu Android
+JPName アタシポンコツアンドロイド
+Color R
+Level 2
+Cost 1
+Effect: 
+{
+
+}
+Text BRAINSTORM If you have 3 or less Red characters, you cannot play this card from your hand. Flip over the top 3 cards of your deck and put them in the waiting room If there's a climax among them, choose 1 of your characters in battle, and that character gets +4000 power and the following ability until end of turn. "Cont: The character facing this card cannot deal damage to players." Otherwise, put this card on top of the deck.
+EndCard
+
+Climax: IMC/W115-T22
+Name Chocolate? Lemonade? Docchi??
+JPName チョコレート？レモネード？どっち？？
+*DoorClimax
+EndCard
+
+Climax: IMC/W115-T23
+Name Palette
+JPName Palette
+*DoorClimax
+EndCard
+
+Character: IMC/W115-T24
+Name Advance Aventure, Mizuki Kawashima
+JPName アドバンス・アバンチュール 川島瑞樹
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Announcer
+*OnPlayReorderTop2
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your «Music» characters, and that character gets +1500 power until end of turn.
+EndCard
+
+Character: IMC/W115-T25
+Name Life Online, Akira Sunazuka
+JPName ライフ・オンライン 砂塚あきら
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Fashion
+*500Assist
+Act:
+{
+
+}
+Text Act: [(2) Rest this card] Search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: IMC/W115-T26
+Name Arisu's Tea Party, Arisu Tachibana
+JPName ありすのティーパーティー 橘 ありす
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Book
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your characters, and that character gets +1000 power until end of turn.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 character in your waiting room and return it to your hand.
+EndCard
+
+Character: IMC/W115-T27
+Name Twinkle Party, Karen Hojo
+JPName トゥインクル・パーティー 北条加蓮
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Nail
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's attack phase, choose 1 of your characters, and that character gets +500 power until end of turn.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 character in your waiting room and return it to your hand.
+EndCard
+
+Character: IMC/W115-T28
+Name Crystal Snow, Anastasia
+JPName クリスタルスノー アナスタシア
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Star
+Cont:
+{
+
+}
+Text Cont: If there are 2 or less cards in your stock, this card gets +1500 power.
+*FreeRunner
+EndCard
+
+Character: IMC/W115-T29
+Name Rouge Couture, Miyu Mifune
+JPName ルージュクチュール 三船美優
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Aroma
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Music» character, put it in your hand and discard a card from your hand to the waiting room. 
+Auto:
+{
+
+}
+Text Auto: [Put a «Music» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw a card.
+EndCard
+
+Character: IMC/W115-T30
+Name Over Myself, Rin Shibuya
+JPName オーバー・マイセルフ 渋谷 凛
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Flower
+Cont:
+{
+
+}
+Text Cont: You may have up to 4 total copies of cards between cards with the same name as this card and "Rin Shibuya".
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 Blue character, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: IMC/W115-T31
+Name White Snow Doll, Koume Shirasaka
+JPName ホワイトスノードール 白坂小梅
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Occult
+Cont:
+{
+
+}
+Text Cont: You may have up to 4 total copies of cards between cards with the same name as this card and "Koume, Loves Horror".
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at up to 4 cards from the top of your deck and search for up to 1 climax, reveal it, put it in your hand, and put the rest into your waiting room. If you put a card in your hand this way, discard a card from your hand to the waiting room.
+EndCard
+
+Character: IMC/W115-T32
+Name Noble Venus, Minami Nitta
+JPName ノーブルヴィーナス 新田美波
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Sports
+Cont:
+{
+
+}
+Text Cont: If there are 5 or more cards in your hand, this card gets +2000 power.
+EndCard
+
+Character: IMC/W115-T33
+Name A Beautiful Bamboo Vessel, Hajime Fujiwara
+JPName なよ竹の美器 藤原 肇
+Color B
+Level 1
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Pottery
+Auto:
+{
+
+}
+Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed, if the cost of the battle opponent of this card is 0 or lower, you may put that character on the bottom of the deck.
+EndCard
+
+Character: IMC/W115-T34
+Name Dress Up Night, Nao Kamiya
+JPName ドレスアップナイト 神谷奈緒
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Anime
+Combo Trinity Field
+Cont:
+{
+
+}
+Text Cont: If the number of other «Music» characters you have is 2 or more, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Trinity Field" is in your climax area and the number of other «Music» characters you have is 2 or more, put the top 3 cards of your deck in the waiting room, choose up to 1 level X or lower character in your waiting room and return it to your hand. X equals the number of character cards put in the waiting room by this card effect.
+EndCard
+
+Character: IMC/W115-T35
+Name Night Scene's Dawn Breeze, Syuko Shiomi
+JPName 夜色の暁風 塩見周子
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Sweets
+Cont:
+{
+
+}
+Text Cont: For each of your other «Music» characters in the backstage, this card gets +1000 power.
+EndCard
+
+Character: IMC/W115-T36
+Name Night Wind's Temptation, Kaede Takagaki
+JPName 夜風の誘い 高垣 楓
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Mysterious
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, reveal the top card of your deck. If it's a «Music» character, put it in your hand and discard a card from your hand to the waiting room. 
+Backup 2000
+EndCard
+
+Character: IMC/W115-T37
+Name Beautiful Muse, Ryo Matsunaga
+JPName 麗しのミューズ 松永 涼
+Color B
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 Music
+Trait2 Rock
+Cont:
+{
+
+}
+Text Cont: If the number of other «Music» characters you have is 2 or more, this card gets +2000 power.
+*HandEncore
+EndCard
+
+Character: IMC/W115-T38
+Name Awaiter of Destiny, Ranko Kanzaki
+JPName 運命の待ち人 神崎蘭子
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Darkness
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose 1 of your opponent's level 1 or higher characters. If you do, your opponent chooses a level X or lower character in their waiting room and exchange it with the character you chose. X equals level of the character you chose -1.
+EndCard
+
+Character: IMC/W115-T39
+Name End of the Blue, Kanade Hayami
+JPName エンド・オブ・ザ・ブルー 速水 奏
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Music
+Trait2 Kiss
+Cont:
+{
+
+}
+Text Cont: During your turn, for each of your other «Music» characters, this card gets +1500 power.
+EndCard
+
+Character: IMC/W115-T40
+Name Eye-Opening Dream, Riina Tada
+JPName 目をあけてみる夢 多田李衣菜
+Color B
+Level 2
+Cost 2
+Trigger Soul
+Power 6000
+Soul 2
+Trait1 Music
+Trait2 Rock
+Cont:
+{
+
+}
+Text Cont: For each of your other «Music» characters, this card gets +1000 power.
+*HandEncore
+EndCard
+
+Character: IMC/W115-T41
+Name Gift for ANSWER, Nono Morikubo
+JPName ギフト・フォー・アンサー 森久保乃々
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 7000
+Soul 2
+Trait1 Music
+Trait2 Poem
+Cont:
+{
+
+}
+Text Cont: ASSIST Your «Music» characters in front of this card get +2000 power and the following ability. "Cont: During battles involving this card, your opponent cannot play BACKUP from hand."
+*OnPlayCheck3
+Auto:
+{
+
+}
+Text Auto: This card ability activates up to 3 times per turn. When your other character is placed from the waiting room to the stage, choose 1 of your characters, and that character gets +1 soul until end of turn.
+EndCard
+
+Character: IMC/W115-T42
+Name Silent Banquet, Fumika Sagisawa
+JPName 密やかな饗宴 鷺沢文香
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Book
+Combo Saite Jewel
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand or placed by the effect of the CxCombo of "Silent Banquet, Fumika Sagisawa" to the stage, you may put the top card of your clock in the waiting room.
+Auto:
+{
+
+}
+Text Auto: CxCombo [Put 1 card from your hand to the waiting room] When "Saite Jewel" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, choose 1 of the following 2 effects and perform it. "Your opponent puts the top 24 cards of their deck in their waiting room." "Choose up to 1 «Music» character in your waiting room and put it in any position on the stage."
+EndCard
+
+Character: IMC/W115-T43
+Name Palace of Fantasia, Asuka Ninomiya
+JPName パレス・オブ・ファンタジア 二宮飛鳥
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Chunibyo
+Cont:
+{
+
+}
+Text Cont: If this card is in the middle position of your center stage, for each of your other «Music» characters, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: During your opponent's turn, when damage taken by you isn't canceled, if this card is in the center stage, look at the top card of your deck and put it either on top of the deck or in the waiting room.
+EndCard
+
+Event: IMC/W115-T44
+Name Nation Blue
+JPName Nation Blue
+Color B
+Level 1
+Cost 1
+Effect: 
+{
+
+}
+Text You may pay the cost. If you do, search your deck for up to 2 «Music» characters, reveal them, put them in your hand, discard a card from your hand to the waiting room, choose 1 of your characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Climax: IMC/W115-T45
+Name Trinity Field
+JPName Trinity Field
+*GateClimax
+EndCard
+
+Climax: IMC/W115-T46
+Name Saite Jewel
+JPName 咲いてJewel
+*GateClimax
+EndCard
+
+Character: IMC/W115-T47
+Name Circle of Friends, Rika Jougasaki
+JPName サークル☆オブ☆フレンズ 城ヶ崎莉嘉
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Gal
+*500Assist
+Auto:
+{
+
+}
+Text Auto: When your card with a soul trigger icon is triggered, choose 1 of your «Music» characters, and that character gets +1500 power until end of turn.
+EndCard
+
+Character: IMC/W115-T48
+Name Sexy BANG BANG, Sanae Katagiri
+JPName セクシーBANG☆BANG 片桐早苗
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Police
+Auto:
+{
+
+}
+Text Auto: At the beginning of your climax phase, choose 1 of your characters, and that character gets +500 power until end of turn.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 character in your waiting room and return it to your hand.
+EndCard
+
+Character: IMC/W115-T49
+Name Lovestruck Summer, Kirari Moroboshi
+JPName めろめろサマー 諸星きらり
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Happy-Happy
+Cont:
+{
+
+}
+Text Cont: If there's a climax with a Choice trigger icon in your climax area, this card gets a Choice trigger icon in all zones.
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, put the top 2 cards of your deck in the waiting room. If there's a climax among them, you may pay the cost. If you do, search your deck for up to 1 Yellow character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
