@@ -3427,11 +3427,7 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Sports
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your characters, and that character gets +1500 power until end of turn.
+*OnPlayGivePower(1500,Any)
 *RedLevel0Bomb
 EndCard
 
@@ -3445,11 +3441,7 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Clover
-Auto:
-{
-
-}
-Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
+*OnPlayTradeClimaxForCharacter(Music)
 *StockOnCancel
 EndCard
 
@@ -3463,16 +3455,8 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Yukata
-Cont:
-{
-
-}
-Text Cont: Your other character in the middle position of your center stage gets +500 power.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 character in your waiting room and return it to your hand.
+*GiveMiddlePower(500,Music)
+*Act1RestSelfSalvageBrainstorm(Any)
 EndCard
 
 Character: IMC/W115-T04
@@ -3485,9 +3469,12 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Daughter
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && ColorIs Red
+    {
+        GainPower 3000
+    }
 }
 Text Cont: If you have another Red character, this card gets +3000 power.
 EndCard
@@ -3503,9 +3490,12 @@ Soul 1
 Trait1 Music
 Trait2 Karate
 *500Assist
-Act:
+Act: RestSelf
 {
-
+    TargetLocation Stage
+    NarrowTargets ColorIs Red
+    ChooseCharacterFromTargets Choose a character to give +1000 power.
+    GainPower 1000
 }
 Text Act: [Rest this card] Choose 1 of your Red characters, and that character gets +1000 power until end of turn.
 EndCard
@@ -3520,14 +3510,29 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Eye Patch
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContainsOrLess 1 Other
+    {
+        GainLevel 1
+        GainPower 2500
+    }
 }
 Text Cont: If you have 1 or less other character, this card gets +1 level and +2500 power.
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to give the effect
+    UntilEndOfOpponentsTurn
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            GainSpecialEffect CannotMove
+        }
+        Text Cont: This card cannot move to another position.
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters, and that character gets the following ability until the end of your opponent's next turn. "Cont: This card cannot move to another position."
 EndCard
@@ -3543,11 +3548,7 @@ Soul 1
 Trait1 Music
 Trait2 Gifted
 *OnPlayScry
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 character in your waiting room and return it to your hand.
+*Act1RestSelfSalvageBrainstorm(Any)
 EndCard
 
 Character: IMC/W115-T08
@@ -3561,11 +3562,7 @@ Soul 1
 Trait1 Music
 Trait2 Cute
 *OnPlayReorderTop2
-Auto:
-{
-
-}
-Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
+*DropSearch(Music)
 EndCard
 
 Character: IMC/W115-T09
@@ -3578,11 +3575,15 @@ Power 2000
 Soul 1
 Trait1 Music
 Trait2 Smile
-Cont:
+*PowerOnMyTurn(1000)
+Auto: OnSentFromStageToWaitingRoom
 {
-
+    PayCost 1 SendFromWaitingRoom 1 Clock IsCharacter && HasTrait Music
+    {
+        SearchWaitingRoom IsCharacter && HasTrait Music
+    }
 }
-Text Cont: During your turn, this card gets +1000 power. \Auto: [(1) Put a «Music» character from your waiting room on the bottom of your clock] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
+Text Auto: [(1) Put a «Music» character from your waiting room on the bottom of your clock] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
 EndCard
 
 Character: IMC/W115-T10
@@ -3595,14 +3596,20 @@ Power 4000
 Soul 1
 Trait1 Music
 Trait2 Fashion
-Cont:
+Cont: GiveSelf
 {
-
+    If AllYourCharacters IsColor Red
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If all your characters are Red, this card gets +2000 power.
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If LocationContains Climax 1 Any
+    {
+        *OptionalBlindStock
+    }
 }
 Text Auto: When this card's battle opponent becomes reverse, if there's a climax in your climax area, you may put the top card of your deck in your stock.
 EndCard
@@ -3617,14 +3624,20 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 Accessory
-Cont:
+Cont: GiveSelf
 {
-
+    If AllYourCharacters IsColor Red
+    {
+        GainPower 1000
+    }
 }
 Text Cont: If all your characters are Red, this card gets +1000 power.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Chocolate? Lemonade? Docchi?? && AllYourCharacters IsColor Red
+    {
+        SearchWaitingRoom IsCharacter && ColorIs Red
+    }
 }
 Text Auto: CxCombo When this card attacks, if "Chocolate? Lemonade? Docchi??" is in your climax area and all your characters are Red, you may choose a Red character in your waiting room and return it to your hand.
 EndCard
