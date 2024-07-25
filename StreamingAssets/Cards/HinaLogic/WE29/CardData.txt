@@ -281,7 +281,7 @@ Power 2500
 Soul 1
 Trait1 Foreigner
 Trait2 Teacher
-Auto: OnUseFusion
+Auto: OnUse Fusion
 {
     If Compare MyLevel 2 OrMore
     {
@@ -311,7 +311,7 @@ Cont: GiveAll
     }
 }
 Text Cont: During your turn, all your other characters with either «Logicalist» or «Foreigner» get +1000 power.
-Auto: OnUseFusion
+Auto: OnUse Fusion
 {
     *OptionalDrawDiscard
 }
@@ -1159,7 +1159,7 @@ Soul 1
 Trait1 Logicalist
 Trait2 Student Council
 *LevelAssistTrait(Logicalist|Foreigner)
-Auto: OnUseFusion
+Auto: OnUse Fusion
 {
     *OptionalDrawDiscard
 }
