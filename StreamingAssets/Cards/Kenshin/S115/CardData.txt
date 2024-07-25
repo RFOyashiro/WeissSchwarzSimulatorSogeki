@@ -372,7 +372,17 @@ Auto: OnDamageCanceled
         If LocationContains Hand 2 NameEquals Hitokiri Battousai, Kenshin Himura
         PayCost 0
         {
-            SearchLocationForTargets Hand 2 2 NameEquals Hitokiri Battousai, Kenshin Himura
+            TargetLocation Hand
+            NarrowTargets NameEquals Hitokiri Battousai, Kenshin Himura
+            SaveTargets
+            FirstTarget
+            RemoveCurrentFromSavedTargets
+            PushTargets
+            LoadTargets
+            FirstTarget
+            SaveTargets
+            PopTargets
+            AddSavedToCurrentTargets
             RevealTargets
             MoveCard Hand
             Mill 1
@@ -397,16 +407,31 @@ Soul 2
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Brawler
 Combo Full-Powered Special Move
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If PlayedThisTurn
+    {
+        Mill 1
+        IfTarget HasTrigger Soul
+        {
+            TargetSelf
+            Stand
+        }
+    }
 }
-Text Auto: This card ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, put the top card of your deck in the waiting room. If that card has a soul trigger icon, stand this card.
-Auto:
+TimesPerTurn 1
+Text Auto: This card ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, put the top card of your deck in the waiting room. If that card has a Soul trigger icon, stand this card.
+Auto: OnAttack
 {
-
+    If Climax Full-Powered Special Move
+    {
+        PayCost Discard 2 Any
+        {
+            Burn 5
+        }
+    }
 }
-Text Auto: CxCombo [Put 2 cards from your hand to the waiting room] When this card attacks, if "Full-powered Special Move" is in your climax area, you may pay the cost. If you do, deal 5 damage to your opponent.
+Text Auto: CxCombo [Put 2 cards from your hand to the waiting room] When this card attacks, if "Full-Powered Special Move" is in your climax area, you may pay the cost. If you do, deal 5 damage to your opponent.
 EndCard
 
 Character: RKN/S115-014
@@ -420,9 +445,9 @@ Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Swordsman
 *OnPlayFlicker
-Act:
+Act: 1 SendSelf WaitingRoom
 {
-
+    *Check4Add1(Meiji Swordsman Romantic Story)
 }
 Text Act: [(1) Put this card in the waiting room] Look at up to the top 4 cards of your deck, choose up to 1 «Meiji Swordsman Romantic Story» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
@@ -437,14 +462,26 @@ Power 1500
 Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Brawler
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Meiji Swordsman Romantic Story
+    {
+        *GiveCharacterPower(2000,Any)
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Meiji Swordsman Romantic Story» character, choose 1 of your characters, that character gets +2000 power until end of turn.
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchLocationForTargets Clock 1 1 Any
+        RevealTargets
+        MoveCard Hand
+        TargetTop Deck 1
+        MoveCard Clock
+    }
 }
 Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
 EndCard
@@ -459,16 +496,8 @@ Power 4000
 Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Swordsman
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 500 times the number of your «Meiji Swordsman Romantic Story» characters.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, if the character facing this card is level 2, this card gets +6000 power until end of turn.
+*OnPlayGainPowerForEach(500,Meiji Swordsman Romantic Story)
+*GainPowerWhenAttackingLevel2(6000)
 EndCard
 
 Character: RKN/S115-017
@@ -481,16 +510,15 @@ Power 4000
 Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Acting Instructor
-Auto:
+Auto: OnAttack
 {
-
+    If LocationContains Hand 4 Any
+    {
+        GainPower 3000
+    }
 }
 Text Auto: When this card attacks, if you have 4 or more cards in your hand, this card gets +3000 power until end of turn.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest 2 of your characters] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 character in your waiting room and return it to your hand.
+*Act1Rest2SalvageBrainstorm(Any)
 EndCard
 
 Character: RKN/S115-018
@@ -503,9 +531,19 @@ Power 4000
 Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Brawler
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 2 Other && HasTrait Meiji Swordsman Romantic Story
+    {
+        GainPower 2500
+        GainEffect
+        {
+            Auto: Encore SendFromWaitingRoomToBottom 1 Clock IsCharacter && HasTrait Meiji Swordsman Romantic Story
+            {
+            }
+            Text Auto: ENCORE [Put a «Meiji Swordsman Romantic Story» character from your waiting room on the bottom of your clock]
+        }
+    }
 }
 Text Cont: If the number of other «Meiji Swordsman Romantic Story» characters you have is 2 or more, this card gets +2500 power and "Auto: ENCORE [Put a «Meiji Swordsman Romantic Story» character from your waiting room on the bottom of your clock]".
 EndCard
@@ -520,19 +558,33 @@ Power 5500
 Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Kenjutsu
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && NameContains 薫
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If you have another character with "Kaoru" in its card name, this card gets +1500 power.
-Cont:
+Cont: GiveSelf
 {
-
+    SetXValue ThisCardsMarkers
+    GainLevel X
+    MultiplyXValue 1500
+    GainPower X
 }
-Text Cont: This card gets +1 level and +1500 power for each marker under this card
-Auto:
+Text Cont: This card gets +1 level and +1500 power for each marker underneath this card.
+Auto: OnReverseOpponent
 {
-
+    If MyTurn
+    {
+        Question Put the top card of your deck underneath this card as a marker.
+        If Yes
+        {
+            TargetTop Deck 1
+            Marker_FaceUp
+        }
+    }
 }
 Text Auto: During your turn, when this card's battle opponent becomes reverse, you may put the top card of your deck face up underneath this card as a marker.
 EndCard
@@ -548,11 +600,14 @@ Power 1500
 Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Acting Instructor
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    If AllYourCharacters HasTrait Meiji Swordsman Romantic Story
+    {
+        *OptionalBlindStock
+    }
 }
-Text Auto: When you use BACKUP of this card, if all your characters are «Meiji Swordsman Romantic Story», you may put the top card of your deck in stock.
+Text Auto: When you use "BACKUP" of this card, if all your characters are «Meiji Swordsman Romantic Story», you may put the top card of your deck in stock.
 Backup 3000
 EndCard
 
@@ -567,19 +622,29 @@ Power 6000
 Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Ukiyoe Artist
-Cont:
+Cont: GiveAll
 {
-
+    If Other && HasTrait Meiji Swordsman Romantic Story
+    {
+        SetXValue ThatCardsLevel
+        MultiplyXValue 500
+        GainPower X
+    }
 }
 Text Cont: All your other «Meiji Swordsman Romantic Story» characters get +X power. X equals 500 times the level of that character.
-Act:
+Act: RestSelf
 {
-
+    SearchLocationForTargets WaitingRoom 1 1 NameEquals Signal of Revolution
+    RevealTargets
+    Marker_FaceUp
 }
 Text Act: [Rest this card] Choose 1 "Signal of Revolution" in your waiting room and put it face up underneath this card as a marker.
-Act:
+Act: SendMarker WaitingRoom
 {
-
+    TargetLocation OpponentCenterStage
+    NarrowTargets CanBeChosen && Compare ThatCardsCost 0 OrLess
+    ChooseCharacterFromTargets Choose a character to put into waiting room.
+    MoveCard WaitingRoom
 }
 Text Act: [Put a marker from under this card in the waiting room] Choose a cost 0 or lower character in your opponent's center stage and put it in the waiting room.
 EndCard
@@ -594,16 +659,18 @@ Power 500
 Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Medical Science
-Auto:
+Auto: OnOtherPlacedOnStageFromWaitingRoom
 {
-
+    IfOther NameContains 左之助
+    {
+        PayCost 2
+        {
+            Heal
+        }
+    }
 }
-Text Auto: [(2)] When your other character with "Sanosuke" in its card name is placed from the waiting room to the stage, you may pay the cost. If you do, put the top card of your clock in the waiting room.
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your «Meiji Swordsman Romantic Story» characters, and that character gets +1000 power until end of turn.
+Text Auto: [(2)] When your other character with "Sanosuke" in its card name is placed on the stage from waiting room, you may pay the cost. If you do, put the top card of your clock in the waiting room.
+*RestGivePower(1000,Meiji Swordsman Romantic Story)
 EndCard
 
 Character: RKN/S115-023
@@ -616,16 +683,30 @@ Power 500
 Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Kenjutsu
-Cont:
+Cont: GiveAll
 {
-
+    If StageContainsOrLess 0 Other && NameEquals Cheeky Pupil, Yutaro Tsukayama
+    {
+        If Other && NameEquals Master of "Shinko-Ryu", Isurugi Raijuta
+        {
+            GainPower 2000
+            GainEffect
+            {
+                Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 1 OrMore
+                {
+                    *OptionalBlindStock
+                }
+                Text Auto: When this card's level 1 or higher battle opponent becomes reversed, you may put the top card of your deck in your stock.
+            }
+        }
+    }
 }
-Text Cont: If you don't have another "Cheeky Pupil, Yutaro Tsukayama", all your other "Isurugi Raijuta, Master of 'Shinko-Ryu'" get +2000 power and the following ability. "Auto: When a level 1 or higher battle opponent of this card becomes reversed, you may put the top card of your deck in your stock."
-Act:
+Text Cont: If you don't have another "Cheeky Pupil, Yutaro Tsukayama", all your other "Master of "Shinko-Ryu", Isurugi Raijuta" get +2000 power and the following ability. "Auto: When this card's level 1 or higher battle opponent becomes reversed, you may put the top card of your deck in your stock."
+Act: Discard 1 IsCharacter && HasTrait Meiji Swordsman Romantic Story &&& RestSelf
 {
-
+    SearchWaitingRoom NameEquals Master of "Shinko-Ryu", Isurugi Raijuta
 }
-Text Act: [Put a «Meiji Swordsman Romantic Story» character from your hand to the waiting room, rest this card] Choose 1 "Isurugi Raijuta, Master of 'Shinko-Ryu'" in your waiting room and return it to your hand.
+Text Act: [Put a «Meiji Swordsman Romantic Story» character from your hand to the waiting room, rest this card] Choose 1 "Master of "Shinko-Ryu", Isurugi Raijuta" in your waiting room and return it to your hand.
 EndCard
 
 Character: RKN/S115-024
@@ -638,16 +719,22 @@ Power 1000
 Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Acting Instructor
-Act:
+Act: 1 Discard 1 IsCharacter && HasTrait Meiji Swordsman Romantic Story &&& RestSelf
 {
-
+    *CheckAndAdd(3)
 }
 Text Act: [(1) Put a «Meiji Swordsman Romantic Story» character from your hand to the waiting room, rest this card] Look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
-Act:
+Act: 1 Rest 2 Any
 {
-
+    Brainstorm 5
+    TargetBrainstormed
+    NarrowTargets IsClimax && HasTrigger DoubleSoul
+    Repeat TargetCount
+    {
+        SearchWaitingRoom IsCharacter
+    }
 }
-Text Act: BRAINSTORM [(1) Rest 2 of your characters] Flip over the top 5 cards of your deck and put them in the waiting room. For each climax with 2 soul trigger icons revealed this way, choose up to 1 character in your waiting room and return it to your hand.
+Text Act: BRAINSTORM [(1) Rest 2 of your characters] Flip over the top 5 cards of your deck and put them in the waiting room. For each climax with 2 Soul trigger icons revealed this way, choose up to 1 character in your waiting room and return it to your hand.
 EndCard
 
 Character: RKN/S115-025
@@ -660,14 +747,38 @@ Power 1000
 Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Ukiyoe Artist
-Cont:
+Cont: GiveSelf
 {
-
+    TargetLocation Stage
+    TargetMarkersUnderTargets
+    NarrowTargets NameEquals Signal of Revolution
+    If HasTarget && StageContains 1 Other && HasTrait Meiji Swordsman Romantic Story
+    {
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                TargetBattleOpponent
+                IfTarget OnStage
+                {
+                    Question Reverse the battle opponent ?
+                    If Yes
+                    {
+                        Reverse
+                    }
+                }
+            }
+            Text Auto: When this card becomes reversed, you may reverse this card's battle opponent.
+        }
+    }
 }
-Text Cont: If "Signal of Revolution" is in your marker Zone and you have another «Meiji Swordsman Romantic Story» character, this card gets the following ability. "Auto: When this card becomes reversed, you may reverse the battle opponent of this card."
-Auto:
+Text Cont: If "Signal of Revolution" is in your markers and you have another «Meiji Swordsman Romantic Story» character, this card gets the following ability. "Auto: When this card becomes reversed, you may reverse this card's battle opponent."
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsCharacter && HasTrait Meiji Swordsman Romantic Story
+    {
+        SearchDeck NameEquals Signal of Revolution
+    }
 }
 Text Auto: [Put a «Meiji Swordsman Romantic Story» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Signal of Revolution", reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -682,14 +793,22 @@ Power 2000
 Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Swordfighter
-Auto:
+*DropSearch(Meiji Swordsman Romantic Story)
+Auto: OnAttack
 {
-
-}
-Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Meiji Swordsman Romantic Story» character, reveal it, put it in your hand, and shuffle your deck.
-Auto:
-{
-
+    PayCost 1
+    {
+        PeekTop OpponentDeck
+        Question Put that card to the bottom of the deck ?
+        If Yes
+        {
+            MoveCardToBottom OpponentDeck
+        }
+        Else
+        {
+            EndPeek
+        }
+    }
 }
 Text Auto: [(1)] When this card attacks, you may pay the cost. If you do, look at the top card of your opponent's deck and put it either on top or bottom of the deck.
 EndCard
@@ -704,11 +823,14 @@ Power 1000
 Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Brawler
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsClimax && HasTrigger DoubleSoul
+    {
+        SearchWaitingRoom IsClimax && HasTrigger DoubleSoul
+    }
 }
-Text Auto: [Put a climax with 2 soul trigger icons from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a climax with 2 soul trigger icons in your waiting room and return it to your hand.
+Text Auto: [Put a climax with 2 Soul trigger icons from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a climax with 2 Soul trigger icons in your waiting room and return it to your hand.
 *YellowCost0Bomb
 EndCard
 
@@ -722,11 +844,7 @@ Power 2000
 Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Swordsman
-Auto:
-{
-
-}
-Text Auto: When you use this card's BACKUP, if you have a «Meiji Swordsman Romantic Story» character, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
+*BackupBonus1000(Meiji Swordsman Romantic Story)
 Backup 1000
 EndCard
 
@@ -743,9 +861,14 @@ Trait1 Meiji Swordsman Romantic Story
 Trait2 Acting Instructor
 Combo What Rides on My Blade
 *500Assist
-Auto:
+Auto: OnSpecificClimaxPlay What Rides on My Blade
 {
-
+    PayCost Send 1 WaitingRoom NameContains 弥彦
+    {
+        SearchLocationForTargets WaitingRoom 0 1 NameEquals Help the Weak and Fight the Strong, Yahiko Myojin
+        PlaceOnStage true true true false
+        GainPower 3000
+    }
 }
 Text Auto: CxCombo [Put a character with "Yahiko" in its card name from your stage in the waiting room] When "What Rides on My Blade" is placed on your climax area, you may pay the cost. If you do, choose up to 1 "Help the Weak and Fight the Strong, Yahiko Myojin" in your waiting room, put it in an open position on the stage, and that character gets +3000 power until end of turn.
 EndCard
@@ -760,14 +883,23 @@ Power 4000
 Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Swordfighter
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters Other && HasTrait Meiji Swordsman Romantic Story && InLocation Backstage
+    MultiplyXValue 1000
+    GainPower X
 }
 Text Cont: This card gets +1000 power for each of your other «Meiji Swordsman Romantic Story» characters in the backstage
-Auto:
+Auto: OnOtherFrontalAttacked
 {
-
+    IfOther HasTrait Meiji Swordsman Romantic Story
+    {
+        PayCost 1 SendSelf WaitingRoom
+        {
+            TargetMyCharacterInBattle
+            GainPower 2500
+        }
+    }
 }
 Text Auto: [(1) Put this card in the waiting room] When your other «Meiji Swordsman Romantic Story» character is frontal attacked, you may pay the cost. If you do, choose 1 of your characters in battle, and that character gets +2500 power until end of turn.
 EndCard
@@ -783,16 +915,23 @@ Power 4000
 Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Swordfighter
-Cont:
+*LevelAssistTrait(Meiji Swordsman Romantic Story)
+Auto: OnClimaxPlay
 {
-
+    IfOther HasTrigger DoubleSoul
+    {
+        TargetTop Deck 3
+		If Compare TargetCount 2 OrMore
+		{
+			Reorder
+		}
+		Else
+		{
+			View
+		}
+    }
 }
-Text Cont: ASSIST Your «Meiji Swordsman Romantic Story» characters in front of this card get +X power. X equals 500 times level of that character.
-Auto:
-{
-
-}
-Text Auto: When your climax with 2 soul trigger icons is placed on your climax area, look at up to 3 cards from the top of your deck and put them on top of the deck in any order.
+Text Auto: When your climax with 2 Soul trigger icons is placed on your climax area, look at up to 3 cards from the top of your deck and put them on top of the deck in any order.
 EndCard
 
 Character: RKN/S115-032
@@ -807,14 +946,20 @@ Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Swordfighter
 Combo What Rides on My Blade
-Cont:
+Cont: GiveSelf
 {
-
+    If AllYourCharacters HasTrait Meiji Swordsman Romantic Story
+    {
+        GainPower 5000
+    }
 }
 Text Cont: If all your characters are «Meiji Swordsman Romantic Story», this card gets +5000 power.
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If Climax What Rides on My Blade
+    {
+        *OptionalBurn(1)
+    }
 }
 Text Auto: CxCombo When this card's battle opponent becomes reverse, if "What Rides on My Blade" is in your climax area, you may deal 1 damage to your opponent.
 EndCard
@@ -840,7 +985,13 @@ Level 1
 Cost 2
 Effect:
 {
-
+    MillOpponent 14
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Meiji Swordsman Romantic Story
+    {
+        MoveCard Hand
+    }
 }
 Text Your opponent puts the top 14 cards of their deck in their waiting room, you reveal the top card of your deck. If it's a «Meiji Swordsman Romantic Story», put it in your hand.
 EndCard
@@ -851,11 +1002,25 @@ JPName 革命の狼煙
 Color Y
 Level 2
 Cost 0
+Requirement StageContains 1 NameContains 津南|左之助
+Text If you don't have a character with either "Tsunan" or "Sanosuke" in its card name, you cannot play this card from hand.
 Effect:
 {
-
+    MultipleChoiceQuestion Choose 1 of the 2 following effects and perform it.\1: Look at up to the top 2 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest on top of your deck in any order.\2: Choose 1 of your opponent's cost 0 or lower characters and put it in the waiting room.|1|2
+    If Answer 0
+    {
+        Peek Deck 2
+        SaveTargets
+        Message Choose up to 1 card to add to hand.
+        ChooseCardsFromTargets 0 1 Any
+        RemoveCurrentFromSavedTargets
+        MoveCard Hand
+        EndPeek
+        LoadTargets
+        Reorder
+    }
 }
-Text If you don't have a character with either "Tsunan" or "Sanosuke" in its card name, you cannot play this card from hand. Choose 1 of the 2 following effects and perform it. "Look at up to the top 2 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest on top of your deck in any order." "Choose 1 of your opponent's cost 0 or lower characters and put it in the waiting room."
+Text Choose 1 of the 2 following effects and perform it. "Look at up to the top 2 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest on top of your deck in any order." "Choose 1 of your opponent's cost 0 or lower characters and put it in the waiting room."
 EndCard
 
 Climax: RKN/S115-036
@@ -874,7 +1039,13 @@ Climax: RKN/S115-038
 Name Full-Powered Special Move
 JPName 渾身の大技
 Color Y
-When this card is placed from hand to your climax area, choose up to 1 level 1 or lower character in your waiting room and put it in your stock, and all your characters get +1 soul until end of turn.
+Auto: OnPlay
+{
+    *PutCardFromWaitingRoomIntoStock(IsCharacter && Compare ThatCardsLevel 1 OrMore)
+    TargetLocation Stage
+    GainSoul 1
+}
+Text When this card is placed from hand to your climax area, choose up to 1 level 1 or lower character in your waiting room and put it in your stock, and all your characters get +1 soul until end of turn.
 EndCard
 
 Climax: RKN/S115-039
