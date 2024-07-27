@@ -188,7 +188,7 @@ Auto: StartOpponentAttackPhase
     If Yes
     {
         Mill 1
-        IfTarget IsColor && ColorIs Yellow
+        IfTarget IsCharacter && ColorIs Yellow
         {
             TargetLocation CenterStage
             If Compare TargetCount 2 OrLess
