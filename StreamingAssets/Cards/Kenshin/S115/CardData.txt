@@ -2236,30 +2236,15 @@ Act: RestSelf
 Text Act: [Rest this card] If there is no marker underneath this card, choose 1 "Blade Reflecting Moonlight, Hajime Saito" in your waiting room and put it face up underneath this card as a marker.
 Act: RestSelf
 {
-    TargetLocation Marker
-    NarrowTargets NameEquals Blade Reflecting Moonlight, Hajime Saito
-    If HasTarget
+    Sunder Blade Reflecting Moonlight, Hajime Saito
+    ScheduleEffectForTargets EndOfTurn
     {
-        SaveTargets
-        AddSelfToTargets
-        Exchange
-        LoadTargets
-        ScheduleEffectForTargets EndOfTurn
+        Effect:
         {
-            Effect:
-            {
-                If OnStage
-                {
-                    TargetLocation Marker
-                    NarrowTargets NameEquals Fake Identity, Hajime Saito
-                    If HasTarget
-                    {
-                        AddSelfToTargets
-                        Exchange
-                    }
-                }
-            }
+            Sunder Fake Identity, Hajime Saito
         }
+        Quick
+        Text At the end of the turn, exchange those characters.
     }
 }
 Text Act: [Rest this card] Choose 1 "Blade Reflecting Moonlight, Hajime Saito" marker underneath this card and this card and exchange them. If you do, at the end of the turn, exchange those characters.
