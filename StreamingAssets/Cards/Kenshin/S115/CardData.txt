@@ -2974,7 +2974,9 @@ Level 2
 Cost 1
 Effect:
 {
-
+    SearchWaitingRoom IsCharacter
+    SearchWaitingRoom IsCharacter
+    Discard 1 Any
 }
 Text Choose up to 2 characters in your waiting room and return them to your hand, and discard a card from your hand to the waiting room.
 EndCard
