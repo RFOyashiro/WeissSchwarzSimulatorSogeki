@@ -215,14 +215,14 @@ Auto: OnReversed
         PayCost 1 Clock SendSelf Memory
         {
             Peek Deck 2
-            ChooseCardsFromTargets 0 2 HasTrait Music && IsCharacter ||| IsColor Yellow && IsEvent
+            ChooseCardsFromTargets 0 2 HasTrait Wonderlands × Showtime && IsCharacter ||| IsColor Yellow && IsEvent
             RevealTargets
             MoveCard Hand
             PutTheRestIntoTheWaitingRoom
         }
     }
 }
-Text Auto: [(1) Put the top card of your deck into your clock, put this card into Memory] When this card becomes reverse, if you have 2 or less cards in memory, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 2 «Music» characters or Yellow event from among them among them, reveal them to your opponent, put them into your hand and put the rest into your waiting room.
+Text Auto: [(1) Put the top card of your deck into your clock, put this card into Memory] When this card becomes reverse, if you have 2 or less cards in memory, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 2 «Wonderlands × Showtime» characters or Yellow event from among them among them, reveal them to your opponent, put them into your hand and put the rest into your waiting room.
 EndCard
 
 Character: PJS/S109-009

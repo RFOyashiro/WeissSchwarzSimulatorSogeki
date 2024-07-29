@@ -733,7 +733,7 @@ Auto: OnAttack
         PayCost 2 Discard 1 Any
         {
             RevealUpTo OpponentDeck 2
-            Message Choose cards to put on top of your deck.
+            Message Choose cards to put on top of the deck.
             ChooseCardsFromTargets 0 2 Any
             MoveCard OpponentDeck
             Reorder
