@@ -15,6 +15,7 @@ Repo of sets worked on by Sogeki
 - Guikty rown
 - Gigant Shooter Tsukasa
 - Heaven Burn Red
+- Hina Logic
 - Idolm@ster Cinderella Girls
 - Idolm@ster Million Live (Welcome to the New St@ge only)
 - Katanagatari
@@ -28,10 +29,11 @@ Repo of sets worked on by Sogeki
 - Puzzle and Dragons
 - Rin~ne
 - Robotics;Notes
+- Rurouni Kenshin
 - Schoolgirl Strikers
 - Senki Zesshou Symphogear
 - Terraformars
 - Vividred
 - World Trigger
-- Yohane
+- Yohane the Parhelion: Sunshine in the Mirror
 - Zombie Land Saga
