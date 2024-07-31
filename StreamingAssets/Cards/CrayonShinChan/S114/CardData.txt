@@ -1,0 +1,2935 @@
+Character: CS/S114-001
+Name Noisiest 5-Year-Old in Japan, Shinnosuke
+JPName 日本一おさわがせな5歳児 しんのすけ
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Act: Rest 2 Any
+{
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +1 soul.
+    GainSoul 1
+}
+Text Act: [Rest 2 of your characters] Choose 1 of your characters, and that character gets +1 soul until end of turn.
+*Act1RestSelfSalvageBrainstorm(Any)
+EndCard
+
+Character: CS/S114-002
+Name Likes Shiny Things, Himawari
+JPName キラキラ大好き ひまわり
+Color Y
+Level 0
+Cost 0
+Trigger Soul
+Power 1000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Gem
+Cont: GiveSelf
+{
+    If AllYourCharacters HasTrait MOVIE|Family
+    {
+        GainPower 1000
+    }
+}
+Text Cont: If all your characters are either «MOVIE» or «Family», this card gets +1000 power.
+Auto: StartOpponentAttackPhase
+{
+	If LocationContainsOrLess CenterStage 2 Any
+	{
+		TargetFacing
+		If HasTarget
+		{
+			TargetSelf
+			Question Move this card to another position?
+			If Yes
+			{
+				MoveToOpenPosition True False
+			}
+		}
+	}
+}
+Text Auto: At the beginning of your opponent's attack phase, if there's a character facing this card, you may move this card to an empty slot in your center stage.
+EndCard
+
+Character: CS/S114-003
+Name Great Adventure in Henderland, Shinnosuke
+JPName ヘンダーランドの大冒険 しんのすけ
+Color Y
+Level 1
+Cost 0
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Combo Noisy Chasing
+Auto: OnDamageCanceled
+{
+    Question Return this card to your hand ?
+    If Yes
+    {
+        Bounce
+    }
+}
+Text Auto: When damage dealt by this card is canceled, you may return this card to your hand.
+Auto: OnDamageCanceled
+{
+    If Climax Noisy Chasing
+    {
+        *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait MOVIE|Family)
+        *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait MOVIE|Family)
+        Repeat 3
+        {
+            DrawCard
+            Discard 1 Any
+        }
+    }
+}
+TimesPerTurn 1
+Text Auto: CxCombo This card ability activates up to once per turn. When damage dealt by this card is canceled, if "Noisy Chasing" is in your climax area, choose up to 2 «MOVIE» or «Family» characters in your waiting room and put them in your stock in any order, and perform the following action up to 3 times. "Draw a card, and discard a card from your hand to the waiting room."
+EndCard
+
+Character: CS/S114-004
+Name Blitzkrieg! Pig's Hoof's Secret Mission, Shinnosuke
+JPName 電撃！ブタのヒヅメ大作戦 しんのすけ
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Auto: OnPlay
+{
+    PayCost HandClock IsCharacter && HasTrait MOVIE|Family
+    {
+        TargetLocation OpponentStage
+        SetXValue
+        Peek Deck X
+        ChooseCardsFromTargets 0 1 Any
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
+}
+Text Auto: [Put a «MOVIE» or «Family» character from your hand in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top X cards of your deck, choose up to 1 card among them, put it in your hand, and put the rest into your waiting room. X equals the number of your opponent's characters.
+*YellowLevel0Bomb
+EndCard
+
+Character: CS/S114-005
+Name Makao and Joma
+JPName マカオ＆ジョマ
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 MOVIE
+Trait2 Magic
+Trait3 Ballet
+Auto: OnPlay
+{
+    SearchLocationForTargets Clock 0 1 Any
+    If HasTarget
+    {
+        RevealTargets
+        MoveCard Hand
+        SearchLocationForTargets Hand 1 1 Any
+        MoveCard Clock
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose a card in your clock and return it to your hand. If you do, put a card from your hand in your clock.
+*DropSearch(MOVIE)
+EndCard
+
+Character: CS/S114-006
+Name Magic Puppet, Topema
+JPName 魔法のマペット トッペマ
+Color Y
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 MOVIE
+Trait2 Magic
+Trait3 Doll
+Cont: GiveSelf
+{
+    If StageContainsOrLess 0 Other && HasTrait MOVIE
+    {
+        GainSpecialEffect CannotStand
+    }
+}
+Text Cont: If you have no other «MOVIE» characters, this card does not stand during your stand phase.
+Auto: OnPlay
+{
+    PayCost Discard 1 Any
+    {
+        SearchWaitingRoom NameEquals Sugenus Goides
+    }
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Sugenus Goides" in your waiting room and return it to your hand.
+EndCard
+
+Character: CS/S114-007
+Name Pursuit of the Balls of Darkness, Shinnosuke
+JPName 暗黒タマタマ大追跡 しんのすけ
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Combo Rowdy Rescue
+Auto: OnPlay
+{
+    PayCost Send 1 WaitingRoom Other && HasTrait MOVIE|Family
+    {
+        TargetTop Clock
+        MoveCard Stock
+    }
+}
+Text Auto: [Put 1 other «MOVIE» or «Family» character from your stage in the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, put the top card of your clock in your stock.
+Auto: StartAttackPhase
+{
+    If LocationContainsOrLess CenterStage 0 Any &&& Climax Rowdy Rescue
+    {
+        PayCost 4 Discard 2 NameEquals Pursuit of the Balls of Darkness, Shinnosuke &&& Discard 2 Any &&& SendClimax WaitingRoom
+        {
+            Repeat 5
+            {
+                Burn 2
+            }
+            UntilEndOfOpponentsTurn
+            GainPower 9000
+        }
+    }
+}
+Text Auto: CxCombo [(4) Put 2 "Pursuit of the Balls of Darkness, Shinnosuke" from your hand to the waiting room, discard 2 cards from your hand to the waiting room, put a "Rowdy Rescue" from your climax area in the waiting room] At the beginning of your attack phase, if you have no other center stage characters, you may pay the cost. If you do, deal 2 damage to your opponent 5 times, and this card gets +9000 power until the end of your opponent's next turn.
+EndCard
+
+Character: CS/S114-008
+Name Hero for Justice, Shinnosuke Man
+JPName 正義のヒーロー しんのすけマン
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 11000
+Soul 2
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Auto: OnPlay
+{
+    PayCost Discard 1 Any
+    {
+        GainPower 2000
+        GainEffect
+        {
+            Auto: StartEncoreStep
+            {
+                Burn 2
+                MoveCard WaitingRoom
+            }
+            Text Auto: At the beginning of encore step, deal 2 damage to your opponent, and put this card in the waiting room.
+        }
+    }
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, this card gets +2000 power and the following ability until end of turn. "Auto: At the beginning of encore step, deal 2 damage to your opponent, and put this card in the waiting room."
+EndCard
+
+Character: CS/S114-009
+Name Gunfight That She Wanted, Yone
+JPName 憧れの銃撃戦 よね
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 MOVIE
+Trait2 Police
+Trait3 Gun
+*OnPlayCheckTopTraitOrEventAddDiscard(MOVIE)
+Auto: OnAttack
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsClimax
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen
+        ChooseCharacterFromTargets_Optional Choose up to 1 character to return to hand.
+        Bounce
+    }
+}
+Text Auto: When this card attacks, reveal the top card of your deck. If it's climax, you may choose 1 of your opponent's characters and return it to their hand.
+EndCard
+
+Character: CS/S114-010
+Name Hot Springs Guard, Goshogake
+JPName 温泉Gメン 後生掛
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 MOVIE
+Trait2 Hot Springs
+Auto: OnPlay
+{
+    If StageContains 1 Other && HasTrait MOVIE
+    {
+        GainPower 2000
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, if you have another «MOVIE» character, this card gets +2000 power until end of turn.
+Auto: OnPlay
+{
+    PayCost 2
+    {
+        Heal
+    }
+}
+Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, put the top card of your clock in the waiting room.
+EndCard
+
+Character: CS/S114-011
+Name Heroine for Justice, Pretty Misaes
+JPName 正義のヒロイン プリティミサエス
+Color Y
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Magic
+Cont: GiveSelf
+{
+    SetXToNumberOfCharacters Other && HasTrait MOVIE|Family && InLocation Backstage
+    MultiplyXValue 1500
+    GainPower X
+}
+Text Cont: This card gets +1500 power for each of your other backstage «MOVIE» or «Family» characters
+Auto: OnOtherSentFromStageToWaitingRoom
+{
+    IfOther NameEquals Kind Mother, Misae
+    {
+        PayCost Discard 1 Any
+        {
+            PlaceOnStage false true true true
+        }
+    }
+}
+InWaitingRoom
+Text Auto: [Put 1 card from your hand to the waiting room] If this card is in the waiting room, when your "Kind Mother, Misae" is placed in the waiting room from the stage, you may pay the cost. If you do, put this card rest in any position on the stage.
+EndCard
+
+Character: CS/S114-012
+Name Invasion!! Alien Shiriri, Shinnosuke
+JPName 襲来!!宇宙人シリリ しんのすけ
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Auto: OnPlay
+{
+    PayCost Discard 1 Any
+    {
+        TargetLocation OpponentStage
+		NarrowTargets Compare ThatCardsLevel 1 OrHigher
+		ChooseCharacterFromTargets Choose 1 character to downgrade.
+		*Downgrade
+    }
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your opponent's level 1 or higher characters, your opponent chooses a level X or lower character in their waiting room and exchange the chosen characters. X equals level of the character you chose this way -1.
+EndCard
+
+Character: CS/S114-013
+Name Resident of Don Kurai, Mata Tami
+JPName ドン・クラーイの住民 マタ・タミ
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 1000
+Soul 1
+Trait1 MOVIE
+Trait2 Transformation
+Auto: OnPlay
+{
+    SearchLocationForTargets WaitingRoom 0 2 NameEquals Hero of the Golden Spear Inviting Great Storm, Shinnosuke
+    RevealTargets
+    MoveCardToBottom Deck
+}
+Text Auto: When this card is placed on the stage from your hand, choose up to 2 "Hero of the Golden Spear Inviting Great Storm, Shinnosuke" in your waiting room and put them on the bottom of your deck in any order.
+Act: MarkerOtherUnderThis 1 NameEquals Noisiest 5-Year-Old in Japan, Shinnosuke
+{
+    TargetLocation Marker
+	FlipFaceUp
+    SearchLocationForTargets Deck 0 1 NameEquals Hero of the Golden Spear Inviting Great Storm, Shinnosuke
+	Fusion
+	ShuffleLocation Deck
+}
+Text Act: FUSION [Put a "Noisiest 5-Year-Old in Japan, Shinnosuke" from your stage face up underneath this card as a marker] Search your deck for up to 1 "Hero of the Golden Spear Inviting Great Storm, Shinnosuke", put it in the position this card is in, put all markers from under this card as well as this card face up underneath that "Hero of the Golden Spear Inviting Great Storm, Shinnosuke" as markers in any order, and shuffle your deck.
+EndCard
+
+Character: CS/S114-014
+Name Hot Springs Guard, Ibusuki
+JPName 温泉Gメン 指宿
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 3000
+Soul 1
+Trait1 MOVIE
+Trait2 Hot Springs
+Auto: OnUseThisCardsBackup
+{
+    PayCost Discard 2 Any
+    {
+        Heal
+    }
+}
+Text Auto: [Put 2 cards from your hand to the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, put the top card of your clock in the waiting room.
+Backup 2500
+EndCard
+
+Character: CS/S114-015
+Name Hero of the Golden Spear Inviting Great Storm, Shinnosuke
+JPName ちょー嵐を呼ぶ 金矛の勇者 しんのすけ
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10500
+Soul 2
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Auto: OnPlay|OnPlacedOnStageFromDeck
+{
+    If Phase Main
+    {
+        PayCost 1
+        {
+            SearchLocationForTargets Deck 0 1 NameEquals Hero of the Golden Spear Inviting Great Storm, Shinnosuke
+            PlaceOnStage false true true false
+            ShuffleLocation Deck
+        }
+    }
+}
+Text Auto: [(1)] During your main phase, when this card is placed to the stage from your hand or deck, you may pay the cost. If you do, search your deck for up to 1 "Hero of the Golden Spear Inviting Great Storm, Shinnosuke", put it in any position on the stage, and shuffle your deck.
+EndCard
+
+Character: CS/S114-016
+Name Magical Snowman, Su Noman Par
+JPName 魔法の雪だるま ス・ノーマン・パー
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 MOVIE
+Trait2 Magic
+Trait3 Snow
+Auto: OnPlay
+{
+    TargetLocation OpponentBackstage
+    NarrowTargets CanBeChosen && EarlyPlay
+    ChooseCharactersFromTargets 0 2 Choose up to 2 character to not stand.
+    GainTrait Wine
+    DontStand
+}
+Text Auto: When this card is placed on the stage from your hand, choose up to 2 characters in your opponent's backstage whose level is higher than the level of your opponent, and those characters get «Wine» until end of turn. Those characters do not stand during your opponent's next stand phase.
+Act: 1 SendSelf WaitingRoom
+{
+    *Check4Add1(MOVIE)
+}
+Text Act: [(1) Put this card in the waiting room] Look at up to the top 4 cards of your deck, choose up to 1 «MOVIE» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: CS/S114-017
+Name Explosion! The Hot Spring's Feel Good Final Battle, Shinnosuke
+JPName 爆発!温泉わくわく大決戦 しんのすけ
+Color Y
+Level 1
+Cost 0
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+*PowerOnMyTurn(4000)
+Auto: OnAttack
+{
+    TargetLocation Stage
+    NarrowTargets Other && HasTrait MOVIE|Family
+    ChooseCharacterFromTargets Choose a character to give power to.
+    SetXValue TargetCardsSoul
+    MultiplyXValue 1000
+    GainPower X
+}
+Text Auto: When this card attacks, choose 1 of your other «MOVIE» or «Family» characters, and that character gets +X power until end of turn. X equals 1000 times soul of that character.
+EndCard
+
+Character: CS/S114-018
+Name The Legend Called Buri Buri 3 Minutes Charge, Shinnosuke
+JPName 伝説を呼ぶブリブリ 3分ポッキリ大進撃 しんのすけ
+Color Y
+Level 1
+Cost 0
+Power 2000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Auto: OnPlay
+{
+    PayCost Discard 1 Any
+    {
+        TargetLocation Stage
+        SaveTargets
+        SearchDeck IsCharacter && Not NameNotInSavedTargets
+    }
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with the same name as a character on your stage, reveal it, put it in your hand, and shuffle your deck.
+Auto: OnReversed
+{
+    RevealUpTo Deck 4
+    ChooseCardsFromTargets 0 1 IsClimax && HasTrigger DoubleSoul
+    If HasTarget
+    {
+        RevealTargets
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+        Discard 1 Any
+    }
+    Else
+    {
+        PutTheRestIntoTheWaitingRoom
+    }
+}
+Text Auto: When this card becomes reversed, look at up to the top 4 cards of your deck, choose up to 1 climax with 2 Soul trigger icons among them, reveal it, put it in your hand, and put the rest into your waiting room. If you put a card in your hand this way, discard a card from your hand to the waiting room.
+EndCard
+
+Character: CS/S114-019
+Name Shinnosuke & Nana & Shiro
+JPName しんのすけ＆ナナ＆シロ
+Color Y
+Level 1
+Cost 1
+Trigger Soul
+Power 3500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+*LevelAssistTrait(MOVIE|Family)
+Auto: OnTriggerCheckClimax
+{
+    IfOther HasTrigger DoubleSoul
+    {
+        PeekTop OpponentDeck
+        Question Put card to the bottom of deck ?
+        If Yes
+        {
+            MoveCardToBottom OpponentDeck
+        }
+        Else
+        {
+            EndPeek
+        }
+    }
+}
+Text Auto: When your characters' trigger check reveals a climax with 2 Soul trigger icons, look at the top card of your opponent's deck and put it either on top or bottom of the deck.
+EndCard
+
+Character: CS/S114-020
+Name Fierceness That Invites Storm! Yakiniku Road of Honor, Shinnosuke
+JPName 嵐を呼ぶ 栄光のヤキニクロード しんのすけ
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 5500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Combo Yakiniku Tonight!
+Cont: GiveSelf
+{
+    SetXToNumberOfCharacters Other && HasTrait MOVIE|Family && InLocation Backstage
+    MultiplyXValue 2500
+    GainPower X
+}
+Text Cont: This card gets +2500 power for each of your other backstage «MOVIE» or «Family» characters
+Auto: OnAttack
+{
+    If Climax Yakiniku Tonight! && StageContains 4 Other && HasTrait MOVIE|Family
+    {
+        SearchWaitingRoom IsCharacter && HasTrait MOVIE|Family
+        UntilEndOfOpponentsTurn
+        GainPower 1500
+        UntilEndOfOpponentsTurn
+        GainEffect
+        {
+            *HandEncoreTrait(MOVIE|Family)
+        }
+    }
+}
+Text Auto: CxCombo When this card attacks, if "Yakiniku Tonight!" is in your climax area and the number of other «MOVIE» or «Family» characters you have is 4 or more, choose 1 «MOVIE» or «Family» character in your waiting room and return it to your hand, and this card gets +1500 power and "Auto: ENCORE [Put a «MOVIE» or «Family» character from your hand to the waiting room]" until the end of your opponent's next turn.
+EndCard
+
+Character: CS/S114-021
+Name Roar! Kasukabe Animal Kingdom, Shinnosuke
+JPName オタケベ!カスカベ野生王国 しんのすけ
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+*OnPlayGainPowerForEach(1000,MOVIE|Family)
+Act: 1 Discard 1 Any &&& SendSelf WaitingRoom
+{
+    SearchLocationForTargets WaitingRoom 1 1 IsCharacter && Compare ThatCardsLevel MyLevel OrLess
+    Change
+}
+Text Act: [(1) Put 1 card from your hand to the waiting room, put this card in the waiting room] Choose a character in your waiting room whose level is equal to or lower than your level and put it in the position this card was in.
+EndCard
+
+Event: CS/S114-022
+Name Sugenus Goides
+JPName スゲーナ・スゴイデス
+Color Y
+Level 1
+Cost 0
+Requirement StageContains 1 HasTrait MOVIE|Family
+Text If you don't have a «MOVIE» or «Family» character, you cannot play this card from your hand.
+Effect:
+{
+    MultipleChoiceQuestion Choose 1 of the 2 following effects and perform it.\n1: Put the top 4 cards of your deck into waiting room, choose up to 1 level X or lower «MOVIE» or «Family» character in your waiting room and return it to your hand. X equals total of Soul trigger icons among those cards.\n2: [Put 3 cards from your hand to the waiting room] You may pay cost. If you do, deal 3 damage to your opponent.|1|2
+    If Answer 0
+    {
+        Mill 4
+        SearchWaitingRoom IsCharacter && HasTrait MOVIE|Family && Compare ThatCardsLevel TotalSoulTriggers OrLess
+    }
+    If Answer 1
+    {
+        PayCost Discard 3 Any
+        {
+            Burn 3
+        }
+    }
+}
+Text Choose 1 of the 2 following effects and perform it.\n"Put the top 4 cards of your deck into waiting room, choose up to 1 level X or lower «MOVIE» or «Family» character in your waiting room and return it to your hand. X equals total of Soul trigger icons among those cards."\n"[Put 3 cards from your hand to the waiting room] You may pay cost. If you do, deal 3 damage to your opponent." 
+EndCard
+
+Climax: CS/S114-023
+Name Noisy Chasing
+JPName どたばた追いかけっこ
+Color Y
+*2SoulClimax
+EndCard
+
+Climax: CS/S114-024
+Name Rowdy Rescue
+JPName 大騒ぎの救出劇
+*ChoiceClimax
+EndCard
+
+Climax: CS/S114-025
+Name Yakiniku Tonight!
+JPName 今夜は焼肉！
+Color Y
+Trigger DoubleSoul
+Auto: OnPlay
+{
+    SearchWaitingRoom IsCharacter && HasTrigger Soul
+    TargetLocation Stage
+    ChooseCharactersFromTargets 0 2 Choose up to 2 characters to give +1 soul.
+    GainSoul 1
+}
+Text When this card is placed from hand to your climax area, choose up to 1 character with Soul trigger icon in your waiting room and return it to your hand, choose up to 2 of your characters, and those characters get +1 soul until end of turn.
+EndCard
+
+Character: CS/S114-026
+Name Ora wa Ninki Mono, Shinnosuke
+JPName オラはにんきもの しんのすけ
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Auto: OnPlay
+{
+    PayCost 1 Clock
+    {
+        SearchDeck IsCharacter && Compare ThatCardsLevel 1 OrLess
+    }
+}
+Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
+Auto: OnReversed
+{
+    If LocationContainsOrLess Memory 2 Any
+    {
+        Question Put this card into memory ?
+        If Yes
+        {
+            MoveCard Memory
+        }
+    }
+}
+Text Auto: When this card becomes reversed, if there are 2 or less cards in your memory, you may put this card into memory.
+EndCard
+
+Character: CS/S114-027
+Name Fierceness That Invites Storm! The Kasukabe Boys of the Evening Sun, Shinnosuke
+JPName 嵐を呼ぶ!夕陽のカスカベボーイズ しんのすけ
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Combo Also Known as Kasukabe Defence Force!
+Auto: OnPlay
+{
+    *OptionalHeal
+    GainPower 3000
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock into the waiting room, and this card gets +3000 power until end of turn.
+Auto: OnAttack
+{
+    If Climax Also Known as Kasukabe Defence Force! && StageContains 4 Other && HasTrait MOVIE|Family
+    {
+        PayCost 2 Discard 1 IsCharacter && HasTrait MOVIE|Family
+        {
+            Burn 2
+            RevealUpTo OpponentDeck 2
+            Message Choose cards to put on top of the deck.
+            ChooseCardsFromTargets 0 2 Any
+            MoveCard OpponentDeck
+            Reorder
+            PutTheRestIntoTheWaitingRoom
+        }
+    }
+}
+Text Auto: CxCombo [(2) Put a «MOVIE» or «Kindergarten» character from your hand to the waiting room] When this card attacks, if "Also Known as Kasukabe Defence Force!" is in your climax area and the number of other «MOVIE» or «Kindergarten» characters you have is 4 or more, you may pay the cost. If you do, deal 2 damage to your opponent, look at up to the top 2 cards of your opponent's deck, choose up to 2 cards among them and put them on top of the deck in any order, and put the rest into your waiting room.
+EndCard
+
+Character: CS/S114-028
+Name Fast Asleep! The Great Assault on Dreamy World!, Shinnosuke
+JPName 爆睡！ユメミーワールド大突撃 しんのすけ
+Color G
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Combo Good Night!
+*GainPowerWithEnoughCharacters(2000,2,MOVIE|Family)
+Auto: OnReverseOpponent
+{
+    If Climax Good Night!
+    {
+        RevealUpTo Deck 2
+        ChooseCardsFromTargets 0 2 IsCharacter && HasTrait MOVIE|Family
+        RevealTargets
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
+}
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Good Night!" is in your climax area, look at up to the top 2 cards of your deck, choose up to 2 «MOVIE» or «Kindergarten» characters among them, reveal them, put them in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: CS/S114-029
+Name Ally of the Strong, Buriburizaemon
+JPName 強い者の味方 ぶりぶりざえもん
+Color G
+Level 1
+Cost 0
+Power 5500
+Soul 2
+Trait1 MOVIE
+Trait2 Animal
+Trait3 Dark Hero
+*CannotAttackHigherLevel
+EndCard
+
+Character: CS/S114-030
+Name Mask of Justice, Action Mask
+JPName 正義の仮面 アクション仮面
+Color G
+Level 1
+Cost 0
+Power 7500
+Soul 2
+Trait1 MOVIE
+Trait2 Mask
+Trait3 Hero
+SharedDeckLimit Action Mask, Sealed Fist
+Text Cont: You may have up to 4 total copies of cards between cards with the same name as this card and "Action Mask, Sealed Fist".
+Cont: GiveSelf
+{
+    If LocationContainsOrLess Clock 2 Any
+    {
+        GainSpecialEffect CannotAttack
+    }
+}
+Text Cont: If there are 2 or less cards in your clock, this card cannot attack.
+EndCard
+
+Character: CS/S114-031
+Name Jungle That Invites Storm, Shinnosuke
+JPName 嵐を呼ぶジャングル しんのすけ
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 10500
+Soul 2
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Combo Butt Walk March
+Auto: OnAttack
+{
+    If PlayedThisTurn
+    {
+        Mill 2
+        Burn TotalSoulTriggers
+    }
+}
+Text Auto: During the turn this card is placed on the stage from your hand, when this card attacks, put the top 2 cards of your deck in the waiting room, and deal X damage to your opponent. X equals sum of Soul trigger icons among those cards.
+Auto: OnDamageCanceled
+{
+    If Climax Butt Walk March && StageContains 2 Other && HasTrait MOVIE|Family
+    {
+        *OptionalBurn(5)
+    }
+}
+Text Auto: CxCombo This card ability activates up to once per turn. When damage dealt by this card is canceled, if "Butt Walk March" is in your climax area and the number of other «MOVIE» or «Family» characters you have is 2 or more, you may deal 5 damage to your opponent.
+EndCard
+
+Character: CS/S114-032
+Name Wants to Become Elite, Kazama-kun
+JPName エリート志向 風間くん
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 MOVIE
+Trait2 Kindergarten
+Trait3 Honor Student
+*GlobalPower(500,MOVIE|Family)
+Auto: OnTriggerCheckClimax
+{
+    PayCost Discard 1 IsClimax
+    {
+        SearchWaitingRoom IsCharacter
+    }
+}
+Text Auto: [Put 1 climax from your hand to the waiting room] When your characters' trigger check reveals a climax, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
+EndCard
+
+Character: CS/S114-033
+Name Mysterious, Bo-chan
+JPName ミステリアス ボーちゃん
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 MOVIE
+Trait2 Kindergarten
+Trait3 Mystery
+Auto: OnPlay
+{
+    Question Put a card from your hand to stock ?
+    If Yes
+    {
+        SearchLocationForTargets 0 1 Any
+        MoveCard Stock
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose a card in your hand and put it in your stock.
+*Act1SalvageBrainstorm(Any)
+EndCard
+
+Character: CS/S114-034
+Name Girl in the Movie World, Tsubaki
+JPName 映画の世界の少女 つばき
+Color G
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 MOVIE
+Combo Also Known as Kasukabe Defence Force!
+Auto: StartMyEncoreStep
+{
+    If Climax Also Known as Kasukabe Defence Force! && StageContains 1 Other && HasTrait MOVIE
+    {
+        PayCost 1 SendSelf Memory SendClimax WaitingRoom
+        {
+            Burn 1
+        }
+    }
+}
+Text Auto: CxCombo [(1) Put this card into memory, put an "Also Known as Kasukabe Defence Force!" from your climax area in the waiting room] At the beginning of your encore step, if you have another «MOVIE» character, you may pay the cost. If you do, deal 1 damage to your opponent.
+Auto: EndOfMyTurn
+{
+    PayCost SendFromMemoryToWaitingRoom 1 Not Other
+    {
+        DrawCard
+        Discard 1 Any
+    }
+}
+InMemory
+Text Auto: MEMORY [Put this card in the waiting room] If this card is in memory, at the end of your turn, you may pay the cost. If you do, draw a card, and discard a card from your hand to the waiting room.
+*RestGivePower(1500,Any)
+EndCard
+
+Character: CS/S114-035
+Name Dreaming of Rocks!?, Bo-chan
+JPName 夢は石!? ボーちゃん
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 MOVIE
+Trait2 Kindergarten
+Trait3 Mystery
+Auto: OnSentFromStageToWaitingRoom
+{
+    PayCost Discard 1 Any
+    {
+        Mill 4
+        SearchWaitingRoom IsCharacter && HasTrait MOVIE|Kindergarten && Compare ThatCardsLevel TotalSoulTriggers OrLess
+    }
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed in the waiting room from the stage, you may pay the cost. If you do, put the top 4 cards of your deck in the waiting room, choose up to 1 level X or lower «MOVIE» or «Kindergarten» character in your waiting room and return it to your hand. X equals sum of Soul trigger icons among those cards.
+EndCard
+
+Character: CS/S114-036
+Name Dream World Is Infinitely Large, Shinnosuke
+JPName 夢の世界は無限大 しんのすけ
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Auto: OnClimaxPlay
+{
+    UntilEndOfOpponentsTurn
+    *GiveCharacterPower(4000,Any)
+}
+Text Auto: When your climax is placed on your climax area, choose 1 of your characters, and that character gets +4000 power until the end of your opponent's next turn.
+Act: 1 Discard 1 Any &&& RestSelf
+{
+    *CheckAndAdd(3)
+}
+Text Act: [(1) Put 1 card from your hand to the waiting room, rest this card] Look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: CS/S114-037
+Name Reliable Assistants, Ririko & Mimiko
+JPName 頼れる助手 リリ子＆ミミ子
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 MOVIE
+Trait2 Assistant
+Trait3 Science
+*MemoryBackup
+Backup 3000
+EndCard
+
+Character: CS/S114-038
+Name Super-Dimension! The Storm Called My Bride, Shinnosuke
+JPName 超時空!嵐を呼ぶオラの花嫁 しんのすけ
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Cont: InHand
+{
+    If LocationContains Memory 2 NameEquals Ora wa Ninki Mono, Shinnosuke
+    {
+        LoseLevel 1
+    }
+}
+Text Cont: MEMORY If there are 2 or more "Ora wa Ninki Mono, Shinnosuke" in your memory, this card gets -1 level while in your hand.
+*GainPowerWithEnoughCharacters(3000,2,MOVIE|Family)
+Auto: OnSentFromStageToWaitingRoom
+{
+    Question Return this card to hand ?
+    If Yes
+    {
+        Bounce
+        *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait MOVIE|Family)
+    }
+}
+Text Auto: When this card is placed in the waiting room from the stage, you may return this card to your hand. If you do, choose up to 1 «MOVIE» or «Family» character in your waiting room and put it in your stock.
+EndCard
+
+Character: CS/S114-039
+Name Chosen Hero, Shinnosuke
+JPName 選ばれし勇者 しんのすけ
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+*OnPlayFlicker
+Act: Discard 2 Any &&& SendSelf WaitingRoom
+{
+    SearchLocationForTargets WaitingRoom 1 1 IsCharacter && Compare ThatCardsLevel MyLevel OrLess
+    Change
+}
+Text Act: [Put 2 cards from your hand to the waiting room, put this card in the waiting room] Choose a «MOVIE» or «Family» character in your waiting room whose level is equal to or lower than your level and put it in the position this card was in.
+EndCard
+
+Character: CS/S114-040
+Name "Action Mask Card No.99" Shinnosuke
+JPName “アクション仮面カードNo.99” しんのすけ
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Act: 1 RestSelf
+{
+    Brainstorm 5
+    SearchLocationForTargets WaitingRoom 0 BrainstormedClimax IsCharacter && Compare ThatCardsCost 0 OrLess
+    PlaceOnStage false true true false
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 5 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 cost 0 or lower character in your waiting room and put them in separate positions on the stage.
+EndCard
+
+Character: CS/S114-041
+Name Proud King, Paradise King
+JPName 孤高の王様 パラダイスキング
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 MOVIE
+Trait2 King
+Auto: OnPlay
+{
+    PayCost Discard 1 IsCharacter && HasTrait MOVIE
+    {
+        DrawCard
+    }
+}
+Text Auto: [Put a «MOVIE» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw a card.
+Auto: OnPlay
+{
+    PayCost Discard 1 Any
+    {
+        SearchLocationForTargets Clock 1 1 HasTrait MOVIE
+        RevealTargets
+        MoveCard Hand
+        TargetTop Deck 1
+        MoveCard Clock
+    }
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «MOVIE» character in your clock and return it to your hand, and put the top card of your deck in your clock.
+EndCard
+
+Character: CS/S114-042
+Name Dreaming of Becoming Idol!, Nene-chan
+JPName 夢はアイドル！ ネネちゃん
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 MOVIE
+Trait2 Kindergarten
+Trait3 Doll
+Cont: GiveSelf
+{
+    If StageContainsOrLess 0 Other
+    {
+        GainLevel 1
+        GainPower 1500
+    }
+}
+Text Cont: If you have no other characters, this card gets +1 level and +1500 power.
+Auto: OnPlay
+{
+    Question Put the top card of your opponent's stock into waiting room ?
+    If Yes
+    {
+        TargetTop OpponentStock 1
+        MoveCard OpponentWaitingRoom
+        SearchLocationForTargets OpponentWaitingRoom 1 1 Any
+        MoveCard OpponentStock
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your opponent's stock in the waiting room. If you do, choose a card in your opponent's waiting room and put it in stock.
+EndCard
+
+Character: CS/S114-043
+Name Future Bride, Tamiko
+JPName 未来の花嫁 タミコ
+Color G
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 MOVIE
+Trait2 Time
+Auto: StartMyEncoreStep
+{
+    PayCost 2
+    {
+        TargetLocation Stage
+        NarrowTargets Other
+        ChooseCharacterFromTargets Choose a character to put into memory.
+        AddSavedToCurrentTargets
+        MoveCard Memory
+        SaveTargets
+        ScheduleEffect StartDrawPhase
+        {
+            Effect:
+            {
+                LoadTargets
+                ForEachTarget
+                {
+                    IfTarget InLocation Memory
+                    {
+                        PushTargets
+                    }
+                }
+                PopTargets
+                SaveTargets
+                PopTargets
+                AddSavedToCurrentTargets
+                PlaceOnStage false true true false
+            }
+        }
+    }
+}
+Text Auto: [(2)] At the beginning of your encore step, you may pay the cost. If you do, choose 1 of your other characters and this card and send them to memory. At the beginning of your next draw phase, put those characters from your memory in separate positions on the stage.
+EndCard
+
+Character: CS/S114-044
+Name "SML" Agent, Oiroke
+JPName “SML”のエージェント お色気
+Color G
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 MOVIE
+Trait2 Weapon
+Auto: OnAttack
+{
+    TargetLocation OpponentStage
+    SetXValue TargetCount
+    MultiplyXValue 1000
+    TargetSelf
+    GainPower X
+}
+Quick
+Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 1000 times the number of your opponent's characters.
+Act: Discard 1 Any &&& SendSelf BottomOfDeck
+{
+    SearchWaitingRoom IsCharacter
+}
+Text Act: [Put 1 card from your hand to the waiting room, put this card on the bottom of the deck] Choose a character in your waiting room and return it to your hand.
+EndCard
+
+Character: CS/S114-045
+Name Action Mask vs. Leotard Devil, Shinnosuke
+JPName アクション仮面VSハイグレ魔王 しんのすけ
+Color G
+Level 2
+Cost 0
+Power 8000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+EndCard
+
+Character: CS/S114-046
+Name First Friend, Saki
+JPName 初めてのお友達 サキ
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 MOVIE
+Trait2 Kindergarten
+*OnPlayMax4Memory
+Auto: OnAttack
+{
+    TargetLocation OpponentStage
+    SetXValue TargetCount
+    MultiplyXValue 2000
+    TargetSelf
+    GainPower X
+}
+Quick
+Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 2000 times the number of your opponent's characters.
+EndCard
+
+Event: CS/S114-047
+Name Movie With No "End"
+JPName “おわり”のない映画
+Color G
+Level 2
+Cost 3
+Effect:
+{
+    MoveCard Memory
+}
+Text Put this card into memory.
+Auto: StartOpponentAttackPhase
+{
+    PayCost FlipSelfFaceDown
+    {
+        *GiveCharacterPower(1500,Any)
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen
+        ChooseCharacterFromTargets Choose a character to give the effect.
+        GainEffect
+        {
+            Cont: GiveSelf
+            {
+                GainSpecialEffect CannotDealDamage
+            }
+            Text Cont: This card cannot deal damage to players.
+        }
+    }
+}
+Text Auto: MEMORY [Turn this card face up card face down] If this card is in memory, at the beginning of your opponent's attack phase, you may pay the cost. IF so, choose 1 of your characters, that characters gets +1500 power until end of turn, choose 1 of your opponent's characters, and that character gets the following ability until end of turn. "Cont: This card cannot deal damage to players."
+EndCard
+
+Climax: CS/S114-048
+Name Also Known as Kasukabe Defence Force!
+JPName またの名を、カスカベ防衛隊！
+*BarClimax
+EndCard
+
+Climax: CS/S114-049
+Name Good Night!
+JPName おやすみなさーい！
+*BarClimax
+EndCard
+
+Climax: CS/S114-050
+Name Butt Walk March
+JPName ケツだけ歩き大行進
+Color G
+*2SoulClimax
+EndCard
+
+Character: CS/S114-051
+Name Kind Mother, Misae
+JPName やさしいかーちゃん みさえ
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Housewife
+Auto: OnPlay
+{
+    TargetLocation OpponentStage
+    SetXValue TargetCount
+    MultiplyXValue 1000
+    TargetSelf
+    GainPower X
+}
+Quick
+Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 1000 times the number of your opponent's characters.
+Auto: OnReversed
+{
+	RevealUpTo Deck 3
+	If Compare TargetCount 1 OrMore
+	{
+		ChooseCardsFromTargets 1 1 HasTrait MOVIE|Family
+		MoveCard Hand
+		PutTheRestIntoTheWaitingRoom
+		Discard 1 Any
+	}
+}
+Text Auto: When this card becomes reversed, you may reveal up to 3 cards from the top of your deck. If you reveal 1 or more cards, choose up to 1 «MOVIE» or «Family» character among them, put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
+EndCard
+
+Character: CS/S114-052
+Name Intense Battle! Robo Dad Strikes Back, Shinnosuke
+JPName ガチンコ!逆襲のロボとーちゃん しんのすけ
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 MOVIE
+Trait2 Family
+Trait3 Mecha
+Combo Robo, But Dad
+Cont: GiveAll
+{
+    IfOwner InLocation CenterStage
+    {
+        If HasTrait MOVIE|Family
+        {
+            GainPower 1500
+        }
+    }
+}
+Text Cont: If this card is in the center stage, all your «MOVIE» or «Family» characters get +1500 power.
+Auto: StartAttackPhase
+{
+    If Climax Robo, But Dad && InLocation CenterStage
+    {
+        PayCost 2 SendClimax WaitingRoom
+        {
+            Stand
+            SearchLocationForTargets WaitingRoom 1 1 NameEquals Intense Battle! Robo Dad Strikes Back, Shinnosuke
+            PlaceOnStage false true true false
+        }
+    }
+}
+Text Auto: CxCombo [(2) Put a "Robo, But Dad" from your climax area in the waiting room] At the beginning of your attack phase, if this card is in the center stage, you may pay the cost. If you do, stand this card, choose 1 "Intense battle! Robo Dad Strikes Back, Shinnosuke" in your waiting room and put it in any position on the stage.
+Auto: OnAttack
+{
+    PayCost 2 Discard 2 Any
+    {
+        Burn 2
+    }
+}
+Text Auto: [(2) Put 2 cards from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, deal 2 damage to your opponent.
+EndCard
+
+Character: CS/S114-053
+Name Two Dads, Hiroshi & Robo Hiroshi
+JPName ふたりのとーちゃん ひろし＆ロボひろし
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 MOVIE
+Trait2 Family
+Trait3 Mecha
+Auto: OnPlay
+{
+    TargetLocation OpponentStage
+    SetXValue
+    Peek Deck X
+    ChooseCardsFromTargets 0 1 Any
+    MoveCard Hand
+    PutTheRestIntoTheWaitingRoom
+}
+Text Auto: When this card is placed on the stage from your hand, look at up to the top X cards of your deck, choose up to 1 card among them, put it in your hand, and put the rest into your waiting room. X equals the number of your opponent's characters.
+Auto: OnPlay
+{
+    PayCost Discard 2 Any
+    {
+        SearchLocationForTargets OpponentWaitingRoom 0 3 Any
+        MoveCard OpponentDeck
+        ShuffleLocation OpponentDeck
+    }
+}
+Text Auto: [Put 2 cards from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 3 cards in your opponent's waiting room, return them to their deck, and your opponent shuffles their deck.
+EndCard
+
+Character: CS/S114-054
+Name Couple's Bond, Misae
+JPName 夫婦の絆 みさえ
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Housewife
+Combo Love Love Fire!
+Auto: OnSpecificClimaxPlay Love Love Fire!
+{
+    TargetLocation Stage
+    ChooseCharactersFromTargets 0 2 Choose up to 2 characters to give the effect.
+    GainEffect
+    {
+        *OnAttackCheck2ChooseTrigger
+    }
+}
+Text Auto: CxCombo When "Love Love Fire!" is placed on your climax area, choose up to 2 of your characters, and those characters get the following ability until end of turn. "Auto: When this card attacks, look at up to the top 2 cards of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room."
+*Act1RestSelfCheck3Add1Brainstorm
+EndCard
+
+Character: CS/S114-055
+Name Fierceness That Invites Storm! Me and the Space Princess, Himawari & Shinnosuke
+JPName 嵐を呼ぶ!オラと宇宙のプリンセス ひまわり＆しんのすけ
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Auto: OnPlay
+{
+	PayCost Clock
+	{
+		Message Search your deck for up to 1 climax.
+		SearchLocationForTargets Deck 0 1 IsClimax
+		If HasTarget
+		{
+			RevealTargets
+			SaveTargets
+			Message Choose a climax in your hand.
+			SearchLocationForTargets Hand 1 1 IsClimax
+			If HasTarget
+			{
+				RevealTargets
+				MoveCard Deck
+				LoadTargets
+				MoveCard Hand
+			}
+			Else
+			{
+				MoveCard Deck
+				ShuffleLocation Deck
+			}
+		}
+		ShuffleLocation Deck
+	}
+}
+Text Auto: [Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 climax, choose up to 1 climax in your hand, exchange those climax, and shuffle your deck.
+EndCard
+
+Character: CS/S114-056
+Name The Legend Called: Dance! Amigo!, Shinnosuke
+JPName 伝説を呼ぶ 踊れ!アミーゴ! しんのすけ
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Combo "World Samba Project" Under Way
+*OnAttackGivePower(1500,MOVIE|Family)
+Auto: OnAttack
+{
+    If Climax "World Samba Project" Under Way && StageContains 2 Other && HasTrait MOVIE|Family
+    {
+        Mill 2
+        SearchWaitingRoom IsCharacter && HasTrait MOVIE|Family && Compare ThatCardsLevel TotalLevel OrLess
+    }
+}
+Text Auto: CxCombo When this card attacks, if ""World Samba Project" Under Way" is in your climax area and the number of other characters you have is 2 or more, put the top 2 cards of your deck in the waiting room, choose up to 1 level X or lower «MOVIE» or «Family» character in your waiting room and return it to your hand. X equals sum of levels of cards put in the waiting room by this card effect.
+EndCard
+
+Character: CS/S114-057
+Name Fierceness That Invites Storm! The Singing Buttocks Bomb, Shiro & Shinnosuke
+JPName 嵐を呼ぶ 歌うケツだけ爆弾! シロ＆しんのすけ
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 5000
+Soul 2
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Cont: GiveSelf
+{
+    SetXToNumberOfCharacters Other && HasTrait MOVIE|Family && InLocation Backstage
+    MultiplyXValue 2000
+    GainPower X
+}
+Text Cont: This card gets +2000 power for each of your other backstage «MOVIE» or «Family» characters
+*GlobalPower(1000,MOVIE|Family)
+EndCard
+
+Character: CS/S114-058
+Name Couple's Bond, Hiroshi
+JPName 夫婦の絆 ひろし
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 6500
+Soul 2
+Trait1 MOVIE
+Trait2 Family
+Trait3 Salaryman
+Combo Love Love Fire!
+Cont: GiveSelf
+{
+    If StageContains 1 Other && NameEquals Couple's Bond, Misae
+    {
+        GainPower 3500
+        GainEffect
+        {
+            *HandEncoreTrait(MOVIE|Family)
+        }
+    }
+}
+Text Cont: If you have another "Couple's Bond, Misae", this card gets +3500 power and "Auto: ENCORE [Put a «MOVIE» or «Family» character from your hand to the waiting room]".
+Auto: StartAttackPhase
+{
+    If Climax Love Love Fire! && StageContains 2 Other && HasTrait MOVIE|Family
+    {
+        PayCost SendClimax WaitingRoom
+        {
+            Stand
+            UntilEndOfOpponentsTurn
+            GainPower 1000
+        }
+    }
+}
+Text Auto: CxCombo [Put a "Love Love Fire!" from your climax area in the waiting room] At the beginning of your attack phase, if the number of other «MOVIE» or «Family» characters you have is 2 or more, you may pay the cost. If you do, stand this card, and this card gets +1000 power until the end of your opponent's next turn.
+EndCard
+
+Character: CS/S114-059
+Name Fierceness That Invites Storm! The Adult Empire Strikes Back, Shinnosuke
+JPName 嵐を呼ぶ モーレツ!オトナ帝国の逆襲 しんのすけ
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+*EarlyPlay2OrLessClimax
+*Healer
+Auto: OnPlay
+{
+    TargetLocation OpponentStage
+    SetXValue TargetCount
+    MultiplyXValue 1000
+    TargetSelf
+    GainPower X
+}
+Quick
+Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 1000 times the number of your opponent's characters.
+EndCard
+
+Character: CS/S114-060
+Name The Hidden Treasure of the Buri Buri Kingdom, Shinnosuke
+JPName ブリブリ王国の秘宝 しんのすけ
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Auto: StartClimaxPhase
+{
+    *GiveCharacterPower(1000,MOVIE|Family)
+}
+Text Auto: At the beginning of your climax phase, choose 1 of your «MOVIE» or «Family» characters, and that character gets +1000 power until end of turn.
+Act: 1 RestSelf
+{
+    TargetLocation Stage
+    NarrowTargets HasTrait MOVIE|Family
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        Auto: OnReverseOpponent
+        {
+            SearchWaitingRoom IsCharacter
+        }
+        Text Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand.
+    }
+}
+Text Act: [(1) Rest this card] Choose 1 of your «MOVIE» or «Family» characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand."
+EndCard
+
+Character: CS/S114-061
+Name Kind Big Brother, Shinnosuke & Himawari
+JPName 優しいお兄ちゃん しんのすけ＆ひまわり
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+*RedLevel0Bomb
+Auto: OnSentFromStageToWaitingRoom
+{
+    PayCost 2
+    {
+        SearchWaitingRoom IsCharacter && HasTrait MOVIE|Family|Kindergarten
+    }
+}
+Text Auto: [(2)] When this card is placed in the waiting room from the stage, you may pay the cost. If you do, choose 1 «MOVIE», «Family», or «Kindergarten» character in your waiting room and return it to your hand.
+EndCard
+
+Character: CS/S114-062
+Name Unkokusai's Ambition, Shinnosuke
+JPName 雲黒斎の野望 しんのすけ
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+*GainPowerWhenAttackingLevel2(6000)
+Act: 1 SendSelf WaitingRoom
+{
+    SearchLocationForTargets Hand 0 1 IsCharacter && HasTrait MOVIE|Family && Compare ThatCardsLevel MyLevel OrLess
+    PlaceOnStage false true true false
+}
+Text Act: [(1) Put this card in the waiting room] Choose up to 1 «MOVIE» or «Family» character in your hand whose level is equal to or lower than your level and put it in the position this card was in.
+EndCard
+
+Character: CS/S114-063
+Name Super Robot, Robo Hiroshi
+JPName スーパーロボット ロボひろし
+Color R
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Mecha
+Cont: GiveSelf
+{
+    If MyTurn && StageContains 1 Other && HasTrait MOVIE|Family
+    {
+        GainPower 3000
+    }
+}
+Text Cont: During your turn, if you have another «MOVIE» or «Family» character, this card gets +3000 power.
+Auto: OnOtherFrontalAttacked
+{
+    IfOther HasTrait MOVIE|Family
+    {
+        PayCost SendSelf BottomOfDeck
+        {
+            TargetMyCharacterInBattle
+            GainPower 3000
+        }
+    }
+}
+Text Auto: [Put this card on the bottom of the deck] When your other «MOVIE» or «Family» character is frontal attacked, you may pay the cost. If you do, choose 1 of your characters in battle, and that character gets +3000 power until end of turn.
+EndCard
+
+Character: CS/S114-064
+Name "SRI" Special Investigator, Jackie
+JPName “SRI”特捜員 ジャッキー
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 3500
+Soul 1
+Trait1 MOVIE
+Trait2 Samba
+Trait3 Tsundere
+*DropSearch(MOVIE)
+Act: SendSelf WaitingRoom
+{
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to return to hand.
+    Bounce
+}
+Text Act: [Put this card in the waiting room] Choose 1 of your opponent's characters and return it to their hand.
+EndCard
+
+Character: CS/S114-065
+Name Heiress of Kasuga Family, Fubukimaru
+JPName 春日家の跡取り 吹雪丸
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 MOVIE
+Trait2 Weapon
+Trait3 Yukata
+Auto: OnPlay
+{
+    If StageContains 4 Other && HasTrait MOVIE
+    {
+        *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait MOVIE)
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, if the number of other «MOVIE» characters you have is 4 or more, you may choose a «MOVIE» character in your waiting room and put it in your stock.
+*GainPowerWhenAttackingLevel3(6000)
+EndCard
+
+Character: CS/S114-066
+Name Enjoying the Fever, Hiroshi
+JPName ノリノリフィーバー ひろし
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Salaryman
+Auto: OnPlay
+{
+    TargetLocation CenterStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to give -1000 power.
+    LosePower 1000
+}
+Text Auto: When this card is placed on the stage from your hand, choose a character in your opponent's center stage, and that character gets -1000 power until end of turn.
+Auto: OnClimaxPlay
+{
+    PayCost SendSelf Hand
+    {
+        DrawCard
+        Discard 1 Any
+    }
+}
+Text Auto: [Return this card to your hand] When your climax is placed on your climax area, you may pay the cost. If you do, draw a card, and discard a card from your hand to the waiting room.
+EndCard
+
+Character: CS/S114-067
+Name Wanted, Shiro
+JPName お尋ね者 シロ
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Animal
+*Level0Assist
+*SacrificeToSave(HasTrait MOVIE|Family)
+Text Auto: [Put this card in the waiting room] When your other «MOVIE» or «Family» character is placed in the waiting room from the stage, if this card is in the backstage, you may pay the cost. If you do, put that character rest in the position it was in.
+EndCard
+
+Character: CS/S114-068
+Name Treasure Hunter, Indy Junko
+JPName トレジャーハンター インディ・ジュンコ
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 MOVIE
+Trait2 Expedition
+Cont: GiveSelf
+{
+    If LocationContainsOrLess Stock 2 Any
+    {
+        GainPower 1500
+    }
+}
+Text Cont: If there are 2 or less cards in your stock, this card gets +1500 power.
+Auto: StartOpponentAttackPhase
+{
+    If InLocation CenterStage
+    {
+        Mill 1
+        IfTarget Compare ThatCardsLevel 0 OrLess
+        {
+            TargetSelf
+            Question Move this card to an open position of your center stage?
+            If Yes
+            {
+                MoveToOpenPosition True False
+            }
+        }
+    }
+    Else
+    {
+        TargetSelf
+        MoveCard WaitingRoom
+    }
+}
+Text Auto: At the beginning of your opponent's attack phase, if this card is in the center stage, put the top card of your deck in the waiting room. If it's level 0 or lower, you may move this card to an open position in the center stage. If it's level 1 or higher, put this card in the waiting room.
+EndCard
+
+Character: CS/S114-069
+Name Future Himawari
+JPName 未来のひまわり
+Color R
+Level 1
+Cost 0
+Power 2000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Time
+*BackupBonus1000(MOVIE|Family)
+Backup 1000
+EndCard
+
+Character: CS/S114-070
+Name Royal Chamberlain, Ruru
+JPName 王家の侍従 ルル
+Color R
+Level 1
+Cost 0
+Power 2000
+Soul 1
+Trait1 MOVIE
+Trait2 Weapon
+Auto: StartDrawPhase
+{
+    If Compare TurnNumber 2 OrLess
+    {
+        RevealUpTo Deck 1
+        ChooseCardsFromTargets 0 1 HasTrait MOVIE && IsCharacter
+        RevealTargets
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
+}
+InWaitingRoom
+Text Auto: If this card is in the waiting room, at the beginning of your first turn, look at the top card of your deck and choose up to 1 «MOVIE» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+Auto: OnAttack
+{
+    *GiveOtherCharacterPower(2500,MOVIE)
+    GainEffect
+    {
+        *HandEncore
+    }
+}
+Text Auto: When this card attacks, choose 1 of your other «MOVIE» characters, and that character gets +2500 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
+EndCard
+
+Character: CS/S114-071
+Name Honeymoon Hurricane, Shinnosuke
+JPName 新婚旅行ハリケーン しんのすけ
+Color R
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Cont: GiveSelf
+{
+    If StageContains 2 Other && HasTrait MOVIE|Family
+    {
+        GainPower 1500
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
+}
+Text Cont: If the number of other «MOVIE» or «Family» characters with either you have is 2 or more, this card gets +1500 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
+EndCard
+
+Event: CS/S114-072
+Name My Moving Story
+JPName オラの引越し物語
+Color R
+Level 1
+Cost 2
+Counter
+Requirement StageContains 4 HasTrait MOVIE|Family
+Text If you have 3 or less «MOVIE» or «Family» characters, you cannot play this card from your hand.
+Effect:
+{
+    TargetLocation WaitingRoom
+    NarrowTargets IsCharacter
+    If TargetsContainsSeparateCardsThatMeetConditions NameContains しんのすけ , NameContains ひまわり , NameContains みさえ , NameContains ひろし , NameContains シロ
+    {
+        TargetBattleOpponent
+        IfTarget CanBeChosen
+        {
+            GainEffect
+            {
+                Cont: GiveSelf
+                {
+                    GainSpecialEffect CannotDealDamage
+                }
+                Text Cont: This card cannot deal damage to players.
+            }
+        }
+    }
+}
+Text COUNTER If there is a character with "Shinnosuke" in its card name, another character with "Himawari" in its card name, another character with "Misae" in its card name, another character with "Hiroshi" in its card name, and another character with "Shiro" in its card name in your waiting room, choose a character in battle, and that character gets the following ability until end of turn. "Cont: This card cannot deal damage to players."
+EndCard
+
+Climax: CS/S114-073
+Name Robo, But Dad
+JPName ロボ、でもとーちゃん
+*StandbyClimax
+EndCard
+
+Climax: CS/S114-074
+Name Love Love Fire!
+JPName ラブラブファイヤー！
+*StandbyClimax
+EndCard
+
+Climax: CS/S114-075
+Name "World Samba Project" Under Way
+JPName “世界サンバ化計画”進行中
+*DoorClimax
+EndCard
+
+Character: CS/S114-076
+Name Shrouded in Mystery! The Flowers of Tenkazu Academy, Shinnosuke
+JPName 謎メキ!花の天カス学園 しんのすけ
+Color B
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Combo Go Buy Me Yakisoba Bread!
+Auto: OnSpecificClimaxPlay Go Buy Me Yakisoba Bread!
+{
+    If InLocation CenterStage && StageContains 3 Other && HasTrait MOVIE|Family
+    {
+        *Check3Add1(MOVIE|Kindergarten)
+        TargetSelf
+        GainPower 1000
+        GainEffect
+        {
+            *OnAttackPay1ToDoubleTrigger
+        }
+    }
+}
+Text Auto: CxCombo When "Go Buy Me Yakisoba Bread!" is placed on your climax area, if this card is in the center stage and the number of other «MOVIE» or «Kindergarten» characters you have is 3 or more, look at up to the top 3 cards of your deck, choose up to 1 «MOVIE» or «Kindergarten» character among them, reveal it, put it in your hand, put the rest into your waiting room, and this card gets +1000 power and the following ability until end of turn. "Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform trigger check twice during this card attack's trigger step."
+EndCard
+
+Character: CS/S114-077
+Name Fierceness That Invites Storm! The Battle of the Warring States, Shinnosuke
+JPName 嵐を呼ぶ アッパレ!戦国大合戦 しんのすけ
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 8000
+Soul 2
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+*EarlyPlay4OrMore(MOVIE|Family)
+Cont: GiveSelf
+{
+    SetXToNumberOfCharacters Other && HasTrait MOVIE|Family && InLocation Backstage
+    MultiplyXValue 1500
+    GainPower X
+}
+Text Cont: This card gets +1500 power for each of your opponent's backstage characters
+Auto: OnPlay
+{
+    PayCost Discard 1 Any
+    {
+        SearchLocationForTargets Clock 1 1 IsCharacter && HasTrait MOVIE|Family
+        RevealTargets
+        MoveCard Hand
+    }
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «MOVIE» or «Family» character in your clock and return it to your hand.
+EndCard
+
+Character: CS/S114-078
+Name Friends, Shinnosuke & Chinzo
+JPName お友達 しんのすけ＆珍蔵
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 MOVIE
+Trait2 Kindergarten
+Trait3 Ninja
+Cont: GiveSelf
+{
+    If StageContains 1 Other && NameEquals Mononoke Ninja Chinpuden, Shinnosuke
+    {
+        GainPower 2000
+        GainSoul 1
+    }
+}
+Text Cont: If you have another "Mononoke Ninja Chinpuden, Shinnosuke", this card gets +2000 power and +1 soul.
+*GiveNamePower(1000,Mononoke Ninja Chinpuden\, Shinnosuke)
+Auto: OnPlay
+{
+    PayCost Discard 1 IsCharacter && HasTrait MOVIE|Kindergarten
+    {
+        SearchDeck NameEquals Mononoke Ninja Chinpuden, Shinnosuke
+    }
+}
+Text Auto: [Put a «MOVIE» or «Kindergarten» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Mononoke Ninja Chinpuden, Shinnosuke", reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: CS/S114-079
+Name Burst Serving! Kung Fu Boys, Shinnosuke
+JPName 爆盛！カンフーボーイズ しんのすけ
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Auto: OnClimaxPlay
+{
+    *GiveCharacterPower(1000,Any)
+}
+Text Auto: When your climax is placed on your climax area, choose 1 of your characters, and that character gets +1000 power until end of turn.
+Act: 1 Rest 2 Any
+{
+    Mill 4
+    SearchWaitingRoom IsCharacter && HasTrait MOVIE|Kindergarten && Compare ThatCardsLevel TotalSoulTriggers OrLess
+}
+Text Act: [(1) Rest 2 of your characters] Put the top 4 cards of your deck in the waiting room, choose up to 1 level X or lower «MOVIE» or «Kindergarten» character in your waiting room and return it to your hand. X equals sum of Soul trigger icons among those cards.
+EndCard
+
+Character: CS/S114-080
+Name Crash! Graffiti Kingdom, Shinnosuke
+JPName 激突! ラクガキングダム しんのすけ
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Combo Saving the World with Crayons
+Auto: OnSpecificClimaxPlay Saving the World with Crayons
+{
+    If StageContains 2 Other && HasTrait MOVIE|Family
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give the effect.
+        *GainBounceWhenFrontalAttacked
+    }
+}
+Text Auto: CxCombo When "Saving the World with Crayons" is placed on your climax area, if the number of other «MOVIE» or «Family» characters you have is 2 or more, choose 1 of your characters, and that character gets the following ability until the end of your opponent's next turn. "Auto: When this card is frontal attacked, you may return this card to your hand."
+Act: 1 Discard 1 Any &&& RestSelf
+{
+    SearchWaitingRoom IsCharacter
+}
+Text Act: [(1) Put 1 card from your hand to the waiting room, rest this card] Choose a character in your waiting room and return it to your hand.
+EndCard
+
+Character: CS/S114-081
+Name Very Tasty! B-class Gourmet Survival!!, Shinnosuke
+JPName バカうまっ!B級グルメサバイバル!! しんのすけ
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Cont: InHand
+{
+    GainSpecialEffect IgnoreColorRequirement
+}
+Text Cont: You may play this card from your hand without meeting the color requirement.
+Auto: OnPlay
+{
+    PayCost 0
+    {
+        OpponentMessage Choose a climax to keep in your waiting room.
+		OpponentSearchLocationForTargets WaitingRoom 1 1 IsClimax
+		ReverseTargets OpponentWaitingRoom
+		MoveCard OpponentDeck
+		ShuffleLocation OpponentDeck
+    }
+}
+Text Auto: When this card is placed form hand to the stage, you may perform the following effect. "Your opponent chooses a climax in their waiting room, returns all cards other than the chosen card from their waiting room to their deck, and shuffles that deck. "
+EndCard
+
+Character: CS/S114-082
+Name Ora's Dinosaur Diary, Shinnosuke
+JPName オラたちの恐竜日記 しんのすけ
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Auto: OnPlay
+{
+    PayCost Discard 1 Any
+    {
+        SearchLocationForTargets WaitingRoom 1 1 IsCharacter
+        MoveCard Memory
+        RememberTargets
+        ScheduleEffect StartDrawPhase
+        {
+            Effect:
+            {
+                TargetRemembered
+                If InLocation Memory
+                {
+                    MoveCard Hand
+                }
+            }
+            Quick
+        }
+    }
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a character in your waiting room and send it to memory. At the beginning of your next turn, return that character from your memory to your hand.
+EndCard
+
+Character: CS/S114-083
+Name Crybaby Boy, Masao-kun
+JPName 泣き虫少年 マサオくん
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 MOVIE
+Trait2 Kindergarten
+Trait3 Crybaby
+Auto: StartOpponentAttackPhase
+{
+    PayCost 1 Clock SendSelf Hand
+    {
+        TargetLocation Stage
+        NarrowTargets Other
+        ChooseCharacterFromTargets Choose a character to return to hand.
+        Bounce
+    }
+}
+Text Auto: [(1) Put the top card of your deck in your clock, return this card to your hand] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your other characters and return it to your hand.
+EndCard
+
+Character: CS/S114-084
+Name Masa with Heavy Obligation
+JPName 鬼義理のマサ
+Color B
+Level 0
+Cost 0
+Power 3500
+Soul 1
+Trait1 MOVIE
+Trait2 Kindergarten
+Trait3 Delinquent
+*GiveAllOpponentsEncore2
+Auto: OnReverseOpponent
+{
+    If LocationContainsOrLess Stock 4 Any
+    {
+        TargetBattleOpponent
+        IfTarget OnStage
+        {
+            Question put that character to bottom of deck.
+            If Yes
+            {
+                MoveCardToBottom OpponentDeck
+            }
+        }
+    }
+}
+Text Auto: When this card's battle opponent becomes reverse, if there are 4 or less cards in your stock, you may put that character on the bottom of the deck.
+EndCard
+
+Character: CS/S114-085
+Name Miracle Crayon, Fake Nanako
+JPName ミラクルクレヨン ニセななこ
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 MOVIE
+Trait2 Onee-san
+Auto: OnPlay
+{
+    If StageContains 1 Other && HasTrait MOVIE
+    {
+        GainPower 2000
+    }
+}
+Quick
+Text Auto: When this card is placed on the stage from your hand, if you have another «MOVIE» character, this card gets +2000 power until end of turn.
+Auto: OnOtherFrontalAttacked
+{
+    IfOther HasTrait MOVIE
+    {
+        PayCost 1 SendSelf WaitingRoom
+        {
+            TargetOther
+            Bounce
+        }
+    }
+}
+Text Auto: [(1) Put this card in the waiting room] When your other «MOVIE» character is frontal attacked, you may pay the cost. If you do, return that character to your hand.
+EndCard
+
+Character: CS/S114-086
+Name Super Elite, Kazama-san
+JPName スーパーエリート カザマさん
+Color B
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 MOVIE
+Trait2 Kindergarten
+Trait3 Honor Student
+Auto: OnPlay
+{
+    If StageContains 1 Other && HasTrait MOVIE|Kindergarten
+    {
+        RevealUpTo Deck 3
+        ChooseCardsFromTargets 0 1 NameEquals Shrouded in Mystery! The Flowers of Tenkazu Academy, Shinnosuke
+        PlaceOnStage false true true false
+        PutTheRestIntoTheWaitingRoom
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, if you have another «MOVIE» or «Kindergarten» character, look at up to the top 3 cards of your deck, choose up to 1 "Shrouded in Mystery! The Flowers of Tenkazu Academy, Shinnosuke" among them, put it in any position on the stage, and put the rest into your waiting room.
+EndCard
+
+Character: CS/S114-087
+Name Many Treasures, Shinnosuke & Buriburizaemon
+JPName たくさんの宝物 しんのすけ＆ぶりぶりざえもん
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Auto: OnUseThisCardsBackup
+{
+    PayCost Discard 2 Any
+    {
+        TargetLocation OpponentStage
+		NarrowTargets EarlyPlay && CanBeChosen
+		ChooseCharacterFromTargets Choose a character to send to your opponent's stock
+        If HasTarget
+        {
+		    MoveCard OpponentStock
+            TargetBottom OpponentStock
+            MoveCard OpponentWaitingRoom
+        }
+    }
+}
+Text Auto: [Put 2 cards from your hand to the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it on the bottom of your opponent's deck.
+Backup 2500
+EndCard
+
+Character: CS/S114-088
+Name Fierceness That Invites Storm! Operation Golden Spy, Shinnosuke
+JPName 嵐を呼ぶ 黄金のスパイ大作戦 しんのすけ
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Combo Partners of Justice Formed!
+Auto: OnEndOfAttack
+{
+    If Climax Partners of Justice Formed!
+    {
+        PayCost 3 Discard 2 IsCharacter && HasTrait MOVIE|Family
+        {
+            Burn 1
+            Stand
+            SearchLocationForTargets OpponentWaitingRoom 0 1 Any
+            RevealTargets
+            MoveCard OpponentDeck
+        }
+    }
+}
+Text Auto: CxCombo [(3) Put 2 «MOVIE» or «Family» characters from your hand to the waiting room] This card ability activates up to once per turn. At the end of this card's attack, if "Partners of Justice Formed!" is in your climax area, you may pay the cost. If you do, deal 1 damage to your opponent, stand this card, choose up to 1 card in your opponent's waiting room and put it on top of the deck.
+EndCard
+
+Character: CS/S114-089
+Name Graffiti Heroes, Shinnosuke & Buriburizaemon
+JPName ラクガキ勇者 しんのすけ＆ぶりぶりざえもん
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Auto: OnPlay|OnSentFromStageToWaitingRoom
+{
+    PayCost 1 Discard 1 Any
+    {
+        SearchWaitingRoom IsCharacter
+    }
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand or when this card is placed in the waiting room from the stage, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
+EndCard
+
+Character: CS/S114-090
+Name Mononoke Ninja Chinpuden, Shinnosuke
+JPName もののけニンジャ珍風伝 しんのすけ
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+EndCard
+
+Character: CS/S114-091
+Name Action Spy, Shinnosuke
+JPName アクションスパイ しんのすけ
+Color B
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Cont: GiveAll
+{
+    If Other
+    {
+        If NameEquals Action Spy, Shinnosuke || NameEquals Action Spy, Lemon
+        {
+            GainPower 2500
+        }
+    }
+}
+Text Cont: All your other "Action Spy, Shinnosuke" and "Action Spy, Lemon" get +2500 power.
+EndCard
+
+Character: CS/S114-092
+Name Action Spy, Lemon
+JPName アクションスパイ レモン
+Color B
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 MOVIE
+Trait2 Spy
+Trait3 Potato
+Cont: GiveAll
+{
+    If Other
+    {
+        If NameEquals Action Spy, Shinnosuke || NameEquals Action Spy, Lemon
+        {
+            GainPower 2500
+        }
+    }
+}
+Text Cont: All your other "Action Spy, Shinnosuke" and "Action Spy, Lemon" get +2500 power.
+EndCard
+
+Character: CS/S114-093
+Name Son of the Hesogakure Family, Chinzo
+JPName 屁祖隠家のせがれ 珍蔵
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 3500
+Soul 1
+Trait1 MOVIE
+Trait2 Ninja
+Trait3 Animal
+*BlueEarlyPlayBomb
+*HandEncore
+EndCard
+
+Character: CS/S114-094
+Name KDF Badge Full of Memories, Shinnosuke
+JPName 思い出のK・Bバッジ しんのすけ
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 6000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+*Level3Assist
+Auto: OnClimaxPlay
+{
+    *GiveCharacterPower(2000,Any)
+}
+Text Auto: When your climax is placed on your climax area, choose 1 of your characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: CS/S114-095
+Name Only Girl in Kasukabe Defence Force, Nene-chan
+JPName カスカベ防衛隊の紅一点 ネネちゃん
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 6500
+Soul 1
+Trait1 MOVIE
+Trait2 Kindergarten
+Trait3 Doll
+Cont: GiveSelf
+{
+    SetXValue ThisCardsMarkers
+    MultiplyXValue 1500
+    GainPower X
+}
+Text Cont: This card gets +1500 power for each marker underneath this card
+Auto: OnPlay
+{
+    SearchLocationForTargets WaitingRoom 0 3 NameEquals Crybaby Boy, Masao-kun
+    RevealTargets
+    Marker_FaceDown
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose up to 3 "Crybaby Boy, Masao-kun" in your waiting room and place them underneath this card face down as a marker in any order.
+EndCard
+
+Character: CS/S114-096
+Name Punni-Punni Punch User, Tamaran
+JPName ぷにぷに拳の使い手 玉蘭
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 6500
+Soul 1
+Trait1 MOVIE
+Trait2 Kempo
+Auto: OnAttack
+{
+    If StageContains 2 Other && HasTrait MOVIE
+    {
+        MultipleChoiceQuestion Choose 1 of the following 2 effects and perform it.\n1: This card gets +6000 power until end of turn.\n2: Choose 1 of your other «MOVIE» characters, and that character gets +3000 power until the end of your opponent's next turn.|1|2
+        If Answer 0
+        {
+            GainPower 6000
+        }
+        If Answer 1
+        {
+            UntilEndOfOpponentsTurn
+            *GiveOtherCharacterPower(3000,MOVIE)
+        }
+    }
+}
+Text Auto: When this card attacks, if the number of other «MOVIE» characters you have is 2 or more, choose 1 of the following 2 effects and perform it. "This card gets +6000 power until end of turn." "Choose 1 of your other «MOVIE» characters, and that character gets +3000 power until the end of your opponent's next turn."
+EndCard
+
+Event: CS/S114-097
+Name Made in Saitama
+JPName メイド・イン・埼玉
+Color B
+Level 1
+Cost 1
+Effect:
+{
+    PayCost Rest 1 IsCharacter && HasTrait MOVIE|Kindergarten && CardPosition Stand
+    {
+        SearchLocationForTargets Deck 0 2 IsCharacter && HasTrait MOVIE|Kindergarten
+        RevealTargets
+        MoveCard Hand
+        Discard 1 Any
+        ShuffleLocation Deck
+        *GiveCharacterPower(1000,Any)
+    }
+}
+Text Choose 1 of your standing «MOVIE» or «Kindergarten» characters and rest it. If you do, search your deck for up to 2 «MOVIE» or «Kindergarten» characters, reveal them, put them in your hand, discard a card from your hand to the waiting room, shuffle your deck, choose 1 of your characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Climax: CS/S114-098
+Name Go Buy Me Yakisoba Bread!
+JPName やきそばパン買ってこい！
+*GateClimax
+EndCard
+
+Climax: CS/S114-099
+Name Saving the World with Crayons
+JPName 世界を救え、クレヨンで
+Color B
+Trigger DoubleSoul
+Auto: OnPlay
+{
+    *PutCardFromWaitingRoomIntoStock(IsCharacter && Compare ThatCardsLevel 1 OrLess)
+    TargetLocation Stage
+    GainSoul 1
+}
+Text Auto: When this card is placed from hand to your climax area, choose up to 1 level 1 or lower character in your waiting room and put it in your stock, and all your characters get +1 soul until end of turn.
+EndCard
+
+Climax: CS/S114-100
+Name Partners of Justice Formed!
+JPName 正義のコンビ結成!!
+*GateClimax
+EndCard
+
+Character: CS/S114-T01
+Name Treasure Hunter, Shinnosuke
+JPName トレジャーハンター しんのすけ
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Cont: GiveAll
+{
+    If Other && NameEquals Princess, Himiwari
+    {
+        GainSoul 1
+    }
+}
+Text Cont: All your other "Princess, Himiwari" get +1 soul.
+*Bond1(Princess\, Himiwari)
+EndCard
+
+Character: CS/S114-T02
+Name Encounter with Aliens, Misae & Himawari
+JPName 宇宙人との遭遇 みさえ＆ひまわり
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Housewife
+*GiveNamePower(1000,Punni-Punni Punch\, Shinnosuke)
+*Act1RestSelfDrawBrainstorm5
+EndCard
+
+Character: CS/S114-T03
+Name Now to the Dreamy World!, Shinnosuke
+JPName いざユメミーワールドへ！ しんのすけ
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Auto: OnPlay
+{
+    PayCost Discard 1 Any
+    {
+        TargetTop Deck 1
+        Reveal
+        SearchWaitingRoom Compare TargetCardsLevel ThatCardsLevel OrLess && IsCharacter
+    }
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck, choose 1 level X lower character in your waiting room and return it to your hand. X equals level of the card revealed this way.
+EndCard
+
+Character: CS/S114-T04
+Name Princess, Himiwari
+JPName プリンセス ひまわり
+Color R
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Gem
+EndCard
+
+Character: CS/S114-T05
+Name Charm Success, Hiroshi
+JPName ゲッチュー成功 ひろし
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Salaryman
+*OnAttackGivePower(6000,MOVIE|Family)
+EndCard
+
+Character: CS/S114-T06
+Name Family Bond, Shinnosuke & Shiro
+JPName 家族の絆 しんのすけ＆シロ
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Combo Welcome Back, Shinnosuke! Shiro!
+*Healer
+Auto: OnAttack
+{
+    If Climax Welcome Back, Shinnosuke! Shiro! && StageContains 2 Other && HasTrait MOVIE|Family
+    {
+        PayCost 1 Discard 1 Any
+        {
+            Burn 3
+        }
+    }
+}
+Text Auto: CxCombo [(1) Put 1 card from your hand to the waiting room] When this card attacks, if "Welcome Back, Shinnosuke! Shiro!" is in your climax area and the number of other «MOVIE» or «Family» characters you have is 2 or more, you may pay the cost. If you do, deal 3 damage to your opponent.
+EndCard
+
+Event: CS/S114-T07
+Name Hero vs Leotard Devil
+JPName ヒーローVSハイグレ魔王
+Color R
+Level 2
+Cost 1
+Effect:
+{
+    SearchWaitingRoom IsCharacter
+    SearchWaitingRoom IsCharacter
+    Discard 1 Any
+}
+Text Choose up to 2 characters in your waiting room and return them to your hand, and discard a card from your hand to the waiting room.
+EndCard
+
+Climax: CS/S114-T08
+Name Welcome Back, Shinnosuke! Shiro!
+JPName おかえり しんのすけ！シロ！
+*DoorClimax
+EndCard
+
+Climax: CS/S114-T09
+Name Mother's Love
+JPName 母の愛情
+Color R
+Trigger DoubleSoul
+Auto: OnPlay
+{
+    SearchWaitingRoom IsCharacter && HasTrigger Soul
+    TargetLocation Stage
+    ChooseCharactersFromTargets 0 2 Choose up to 2 characters to give +1 soul.
+    GainSoul 1
+}
+Text When this card is placed from hand to your climax area, choose up to 1 character with Soul trigger icon in your waiting room and return it to your hand, choose up to 2 of your characters, and those characters get +1 soul until end of turn.
+EndCard
+
+Character: CS/S114-T10
+Name Practicing Ninjutsu!, Nene-chan
+JPName 忍術修行中！ ネネちゃん
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 MOVIE
+Trait2 Kindergarten
+Trait3 Doll
+Auto: OnPlay
+{
+    SetXToNumberOfCharacters HasTrait MOVIE|Kindergarten
+    MultiplyXValue 1000
+    UntilEndOfOpponentsTurn
+    GainPower X
+}
+Quick
+Text Auto: When this card is placed on the stage from your hand, this card gets +X power until the end of your opponent's next turn. X equals 1000 times the number of your «MOVIE» or «Kindergarten» characters.
+EndCard
+
+Character: CS/S114-T11
+Name Practicing Ninjutsu!, Bo-chan
+JPName 忍術修行中！ ボーちゃん
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 MOVIE
+Trait2 Kindergarten
+Trait3 Mystery
+*OnPlayReorderTop2
+*ClimaxExchange
+EndCard
+
+Character: CS/S114-T12
+Name Saving the World, Shinnosuke
+JPName 世界を救え しんのすけ
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+*OnPlayGainPower(1500)
+*MoveOtherWithTraitToBackstageOnReverse(MOVIE|Family)
+EndCard
+
+Character: CS/S114-T13
+Name Practicing Ninjutsu!, Kazama-kun
+JPName 忍術修行中！ 風間くん
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 MOVIE
+Trait2 Kindergarten
+Trait3 Honor Student
+Auto: OnSentFromStageToWaitingRoom
+{
+    PayCost 2 Discard 1 Any
+    {
+        RevealUpTo Deck 6
+        ChooseCardsFromTargets 0 2 IsCharacter && HasTrait MOVIE|Kindergarten
+        RevealTargets
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
+}
+Text Auto: [(2) Put 1 card from your hand to the waiting room] When this card is placed in the waiting room from the stage, you may pay the cost. If you do, look at up to the top 6 cards of your deck, choose up to 2 «MOVIE» or «Kindergarten» characters among them, reveal them, put them in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: CS/S114-T14
+Name Saving the World, Buriburizaemon
+JPName 世界を救え ぶりぶりざえもん
+Color B
+Level 1
+Cost 0
+Power 500
+Soul 1
+Trait1 MOVIE
+Trait2 Animal
+Trait3 Dark Hero
+Auto: OnPlay
+{
+    PayCost 1 Discard 1 Any
+    {
+        *CheckAndAdd(5)
+    }
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 5 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
+Auto: OnReversed
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget Compare ThatCardsLevel 2 OrMore
+    {
+        Question Put this card into stock ?
+        If Yes
+        {
+            TargetSelf
+            MoveCard Stock
+        }
+    }
+}
+Text Auto: When this card becomes reversed, reveal the top card of your deck. If it's level 2 or higher, you may put this card in your stock.
+EndCard
+
+Character: CS/S114-T15
+Name Punni-Punni Punch, Shinnosuke
+JPName ぷにぷに拳 しんのすけ
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Combo Protect Aiya Town!
+*OnPlayGainPowerForEach(1000,MOVIE|Family)
+Auto: OnAttack
+{
+    If Climax Protect Aiya Town! && StageContains 1 Other HasTrait MOVIE|Family
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give the effect.
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                SearchDeck IsCharacter && HasTrait MOVIE|Family
+            }
+            Text Auto: When this card's battle opponent becomes reverse, search your deck for up to 1 «MOVIE» or «Family» character, reveal it, put it in your hand, and shuffle your deck.
+        }
+    }
+}
+Text Auto: CxCombo When this card attacks, if "Protect Aiya Town!" is in your climax area and you have another «MOVIE» or «Family» character, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, search your deck for up to 1 «MOVIE» or «Family» character, reveal it, put it in your hand, and shuffle your deck."
+EndCard
+
+Character: CS/S114-T16
+Name Practicing Ninjutsu!, Masao-kun
+JPName 忍術修行中！ マサオくん
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 500
+Soul 1
+Trait1 MOVIE
+Trait2 Kindergarten
+Trait3 Crybaby
+Auto: OnUseThisCardsBackup
+{
+    *Scry
+}
+Text Auto: When you use this card's "BACKUP", look at the top card of your deck and put it either on top of your deck or in the waiting room.
+Backup 2000
+EndCard
+
+Character: CS/S114-T17
+Name Practicing Ninjutsu!, Shinnosuke
+JPName 忍術修行中！ しんのすけ
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+*LevelAssist
+Act: Discard 2 IsCharacter && HasTrait MOVIE|Family &&& Rest 2 Any
+{
+    SearchLocationForTargets Hand 0 1 NameEquals Action Mask Transformation Set, Shinnosuke
+    PlaceOnStage false true true false
+}
+Text Act: [Put 2 «MOVIE» or «Family» characters from your hand to the waiting room, rest 2 of your characters] Choose up to 1 "Action Mask Transformation Set, Shinnosuke" in your hand and put it in any position on the stage.
+EndCard
+
+Character: CS/S114-T18
+Name Playing with Nana, Shinnosuke
+JPName ナナとの触れ合い しんのすけ
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 5000
+Soul 2
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Cont: GiveSelf
+{
+    SetXToNumberOfCharacters Other && HasTrait MOVIE|Family && InLocation Backstage
+    MultiplyXValue 2500
+    GainPower X
+}
+Text Cont: This card gets +2500 power for each of your other backstage «MOVIE» or «Family» characters
+EndCard
+
+Character: CS/S114-T19
+Name Action Mask Transformation Set, Shinnosuke
+JPName アクション仮面変身セット しんのすけ
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Auto: OnPlay
+{
+    Burn 1
+}
+Text Auto: When this card is placed on the stage from your hand, you may deal 1 damage to your opponent.
+EndCard
+
+Climax: CS/S114-T20
+Name Protect Aiya Town!
+JPName アイヤータウンを守れ！
+*GateClimax
+EndCard
+

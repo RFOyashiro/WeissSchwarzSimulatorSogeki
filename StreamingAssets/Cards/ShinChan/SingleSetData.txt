@@ -1,7 +1,0 @@
-Series: Crayon Shin-Chan
-Folder: ShinChan/S28
-Prefix: CS/S28
-SetName: Crayon Shin-Chan (S28)
-Folder: ShinChan/S114
-Prefix: CS/S114
-SetName: Crayon Shin-Chan MOVIE (S114)

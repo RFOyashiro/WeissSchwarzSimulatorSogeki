@@ -177,7 +177,7 @@ Power 1500
 Soul 1
 Trait1 Meiji Swordsman Romantic Story
 Trait2 Brawler
-Cont: 
+Cont: GiveSelf
 {
     If LocationContains Hand 5 Any
     {
@@ -1372,9 +1372,9 @@ Cont: GiveAll
     IfOwner InLocation CenterStage
     {
         If HasTrait Meiji Swordsman Romantic Story
-        [
+        {
             GainPower 15000
-        ]
+        }
     }
 }
 Text Cont: If this card is in the center stage, all your «Meiji Swordsman Romantic Story» characters get +1500 power.
@@ -2612,9 +2612,9 @@ Trait2 Shinsengumi
 Cont: InHand
 {
     If LocationContains OpponentWaitingRoom 3 IsClimax
-    [
+    {
         LoseLevel 1
-    ]
+    }
 }
 Text Cont: If there are 3 or less climax in your opponent's waiting room, this card gets -1 level while in your hand.
 Auto: OnPlay

@@ -143,8 +143,8 @@ Trait2 Camera
 *EarlyPlay2OrLessClimax
 Cont: GiveSelf
 {
-    StageContains 2 Other && HasTrait Music
-    [
+    If StageContains 2 Other && HasTrait Music
+    {
         GainPower 1500
         GainEffect
         {
@@ -158,7 +158,7 @@ Cont: GiveSelf
             }
             Text Auto: During your turn, when this card's battle opponent becomes reverse, choose 1 «Music» character in your waiting room and return it to your hand, and discard a card from your hand to the waiting room.
         }
-    ]
+    }
 }
 Text Cont: If the number of other «Music» characters you have is 2 or more, this card gets +1500 power and the following ability. "Auto: During your turn, when this card's battle opponent becomes reverse, choose 1 «Music» character in your waiting room and return it to your hand, and discard a card from your hand to the waiting room."
 *Healer
@@ -1539,7 +1539,7 @@ Auto: OnAttack
 {
     TargetLocation Stage
     GainEffect
-    [
+    {
         Auto: OnThisTriggerCheck
         {
             IfOther IsClimax && HasTrigger Door
@@ -1551,7 +1551,7 @@ Auto: OnAttack
             }
         }
         Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card's trigger check reveals a climax with a Door trigger icon, you may pay the cost. If you do, deal 1 damage to your opponent.
-    ]
+    }
 }
 Text Auto: When this card attacks, all your characters get the following ability until end of turn. "Auto: [(1) Put 1 card from your hand to the waiting room] When this card's trigger check reveals a climax with a Door trigger icon, you may pay the cost. If you do, deal 1 damage to your opponent."
 EndCard
@@ -2830,6 +2830,7 @@ Combo Nightwear
 Auto: OnPlay
 {
 	Question Perform the effect ?
+    If Yes
 	{
 		OpponentMessage Choose a climax to keep in your waiting room.
 		OpponentSearchLocationForTargets WaitingRoom 1 1 IsClimax
@@ -4300,6 +4301,9 @@ Text Cont: If this card is in the middle position of your center stage, this car
 Auto: OnReceiveDamage
 {
     If Not MyTurn && InLocation CenterStage
+    {
+        *Scry
+    }
 }
 Text Auto: During your opponent's turn, when damage taken by you isn't canceled, if this card is in the center stage, look at the top card of your deck and put it either on top of the deck or in the waiting room.
 EndCard
