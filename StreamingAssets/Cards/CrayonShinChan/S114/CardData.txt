@@ -88,8 +88,7 @@ Auto: OnDamageCanceled
         *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait MOVIE|Family)
         Repeat 3
         {
-            DrawCard
-            Discard 1 Any
+            *OptionalDrawDiscard
         }
     }
 }
@@ -1262,6 +1261,7 @@ Auto: StartOpponentAttackPhase
         }
     }
 }
+InMemory
 Text Auto: MEMORY [Turn this card face up card face down] If this card is in memory, at the beginning of your opponent's attack phase, you may pay the cost. IF so, choose 1 of your characters, that characters gets +1500 power until end of turn, choose 1 of your opponent's characters, and that character gets the following ability until end of turn. "Cont: This card cannot deal damage to players."
 EndCard
 
@@ -2604,7 +2604,7 @@ Auto: OnPlay
     {
         TargetTop Deck 1
         Reveal
-        SearchWaitingRoom Compare TargetCardsLevel ThatCardsLevel OrLess && IsCharacter
+        SearchWaitingRoom Compare ThatCardsLevel TargetCardsLevel OrLess && IsCharacter
     }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck, choose 1 level X lower character in your waiting room and return it to your hand. X equals level of the card revealed this way.
