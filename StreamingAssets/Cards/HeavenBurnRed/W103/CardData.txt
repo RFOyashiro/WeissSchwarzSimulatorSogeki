@@ -2076,7 +2076,7 @@ Soul 1
 Trait1 Seraph
 Trait2 Unit 31B
 *500Assist
-Auto: OnTriggerCheckClimax
+Auto: OnTriggerCheck
 {
     If HasTrigger Soul
     {
@@ -2084,7 +2084,7 @@ Auto: OnTriggerCheckClimax
         GainLevel 1
     }
 }
-Text Auto: When your character's trigger check reveals a climax with a soul trigger icon, choose 1 of your «Seraph» characters, and that character gets +1 level and +1500 power until end of turn.
+Text Auto: When your character's trigger check reveals a card with a soul trigger icon, choose 1 of your «Seraph» characters, and that character gets +1 level and +1500 power until end of turn.
 *RestGivePower(500,Any)
 EndCard
 
