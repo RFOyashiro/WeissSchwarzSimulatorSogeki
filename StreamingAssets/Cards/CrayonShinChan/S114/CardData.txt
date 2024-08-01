@@ -112,7 +112,7 @@ Auto: OnPlay
     PayCost HandClock IsCharacter && HasTrait MOVIE|Family
     {
         TargetLocation OpponentStage
-        SetXValue
+        SetXValue TargetCount
         Peek Deck X
         ChooseCardsFromTargets 0 1 Any
         MoveCard Hand
