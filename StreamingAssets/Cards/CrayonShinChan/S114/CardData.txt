@@ -839,6 +839,7 @@ Auto: OnDamageCanceled
         *OptionalBurn(5)
     }
 }
+TimesPerTurn 1
 Text Auto: CxCombo This card ability activates up to once per turn. When damage dealt by this card is canceled, if "Butt Walk March" is in your climax area and the number of other «MOVIE» or «Family» characters you have is 2 or more, you may deal 5 damage to your opponent.
 EndCard
 
