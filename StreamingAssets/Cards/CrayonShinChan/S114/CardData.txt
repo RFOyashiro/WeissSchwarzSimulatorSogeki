@@ -507,7 +507,7 @@ Auto: OnPlay
     {
         TargetLocation Stage
         SaveTargets
-        SearchDeck IsCharacter && Not NameNotInSavedTargets
+        SearchDeck IsCharacter && SameNameAsSavedTarget
     }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with the same name as a character on your stage, reveal it, put it in your hand, and shuffle your deck.
