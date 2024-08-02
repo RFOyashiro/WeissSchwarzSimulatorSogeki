@@ -4132,7 +4132,7 @@ Effect:
 Text COUNTER Choose up to 1 card in your waiting room, put it in your stock and put the top 3 cards of your deck into waiting room. If there's a level 2 or higher card among them, you may put the top card of your deck into stock.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-138
 Name Cheering Up, Shiron
 Color G
 Level 2
@@ -4142,20 +4142,24 @@ Power 2500
 Soul 1
 Trait1 Headpat
 Trait2 Artist
-Trait3 power: 2500
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    TargetMyCharacterInBattle
+    GainEffect
+    {
+        Auto: OnReversed
+        {
+            Rest
+        }
+        Quick
+        Text Auto: When this card becomes reverse in battle, rest this card.
+    }
 }
-Text Auto: When you use this card's Backup, your character in battle gets the following ability until end of turn. "Auto: When this card becomes reverse in battle, rest this card."
-Act:
-{
-
-}
-Text Act: Backup 2500 level 2 [(1) Put this card from your hand into waiting room] (Choose one of your characters that is being frontal attacked, and that character gets +2500 power until end of turn)
+Text Auto: When you use this card's "BACKUP", your character in battle gets the following ability until end of turn. "Auto: When this card becomes reverse in battle, rest this card."
+Backup 2500
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-146
 Name Oversized Hoodie, Shiron
 Color G
 Level 0
@@ -4164,19 +4168,15 @@ Power 2000
 Soul 1
 Trait1 Headpat
 Trait2 Artist
-Auto:
+*GreenLevel0Bomb
+Act: Rest 2 Other && HasTrait Headpat
 {
-
+    GainPower 2500
 }
-Text Auto: When this card becomes reverse, if this card's battle opponent is level 0 or lower, you may put the top card of your opponent's clock into the waiting room, and if you do, put that character into your opponent's clock.
-Act:
-{
-
-}
-Text Act: [rest 2 of your other «Headpat» characters] This card gets +2500 power until end of turn.
+Text Act: [Rest 2 of your other «Headpat» characters] This card gets +2500 power until end of turn.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-147
 Name Ride Play, Shiron
 Color G
 Level 0
@@ -4186,19 +4186,29 @@ Soul 1
 Trait1 Headpat
 Trait2 Artist
 Trait3 Glasses
-Cont:
+Cont: GiveAll
 {
-
+    If Other && HasTrait Glasses
+    {
+        GainTrait Brat
+    }
 }
 Text Cont: All your other «Glasses» characters get «Brat».
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchLocationForTargets Clock 0 1 Any
+        RevealTargets
+        MoveCard Hand
+        TargetTop Deck 1
+        MoveCard Clock
+    }
 }
 Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 card in your clock, put it in your hand and put the top card of your deck into clock.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-142
 Name Cat Rest, Shiron
 Color G
 Level 0
@@ -4208,24 +4218,32 @@ Soul 1
 Trait1 Headpat
 Trait2 Artist
 Trait3 School Swimsuit
-Cont:
+Cont: GiveAll
 {
-
+    If Other && HasTrait School Swimsuit
+    {
+        GainTrait Nerd
+    }
 }
 Text Cont: All your other «School Swimsuit» characters get «Nerd».
-Auto:
+Auto: OnPlay
 {
-
+    Question Put a card from your hand into stock ?
+    If Yes
+    {
+        SearchLocationForTargets Hand 1 1 Any
+        MoveCard Stock
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, you may put a card from your hand into stock.
-Act:
+Act: 1 SendSelf
 {
-
+    *Check4Add1(Any)
 }
 Text Act: [(1) Put this card into waiting room] Look at up to the top 4 cards of your deck, choose up to 1 character among them, reveal it, add it to your hand and put the rest into waiting room.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-141
 Name Looking After, Shiron
 Color G
 Level 0
@@ -4234,29 +4252,35 @@ Power 1000
 Soul 1
 Trait1 Headpat
 Trait2 Artist
-Cont:
+Cont: GiveAll
 {
-
+    If Other && HasTrait Sleep
+    {
+        GainTrait Knife
+    }
 }
 Text Cont: All your other «Sleep» characters get «Knife».
-Cont:
+Cont: GiveAll
 {
-
+    If Other && HasTrait Chess
+    {
+        GainTrait Potato
+    }
 }
 Text Cont: All your other «Chess» characters get «Potato».
-Auto:
+Auto: OnTriggerCheckClimax
 {
-
+    IfOther ColorIs Green
+    {
+        UntilEndOfOpponentsTurn
+        *GiveCharacterPower(500,Any)
+    }
 }
 Text Auto: When your character's trigger check reveals a Green climax, choose 1 of your character and that character gets +500 power until the end of your opponent's next turn.
-Act:
-{
-
-}
-Text Act: Brainstom [(1) rest 2 of your characters] Flip over 4 cards from the top of your deck, and put them into the waiting room, for each climax revealed perform the following action. "Look at up to 3 cards from the top of your deck, choose up to 1 to add to your hand, and put the rest into the waiting room."
+*Act1Rest2Check3Add1Brainstorm
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-150
 Name Unsure, Shiron
 Color G
 Level 1
@@ -4265,19 +4289,11 @@ Power 4000
 Soul 1
 Trait1 Headpat
 Trait2 Artist
-Cont:
-{
-
-}
-Text Cont: This card gets +500 power for each of your other «Headpat» characters.
-Auto:
-{
-
-}
-Text Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform trigger check twice during this card's attack.
+*GainPowerForEachOther(500,Headpat)
+*OnAttackPay1ToDoubleTrigger
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-152
 Name Watching Over You, Shiron
 Color G
 Level 1
@@ -4286,39 +4302,55 @@ Power 5000
 Soul 1
 Trait1 Headpat
 Trait2 Artist
-Cont:
+Combo At Your Service
+Cont: GiveAll
 {
-
+    If Other && HasTrait Headpat
+    {
+        GainTrait Cute
+    }
 }
 Text Cont: All your other «Headpat» characters get «Cute».
-Auto:
+Auto: OnEndOfAttack
 {
-
+    If Climax At Your Service
+    {
+        PayCost SendSelf Memory
+        {
+            SearchDeck IsCharacter && HasTrait Headpat
+        }
+    }
 }
 Text Auto: CxCombo [Put this card into memory] At the end of this card's attack, if "At Your Service" is in your climax area, you may pay the cost. If you do, search your deck for up to 1 «Headpat» character, reveal it, add it to your hand and shuffle your deck.
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-166
 Name Star Spell
+*BarClimax
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-162
 Name (Non)Lethal Company
+*BarClimax
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-169
 Name Bird Showcase
+*GreenStockSoul
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-168
 Name At Your Service
+*BarClimax
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-174
 Name Rice Lover
+Color G
+*2SoulClimax
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-117
 Name Playing Games, Shiron
 Color G
 Level 0
@@ -4328,24 +4360,30 @@ Soul 1
 Trait1 Headpat
 Trait2 Artist
 Trait3 Scarf
-Cont:
+Cont: GiveAll
 {
-
+    If Other && HasTrait Scarf
+    {
+        GainTrait Soki
+    }
 }
 Text Cont: All your other «Scarf» characters get «Soki».
-Cont:
+*GlobalPower(500,Headpat)
+Auto: OnClimaxPlay
 {
-
-}
-Text Cont: All your other «Headpat» characters get +500 power.
-Auto:
-{
-
+    PayCost 3
+    {
+        TargetLocation WaitingRoom
+        NarrowTargets IsClimax
+        SaveTargets
+        TargetLocation Climax
+        CopyNamesFromSavedTargets
+    }
 }
 Text Auto: [(3)] When a climax is placed in your climax area, you may pay the cost. If you do, choose 1 climax in your climax area and that card's name is also regarded as the name of all climax in your waiting room.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-061
 Name Pouting Demon, Metegako
 Color Y
 Level 1
@@ -4354,14 +4392,10 @@ Power 4500
 Soul 1
 Trait1 Headpat
 Trait2 Star
-Auto:
-{
-
-}
-Text Auto: When this card becomes reverse, if this card's battle opponent is cost 0 or lower, you may put that character into your opponent's stock, if you do, put a card from the bottom of your opponent's stock into his or her waiting room.
+*YellowCost0Bomb
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-118
 Name Scarf & Fluff, Sogeki
 Color G
 Level 0
@@ -4370,24 +4404,29 @@ Power 500
 Soul 1
 Trait1 Headpat
 Trait2 Scarf
-Auto:
+*OnPlayReorderTop2
+Auto: OnTriggerCheckClimax
 {
-
+    IfOther HasTrigger Bag
+    {
+        SearchLocationForTargets Stock 1 1 Any
+        RevealTargets
+        MoveCard Hand
+        ShuffleLocation Stock
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, look at up to the top 2 cards of your deck and return them in any order.
-Auto:
+Text Auto: When your character's trigger check reveals a card with a Bag trigger icon, search your stock for 1 card, reveal it, add it to your hand and shuffle your stock.
+Act: RestSelf
 {
-
+    TargetLocation Stage
+    NarrowTargets Other
+    ChooseCharacterFromTargets Choose a character to stand.
+    Stand
 }
-Text Auto: When your character's trigger check reveals a card with a (@) trigger icon, search your stock for 1 card, reveal it, add it to your hand and shuffle your stock.
-Act:
-{
-
-}
-Text Act: [rest this card] Choose 1 of your other characters and stand that character.
+Text Act: [Rest this card] Choose 1 of your other characters and stand that character.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-153
 Name Garden Dancing, Shiron
 Color G
 Level 1
@@ -4398,19 +4437,23 @@ Soul 1
 Trait1 Headpat
 Trait2 Artist
 Trait3 Glasses
-Cont:
+Combo Bird Showcase
+Cont: GiveAll
 {
-
+    If Other && HasTrait Glasses
+    {
+        GainTrait Octopus
+    }
 }
 Text Cont: All your other «Glasses» characters get «Octopus».
-Auto:
+Auto: OnSpecificClimaxPlay Bird Showcase
 {
-
+    SearchWaitingRoom NameEquals Wanting to Serve
 }
 Text Auto: CxCombo When "Bird Showcase" is placed in your climax area, choose up to 1 "Wanting to Serve, Shiron" in your waiting room and return it to your hand.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-129
 Name Shiron's Origin
 Color G
 Level 2
@@ -4421,14 +4464,20 @@ Soul 2
 Trait1 Headpat
 Trait2 Artist
 Trait3 Doctor
-Cont:
+Combo Rice Lover
+Cont: GiveAll
 {
-
+    If Other && HasTrait Artist
+    {
+        GainTrait Homonculus
+    }
 }
 Text Cont: All your other «Artist» characters get «Homonculus».
-Auto:
+Auto: OnSpecificClimaxPlay Rice Lover
 {
-
+    SearchLocationForTargets Deck 0 2 IsCharacter && HasTrait Artist && Compare ThatCardsCost 0 OrLess
+    PlaceOnStage false true true false
+    ShuffleLocation Deck
 }
 Text Auto: CxCombo When "Rice Lover" is placed in your climax area, search your deck for up to 2 cost 0 or less «Artist» characters, place them into seperate postion on your stage and shuffle your deck.
 EndCard
@@ -4447,12 +4496,12 @@ Auto:
 {
 
 }
-Text Auto: Resonate [(1) Reveal a "Tee-hee, Lily" from your hand] When this card is placed on the stage from yout hand, you may pay the cost. If you do, choose 1 «Headpat» character in your waiting room and return it to your hand.
+Text Auto: RESONATE [(1) Reveal a "Tee-hee, Lily" from your hand] When this card is placed on the stage from yout hand, you may pay the cost. If you do, choose 1 «Headpat» character in your waiting room and return it to your hand.
 Auto:
 {
 
 }
-Text Auto: [(2)] When you use Resonate, you may pay the cost. If you do, choose 1 «Headpat» character in your waiting room and return it to your hand.
+Text Auto: [(2)] When you use "RESONATE", you may pay the cost. If you do, choose 1 «Headpat» character in your waiting room and return it to your hand.
 Auto:
 {
 

@@ -1699,7 +1699,14 @@ Soul 1
 Trait1 MOVIE
 Trait2 Samba
 Trait3 Tsundere
-*DropSearch(MOVIE)
+Auto: OnPlay
+{
+    PayCost Discard 1 Any
+    {
+        SearchWaitingRoom IsCharacter && HasTrait MOVIE
+    }
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «MOVIE» character in your waiting room and return it to your hand.
 Act: SendSelf WaitingRoom
 {
     TargetLocation OpponentStage
