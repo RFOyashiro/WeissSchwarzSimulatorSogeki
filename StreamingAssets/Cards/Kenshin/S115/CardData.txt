@@ -1187,7 +1187,7 @@ Auto: OnAttack
         LoadTargets
         If Compare TargetCount 2 Exactly
         {
-            PayCost 2 Discard 1 IsCharacter && HasTrait Meiji Swordsman Romantic Story && Not InSavedTargets
+            PayCost 2 Discard 1 IsCharacter && HasTrait Meiji Swordsman Romantic Story
             {
                 LoadTargets
                 Reveal
