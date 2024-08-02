@@ -1185,10 +1185,12 @@ Auto: OnAttack
             }
         }
         LoadTargets
-        If Compare TargetCount 2 Exactly
+        If Compare TargetCount 2 Exactly && LocationContains Hand 1 IsCharacter && HasTrait Meiji Swordsman Romantic Story && Not InSavedTargets
         {
-            PayCost 2 Discard 1 IsCharacter && HasTrait Meiji Swordsman Romantic Story
+            PayCost 2
             {
+                SearchLocationForTargets Hand 1 1 IsCharacter && HasTrait Meiji Swordsman Romantic Story && Not InSavedTargets
+                MoveCard WaitingRoom
                 LoadTargets
                 Reveal
                 Repeat 2
