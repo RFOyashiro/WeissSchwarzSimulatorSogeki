@@ -1143,25 +1143,23 @@ Auto: StartMyEncoreStep
         ChooseCharacterFromTargets Choose a character to put into memory.
         AddSelfToTargets
         MoveCard Memory
-        SaveTargets
+        RememberTargets
         ScheduleEffect StartDrawPhase
         {
             Effect:
             {
-                LoadTargets
+                TargetRemembered
                 ForEachTarget
                 {
                     IfTarget InLocation Memory
                     {
-                        PushTargets
+                        AddCurrentToSavedTargets
                     }
                 }
-                PopTargets
-                SaveTargets
-                PopTargets
-                AddSavedToCurrentTargets
+                LoadTargets
                 PlaceOnStage false true true false
             }
+            Text At the beginning of your next draw phase, put those characters from your memory in separate positions on the stage.
         }
     }
 }
