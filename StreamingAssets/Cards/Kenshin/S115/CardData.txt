@@ -371,19 +371,20 @@ Auto: OnDamageCanceled
     {
         TargetLocation Hand
         NarrowTargets NameEquals Hitokiri Battousai, Kenshin Himura
-        SaveTargets
-        If Compare TargetCount 3 OrMore
+        If Compare TargetCount 2 Exactly
         {
-            Repeat 10
+            SaveTargets
+        }
+        Else
+        {
+            If Compare TargetCount 3 OrMore
             {
                 FirstTarget
-                RemoveCurrentFromSavedTargets
-                LoadTargets
-                If Compare TargetCount 2 Exactly
-                {
-                    SaveTargets
-                    StopLoop
-                }
+                SaveTargets
+                TargetLocation Hand
+                NarrowTargets NameEquals Hitokiri Battousai, Kenshin Himura && Not InSavedTargets
+                FirstTarget
+                AddCurrentToSavedTargets
             }
         }
         LoadTargets
@@ -392,8 +393,7 @@ Auto: OnDamageCanceled
             PayCost 0
             {
                 LoadTargets
-                RevealTargets
-                MoveCard Hand
+                Reveal
                 Mill 1
                 SetXValue ThatCardsLevel
                 AddToXValue 2
@@ -1168,19 +1168,20 @@ Auto: OnAttack
     {
         TargetLocation Hand
         NarrowTargets NameEquals Hitokiri Battousai, Kenshin Himura
-        SaveTargets
-        If Compare TargetCount 3 OrMore
+        If Compare TargetCount 2 Exactly
         {
-            Repeat 10
+            SaveTargets
+        }
+        Else
+        {
+            If Compare TargetCount 3 OrMore
             {
                 FirstTarget
-                RemoveCurrentFromSavedTargets
-                LoadTargets
-                If Compare TargetCount 2 Exactly
-                {
-                    SaveTargets
-                    StopLoop
-                }
+                SaveTargets
+                TargetLocation Hand
+                NarrowTargets NameEquals Hitokiri Battousai, Kenshin Himura && Not InSavedTargets
+                FirstTarget
+                AddCurrentToSavedTargets
             }
         }
         LoadTargets
@@ -1189,8 +1190,7 @@ Auto: OnAttack
             PayCost 2 Discard 1 IsCharacter && HasTrait Meiji Swordsman Romantic Story && Not InSavedTargets
             {
                 LoadTargets
-                RevealTargets
-                MoveCard Hand
+                Reveal
                 Repeat 2
                 {
                     Burn 2
@@ -2483,9 +2483,9 @@ Auto: OnPlay
         MultipleChoiceQuestion Move that card to an open position or return that card to hand ?|Move|Return
         If Answer 0
         {
-            SaveTargets
-            If CanMove && OnStage
+            IfTarget CanMove && OnStage
             {
+                SaveTargets
                 TargetLocation OpponentStage
                 If Compare TargetCount 4 OrLess
                 {

@@ -1141,7 +1141,7 @@ Auto: StartMyEncoreStep
         TargetLocation Stage
         NarrowTargets Other
         ChooseCharacterFromTargets Choose a character to put into memory.
-        AddSavedToCurrentTargets
+        AddSelfToTargets
         MoveCard Memory
         SaveTargets
         ScheduleEffect StartDrawPhase
