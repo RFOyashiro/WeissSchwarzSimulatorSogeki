@@ -202,7 +202,7 @@ Auto: OnPlay
 Text Auto: [Put 1 other «MOVIE» or «Family» character from your stage in the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, put the top card of your clock in your stock.
 Auto: StartAttackPhase
 {
-    If LocationContainsOrLess CenterStage 0 Any &&& Climax Rowdy Rescue
+    If LocationContainsOrLess CenterStage 0 Other &&& Climax Rowdy Rescue
     {
         PayCost 4 Discard 2 NameEquals Pursuit of the Balls of Darkness, Shinnosuke &&& Discard 2 Any &&& SendClimax WaitingRoom
         {
