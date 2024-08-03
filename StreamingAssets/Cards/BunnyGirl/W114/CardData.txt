@@ -725,7 +725,7 @@ Cont: GiveSelf
     }
 }
 Text Cont: EXPERIENCE If "The Dream Remained" is in your level, this card gets +4500 power and "Auto: ENCORE [Put an «Adolescence» character from your hand to the waiting room]".
-Auto: OnReversed
+Auto: OnReverseOpponent
 {
     If LocationContains Climax 1 HasTrigger Choice
     {
@@ -733,7 +733,7 @@ Auto: OnReversed
         Discard 1 Any
     }
 }
-Text Auto: When this card becomes reversed, if there's a climax with a Choice trigger icon in your climax area, look at up to the top 3 cards of your deck, choose up to 1 card among them, put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
+Text Auto: When this card's battle opponent becomes reversed, if there's a climax with a Choice trigger icon in your climax area, look at up to the top 3 cards of your deck, choose up to 1 card among them, put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
 EndCard
 
 Character: SBY/W114-026
