@@ -2185,7 +2185,7 @@ Auto: StartOpponentAttackPhase
         If Yes
         {
             Mill 1
-            IfTarget Compare ThatCardsLevel 2 OrMore && IsCharacter || NameEquals Addicting Music
+            IfTarget Compare ThatCardsLevel 2 OrLess && IsCharacter || NameEquals Addicting Music
             {
                 TargetSelf
                 GainEffect
