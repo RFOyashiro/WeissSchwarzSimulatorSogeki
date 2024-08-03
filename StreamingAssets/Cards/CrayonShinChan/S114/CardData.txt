@@ -1380,7 +1380,7 @@ Trait3 Mecha
 Auto: OnPlay
 {
     TargetLocation OpponentStage
-    SetXValue
+    SetXValue TargetCount
     Peek Deck X
     ChooseCardsFromTargets 0 1 Any
     MoveCard Hand
