@@ -3871,7 +3871,7 @@ Cont: GiveSelf
 Text Cont: If you have no other characters without "Shiron" in its card name, this card gets -20000 power.
 Act: SendSelf Memory &&& Discard 1 NameEquals (Non)Lethal Company
 {
-    FlipSelfFaceDown
+    FlipFaceDown
     SearchLocationForTargets Hand 1 1 IsCharacter
     If HasTarget
     {
@@ -4236,7 +4236,7 @@ Auto: OnPlay
     }
 }
 Text Auto: When this card is placed on the stage from your hand, you may put a card from your hand into stock.
-Act: 1 SendSelf
+Act: 1 SendSelf WaitingRoom
 {
     *Check4Add1(Any)
 }

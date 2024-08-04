@@ -718,7 +718,7 @@ Trait1 Tarot
 Trait2 Moon
 Cont: GiveAll
 {
-    If HasTrait Tarot
+    If Other && HasTrait Tarot
     {
         GainEffect
         {
