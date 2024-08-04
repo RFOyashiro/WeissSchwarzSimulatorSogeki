@@ -402,6 +402,7 @@ Auto: OnDamageCanceled
         }
     }
 }
+TimesPerTurn 1
 Text Auto: RESONATE [Reveal 2 "Hitokiri Battousai, Kenshin Himura" from your hand] This card ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when damage dealt by this card is canceled, if you have another «Meiji Swordsman Romantic Story» character, you may pay the cost. If you do, put the top card of your deck in the waiting room, and deal X damage to your opponent. X equals level of that card +2.
 EndCard
 
@@ -1303,7 +1304,7 @@ Trait1 Meiji Swordsman Romantic Story
 Trait2 Swordfighter
 Cont: GiveSelf
 {
-    If StageContains 1 Other && HasTrait Meiji Swordsman Romantic Story
+    If MyTurn && StageContains 1 Other && HasTrait Meiji Swordsman Romantic Story
     {
         GainPower 3000
     }
