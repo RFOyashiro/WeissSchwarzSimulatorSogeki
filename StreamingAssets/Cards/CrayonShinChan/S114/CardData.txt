@@ -1752,7 +1752,7 @@ Trait2 Family
 Trait3 Salaryman
 Auto: OnPlay
 {
-    TargetLocation CenterStage
+    TargetLocation OpponentCenterStage
     NarrowTargets CanBeChosen
     ChooseCharacterFromTargets Choose a character to give -1000 power.
     LosePower 1000
