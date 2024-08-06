@@ -1159,6 +1159,13 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Cat-Character
+Auto: OnPlay
+{
+    *Scry
+    TargetSelf
+    GainPower 3000
+}
+Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck, and put it on the top of your deck or into your waiting room, this card gets +3000 power until end of turn.
 *MoveOtherToBackstageOnReverse
 EndCard
 
