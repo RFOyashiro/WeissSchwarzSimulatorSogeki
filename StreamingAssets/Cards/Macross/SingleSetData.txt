@@ -1,0 +1,4 @@
+Series: Macross
+Folder: Macross/SE45
+Prefix: MDE/SE45
+SetName: Macross Delta (SE45)

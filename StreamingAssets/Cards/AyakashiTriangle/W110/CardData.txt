@@ -489,7 +489,7 @@ Auto: OnDamageCanceled
 }
 TimesPerTurn 1
 Text Auto: This ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when the damage dealt by this card is canceled, you may deal 1 damage to your opponent.
-Auto: OnReversed
+Auto: OnReverseOpponent
 {
     If Climax Collection of a Subculture Girl
     {
