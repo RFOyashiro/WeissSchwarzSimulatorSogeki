@@ -395,7 +395,7 @@ Auto: OnDamageCanceled
                 LoadTargets
                 Reveal
                 Mill 1
-                SetXValue ThatCardsLevel
+                SetXValue TargetCardsLevel
                 AddToXValue 2
                 Burn X
             }
