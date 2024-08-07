@@ -1053,7 +1053,7 @@ Color Y
 Trigger DoubleSoul
 Auto: OnPlay
 {
-    *PutCardFromWaitingRoomIntoStock(IsCharacter && Compare ThatCardsLevel 1 OrMore)
+    *PutCardFromWaitingRoomIntoStock(IsCharacter && Compare ThatCardsLevel 1 OrLess)
     TargetLocation Stage
     GainSoul 1
 }
