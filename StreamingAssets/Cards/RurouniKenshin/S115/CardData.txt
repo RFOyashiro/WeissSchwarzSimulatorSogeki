@@ -1376,7 +1376,7 @@ Cont: GiveAll
     {
         If HasTrait Meiji Swordsman Romantic Story
         {
-            GainPower 15000
+            GainPower 1500
         }
     }
 }
