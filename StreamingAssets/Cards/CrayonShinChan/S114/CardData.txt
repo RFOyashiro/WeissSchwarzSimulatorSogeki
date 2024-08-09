@@ -73,10 +73,13 @@ Trait3 Kindergarten
 Combo Noisy Chasing
 Auto: OnDamageCanceled
 {
-    Question Return this card to your hand ?
-    If Yes
+    If OnStage
     {
-        Bounce
+        Question Return this card to your hand ?
+        If Yes
+        {
+            Bounce
+        }
     }
 }
 Text Auto: When damage dealt by this card is canceled, you may return this card to your hand.
