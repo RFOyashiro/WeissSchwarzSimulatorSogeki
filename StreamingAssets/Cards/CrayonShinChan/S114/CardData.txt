@@ -699,7 +699,7 @@ Auto: OnPlay
 Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
 Auto: OnReversed
 {
-    If LocationContainsOrLess Memory 2 Any
+    If LocationContainsOrLess Memory 2 Any && OnStage
     {
         Question Put this card into memory ?
         If Yes
