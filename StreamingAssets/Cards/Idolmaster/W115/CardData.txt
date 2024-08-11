@@ -2375,9 +2375,10 @@ Auto: OnEndOfAttack
 {
     If Climax VOY@GER && AllYourCharacters HasTrait Music
     {
-        TargetTop Deck 2
+        Peek Deck 2
         Message Choose up to 2 cards to put on top of your deck.
         ChooseCardsFromTargets 0 2 Any
+        MoveCard Deck
         Reorder
         PutTheRestIntoTheWaitingRoom
         TargetTop Deck 1

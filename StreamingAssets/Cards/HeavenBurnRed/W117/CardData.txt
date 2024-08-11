@@ -1,0 +1,2453 @@
+Character: HBR/W117-001
+Name Secrecy of the Bountiful Harvest, Miya Kiryu
+JPName 豊楽ノ神秘 桐生 美也
+Color Y
+Level 0
+Cost 0
+Trigger Soul
+Power 1000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 30G
+Auto: OnPlay|OnSentFromStageToWaitingRoom
+{
+    PayCost 1 Discard 1 Any
+    {
+        SearchDeck IsCharacter && HasTrait Seraph
+    }
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand or when this card is placed in your waiting room from the stage, you may pay the cost. If you do, search your deck for up to 1 «Seraph» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: HBR/W117-002
+Name Midsummer Gendarme, Yuina Shirakawa
+JPName 真夏のジャンダルム 白河 ユイナ
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 30G
+Auto: OnPlay
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Seraph
+    {
+        *GiveCharacterPower(2000,Any)
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Seraph» character, choose 1 of your characters, that character gets +2000 power until end of turn.
+Auto: OnSentFromStageToWaitingRoom
+{
+    PayCost HandClock Any
+    {
+        SearchDeck IsCharacter && HasTrait Seraph
+    }
+}
+Text Auto: [Put 1 card from your hand in your clock] When this card is placed in your waiting room from the stage, you may pay the cost. If you do, search your deck for up to 1 «Seraph» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: HBR/W117-003
+Name Ice Flower Hexerei, Adelheid Kanzaki
+JPName 氷花のHexerei 神崎 アーデルハイド
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Seraph
+Trait2 Unit 31C
+Combo Read Admiration for You
+*OnPlayGainPowerForEach(1000,Seraph)
+Auto: OnEndOfAttack
+{
+    If Climax Read Admiration for You && AllYourCharacters HasTrait Seraph && LocationContains Memory 2 NameEquals Assassin Ninjutsu On Sale, Mari Satsuki
+    {
+        PayCost 6 Discard 3 Any &&& Send 1 WaitingRoom Other && HasTrait Seraph
+        {
+            SearchLocationForTargets WaitingRoom 0 1 IsCharacter && HasTrait Unit 31C
+            PlaceOnStage false true true false
+            TargetSelf
+            Stand
+        }
+    }
+}
+TimesPerTurn 1
+Text Auto: CxCombo MEMORY [(6) Put 3 cards from your hand to the waiting room, put another «Seraph» character from your stage in the waiting room] This card ability activates up to once per turn. At the end of this card's attack, if "Read Admiration for You" is in your climax area, all your characters are «Seraph», and there are 2 or more "Assassin Ninjutsu On Sale, Mari Satsuki" in your memory, you may pay the cost. If you do, choose up to 1 «Unit 31C» character in your waiting room, put it in any position on the stage, and stand this card.
+EndCard
+
+Character: HBR/W117-004
+Name Battle!! Air Stage, Seira Sakuraba
+JPName 対決！！エア・ステージ 桜庭 星羅
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31C
+*OnPlayScry
+*Act1RestSelfCheck3Add1Brainstorm
+EndCard
+
+Character: HBR/W117-005
+Name Assassin Ninjutsu On Sale, Mari Satsuki
+JPName アサシン忍法大繁盛 佐月 マリ
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31C
+Combo Read Admiration for You
+*500Assist
+Auto: OnSpecificClimaxPlay Read Admiration for You
+{
+    If Phase Climax && Compare MyLevel 3 OrMore
+    {
+        PayCost SendSelf Memory
+        {
+            SearchLocationForTargets Hand 1 1 NameEquals Ice Flower Hexerei, Adelheid Kanzaki
+            Change
+            GainPower 8000
+        }
+
+    }
+}
+Text Auto: CxCombo [Put this card into memory] During your climax phase, when "Read Admiration for You" is placed on your climax area, if you are level 3 or higher, you may pay the cost. If you do, choose up to 1 "Ice Flower Hexerei, Adelheid Kanzaki" in your hand, put it in the position this card was in, and that character gets +8000 power until end of turn.
+EndCard
+
+Character: HBR/W117-006
+Name Happy Legion, Yayoi Bungo
+JPName Happy Legion 豊後 弥生
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31C
+Cont: GiveSelf
+{
+    If LocationContainsOrLess Stock 2 Any
+    {
+        GainPower 1500
+    }
+}
+Text Cont: If there are 2 or less cards in your stock, this card gets +1500 power.
+Auto: StartOpponentAttackPhase
+{
+    TargetLocation OpponentCenterStage
+    If Compare TargetCount 2 OrLess
+    {
+        NarrowTargets CanBeChosen
+        ChooseCharacterFromTargets_Optional Choose up to 1 character to move to an open position.
+        If HasTarget
+        {
+            IfTarget CanMove && OnStage
+            {
+                MoveToOpenPosition
+            }
+        }
+    }
+}
+Text Auto: At the beginning of your opponent's attack phase, you may choose a character in your opponent's center stage and move it to another open position in the center stage.
+EndCard
+
+Character: HBR/W117-007
+Name Days of the Young Female Owner, Satomi Kura
+JPName 若女将の日々 蔵 里見
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 30G
+*PowerOnMyTurn(1000)
+Auto: OnReversed
+{
+    RevealUpTo 4 Deck
+    ChooseCardsFromTargets 0 1 IsClimax && HasTrigger Wind
+    If HasTarget
+    {
+        RevealTargets
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+        Discard 1 Any
+    }
+    Else
+    {
+        PutTheRestIntoTheWaitingRoom
+    }
+}
+Text Auto: When this card becomes reversed, look at up to the top 4 cards of your deck, choose up to 1 climax with a Wind trigger icon among them, reveal it, put it in your hand, and put the rest into your waiting room. If you put a card in your hand this way, discard a card from your hand to the waiting room.
+EndCard
+
+Character: HBR/W117-008
+Name Pure Heart of the Vanished Country, Chie Sugawara
+JPName 亡国の純心 菅原 千恵
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 30G
+Cont: GiveSelf
+{
+    If MyTurn
+    {
+        SetXToNumberOfCharacters Other && HasTrait Seraph
+        MultiplyXValue 500
+        GainPower X
+    }
+}
+Text Cont: During your turn, this card gets +500 power for each of your other «Seraph» characters
+Auto: OnPlay
+{
+    PayCost 1 Send 1 WaitingRoom Other && HasTrait Seraph
+    {
+        SearchDeck IsCharacter && HasTrait Seraph
+    }
+}
+Text Auto: [(1) Put another «Seraph» character from your stage in the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Seraph» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: HBR/W117-009
+Name Underling of Yamawaki: Magical Nyan, Miko Tenne
+JPName 山脇様の手下：マジカルにゃん 天音 巫呼
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 1500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31C
+Auto: OnUseThisCardsBackup
+{
+    PayCost 1
+    {
+        SearchWaitingRoom NameEquals Underling of Yamawaki: Magical Nyan, Miko Tenne
+    }
+}
+Text Auto: [(1)] When you use this card's "BACKUP", you may pay the cost. If you do, choose a "Underling of Yamawaki: Magical Nyan, Miko Tenne" in your waiting room and return it to your hand.
+Backup 2500
+EndCard
+
+Character: HBR/W117-010
+Name Covered Flaw, Monaka Tsukishiro
+JPName 掩蔽された暇 月城 最中
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 3000
+Soul 2
+Trait1 Seraph
+Trait2 Unit 30G
+Cont: GiveSelf
+{
+    If HasMarker
+    {
+        GainPower 8000
+    }
+}
+Text Cont: If there's a marker underneath this card, this card gets +8000 power.
+Auto: OnPlay
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Seraph
+    {
+        Question Put that card underneath this card as a marker ?
+        If Yes
+        {
+            Marker_FaceDown
+        }
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Seraph» character, you may put it face down underneath this card as a marker.
+Auto: OnReverseOpponent
+{
+    PayCost 1
+    {
+        Burn 1
+        If Not StageContains 1 Other && NameEquals Sitting in the Pure Stream, Satomi Kura
+        { 
+            ScheduleEffect EndOfTurn
+            {
+                Effect:
+                {
+                    BurnSelf 1
+                }
+                Text At the end of the turn, deal 1 damage to you.
+            }
+        }
+    }
+}
+Text Auto: [(1)] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 1 damage to your opponent, and at the end of the turn, deal 1 damage to you.
+EndCard
+
+Character: HBR/W117-011
+Name Holy Knight, Ivar Bon Yamawaki
+JPName Holy Knight 山脇・ボン・イヴァール
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10500
+Soul 2
+Trait1 Seraph
+Trait2 Unit 31C
+Auto: OnEndOfAttack
+{
+    If PlayedThisTurn
+    {
+        PayCost 4 Discard 1 Any
+        {
+            Stand
+        }
+    }
+}
+TimesPerTurn 1
+Text Auto: [(4) Put 1 card from your hand to the waiting room] This card ability activates up to once per turn. During the turn this card is placed on the stage from your hand, at the end of this card's attack, you may pay the cost. If you do, stand this card.
+EndCard
+
+Character: HBR/W117-012
+Name Wish And Desire, Hisame Ogasawara
+JPName 希求と渇仰 小笠原 緋雨
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10500
+Soul 2
+Trait1 Seraph
+Trait2 Unit 30G
+Combo Crimson-Stained Tears
+Auto: OnPlay
+{
+    SearchLocationForTargets WaitingRoom 0 1 NameEquals Crimson-Stained Tears
+    If HasTarget
+    {
+        RevealTargets
+        MultipleChoiceQuestion Where to put that card ?|Hand|Stock
+        If Answer 0
+        {
+            MoveCard Hand
+        }
+        If Answer 1
+        {
+            MoveCard Stock
+        }
+    }
+}
+Text Auto: CxCombo When this card is placed on the stage from your hand, you may choose a "Crimson-Stained Tears" in your waiting room and either return it to your hand or put it in your stock.
+Auto: OnAttack
+{
+    If Climax Crimson-Stained Tears
+    {
+        PayCost HandStock
+        {
+            Peek OpponentDeck 4
+            Message Choose card to put into waiting room.
+            ChooseCardsFromTargets 0 4 Any
+            MoveCard OpponentWaitingRoom
+            EndPeek
+            ShuffleLocation OpponentDeck
+            TargetSelf
+            ScheduleEffect StartMyEncoreStep
+            {
+                Effect:
+                {
+                    If OnStage
+                    {
+                        MoveCard WaitingRoom
+                    }
+                }
+                Text At the beginning of your encore step, put this card in the waiting room.
+            }
+        }
+    }
+}
+Text Auto: CxCombo [Put 1 card from your hand in your stock] When this card attacks, if "Crimson-Stained Tears" is in your climax area, you may pay the cost. If you do, look at up to the top 4 cards of your opponent's deck, choose up to 4 cards among them and put them in the waiting room, return the rest to the deck, your opponent shuffles that deck, and at the beginning of your encore step, put this card in the waiting room.
+EndCard
+
+Character: HBR/W117-013
+Name Quiet Rest, Hisame Ogasawara
+JPName 静寂閑雅のレスト 小笠原 緋雨
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 30G
+Auto: OnPlay
+{
+	PayCost 0
+	{
+		Message Search your deck for up to 1 climax with a Wind trigger icon.
+		SearchLocationForTargets Deck 0 1 IsClimax && HasTrait Wind
+		If HasTarget
+		{
+			RevealTargets
+			SaveTargets
+			Message Choose a climax in your hand with a Wind trigger icon.
+			SearchLocationForTargets Hand 1 1 IsClimax && HasTrait Wind
+			If HasTarget
+			{
+				RevealTargets
+				MoveCard Deck
+				LoadTargets
+				MoveCard Hand
+			}
+			Else
+			{
+				MoveCard Deck
+				ShuffleLocation Deck
+			}
+		}
+		ShuffleLocation Deck
+	}
+}
+Text Auto: When this card is placed on the stage from your hand, you may perform the following action. "Search your deck for up to 1 climax with a Wind trigger icon, reveal it, choose up to 1 climax with a Wind trigger icon in your hand, reveal it, exchange those climax, and shuffle your deck."
+EndCard
+
+Character: HBR/W117-014
+Name Sign, Yuina Shirakawa
+JPName Sign 白河 ユイナ
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 30G
+Combo You're Fairy of This Summer, and I'm Recording Your Look Deep in My Eyes
+Auto: OnAttack
+{
+    If Climax You're Fairy of This Summer, and I'm Recording Your Look Deep in My Eyes && StageContains 3 Other && HasTrait Seraph
+    {
+        GainPower 1000
+        Mill 4
+        SearchWaitingRoom IsCharacter && HasTrait Seraph && Compare ThatCardsLevel TotalSoulTriggers OrLess
+    }
+}
+Text Auto: CxCombo When this card attacks, if "You're Fairy of This card Summer, and I'm Recording Your Look Deep in My Eyes" is in your climax area and the number of other «Seraph» characters you have is 3 or more, this card gets +1000 power until end of turn, put the top 4 cards of your deck in the waiting room, choose a level X or lower «Seraph» character in your waiting room and return it to your hand. X equals sum of Soul trigger icons among cards put in the waiting room by this card effect.
+EndCard
+
+Character: HBR/W117-015
+Name Sitting in the Pure Stream, Satomi Kura
+JPName 清流に坐す 蔵 里見
+Color Y
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 30G
+Text Cont: You do not take damage from Auto: effects of your "Covered Flaw, Monaka Tsukishiro".
+Auto: StartEncoreStep
+{
+    If InLocation Backstage
+    {
+        PayCost SendSelf WaitingRoom
+        {
+            TargetLocation Stage
+            NarrowTargets HasTrait Seraph
+            ChooseCharacterFromTargets Choose a character to rest.
+            Rest
+        }
+    }
+}
+Text Auto: [Put this card in the waiting room] At the beginning of encore step, if this card is in the backstage, you may pay the cost. If you do, choose 1 of your «Seraph» characters and rest it.
+*RestGivePower(2000,Any)
+EndCard
+
+Character: HBR/W117-016
+Name Rainy Mood, Seira Sakuraba
+JPName 雨模様、心そうそう 桜庭 星羅
+Color Y
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31C
+Auto: OnPlay
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget Compare ThatCardsLevel 1 OrMore
+    {
+        MoveCard Hand
+        Discard 1 Any
+    }
+}
+Text Auto: When this card is placed rom hand to the stage, reveal the top card of your deck. If it's level 1 or higher, put it in your hand and discard a card from your hand to the waiting room.
+*YellowCost0Bomb
+EndCard
+
+Character: HBR/W117-017
+Name Momentarily Visiting the Shrine, Miya Kiryu
+JPName 神祠見舞う儚さかな 桐生 美也
+Color Y
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 30G
+*OnAttackCheck2ChooseTrigger
+Auto: OnThisTriggerCheck
+{
+    IfOther IsClimax && HasTrigger Wind
+    {
+        SearchWaitingRoom IsCharacter
+    }
+}
+Text Auto: When this card's trigger check reveals a climax with a Wind trigger icon, you may choose a character in your waiting room and put it in your hand.
+EndCard
+
+Character: HBR/W117-018
+Name Shyly Collecting Hearts, Mari Satsuki
+JPName はにかむ、心かき集め 佐月 マリ
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 5500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31C
+Combo Kindness and Sadness and Strength
+*PowerOnMyTurn(5000)
+Auto: OnSpecificClimaxPlay Kindness and Sadness and Strength
+{
+    If InLocation CenterStage
+    {
+        TargetLocation Stage
+        NarrowTargets Other
+        ChooseCharactersFromTargets 0 2 Choose up to 2 characters to give the effect.
+        GainEffect
+        {
+            Auto: OnAttack
+            {
+                *OptionalBlindStock
+            }
+            Text Auto: When this card attacks, you may put the top card of your deck in your stock.
+        }
+    }
+}
+Text Auto: CxCombo When "Kindness and Sadness and Strength" is placed on your climax area, if this card is in the center stage, choose up to 2 of your other characters, and those characters get the following ability until end of turn. "Auto: When this card attacks, you may put the top card of your deck in your stock."
+EndCard
+
+Character: HBR/W117-019
+Name Red at the End of the Dream, Miko Tenne
+JPName 夢浮橋辿る赤 天音 巫呼
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31C
+Auto: OnPlay
+{
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            GainSpecialEffect CannotGoToMemory
+            GainSpecialEffect CannotReturnToHand
+        }
+        Text Cont: This card cannot be returned to hand or be sent to memory.
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters, and that character gets the following ability until end of turn. "Cont: This card cannot be returned to hand or be sent to memory."
+*YellowLevel0Bomb
+EndCard
+
+Character: HBR/W117-020
+Name Return of the Demon King, Ivar Bon Yamawaki
+JPName 魔王の帰還 山脇・ボン・イヴァール
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31C
+Cont: GiveAll
+{
+    If Other && NameEquals Perfection in My Hand, Yayoi Bungo
+    {
+        GainEffect
+        {
+            Auto: OnAttack
+            {
+                *Scry
+                TargetSelf
+                GainPower 1000
+            }
+            Text Auto: When this card attacks, look at the top card of your deck, put it either on top of the deck or in the waiting room, and this card gets +1000 power until end of turn.
+        }
+    }
+}
+Text Cont: All your other "Perfection in My hand, Yayoi Bungo" get the following ability. "Auto: When this card attacks, look at the top card of your deck, put it either on top of the deck or in the waiting room, and this card gets +1000 power until end of turn."
+*BondDiscard(Perfection in My hand\, Yayoi Bungo)
+EndCard
+
+Character: HBR/W117-021
+Name Perfection in My Hand, Yayoi Bungo
+JPName 手のひらのパーフェクション 豊後 弥生
+Color Y
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31C
+*PowerOnMyTurn(4000)
+Auto: OnCancel
+{
+    If InBattle && OnStage
+    {
+        Question Put this card in stock ?
+        If Yes
+        {
+            MoveCard Stock
+        }
+    }
+}
+Text Auto: During battles involving this card, when damage taken by you is canceled, you may put this card in your stock.
+EndCard
+
+Character: HBR/W117-022
+Name Sign of Feint Light, Adelheid Kanzaki
+JPName 微光の兆し 神崎 アーデルハイド
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31C
+Cont: GiveSelf
+{
+    SetXToNumberOfCharacters Other && NameEquals Sign of Feint Light, Adelheid Kanzaki && InLocation CenterStage
+    MultiplyXValue 2000
+    GainPower X
+}
+Text Cont: This card gets +2000 power for each of your other "Sign of Feint Light, Adelheid Kanzaki" in the center stage
+EndCard
+
+Character: HBR/W117-023
+Name Twilight, Eternal Dream, Monaka Tsukishiro
+JPName 黄昏、久遠の夢 月城 最中
+Color Y
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 30G
+Cont: GiveSelf
+{
+    SetXValue ThisCardsMarkers
+    MultiplyXValue 2000
+    GainPower X
+}
+Text Cont: This card gets +2000 power for each marker underneath this card
+Auto: OnReverseOpponent
+{
+    Question Look at the top card of your deck ?
+    If Yes
+    {
+        PeekTop Deck
+        Marker_FaceDown
+    }
+}
+Text Auto: When this card's battle opponent becomes reverse, you may look at the top card of your deck. If you do, put that card face down underneath this card as a marker.
+EndCard
+
+Character: HBR/W117-024
+Name Whimsy Ennui, Chie Sugawara
+JPName 気まぐれのアンニュイ 菅原 千恵
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 5500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 30G
+*EarlyPlay4OrMore(Seraph)
+*GlobalPower(1000,Seraph)
+EndCard
+
+Climax: HBR/W117-025
+Name Read Admiration for You
+JPName 君に読む憧れ
+*ChoiceClimax
+EndCard
+
+Climax: HBR/W117-026
+Name Crimson-Stained Tears
+JPName 緋に染まる袖時雨
+*WindClimax
+EndCard
+
+Climax: HBR/W117-027
+Name You're Fairy of This Summer, and I'm Recording Your Look Deep in My Eyes
+JPName きみはこの夏のFairy、ぼくはその姿を瞳の奥にRec.
+*WindClimax
+EndCard
+
+Climax: HBR/W117-028
+Name Kindness and Sadness and Strength
+JPName 優しさと切なさと心強さと
+*ChoiceClimax
+EndCard
+
+Character: HBR/W117-029
+Name The Ultimate Endgame, Misato Nikaido
+JPName 無上の終局 二階堂 三郷
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31D
+Cont: GiveSelf
+{
+    If AllYourCharacters HasTrait Seraph
+    {
+        GainPower 1000
+    }
+}
+Text Cont: If all your characters are «Seraph», this card gets +1000 power.
+*MoveOtherWithTraitToBackstageOnReverse(Seraph)
+Auto: OnReversed
+{
+	RevealUpTo Deck 3
+	If Compare TargetCount 1 OrMore
+	{
+		ChooseCardsFromTargets 1 1 IsCharacter && ColorIs Red
+		MoveCard Hand
+		PutTheRestIntoTheWaitingRoom
+		Discard 1 Any
+	}
+}
+Text Auto: When this card becomes reversed, you may reveal up to 3 cards from the top of your deck. If you reveal 1 or more card this way, choose up to 1 «Seraph» character among them, put it in your hand, put the rest in the Waiting room, and discard a card from your hand to the waiting room.
+EndCard
+
+Character: HBR/W117-030
+Name Crushing Achromatic, Iroha Ishii
+JPName 撃砕の無彩色 石井 色葉
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31D
+Combo Color of the Seas Far Away
+Cont: GiveSelf
+{
+    If AllYourCharacters HasTrait Seraph
+    {
+        GainPower 1000
+    }
+}
+Text Cont: If all your characters are «Seraph», this card gets +1000 power.
+Auto: OnAttack
+{
+    If Climax Color of the Seas Far Away && StageContains 2 Other && HasTrait Seraph
+    {
+        SearchWaitingRoom IsCharacter && HasTrait Seraph
+    }
+}
+Text Auto: CxCombo When this card attacks, if "Color of the Seas Far Away" is in your climax area and the number of other «Seraph» characters you have is 2 or more, you may choose 1 «Seraph» character in your waiting room and return it to your hand.
+EndCard
+
+Character: HBR/W117-031
+Name Sweet Phantasy, Ichiko Ohshima
+JPName Sweet Phantasy 大島 一千子
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Seraph
+Trait2 Unit 31E
+*GainPowerWithEnoughCharacters(2000,2,Seraph)
+*Healer
+Auto: OnAttack
+{
+    PayCost Discard 2 Any
+    {
+        MillOpponentBottom 4
+        NarrowTargets IsClimax
+        Burn X
+    }
+}
+Text Auto: [Put 2 cards from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, put the bottom 4 cards of your opponent's deck in the waiting room, and deal X damage to your opponent. X equals the number of climax among those cards.
+EndCard
+
+Character: HBR/W117-032
+Name Broken Ennui, Yotsuha Ohshima
+JPName 破られたアンニュイ 大島 四ツ葉
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31E
+Cont: GiveAll
+{
+    If InLocation Backstage
+    {
+        GainEffect
+        {
+            *HexProof
+        }
+    }
+}
+Text Cont: All your backstage character get the following ability. "Cont: This card cannot be chosen as target of opponent's effects."
+Auto: OnClimaxPlay
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget Compare ThatCardsLevel 2 OrMore
+    {
+        MoveCard Stock
+    }
+}
+Text Auto: When your climax is placed on your climax area, reveal the top card of your deck. If it's level 2 or higher, put it in your stock.
+EndCard
+
+Character: HBR/W117-033
+Name Rock Up Orca, Aina Mizuhara
+JPName ロックアップオルカ 瑞原 あいな
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31D
+Auto: OnPlay
+{
+    If StageContains 2 Other && HasTrait Seraph
+    {
+        *OptionalDrawDiscard
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Seraph» characters you have is 2 or more, you may draw a card. If you do, discard a card from your hand to the waiting room.
+Auto: OnPlay
+{
+    PayCost Discard 1 IsCharacter && HasTrait Seraph
+    {
+        DrawCard
+    }
+}
+Text Auto: [Put a «Seraph» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw a card.
+EndCard
+
+Character: HBR/W117-034
+Name Devil of the Tennis Court, Akari Date
+JPName テニスコートの悪魔 伊達 朱里
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31D
+Auto: OnPlay
+{
+	PayCost Clock
+	{
+		Message Search your deck for up to 1 climax.
+		SearchLocationForTargets Deck 0 1 IsClimax
+		If HasTarget
+		{
+			RevealTargets
+			SaveTargets
+			Message Choose a climax in your hand.
+			SearchLocationForTargets Hand 1 1 IsClimax
+			If HasTarget
+			{
+				RevealTargets
+				MoveCard Deck
+				LoadTargets
+				MoveCard Hand
+			}
+			Else
+			{
+				MoveCard Deck
+				ShuffleLocation Deck
+			}
+		}
+		ShuffleLocation Deck
+	}
+}
+Text Auto: [Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 climax, choose up to 1 climax in your hand, exchange those climax, and shuffle your deck.
+Auto: OnBrainstormSuccess
+{
+    GainSoul 1
+}
+Quick
+Text Auto: When you use "BRAINSTORM", if a climax is placed in the waiting room by that effect, this card gets +1 soul until end of turn.
+EndCard
+
+Character: HBR/W117-035
+Name Dreamlike Place After the Bath, Isuzu Ohshima
+JPName 湯上がり夢現郷 大島 五十鈴
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31E
+Auto: OnPlay|OnSentFromStageToWaitingRoom
+{
+    PayCost 1 Discard 1 Any
+    {
+        SearchWaitingRoom IsCharacter
+    }
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand or when this card is placed in your waiting room from the stage, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
+EndCard
+
+Character: HBR/W117-036
+Name Hasty Courier, Minori Ohshima
+JPName 韋駄天配達人 大島 三野里
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31E
+*OnPlayGainPower(1500)
+Auto: OnPlay
+{
+    PayCost Discard 1 Any &&& Resonate Eternal Merciful Guardian, Ichiko Ohshima
+    {
+        *Check4Add1(Seraph)
+    }
+}
+Text Auto: RESONATE [Put 1 card from your hand to the waiting room, reveal an "Eternal Merciful Guardian, Ichiko Ohshima" from your hand] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: HBR/W117-037
+Name Let's Go Home Soon, Risa Murofushi
+JPName 早くおうちに帰りましょ 室伏 理沙
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31D
+Auto: OnTriggerCheckClimax
+{
+    PayCost Discard 1 IsClimax
+    {
+        SearchWaitingRoom IsCharacter
+    }
+}
+Text Auto: [Put 1 climax from your hand to the waiting room] When your characters' trigger check reveals a climax, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
+*RestGivePower(4500,Any)
+EndCard
+
+Character: HBR/W117-038
+Name Heart Thumping Hot Springs, Niina Ohshima
+JPName 心緒、昂る温泉郷 大島 二以奈
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31E
+*GainPowerForEachOther(2000,Unit 31E)
+EndCard
+
+Character: HBR/W117-039
+Name What Will You Do When the World Ends?, Fubuki Mikoto
+JPName 終末なにする？ 命 吹雪
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 10500
+Soul 2
+Trait1 Seraph
+Trait2 Unit 31D
+Auto: OnPlay
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Seraph
+    {
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                TargetBattleOpponent
+                IfTarget OnStage
+                {
+                    Question Put that character into clock ?
+                    If Yes
+                    {
+                        MoveCard OpponentClock
+                    }
+                }
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may put that character in clock.
+        }
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Seraph» character, this card gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character in clock."
+Auto: OnPlay
+{
+    PayCost 2 Discard 1 Any
+    {
+        SearchLocationForTargets OpponentWaitingRoom 0 2 Any
+        RevealTargets
+        MoveCard OpponentDeck
+        ShuffleLocation OpponentDeck
+        TargetSelf
+        GainPower 1000
+    }
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, choose up to 2 cards in your opponent's waiting room, return them to the deck, your opponent shuffles that deck, and this card gets +1000 power until end of turn.
+EndCard
+
+Character: HBR/W117-040
+Name Best When in a Pinch, Muua Ohshima
+JPName ピンチで最高 大島 六宇亜
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 10500
+Soul 2
+Trait1 Seraph
+Trait2 Unit 31E
+Combo Ohshima Store Story
+Auto: OnSpecificClimaxPlay Ohshima Store Story
+{
+    If InLocation CenterStage && StageContains 4 Other && HasTrait Seraph
+    {
+        SearchLocationForTargets WaitingRoom 0 2 IsCharacter && HasTrait Seraph
+        RevealTargets
+        SaveTargets
+        Message Choose up to 2 cards to put in your hand.
+        ChooseCardsFromTargets 0 2 Any
+        MoveCard Hand
+        RemoveCurrentFromSavedTargets
+        LoadTargets
+        MoveCard Stock
+    }
+}
+Text Auto: CxCombo When "Ohshima Store Story" is placed on your climax area, if this card is in the center stage and the number of other «Seraph» characters you have is 4 or more, choose up to 2 «Seraph» characters in your waiting room, choose up to 2 of them and put them in your hand, and put the rest in stock in any order.
+*DefensiveScryOnCenterStage
+EndCard
+
+Character: HBR/W117-041
+Name Groovy Roll, Muua Ohshima
+JPName グルーヴィーなロール 大島 六宇亜
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31E
+Act: 1 Discard 1 Any &&& SendSelf BottomOfDeck
+{
+    If Compare MyLevel 2 OrMore
+    {
+        SearchLocationForTargets Hand 0 1 NameEquals Best When in a Pinch, Muua Ohshima
+        Change
+    }
+}
+Text Act: [(1) Put 1 card from your hand to the waiting room, put this card on the bottom of the deck] If you are level 2 or higher, choose up to 1 "Best When in a Pinch, Muua Ohshima" in your hand and put it in the position this card was in.
+Act: 1 Rest 1 Other && HasTrait Seraph &&& RestSelf
+{
+    Heal
+    DontStand
+}
+Text Act: [(1) Rest 1 of your other «Seraph» characters and this card] Put the top card of your clock in the waiting room. This card does not stand during your next stand phase.
+EndCard
+
+Character: HBR/W117-042
+Name Colorful Inspiration, Iroha Ishii
+JPName 多彩なるインスピレーション 石井 色葉
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31D
+Cont: InHand
+{
+    GainSpecialEffect IgnoreColorRequirement
+}
+Text Cont: Your climax can be played from hand without meeting the color requirement.
+Act: 2 Discard 1 IsCharacter && HasTrait Seraph &&& RestSelf
+{
+    SearchLocationForTargets WaitingRoom 1 1 IsCharacter && HasTrait Seraph
+    If HasTarget
+    {
+        SaveTargets
+        RevealTargets
+        MoveCard Hand
+        Message Choose a card with the same name as the previous card you returned to hand.
+        SearchLocationForTargets WaitingRoom 1 1 NameEquals SAVED_TARGET_NAME
+        RevealTargets
+        MoveCard Hand
+    }
+}
+Text Act: [(2) Put a «Seraph» character from your hand to the waiting room, rest this card] Choose a character in your waiting room and return it to your hand, and choose a character in your waiting room with the same card name as the character you returned to your hand and return it to your hand.
+EndCard
+
+Character: HBR/W117-043
+Name Thoughts Are Clear with Feelings Past and Present, Misato Nikaido
+JPName 今昔の感、想いは徃きて 二階堂 三郷
+Color G
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31D
+*OnPlayGainPower(3000)
+Auto: OnCancel
+{
+    If InBattle && OnStage
+    {
+        Question Put this card in stock ?
+        If Yes
+        {
+            MoveCard Stock
+        }
+    }
+}
+Text Auto: During battles involving this card, when damage taken by you is canceled, you may put this card in your stock.
+EndCard
+
+Character: HBR/W117-044
+Name Pain Pain Go Away~, Risa Murofushi
+JPName 痛いの痛いの飛んでけ〜♪ 室伏 理沙
+Color G
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31D
+Auto: OnPlay
+{
+    PayCost 1 Discard 1 Any
+    {
+        Heal
+    }
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, put the top card of your clock in the waiting room.
+EndCard
+
+Character: HBR/W117-045
+Name Marvel Approach, Akari Date
+JPName マーベルアプローチ 伊達 朱里
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Seraph
+Trait2 Unit 31D
+Combo Letters on The Back
+Auto: StartMyEncoreStep
+{
+    If Climax Letters on The Back && InLocation CenterStage
+    {
+        PayCost 8 Discard 4 Any &&& SendClimax WaitingRoom
+        {
+            ExtraTurn
+        }
+    }
+}
+Text Auto: CxCombo [(8) Put 4 cards from your hand to the waiting room, put a "Letters on The Back" from your climax area in the waiting room] At the beginning of your encore step, if this card is in the center stage, you may pay the cost. If you do, you get an additional turn.
+EndCard
+
+Character: HBR/W117-046
+Name Frontline Catwalk, Niina Ohshima
+JPName 戦線キャットウォーク 大島 二以奈
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31E
+Combo Beauty Hot Spring Story - Steam of Many Colors
+Auto: OnSpecificClimaxPlay Beauty Hot Spring Story - Steam of Many Colors
+{
+    If StageContains 3 Other && HasTrait Seraph
+    {
+        TargetLocation Stage
+        NarrowTargets HasTrait Seraph
+        ChooseCharacterFromTargets Choose a character to give the effect.
+        GainEffect
+        {
+            Auto: OnAttack
+            {
+                GainSpecialEffect DoubleTrigger
+            }
+            Quick
+            TimesPerTurn 1
+            Text Auto: This card ability activates up to once per turn. When this card attacks, perform trigger check twice during this card attack's trigger step.
+        }
+    }
+}
+Text Auto: CxCombo When "Beauty Hot Spring Story - Steam of Many Colors" is placed on your climax area, if the number of other «Seraph» characters you have is 3 or more, choose 1 of your «Seraph» characters, and that character gets the following ability until end of turn. "Auto: This card ability activates up to once per turn. When this card attacks, perform trigger check twice during this card attack's trigger step."
+Act: 1 Discard 1 Any &&& RestSelf
+{
+    SearchWaitingRoom IsCharacter
+}
+Text Act: [(1) Put 1 card from your hand to the waiting room, rest this card] Choose a character in your waiting room and return it to your hand.
+EndCard
+
+Character: HBR/W117-047
+Name Silent Reverberations, Fubuki Mikoto
+JPName Silent Reverberations 命 吹雪
+Color G
+Level 1
+Cost 0
+Power 500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31D
+Auto: OnPlay
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Seraph
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen && Compare ThatCardsCost 0 OrLess
+        ChooseCharactersFromTargets 0 2 Choose up to 2 characters to not stand.
+        DontStand
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it is a «Seraph» character, choose up to 2 of your opponent's cost 0 or Lower characters, and those characters do not stand during your opponent's next stand phase.
+*GreenCost0Bomb
+EndCard
+
+Character: HBR/W117-048
+Name After Different Dreams, Ichiko Ohshima
+JPName 同床異夢明けて 大島 一千子
+Color G
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31E
+Auto:
+{
+
+}
+Text Auto: [Put 2 cards from your hand to the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, you may put the top card of your opponent's clock in the waiting room. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in their clock.
+Backup 1000
+EndCard
+
+Character: HBR/W117-049
+Name Relaxed Pajama Night, Yotsuha Ohshima
+JPName ぐうたらパジャマナイト 大島 四ツ葉
+Color G
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31E
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 2 characters in your backstage, and those characters get +1 soul until end of turn.
+EndCard
+
+Character: HBR/W117-050
+Name Beautiful Flavor, Isuzu Ohshima
+JPName ピースフルフレーバー 大島 五十鈴
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31E
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Seraph» characters you have is 4 or more, you may choose a «Seraph» character in your waiting room and put it in your stock.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters, and that character gets -2500 power until end of turn.
+EndCard
+
+Character: HBR/W117-051
+Name Enjoy the Deep Flavors, Aina Mizuhara
+JPName 奥深い味わいを 瑞原 あいな
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 6500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31D
+Cont:
+{
+
+}
+Text Cont: During battles involving this card, your opponent cannot play BACKUP from hand.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the level of the character facing this card is 3 or higher, this card gets +4500 power until the end of your opponent's next turn.
+EndCard
+
+Climax: HBR/W117-052
+Name Color of the Seas Far Away
+JPName 遠い海の色
+*BarClimax
+EndCard
+
+Climax: HBR/W117-053
+Name Ohshima Store Story
+JPName 大島屋物語
+*BarClimax
+EndCard
+
+Climax: HBR/W117-054
+Name Letters on The Back
+JPName Letters on The Back
+*BarClimax
+EndCard
+
+Climax: HBR/W117-055
+Name Beauty Hot Spring Story - Steam of Many Colors
+JPName 美人温泉物語　湯けむり千紫万紅
+*BarClimax
+EndCard
+
+Character: HBR/W117-056
+Name Night Cruise Escort, Ruka Kayamori
+JPName ナイトクルーズ・エスコート 茅森 月歌
+Color R
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31A
+Combo Breakdown of Souls and a Trip of Millions of Light Years
+Cont:
+{
+
+}
+Text Cont: If all your characters are «Seraph», this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Breakdown of souls and a Trip of Millions of Light Years" is in your climax area and you have another «Seraph» character, perform trigger check twice during this card attack's trigger step.
+EndCard
+
+Character: HBR/W117-057
+Name Garden Lit by Sunlight Through the Leaves, Kanata Maruyama
+JPName 木漏れ日の庭 丸山 奏多
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31F
+Cont:
+{
+
+}
+Text Cont: If the number of other «Seraph» characters you have is 2 or more, this card gets +8000 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Seraph» characters you have is 2 or more, you may draw 2 cards. If you do, discard 2 cards from your hand to the waiting room.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Seraph» characters you have is 4 or more, you may choose a «Seraph» character in your waiting room and put it in your stock.
+EndCard
+
+Character: HBR/W117-058
+Name Twilight Growth, Megumi Aikawa
+JPName トワイライト・グロース 逢川 めぐみ
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Seraph
+Trait2 Unit 31A
+Combo Overflowing Emotions
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose 1 «Seraph» character in your clock and put it on the bottom of your deck.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Overflowing Emotions" is in your climax area, this card gets the following ability until end of turn. "Auto: This card ability activates up to twice per turn. When damage dealt by this card isn't canceled, you may deal 1 damage to your opponent."
+Auto:
+{
+
+}
+Text Auto: [(2) Put 2 cards from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, deal 2 damage to your opponent.
+EndCard
+
+Character: HBR/W117-059
+Name Self-Centric, Maki Kurosawa
+JPName 唯我独尊 黒沢 真希
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31F
+Cont:
+{
+
+}
+Text Cont: If this card is in the middle position of your center stage, this card gets +1 level, +3500 power, and +1 soul.
+EndCard
+
+Character: HBR/W117-060
+Name Chill Time with Night Wind, Mion Yanagi
+JPName 夜風のChill Time 柳 美音
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31F
+Auto:
+{
+
+}
+Text Auto: [(1) Put the top card of your deck in your clock, return this card to your hand] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your other characters and return it to your hand.
+EndCard
+
+Character: HBR/W117-061
+Name Hidden Hard Work, Chiroru Matsuoka
+JPName 秘めたる努力 松岡 チロル
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31F
+Auto:
+{
+
+}
+Text Auto: [(1) Put this card in the waiting room] When your other «Seraph» character is frontal attacked, you may pay the cost. If you do, choose 1 of your characters in battle, and that character gets +3000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: When this card is placed in your waiting room from the stage, look at the top card of your deck and put it either on top of the deck or in the waiting room.
+EndCard
+
+Character: HBR/W117-062
+Name Night Cruise Attendant, Yuki Izumi
+JPName ナイトクルーズ・アテンダント 和泉 ユキ
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31A
+Auto:
+{
+
+}
+Text Auto: When you use ACCELERATE, look at up to 2 cards from the top of your deck and put them on top of the deck in any order.
+Auto:
+{
+
+}
+Text Auto: CxCombo When "Unit 31A" is placed on your climax area, if the number of other «Seraph» characters you have is 2 or more, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand."
+EndCard
+
+Character: HBR/W117-063
+Name Secret Service Silence, Tsukasa Tojo
+JPName シークレットサービス・サイレンス 東城 つかさ
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31A
+Cont:
+{
+
+}
+Text Cont: You may play this card from your hand without meeting the color requirement.
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, your opponent returns all cards from their stock to their deck, shuffles that deck, and puts the same number of cards from top of their deck in their stock.
+EndCard
+
+Character: HBR/W117-064
+Name Sonata of the Sunlight Through the Leaves, Shiki Hanamura
+JPName 木漏れ日のソナタ 華村 詩紀
+Color R
+Level 1
+Cost 1
+Trigger Soul
+Power 500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31F
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, reveal the top card of your deck. If it's a «Seraph» character, put it in your hand and discard a card from your hand to the waiting room.
+Backup 2000
+EndCard
+
+Character: HBR/W117-065
+Name Twilight Memories, Tama Kunimi
+JPName トワイライト・メモリーズ 國見 タマ
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31A
+*LevelAssist
+Act:
+{
+
+}
+Text Act: [(2) Rest this card] Put the top card of your clock in the waiting room.
+EndCard
+
+Character: HBR/W117-066
+Name Fragrant Butterfly, Inori Natsume
+JPName 薫衣香る夢見鳥 夏目 祈
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 5500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31F
+Combo Seraph Blade Bujutsu Festival
+*EarlyPlay2OrLessClimax
+Cont:
+{
+
+}
+Text Cont: This card gets +1000 power for each of your other «Seraph» characters
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Seraph Blade Bujutsu Festival" is in your climax area and the number of other «Seraph» characters you have is 2 or more, look at up to the top 4 cards of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, put the rest into your waiting room, and perform trigger check twice during this card attack's trigger step.
+EndCard
+
+Character: HBR/W117-067
+Name Secret Service Demolish, Karen Asakura
+JPName シークレットサービス・デモリッシュ 朝倉 可憐
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 6500
+Soul 2
+Trait1 Seraph
+Trait2 Unit 31A
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, your opponent chooses a climax in their waiting room, returns all but the chosen card from their waiting room to their deck, and shuffles their deck.
+EndCard
+
+Character: HBR/W117-068
+Name Cardinal of Echoes, Ruka Kayamori
+JPName 残響のカルディナル 茅森 月歌
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31A
+Auto:
+{
+
+}
+Text Auto: [Put a «Seraph» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a character in your waiting room with the same name as a character on your or your opponent's stage and return it to your hand.
+EndCard
+
+Character: HBR/W117-069
+Name Unshakable Definite Thing, Nanami Nanase
+JPName 揺るがない確かなこと 七瀬 七海
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Seraph
+Trait2 Headquarters
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's draw phase, put the top 2 cards of your deck in the waiting room. If there's a level 2 or higher card among them, you may return this card to your hand.
+EndCard
+
+Character: HBR/W117-070
+Name Ojou Is Elegant, Kanata Maruyama
+JPName お嬢様は端麗 丸山 奏多
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31F
+Cont:
+{
+
+}
+Text Cont: This card gets +1000 power for each marker underneath this card
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at up to the top 2 cards of your deck, choose up to 1 level 0 or lower character among them, reveal it, put it face down underneath this card as a marker, and put the rest into your waiting room.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose a "Selfless Service Trust, Mion Yanagi" in your waiting room and put it face up underneath this card as a marker.
+EndCard
+
+Character: HBR/W117-071
+Name Future-Weaving Promise, Makiko Asami
+JPName 未来を紡ぐ誓い 浅見 真紀子
+Color R
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 Seraph
+Trait2 Headquarters
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, your opponent declares a number between 0, 1, 2, and 3. Put the top card of your deck in the waiting room. If the level of that card is the same as the number that your opponent declared, draw up to X cards. X equals the number that your opponent declared +1.
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a level 0 or lower character in your waiting room and put it in any position on the stage.
+EndCard
+
+Character: HBR/W117-072
+Name Scarlet Rebellion, Karen Asakura
+JPName スカーレット・リベリオン 朝倉 可憐
+Color R
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31A
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the character facing this card is level 2, this card gets +6000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your «Seraph» characters, and that character gets +1500 power until end of turn.
+EndCard
+
+Character: HBR/W117-073
+Name Selfless Service Trust, Mion Yanagi
+JPName 滅私奉公のトラスト 柳 美音
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31F
+Combo Tiny Emperor and Gentle Breakfast
+Cont:
+{
+
+}
+Text Cont: If there is a marker underneath this card, this card gets +1500 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose a "Ojou Is Elegant, Kanata Maruyama" in your waiting room and put it face up underneath this card as a marker.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Tiny Emperor and Gentle Breakfast" is in your climax area and the number of other «Seraph» characters you have is 2 or more, perform the following action twice. "Reveal the top card of your deck. If it's a «Seraph» character, put it in your hand."
+EndCard
+
+Character: HBR/W117-074
+Name Elemental of the Magic Kingdom, Tama Kunimi
+JPName 魔法の国のエレメンタル 國見 タマ
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31A
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose a card in your hand and put it in your stock.
+*Bond1(Twilight Growth\, Megumi Aikawa)
+EndCard
+
+Character: HBR/W117-075
+Name Midsummer Prayer, Tsukasa Tojo
+JPName 真夏のPrayer 東城 つかさ
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31A
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your other «Seraph» characters, and that character gets +1000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: [Return this card to your hand] When your climax is placed on your climax area, you may pay the cost. If you do, draw a card, and discard a card from your hand to the waiting room.
+EndCard
+
+Character: HBR/W117-076
+Name Killer of the Otherworld, Inori Natsume
+JPName 彼岸の人斬り 夏目 祈
+Color R
+Level 1
+Cost 0
+Power 2000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31F
+Cont:
+{
+
+}
+Text Cont: During your turn, this card gets +5000 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Seraph» character, this card gets +2000 power and +1 soul. (Put the revealed back where it was)
+EndCard
+
+Character: HBR/W117-077
+Name One Night's Dream, Megumi Aikawa
+JPName 一夜の夢 逢川 めぐみ
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31A
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's attack phase, you may choose a character in your opponent's center stage and move it to another open position in the center stage.
+Act:
+{
+
+}
+Text Act: [Rest this card] If there is no marker underneath this card, choose either a «Seraph» character or a "Best Summer Spent with Rumi" in your waiting room and put it face up underneath this card as a marker.
+Act:
+{
+
+}
+Text Act: [(1) Rest this card] Return a marker from under this card to your hand.
+EndCard
+
+Character: HBR/W117-078
+Name Truth Spoken, Saki Tezuka
+JPName 語られる真実 手塚 咲
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Seraph
+Trait2 Headquarters
+Cont:
+{
+
+}
+Text Cont: If the number of «Seraph» characters you have is 4 or more, this card gets -1 level while in your hand.
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 2 characters in your waiting room and return them to your hand.
+EndCard
+
+Character: HBR/W117-079
+Name Camellia and the Clear Night Star, Yuki Izumi
+JPName 夏椿、けうらなる夜光星 和泉 ユキ
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Seraph
+Trait2 Unit 31A
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Seraph» characters you have is 4 or more, you may put the top card of your deck in your stock.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's either a «Seraph» character or an event, you may deal 1 damage to your opponent. (. Put the revealed back where it was)
+EndCard
+
+Event: HBR/W117-080
+Name Best Summer Spent with Rumi
+JPName ルミとの最高の夏
+Color R
+Level 1
+Cost 0
+Effect:
+{
+
+}
+Text If you have no «Seraph» characters, you cannot play this card from hand. Look at up to the top 4 cards of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Climax: HBR/W117-081
+Name Breakdown of Souls and a Trip of Millions of Light Years
+JPName 魂の仕組みと幾億光年の旅
+*StandbyClimax
+EndCard
+
+Climax: HBR/W117-082
+Name Overflowing Emotions
+JPName 溢れ出る感情
+*StandbyClimax
+EndCard
+
+Climax: HBR/W117-083
+Name Seraph Blade Bujutsu Festival
+JPName セラフ剣刀武術祭
+*DoorClimax
+EndCard
+
+Climax: HBR/W117-084
+Name Tiny Emperor and Gentle Breakfast
+JPName 小さき帝と穏やかな朝食
+*DoorClimax
+EndCard
+
+Character: HBR/W117-085
+Name Dark Hero of the Skyscraper, Carole Reaper
+JPName 摩天楼のダークヒーロー キャロル・リーパー
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31X
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck, choose 1 level X or lower character in your waiting room and return it to your hand. If the card revealed this way has at least 1 Soul trigger icon, this card gets +1 soul until end of turn. X equals level of the card revealed this way.
+EndCard
+
+Character: HBR/W117-086
+Name Miracle Served, Erika Aoi
+JPName トドケ・Miracle 蒼井 えりか
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31B
+Auto:
+{
+
+}
+Text Auto: [Put this card in your clock] When your other «Seraph» characters is frontal attacked, you may pay the cost. If you do, return that character to your hand.
+*Act1RestSelfSalvageBrainstorm(Any)
+EndCard
+
+Character: HBR/W117-087
+Name Flower Blooming in Adversity, Charlotta Skopovskaya
+JPName 逆境に咲く華 シャルロッタ・スコポフスカヤ
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Seraph
+Trait2 Unit 31X
+Combo Crime and Punishment and Love
+*Healer
+Auto:
+{
+
+}
+Text Auto: CxCombo [(2) Put 1 card from your hand to the waiting room] When this card attacks, if "Crime and Punishment and Love" is in your climax area and the number of other «Seraph» characters you have is 2 or more, you may pay the cost. If you do, deal 1 damage to your opponent, put the top card of your deck in the waiting room, and deal X damage to your opponent. X equals level of the card put in the waiting room by this card effect +1.
+EndCard
+
+Character: HBR/W117-088
+Name Research of the Universe and the Briliiance of the Stars, Seika Higuchi
+JPName 宙の探究、星の眩耀 樋口 聖華
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31B
+*OnPlayScryToBottom
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, your opponent declares a number between 0, 1, 2, and 3. Reveal the top card of your deck, and if it's a character with the same level as the number declared by the opponent, put it in any position on the stage.
+EndCard
+
+Character: HBR/W117-089
+Name Not Being Brave Is Like Not Having a Leader, Yingxia Li
+JPName 我、勇ならざるは将なきに同じ 李 映夏
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31X
+Auto:
+{
+
+}
+Text Auto: At the beginning of your climax phase, choose 1 of your «Seraph» characters, and that character gets +X power until end of turn. X equals 1000 times level of that character.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose another character, and that character gets +1 level until the end of your opponent's next turn.
+EndCard
+
+Character: HBR/W117-090
+Name Tsaeb Dnik, Byakko
+JPName のもけいしさや ビャッコ
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31B
+Auto:
+{
+
+}
+Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 1000 times the number of your other «Seraph» characters.
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's attack phase, if there's a character facing this card, you may move this card to an empty slot in your center stage.
+EndCard
+
+Character: HBR/W117-091
+Name Finale Nightfall, Kozue Hiiragi
+JPName 終劇のナイトフォール 柊木 梢
+Color B
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31B
+Combo That day's Friend
+Cont:
+{
+
+}
+Text Cont: During your turn, this card gets +4000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "That day's Friend" is in your climax area, this card gets the following ability until the end of your opponent's next turn. "Auto: When this card is frontal attacked, you may return this card to your hand."
+EndCard
+
+Character: HBR/W117-092
+Name Killed by Your Eyes, Ichigo Minase
+JPName 君の瞳にコロしてる 水瀬 いちご
+Color B
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31B
+Cont:
+{
+
+}
+Text Cont: During your turn, this card gets +3000 power.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your other «Seraph» characters, and that character gets +X power until end of turn. X equals 500 times the number of your other «Seraph» characters.
+EndCard
+
+Character: HBR/W117-093
+Name Blue Carbuncle, Irene Redmayne
+JPName 碧いカーヴァンクル アイリーン・レドメイン
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31X
+Combo Case Files of Irene Redmayne - Detective and the Forest Witch -
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 500 times the number of your «Seraph» characters.
+Auto:
+{
+
+}
+Text Auto: CxCombo [Put a level 0 or lower card from your hand to the waiting room] When this card attacks, if "Case Files of Irene Redmayne - Detective and the Forest Witch -" is in your climax area and you have another «Seraph» character, you may pay the cost. If you do, look at up to the top 5 cards of your deck, choose up to 2 «Seraph» characters among them, reveal them, put them in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: HBR/W117-094
+Name Steamed Assassin, Sumomo Minase
+JPName 茹だるアサシン 水瀬 すもも
+Color B
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31B
+Auto:
+{
+
+}
+Text Auto: [Put a climax with a Gate trigger icon from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 6 cards of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: HBR/W117-095
+Name Elegant Durga, Vritika Balakrishnan
+JPName 凛々しきドゥルガー ヴリティカ・バラクリシュナン
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31X
+Cont:
+{
+
+}
+Text Cont: ASSIST Your «Seraph» characters in front of this card get +X power. X equals 500 times level of that character.
+Act:
+{
+
+}
+Text Act: [Rest this card] draw a card, and discard a card from your hand to the waiting room.
+EndCard
+
+Character: HBR/W117-096
+Name Blood Relief, Maria de Angelis
+JPName ブラッド・レリーフ マリア・デ・アンジェリス
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Seraph
+Trait2 Unit 31X
+Cont:
+{
+
+}
+Text Cont: If your opponent has a level 3 or higher character, this card gets -1 level while in your hand.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Seraph» characters you have is 2 or more, you may choose a character in your clock and put it face up underneath this card as a marker.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if there's a marker underneath this card, this card gets +X power until end of turn. X equals 1000 times the number of your other «Seraph» characters.
+EndCard
+
+Character: HBR/W117-097
+Name Crime And Glory, Maria de Angelis
+JPName 罪と栄光 マリア・デ・アンジェリス
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31X
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to X cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your other «Seraph» characters.
+EndCard
+
+Character: HBR/W117-098
+Name Snowflower Nostalgia, Charlotta Skopovskaya
+JPName 雪華ノスタルジア シャルロッタ・スコポフスカヤ
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31X
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your other «Seraph» characters, and that character gets +X power until end of turn. X equals 1000 times soul of that character.
+*EncoreStepIfNoneRestedPayToRest
+EndCard
+
+Character: HBR/W117-099
+Name Bloom of the Youth, Seika Higuchi
+JPName 青春の発露 樋口 聖華
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 3500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31B
+*BlueEarlyPlayBomb
+*HandEncore
+EndCard
+
+Character: HBR/W117-100
+Name Scenery in Her Heart, Carole Reaper
+JPName 心の風景 キャロル・リーパー
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31X
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at up to X cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your «Seraph» characters.
+EndCard
+
+Character: HBR/W117-101
+Name Crowd on a Certain Day, Kozue Hiiragi
+JPName 在りし日の雑踏 柊木 梢
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31B
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 1000 times the number of your «Seraph» characters.
+*OnReverseMayMemoryOpponent
+EndCard
+
+Character: HBR/W117-102
+Name Shining Ultimate Idol, Erika Aoi
+JPName キララ・究極のアイドル 蒼井 えりか
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Seraph
+Trait2 Unit 31B
+Combo Private Seraphim Academy - Aoi Will Become An Idol! -
+*Healer
+Auto:
+{
+
+}
+Text Auto: CxCombo [(1) Put 1 card from your hand to the waiting room] When "Private Seraphim Academy - Aoi Will Become An Idol! -" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, all your other characters get the following ability until end of turn. "Auto: When this card attacks, put the bottom 2 cards of your opponent's deck in the waiting room. If there's at least 1 climax among them, deal 2 damage to your opponent."
+EndCard
+
+Character: HBR/W117-103
+Name Unknown Vedanga, Vritika Balakrishnan
+JPName 未知数なヴェーダーンガ ヴリティカ・バラクリシュナン
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31X
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose a character in your opponent's center stage, and that character gets -X power until end of turn. X equals 500 times the number of your other «Seraph» characters.
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, put all of your stock in the waiting room, and choose a card in your waiting room and return it to your hand.
+EndCard
+
+Character: HBR/W117-104
+Name For Your Sake, Ichigo Minase
+JPName あなたのために 水瀬 いちご
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31B
+Cont:
+{
+
+}
+Text Cont: This card gets +500 power for each of your other "For Your Sake, Ichigo Minase" or "Cumulonimbus Cloud, Sumomo Minase"
+Auto:
+{
+
+}
+Text Auto: [Put a «Seraph» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Cumulonimbus Cloud, Sumomo Minase", reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: HBR/W117-105
+Name Cumulonimbus Cloud, Sumomo Minase
+JPName 積乱雲 水瀬 すもも
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31B
+Cont:
+{
+
+}
+Text Cont: This card gets +500 power for each of your other "For Your Sake, Ichigo Minase" or "Cumulonimbus Cloud, Sumomo Minase"
+Auto:
+{
+
+}
+Text Auto: [Put a «Seraph» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "For Your Sake, Ichigo Minase", reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: HBR/W117-106
+Name The Heavens Determine Who Wins, Yingxia Li
+JPName 武を成すは天に在り 李 映夏
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31X
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed in your waiting room from the stage, you may pay the cost. If you do, put the top 2 cards of your deck in the waiting room, choose a level X or lower «Seraph» character in your waiting room and return it to your hand. X equals sum of levels of those cards.
+EndCard
+
+Character: HBR/W117-107
+Name Relax Sign, Byakko
+JPName リラックスサイン ビャッコ
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 1500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31B
+Backup 3500
+EndCard
+
+Character: HBR/W117-108
+Name Trails of the Baker Street, Irene Redmayne
+JPName ベイカー街の軌跡 アイリーン・レドメイン
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 Seraph
+Trait2 Unit 31X
+Auto:
+{
+
+}
+Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 2000 times the number of your opponent's characters.
+EndCard
+
+Climax: HBR/W117-109
+Name Crime and Punishment and Love
+JPName 罪と罰と愛と
+*GateClimax
+EndCard
+
+Climax: HBR/W117-110
+Name That day's Friend
+JPName That day's Friend
+*GateClimax
+EndCard
+
+Climax: HBR/W117-111
+Name Case Files of Irene Redmayne - Detective and the Forest Witch -
+JPName アイリーン・レドメインの事件簿 －名探偵と森の魔女－
+Color B
+Trigger DoubleSoul
+Auto: OnPlay
+{
+    *PutCardFromWaitingRoomIntoStock(IsCharacter && Compare ThatCardsLevel 1 OrLess)
+    TargetLocation Stage
+    GainSoul 1
+}
+Text Auto: When this card is placed from hand to your climax area, choose up to 1 level 1 or lower character in your waiting room and put it in your stock, and all your characters get +1 soul until end of turn.
+
+EndCard
+
+Climax: HBR/W117-112
+Name Private Seraphim Academy - Aoi Will Become An Idol! -
+JPName 私立セラフィム学園　～蒼井、アイドルになります！～
+*GateClimax
+EndCard
+
