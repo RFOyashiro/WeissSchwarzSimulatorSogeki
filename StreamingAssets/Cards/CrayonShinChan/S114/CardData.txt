@@ -1870,13 +1870,15 @@ InWaitingRoom
 Text Auto: If this card is in the waiting room, at the beginning of your first turn, look at the top card of your deck and choose up to 1 «MOVIE» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 Auto: OnAttack
 {
+    UntilEndOfOpponentsTurn
     *GiveOtherCharacterPower(2500,MOVIE)
+    UntilEndOfOpponentsTurn
     GainEffect
     {
         *HandEncore
     }
 }
-Text Auto: When this card attacks, choose 1 of your other «MOVIE» characters, and that character gets +2500 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
+Text Auto: When this card attacks, choose 1 of your other «MOVIE» characters, and that character gets +2500 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]" until end of your opponent's turn.
 EndCard
 
 Character: CS/S114-071
