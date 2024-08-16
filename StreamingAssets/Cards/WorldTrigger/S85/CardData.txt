@@ -2045,7 +2045,7 @@ Trait1 Trion
 Trait2 Tamakoma Second
 Auto: OnAttack
 {
-    If StageContains 2 Other && Trion
+    If StageContains 2 Other && HasTrait Trion
     {
         GainPower 4000
     }
