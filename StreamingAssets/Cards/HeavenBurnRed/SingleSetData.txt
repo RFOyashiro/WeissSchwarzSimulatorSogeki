@@ -1,4 +1,7 @@
 Series: Heaven Burn Red
 Folder: HeavenBurnRed/W103
 Prefix: HBR/W103
-SetName: Heaven Burn Red
+SetName: Heaven Burn Red (W103)
+Folder: HeavenBurnRed/W117
+Prefix: HBR/W117
+SetName: Heaven Burn Red Vol. 2 (W117)
