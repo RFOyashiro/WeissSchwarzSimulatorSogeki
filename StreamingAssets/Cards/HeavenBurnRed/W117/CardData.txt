@@ -1277,9 +1277,27 @@ Power 1500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31E
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    PayCost Discard 2 Any
+    {
+        If Compare CardsInOpponentsClock 1 OrMore
+		{
+            Question Put the top card of the opponent's clock into the waiting room to put the battle opponent into clock?
+            If Yes
+            {
+                TargetLocation OpponentStage
+                NarrowTargets CanBeChosen && EarlyPlay
+                If HasTarget
+                {
+					TargetTop OpponentClock 1
+					MoveCard OpponentWaitingRoom
+                    ChooseCharacterFromTargets choose 1 of your opponent's characters whose level is higher than your opponent's level and put it in waiting room.
+					MoveCard OpponentClock
+				}
+            }
+        }
+    }
 }
 Text Auto: [Put 2 cards from your hand to the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, you may put the top card of your opponent's clock in the waiting room. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in their clock.
 Backup 1000
@@ -1295,9 +1313,14 @@ Power 2500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31E
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1
+    {
+        TargetLocation Backstage
+        ChooseCharactersFromTargets 0 2 Choose up to 2 characters to give +1 soul.
+        GainSoul 1
+    }
 }
 Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 2 characters in your backstage, and those characters get +1 soul until end of turn.
 EndCard
@@ -1313,14 +1336,20 @@ Power 500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31E
-Auto:
+Auto: OnPlay
 {
-
+    If StageContains 4 Other && HasTrait Seraph
+    {
+        *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait Seraph)
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, if the number of other «Seraph» characters you have is 4 or more, you may choose a «Seraph» character in your waiting room and put it in your stock.
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to give -2500 power.
+    LosePower 2500
 }
 Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters, and that character gets -2500 power until end of turn.
 EndCard
@@ -1336,15 +1365,25 @@ Power 6500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31D
-Cont:
+Cont: GiveSelf
 {
-
+    If InBattle
+    {
+        GainSpecialEffect NoBackupOnAttack
+    }
 }
 Text Cont: During battles involving this card, your opponent cannot play BACKUP from hand.
-Auto:
+Auto: OnAttack
 {
-
+    TargetFacing
+    IfTarget Compare ThatCardsLevel 3 OrMore
+    {
+        TargetSelf
+        UntilEndOfOpponentsTurn
+        GainPower 4500
+    }
 }
+Quick
 Text Auto: When this card attacks, if the level of the character facing this card is 3 or higher, this card gets +4500 power until the end of your opponent's next turn.
 EndCard
 
@@ -1383,15 +1422,22 @@ Soul 1
 Trait1 Seraph
 Trait2 Unit 31A
 Combo Breakdown of Souls and a Trip of Millions of Light Years
-Cont:
+Cont: GiveSelf
 {
-
+    If AllYourCharacters HasTrait Seraph
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If all your characters are «Seraph», this card gets +2000 power.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Breakdown of Souls and a Trip of Millions of Light Years && StageContains 1 Other && HasTrait Seraph
+    {
+        GainSpecialEffect DoubleTrigger
+    }
 }
+Quick
 Text Auto: CxCombo When this card attacks, if "Breakdown of souls and a Trip of Millions of Light Years" is in your climax area and you have another «Seraph» character, perform trigger check twice during this card attack's trigger step.
 EndCard
 
@@ -1406,19 +1452,27 @@ Power 2000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31F
-Cont:
+*GainPowerWithEnoughCharacters(8000,2,Seraph)
+Auto: OnPlay
 {
-
-}
-Text Cont: If the number of other «Seraph» characters you have is 2 or more, this card gets +8000 power.
-Auto:
-{
-
+    If StageContains 2 Other && HasTrait Seraph
+    {
+        Question Draw 2 cards ?
+        If Yes
+        {
+            DrawCard
+            DrawCard
+            Discard 2 Any
+        }
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, if the number of other «Seraph» characters you have is 2 or more, you may draw 2 cards. If you do, discard 2 cards from your hand to the waiting room.
-Auto:
+Auto: OnPlay
 {
-
+    If StageContains 4 Other && HasTrait Seraph
+    {
+        *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait Seraph)
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, if the number of other «Seraph» characters you have is 4 or more, you may choose a «Seraph» character in your waiting room and put it in your stock.
 EndCard
@@ -1435,19 +1489,40 @@ Soul 2
 Trait1 Seraph
 Trait2 Unit 31A
 Combo Overflowing Emotions
-Auto:
+Auto: OnPlay
 {
-
+    Question_Obvious Send a character in your clock to the bottom of the deck?
+	If Yes
+	{
+		TargetLocation Clock
+		NarrowTargets HasTrait Seraph
+		ChooseCharacterFromTargets Choose a character to send to the bottom of the deck.
+		MoveCardToBottom Deck
+	}
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose 1 «Seraph» character in your clock and put it on the bottom of your deck.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Overflowing Emotions
+    {
+        GainEffect
+        {
+            Auto: OnDamageNotCanceled
+            {
+                *OptionalBurn(1)
+            }
+            TimesPerTurn 2
+            Text Auto: This card ability activates up to twice per turn. When damage dealt by this card isn't canceled, you may deal 1 damage to your opponent.
+        }
+    }
 }
 Text Auto: CxCombo When this card attacks, if "Overflowing Emotions" is in your climax area, this card gets the following ability until end of turn. "Auto: This card ability activates up to twice per turn. When damage dealt by this card isn't canceled, you may deal 1 damage to your opponent."
-Auto:
+Auto: OnAttack
 {
-
+    PayCost 2 Discard 2 Any
+    {
+        Burn 2
+    }
 }
 Text Auto: [(2) Put 2 cards from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, deal 2 damage to your opponent.
 EndCard
@@ -1462,9 +1537,14 @@ Power 500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31F
-Cont:
+Cont: GiveSelf
 {
-
+    If InLocation MiddleCenterStage
+    {
+        GainLevel 1
+        GainPower 3500
+        GainSoul 1
+    }
 }
 Text Cont: If this card is in the middle position of your center stage, this card gets +1 level, +3500 power, and +1 soul.
 EndCard
@@ -1479,9 +1559,15 @@ Power 1000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31F
-Auto:
+Auto: StartOpponentAttackPhase
 {
-
+    PayCost 1 Clock SendSelf Hand
+    {
+        TargetLocation Stage
+        NarrowTargets Other
+        ChooseCharacterFromTargets Choose a character to return to your hand.
+        Bounce
+    }
 }
 Text Auto: [(1) Put the top card of your deck in your clock, return this card to your hand] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your other characters and return it to your hand.
 EndCard
@@ -1496,14 +1582,21 @@ Power 1000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31F
-Auto:
+Auto: OnOtherFrontalAttacked
 {
-
+    IfOther HasTrait Seraph
+    {
+        PayCost 1 SendSelf WaitingRoom
+        {
+            TargetMyCharacterInBattle
+            GainPower 3000
+        }
+    }
 }
 Text Auto: [(1) Put this card in the waiting room] When your other «Seraph» character is frontal attacked, you may pay the cost. If you do, choose 1 of your characters in battle, and that character gets +3000 power until end of turn.
-Auto:
+Auto: OnSentFromStageToWaitingRoom
 {
-
+    *Scry
 }
 Text Auto: When this card is placed in your waiting room from the stage, look at the top card of your deck and put it either on top of the deck or in the waiting room.
 EndCard
@@ -1518,14 +1611,35 @@ Power 2000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31A
-Auto:
+Combo Unit 31A
+Auto: OnUseAccelerate
 {
-
+    TargetTop Deck 2
+    If Compare TargetCount 2 OrMore
+    {
+        Reorder
+    }
+    Else
+    {
+        View
+    }
 }
-Text Auto: When you use ACCELERATE, look at up to 2 cards from the top of your deck and put them on top of the deck in any order.
-Auto:
+Text Auto: When you use "ACCELERATE", look at up to 2 cards from the top of your deck and put them on top of the deck in any order.
+Auto: OnSpecificClimaxPlay Unit 31A
 {
-
+    If StageContains 2 Other && HasTrait Seraph
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give the effect.
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                SearchWaitingRoom IsCharacter
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand.
+        }
+    }
 }
 Text Auto: CxCombo When "Unit 31A" is placed on your climax area, if the number of other «Seraph» characters you have is 2 or more, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand."
 EndCard
@@ -1540,14 +1654,22 @@ Power 4000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31A
-Cont:
+Cont: InHand
 {
-
+    GainSpecialEffect IgnoreColorRequirement
 }
 Text Cont: You may play this card from your hand without meeting the color requirement.
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 2
+    {
+        TargetLocation OpponentStock
+        SetXValue TargetCount
+        MoveCard OpponentDeck
+        ShuffleLocation OpponentDeck
+        TargetTop OpponentDeck X
+        MoveCard OpponentStock
+    }
 }
 Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, your opponent returns all cards from their stock to their deck, shuffles that deck, and puts the same number of cards from top of their deck in their stock.
 EndCard
@@ -1563,11 +1685,7 @@ Power 500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31F
-Auto:
-{
-
-}
-Text Auto: When you use this card's BACKUP, reveal the top card of your deck. If it's a «Seraph» character, put it in your hand and discard a card from your hand to the waiting room.
+*ScryBackup(Seraph)
 Backup 2000
 EndCard
 
@@ -1583,9 +1701,9 @@ Soul 1
 Trait1 Seraph
 Trait2 Unit 31A
 *LevelAssist
-Act:
+Act: 2 RestSelf
 {
-
+    Heal
 }
 Text Act: [(2) Rest this card] Put the top card of your clock in the waiting room.
 EndCard
@@ -1603,14 +1721,15 @@ Trait1 Seraph
 Trait2 Unit 31F
 Combo Seraph Blade Bujutsu Festival
 *EarlyPlay2OrLessClimax
-Cont:
+*GainPowerForEachOther(1000,Seraph)
+Auto: OnAttack
 {
-
-}
-Text Cont: This card gets +1000 power for each of your other «Seraph» characters
-Auto:
-{
-
+    If Climax Seraph Blade Bujutsu Festival && StageContains 2 Other && HasTrait Seraph
+    {
+        *Check4Add1(Seraph)
+        TargetSelf
+        GainSpecialEffect DoubleTrigger
+    }
 }
 Text Auto: CxCombo When this card attacks, if "Seraph Blade Bujutsu Festival" is in your climax area and the number of other «Seraph» characters you have is 2 or more, look at up to the top 4 cards of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, put the rest into your waiting room, and perform trigger check twice during this card attack's trigger step.
 EndCard
@@ -1626,11 +1745,18 @@ Power 6500
 Soul 2
 Trait1 Seraph
 Trait2 Unit 31A
-Auto:
+Auto: OnPlay
 {
-
+	PayCost 1 Discard 1 Any
+	{
+		OpponentMessage Choose a climax to keep in your waiting room.
+		OpponentSearchLocationForTargets WaitingRoom 1 1 IsClimax
+		ReverseTargets OpponentWaitingRoom
+		MoveCard OpponentDeck
+		ShuffleLocation OpponentDeck
+	}
 }
-Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, your opponent chooses a climax in their waiting room, returns all but the chosen card from their waiting room to their deck, and shuffles their deck.
+Text Auto: [(1) Put 1 card from your hand into your waiting room] When this card is placed on the stage from your hand, you may pay the cost. Then, your opponent chooses 1 climax in their waiting room, returns all cards except that card from their waiting room to their deck, and shuffles their deck.
 EndCard
 
 Character: HBR/W117-068
@@ -1643,9 +1769,14 @@ Power 1000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31A
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsCharacter && HasTrait Seraph
+    {
+        TargetLocation AnyStage
+        SaveTargets
+        SearchWaitingRoom IsCharacter && SameNameAsSavedTarget
+    }
 }
 Text Auto: [Put a «Seraph» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a character in your waiting room with the same name as a character on your or your opponent's stage and return it to your hand.
 EndCard
@@ -1660,14 +1791,19 @@ Power 1500
 Soul 1
 Trait1 Seraph
 Trait2 Headquarters
-Auto:
+*OnPlayGainPower(1500)
+Auto: StartOpponentDrawPhase
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
-Auto:
-{
-
+    Mill 2
+    If TargetsContain 1 Compare ThatCardsLevel 2 OrMore
+    {
+        Question Return this card to your hand ?
+        If Yes
+        {
+            TargetSelf
+            Bounce
+        }
+    }
 }
 Text Auto: At the beginning of your opponent's draw phase, put the top 2 cards of your deck in the waiting room. If there's a level 2 or higher card among them, you may return this card to your hand.
 EndCard
@@ -1682,19 +1818,33 @@ Power 2000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31F
-Cont:
+Cont: GiveSelf
 {
-
+    SetXValue ThisCardsMarkers
+    MultiplyXValue 1000
+    GainPower X
 }
-Text Cont: This card gets +1000 power for each marker underneath this card
-Auto:
+Text Cont: This card gets +1000 power for each marker underneath this card.
+Auto: OnPlay
 {
-
+    RevealUpTo Deck 2
+    ChooseCardsFromTargets 0 1 IsCharacter && Compare ThatCardsLevel 0 OrLess
+    If HasTarget
+    {
+        RevealTargets
+        Marker_FaceDown
+    }
+    PutTheRestIntoTheWaitingRoom
 }
 Text Auto: When this card is placed on the stage from your hand, look at up to the top 2 cards of your deck, choose up to 1 level 0 or lower character among them, reveal it, put it face down underneath this card as a marker, and put the rest into your waiting room.
-Auto:
+Auto: OnPlay
 {
-
+    SearchLocationForTargets WaitingRoom 0 1 NameEquals Selfless Service Trust, Mion Yanagi
+    If HasTarget
+    {
+        RevealTargets
+        Marker_FaceUp
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose a "Selfless Service Trust, Mion Yanagi" in your waiting room and put it face up underneath this card as a marker.
 EndCard
@@ -1709,14 +1859,29 @@ Power 3000
 Soul 1
 Trait1 Seraph
 Trait2 Headquarters
-Auto:
+Auto: OnPlay
 {
-
+	OpponentMultipleChoiceQuestion Choose a number.|0|1|2|3
+	TargetTop Deck 1
+	Reveal
+	If Compare TargetCardsLevel Answer Exactly
+	{
+		SetXValue Answer
+        AddToXValue 1
+        Repeat X
+        {
+            *OptionalDraw
+        }
+	}
 }
 Text Auto: When this card is placed on the stage from your hand, your opponent declares a number between 0, 1, 2, and 3. Put the top card of your deck in the waiting room. If the level of that card is the same as the number that your opponent declared, draw up to X cards. X equals the number that your opponent declared +1.
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchLocationForTargets WaitingRoom 1 1 IsCharacter && Compare ThatCardsLevel 0 OrLess
+        PlaceOnStage false true true false
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a level 0 or lower character in your waiting room and put it in any position on the stage.
 EndCard
@@ -1731,16 +1896,8 @@ Power 3500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31A
-Auto:
-{
-
-}
-Text Auto: When this card attacks, if the character facing this card is level 2, this card gets +6000 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, choose 1 of your «Seraph» characters, and that character gets +1500 power until end of turn.
+*GainPowerWhenAttackingLevel2(6000)
+*OnAttackGivePower(1500,Seraph)
 EndCard
 
 Character: HBR/W117-073
@@ -1754,19 +1911,38 @@ Soul 1
 Trait1 Seraph
 Trait2 Unit 31F
 Combo Tiny Emperor and Gentle Breakfast
-Cont:
+Cont: GiveSelf
 {
-
+    If HasMarker
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If there is a marker underneath this card, this card gets +1500 power.
-Auto:
+Auto: OnPlay
 {
-
+    SearchLocationForTargets WaitingRoom 0 1 NameEquals Ojou Is Elegant, Kanata Maruyama
+    If HasTarget
+    {
+        RevealTargets
+        Marker_FaceUp
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose a "Ojou Is Elegant, Kanata Maruyama" in your waiting room and put it face up underneath this card as a marker.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Tiny Emperor and Gentle Breakfast && StageContains 2 Other && HasTrait Seraph
+    {
+        Repeat 2
+        {
+            TargetTop Deck 1
+            Reveal
+            IfTarget IsCharacter && HasTrait Seraph
+            {
+                MoveCard Hand
+            }
+        }
+    }
 }
 Text Auto: CxCombo When this card attacks, if "Tiny Emperor and Gentle Breakfast" is in your climax area and the number of other «Seraph» characters you have is 2 or more, perform the following action twice. "Reveal the top card of your deck. If it's a «Seraph» character, put it in your hand."
 EndCard
@@ -1781,9 +1957,14 @@ Power 500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31A
-Auto:
+Auto: OnPlay
 {
-
+	Question Put a card from your hand into your stock?
+	If Yes
+	{
+		SearchLocationForTargets Hand 0 1 Any
+		MoveCard Stock
+	}
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose a card in your hand and put it in your stock.
 *Bond1(Twilight Growth\, Megumi Aikawa)
@@ -1799,14 +1980,14 @@ Power 2000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31A
-Auto:
+*OnPlayGiveOtherPower(1000,Seraph)
+Auto: OnClimaxPlay
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your other «Seraph» characters, and that character gets +1000 power until end of turn.
-Auto:
-{
-
+    PayCost SendSelf Hand
+    {
+        DrawCard
+        Discard 1 Any
+    }
 }
 Text Auto: [Return this card to your hand] When your climax is placed on your climax area, you may pay the cost. If you do, draw a card, and discard a card from your hand to the waiting room.
 EndCard
@@ -1821,16 +2002,19 @@ Power 2000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31F
-Cont:
+*PowerOnMyTurn(5000)
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Seraph
+    {
+        TargetSelf
+        GainPower 2000
+        GainSoul 1
+    }
 }
-Text Cont: During your turn, this card gets +5000 power.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Seraph» character, this card gets +2000 power and +1 soul. (Put the revealed back where it was)
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Seraph» character, this card gets +2000 power and +1 soul.
 EndCard
 
 Character: HBR/W117-077
@@ -1843,21 +2027,43 @@ Power 4000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31A
-Auto:
+Auto: StartOpponentAttackPhase
 {
-
+    TargetLocation OpponentCenterStage
+    If Compare TargetCount 2 OrLess
+    {
+        NarrowTargets CanBeChosen
+        ChooseCharacterFromTargets_Optional Choose up to 1 character to move to an open position.
+        If HasTarget
+        {
+            IfTarget CanMove && OnStage
+            {
+                MoveToOpenPosition
+            }
+        }
+    }
 }
 Text Auto: At the beginning of your opponent's attack phase, you may choose a character in your opponent's center stage and move it to another open position in the center stage.
-Act:
+Act: RestSelf
 {
-
+    If Not HasMarker
+    {
+        SearchLocationForTargets WaitingRoom 1 1 IsCharacter && HasTrait Seraph || NameEquals Best Summer Spent with Rumi
+        If HasTarget
+        {
+            RevealTargets
+            Marker_FaceUp
+        }
+    }
 }
 Text Act: [Rest this card] If there is no marker underneath this card, choose either a «Seraph» character or a "Best Summer Spent with Rumi" in your waiting room and put it face up underneath this card as a marker.
-Act:
+Act: 1 RestSelf
 {
-
+	TargetLocation Marker
+	ChooseCardsFromTargets 1 1 Any
+	MoveCard Hand
 }
-Text Act: [(1) Rest this card] Return a marker from under this card to your hand.
+Text Act: [(1) Rest this card] Return a marker from underneath this card to your hand.
 EndCard
 
 Character: HBR/W117-078
@@ -1871,14 +2077,14 @@ Power 9000
 Soul 2
 Trait1 Seraph
 Trait2 Headquarters
-Cont:
+*EarlyPlay4OrMore(Seraph)
+Auto: OnPlay
 {
-
-}
-Text Cont: If the number of «Seraph» characters you have is 4 or more, this card gets -1 level while in your hand.
-Auto:
-{
-
+    PayCost Discard 1 Any
+    {
+        SearchWaitingRoom IsCharacter
+        SearchWaitingRoom IsCharacter
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 2 characters in your waiting room and return them to your hand.
 EndCard
@@ -1894,16 +2100,24 @@ Power 10000
 Soul 2
 Trait1 Seraph
 Trait2 Unit 31A
-Auto:
+Auto: OnPlay
 {
-
+    If StageContains 4 Other && HasTrait Seraph
+    {
+        *OptionalBlindStock
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, if the number of other «Seraph» characters you have is 4 or more, you may put the top card of your deck in your stock.
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Seraph || IsEvent
+    {
+        *OptionalBurn(1)
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's either a «Seraph» character or an event, you may deal 1 damage to your opponent. (. Put the revealed back where it was)
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's either a «Seraph» character or an event, you may deal 1 damage to your opponent.
 EndCard
 
 Event: HBR/W117-080
@@ -1912,11 +2126,13 @@ JPName ルミとの最高の夏
 Color R
 Level 1
 Cost 0
+Requirement StageContains 1 HasTrait Seraph
+Text If you have no «Seraph» characters, you cannot play this card from hand.
 Effect:
 {
-
+    *Check4Add1(Seraph)
 }
-Text If you have no «Seraph» characters, you cannot play this card from hand. Look at up to the top 4 cards of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Look at up to the top 4 cards of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Climax: HBR/W117-081
@@ -1953,9 +2169,21 @@ Power 500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31X
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        TargetTop Deck 1
+        Reveal
+        SaveTargets
+        SearchWaitingRoom IsCharacter && Compare ThatCardsLevel TargetCardsLevel OrLess
+        LoadTargets
+        IfTarget HasTrigger Soul
+        {
+            TargetSelf
+            GainSoul 1
+        }
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck, choose 1 level X or lower character in your waiting room and return it to your hand. If the card revealed this way has at least 1 Soul trigger icon, this card gets +1 soul until end of turn. X equals level of the card revealed this way.
 EndCard
@@ -1970,9 +2198,16 @@ Power 1500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31B
-Auto:
+Auto: OnOtherFrontalAttacked
 {
-
+    IfOther HasTrait Seraph
+    {
+        PayCost SendSelf Clock
+        {
+            TargetOther
+            Bounce
+        }
+    }
 }
 Text Auto: [Put this card in your clock] When your other «Seraph» characters is frontal attacked, you may pay the cost. If you do, return that character to your hand.
 *Act1RestSelfSalvageBrainstorm(Any)
@@ -1991,9 +2226,19 @@ Trait1 Seraph
 Trait2 Unit 31X
 Combo Crime and Punishment and Love
 *Healer
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Crime and Punishment and Love && StageContains 2 Other && HasTrait Seraph
+    {
+        PayCost 2 Discard 1 Any
+        {
+            Burn 1
+            Mill 1
+            SetXValue TargetCardsLevel
+            AddToXValue 1
+            Burn X
+        }
+    }
 }
 Text Auto: CxCombo [(2) Put 1 card from your hand to the waiting room] When this card attacks, if "Crime and Punishment and Love" is in your climax area and the number of other «Seraph» characters you have is 2 or more, you may pay the cost. If you do, deal 1 damage to your opponent, put the top card of your deck in the waiting room, and deal X damage to your opponent. X equals level of the card put in the waiting room by this card effect +1.
 EndCard
@@ -2009,9 +2254,18 @@ Soul 1
 Trait1 Seraph
 Trait2 Unit 31B
 *OnPlayScryToBottom
-Auto:
+Auto: OnPlay
 {
-
+	OpponentMultipleChoiceQuestion Choose a number.|0|1|2|3
+	TargetTop Deck 1
+	Reveal
+	If Compare TargetCardsLevel Answer Exactly
+	{
+		IfTarget IsCharacter
+		{
+			PlaceOnStage False True True False
+		}
+	}
 }
 Text Auto: When this card is placed on the stage from your hand, your opponent declares a number between 0, 1, 2, and 3. Reveal the top card of your deck, and if it's a character with the same level as the number declared by the opponent, put it in any position on the stage.
 EndCard
@@ -2026,16 +2280,25 @@ Power 500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31X
-Auto:
+Auto: StartClimaxPhase
 {
-
+    TargetLocation Stage
+    NarrowTargets HasTrait Seraph
+    ChooseCharacterFromTargets Choose a character to give +X power.
+    SetXValue TargetCardsLevel
+    MultiplyXValue 1000
+    GainPower X
 }
 Text Auto: At the beginning of your climax phase, choose 1 of your «Seraph» characters, and that character gets +X power until end of turn. X equals 1000 times level of that character.
-Act:
+Act: RestSelf
 {
-
+    TargetLocation Stage
+    NarrowTargets Other
+    ChooseCharacterFromTargets Choose a character to give +1 lelve.
+    UntilEndOfOpponentsTurn
+    GainLevel 1
 }
-Text Act: [Rest this card] Choose another character, and that character gets +1 level until the end of your opponent's next turn.
+Text Act: [Rest this card] Choose 1 of your other character, and that character gets +1 level until the end of your opponent's next turn.
 EndCard
 
 Character: HBR/W117-090
@@ -2048,16 +2311,24 @@ Power 1500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31B
-Auto:
+*OnAttackGainPowerForEachOther(1000,Seraph)
+Auto: StartOpponentAttackPhase
 {
-
+	If LocationContainsOrLess CenterStage 2 Any
+	{
+		TargetFacing
+		If HasTarget
+		{
+			TargetSelf
+			Question Move this card to another position?
+			If Yes
+			{
+				MoveToOpenPosition True False
+			}
+		}
+	}
 }
-Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 1000 times the number of your other «Seraph» characters.
-Auto:
-{
-
-}
-Text Auto: At the beginning of your opponent's attack phase, if there's a character facing this card, you may move this card to an empty slot in your center stage.
+Text Auto: At the beginning of your opponent's attack phase, if there's a character facing this card, you may move this card to an open position in your center stage.
 EndCard
 
 Character: HBR/W117-091
@@ -2071,14 +2342,13 @@ Soul 1
 Trait1 Seraph
 Trait2 Unit 31B
 Combo That day's Friend
-Cont:
+*PowerOnMyTurn(4000)
+Auto: OnAttack
 {
-
-}
-Text Cont: During your turn, this card gets +4000 power.
-Auto:
-{
-
+    If Climax That day's Friend
+    {
+        *GainBounceWhenFrontalAttacked
+    }
 }
 Text Auto: CxCombo When this card attacks, if "That day's Friend" is in your climax area, this card gets the following ability until the end of your opponent's next turn. "Auto: When this card is frontal attacked, you may return this card to your hand."
 EndCard
@@ -2093,16 +2363,8 @@ Power 3500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31B
-Cont:
-{
-
-}
-Text Cont: During your turn, this card gets +3000 power.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, choose 1 of your other «Seraph» characters, and that character gets +X power until end of turn. X equals 500 times the number of your other «Seraph» characters.
+*PowerOnMyTurn(3000)
+*OnAttackGivePowerForEachOther(500,Seraph)
 EndCard
 
 Character: HBR/W117-093
@@ -2116,14 +2378,20 @@ Soul 1
 Trait1 Seraph
 Trait2 Unit 31X
 Combo Case Files of Irene Redmayne - Detective and the Forest Witch -
-Auto:
+*OnPlayGainPowerForEach(500,Seraph)
+Auto: OnAttack
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 500 times the number of your «Seraph» characters.
-Auto:
-{
-
+    If Climax Case Files of Irene Redmayne - Detective and the Forest Witch - && StageContains 1 Other && HasTrait Seraph
+    {
+        PayCost Discard 1 Compare ThatCardsLevel 0 OrLess
+        {
+            RevealUpTo Deck 5
+            ChooseCardsFromTargets 0 2 IsCharacter && HasTrait Seraph
+            RevealTargets
+            MoveCard Hand
+            PutTheRestIntoTheWaitingRoom
+        }
+    }
 }
 Text Auto: CxCombo [Put a level 0 or lower card from your hand to the waiting room] When this card attacks, if "Case Files of Irene Redmayne - Detective and the Forest Witch -" is in your climax area and you have another «Seraph» character, you may pay the cost. If you do, look at up to the top 5 cards of your deck, choose up to 2 «Seraph» characters among them, reveal them, put them in your hand, and put the rest into your waiting room.
 EndCard
@@ -2138,9 +2406,16 @@ Power 5000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31B
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsClimax && HasTrigger Gate
+    {
+        RevealUpTo Deck 6
+        ChooseCardsFromTargets 0 1 IsCharacter && HasTrait Seraph
+        RevealTargets
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
 }
 Text Auto: [Put a climax with a Gate trigger icon from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 6 cards of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
@@ -2156,16 +2431,13 @@ Power 2000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31X
-Cont:
+*LevelAssistTrait(Seraph)
+Act: RestSelf
 {
-
+    DrawCard
+    Discard 1 Any
 }
-Text Cont: ASSIST Your «Seraph» characters in front of this card get +X power. X equals 500 times level of that character.
-Act:
-{
-
-}
-Text Act: [Rest this card] draw a card, and discard a card from your hand to the waiting room.
+Text Act: [Rest this card] Draw a card, and discard a card from your hand to the waiting room.
 EndCard
 
 Character: HBR/W117-096
@@ -2179,20 +2451,37 @@ Power 9500
 Soul 2
 Trait1 Seraph
 Trait2 Unit 31X
-Cont:
+Cont: InHand
 {
-
+    If LocationContains OpponentStage 1 Compare ThatCardsLevel 3 OrMore
+    {
+        LoseLevel 1
+    }
 }
 Text Cont: If your opponent has a level 3 or higher character, this card gets -1 level while in your hand.
-Auto:
+Auto: OnPlay
 {
-
+    If StageContains 2 Other && HasTrait Seraph
+    {
+        Message Choose up to 1 character to put face up underneath this card as a marker.
+        SearchLocationForTargets Clock 0 1 IsCharacter
+        If HasTarget
+        {
+            Marker_FaceUp
+        }
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, if the number of other «Seraph» characters you have is 2 or more, you may choose a character in your clock and put it face up underneath this card as a marker.
-Auto:
+Auto: OnAttack
 {
-
+    If HasMarker
+    {
+        SetXToNumberOfCharacters Other && HasTrait Seraph
+        MultiplyXValue 1000
+        GainPower X
+    }
 }
+Quick
 Text Auto: When this card attacks, if there's a marker underneath this card, this card gets +X power until end of turn. X equals 1000 times the number of your other «Seraph» characters.
 EndCard
 
@@ -2206,9 +2495,16 @@ Power 2000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31X
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SetXToNumberOfCharacters Other && HasTrait Seraph
+        Peek Deck X
+        ChooseCardsFromTargets 0 1 Any
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
 }
 Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to X cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your other «Seraph» characters.
 EndCard
@@ -2223,9 +2519,14 @@ Power 2000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31X
-Auto:
+Auto: OnAttack
 {
-
+    TargetLocation Stage
+    NarrowTargets Other && HasTrait Seraph
+    ChooseCharacterFromTargets Choose a character to give +X power.
+    SetXValue TargetCardsSoul
+    MultiplyXValue 1000
+    GainPower X
 }
 Text Auto: When this card attacks, choose 1 of your other «Seraph» characters, and that character gets +X power until end of turn. X equals 1000 times soul of that character.
 *EncoreStepIfNoneRestedPayToRest
@@ -2257,11 +2558,7 @@ Power 500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31X
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, look at up to X cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your «Seraph» characters.
+*OnPlayCheckX(Seraph)
 EndCard
 
 Character: HBR/W117-101
@@ -2275,11 +2572,7 @@ Power 7000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31B
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 1000 times the number of your «Seraph» characters.
+*OnPlayGainPowerForEach(1000,Seraph)
 *OnReverseMayMemoryOpponent
 EndCard
 
@@ -2296,9 +2589,28 @@ Trait1 Seraph
 Trait2 Unit 31B
 Combo Private Seraphim Academy - Aoi Will Become An Idol! -
 *Healer
-Auto:
+Auto: OnSpecificClimaxPlay Private Seraphim Academy - Aoi Will Become An Idol! -
 {
-
+    If InLocation CenterStage
+    {
+        PayCost 1 Discard 1 Any
+        {
+            TargetLocation Stage
+            NarrowTargets Other
+            GainEffect
+            {
+                Auto: OnAttack
+                {
+                    MillOpponentBottom 2
+                    If TargetsContain 1 IsClimax
+                    {
+                        Burn 2
+                    }
+                }
+                Text Auto: When this card attacks, put the bottom 2 cards of your opponent's deck in the waiting room. If there's at least 1 climax among them, deal 2 damage to your opponent.
+            }
+        }
+    }
 }
 Text Auto: CxCombo [(1) Put 1 card from your hand to the waiting room] When "Private Seraphim Academy - Aoi Will Become An Idol! -" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, all your other characters get the following ability until end of turn. "Auto: When this card attacks, put the bottom 2 cards of your opponent's deck in the waiting room. If there's at least 1 climax among them, deal 2 damage to your opponent."
 EndCard
@@ -2313,14 +2625,24 @@ Power 1000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31X
-Auto:
+Auto: OnAttack
 {
-
+    SetXToNumberOfCharacters Other && HasTrait Seraph
+    MultiplyXValue 500
+    TargetLocation OpponentCenterStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to give -X power.
+    LosePower X
 }
 Text Auto: When this card attacks, choose a character in your opponent's center stage, and that character gets -X power until end of turn. X equals 500 times the number of your other «Seraph» characters.
-Auto:
+Auto: OnAttack
 {
-
+    PayCost Discard 1 Any
+    {
+        TargetLocation Stock
+        MoveCard WaitingRoom
+        SearchWaitingRoom Any
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, put all of your stock in the waiting room, and choose a card in your waiting room and return it to your hand.
 EndCard
@@ -2335,14 +2657,19 @@ Power 2000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31B
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters Other && NameEquals For Your Sake, Ichigo Minase || Other && NameEquals Cumulonimbus Cloud, Sumomo Minase
+    MultiplyXValue 500
+    GainPower X
 }
 Text Cont: This card gets +500 power for each of your other "For Your Sake, Ichigo Minase" or "Cumulonimbus Cloud, Sumomo Minase"
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsCharacter && HasTrait Seraph
+    {
+        SearchDeck NameEquals Cumulonimbus Cloud, Sumomo Minase
+    }
 }
 Text Auto: [Put a «Seraph» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Cumulonimbus Cloud, Sumomo Minase", reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -2357,14 +2684,19 @@ Power 2000
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31B
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters Other && NameEquals For Your Sake, Ichigo Minase || Other && NameEquals Cumulonimbus Cloud, Sumomo Minase
+    MultiplyXValue 500
+    GainPower X
 }
 Text Cont: This card gets +500 power for each of your other "For Your Sake, Ichigo Minase" or "Cumulonimbus Cloud, Sumomo Minase"
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsCharacter && HasTrait Seraph
+    {
+        SearchDeck NameEquals For Your Sake, Ichigo Minase
+    }
 }
 Text Auto: [Put a «Seraph» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "For Your Sake, Ichigo Minase", reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -2379,9 +2711,13 @@ Power 4500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31X
-Auto:
+Auto: OnSentFromStageToWaitingRoom
 {
-
+    PayCost Discard 1 Any
+    {
+        Mill 2
+        SearchWaitingRoom IsCharacter && HasTrait Seraph && Compare ThatCardsLevel TotalLevel OrLess
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed in your waiting room from the stage, you may pay the cost. If you do, put the top 2 cards of your deck in the waiting room, choose a level X or lower «Seraph» character in your waiting room and return it to your hand. X equals sum of levels of those cards.
 EndCard
@@ -2411,10 +2747,14 @@ Power 4500
 Soul 1
 Trait1 Seraph
 Trait2 Unit 31X
-Auto:
+Auto: OnAttack
 {
-
+    TargetLocation OpponentStage
+    SetXValue TargetCount
+    MultiplyXValue 2000
+    GainPower X
 }
+Quick
 Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 2000 times the number of your opponent's characters.
 EndCard
 

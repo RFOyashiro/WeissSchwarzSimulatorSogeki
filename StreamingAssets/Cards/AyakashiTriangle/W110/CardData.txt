@@ -2325,7 +2325,12 @@ Auto: OnSpecificClimaxPlay Smile of the Goddess
         TargetLocation Stage
         GainEffect
         {
-            *OnCancelBurn1
+            Auto: OnDamageCanceled
+            {
+                *OptionalDraw
+            }
+            TimesPerTurn 1
+            Text Auto: This ability activates up to once per turn. When damage dealt by this card is canceled, you may draw a card.
         }
     }
 }
