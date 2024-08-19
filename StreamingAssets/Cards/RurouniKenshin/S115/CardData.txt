@@ -2158,7 +2158,7 @@ Auto: OnReversed
 {
     TargetTop Deck 1
     Reveal
-    IfTarget IsCharacter && HasTrait Meiji Swordsman Romantic Story
+    IfTarget IsCharacter && HasTrait Oniwabanshu
     {
         Question Put this card in memory ?
         If Yes
