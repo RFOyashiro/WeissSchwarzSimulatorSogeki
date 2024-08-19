@@ -1705,10 +1705,10 @@ Auto: OnPlay
 {
     PayCost Discard 1 Any
     {
-        SearchWaitingRoom IsCharacter && HasTrait MOVIE
+        SearchDeck IsCharacter && HasTrait MOVIE
     }
 }
-Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «MOVIE» character in your waiting room and return it to your hand.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «MOVIE» character, reveal it, put it in your hand and shuffle your deck.
 Act: SendSelf WaitingRoom
 {
     TargetLocation OpponentStage
