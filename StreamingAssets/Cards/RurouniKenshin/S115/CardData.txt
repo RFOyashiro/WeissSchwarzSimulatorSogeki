@@ -2039,24 +2039,27 @@ Trait2 Oniwabanshu
 *2000Assist
 Cont: GiveAll
 {
-    If LocationContains Memory 1 NameEquals Oniwabanshu Onmitsu, Beshimi &&& LocationContains Memory 1 NameEquals Oniwabanshu Flame User, Hyottoko &&& LocationContains Memory 1 NameEquals Oniwabanshu Security Detail, Shikijo &&& LocationContains Memory 1 NameEquals Oniwabanshu Scout, Han'nya &&& Other && NameContains 蒼紫
+    If LocationContainsSeparateCardsThatMeetConditions Memory NameEquals Oniwabanshu Onmitsu\, Beshimi , NameEquals Oniwabanshu Flame User\, Hyottoko , NameEquals Oniwabanshu Security Detail\, Shikijo , NameEquals Oniwabanshu Scout\, Han'nya
     {
-        GainEffect
+        If Other && NameContains 蒼紫
         {
-            Auto: OnAttack
+            GainEffect
             {
-                PeekTop OpponentDeck
-                Question Put that card to bottom of deck ?
-                If Yes
+                Auto: OnAttack
                 {
-                    MoveCardToBottom OpponentDeck
+                    PeekTop OpponentDeck
+                    Question Put that card to bottom of deck ?
+                    If Yes
+                    {
+                        MoveCardToBottom OpponentDeck
+                    }
+                    Else
+                    {
+                        EndPeek
+                    }
                 }
-                Else
-                {
-                    EndPeek
-                }
+                Text Auto: When this card attacks, look at up to 1 card from the top of your opponent's deck and put it either on top or bottom of the deck.
             }
-            Text Auto: When this card attacks, look at up to 1 card from the top of your opponent's deck and put it either on top or bottom of the deck.
         }
     }
 }
