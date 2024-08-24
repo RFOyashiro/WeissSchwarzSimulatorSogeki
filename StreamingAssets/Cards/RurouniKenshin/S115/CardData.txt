@@ -2039,24 +2039,27 @@ Trait2 Oniwabanshu
 *2000Assist
 Cont: GiveAll
 {
-    If LocationContains Memory 1 NameEquals Oniwabanshu Onmitsu, Beshimi &&& LocationContains Memory 1 NameEquals Oniwabanshu Flame User, Hyottoko &&& LocationContains Memory 1 NameEquals Oniwabanshu Security Detail, Shikijo &&& LocationContains Memory 1 NameEquals Oniwabanshu Scout, Han'nya &&& Other && NameContains 蒼紫
+    If LocationContainsSeparateCardsThatMeetConditions Memory NameEquals Oniwabanshu Onmitsu\, Beshimi , NameEquals Oniwabanshu Flame User\, Hyottoko , NameEquals Oniwabanshu Security Detail\, Shikijo , NameEquals Oniwabanshu Scout\, Han'nya
     {
-        GainEffect
+        If Other && NameContains 蒼紫
         {
-            Auto: OnAttack
+            GainEffect
             {
-                PeekTop OpponentDeck
-                Question Put that card to bottom of deck ?
-                If Yes
+                Auto: OnAttack
                 {
-                    MoveCardToBottom OpponentDeck
+                    PeekTop OpponentDeck
+                    Question Put that card to bottom of deck ?
+                    If Yes
+                    {
+                        MoveCardToBottom OpponentDeck
+                    }
+                    Else
+                    {
+                        EndPeek
+                    }
                 }
-                Else
-                {
-                    EndPeek
-                }
+                Text Auto: When this card attacks, look at up to 1 card from the top of your opponent's deck and put it either on top or bottom of the deck.
             }
-            Text Auto: When this card attacks, look at up to 1 card from the top of your opponent's deck and put it either on top or bottom of the deck.
         }
     }
 }
@@ -2158,7 +2161,7 @@ Auto: OnReversed
 {
     TargetTop Deck 1
     Reveal
-    IfTarget IsCharacter && HasTrait Meiji Swordsman Romantic Story
+    IfTarget IsCharacter && HasTrait Oniwabanshu
     {
         Question Put this card in memory ?
         If Yes
@@ -2383,14 +2386,14 @@ Cont: GiveSelf
 {
     If AllYourCharacters HasTrait Meiji Swordsman Romantic Story
     {
-        GainPower 500
+        GainPower 5000
         GainEffect
         {
             *HandEncore
         }
     }
 }
-Text Cont: If all your characters are «Meiji Swordsman Romantic Story», this card gets +500 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
+Text Cont: If all your characters are «Meiji Swordsman Romantic Story», this card gets +5000 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
 Auto: OnReverseOpponent
 {
     If LocationContains Climax 1 HasTrigger Gate
