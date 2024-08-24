@@ -1509,33 +1509,10 @@ Auto: OnPlay
 				LoadTargets
 				SetXValue TargetCardsCost
 				TargetTop Stock X
-				MoveCards WaitingRoom
+				MoveCard WaitingRoom
 				LoadTargets
 				PlaceOnStage False True True False
 			}
-			
-			//idea if card can be played anytime
-			//
-			//Message Choose a character whose level is equal or lower than your level to give the ability to be played from waiting room. (If there's a cost to play that card, the cost must be paid)
-			//SearchLocationForTargets WaitingRoom 0 1 IsCharacter && Compare ThatCardsLevel MyLevel OrLess
-			//If HasTarget
-			//{
-			//	RememberTargets
-			//	TargetSelf
-			//	GainEffect
-			//	{
-			//		Act: 0
-			//		{
-			//			TargetRemembered
-			//			SetXValue TargetCardsCost
-			//			ForcePayCost X
-			//			{
-			//				PlaceOnStage false true true false
-			//			}
-			//		}
-			//		Text Act: Play choosen card from the waiting room
-			//	}
-			//}
 		}
 	}
 }

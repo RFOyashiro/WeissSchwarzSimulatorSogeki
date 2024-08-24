@@ -3517,25 +3517,22 @@ Auto: OnOtherSentFromStageToWaitingRoom
                 TargetOther
                 Revive
                 GainPower 3000
-                RememberTargets
                 If MyTurn
                 {
-                    ScheduleEffect StartOpponentDrawPhase
+                    ScheduleEffectWithTargets StartOpponentDrawPhase
                     {
                         Effect:
                         {
-                            TargetRemembered
                             GainPower 3000
                         }
                     }
                 }
                 Else
                 {
-                    ScheduleEffect StartDrawPhase
+                    ScheduleEffectWithTargets StartDrawPhase
                     {
                         Effect:
                         {
-                            TargetRemembered
                             GainPower 3000
                         }
                     }
@@ -4289,27 +4286,26 @@ Auto: OnOtherSentFromStageToWaitingRoom
                 TargetOther
                 Revive
                 GainPower 3000
-                RememberTargets
                 If MyTurn
                 {
-                    ScheduleEffect StartOpponentDrawPhase
+                    ScheduleEffectWithTargets StartOpponentDrawPhase
                     {
                         Effect:
                         {
-                            TargetRemembered
                             GainPower 3000
                         }
+                        Text That character gets +3000 power until the end of the next turn.
                     }
                 }
                 Else
                 {
-                    ScheduleEffect StartDrawPhase
+                    ScheduleEffectWithTargets StartDrawPhase
                     {
                         Effect:
                         {
-                            TargetRemembered
                             GainPower 3000
                         }
+                        Text That character gets +3000 power until the end of the next turn.
                     }
                 }
             }

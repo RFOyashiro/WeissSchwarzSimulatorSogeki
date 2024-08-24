@@ -1869,12 +1869,10 @@ Auto: StartEncoreStep
         NarrowTargets Other
         NarrowTargets HasTrait Phantom Thief || NameContains アリス
         ChooseCharactersFromTargets 0 2 Choose up to 2 characters to put into memory during your opponent's turn.
-        RememberTargets
-        ScheduleEffect StartDrawPhase
+        ScheduleEffectWithTargets StartDrawPhase
         {
             Effect:
             {
-                TargetRemembered
                 ForEachTarget
                 {
                     IfTarget InLocation Memory

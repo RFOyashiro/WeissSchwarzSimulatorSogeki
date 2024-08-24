@@ -2148,18 +2148,13 @@ Auto: OnPlay
     {
         SearchLocationForTargets WaitingRoom 1 1 IsCharacter
         MoveCard Memory
-        RememberTargets
-        ScheduleEffect StartDrawPhase
+        ScheduleEffectWithTargets StartDrawPhase
         {
             Effect:
             {
-                TargetRemembered
-                If InLocation Memory
-                {
-                    MoveCard Hand
-                }
+                MoveCard Hand
             }
-            Quick
+            Text At the beginning of your next turn, return that character from your memory to your hand.
         }
     }
 }

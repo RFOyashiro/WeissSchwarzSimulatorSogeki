@@ -689,12 +689,10 @@ Auto: StartMyEncoreStep
         ChooseCharacterFromTargets Choose a character to put into memory.
         AddSelfToTargets
         MoveCard Memory
-        RememberTargets
-        ScheduleEffect StartDrawPhase
+        ScheduleEffectWithTargets StartDrawPhase
         {
             Effect:
             {
-                TargetRemembered
                 ForEachTarget
                 {
                     IfTarget InLocation Memory

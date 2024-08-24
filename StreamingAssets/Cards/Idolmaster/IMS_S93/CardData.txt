@@ -168,12 +168,15 @@ Trait2 Game
 Combo Growing Kiss Lover!!
 Cont: GiveAll
 {
-    If LocationContains Level 1 NameEquals Happiness is Large Size, Yuriko Nanao &&& Other && HasTrait Music
+    If LocationContains Level 1 NameEquals Happiness is Large Size, Yuriko Nanao
     {
-        TargetLocation Level
-        *CountColors
-        MultiplyXValue 500
-        GainPower X
+        If Other && HasTrait Music
+        {
+            TargetLocation Level
+            *CountColors
+            MultiplyXValue 500
+            GainPower X
+        }
     }
 }
 Text Cont: EXPERIENCE If you have another "Happiness is Large Size, Yuriko Nanao", all your other «Music» characters get +X power. X equals 500 times the number of colors among cards in your level.
