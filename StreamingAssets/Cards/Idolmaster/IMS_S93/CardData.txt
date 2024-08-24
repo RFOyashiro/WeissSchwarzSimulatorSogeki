@@ -958,7 +958,7 @@ Act: 1 Rest 2 Any
         SetXValue BrainstormedClimax
         Repeat X
         {
-            SearchDeck IsCharacter && HasTrait TRAITLIST
+            SearchDeck IsCharacter && HasTrait Music
         }
         ShuffleLocation Deck
     }
