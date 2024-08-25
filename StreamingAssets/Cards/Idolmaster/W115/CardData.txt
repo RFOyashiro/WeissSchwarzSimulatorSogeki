@@ -2136,7 +2136,7 @@ Auto: StartOpponentAttackPhase
     If Yes
     {
         Mill 1
-        If Compare ThatCardsLevel 0 OrLess
+        IfTarget Compare ThatCardsLevel 0 OrLess
         {
             TargetLocation CenterStage
             If Compare TargetCount 2 OrLess
