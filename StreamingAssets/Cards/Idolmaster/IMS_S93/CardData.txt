@@ -168,7 +168,7 @@ Trait2 Game
 Combo Growing Kiss Lover!!
 Cont: GiveAll
 {
-    If LocationContains Level 1 NameEquals Happiness is Large Size, Yuriko Nanao
+    If StageContains 1 NameEquals Happiness is Large Size, Yuriko Nanao
     {
         If Other && HasTrait Music
         {
