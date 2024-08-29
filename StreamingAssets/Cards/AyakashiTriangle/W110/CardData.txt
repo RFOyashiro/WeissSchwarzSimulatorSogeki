@@ -219,9 +219,12 @@ Cont: GiveSelf
                 TargetLocation OpponentStage
                 NarrowTargets CanBeChosen
                 ChooseCharacterFromTargets_Optional Choose up to 1 character to put into stock (and put the bottom card of your opponent's stock into waiting room).
-                MoveCard OpponentStock
-                TargetBottom OpponentStock
-                MoveCard OpponentWaitingRoom
+                If HasTarget
+                {
+                    MoveCard OpponentStock
+                    TargetBottom OpponentStock
+                    MoveCard OpponentWaitingRoom
+                }
             }
         }
     }
@@ -234,9 +237,12 @@ Cont: GiveSelf
                 TargetLocation OpponentStage
                 NarrowTargets CanBeChosen
                 ChooseCharacterFromTargets_Optional Choose up to 1 character to put into stock (and put the bottom card of your opponent's stock into waiting room).
-                MoveCard OpponentStock
-                TargetBottom OpponentStock
-                MoveCard OpponentWaitingRoom
+                If HasTarget
+                {
+                    MoveCard OpponentStock
+                    TargetBottom OpponentStock
+                    MoveCard OpponentWaitingRoom
+                }
             }
         }
     }
