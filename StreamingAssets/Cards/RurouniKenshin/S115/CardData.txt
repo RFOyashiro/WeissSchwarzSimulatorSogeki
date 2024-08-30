@@ -1944,7 +1944,7 @@ Trait1 Meiji Swordsman Romantic Story
 Trait2 Oniwabanshu
 Auto: OnTriggerCheckClimax
 {
-    *GiveCharacterPower(500,Oniwanbanshu)
+    *GiveCharacterPower(500,Oniwabanshu)
     GainEffect
     {
         *OnAttackPay1ToDoubleTrigger
