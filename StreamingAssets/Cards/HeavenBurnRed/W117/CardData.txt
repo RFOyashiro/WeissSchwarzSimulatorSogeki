@@ -391,16 +391,17 @@ Trait1 Seraph
 Trait2 Unit 30G
 Auto: OnPlay
 {
-	PayCost 0
+	Question Resolve the effect ?
+    If Yes
 	{
 		Message Search your deck for up to 1 climax with a Wind trigger icon.
-		SearchLocationForTargets Deck 0 1 IsClimax && HasTrait Wind
+		SearchLocationForTargets Deck 0 1 IsClimax && HasTrigger Wind
 		If HasTarget
 		{
 			RevealTargets
 			SaveTargets
 			Message Choose a climax in your hand with a Wind trigger icon.
-			SearchLocationForTargets Hand 1 1 IsClimax && HasTrait Wind
+			SearchLocationForTargets Hand 1 1 IsClimax && HasTrigger Wind
 			If HasTarget
 			{
 				RevealTargets
