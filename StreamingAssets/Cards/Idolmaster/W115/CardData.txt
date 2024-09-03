@@ -2851,6 +2851,9 @@ Auto: OnSpecificClimaxPlay Nightwear
 {
     PayCost 1
     {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen
+        ChooseCharacterFromTargets Choose a character.
         *ExchangeOpponentsCharactersOrMoveToOpenPosition
     }
 }

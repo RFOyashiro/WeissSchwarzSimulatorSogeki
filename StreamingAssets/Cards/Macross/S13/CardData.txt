@@ -9,14 +9,23 @@ Soul 1
 Trait1 Music
 Trait2 Love
 Combo Universal Bunny
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 2 OrMore
+    {
+        GainPower 1000
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets +1000 power.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Universal Bunny
+    {
+        TargetLocation OpponentCenterStage
+        NarrowTargets CanBeChosen && Compare ThatCardsCost 1 OrLess
+        ChooseCharacterFromTargets_Optional Choose up to 1 character to return to hand.
+        Bounce
+    }
 }
 Text Auto: CxCombo When this card attacks, if "Universal Bunny" is in your climax area, you may choose a cost 1 or lower character in your opponent's center stage and return it to hand.
 EndCard
@@ -32,14 +41,23 @@ Power 7500
 Soul 2
 Trait1 Music
 Trait2 Love
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 3 OrMore
+    {
+        GainSoul 1
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets +1 soul.
-Auto:
+Auto: StartEncoreStep
 {
-
+    If CardPosition Rest
+    {
+        PayCost 1 SendSelf WaitingRoom
+        {
+            *ChangeWaitingRoom("Singing Is Life" Sheryl)
+        }
+    }
 }
 Text Auto: CHANGE [(1) Put this card in the waiting room] At the beginning of your encore step, if this card is rest, you may pay the cost. If you do, choose a '"Singing Is Life" Sheryl' in your waiting room and put it in the position this card was in.
 EndCard
@@ -54,14 +72,25 @@ Power 2000
 Soul 1
 Trait1 Glasses
 Trait2 Manager
-Auto:
+Auto: OnOtherPlacedOnStageFromHand|OnOtherPlacedBy CHANGE
 {
-
+    IfOther NameEquals "Singing Is Life" Sheryl
+    {
+        *OptionalBlindStock
+    }
+    Else
+    {
+        RefundTimesPerTurn
+    }
 }
-Text Auto: This card ability may be played up to once per turn. When your other '"Singing Is Life" Sheryl' is placed to the stage by CHANGE, you may put the top card of your deck in your stock.
-Act:
+TimesPerTurn 1
+Text Auto: This card ability may be played up to once per turn. When your other '"Singing Is Life" Sheryl' is placed to the stage by "CHANGE", you may put the top card of your deck in your stock.
+Act: RestSelf
 {
-
+    TargetLocation Stage
+    NarrowTargets NameContains シェリル
+    ChooseCharacterFromTargets Choose a character to give +1000 power.
+    GainPower 1000
 }
 Text Act: [Rest this card] Choose 1 of your characters with "Sheryl" in its card name, and that character gets +1000 power until end of turn.
 EndCard
@@ -76,9 +105,12 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Love
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContainsOrLess OpponentCenterStage 2 Any
+    {
+        GainPower 1000
+    }
 }
 Text Cont: If there are 2 or less characters in your opponent's center stage, this card gets +1000 power.
 EndCard
@@ -94,11 +126,20 @@ Soul 1
 Trait1 Music
 Trait2 Love
 Combo Universal Bunny
-Auto:
+Auto: OnDirectAttack
 {
-
+    If Climax Universal Bunny
+    {
+        UntilEndOfOpponentsTurn
+        GainPower 4500
+        UntilEndOfOpponentsTurn
+        GainEffect
+        {
+            *HexProof
+        }
+    }
 }
-Text Auto: CxCombo When this card Direct attacks, if "Universal Bunny" is in your climax area, this card gets +4500 power and the following ability until the end of your opponent's next turn. "Cont: This card cannot be chosen as target of opponent's effects."
+Text Auto: CxCombo When this card direct attacks, if "Universal Bunny" is in your climax area, this card gets +4500 power and the following ability until the end of your opponent's next turn. "Cont: This card cannot be chosen as target of opponent's effects."
 EndCard
 
 Character: MF/S13-006
@@ -113,15 +154,21 @@ Soul 1
 Trait1 Music
 Trait2 Love
 *500Assist
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 4 OrMore
+    {
+        GainEffect
+        {
+            *500Assist
+        }
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 4 or higher, this card gets the following ability. "Cont: ASSIST Your characters in front of this card get +500 power."
 EndCard
 
 Character: MF/S13-007
-Name "Singing Is Life" Sheryl'
+Name "Singing Is Life" Sheryl
 JPName “歌は祈命”シェリル
 Color Y
 Level 3
@@ -132,14 +179,21 @@ Soul 2
 Trait1 Music
 Trait2 Love
 Combo Northern Cross
-Auto:
+Auto: OnPlay|PlacedBy CHANGE
 {
-
+    *OptionalDraw
+    *OptionalDraw
+    Discard 1 Any
 }
-Text Auto: When this card is placed on the stage from your hand or by CHANGE to the stage, draw up to 2 cards, and discard a card from your hand to the waiting room.
-Auto:
+Text Auto: When this card is placed on the stage from your hand or by "CHANGE" to the stage, draw up to 2 cards, and discard a card from your hand to the waiting room.
+Auto: OnReversed
 {
-
+    PayCost SendFromHand 1 Stock NameEquals Northern Cross
+    {
+        SearchDeck IsCharacter && HasTrait Music|Pilot
+        TargetSelf
+        Rest
+    }
 }
 Text Auto: CxCombo [Reveal a "Northern Cross" in your hand and put it in your stock] When this card becomes reversed in battle, you may pay the cost. If you do, search your deck for a character with either «Music» or «Pilot», reveal it, and put it in your hand. Afterwards, shuffle your deck, and rest this card.
 EndCard
@@ -154,9 +208,12 @@ Power 500
 Soul 1
 Trait1 Glasses
 Trait2 Manager
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1
+    {
+        *GiveOtherCharacterPower(1000,Music)
+    }
 }
 Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your other «Music» characters, and that character gets +1000 power until end of turn.
 *Bond1(Galactic Fairy\, Sheryl Nome)
@@ -172,9 +229,10 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Love
-Auto:
+Auto: OnPlay
 {
-
+    GainLevel 1
+    GainPower 1000
 }
 Text Auto: When this card is placed on the stage from your hand, this card gets +1 level and +1000 power until end of turn.
 EndCard
@@ -189,9 +247,19 @@ Power 5000
 Soul 1
 Trait1 Pilot
 Trait2 Mecha
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 2 OrMore
+    {
+        GainEffect
+        {
+            Act: Rest 1 Any
+            {
+                GainPower 1000
+            }
+            Text Act: [Rest 1 of your characters] This card gets +1000 power until end of turn.
+        }
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets the following ability. "Act: [Rest 1 of your characters] This card gets +1000 power until end of turn."
 EndCard
@@ -208,9 +276,17 @@ Soul 1
 Trait1 Music
 Trait2 Love
 Combo Obelisk
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Obelisk
+    {
+        PayCost 1
+        {
+            TargetLocation Stage
+            GainPower 1000
+            GainSoul 1
+        }
+    }
 }
 Text Auto: CxCombo [(1)] When this card attacks, if "Obelisk" is in your climax area, you may pay the cost. If you do, all your characters get +1000 power and +1 soul until end of turn.
 *HandEncore
@@ -227,11 +303,7 @@ Power 8500
 Soul 2
 Trait1 Music
 Trait2 Love
-Cont:
-{
-
-}
-Text Cont: During your turn, this card gets +1000 power.
+*PowerOnMyTurn(1000)
 EndCard
 
 Character: MF/S13-013
@@ -245,11 +317,21 @@ Soul 1
 Trait1 Music
 Trait2 Love
 *500Assist
-Auto:
+Auto: OnOtherAttacks
 {
-
+    IfOther DirectAttacking
+    {
+        *GiveCharacterPower(500,Any)
+    }
 }
-Text Auto: When your character Direct attacks, choose 1 of your characters, and that character gets +500 power until end of turn.
+Quick
+EffectText Auto: When your character direct attacks, choose 1 of your characters, and that character gets +500 power until end of turn.
+Auto: OnDirectAttack
+{
+    *GiveCharacterPower(500,Any)
+}
+Quick
+Text Auto: When your character direct attacks, choose 1 of your characters, and that character gets +500 power until end of turn.
 EndCard
 
 Character: MF/S13-014
@@ -262,9 +344,12 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Love
-Act:
+Act: Rest 2 Any
 {
-
+    TargetLocation OpponentCenterStage
+    NarrowTargets CanBeChosen && Compare ThatCardsLevel 0 OrLess
+    ChooseCharacterFromTargets Choose a character to return to hand.
+    Bounce
 }
 Text Act: [Rest 2 of your characters] Choose a level 0 or lower character in your opponent's center stage and return it to hand.
 EndCard
@@ -279,11 +364,18 @@ Power 2500
 Soul 1
 Trait1 Pilot
 Trait2 Modification
-Auto:
+Auto: OnOtherFrontalAttacked
 {
-
+    IfOther NameContains シェリル|ランカ
+    {
+        PayCost SendSelf WaitingRoom
+        {
+            TargetMyCharacterInBattle
+            GainPower 1000
+        }
+    }
 }
-Text Auto: [Put this card in the waiting room] When your other character with either "Sheryl" or "Ranka" in its card name is frontal attacked, you may pay the cost. If you do, choose 1 of your character sin battle, and that character gets +1000 power until end of turn.
+Text Auto: [Put this card in the waiting room] When your other character with either "Sheryl" or "Ranka" in its card name is frontal attacked, you may pay the cost. If you do, choose 1 of your character in battle, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: MF/S13-016
@@ -308,9 +400,12 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 Pilot
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContainsOrLess OpponentCenterStage 2 Any
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If there are 2 or less characters in your opponent's center stage, this card gets +1500 power.
 *HandEncore
@@ -363,7 +458,15 @@ Level 1
 Cost 0
 Effect:
 {
-
+    *GiveCharacterPower(3000,Any)
+    ScheduleEffectForTargets EndOfTurn
+    {
+        Effect:
+        {
+            MoveCard Stock
+        }
+        Text At the end of the turn, put that character in stock.
+    }
 }
 Text Choose 1 of your characters, and that character gets +3000 power. At the end of the turn, put that character in stock.
 EndCard
@@ -376,7 +479,10 @@ Level 1
 Cost 1
 Effect:
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen && Compare ThatCardsLevel 1 OrLess
+    ChooseCharacterFromTargets Choose a character to return to hand.
+    Bounce
 }
 Text Choose 1 of your opponent's level 1 or lower characters and return it to hand.
 EndCard
@@ -397,7 +503,13 @@ Climax: MF/S13-025
 Name Obelisk
 JPName オベリスク
 Color Y
-When this card is placed from hand to your climax area, draw a card, and all your characters get +1000 power until end of turn.
+Auto: OnPlay
+{
+    DrawCard
+    TargetLocation Stage
+    GainPower 1000
+}
+Text When this card is placed from hand to your climax area, draw a card, and all your characters get +1000 power until end of turn.
 EndCard
 
 Character: MF/S13-026
@@ -411,9 +523,10 @@ Power 10000
 Soul 2
 Trait1 Music
 Trait2 Love
-Auto:
+Auto: OnReversed
 {
-
+    TargetTop Deck 1
+    MoveCard Clock
 }
 Text Auto: When this card becomes reversed in battle, put the top card of your deck in your clock.
 EndCard
@@ -430,16 +543,24 @@ Soul 2
 Trait1 Music
 Trait2 Love
 Combo Rainbow-colored Bear
-Auto:
+Auto: OnPlay|PlacedBy CHANGE
 {
-
+    *OptionalHeal
 }
-Text Auto: When this card is placed on the stage from your hand or by CHANGE to the stage, you may put the top card of your clock in your waiting room.
-Auto:
+Text Auto: When this card is placed on the stage from your hand or by "CHANGE" to the stage, you may put the top card of your clock in your waiting room.
+Auto: OnSpecificClimaxPlay Rainbow-colored Bear
 {
-
+    If InLocation CenterStage
+    {
+        PayCost 1
+        {
+            SearchLocationForTargets Deck 0 1 IsCharacter && HasTrait Love
+            PlaceOnStage false true true false
+            ShuffleLocation Deck
+        }
+    }
 }
-Text Auto: CxCombo [(1)] When "Rainbow-colored Bear" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, search your deck for up to 1 «Love» character and put it in any position on the stage. Shuffle.
+Text Auto: CxCombo [(1)] When "Rainbow-colored Bear" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, search your deck for up to 1 «Love» character, put it in any position on the stage and shuffle your deck.
 EndCard
 
 Character: MF/S13-028
@@ -452,9 +573,25 @@ Power 3500
 Soul 1
 Trait1 Music
 Trait2 Love
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Music
+    {
+    }
+    Else
+    {
+        TargetSelf
+        GainEffect
+        {
+            Cont: GiveSelf
+            {
+                GainSpecialEffect CannotAttack
+            }
+            Text Cont: This card cannot attack
+        }
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's not a «Music» character, this card gets "Cont: This card cannot attack" until end of turn.
 EndCard

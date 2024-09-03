@@ -1222,7 +1222,7 @@ Auto: OnPlay
 Text Auto: When this card is placed on the stage from your hand, choose up to 1 '"Airget-Lamh" Serena' in your waiting room and return it to your hand, and this card gets +1000 power until end of turn.
 Auto: OnAttack
 {
-    If Climax EMPRESS REBELLION && StageContains 1 Other && Name Equals "Airget-Lamh" Serena
+    If Climax EMPRESS REBELLION && StageContains 1 Other && NameEquals "Airget-Lamh" Serena
     {
         PayCost 1 Discard 1 Any
         {

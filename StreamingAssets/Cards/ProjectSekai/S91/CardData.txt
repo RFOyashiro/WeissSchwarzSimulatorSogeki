@@ -2546,6 +2546,7 @@ Level 3
 Cost 2
 Power 10000
 Soul 2
+Trigger Soul
 Trait1 Music
 Trait2 Virtual Singer
 Trait3 Leo/need
@@ -2567,6 +2568,7 @@ Level 3
 Cost 2
 Power 10500
 Soul 2
+Trigger Soul
 Trait1 Music
 Trait2 Leo/need
 Auto: OnPlay
