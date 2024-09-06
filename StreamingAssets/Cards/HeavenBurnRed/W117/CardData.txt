@@ -745,7 +745,7 @@ Auto: OnReversed
 	RevealUpTo Deck 3
 	If Compare TargetCount 1 OrMore
 	{
-		ChooseCardsFromTargets 1 1 IsCharacter && ColorIs Red
+		ChooseCardsFromTargets 1 1 IsCharacter && HasTrait Seraph
 		MoveCard Hand
 		PutTheRestIntoTheWaitingRoom
 		Discard 1 Any

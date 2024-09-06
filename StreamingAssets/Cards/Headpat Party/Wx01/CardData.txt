@@ -470,7 +470,7 @@ Text Auto: When this card attacks, choose 1 of your other character without "Sog
 *GainPowerWhenAttackingLevel2(4000)
 EndCard
 
-Character: HP/Wx01-154
+Character: HP/Wx01-153
 Name Summer Outing, Sogeki
 Color G
 Level 1
@@ -3942,7 +3942,8 @@ Auto: OnAttack
 {
     If Climax (Non)Lethal Company
     {
-        *OptionalHeal
+        TargetTop Clock 1
+        MoveCard Hand
     }
 }
 Text Auto: CxCombo When this card attacks, if "(Non)Lethal Company" is in your climax area, you may put the top card of your clock into your hand.
@@ -4350,39 +4351,6 @@ Color G
 *2SoulClimax
 EndCard
 
-Character: HP/Wx01-117
-Name Playing Games, Shiron
-Color G
-Level 0
-Cost 0
-Power 500
-Soul 1
-Trait1 Headpat
-Trait2 Artist
-Trait3 Scarf
-Cont: GiveAll
-{
-    If Other && HasTrait Scarf
-    {
-        GainTrait Soki
-    }
-}
-Text Cont: All your other «Scarf» characters get «Soki».
-*GlobalPower(500,Headpat)
-Auto: OnClimaxPlay
-{
-    PayCost 3
-    {
-        TargetLocation WaitingRoom
-        NarrowTargets IsClimax
-        SaveTargets
-        TargetLocation Climax
-        CopyNamesFromSavedTargets
-    }
-}
-Text Auto: [(3)] When a climax is placed in your climax area, you may pay the cost. If you do, choose 1 climax in your climax area and that card's name is also regarded as the name of all climax in your waiting room.
-EndCard
-
 Character: HP/Wx01-061
 Name Pouting Demon, Metegako
 Color Y
@@ -4426,7 +4394,7 @@ Act: RestSelf
 Text Act: [Rest this card] Choose 1 of your other characters and stand that character.
 EndCard
 
-Character: HP/Wx01-153
+Character: HP/Wx01-154
 Name Garden Dancing, Shiron
 Color G
 Level 1
@@ -4450,7 +4418,7 @@ Auto: OnSpecificClimaxPlay Bird Showcase
 {
     SearchWaitingRoom NameEquals Wanting to Serve
 }
-Text Auto: CxCombo When "Bird Showcase" is placed in your climax area, choose up to 1 "Wanting to Serve, Shiron" in your waiting room and return it to your hand.
+Text Auto: CxCombo When "Bird Showcase" is placed in your climax area, choose up to 1 "Wanting to Serve" in your waiting room and return it to your hand.
 EndCard
 
 Character: HP/Wx01-129
@@ -4482,7 +4450,7 @@ Auto: OnSpecificClimaxPlay Rice Lover
 Text Auto: CxCombo When "Rice Lover" is placed in your climax area, search your deck for up to 2 cost 0 or less «Artist» characters, place them into seperate postion on your stage and shuffle your deck.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-004
 Name Tee-hee, Lily
 Color Y
 Level 0
@@ -4492,24 +4460,36 @@ Power 500
 Soul 1
 Trait1 Headpat
 Trait2 Femboy
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Resonate Tee-hee, Lily
+    {
+        SearchWaitingRoom IsCharacter && HasTrait Headpat
+    }
 }
 Text Auto: RESONATE [(1) Reveal a "Tee-hee, Lily" from your hand] When this card is placed on the stage from yout hand, you may pay the cost. If you do, choose 1 «Headpat» character in your waiting room and return it to your hand.
-Auto:
+Auto: OnUseResonate
 {
-
+    PayCost 2
+    {
+        SearchWaitingRoom IsCharacter && HasTrait Headpat
+    }
 }
 Text Auto: [(2)] When you use "RESONATE", you may pay the cost. If you do, choose 1 «Headpat» character in your waiting room and return it to your hand.
-Auto:
+Auto: OnClimaxPlay
 {
-
+    IfOther ColorIs Yellow
+    {
+        PayCost SendSelf Hand
+        {
+            *GiveCharacterPower(2000,Any)
+        }
+    }
 }
 Text Auto: [Return this card to your hand] When a Yellow climax is placed in your climax area, you may pay the cost. If you do, choose 1 of your characters and that character gets +2000 power until end of turn.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-007
 Name Cheerful & Cheeky, Lily
 Color Y
 Level 1
@@ -4519,24 +4499,36 @@ Power 3000
 Soul 1
 Trait1 Headpat
 Trait2 Femboy
-Auto:
+Combo Fluffy Lab
+Auto: OnUseAct
 {
-
+    GainEffect
+    {
+        Auto: OnReverseOpponent
+        {
+            PayCost 1
+            {
+                SearchWaitingRoom IsCharacter && HasTrait Headpat
+            }
+        }
+        Text Auto: [(1)] When this card's battle opponent becomes reverse, you may pay the cost. If you do, choose 1 «Headpat» character in your waiting room and return it to your hand.
+    }
 }
+TimesPerTurn 1
 Text Auto: This ability active up to once per turn. When you use an "Act:" ability, this card gets the following ability until end of turn. "Auto: [(1)] When this card's battle opponent becomes reverse, you may pay the cost. If you do, choose 1 «Headpat» character in your waiting room and return it to your hand."
-Auto:
+Auto: OnSpecificClimaxPlay Fluffy Lab
 {
-
+    PayCost Resonate Tee-hee, Lily
+    {
+        DrawCard
+        GainSpecialEffect DoubleTrigger
+    }
 }
-Text Auto: Resonate [Reveal a "Tee-hee, Lily" from your hand] When "Fluffy Lab" is placed in your climax area, you may pay the cost. If you do, draw 1 card and perform the trigger check twice during this card's attack.
-Auto:
-{
-
-}
-Text Auto: When this card becomes reverse, if this card's battle opponent is level 1 or lower you may reverse that character.
+Text Auto: CxCombo RESONATE [Reveal a "Tee-hee, Lily" from your hand] When "Fluffy Lab" is placed in your climax area, you may pay the cost. If you do, draw 1 card and perform the trigger check twice during this card's attack.
+*RedLevel1Bomb
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-012
 Name Adventurers, Lily
 Color Y
 Level 3
@@ -4547,24 +4539,40 @@ Soul 2
 Trait1 Headpat
 Trait2 Femboy
 Trait3 Glasses
-Auto:
+Combo Golem Encounter
+*OnPlayCheck3
+Auto: StartClimaxPhase
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, look at up to the top 3 cards of your deck, choose up to 1 card among them, add it to your hand and put the rest into waiting room.
-Auto:
-{
-
+    PayCost 0
+    {
+        SearchLocationForTargets Hand 1 1 Any
+        Reveal
+        UntilEndOfOpponentsTurn
+        GainName Tee-hee, Lily
+    }
 }
 Text Auto: [Reveal 1 card from your hand] At the beginning of your climax phase, you may pay the cost. If you do, that card's name is also regarded as "Tee-hee, Lily" while in your hand until end of your opponent's next turn.
-Auto:
+Auto: OnSpecificClimaxPlay Golem Encounter
 {
-
+    UntilEndOfOpponentsTurn
+    GainPower 4000
+    UntilEndOfOpponentsTurn
+    GainEffect
+    {
+        Auto: StartAttackPhase
+        {
+            PayCost 1 Resonate Tee-hee, Lily
+            {
+                Burn 2
+            }
+        }
+        Text Auto: RESONATE [(1) Reveal 1 "Tee-hee, Lily" from your hand] At the beginning of the attack phase, you may pay the cost. If you do, deal 2 damage to your opponent.
+    }
 }
-Text Auto: When "Golem Encounter" is placed in your climax area, this card gets +4000 power and the following ability until end of your opponent's next turn. "Auto: Resonate [(1) Reveal 1 "Tee-hee, Lily" from your hand] At the beginning of the attack phase, you may pay the cost. If you do, deal 2 damage to your opponent."
+Text Auto: CxCombo When "Golem Encounter" is placed in your climax area, this card gets +4000 power and the following ability until end of your opponent's next turn. "Auto: RESONATE [(1) Reveal 1 "Tee-hee, Lily" from your hand] At the beginning of the attack phase, you may pay the cost. If you do, deal 2 damage to your opponent."
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-017
 Name Donut Eating, Lily
 Color Y
 Level 0
@@ -4574,19 +4582,22 @@ Power 1000
 Soul 1
 Trait1 Headpat
 Trait2 Femboy
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Clock
+    {
+        SearchDeck IsCharacter && NameContains Lily
+    }
 }
 Text Auto: [(1) Put the top card of your deck into clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with "Lily" in its card name, reveal it, add it to your hand and shuffle your deck.
-Act:
+Act: 1 Resonate Tee-hee, Lily &&& RestSelf
 {
-
+    *Check4Add1(Headpat)
 }
-Text Act: Resonate [(1) Reveal a "Tee-hee, Lily" from your hand, rest this card] Look at up to the top 4 cards of your deck, choose up to 1 «Headpat» character among them, reveal it, add it to your hand and put the rest into waiting room.
+Text Act: RESONATE [(1) Reveal a "Tee-hee, Lily" from your hand, rest this card] Look at up to the top 4 cards of your deck, choose up to 1 «Headpat» character among them, reveal it, add it to your hand and put the rest into waiting room.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-027
 Name Dressed-Up, Lily
 Color Y
 Level 2
@@ -4596,19 +4607,28 @@ Power 7500
 Soul 2
 Trait1 Headpat
 Trait2 Femboy
-Cont:
+Combo Fox & Plush
+Cont: GiveSelf
 {
-
+    If StageContains 4 Other && HasTrait Headpat
+    {
+        TargetLocation Stage
+        GainSoul 1
+    }
 }
 Text Cont: If the number of other «Headpat» characters you have is 4 or more, all your characters get +1 soul.
-Auto:
+Auto: OnSpecificClimaxPlay Fox & Plush
 {
-
+    PayCost 2
+    {
+        SearchLocationForTargets Deck 0 4 IsCharacter && Compare ThatCardsCost 0 OrLess && HasTrait Headpat
+        PlaceOnStage false true true false
+    }
 }
 Text Auto: CxCombo [(2)] When "Fox & Plush" is placed in your climax area, you may pay the cost. If you do, search up to 4 cost 0 or lower «Headpat» characters and place them into separate position on your stage.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-029
 Name Bratty, Lily
 Color Y
 Level 3
@@ -4618,19 +4638,32 @@ Power 9500
 Soul 2
 Trait1 Headpat
 Trait2 Femboy
-Auto:
+Auto: OnPlay
 {
-
+    SearchWaitingRoom IsCharacter || IsEvent
+    *OptionalBlindStock
 }
 Text Auto: When this card is placed on the stage from your hand, choose 1 character or event in your waiting room, return it to your hand and you may put the top card of your deck into stock.
-Auto:
+Auto: OnUseEvent
 {
-
+    IfOther NameEquals Swimsuit Rest
+    {
+        PayCost Resonate Tee-hee, Lily
+        {
+            TargetTop Deck 2
+            MoveCard Stock
+        }
+    }
+    Else
+    {
+        RefundTimesPerTurn
+    }
 }
-Text Auto: Resonate [Reveal a "Tee-hee, Lily" from your hand] This ability activates up to twice per turn. When you play a "Swimsuit Rest", you may pay the cost. If you do, put the top 2 cards of your deck into stock.
+TimesPerTurn 2
+Text Auto: RESONATE [Reveal a "Tee-hee, Lily" from your hand] This ability activates up to twice per turn. When you play a "Swimsuit Rest", you may pay the cost. If you do, put the top 2 cards of your deck into stock.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-035
 Name Fenrir & Lily
 Color Y
 Level 0
@@ -4640,19 +4673,11 @@ Soul 1
 Trait1 Headpat
 Trait2 Femboy
 Trait3 Wolf
-Cont:
-{
-
-}
-Text Cont: If you have 2 or more other characters, this card gets +1500 power.
-Auto:
-{
-
-}
-Text Auto: When this card's battle opponent becomes reverse, choose 1 of your other character, rest it and put it in an open position of your backstage.
+*GainPowerWithEnoughCharacters(1500,2,Any)
+*MoveOtherToBackstageOnReverse
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-037
 Name Incorrigible, Lily
 Color Y
 Level 1
@@ -4662,19 +4687,20 @@ Power 3500
 Soul 1
 Trait1 Headpat
 Trait2 Femboy
-Auto:
+Combo Picnic
+Auto: OnAttack
 {
-
+    PayCost Resonate Tee-hee, Lily
+    {
+        SearchWaitingRoom NameEquals Swimsuit Rest
+        SearchDeck NameEquals Swimsuit Rest
+    }
 }
-Text Auto: CxCombo Resonate [Reveal a "Tee-hee, Lily" from your hand] When this card attacks, if "Picnic" is in your climax area, you may pay the cost. If you do, choose 1 "Swimsuit Rest" in your waiting room, return it to your hand, search your deck for up to 1 "Swimsuit Rest", reveal it, add it to your hand and shuffle you deck.
-Auto:
-{
-
-}
-Text Auto: When this card becomes reverse, if this card's battle opponent is cost 0 or lower, you may put that character into your opponent's stock, if you do, put a card from the bottom of your opponent's stock into his or her waiting room.
+Text Auto: CxCombo RESONATE [Reveal a "Tee-hee, Lily" from your hand] When this card attacks, if "Picnic" is in your climax area, you may pay the cost. If you do, choose 1 "Swimsuit Rest" in your waiting room, return it to your hand, search your deck for up to 1 "Swimsuit Rest", reveal it, add it to your hand and shuffle you deck.
+*YellowCost0Bomb
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-040
 Name Christmas Team, Erin & Lily
 Color Y
 Level 2
@@ -4684,19 +4710,21 @@ Soul 1
 Trait1 Headpat
 Trait2 Femboy
 Trait3 Chess
-Cont:
+Cont: Assist
 {
-
+    GainTrait Chess
+    GainTrait Femboy
+    GainPower 1000
 }
 Text Cont: Assist Your characters in front of this card get «Chess», «Femboy» and +1000 power.
-Act:
+Act: RestSelf
 {
-
+    *PutCardFromWaitingRoomIntoStock(IsCharacter)
 }
 Text Act: [rest this card] Choose 1 character in your waiting room and put it into your stock.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-047
 Name In Need of Comfort, Lily
 Color Y
 Level 0
@@ -4706,29 +4734,45 @@ Soul 1
 Trait1 Headpat
 Trait2 Femboy
 Trait3 Scar
-Cont:
+Cont: InHand
 {
-
+    If StageContainsOrLess 0 Any
+    {
+        GainSpecialEffect CannotBePlayed
+    }
 }
 Text Cont: If you have no characters, you cannot play this card from your hand.
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +1 soul.
 }
 Text Auto: When this card is placed on the stage from your hand, choose 1 of your characters and that character gets +1 soul until end of turn.
-Auto:
+Auto: OnPlay
 {
-
+    Question Look at the top card of your deck ?
+    If Yes
+    {
+        PeekTop Deck
+        Marker_FaceDown
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, you may look at the top card of your deck. If you do, put the top card of your deck face down underneath this card as a marker.
-Auto:
+Auto: OnReversed
 {
-
+    If HasMarker
+    {
+        PayCost 1 Discard 1 Any
+        {
+            TargetLocation Marker
+            MoveCard Hand
+        }
+    }
 }
 Text Auto: [(1) Put 1 card from your hand into waiting room] When this card becomes reverse, if this card as a marker underneath, you may pay the cost. If you do, put all makers underneath this card and this card into your hand.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-052
 Name Pic-Nic Day, Lily
 Color Y
 Level 0
@@ -4737,20 +4781,29 @@ Power 1500
 Soul 1
 Trait1 Headpat
 Trait2 Femboy
-Trait3 power: 1500
-Auto:
+Auto: OnAttack
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Headpat
+    {
+        MoveCard Hand
+        Discard 1 Any
+    }
 }
 Text Auto: When this card attacks, reveal the top card of your deck. If that card is a «Headpat» character, put it in your hand and put 1 card from your hand into waiting room.
-Auto:
+Auto: OnAttack
 {
-
+    If StageContains 4 Other && HasTrait Headpat
+    {
+        DrawCard
+        Discard 1 Any
+    }
 }
 Text Auto: When this card attacks, if the number of other «Headpat» characters you have is 4 or more, draw 1 card and put 1 card from your hand into waiitng room.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-050
 Name Finger Lick, Lily
 Color Y
 Level 0
@@ -4759,23 +4812,56 @@ Power 1500
 Soul 1
 Trait1 Headpat
 Trait2 Femboy
-Auto:
+Auto: OnOtherPlacedOnStageFromHand
 {
-
+    PeekTop Deck
+    EndPeek
 }
 Text Auto: When your other character is placed on the stage from your hand, you may look at the top card of your deck.
-Auto:
+Auto: OnOtherSentFromStageToWaitingRoom
 {
-
+    If InLocation Backstage
+    {
+        PayCost SendSelf Memory
+        {
+            TargetOther
+            Revive
+            TargetTop Deck 1
+            Reveal
+            IfTarget IsCharacter && HasTrait Headpat
+            {
+                MoveCard Hand
+            }
+        }
+    }
 }
 Text Auto: [Put this card into memory] When your other character is placed on the waiting room from your stage, if this card is in your backstage you may pay the cost. If you do, place that character in the position that card was in rest and reveal the top card of your deck. If that card is a «Headpat» character, add it to your hand.
 EndCard
 
-Climax: HP/Wx01-
+Event: HP/Wx01-075
 Name Swimsuit Rest
+Color Y
+Level 3
+Cost 2
+Counter
+Effect:
+{
+    Burn 2
+    If LastDamageCanceled
+    {
+        Question Put the top card of your deck into waiting room ?
+        If Yes
+        {
+            Mill 1
+        }
+    }
+    TargetSelf
+    MoveCard Memory
+}
+Text COUNTER Deal 2 damage to your opponent. If that damage is canceled, you may put the top card of your deck into waiting room. Put this card into memory.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-059
 Name Cake Feeding, Lily
 Color Y
 Level 1
@@ -4784,19 +4870,20 @@ Power 1500
 Soul 1
 Trait1 Headpat
 Trait2 Femboy
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    If StageContains 1 Other && NameEquals Cake Feeding, Solva
+    {
+        TargetMyCharacterInBattle
+        GainPower 1500
+    }
 }
-Text Auto: When you use this card's Backup, if you have a "Cake Feeding, Solva", your character in battle gets +1500 power until end of turn.
-Act:
-{
-
-}
-Text Act: Backup 1500 level 1 [Put this card from your hand into waiting room] (Choose one of your characters that is being frontal attacked, and that character gets +1500 power until end of turn)
+Quick
+Text Auto: When you use this card's "BACKUP", if you have a "Cake Feeding, Solva", your character in battle gets +1500 power until end of turn.
+Backup 1500
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-064
 Name Changing, Lily
 Color Y
 Level 1
@@ -4806,61 +4893,57 @@ Power 5500
 Soul 1
 Trait1 Headpat
 Trait2 Femboy
-Cont:
+Combo Birthday Party
+Cont: GiveSelf
 {
-
+    TargetFacing
+    IfTarget Compare ThatCardsCost 0 OrLess
+    {
+        GainSpecialEffect CannotBeReversed
+    }
 }
 Text Cont: If the character facing this card is cost 0 or lower, this card cannot be reverse.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Birthday Party
+    {
+        PayCost 1
+        {
+            TargetLocation OpponentStage
+            ChangeCost -5
+            LoseLevel 5
+        }
+    }
 }
 Text Auto: CxCombo [(1)] When this card attacks, if "Birthday Party" is in your climax area, you may pay the cost. If you do, all your opponent's characters gets -5 cost and -5 level.
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-078
 Name Fluffy Lab
+*ChoiceClimax
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-080
 Name Golem Encounter
+*ChoiceClimax
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-086
 Name Birthday Party
+*ShotClimax
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-089
 Name Fox & Plush
+*WindClimax
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-094
 Name Picnic
+*WindClimax
 EndCard
 
-Character: HP/Wx01-
-Name Fenrir & Lily
-Color Y
-Level 0
-Cost 0
-Power 2500
-Soul 1
-Trait1 Headpat
-Trait2 Femboy
-Trait3 Wolf
-Cont:
-{
-
-}
-Text Cont: If you have 2 or more other characters, this card gets +1500 power.
-Auto:
-{
-
-}
-Text Auto: When this card's battle opponent becomes reverse, choose 1 of your other character, rest it and put it in an open position of your backstage.
-EndCard
-
-Character: HP/Wx01-
+Character: HP/Wx01-252
 Name In Need of Comfort, Ruby
 Color R
 Level 1
@@ -4870,50 +4953,52 @@ Soul 1
 Trait1 Headpat
 Trait2 Scar
 Trait3 Femboy
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContainsOrLess 0 Other
+    {
+        LosePower 4000
+    }
 }
 Text Cont: If you have no other characters, this card gets -4000 power.
-Auto:
+Auto: OnSentFromStageToWaitingRoom
 {
-
+    MoveCard Memory
 }
 Text Auto: When this card is placed in the waiting room from your stage, put this card into memory.
-Act:
+Act: 1 RestSelf
 {
-
+    SearchLocationForTargets WaitingRoom 1 1 IsCharacter
+    If HasTarget
+    {
+        Reveal
+        PushTargets
+        TargetLocation Stage
+        NarrowTargets NameEquals In Need of Comfort, Lily && Other
+        ChooseCharacterFromTargets Choose a character to give the marker.
+        SaveTargets
+        PopTargets
+        MarkerTargetsUnderSavedTarget_FaceDown
+    }
 }
-Text Act: [(1) rest this card] Choose 1 character in your waiting room and put it face down underneath your other "In Need of Comfort, Lily" as a marker.
-Act:
+Text Act: [(1) Rest this card] Choose 1 character in your waiting room and put it face down underneath your other "In Need of Comfort, Lily" as a marker.
+Act: SendSelf Stock
 {
+    SearchLocationForTargets WaitingRoom 1 1 NameEquals On Their Way, Ruby
+    If HasTarget
+    {
+        Change
+    }
+    Else
+    {
+        BlindStock
+    }
 
 }
 Text Act: [Put this card into stock] Choose 1 "On Their Way, Ruby" in your waiting room and put it in the position this card was in. If you put no characters on the stage, put the top card of your stock into waiting room.
 EndCard
 
-Character: HP/Wx01-
-Name Cake Feeding, Lily
-Color Y
-Level 1
-Cost 0
-Power 1500
-Soul 1
-Trait1 Headpat
-Trait2 Femboy
-Auto:
-{
-
-}
-Text Auto: When you use this card's Backup, if you have a "Cake Feeding, Solva", your character in battle gets +1500 power until end of turn.
-Act:
-{
-
-}
-Text Act: Backup 1500 level 1 [Put this card from your hand into waiting room] (Choose one of your characters that is being frontal attacked, and that character gets +1500 power until end of turn)
-EndCard
-
-Character: HP/Wx01-
+Character: HP/Wx01-010
 Name Meat & Sweets, Izumi
 Color Y
 Level 3
@@ -4923,24 +5008,22 @@ Power 8000
 Soul 2
 Trait1 Headpat
 Trait2 Sleep
-Cont:
+*GlobalPower(1500,Headpat)
+*OnPlayCheckX(Headpat)
+Auto: OnDamageCanceled
 {
-
-}
-Text Cont: All your «Headpat» characters get +1500 power.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, look at up to the top X cards of your deck, choose up to 1 card among them, add it to your hand and put the rest into the waiting room. X is the number of «Headpat» characters you have.
-Auto:
-{
-
+    If PlayedThisTurn
+    {
+        PayCost Discard 1 Any
+        {
+            Burn 1
+        }
+    }
 }
 Text Auto: [Put 1 card from your hand into waiting room] During the turn this card was placed on the stage from your hand, when this card's damage is canceled, you may pay the cost. If you do, deal 1 damage to your opponent.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-181
 Name Happy Time, Erin
 Color R
 Level 0
@@ -4949,19 +5032,37 @@ Power 1000
 Soul 1
 Trait1 Headpat
 Trait2 Chess
-Auto:
+Combo Next Chess Master
+Auto: OnPlay
 {
-
+    SearchLocationForTargets Deck 0 1 IsCharacter && HasTrait Headpat
+    MoveCard WaitingRoom
+    ShuffleLocation Deck
 }
 Text Auto: When this card is placed on the stage from your hand, search your deck for up to 1 «Headpat» character, put it into waiting room and shuffle your deck.
-Auto:
+Auto: OnSpecificClimaxPlay Next Chess Master
 {
-
+    PayCost SendSelf Hand
+    {
+        MultipleChoiceQuestion Choose an effect to resolve.\n1: Choose 1 of your character and stand that character.\n2: Choose 1 of your character and that character perform the trigger check twice during that card's attack|1|2
+        If Answer 0
+        {
+            TargetLocation Stage
+            ChooseCharacterFromTargets Choose a character to stand.
+            Stand
+        }
+        If Answer 1
+        {
+            TargetLocation Stage
+            ChooseCharacterFromTargets Choose a character to give the effect.
+            GainSpecialEffect DoubleTrigger
+        }
+    }
 }
 Text Auto: CxCombo [Return this card to your hand] When "Next Chess Master" is placed in your climax area, you may pay the cost. If you do, choose 1 of the following 2 effects and perform it. "Choose 1 of your character and stand that character." "Choose 1 of your character and that character perform the trigger check twice during that card's attack."
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-188
 Name Favorite Piece, Erin
 Color R
 Level 1
@@ -4970,19 +5071,22 @@ Power 4000
 Soul 1
 Trait1 Headpat
 Trait2 Chess
-Cont:
+Combo Sparkling Chibi
+*GainPowerWithEnoughCharacters(1000,2,Headpat)
+Auto: OnEndOfAttack
 {
-
-}
-Text Cont: If the number of other «Headpat» characters you have is 2 or more, this card gets +1000 power.
-Auto:
-{
-
+    If Climax Sparkling Chibi
+    {
+        Peek Deck 2
+        ChooseCardsFromTargets 0 2 Any
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
 }
 Text Auto: CxCombo At the end of this card's attack, if "Sparkling Chibi" is in your climax area, look at up to the top 2 card of your deck, choose up to 2 cards among them, add them to your hand and put the rest into waiting room.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-190
 Name Rook Tactics, Erin
 Color R
 Level 3
@@ -4992,24 +5096,26 @@ Power 3000
 Soul 2
 Trait1 Headpat
 Trait2 Chess
-Cont:
+Combo Next Chess Master
+*2000Assist
+*Healer
+Auto: OnOtherAttacks
 {
-
+    If Climax Next Chess Master && StageContains 4 Other && HasTrait Headpat
+    {
+        PayCost 2 Discard 1 Any
+        {
+            TargetLocation Stage
+            NarrowTargets HasTrait Headpat
+            ChooseCharactersFromTargets 2 2 Choose 2 characters to exchange
+            Exchange
+        }
+    }
 }
-Text Cont: Assist Your characters in front of this card gets +2000 power.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock into waiting room.
-Auto:
-{
-
-}
-Text Auto: [(2) Put 1 card from your hand into your waiting room] When your other character attacks, if "Next Chess Master" is in your climax area and the number of other «Headpat» characters you have is 4 or more, you may pay the cost. If you do, choose 2 of your «Headpat» character, and exchange them.
+Text Auto: CxCombo [(2) Put 1 card from your hand into your waiting room] When your other character attacks, if "Next Chess Master" is in your climax area and the number of other «Headpat» characters you have is 4 or more, you may pay the cost. If you do, choose 2 of your «Headpat» character, and exchange them.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-199
 Name Shrink Potion, Erin
 Color R
 Level 0
@@ -5018,19 +5124,21 @@ Power 2000
 Soul 1
 Trait1 Headpat
 Trait2 Chess
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsClimax
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen && Compare ThatCardsLevel 1 OrMore
+        ChooseCharacterFromTargets Choose a character.
+        *Downgrade
+    }
 }
 Text Auto: [Put a climax from your hand into waiitng room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your opponent's level 1 or higher character and your opponent chooses 1 level X or lower character in their waiting room, and exchanges them. X equals the level of the character you chose.
-Act:
-{
-
-}
-Text Act: Brainstorm [(1) rest this card] Flip over 4 cards from the top of your deck, and put them into your waiting room. For each climax revealed, search your deck for up to 1 «Headpat» character, and put it into your hand.
+*Act1RestSelfSearchBrainstorm(Headpat)
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-202
 Name Locker Room, Erin
 Color R
 Level 1
@@ -5040,24 +5148,43 @@ Power 3500
 Soul 1
 Trait1 Headpat
 Trait2 Chess
-Cont:
+Cont: InHand
 {
-
+    If LocationContains Memory 2 Any
+    {
+        ChangeCost -1
+    }
 }
 Text Cont: If your have 2 or more cards in memory, this card gets -1 cost while in your hand.
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn
+    {
+        TargetFacing
+        IfTarget Compare ThatCardsCost 0 OrLess
+        {
+            GainPower 3500
+            GainLevel 1
+        }
+    }
 }
 Text Cont: During your turn, if the character facing this card is cost 0 or lower, this card gets +3500 power and +1 level.
-Auto:
+Auto: StartOpponentAttackPhase
 {
-
+    TargetLocation Backstage
+    If Compare TargetCount 1 OrLess
+    {
+        Question Put this card in an open position of your backstage ?
+        If Yes
+        {
+            MoveToOpenPosition false true
+        }
+    }
 }
 Text Auto: At the beginning of your opponent's attack phase, you may put this card in an open position of your backstage.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-205
 Name Open Jacket, Erin
 Color R
 Level 2
@@ -5067,19 +5194,21 @@ Power 3000
 Soul 1
 Trait1 Headpat
 Trait2 Chess
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    PayCost 1 Discard 1 Any &&& Send 1 WaitingRoom Any
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen && EarlyPlay
+        ChooseCharacterFromTargets Choose a chracter to put into memory.
+        MoveCard OpponentMemory
+    }
 }
-Text Auto: [(1) Put 1 character from your stage into waiting room] When you use this card's Backup, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent and put it into memory.
-Act:
-{
-
-}
-Text Act: Backup 2500, level 2 [(1) Put this card from your hand into waiting room] (Choose one of your characters that is being frontal attacked, and that character gets +2500 power until end of turn)
+Text Auto: [(1) Put 1 character from your stage into waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent and put it into memory.
+Backup 2500
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-213
 Name VR Fun, Erin
 Color R
 Level 3
@@ -5089,19 +5218,36 @@ Power 10000
 Soul 2
 Trait1 Headpat
 Trait2 Chess
-Auto:
+Combo Next Chess Master
+HandAction Send 1 WaitingRoom NameEquals Happy Time, Erin
 {
-
+	TargetSelf
+	PlaceOnStage False True True False
 }
-Text Auto: When this card is played from your hand, you may choose 1 of your "Happy Time, Erin" and put that character into your waiting room. If you do, you may play this card with 0 cost.
-Auto:
+ActivationRequirement Compare MyLevel 3 OrMore &&& LocationContains Level 1 IsColor Red || LocationContains Clock 1 IsColor Red
+Text Cont: When this card is played from your hand, you may choose 1 of your "Happy Time, Erin" and put that character into your waiting room. If you do, you may play this card with 0 cost.
+Auto: OnReverseOpponent
 {
-
+    If Climax Next Chess Master && LocationContains Backstage 1 NameEquals Rook Tactics, Erin && Other
+    {
+        SetXValue 0
+        Repeat 2
+        {
+            PayCost 1
+            {
+                AddToXValue 1
+            }
+        }
+        Repeat X
+        {
+            Burn 1
+        }
+    }
 }
 Text Auto: CxCombo [(1)] When this card battle opponent's becomes reverse, if "Next Chess Master" is in your climax area and you have another "Rook Tactics, Erin" in your backstage, you may pay the cost up to 2 times. If you do, perform the following effect X times. "Deal 1 damage to your opponent." X equals the number of time you paid the cost.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-219
 Name Measuring, Erin
 Color R
 Level 0
@@ -5110,19 +5256,11 @@ Power 2000
 Soul 1
 Trait1 Headpat
 Trait2 Chess
-Auto:
-{
-
-}
-Text Auto: [(1) Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 character in your waiting room and return it to your hand.
-Auto:
-{
-
-}
-Text Auto: At the beginning of your opponent's attack phase, you may put the top card of your deck into the waiting room, if it is a «Headpat» character, you may move this card to an open position of your center stage.
+*DropSalvage
+*MillRunner(Headpat)
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-222
 Name On the Bed, Erin
 Color R
 Level 1
@@ -5131,24 +5269,56 @@ Power 3000
 Soul 1
 Trait1 Headpat
 Trait2 Chess
-Auto:
+Combo Under the Moonlight
+Auto: OnSpecificClimaxPlay Under the Moonlight
 {
-
+    If InLocation CenterStage
+    {
+        UntilEndOfOpponentsTurn
+        GainEffect
+        {
+            Cont: Global
+            {
+                If Compare ThatCardsLevel 1 OrLess
+                {
+                    GainSoul 2
+                }
+            }
+            Text Cont: All level 1 or lower characters get +2 souls.
+        }
+        UntilEndOfOpponentsTurn
+        GainEffect
+        {
+            Cont: GiveFacing
+            {
+                GainSpecialEffect CannotSideAttack
+            }
+        }
+        Text Cont: The character facing this card cannot side attack.
+    }
 }
-Text Auto: CxCombo When "Under the Moonlight" is placed in your climax area, if this card is in your center stage, this card gets the following 2 ability until end of your opponent's next turn. "Auto: All level 1 or lower characters get +2 souls." "Cont: The character facing this card cannot side attack."
-Auto:
+Text Auto: CxCombo When "Under the Moonlight" is placed in your climax area, if this card is in your center stage, this card gets the following 2 ability until end of your opponent's next turn. "Cont: All level 1 or lower characters get +2 souls." "Cont: The character facing this card cannot side attack."
+Auto: OnDamageCanceled
 {
-
+    Question Put the top 2 card of your deck into waiting room ?
+    If Yes
+    {
+        Mill 2
+        SearchWaitingRoom IsCharacter && Compare ThatCardsLevel TotalLevel OrLess
+    }
 }
 Text Auto: When this card's damage is canceled, you may put the top 2 cards of your deck into waiting room. If you do, choose a level X or lower character in your waiting room and return it to your hand. X equals the total level of cards put into waiting room this way.
-Auto:
+Auto: OnCancel
 {
-
+    If InBattle
+    {
+        *OptionalBlindStock
+    }
 }
 Text Auto: During this card's battle, when the damage you take is canceled, you may put the top card of your deck into stock.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-229
 Name Fishing With Erin
 Color R
 Level 2
@@ -5158,24 +5328,46 @@ Power 7500
 Soul 2
 Trait1 Headpat
 Trait2 Chess
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn
+    {
+        TargetLocation OpponentBackstage
+        SetXValue TargetCount
+        MultiplyXValue 1500
+        GainPower X
+    }
 }
 Text Cont: During your turn, this card gets +1500 power for each characters in your opponent's backstage.
-Auto:
+Auto: OnReverseOpponent
 {
-
+    TargetLocation Backstage
+    If Compare TargetCount 1 OrLess
+    {
+        Question Put this card in an open position of your backstage ?
+        If Yes
+        {
+            MoveToOpenPosition false true
+        }
+    }
 }
 Text Auto: When this card's battle opponent becomes reverse, you may put this card in an open position of your backstage.
-Auto:
+Auto: StartOpponentClimaxPhase
 {
-
+    If CardPosition Rest && InLocation Backstage
+    {
+        TargetTop Deck 1
+        Reveal
+        SetXValue TargetCardsLevel
+        MultiplyXValue 500
+        TargetLocation OpponentStage
+        LosePower X
+    }
 }
 Text Auto: At the beginning of your opponent's climax phase, if this card is rest in your backstage, reveal the top card of your deck and all your opponent's characters get -X power until end of turn. X equals the level of the revealed card times 500
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-244
 Name Playing in Water, Erin
 Color R
 Level 0
@@ -5184,19 +5376,25 @@ Power 1500
 Soul 1
 Trait1 Headpat
 Trait2 Chess
-Auto:
+Auto: OnReversed
 {
-
+    PayCost Clock SendSelf Memory
+    {
+        SearchDeck IsCharacter && Compare ThatCardsLevel 1 OrLess
+    }
 }
 Text Auto: [Put the top card of your deck into clock, put this card into memory] When this card becomes reverse, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, add it to your hand and shuffle your deck.
-Auto:
+Auto: OnAttack
 {
-
+    PayCost Clock
+    {
+        GainSpecialEffect DoubleTrigger
+    }
 }
 Text Auto: [Put the top card of your deck into clock] When this card attacks, you may pay the cost. If you do, perform the trigger check twice during this attack.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-243
 Name Living in VR, Erin
 Color R
 Level 0
@@ -5205,14 +5403,17 @@ Power 1500
 Soul 1
 Trait1 Headpat
 Trait2 Chess
-Auto:
+Auto: OnPlay|OnAttack
 {
-
+    PayCost Discard 1 IsClimax
+    {
+        SearchWaitingRoom IsCharacter && HasTrait Headpat
+    }
 }
 Text Auto: [Put 1 climax from your hand into waiting room] When this card is placed on the stage from your hand or when this card attacks, you may pay the cost. If you do, choose a «Headpat» character in your waiting room and return it to your hand.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-247
 Name Sports Outfit, Erin
 Color R
 Level 0
@@ -5221,19 +5422,25 @@ Power 2000
 Soul 1
 Trait1 Headpat
 Trait2 Chess
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContainsOrLess 1 Other
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If the number of other characters you have is 1 or less, this card gets +1500 power.
-Auto:
+Auto: OnAttack
 {
-
+    TargetLocation Stage
+    NarrowTargets Other && HasTrait Headpat
+    ChooseCharacterFromTargets_Optional Choose up to 1 character to put into stock.
+    MoveCard Stock
 }
 Text Auto: When this card attack, choose up to 1 other «Headpat» character and put that character into stock.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-248
 Name Defenseless, Erin
 Color R
 Level 0
@@ -5242,14 +5449,21 @@ Power 2500
 Soul 1
 Trait1 Headpat
 Trait2 Chess
-Auto:
+Auto: OnReversed
 {
-
+	RevealUpTo Deck 3
+	If Compare TargetCount 1 OrMore
+	{
+		ChooseCardsFromTargets 1 1 HasTrait Headpat
+		MoveCard Hand
+		PutTheRestIntoTheWaitingRoom
+		Discard 1 Any
+	}
 }
 Text Auto: When this card becomes reverse in battle, you may reveal up to the top 3 cards of your deck. If you reveal 1 or more cards, choose up to 1 «Headpat» character among them, put it into your hand, put the rest into your waiting room, choose 1 card in your hand, and put it into your waiting room.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-258
 Name Resting at the Beach, Erin
 Color R
 Level 1
@@ -5259,44 +5473,107 @@ Power 8000
 Soul 2
 Trait1 Headpat
 Trait2 Chess
-Auto:
+Combo Rook Attack
+Auto: PlacedBy Rook Attack
 {
-
+    Question_Obvious Stand this card ?
+    If Yes
+    {
+        Stand
+    }
 }
 Text Auto: CxCombo When this card is placed on the stage by the effect of "Rook Attack", you may stand this card.
-Auto:
+Auto: OnAttack
 {
-
+    If Compare AttacksThisTurn 4 OrMore
+    {
+        TargetTop Deck 1
+        MoveCard Clock
+    }
+    If Compare AttacksThisTurn 6 OrMore
+    {
+        TargetTop Stock 2
+        MoveCard Clock
+    }
+    If Compare AttacksThisTurn 7 OrMore
+    {
+        TargetSelf
+        MoveCard Level
+    }
 }
 Text Auto: When this card attacks, if it's your 4th of more attack this turn, put the top card of your deck into clock. If it's your 6th or more attack this turn, put the top 2 cards of your stock into clock. If it's your 7th or more attack this turn, put this card into level zone.
 EndCard
 
-Climax: HP/Wx01-
+Event: HP/Wx01-264
 Name Looking For Her Pieces
+Color R
+Level 1
+Cost 1
+Effect:
+{
+    RevealUpTo Deck 3
+    SaveTargets
+    NarrowTargets IsCharacter && HasTrait Chess && Compare ThatCardsCost 0 OrLess
+    PlaceOnStage false true true false
+    RemoveCurrentFromSavedTargets
+    MultipleChoiceQuestion Put the rest in waiting room or stock ?|Waiting room|Stock
+    If Answer 0
+    {
+        PutTheRestIntoTheWaitingRoom
+    }
+    If Answer 1
+    {
+        MoveCard Stock
+    }
+}
+Text Look at up to the top 3 cards of your deck, choose all cost 0 or lower «Chess» characters, place them into seperate position on your stage and put the rest either into waiting room or stock.
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-274
 Name Rook Attack
+*StandbyClimax
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-272
 Name Next Chess Master
+*StandbyClimax
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-282
 Name Frog Catch
+*DoorClimax
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-291
 Name Under the Moonlight
+Color R
+*2SoulClimax
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-288
 Name Sparkling Chibi
+*DoorClimax
 EndCard
 
-Climax: HP/Wx01-
+Event: HP/Wx01-
 Name At the Beach
+Color Y
+Level 1
+Cost 1
+Effect:
+{
+    SearchDeck IsCharacter && HasTrait Headpat
+    Mill 3
+    NarrowTargets ColorIs Yellow
+    NarrowTargets IsEvent || IsCharacter && NameContains Lily|Solva
+    If Compare TargetCount 3 Exactly
+    {
+        DrawCard
+    }
+    TargetSelf
+    MoveCard Memory
+}
+Text Search your deck for up to 1 «Headpat» character, reveal it, add it to your hand, shuffle your deck and put the top 3 cards of your deck into waiting room. If there is 3 Yellow events or characters with either "Lily" or "Solva" in its card name, draw a card.\nPut this card into memory.
 EndCard
 
 Character: HP/Wx01-
@@ -5308,9 +5585,12 @@ Power 2000
 Soul 1
 Trait1 Headpat
 Trait2 Horns
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsCharacter && HasTrait Headpat
+    {
+        
+    }
 }
 Text Auto: [Put 1 «Headpat» character from your hand into waiting room] When this is placed on the stage from hand, you may pay cost. if you do, choose 1 character in your waiting room and put that character into memory. At the beginning of your next turn, put that character from memory into your hand.
 Auto:
