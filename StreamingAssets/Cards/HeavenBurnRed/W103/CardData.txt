@@ -2078,7 +2078,7 @@ Trait2 Unit 31B
 *500Assist
 Auto: OnTriggerCheck
 {
-    If HasTrigger Soul
+    IfOther HasTrigger Soul
     {
         *GiveCharacterPower(1500,Seraph)
         GainLevel 1
