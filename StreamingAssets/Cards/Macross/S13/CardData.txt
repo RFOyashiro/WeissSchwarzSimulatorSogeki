@@ -49,7 +49,7 @@ Cont: GiveSelf
     }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets +1 soul.
-Auto: StartEncoreStep
+Auto: StartMyEncoreStep
 {
     If CardPosition Rest
     {
@@ -606,9 +606,12 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 Love
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains Stock 6 Any
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If there are 6 or more cards in your stock, this card gets +1500 power.
 *HandEncore
@@ -625,11 +628,15 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Pilot
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    If Compare Experience 3 OrMore
+    {
+        TargetMyCharacterInBattle
+        GainPower 1000
+    }
 }
-Text Auto: EXPERIENCE When you use BACKUP of this card, if the sum of levels of cards in your level is 3 or higher, choose 1 of your battling characters. That character gets +1000 power until end of turn.
+Text Auto: EXPERIENCE When you use "BACKUP" of this card, if the sum of levels of cards in your level is 3 or higher, choose 1 of your character in battle and that character gets +1000 power until end of turn.
 Backup 1500
 EndCard
 
@@ -645,14 +652,14 @@ Soul 1
 Trait1 Music
 Trait2 Love
 Combo After Class Overflow
-Cont:
+*LevelAssist
+Auto: OnSpecificClimaxPlay After Class Overflow
 {
-
-}
-Text Cont: ASSIST Your characters in front of this card get +X power, where X equals 500 times the level of that character.
-Auto:
-{
-
+    PayCost 1
+    {
+        TargetLocation Stage
+        GainPower 2000
+    }
 }
 Text Auto: CxCombo [(1)] When "After Class Overflow" is placed on your climax area, you may pay the cost. If you do, all your characters get +2000 power until end of turn.
 EndCard
@@ -668,11 +675,7 @@ Power 8500
 Soul 2
 Trait1 Music
 Trait2 Love
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+*OnPlayGainPower(1500)
 EndCard
 
 Character: MF/S13-033
@@ -684,16 +687,36 @@ Cost 0
 Power 1000
 Soul 1
 Trait1 Glasses
-Cont:
+Cont: GiveAll
 {
-
+    If Other
+    {
+        If NameEquals First CM Song, Ranka || NameEquals Reclamation Heavy Machinery, Ranka
+        {
+            GainPower 500
+            GainEffect
+            {
+                *HandEncore
+            }
+        }
+    }
 }
 Text Cont: All your other "First CM Song, Ranka" and "Reclamation Heavy Machinery, Ranka" gets +500 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]"
-Auto:
+Auto: OnOtherAttacks
 {
-
+    IfOther NameContains ランカ
+    {
+        TargetOther
+        SetXValue ThatCardsPower
+        TargetFacingTargets
+        SubtractFromXValue ThatCardsPower
+        If Compare X 2000 OrMore
+        {
+            GainSpecialEffect NoBackupInBattle
+        }
+    }
 }
-Text Auto: When another of your characters whose name includes "Ranka" attacks, if that character's power is at least 2000 higher than its battle opponent, then your opponent may not play BACKUP from hand during that character's battle.
+Text Auto: When another of your characters whose name includes "Ranka" attacks, if that character's power is at least 2000 higher than its battle opponent, then your opponent may not play "BACKUP" from hand during that character's battle.
 EndCard
 
 Character: MF/S13-034
@@ -705,19 +728,27 @@ Cost 0
 Power 4000
 Soul 1
 Trait1 Vajra
-Cont:
+Army
+Auto: OnOtherPlacedOnStageFromHand
 {
-
+    IfOther HasTrait Vajra
+    {
+        GainPower 1000
+    }
+    Else
+    {
+        RefundTimesPerTurn
+    }
 }
-Text Cont: You may have unlimited copies of cards with the same name as this card in your Deck.
-Auto:
-{
-
-}
+Quick
+TimesPerTurn 2
 Text Auto: This card ability may be played up to twice per turn. When another of your «Vajra» characters is placed on the stage from your hand, this card gets +1000 power until end of turn.
-Auto:
+Auto: OnSentFromStageToWaitingRoom
 {
-
+    PayCost 2
+    {
+        SearchDeck NameEquals Vajra (Large)
+    }
 }
 Text Auto: [(2)] When this card is placed in your waiting room from the stage, you may pay the cost. If you do, search your deck for up to 1 "Vajra (Large)", reveal it, and put it in your hand. Shuffle your deck.
 EndCard
@@ -732,14 +763,23 @@ Power 5500
 Soul 1
 Trait1 Music
 Trait2 Love
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 2 OrMore
+    {
+        GainPower 1000
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, this card gets +1000 power.
-Auto:
+Auto: StartMyEncoreStep
 {
-
+    If CardPosition Rest
+    {
+        PayCost 1 SendSelf WaitingRoom
+        {
+            *ChangeWaitingRoom(Reclamation Heavy Machinery\, Ranka)
+        }
+    }
 }
 Text Auto: CHANGE [(1) Put this card in the waiting room] At the beginning of your encore step, if this card is rest, you may pay the cost. If you do, choose a "Reclamation Heavy Machinery, Ranka" in your waiting room and put it in the position this card was in.
 EndCard
@@ -754,14 +794,14 @@ Trigger Soul
 Power 500
 Soul 1
 Trait1 Vajra
-Cont:
+*GlobalPower(1000,Vajra)
+Auto: OnPlay
 {
-
-}
-Text Cont: All your other «Vajra» characters get +1000 power.
-Auto:
-{
-
+    If StageContains 4 Other && HasTrait Vajra
+    {
+        TargetLocation Stage
+        GainPower 6000
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, if the number of other «Vajra» characters you have is 4 or more, all your characters get +6000 power until end of turn.
 EndCard
@@ -777,14 +817,24 @@ Power 6500
 Soul 1
 Trait1 Music
 Trait2 Love
-Auto:
+Auto: StartMyEncoreStep
 {
-
+    If CardPosition Rest
+    {
+        PayCost 2 SendSelf WaitingRoom
+        {
+            *ChangeWaitingRoom("Songs are Magic" Ranka)
+        }
+    }
 }
-Text Auto: CHANGE [(2) Put this card in the waiting room] At the beginning of your encore step, if this card is rest, you may pay the cost. If you do, choose a '"Songs are Magic" Ranka' in your waiting room and put it in the position this card was in. (This card can't be played if this card wasn't on the stage at the beginning of the encore step)
-Act:
+Text Auto: CHANGE [(2) Put this card in the waiting room] At the beginning of your encore step, if this card is rest, you may pay the cost. If you do, choose a '"Songs are Magic" Ranka' in your waiting room and put it in the position this card was in.
+Act: 1
 {
-
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +X power.
+    SetXValue ThatCardsLevel
+    MultiplyXValue 500
+    GainPower X
 }
 Text Act: [(1)] Choose 1 of your characters, and that character gets +X power until end of turn, where X equals 500 times level of that character.
 EndCard
@@ -800,9 +850,12 @@ Soul 1
 Trait1 Music
 Trait2 Love
 *500Assist
-Act:
+Act: 1
 {
-
+    TargetLocation Stage
+    NarrowTargets HasTrait Music
+    ChooseCharacterFromTargets Choose a character to give +1 level.
+    GainLevel 1
 }
 Text Act: [(1)] Choose 1 of your «Music» characters, and that character gets +1 level until end of turn.
 EndCard
@@ -828,16 +881,8 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Vajra
-Cont:
-{
-
-}
-Text Cont: You may have unlimited copies of cards with the same name as this card in your Deck.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your «Vajra» characters, and that character gets +1500 power until end of turn.
+Army
+*OnPlayGivePower(1500,Vajra)
 EndCard
 
 Character: MF/S13-041
@@ -850,9 +895,12 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Love
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContainsOrLess Hand 4 Any
+    {
+        GainPower 1000
+    }
 }
 Text Cont: If there are 4 or less cards in your hand, this card gets +1000 power.
 EndCard
@@ -867,9 +915,9 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Love
-Act:
+Act: Rest 1 HasTrait Music
 {
-
+    GainPower 1000
 }
 Text Act: [Rest 1 of your «Music» characters] This card gets +1000 power until end of turn.
 EndCard
@@ -897,9 +945,15 @@ Soul 1
 Trait1 Music
 Trait2 Love
 Combo Aimo
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Aimo
+    {
+        PayCost 1
+        {
+            SearchDeck IsCharacter && HasTrait Music|Vajra && Compare ThatCardsLevel 1 OrMore
+        }
+    }
 }
 Text Auto: CxCombo [(1)] When this card attacks, if "Aimo" is in your climax area, you may pay the cost. If you do, search your deck for up to 1 level 1 or higher character with «Music» or «Vajra», reveal it, and put it in your hand. Shuffle your deck.
 EndCard
@@ -924,7 +978,10 @@ Level 2
 Cost 0
 Effect:
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to give -2000 power.
+    LosePower 2000
 }
 Text Choose 1 of your opponent's characters. That character gets -2000 power until end of turn.
 EndCard
@@ -937,7 +994,10 @@ Level 2
 Cost 0
 Effect:
 {
-
+    PayCost Rest 2 CardPosition Stand
+    {
+        SearchDeck 1 IsCharacter && HasTrait Music
+    }
 }
 Text Choose 2 of your standing characters and rest them. If you do, search your deck for up to 1 «Music» character, reveal it, and put it in your hand. Shuffle your deck.
 EndCard
@@ -946,7 +1006,7 @@ Climax: MF/S13-048
 Name After Class Overflow
 JPName 放課後オーバーフロウ
 Color G
-When this card is placed from hand to your climax area, put the top card of your deck in your stock, and all your characters get +1 soul until end of turn.
+*OldStockSoulClimax
 EndCard
 
 Climax: MF/S13-049
@@ -971,14 +1031,20 @@ Power 1000
 Soul 1
 Trait1 Pilot
 Trait2 Mecha
-Cont:
+Cont: GiveAll
 {
-
+    If Other && NameContains シェリル|ランカ
+    {
+        GainPower 500
+    }
 }
 Text Cont: All your other characters with either "Sheryl" or "Ranka" in its card name get +500 power.
-Act:
+Act: RestSelf
 {
-
+    TargetLocation Stage
+    NarrowTargets NameContains シェリル|ランカ
+    ChooseCharacterFromTargets Choose a character to give +500 power.
+    GainPower 500
 }
 Text Act: [Rest this card] Choose 1 of your characters with either "Sheryl" or "Ranka" in its card name. That character gets +500 power until end of turn.
 EndCard
@@ -994,9 +1060,25 @@ Soul 1
 Trait1 Pilot
 Trait2 Music
 Combo Lion
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Lion
+    {
+        PayCost 2
+        {
+            TargetLocation Stage
+            NarrowTargets Other
+            ChooseCharacterFromTargets_Optional Choose up to 2 characters to give the effect.
+            GainEffect
+            {
+                Auto: OnReverseOpponent
+                {
+                    SearchWaitingRoom IsCharacter
+                }
+                Text Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand
+            }
+        }
+    }
 }
 Text Auto: CxCombo [(2)] When this card attacks, if "Lion" is in your climax area, you may pay the cost. If you do, choose up to 2 other of your characters. Those characters get "Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand" until end of turn.
 EndCard
@@ -1011,16 +1093,22 @@ Power 4500
 Soul 1
 Trait1 Pilot
 Trait2 Music
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters NameEquals Running from Vajra, Alto & Sheryl && Other
+    MultiplyXValue 1000
+    GainPower X
 }
-Text Cont: For ever other "Running from Vajra, Alto & Sheryl" you have, this card gets +1000 power.
-Cont:
+Text Cont: This card gets +1000 power for each other "Running from Vajra, Alto & Sheryl" you have.
+Auto: OnOtherReversed
 {
-
+    If Compare Experience 2 OrMore
+    {
+        GainPower 2000
+    }
 }
-Text Cont: EXPERIENCE When another of your battling characters becomes reversed, if the sum of levels of cards in your level is 2 or higher, this card gets +2000 power until end of turn.
+Quick
+Text Auto: EXPERIENCE When another of your battling characters becomes reversed, if the sum of levels of cards in your level is 2 or higher, this card gets +2000 power until end of turn.
 EndCard
 
 Character: MF/S13-054
@@ -1034,16 +1122,22 @@ Power 5000
 Soul 1
 Trait1 Pilot
 Trait2 Music
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters NameEquals Closer, Alto & Ranka
+    MultiplyXValue 1000
+    GainPower X
 }
-Text Cont: For every other "Closer, Alto & Ranka" you have, this card gets +1000 power.
-Cont:
+Text Cont: This card gets +1000 power for each other "Closer, Alto & Ranka" you have.
+Auto: OnOtherReversed
 {
-
+    If Compare Experience 2 OrMore
+    {
+        GainPower 2000
+    }
 }
-Text Cont: EXPERIENCE When another of your battling characters becomes reversed, if the sum of levels of cards in your level is 2 or higher, this card gets +2000 power until end of turn.
+Quick
+Text Auto: EXPERIENCE When another of your battling characters becomes reversed, if the sum of levels of cards in your level is 2 or higher, this card gets +2000 power until end of turn.
 EndCard
 
 Character: MF/S13-055
@@ -1056,11 +1150,14 @@ Trigger Soul
 Power 2500
 Soul 1
 Trait1 Pilot
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    PayCost 2
+    {
+        SearchWaitingRoom IsCharacter
+    }
 }
-Text Auto: [(2)] When you use this card's BACKUP, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
+Text Auto: [(2)] When you use this card's "BACKUP", you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
 Backup 2500
 EndCard
 
@@ -1075,14 +1172,21 @@ Power 8000
 Soul 1
 Trait1 Mecha
 Combo Macross Attack
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If Climax Macross Attack
+    {
+        PayCost 1
+        {
+            TargetBattleOpponent
+            Burn TargetCardsCost
+        }
+    }
 }
 Text Auto: CxCombo [(1)] When this card's battle opponent becomes reverse, if "Macross attack" is in your climax area, you may pay the cost. If you do, deal X damage to your opponent, where X equals the cost of that character.
 EndCard
 
-Character: MF/S13-057r
+Character: MF/S13-057
 Name Triangular, Alto
 JPName 三角関係 アルト
 Color R
@@ -1094,14 +1198,27 @@ Soul 2
 Trait1 Pilot
 Trait2 Music
 Combo Wings of Farewell
-Auto:
+Auto: OnPlay|PlacedBy CHANGE
 {
-
+    *OptionalDraw
 }
-Text Auto: When this card is placed on the stage from your hand or by CHANGE to the stage, you may draw a card.
-Auto:
+Text Auto: When this card is placed on the stage from your hand or by "CHANGE" to the stage, you may draw a card.
+Auto: OnReverseOpponent
 {
-
+    If Climax Wings of Farewell
+    {
+        PayCost SendSelf Hand
+        {
+            TargetLocation CenterStage
+            NarrowTargets CardPosition Stand
+            SetXValue TargetCount
+            Bounce
+            If Compare X 1 OrMore
+            {
+                *PlayCharacterFromHand(NameEquals Triangular\, Alto)
+            }
+        }
+    }
 }
 Text Auto: CxCombo [Return this card to your hand] When this card's battle opponent becomes reverse, if "Wings of Farewell" is in your climax area, you may pay the cost. If you do, return all your standing characters in your center stage to your hand. If at least 1 character was returned this way, choose up to 1 "Triangular, Alto" in your hand and put it in an open position on the stage.
 EndCard
@@ -1116,14 +1233,13 @@ Power 1500
 Soul 1
 Trait1 Pilot
 Trait2 Female Dressing
-Cont:
+*GlobalPower(500,Pilot)
+Act: 1
 {
-
-}
-Text Cont: All your other «Pilot» characters get +500 power.
-Act:
-{
-
+    TargetLocation OpponentCenterStage
+    NarrowTargets CanBeChosen && Compare ThatCardsLevel 0 OrLess
+    ChooseCharacterFromTargets Choose a character to put into waiting room.
+    MoveCard OpponentWaitingRoom
 }
 Text Act: [(1)] Choose a level 0 or lower character in your opponent's center stage and put it in the waiting room.
 EndCard
@@ -1137,9 +1253,12 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Pilot
-Cont:
+Cont: GiveAll
 {
-
+    If Other && NameEquals VB-6 Koenig Monster (Canaria)
+    {
+        GainPower 500
+    }
 }
 Text Cont: All your other "VB-6 Koenig Monster (Canaria)" get +1000 power.
 *Act1RestSelfSalvageBrainstorm(Any)
@@ -1153,14 +1272,13 @@ Level 1
 Cost 0
 Power 3000
 Soul 1
-Cont:
+*GlobalPower(500,Pilot)
+Auto: OnPlay
 {
-
-}
-Text Cont: All your other «Pilot» characters get +500 power.
-Auto:
-{
-
+    PayCost 2
+    {
+        SearchWaitingRoom IsCharacter
+    }
 }
 Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 character in your waiting room and return it to your hand.
 EndCard
@@ -1175,9 +1293,14 @@ Power 4500
 Soul 1
 Trait1 Pilot
 Trait2 Mecha
-Auto:
+Auto: OnAttack
 {
-
+    PayCost 4 Discard 1 Any
+    {
+        TargetLocation OpponentCenterStage
+        NarrowTargets Compare ThatCardsLevel 1 OrLess
+        MoveCard OpponentWaitingRoom
+    }
 }
 Text Auto: [(4) Put 1 card from hand to the waiting room] When this card attacks, you may pay the cost. If you do, put all level 1 or lower characters in your opponent's center stage to the waiting room.
 EndCard
@@ -1193,14 +1316,20 @@ Power 7000
 Soul 1
 Trait1 Pilot
 Trait2 Mecha
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 3 OrMore
+    {
+        GainPower 1000
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 3 or higher, this card gets +!000 power.
-Auto:
+Auto: StartMyEncoreStep
 {
-
+    PayCost 2 SendSelf WaitingRoom
+    {
+        *ChangeWaitingRoom(Triangular\, Alto)
+    }
 }
 Text Auto: CHANGE [(2) Put this card in the waiting room] At the beginning of your encore step, you may pay the cost. If you do, choose an "Triangular, Alto" in your waiting room and put it in the position this card was in.
 EndCard
@@ -1226,11 +1355,7 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Pilot
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the level of its battle opponent is 0 or lower, you may reverse that character.
+*RedLevel0Bomb
 EndCard
 
 Character: MF/S13-065
@@ -1242,9 +1367,13 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Pilot
-Auto:
+Auto: OnDamageCanceled
 {
-
+    PayCost 1
+    {
+        SearchWaitingRoom IsCharacter
+        Discard 1 Any
+    }
 }
 Text Auto: [(1)] When the damage dealt by this card becomes canceled, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand, then discard a card from your hand to the waiting room.
 EndCard
@@ -1257,11 +1386,7 @@ Level 0
 Cost 0
 Power 2500
 Soul 1
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your other «Pilot» characters, and that character gets +1000 power until end of turn.
+*OnPlayGiveOtherPower(1000,Pilot)
 EndCard
 
 Character: MF/S13-067
@@ -1297,11 +1422,7 @@ Trigger Soul
 Power 7500
 Soul 2
 Trait1 Drag Queen
-Auto:
-{
-
-}
-Text Auto: When tis attacks, choose 1 of your other «Mecha» characters, and that character gets +1000 power until end of turn.
+*OnAttackGiveOtherPower(1000,Mecha)
 *HandEncore
 EndCard
 
@@ -1326,7 +1447,8 @@ Level 2
 Cost 1
 Effect:
 {
-
+    SearchWaitingRoom IsCharacter
+    *GiveCharacterPower(2000,Any)
 }
 Text Choose a character in your waiting room and return it to your hand. Choose 1 of your characters, and that character gets +2500 power until end of turn.
 EndCard
@@ -1339,9 +1461,31 @@ Level 1
 Cost 1
 Effect:
 {
-
+    Refresh
+    OpponentRefresh
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        Auto: OnReversed
+        {
+            TargetBattleOpponent
+            If Compare TargetCardsLevel ThisCardsLevel OrLess
+            {
+                IfTarget OnStage
+                {
+                    Question Reverse that character ?
+                    If Yes
+                    {
+                        Reverse
+                    }
+                }
+            }
+        }
+        Text Auto: When this card becomes reversed, if the level of its battle opponent is lower than or equal to the level of this card, you may reverse that character
+    }
 }
-Text When this card becomes reversed, if the level of its battle opponent is lower than or equal to the level of this card, you may reverse that character" until end of turn.
+Text All players return cards from their waiting room to their deck and shuffle their deck. Choose 1 of your character and that character gets "Auto: When this card becomes reversed, if the level of its battle opponent is lower than or equal to the level of this card, you may reverse that character" until end of turn.
 EndCard
 
 Climax: MF/S13-073
@@ -1361,7 +1505,7 @@ Climax: MF/S13-075
 Name Lion
 JPName ライオン
 Color R
-When this card is placed from hand to your climax area, put the top card of your deck in your stock, and all your characters get +1 soul until end of turn.
+*OldStockSoulClimax
 EndCard
 
 Character: MF/S13-076
@@ -1376,15 +1520,25 @@ Soul 1
 Trait1 Pilot
 Trait2 Music
 Combo Alcatraz Visit Live
-Combo Alcatraz Visit Live
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Alcatraz Visit Live
+    {
+        TargetLocation Stage
+        NarrowTargets Other
+        GainPower 1000
+    }
 }
 Text Auto: CxCombo When this card attacks, if "Alcatraz Visit Live" is in your climax area, all your other characters get +1000 power until end of turn.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Alcatraz Visit Live
+    {
+        PayCost 1
+        {
+            DrawCard
+        }
+    }
 }
 Text Auto: CxCombo [(1)] When this card attacks, if "Alcatraz Visit Live" is in your climax area, you may pay the cost. If you do, draw 1 card.
 EndCard
@@ -1399,9 +1553,18 @@ Trigger Soul
 Power 10000
 Soul 2
 Trait1 Pilot
-Cont:
+Cont: GiveAll
 {
-
+    If Compare Experience 4 OrMore
+    {
+        If Other && HasTrait Pilot
+        {
+            GainEffect
+            {
+                *HandEncore
+            }
+        }
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 4 or higher, all your other «Pilot» characters get "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
 *Healer
@@ -1417,9 +1580,9 @@ Power 500
 Soul 1
 Trait1 Pilot
 *500Assist
-Act:
+Act: Rest 2 Any
 {
-
+    *GiveCharacterPower(1000,Pilot)
 }
 Text Act: [Rest 2 of your characters] Choose 1 of your «Pilot» characters, and that character gets +1000 power until end of turn.
 EndCard
@@ -1433,14 +1596,13 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Pilot
-Auto:
+*OnPlayScryToBottom
+Auto: OnSentFromStageToWaitingRoom
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck. Put it back either on top or bottom of the deck.
-Auto:
-{
-
+    PayCost 1
+    {
+        *ExchangeCardInLevelWithWaitingRoom(Any,Any)
+    }
 }
 Text Auto: [(1)] When this card is placed in your waiting room from the stage, you may pay the cost. If you do, choose a card in your level and a card in your waiting room. exchange them.
 EndCard
@@ -1455,14 +1617,25 @@ Power 5500
 Soul 1
 Trait1 Pilot
 Combo Miraculously Alive
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Miraculously Alive
+    {
+        DrawCard
+        Discard 1 Any
+        GainPower 1000
+    }
 }
 Text Auto: CxCombo When this card attacks, if "Miraculously Alive" is in your climax area, draw a card, and discard a card from your hand to the waiting room. This card gets +1000 power until end of turn.
-Auto:
+Auto: StartMyEncoreStep
 {
-
+    If CardPosition Rest
+    {
+        PayCost 2 SendSelf WaitingRoom
+        {
+            *ChangeWaitingRoom(Everyday's Smile\, Clan)
+        }
+    }
 }
 Text Auto: CHANGE [(2) Put this card in the waiting room] At the beginning of your encore step, if this card is rest, you may pay the cost. If you do, choose a "Everyday's Smile, Clan" in your waiting room and put it in the position this card was in.
 EndCard
@@ -1477,16 +1650,25 @@ Trigger Soul
 Power 7000
 Soul 1
 Trait1 Pilot
-Cont:
+Cont: GiveAll
 {
-
+    If Compare Experience 2 OrMore && Other && HasTrait Pilot
+    {
+        GainPower 500
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, all your other «Pilot» characters get +500 power.
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsClimax
+    {
+        TargetSelf
+        MoveCard WaitingRoom
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a climax card, put this card in the waiting room. (Put the Revealed card back where it was)
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a climax card, put this card in the waiting room.
 EndCard
 
 Character: MF/S13-082
@@ -1499,11 +1681,7 @@ Trigger Soul
 Power 8000
 Soul 2
 Trait1 Pilot
-Cont:
-{
-
-}
-Text Cont: This card gets +500 power for each other «Pilot» you have
+*OnPlayGainPowerForEach(500,Pilot)
 EndCard
 
 Character: MF/S13-083
@@ -1516,11 +1694,7 @@ Power 500
 Soul 1
 Trait1 Pilot
 Trait2 Glasses
-Cont:
-{
-
-}
-Text Cont: All your other "Ending Sorrow, Clan" get +1000 power.
+*GiveNamePower(1000,Ending Sorrow\, Clan)
 *Bond1(Ending Sorrow\, Clan)
 EndCard
 
@@ -1534,9 +1708,11 @@ Power 1000
 Soul 1
 Trait1 Pilot
 Trait2 Ramen
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters Other && CardPosition Rest
+    MultiplyXValue 1000
+    GainPower X
 }
 Text Cont: This card gets +1000 power for each other rest character you have
 EndCard
@@ -1550,10 +1726,11 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Pilot
-Auto:
+Auto: OnOpponentPlacedOnStageFromHand
 {
-
+    GainPower 5000
 }
+Quick
 Text Auto: When an opponent's character is placed on the stage from your hand, this card gets +500 power until end of turn.
 EndCard
 
@@ -1568,11 +1745,7 @@ Power 6500
 Soul 1
 Trait1 Pilot
 Trait2 Mecha
-Cont:
-{
-
-}
-Text Cont: All your other «Pilot» characters get +1000 power.
+*GlobalPower(1000,Pilot)
 EndCard
 
 Character: MF/S13-087
@@ -1586,11 +1759,19 @@ Power 8000
 Soul 1
 Trait1 Pilot
 Trait2 Mecha
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Pilot && Compare ThatCardsLevel MyLevel OrLess
+    {
+        PayCost 3
+        {
+            PlaceOnStage falsz true true false
+        }
+    }
 }
-Text Auto: [(3)] When tis is placed on the stage from your hand, reveal the top card of your deck. If that card is a «Pilot» character whose level is lower than or equal to your level, you may pay the cost. If you do, put that character in any position on your stage. (If not, put it back)
+Text Auto: [(3)] When tis is placed on the stage from your hand, reveal the top card of your deck. If that card is a «Pilot» character whose level is lower than or equal to your level, you may pay the cost. If you do, put that character in any position on your stage.
 EndCard
 
 Character: MF/S13-088
@@ -1601,14 +1782,23 @@ Level 0
 Cost 0
 Power 1500
 Soul 1
-Cont:
+Cont: GiveAll
 {
-
+    If Other && NameContains オズマ
+    {
+        GainEffect
+        {
+            Auto: Encore 2
+            {
+            }
+            Text Auto: ENCORE [(2)]
+        }
+    }
 }
-Text Cont: All your other characters with "Ozma" in its card name gets "Auto: ENCORE
-Act:
+Text Cont: All your other characters with "Ozma" in its card name gets "Auto: ENCORE [(2)]"
+Act: Rest 2 Any
 {
-
+    *ScryToBottom
 }
 Text Act: [Rest 2 of your characters] Look at the top card of your deck. Put it back either on top or bottom of the deck.
 EndCard
@@ -1622,9 +1812,10 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Pilot
-Act:
+Act: 1
 {
-
+    GainLevel 1
+    GainPower 1500
 }
 Text Act: [(1)] This card gets +1 level and +1500 power until end of turn.
 EndCard
@@ -1661,11 +1852,14 @@ Level 1
 Cost 0
 Power 4000
 Soul 1
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 2
+    {
+        SearchDeck IsCharacter && With EXPERIENCE
+    }
 }
-Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for a character with EXPERIENCE, reveal it, and put it in your hand. Shuffle your deck.
+Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for a character with "EXPERIENCE", reveal it, and put it in your hand. Shuffle your deck.
 EndCard
 
 Character: MF/S13-093
@@ -1679,9 +1873,18 @@ Soul 1
 Trait1 Pilot
 Trait2 Music
 Combo Guitar Snipe
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Guitar Snipe
+    {
+        PayCost 1
+        {
+            TargetLocation OpponentCenterStage
+            NarrowTargets CanBeChosen && Compare ThatCardsLevel 1 OrLess
+            ChooseCharacterFromTargets Choose a character to put to bottom of deck.
+            MoveCardToBottom OpponentDeck
+        }
+    }
 }
 Text Auto: CxCombo [(1)] When this card attacks, if "Guitar Snipe" is in your climax area, you may pay the cost. If you do, choose a level 1 or lower character in your opponent's center stage and put it on the Bottom of the deck.
 EndCard
@@ -1716,11 +1919,12 @@ JPName 娘娘ラーメン
 Color B
 Level 1
 Cost 1
+Counter
 Effect:
 {
-
+    *GiveCharacterPower(3500,Pilot)
 }
-Text Choose 1 of your «Pilot» characters, and that character gets +3500 power until end of turn.
+Text COUNTER Choose 1 of your «Pilot» characters, and that character gets +3500 power until end of turn.
 EndCard
 
 Event: MF/S13-097
@@ -1731,7 +1935,12 @@ Level 2
 Cost 2
 Effect:
 {
-
+    Peek OpponentDeck 3
+    Message Choose up to 3 cards to put into waiting room.
+    ChooseCardsFromTargets 0 3 Any
+    MoveCard OpponentWaitingRoom
+    EndPeek
+    ShuffleLocation OpponentDeck
 }
 Text Look at the top 3 cards of your opponent's deck. Choose up to 3 of them and put them in the waiting room. Return the rest to the deck, and your opponent Shuffles that deck.
 EndCard
@@ -1740,7 +1949,7 @@ Climax: MF/S13-098
 Name Guitar Snipe
 JPName ギター狙撃
 Color B
-When this card is placed from hand to your climax area, put the top card of your deck in your stock, and all your characters get +1 soul until end of turn.
+*OldStockSoulClimax
 EndCard
 
 Climax: MF/S13-099
@@ -1767,16 +1976,16 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Love
-Cont:
+Cont: Assist
 {
-
+    If HasTrait Music
+    {
+        GainLevel 1
+        GainPower 500
+    }
 }
 Text Cont: ASSIST Your «Music» characters in front of this card get +1 level and +500 power.
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your «Music» characters, and that character gets +1000 power until end of turn.
+*RestGivePower(1000,Music)
 EndCard
 
 Character: MF/S13-102
@@ -1789,10 +1998,14 @@ Power 6500
 Soul 1
 Trait1 Music
 Trait2 Love
-Auto:
+Auto: OnPlay
 {
-
+    If StageContains 3 Other && HasTrait Pilot|Music
+    {
+        GainSoul 1
+    }
 }
+Quick
 Text Auto: When this card is placed on the stage from your hand, if the number of other characters with either «Music» or «Pilot» you have is 3 or more, this card gets +1 soul until end of turn.
 EndCard
 
@@ -1806,11 +2019,7 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Love
-Cont:
-{
-
-}
-Text Cont: During your turn, this card gets +1000 power.
+*PowerOnMyTurn(1000)
 EndCard
 
 Character: MF/S13-104
@@ -1824,9 +2033,12 @@ Power 10000
 Soul 2
 Trait1 Music
 Trait2 Love
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 3 Other && HasTrait Music
+    {
+        GainPower 1000
+    }
 }
 Text Cont: If the number of other «Music» characters you have is 3 or more, this card gets +1000 power.
 *Healer
@@ -1868,11 +2080,7 @@ Power 2000
 Soul 1
 Trait1 Music
 Trait2 Love
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your characters, and that character gets +1000 power until end of turn.
+*RestGivePower(1000,Any)
 EndCard
 
 Character: MF/S13-108
@@ -1951,9 +2159,12 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Swimsuit
-Cont:
+Cont: GiveAll
 {
-
+    If MyTurn && Other
+    {
+        GainPower 500
+    }
 }
 Text Cont: During your turn, all your other characters get +500 power.
 EndCard
@@ -1968,9 +2179,10 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 Love
-Act:
+Act: 3
 {
-
+    TargetLocation Stage
+    GainSoul 1
 }
 Text Act: [(3)] All your characters get +1 soul until end of turn.
 EndCard
@@ -1985,9 +2197,9 @@ Power 2000
 Soul 1
 Trait1 Music
 Trait2 Love
-Act:
+Act: 1
 {
-
+    *GiveCharacterPower(1500,Any)
 }
 Text Act: [(1)] Choose 1 of your characters, and that character gets +1500 power until end of turn.
 EndCard
@@ -2002,10 +2214,11 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Love
-Auto:
+Auto: OnOtherOpponentReversed
 {
-
+    GainPower 1000
 }
+Quick
 Text Auto: When the battle opponent of your other character becomes reversed, this card gets +1000 power until end of turn.
 EndCard
 
@@ -2019,10 +2232,6 @@ Power 2000
 Soul 1
 Trait1 Music
 Trait2 Miko
-Cont:
-{
-
-}
-Text Cont: This card gets +500 power for each of your other «Music» characters
+*GainPowerForEachOther(500,Music)
 EndCard
 

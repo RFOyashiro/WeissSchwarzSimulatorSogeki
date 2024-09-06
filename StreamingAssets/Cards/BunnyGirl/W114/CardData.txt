@@ -2043,7 +2043,7 @@ Auto: OnCancel
 Text Auto: During your opponent's attack phase, when damage taken by you is canceled, if you have another "Future Promise, Mai Sakurajima", and there are 2 or less cards between all cards in your markers, you may choose an «Adolescence» character in your waiting room and put it face down underneath this card as a marker.
 EndCard
 
-Event: SBY/W114-073a
+Event: SBY/W114-073
 Name Many Memories
 JPName 思い出の数々
 Color R
