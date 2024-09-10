@@ -700,11 +700,11 @@ Power 10000
 Soul 2
 Trait1 Headpat
 Trait2 Maiden
-Combo Tail Brishing
+Combo Tail Brushing
 *OnPlayDraw2Discard1
 Auto: OnAttack
 {
-    If Climax Tail Brishing && StageContains 4 Other && HasTrait Headpat
+    If Climax Tail Brushing && StageContains 4 Other && HasTrait Headpat
     {
         PayCost 2 Discard 3 Any
         {
@@ -723,7 +723,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo [(2) Put 3 cards from your hand into waiting room] When this card attack, if "Tail Brishing" is in your climax area and the number of your other «Headpat» characters is 4 or more, you may pay the cost. If so, all your characters gain the following ability. "Auto: At the end of this card's attack, perform the following effect twice. 'Deal 1 damage to your opponent.'"
+Text Auto: CxCombo [(2) Put 3 cards from your hand into waiting room] When this card attack, if "Tail Brushing" is in your climax area and the number of your other «Headpat» characters is 4 or more, you may pay the cost. If so, all your characters gain the following ability. "Auto: At the end of this card's attack, perform the following effect twice. 'Deal 1 damage to your opponent.'"
 EndCard
 
 Character: HP/Wx01-197
@@ -1605,7 +1605,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [(2) Put 1 card from your hand into waiting room] When this card attacks, if "Building Sand Castle" is in your climax area, you may pay the cost. If you do, perform the following effect twice. "Deal 1 damage to your opponent."
+Text Auto: CxCombo [(2) Put 1 card from your hand into waiting room] When this card attacks, if "Building Sand Castle" is in your climax area, you may pay the cost. If you do, perform the following effect twice. "Deal 1 damage to your opponent."
 EndCard
 
 Event: HP/Wx01-072
@@ -2510,7 +2510,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [Put a "Jumping Hug" from your climax area into stock] When this card attacks, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 2 «Headpat» characters among them, reveal them, add them to your hand and put the rest into waiting room.
+Text Auto: CxCombo [Put a "Jumping Hug" from your climax area into stock] When this card attacks, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 2 «Headpat» characters among them, reveal them, add them to your hand and put the rest into waiting room.
 Auto: OnReverseOpponent
 {
     If StageContains 1 Other && NameContains Sogeki
@@ -2519,7 +2519,7 @@ Auto: OnReverseOpponent
         MoveCard Climax
     }
 }
-Text Auto: When this card's battle opponent becomes reverse, if you have no climax in your climax area and you have another character with "Sogeki" in its card name, you may choose 1 "Jumping Hug" in your waiting room and place it in your climax area.
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if you have no climax in your climax area and you have another character with "Sogeki" in its card name, you may choose 1 "Jumping Hug" in your waiting room and place it in your climax area.
 EndCard
 
 Character: HP/Wx01-242
@@ -2820,7 +2820,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: [(1) Put 1 "On Their Way, Ruby" from your hand into waiting room] When this card attacks, if "Over There" is in your climax area, this card's soul is 4 or lower, and you the number of other «Headpat» characters you have is 4 or more, you may pay the cost. If you do, during that attack, when this card deals attack damage to your opponent, deal 1 damage X times to your opponent instead. X is equal to this card's soul. (This damage is not damage caused by an Auto: effect.)
+Text Auto: CxCombo [(1) Put 1 "On Their Way, Ruby" from your hand into waiting room] When this card attacks, if "Over There" is in your climax area, this card's soul is 4 or lower, and you the number of other «Headpat» characters you have is 4 or more, you may pay the cost. If you do, during that attack, when this card deals attack damage to your opponent, deal 1 damage X times to your opponent instead. X is equal to this card's soul. (This damage is not damage caused by an Auto: effect.)
 EndCard
 
 Character: HP/Wx01-020
@@ -3759,7 +3759,7 @@ Trait1 Headpat
 Trait2 Horns
 Cont: InHand
 {
-    If LocationContains 1 NameEquals Aurora Costume, Skadi &&& LocationContains 1 NameEquals Skadi Costume, Aurora
+    If LocationContains Level 1 NameEquals Aurora Costume, Skadi &&& LocationContains Level 1 NameEquals Skadi Costume, Aurora
     {
         LoseLevel 1
     }
@@ -5555,7 +5555,7 @@ Name Sparkling Chibi
 *DoorClimax
 EndCard
 
-Event: HP/Wx01-
+Event: HP/Wx01-068
 Name At the Beach
 Color Y
 Level 1
@@ -5576,7 +5576,7 @@ Effect:
 Text Search your deck for up to 1 «Headpat» character, reveal it, add it to your hand, shuffle your deck and put the top 3 cards of your deck into waiting room. If there is 3 Yellow events or characters with either "Lily" or "Solva" in its card name, draw a card.\nPut this card into memory.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-296
 Name New Dress, Aurora
 Color B
 Level 0
@@ -5589,18 +5589,35 @@ Auto: OnPlay
 {
     PayCost Discard 1 IsCharacter && HasTrait Headpat
     {
-        
+        SearchLocationForTargets WaitingRoom 1 1 IsCharacter
+        MoveCard Memory
+        ScheduleEffectWithTargets StartDrawPhase
+        {
+            Effect:
+            {
+                IfTarget InLocation Memory
+                {
+                    MoveCard Hand
+                }
+            }
+            Text At the beginning of your next turn, put that character from memory into your hand.
+        }
     }
 }
 Text Auto: [Put 1 «Headpat» character from your hand into waiting room] When this is placed on the stage from hand, you may pay cost. if you do, choose 1 character in your waiting room and put that character into memory. At the beginning of your next turn, put that character from memory into your hand.
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchLocationForTargets Memory 1 1 Any
+        RevealTargets
+        MoveCard Hand
+    }
 }
 Text Auto: [(1) Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 card in your memory and return it to your hand.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-298
 Name Passionate Kiss, Aurora
 Color B
 Level 1
@@ -5610,24 +5627,46 @@ Soul 1
 Trait1 Headpat
 Trait2 Horns
 Trait3 Pendant
-Cont:
+Combo Deep Love
+Cont: GiveSelf
 {
-
+    If LocationContains Memory 3 Any
+    {
+        GainPower 1000
+        GainSoul 1
+    }
 }
 Text Cont: If you have 3 or more cards in memory, this card gets +1000 power and +1 soul.
-Auto:
+Auto: OnEndOfOpponentsAttack
 {
-
+    Peek Deck 2
+    ChooseCardsFromTargets 1 1 Any
+    MoveCardToBottom Deck
+    EndPeek
 }
-Text Auto: <b><size-auto:8.55>Memory</size-auto></b> This ability activates up to twice per turn. At the end of your opponent's character's attack, if this card is in your memory, look at the top 2 cards of your deck, choose 1 card among them, put it on the bottom of your deck and put the rest on top of your deck.
-Auto:
+InMemory
+TimesPerTurn 2
+Text Auto: MEMORY This ability activates up to twice per turn. At the end of your opponent's character's attack, if this card is in your memory, look at the top 2 cards of your deck, choose 1 card among them, put it on the bottom of your deck and put the rest on top of your deck.
+Auto: OnEndOfAttack
 {
-
+    If Climax Deep Love
+    {
+        PayCost 1
+        {
+            RevealUpTo Deck 6
+            ChooseCardsFromTargets 0 2 IsCharacter
+            RevealTargets
+            MoveCard Hand
+            PutTheRestIntoTheWaitingRoom
+            TargetSelf
+            MoveCard Memory
+        }
+    }
 }
-Text Auto: [(1)] At the end of this card's attacks, if "Deep Love" is in your climax area, you may pay the cost. If you do, reveal the top 6 cards of your deck, choose up to 2 characters among them, add them to your hand, put the rest on top of your deck in any order and put this card into memory.
+Text Auto: CxCombo [(1)] At the end of this card's attacks, if "Deep Love" is in your climax area, you may pay the cost. If you do, reveal the top 6 cards of your deck, choose up to 2 characters among them, add them to your hand, put the rest on top of your deck in any order and put this card into memory.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-301
 Name Contained, Aurora
 Color B
 Level 3
@@ -5637,19 +5676,40 @@ Power 10000
 Soul 2
 Trait1 Headpat
 Trait2 Horns
-Auto:
+Combo Dark Memories
+Auto: OnAttack
 {
-
+    If Climax Dark Memories
+    {
+        UntilEndOfOpponentsTurn
+        GainEffect
+        {
+            Cont: GiveFacing
+            {
+                LoseSoul 2
+            }
+            Text Cont: The character facing this card gets -2 souls.
+        }
+        UntilEndOfOpponentsTurn
+        GainEffect
+        {
+            Auto: StartOpponentDrawPhase
+            {
+                If InLocation CenterStage
+                {
+                    GainPower 4000
+                }
+            }
+            Quick
+            Text Auto: At the beginning of your opponent's draw phase, if this card is on your center stage, this card gets +4000 power until end of turn.
+        }
+    }
 }
 Text Auto: CxCombo When this card attacks, if "Dark Memories" is in your climax area, this card gets the following 2 abilities until end of your opponent's next turn. "Cont: The character facing this card gets -2 souls." "Auto: At the beginning of your opponent's draw phase, if this card is on your center stage, this card gets +4000 power until end of turn."
-Auto:
-{
-
-}
-Text Auto: During your opponent's turn, when damage you receive is not canceled, if this card is on your center stage, look at the top card of your deck, and put it on the top of your deck or into the waiting room.
+*DefensiveScryOnCenterStage
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-306
 Name Cow Chasing, Aurora
 Color B
 Level 1
@@ -5658,23 +5718,50 @@ Power 2000
 Soul 1
 Trait1 Headpat
 Trait2 Horns
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    If AllYourCharacters HasTrait Headpat
+    {
+        TargetLocation Memory
+        SetXValue TargetCount
+        MultiplyXValue 500
+        TargetMyCharacterInBattle
+        GainPower X
+    }
 }
-Text Auto: <b><size-auto:8.55>Memory</size-auto></b> When you use this card's <b><size-auto:8.55>Backup</size-auto></b>, if all your characters are «Headpat», your character in battle gets +X power until end of turn. X equals number of card in your memory times 500.
-Act:
-{
-
-}
-Text Act: <b><size-auto:8.55>Backup 1500 level 1</size-auto></b> [Put this card from your hand into waiting room] <i><color:rgba(66,66,66,255)>(Choose one of your characters that is being frontal attacked, and that character gets +1500 power until end of turn)</color></i>
+Text Auto: MEMORY When you use this card's "BACKUP", if all your characters are «Headpat», your character in battle gets +X power until end of turn. X equals number of card in your memory times 500.
+Backup 1500
 EndCard
 
-Climax: HP/Wx01-
+Event: HP/Wx01-341
 Name Fitting Swimsuit?
+Color B
+Level 2
+Cost 1
+Counter
+Requirement LocationContains Memory 4 Any
+Text You cannot play this card from your hand if you have 4 or less cards in memory.
+Effect:
+{
+    PayCost Discard 1 IsClimax
+    {
+        TargetMyCharacterInBattle
+        GainEffect
+        {
+            Cont: GiveFacing
+            {
+                GainSpecialEffect CannotDealDamage
+            }
+            Text Cont: The character facing this card cannot deal damage.
+        }
+    }
+    TargetSelf
+    MoveCard Memory
+}
+Text COUNTER You may put 1 climax from your memory into waiting room. If you do, your character in battle gets the following ability until end of turn. "Cont: The character facing this card cannot deal damage."\nPut this card into memory.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-317
 Name Peace Sign, Aurora
 Color B
 Level 0
@@ -5683,19 +5770,25 @@ Power 1500
 Soul 1
 Trait1 Headpat
 Trait2 Horns
-Auto:
+Auto: OnReversed
 {
-
+    PayCost 1 SendSelf Memory
+    {
+        SearchLocationForTargets Deck 0 1 IsCharacter && HasTrait Horns|Pendant && Compare ThatCardsCost 0 OrLess
+        ChangeRested
+    }
 }
 Text Auto: [(1) Put this card into memory] When this card becomes reverse, you may pay the cost. If you do, search your deck for up to 1 cost 0 or lower «Horns» or «Pendant» characters, put that character rest in the position this card was in and shuffle your deck.
-Act:
+Act: 2 RestSelf
 {
-
+    DrawCard
+    SearchLocationForTargets WaitingRoom 1 1 IsCharacter
+    MoveCard Memory
 }
-Text Act: [(2) rest this card] Draw 1 card and put 1 character from your waiting room into memory.
+Text Act: [(2) Rest this card] Draw 1 card and put 1 character from your waiting room into memory.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-321
 Name Aurora
 Color B
 Level 2
@@ -5705,18 +5798,56 @@ Power 7500
 Soul 1
 Trait1 Headpat
 Trait2 Horns
-Auto:
+Combo Triple Squad
+Auto: OnSpecificClimaxPlay Triple Squad
 {
-
+    If StageContains 1 Other && NameContains Izumi &&& StageContains 1 Other && NameContains Tohka
+    {
+        PayCost 1
+        {
+            *OptionalDraw
+            *OptionalDraw
+            GainPower 6000
+        }
+    }
 }
-Text Auto: [(1)] When "Triple Squad" is placed in your climax area, if you have another character with "Izumi" in its card name and another character with "Tohka" in its card name, you may pay the cost. If you do, draw up to 2 cards and this card gets +6000 power until end of turn.
+Text Auto: CxCombo [(1)] When "Triple Squad" is placed in your climax area, if you have another character with "Izumi" in its card name and another character with "Tohka" in its card name, you may pay the cost. If you do, draw up to 2 cards and this card gets +6000 power until end of turn.
 EndCard
 
-Climax: HP/Wx01-
+Event: HP/Wx01-342
 Name Go, Do a Crime
+Color B
+Level 2
+Cost 3
+Counter
+Effect:
+{
+    TargetLocation Memory
+    SetXValue TargetsWithDifferentNames
+    TargetLocation Stage
+    NarrowTargets HasTrait Headpat
+    ChooseCharactersFromTargets X X Choose X characters to give +2000 power and the effect.
+    GainPower 2000
+    GainEffect
+    {
+        Auto: OnReverseOpponent
+        {
+            TargetBattleOpponent
+            IfTarget OnStage
+            {
+                Question_Obvious Put that character into clock ?
+                If Yes
+                {
+                    MoveCard OpponentClock
+                }
+            }
+        }
+    }
+}
+Text COUNTER MEMORY Choose X of your «Headpat» characters and those characters get +2000 power and the following effect until end of turn. "Auto: When this card's battle opponent's becomes reverse, you may put that character into clock." X equals the number of cards with different name in your memory.\nPut this card into memory.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-335
 Name Aurora
 Color B
 Level 1
@@ -5725,19 +5856,46 @@ Power 3500
 Soul 1
 Trait1 Headpat
 Trait2 Horns
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn && HasMarker
+    {
+        GainPower 3000
+        GainEffect
+        {
+            Auto: OnTriggerCheckClimax
+            {
+                If HasTrigger Gate
+                {
+                    PayCost 1
+                    {
+                        BlindStock
+                        *OptionalDrawDiscard
+                    }
+                }
+            }
+            Text Auto: [(1)] When your characters trigger check reveals a climax with a Gate trigger icon, you may pay the cost. If you do, put the top card of your deck into stock and draw up to 1 card. If you drew 1 card, put 1 card from your hand into waiting room.
+        }
+    }
 }
-Text Cont: During your turn, if there is a marker underneath this card, this card gets +3000 power and the following ability. "Auto: [(1)] When your characters trigger check reveals a climax with a (^) trigger icon, you may pay the cost. If you do, put the top card of your deck into stock and draw up to 1 card. If you drew 1 card, put 1 card from your hand into waiting room."
-Auto:
+Text Cont: During your turn, if there is a marker underneath this card, this card gets +3000 power and the following ability. "Auto: [(1)] When your characters trigger check reveals a climax with a Gate trigger icon, you may pay the cost. If you do, put the top card of your deck into stock and draw up to 1 card. If you drew 1 card, put 1 card from your hand into waiting room."
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Headpat || IsEvent
+    {
+        Question Put that card underneath as a marker.
+        If Yes
+        {
+            Marker_FaceUp
+        }
+    }
 }
-Text Auto: When this card is placed onthe stage from your hand, reveal the top card of your deck. If that card is an event or a «Headpat» character, you may put that card face up underneath this card as a marker.
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is an event or a «Headpat» character, you may put that card face up underneath this card as a marker.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-322
 Name Cheeky Girl, Aurora
 Color B
 Level 0
@@ -5746,35 +5904,71 @@ Power 500
 Soul 1
 Trait1 Headpat
 Trait2 Horns
-Auto:
+Combo La Creatura
+Auto: OnEndOfAttack
 {
-
+    If Climax La Creatura
+    {
+        PayCost SendClimax Memory
+        {
+            *OptionalBlindStock
+            *OptionalBlindStock
+            SearchWaitingRoom IsCharacter
+        }
+    }
 }
 Text Auto: CxCombo [Put 1 climax from your climax area into memory] At the end of this card's attack, if "La Creatura" is in your climax area, you may pay the cost. If you do, put the top 2 cards of your deck into stock and choose up to 1 character from waiting room and return it in your hand.
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-353
 Name Dark Memories
+*GateClimax
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-354
 Name Deep Love
+*GateClimax
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-358
 Name Christmas Night
+*BookClimax
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-360
 Name La Creatura
+Color B
+*2SoulClimax
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-365
 Name Triple Squad
+*BookClimax
 EndCard
 
-Climax: HP/Wx01-
+Event: HP/Wx01-344
 Name Goodbye Declaration
+Color B
+Level 3
+Cost 2
+Counter
+Effect:
+{
+    MoveCard Memory
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharactersFromTargets 2 2 Choose 2 character to give the effect.
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            TargetLocation OpponentMemory
+            LoseSoul TargetsWithDifferentNames
+        }
+        Text Cont: MEMORY This card gets -X souls. X equals the number of cards with different names in your opponent's memory.
+    }
+}
+Text COUNTER Put this card into memory. Choose 2 of your opponent's characters and those characters get the following effect until end of turn. "Cont: MEMORY This card gets -X souls. X equals the number of cards with different names in your opponent's memory."
 EndCard
 
 Character: HP/Wx01-
@@ -5795,7 +5989,7 @@ Auto:
 {
 
 }
-Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 1 «Headpat» character with a level equal to or less than your level + 1 and return it to your hand.
+Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 1 «Headpat» level X or lower character in your waiting room and return it to your hand. X equals your level + 1.
 EndCard
 
 Climax: HP/Wx01-
@@ -5909,7 +6103,7 @@ Auto:
 {
 
 }
-Text Auto: CxCombo <b><size-auto:8.55>Memory</size-auto></b> [(1) Put 1 face up "Watching Over You, Shiron" in your memory face down] When this card attacks, if "At Your Service" is in your climax area, you may pay the cost. If you do, deal X damage to your opponent. X equals number of face down card in your memory.
+Text Auto: CxCombo MEMORY [(1) Put 1 face up "Watching Over You, Shiron" in your memory face down] When this card attacks, if "At Your Service" is in your climax area, you may pay the cost. If you do, deal X damage to your opponent. X equals number of face down card in your memory.
 EndCard
 
 Character: HP/Wx01-
@@ -6836,7 +7030,7 @@ Auto:
 {
 
 }
-Text Auto: At the beginning of your attack phase, if "Tentacle Hospitality" is in your climax area and this card is on top of your clock, all your "Dark Tales of the Sea, Jike" gets +3000 power and the following ability until end of turn. "Cont: During this card's battle, your opponent cannot play <b><size-auto:8.55>Backup</size-auto></b> or events."
+Text Auto: At the beginning of your attack phase, if "Tentacle Hospitality" is in your climax area and this card is on top of your clock, all your "Dark Tales of the Sea, Jike" gets +3000 power and the following ability until end of turn. "Cont: During this card's battle, your opponent cannot play BACKUP or events."
 EndCard
 
 Character: HP/Wx01-
@@ -7194,12 +7388,12 @@ Auto:
 {
 
 }
-Text Auto: <b><size-auto:8.55>Memory</size-auto></b> [Put 1 face up card in your memory face down] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or higher «Headpat» character in your deck, reveal it, add it to your hand and shuffle your deck. If you added no cards to your hand, put this card into clock.
+Text Auto: MEMORY [Put 1 face up card in your memory face down] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or higher «Headpat» character in your deck, reveal it, add it to your hand and shuffle your deck. If you added no cards to your hand, put this card into clock.
 Auto:
 {
 
 }
-Text Auto: <b><size-auto:8.55>Memory</size-auto></b> [Put 1 face down card in your memory face up] When this card attacks, you may pay the cost. If you do, this card gets +1 soul until end of turn.
+Text Auto: MEMORY [Put 1 face down card in your memory face up] When this card attacks, you may pay the cost. If you do, this card gets +1 soul until end of turn.
 EndCard
 
 Character: HP/Wx01-
@@ -7215,7 +7409,7 @@ Auto:
 {
 
 }
-Text Auto: <b><size-auto:8.55>Memory</size-auto></b> If this card is in your memory, when your card or your opponent's card in the clock is put into the waiting room due to respective card effects, that player may choose 1 card in their hand, and put it into their waiting room. Otherwise, that player puts the top card of their deck into their clock.
+Text Auto: MEMORY If this card is in your memory, when your card or your opponent's card in the clock is put into the waiting room due to respective card effects, that player may choose 1 card in their hand, and put it into their waiting room. Otherwise, that player puts the top card of their deck into their clock.
 Auto:
 {
 
@@ -7475,12 +7669,12 @@ Auto:
 {
 
 }
-Text Auto: <b><size-auto:8.55>Memory</size-auto></b> At the beginning of your attack phase, if this card is in your memory, put the top card of your stock into memory and this card gets the following ability until end of your opponent's next turn. "Cont: <b><size-auto:8.55>Memory</size-auto></b> If this card is in your memory, neither player takes damage from their opponent's characters Auto: effects."
+Text Auto: MEMORY At the beginning of your attack phase, if this card is in your memory, put the top card of your stock into memory and this card gets the following ability until end of your opponent's next turn. "Cont: MEMORY If this card is in your memory, neither player takes damage from their opponent's characters Auto: effects."
 Auto:
 {
 
 }
-Text Auto: <b><size-auto:8.55>Memory</size-auto></b> At the end of your turn, if this card is in your memory, choose 1 card in your memory and add it to your hand.
+Text Auto: MEMORY At the end of your turn, if this card is in your memory, choose 1 card in your memory and add it to your hand.
 EndCard
 
 Character: HP/Wx01-

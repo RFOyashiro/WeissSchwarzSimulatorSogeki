@@ -3179,3 +3179,34 @@ JPName 生死分ける刹那の抜刀
 *DoorClimax
 EndCard
 
+Character: RKN/S115-P01
+Name These Peaceful Days Will Last Forever, Kenshin Himura
+JPName この穏やかな日々をいつまでも 緋村剣心
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Meiji Swordsman Romantic Story
+Trait2 Swordsman
+Auto: OnUseThisCardsBackup
+{
+    PayCost 1 Discard 1 IsCharacter && HasTrait Meiji Swordsman Romantic Story &&& Send 1 WaitingRoom Any
+    {
+        TargetLocation OpponentStage
+		SetXValue OpponentsLevel
+		AddToXValue 1
+		NarrowTargets Compare ThatCardsLevel X OrHigher
+		ChooseCharacterFromTargets Choose a character to send to your opponent's stock
+        If HasTarget
+        {
+		    MoveCard OpponentStock
+            TargetBottom OpponentStock
+            MoveCard OpponentWaitingRoom
+        }
+    }
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room, put 1 of your characters from the stage in the waiting room] When you use this card's "BACKUP", you may pay the cost If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in their stock. If you do, put the bottom card of your opponent's stock in the waiting room.
+Backup 2500
+EndCard

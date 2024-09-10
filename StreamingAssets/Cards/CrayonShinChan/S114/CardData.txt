@@ -2939,3 +2939,53 @@ JPName アイヤータウンを守れ！
 *GateClimax
 EndCard
 
+Character: CS/S114-P01
+Name A Special Summer for the Nohara Family
+JPName 特別な夏 野原一家
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 MOVIE
+Trait2 Family
+Trait3 Kindergarten
+Auto: OnPlay
+{
+	RevealUpTo Deck 3
+	AIChoice AddToHand
+	ChooseCardsFromTargets 0 1 IsEvent
+	If HasTarget
+	{
+		RevealTargets
+		MoveCard Hand
+		PutTheRestIntoTheWaitingRoom
+		CheckForEmptyDeck
+		Discard 1 Any
+	}
+	PutTheRestIntoTheWaitingRoom
+}
+Text Auto: When this card is placed on the stage from your hand, look at up to 3 cards from the top of your deck, choose up to 1 event from among them, reveal it to your opponent, put it into your hand, and put the rest into your waiting room. If you put 1 card into your hand, choose 1 card in your hand, and put it into your waiting room.
+Auto: OnAttack
+{
+    TargetLocation Backstage
+    NarrowTargets Other
+    If Not HasTarget
+    {
+        Question_Obvious Put the top card of your deck in waiting room ?
+        If Yes
+        {
+            Mill 1
+            IfTarget Compare ThatCardsLevel 0 OrLess && IsCharacter
+            {
+                Question_Obvious Place the milled character in backstage ?
+                If Yes
+                {
+                    PlaceOnStage false false true false
+                }
+            }
+        }
+    }
+}
+Text Auto: When this card attacks, if there is no other characters in your backstage, you may put the top card of your deck in your waiting room. If it's a level 0 or lower character, you may put that character in any position in the backstage.
+EndCard
