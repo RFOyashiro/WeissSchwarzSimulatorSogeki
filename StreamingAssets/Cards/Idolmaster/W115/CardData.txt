@@ -126,6 +126,7 @@ Auto: OnEndOfAttack
         }
     }
 }
+TimesPerTurn 1
 Text Auto: CxCombo [(2) Put 2 cards from your hand to the waiting room] This card ability activates up to once per turn. At the end of this card's attack, if "MOTTO!" is in your climax area and you have another «Music» character, you may pay the cost. If you do, stand this card, look at up to the top 3 cards of your opponent's deck, choose up to 3 cards among them and put them in the waiting room, put the rest to the deck, and your opponent shuffles that deck.
 EndCard
 

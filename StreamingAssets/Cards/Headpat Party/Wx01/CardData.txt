@@ -5980,23 +5980,43 @@ Power 4000
 Soul 1
 Trait1 Headpat
 Trait2 Bonk
-Cont:
+Cont: InHand
 {
-
+    GainSpecialEffect IgnoreColorRequirement
 }
 Text Cont: You may play this card from your hand without meeting the color requirement.
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        SetXValue MyLevel
+        AddToXValue 1
+        SearchWaitingRoom IsCharacter && HasTrait Headpat && Compare ThatCardsLevel X OrLess
+    }
 }
 Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 1 «Headpat» level X or lower character in your waiting room and return it to your hand. X equals your level + 1.
 EndCard
 
-Climax: HP/Wx01-
+Event: HP/Wx01-069
 Name After Party
+Color Y
+Level 1
+Cost 1
+Effect:
+{
+    MoveCard Memory
+    SearchDeck IsCharacter && HasTrait Headpat
+    TargetTop Deck 1
+    Reveal
+    IfTarget Compare ThatCardsLevel 2 OrMore
+    {
+        MoveCard Stock
+    }
+}
+Text Put this card into memory.\nSearch your deck for up to 1 «Headpat» character, reveal it, add it to your hand and shuffle your deck. Reveal the top card of your deck, if that card is level 2 or higher, put it in your stock.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-182
 Name Fishing, Miyu
 Color R
 Level 0
@@ -6005,19 +6025,29 @@ Power 1500
 Soul 1
 Trait1 Headpat
 Trait2 Maiden
-Auto:
+Auto: StartMainPhase
 {
-
+    PayCost 1
+    {
+        RevealExactly Deck 3
+        If TargetsContain 1 IsClimax
+        {
+            SetXValue 1
+        }
+        EndPeek
+        ShuffleLocation Deck
+        If Compare X 1 Exactly
+        {
+            *OptionalBlindStock
+            *OptionalBlindStock
+        }
+    }
 }
 Text Auto: [(1)] At the beginning of your main phase, you may pay the cost. If you do, reveal the top 3 cards of your deck and shuffle your deck. If you revealed a climax, you may put the top 2 cards of your deck into stock.
-Act:
-{
-
-}
-Text Act: Brainstorm [(1) rest this card] Flip over 4 cards from the top of your deck, and put them into your waiting room. For each climax revealed, search your deck for up to 1 «Headpat» character, put it into your hand and shuffle your deck.
+*Act1RestSelfSearchBrainstorm(Headpat)
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-102
 Name Forgetting the Seal, Shiro
 Color G
 Level 0
@@ -6026,19 +6056,41 @@ Power 2000
 Soul 1
 Trait1 Headpat
 Trait2 Tails
-Auto:
+Combo Surprise Kiss
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchLocationForTargets Clock 1 1 Any
+        MoveCard Hand
+        TargetTop Deck 1
+        MoveCard Clock
+    }
 }
-Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose1 card in your clock, add it to your hand and put the top card of your deck into clock.
-Auto:
+Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 card in your clock, add it to your hand and put the top card of your deck into clock.
+Auto: OnAttack
 {
-
+    If Climax Surprise Kiss
+    {
+        PayCost SendClimax WaitingRoom
+        {
+            TargetLocation Clock
+            SetXValue TargetCount
+            Repeat X
+            {
+                Heal
+            }
+            Repeat X
+            {
+                BurnSelf 1
+            }
+        }
+    }
 }
 Text Auto: CxCombo [Put 1 "Surprise Kiss" from your climax area into waiting room] When this card attacks, if you are level 2 or higher, you may pay the cost. If you do, put all cards from your clock into waiting room and perform the following effect X times. "Deal 1 damage to yourself." X equals number of cards put into waiting room by this effect.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-105
 Name 9 Tailed Fox, Shiro
 Color G
 Level 1
@@ -6047,34 +6099,52 @@ Power 4000
 Soul 1
 Trait1 Headpat
 Trait2 Tails
-Cont:
+Combo Fluffy Hug
+Cont: GiveSelf
 {
-
+    SetXValue ThisCardsMarkers
+    GainLevel X
+    MultiplyXValue 1000
+    GainPower X
 }
 Text Cont: This card gets +1 level and +1000 power for each marker this card has.
-Cont:
+*HexProof
+Auto: OnReverseOpponent
 {
-
-}
-Text Cont: This card cannot be chosen as the target of opponent's effects.
-Auto:
-{
-
+    Question Look at the top card of your deck ?
+    If Yes
+    {
+        PeekTop Deck
+        Marker_FaceDown
+    }
 }
 Text Auto: When this card's battle opponent becomes reverse, you may look at the top card of your deck. If you do, put that card face-down underneath this card as marker.
-Auto:
+Auto: OnSpecificClimaxPlay Fluffy Hug
 {
-
+    SearchLocationForTargets Hand 0 1 Any
+    If HasTarget
+    {
+        Marker_FaceDown
+        DrawCard
+    }
 }
 Text Auto: CxCombo When "Fluffy Hug" is placed in your climax area, you may put a card from your hand face down underneath this card as a marker. If you do, draw 1 card.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Fluffy Hug && Compare MyLevel 3 OrMore
+    {
+        PayCost 2
+        {
+            SetXValue 9
+            SubtractFromXValue ThisCardsMarkers
+            Burn X
+        }
+    }
 }
 Text Auto: CxCombo [(2)] When this card attacks, if "Fluffy Hug" is in your climax area and you are level 3 or higher, you may pay the cost. If you do, deal X damage to your opponent. X equals 9 minus number of markers underneath this card.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-112
 Name Tengu's Princess, Shiro
 Color G
 Level 3
@@ -6084,29 +6154,69 @@ Power 9000
 Soul 2
 Trait1 Headpat
 Trait2 Tails
-Cont:
+Combo At Your Service
+Auto: OnUseEvent
 {
-
+    IfOther NameEquals Wanting to Serve
+    {
+        If HasTempLabel Played3rd
+        {
+        }
+        Else
+        {
+            If HasTempLabel Played2nd
+            {
+                TempLabel Played3rd
+            }
+            Else
+            {
+                If HasTempLabel Played1st
+                {
+                    TempLabel Played2nd
+                }
+                Else
+                {
+                    TempLabel Played1st
+                }
+            }
+        }
+    }
 }
-Text Cont: If you played a "Wanting to Serve" this turn, this card gets -1 level while in your hand.
-Cont:
+InHand
+Quick
+Cont: InHand
 {
-
+    If HasTempLabel Played1st
+    {
+        LoseLevel 1
+    }
+}
+Text Cont: If you played 1 "Wanting to Serve" this turn, this card gets -1 level while in your hand.
+Cont: InHand
+{
+    If HasTempLabel Played3rd
+    {
+        ChangeCost -1
+    }
 }
 Text Cont: If you played 3 "Wanting to Serve" this turn, this card gets -1 cost while in your hand.
-Auto:
+*Healer
+Auto: OnAttack
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock into waiting room.
-Auto:
-{
-
+    If Climax At Your Service
+    {
+        PayCost 1 FlipCardsFaceDown 1 Memory NameEquals Watching Over You, Shiron
+        {
+            TargetLocation Memory
+            NarrowTargets FaceDown
+            Burn TargetCount
+        }
+    }
 }
 Text Auto: CxCombo MEMORY [(1) Put 1 face up "Watching Over You, Shiron" in your memory face down] When this card attacks, if "At Your Service" is in your climax area, you may pay the cost. If you do, deal X damage to your opponent. X equals number of face down card in your memory.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-101
 Name Small & Long, Tohka
 Color G
 Level 0
@@ -6115,19 +6225,23 @@ Power 500
 Soul 1
 Trait1 Headpat
 Trait2 Magic
-Cont:
+Cont: GiveAll
 {
-
+    If InLocation Backstage
+    {
+        GainSpecialEffect CannotBeChosen
+    }
 }
 Text Cont: All characters in your backstage cannot be chosen by your opponent's effects.
-Act:
+Act: 1 RestSelf Rest 1 Other
 {
-
+    Mill 4
+    SearchWaitingRoom IsCharacter
 }
-Text Act: [(1) rest this card, rest 1 of your other character] Put the top 4 cards of your deck into waiting room, choose 1 character in your waiting room and return it to your hand.(
+Text Act: [(1) Rest this card, rest 1 of your other character] Put the top 4 cards of your deck into waiting room, choose 1 character in your waiting room and return it to your hand.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-104
 Name New Power, Tohka
 Color G
 Level 1
@@ -6136,19 +6250,36 @@ Power 2500
 Soul 1
 Trait1 Headpat
 Trait2 Magic
-Auto:
+Auto: OnOpponentBrainstormPerCard
 {
-
+    TargetRemembered
+    SetXValue TargetCount
+    SaveTargets
+    TargetOther
+    AddSavedToCurrentTargets
+    RememberTargets
+    TargetSelf
+    GainPower X
 }
-Text Auto: When your opponent uses <b><size-auto:8.55>Brainstorm</size-auto></b>, if no climax were revealed, draw 1 card.
-Auto:
+Quick
+Auto: OnOpponentUsesAct
 {
-
+    TargetRemembered
+    If Compare TargetCount 0 GreaterThan && TargetsContainOrLess 0 IsClimax
+    {
+        DrawCard
+    }
+    TargetSelf
+    SaveTargets
+    RemoveCurrentFromSavedTargets
+    LoadTargets
+    RememberTargets
 }
-Text Auto: When this card becomes reverse, if this card's battle opponent is cost 0 or lower, you may put the top card of your opponent's clock into the waiting room. If you do, put that character into your opponent's clock.
+Text Auto: When your opponent uses "BRAINSTORM", if no climax were revealed, draw 1 card.
+*GreenCost0Bomb
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-124
 Name Cornering, Tohka
 Color G
 Level 2
@@ -6158,19 +6289,67 @@ Power 3000
 Soul 1
 Trait1 Headpat
 Trait2 Magic
-Auto:
+Auto: OnOpponentHealToWaitingRoom|OnHealToWaitingRoom
 {
-
+	IfOther MyCard
+	{
+		TargetLocation Stock
+		SetXValue TargetCount
+		If Compare X 2 OrMore
+		{
+			Question Put the top two cards of your stock into your waiting room? If you do not, you will put the top card of your deck into your clock.
+			If Yes
+			{
+				TargetTop Stock 2
+				MoveCard WaitingRoom
+			}
+			Else
+			{
+				TargetTop Deck 1
+				MoveCard Clock
+			}
+		}
+		Else
+		{
+			TargetTop Deck 1
+			MoveCard Clock
+		}
+	}
+	Else
+	{
+		TargetLocation OpponentStock
+		SetXValue TargetCount
+		If Compare X 2 OrMore
+		{
+			OpponentQuestion Put the top two cards of your stock into your waiting room? If you do not, you will put the top card of your deck into your clock.
+			If Yes
+			{
+				TargetTop OpponentStock 2
+				MoveCard OpponentWaitingRoom
+			}
+			Else
+			{
+				TargetTop OpponentDeck 1
+				MoveCard OpponentClock
+			}
+		}
+		Else
+		{
+			TargetTop OpponentDeck 1
+			MoveCard OpponentClock
+		}
+	}
 }
 Text Auto: When a card in either player's clock is put into their waiting room due to it's owner's card effect, that player may put the top 2 cards of their stock into the waiting room. If they don't, that player puts the top card of their deck into their clock.
-Act:
+Act: 1
 {
-
+    UntilEndOfOpponentsTurn
+    BlockOpponentAct
 }
 Text Act: [(1)] Your opponent may not use "Act:" abilities of the characters on stage until end of your opponent's turn.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-109
 Name Snake Hugger, Tohka
 Color G
 Level 3
@@ -6180,40 +6359,72 @@ Power 6000
 Soul 2
 Trait1 Headpat
 Trait2 Magic
-Auto:
+Combo Bird Showcase
+*OnPlayDraw2Discard2BlindStock
+Auto: OnSpecificClimaxPlay Bird Showcase
 {
-
+    PayCost 2
+    {
+        UntilEndOfOpponentsTurn
+        GainEffect
+        {
+            Cont: GiveOpponentHand
+            {
+                If LocationContainsWithDifferentNames Stage 3 NameContains Snake Hug
+                {
+                    ChangeCost 1
+                }
+            }
+        }
+        UntilEndOfOpponentsTurn
+        GainEffect
+        {
+            Cont: GiveOpponentHand
+            {
+                If LocationContainsWithDifferentNames Stage 4 NameContains Snake Hug
+                {
+                    GainLevel 1
+                }
+            }
+        }
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, draw up to 2 cards, put 2 cards from your hand into waiting room and you may put the top card of your deck into stock.
-Auto:
+Text Auto: CxCombo [(2)] When "Bird Showcase" is placed in your climax area, you may pay the cost. If you do, this card gets the following 2 abilities until end of your opponent's next turn. "Cont: If the number of other characters with different names and with "Snake Hug" in its card name you have is 3 or more, all cards in your opponent's hand get +1 cost." "Cont: If the number of other characters with different names and with "Snake Hug" in its card name you have is 4 or more, all cards in your opponent's hand get +1 level."
+Auto: OnAttack
 {
-
+    If Climax Bird Showcase && LocationContainsOrLess CenterStage 0 Other && CardPosition Stand
+    {
+        PayCost 3 SendClimax WaitingRoom
+        {
+            TargetLocation OpponentStage
+            Bounce
+        }
+    }
 }
-Text Auto: [(2)] When "Bird Showcase" is placed in your climax area, you may pay the cost. If you do, this card gets the following 2 abilities until end of your opponent's next turn. "Cont: If the number of other characters with different names and with "Snake Hug" in its card name you have is 3 or more, all cards in your opponent's hand get +1 cost." "Cont: If the number of other characters with different names and with "Snake Hug" in its card name you have is 4 or more, all cards in your opponent's hand get +1 level."
-Auto:
-{
-
-}
-Text Auto: [(3) Put 1 "Bird Showcase" from your climax area into waiting room] When this card attacks, if you have no other stand character in your center stage, you may pay the cost. If you do, return all opponent's character in their hand.
+Text Auto: CxCombo [(3) Put 1 "Bird Showcase" from your climax area into waiting room] When this card attacks, if you have no other stand character in your center stage, you may pay the cost. If you do, return all opponent's character in their hand.
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-176
 Name Surprise Kiss
+*GreenStockSoul
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-164
 Name Fluffy Hug
+*BarClimax
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-172
 Name No Escape
+*BarClimax
 EndCard
 
-Climax: HP/Wx01-
+Climax: HP/Wx01-171
 Name Lunch With Friends
+*BagClimax
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-125
 Name Surprissed and Kissed, Shiro
 Color G
 Level 2
@@ -6223,24 +6434,30 @@ Power 3500
 Soul 1
 Trait1 Headpat
 Trait2 Tails
-Cont:
+Cont: GiveAll
 {
-
+    If Not MyTurn
+    {
+        GainPower 1500
+    }
 }
 Text Cont: During your turn, all your characters get +1500 power.
-Auto:
+Auto: OnOtherFrontalAttacked
 {
-
+    IfOther HasTrait Headpat
+    {
+        PayCost 1 SendSelf Memory
+        {
+            TargetOther
+            GainPower 3000
+        }
+    }
 }
 Text Auto: [(1) Put this card into memory] When your other «Headpat» characters get frontal attack, you may pay the cost. If you do, that character gets +3000 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: When your other «Headpat» characters becomes reverse, choose 1 of your characters and that character gets +2000 power until end of turn.
+*RevengeTrait(2000,Headpat)
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-119
 Name Onsen, Shiro & Saya
 Color G
 Level 0
@@ -6250,19 +6467,16 @@ Soul 1
 Trait1 Headpat
 Trait2 Tails
 Trait3 Dragon
-Auto:
+*GainPowerWhenOtherAttacks(1500,Headpat)
+Auto: OnReverseOpponent
 {
-
-}
-Text Auto: When your other «Headpat» characters attack, this card gets +1500 power until end of turn.
-Auto:
-{
-
+    SearchWaitingRoom IsCharacter && HasTrait Headpat
+    Discard 1 Any
 }
 Text Auto: When this card's battle opponent becomes reverse, choose 1 «Headpat» character in your waiting room, return it to your hand and put 1 card from your hand into waiting room.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-116
 Name Jam Contained, Tohka
 Color G
 Level 0
@@ -6271,24 +6485,35 @@ Power 500
 Soul 1
 Trait1 Headpat
 Trait2 Magic
-Cont:
+*500Assist
+Auto: OnUseEvent
 {
-
+    IfOther NameEquals Danger Noodle
+    {
+        If InLocation Backstage
+        {
+            Question Put the top 2 cards of your deck into stock ?
+            If Yes
+            {
+                BlindStock
+                BlindStock
+            }
+        }
+    }
 }
-Text Cont: <b><size-auto:8.55>Assist</size-auto></b> Your characters in front of this card get +500 power.
-Auto:
+Text Auto: When you play "Danger Noodle", if this card is in your backstage, you may put the top 2 cards of your deck into stock.
+Act: Discard 1 Any &&& RestSelf
 {
-
-}
-Text Auto: When you play a "Danger Noodle", if this card is in your backstage, you may put the top 2 cards of your deck into stock.
-Act:
-{
-
+    SearchLocationForTargets Clock 1 1 Any
+    RevealTargets
+    MoveCard Hand
+    TargetTop Deck 1
+    MoveCard Clock
 }
 Text Act: [Put 1 card from your hand into waiting room, rest this card] Choose 1 card in your clock, return it to your hand and put the top card of your deck into clock.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-121
 Name Sensitive Ears, Shiro
 Color G
 Level 1
@@ -6298,19 +6523,26 @@ Soul 1
 Trait1 Headpat
 Trait2 Tails
 Trait3 Dragon
-Auto:
+*ClimaxExchange
+Auto: OnOtherPlacedOnStageFromHand
 {
-
+    IfOther NameEquals Lovely Feeling, Shiro
+    {
+        PayCost 1
+        {
+            StockSwap
+        }
+    }
+    Else
+    {
+        RefundTimesPerTurn
+    }
 }
-Text Auto: [(1) Put 1 climax from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 climax in your waiting room and return it to your hand.
-Auto:
-{
-
-}
+TimesPerTurn 1
 Text Auto: [(1)] This ability activates up to once per turn. When your other "Lovely Feeling, Shiro" is placed on the stage from your hand, you may pay the cost. If you do, put all of your opponent's stock into waiting room, then put the same number of cards from the top of your opponent's deck into their stock.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-130
 Name Lovely Feeling, Shiro
 Color G
 Level 3
@@ -6321,19 +6553,33 @@ Soul 2
 Trait1 Headpat
 Trait2 Tails
 Trait3 Dragon
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        TargetTop Clock
+        RevealTargets
+        MoveCard Hand
+    }
 }
 Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, put the top card of your clock into your hand.
-Auto:
+Auto: OnPlay
 {
-
+    OpponentQuestion Put 1 card from your hand into waiting room ? (If yes, your opponent will put the top card of their deck into stock. If not, your opponent will look at your hand)
+    If Yes
+    {
+        BlindStock
+    }
+    If No
+    {
+        TargetLocation OpponentHand
+        View
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, your opponent may put 1 card from their hand into waiting room. If they do, put the top card of your deck into stock. If they don't, look at your opponent's hand.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-120
 Name Snake Chaser, Tohka
 Color G
 Level 1
@@ -6342,19 +6588,26 @@ Power 3000
 Soul 1
 Trait1 Headpat
 Trait2 Magic
-Auto:
+Combo No Escape
+Auto: OnPlay
 {
-
+    SearchLocationForTargets WaitingRoom 0 1 NameContains Snake Hug && IsCharacter
+    PlaceOnStage false true true false
 }
-Text Auto: When this card is placed on the stage from your hand, choose up to 1 character with "Snake Hug" in your waiting room and put it into any position on your stage.
-Auto:
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 character with "Snake Hug" in its card name in your waiting room and put it into any position on your stage.
+Auto: OnAttack
 {
-
+    If Climax No Escape && LocationContainsWithDifferentNames Stage 4 NameContains Snake Hug
+    {
+        SearchLocationForTargets Deck 0 3 Any
+        MoveCard Hand
+        ShuffleLocation Deck
+    }
 }
-Text Auto: When this card attacks, if "No Escape" is in your climax area and the number of other characters with different names and with "Snake Hug" in its card name you have is 4 or more, search your deck for up to 3 cards, add them to your hand and shuffle your deck.
+Text Auto: CxCombo When this card attacks, if "No Escape" is in your climax area and the number of other characters with different names and with "Snake Hug" in its card name you have is 4 or more, search your deck for up to 3 cards, add them to your hand and shuffle your deck.
 EndCard
 
-Character: HP/Wx01-
+Character: HP/Wx01-132
 Name Tummy Kisses, Tohka
 Color G
 Level 3
@@ -6365,29 +6618,66 @@ Soul 3
 Trait1 Headpat
 Trait2 Magic
 Trait3 Artist
-Auto:
+Combo Lunch With Friends
+*OnPlayCheck6Send3
+Auto: OnSpecificClimaxPlay Lunch With Friends
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, look at up to the top 6 cards of your deck, choose 3 among them, put them into waiting room and put the rest to the top of your deck in any order.
-Auto:
-{
-
+    PayCost 1
+    {
+        GainEffect
+        {
+            Auto: OnDamageCanceled
+            {
+                SetXValue ThisCardsSoul
+                *OptionalBurn(X)
+            }
+            TimesPerTurn 1
+            Text Auto: This ability activates up to once per turn. When damage dealt by this card is canceled, you may deal X damage to your opponent. X equals this card's soul.
+        }
+    }
 }
 Text Auto: CxCombo [(1)] When "Lunch With Friends" is placed on your climax area, you may pay the cost. If you do, this card gets the following ability until end of turn. "Auto: This ability activates up to once per turn. When damage dealt by this card is canceled, you may deal X damage to your opponent. X equals this card's soul."
-Auto:
+Auto: OnAttack
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Headpat
+    {
+        *OptionalBurn(1)
+    }
 }
 Text Auto: When this card attacks, reveal the top card of your deck. If that card is a «Headpat» character, you may deal 1 damage to your opponent.
 EndCard
 
-Climax: HP/Wx01-
+Event: HP/Wx01-155
 Name Fluffy Sleep
+Color G
+Level 1
+Cost 1
+Requirement StageContains 5 HasTrait Headpat
+Text You cannot play this card from hand if the number of «Headpat» characters you have is 4 or less.
+Effect:
+{
+    Repeat 2
+    {
+        *Check4Add1(Headpat)
+    }
+}
+Text Perform the following effect twice. "Look at up to the top 4 cards of your deck, choose up to 1 «Headpat» character among them, reveal it, add it to your hand and put the rest into waiting room."
 EndCard
 
-Climax: HP/Wx01-
+Event: HP/Wx01-158
 Name Danger Noodle
+Color G
+Level 2
+Cost 5
+Effect:
+{
+    SearchLocationForTargets OpponentWaitingRoom 0 2 Any
+    RevealTargets
+    MoveCard OpponentMemory
+}
+Text Choose up to 2 cards in your opponent's waiting room and put them into memory.
 EndCard
 
 Character: HP/Wx01-
