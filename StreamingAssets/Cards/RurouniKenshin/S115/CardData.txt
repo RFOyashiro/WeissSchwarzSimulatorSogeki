@@ -1272,19 +1272,22 @@ Auto: OnClimaxPlay
     {
         If PlayedThisTurn && StageContains 1 Other && HasTrait Meiji Swordsman Romantic Story
         {
-            SearchWaitingRoom IsClimax && HasTrigger Door
-            UntilEndOfOpponentsTurn
-            GainEffect
+            PayCost Discard 1 Any
             {
-                Auto: OnOtherFrontalAttacked
+                SearchWaitingRoom IsClimax && HasTrigger Door
+                UntilEndOfOpponentsTurn
+                GainEffect
                 {
-                    PayCost 1 SendSelf WaitingRoom
+                    Auto: OnOtherFrontalAttacked
                     {
-                        TargetOther
-                        Bounce
+                        PayCost 1 SendSelf WaitingRoom
+                        {
+                            TargetOther
+                            Bounce
+                        }
                     }
+                    Text Auto: [(1) Put this card in the waiting room] When your other character is frontal attacked, you may pay the cost. If you do, return that character to your hand.
                 }
-                Text Auto: [(1) Put this card in the waiting room] When your other character is frontal attacked, you may pay the cost. If you do, return that character to your hand.
             }
         }
     }
