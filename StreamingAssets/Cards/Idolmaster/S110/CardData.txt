@@ -299,13 +299,14 @@ Auto: OnSpecificClimaxPlay Enjoy Your Meal - Climax
         UntilEndOfOpponentsTurn
         GainEffect
         {
-            Auto: OnAttacked
+            Cont: Global
             {
-                If Not MyTurn
+                IfOwner InBattle && MyTurn
                 {
-                    TargetBattleOpponent
-                    AddSelfToTargets
-                    GainSpecialEffect CannotBeReversed
+                    If InBattle
+                    {
+                        GainSpecialEffect CannotBeReversed
+                    }
                 }
             }
             Text Cont: During your opponent's turn, the battle opponent of this card and this card cannot be reverse.
