@@ -1091,7 +1091,7 @@ Combo Grown Make Up!
 *Healer
 Auto: StartAttackPhase
 {
-    If Climax Grown Make Up! && InLocation CenterStage && LocationContainsSeparateCardsThatMeetConditions Memory NameEquals Pretty Sweet\, Chiyoko Sonoda , NameEquals Street-Corner Runway\, Juri Saijo , NameEquals Coming to My Senses\, Rinze Morino , NameEquals cheer+\, Natsuha Arisugawa
+    If Climax Grown Make Up! && InLocation CenterStage && LocationContainsSeparateCardsThatMeetConditions Stage NameEquals Pretty Sweet\, Chiyoko Sonoda , NameEquals Street-Corner Runway\, Juri Saijo , NameEquals Coming to My Senses\, Rinze Morino , NameEquals cheer+\, Natsuha Arisugawa
     {
         PayCost 5 Discard 3 Any
         {
@@ -1691,6 +1691,22 @@ Power 6000
 Soul 2
 Trait1 Music
 Trait2 Straylight
+Cont: GiveSelf
+{
+    If StageContains 2 Other && HasTrait Music
+    {
+        GainPower 1500
+        GainEffect
+        {
+            *PowerOnMyTurn(5000)
+        }
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
+}
+Text Cont: If the number of other «Music» characters you have is 2 or more, this card gets +1500 power and the following 2 abilities. "Auto: During your turn, this card gets +5000 power." "Auto: ENCORE [Put 1 character from your hand into your waiting room]"
 Auto: OnClimaxPlay
 {
     PayCost Send 1 WaitingRoom Other
