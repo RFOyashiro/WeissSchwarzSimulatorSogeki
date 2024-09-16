@@ -1010,6 +1010,7 @@ Auto: OnPlay
     Reveal
     IfTarget IsCharacter && HasTrait Seraph
     {
+        TargetSelf
         GainEffect
         {
             Auto: OnReverseOpponent
@@ -1029,7 +1030,7 @@ Auto: OnPlay
     }
 }
 Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Seraph» character, this card gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character in clock."
-Auto: OnPlay
+Auto: OnAttack
 {
     PayCost 2 Discard 1 Any
     {
