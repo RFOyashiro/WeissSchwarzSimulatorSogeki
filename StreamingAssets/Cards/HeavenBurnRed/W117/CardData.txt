@@ -171,7 +171,7 @@ Trait2 Unit 30G
 *PowerOnMyTurn(1000)
 Auto: OnReversed
 {
-    RevealUpTo 4 Deck
+    RevealUpTo Deck 4
     ChooseCardsFromTargets 0 1 IsClimax && HasTrigger Wind
     If HasTarget
     {
