@@ -1015,7 +1015,7 @@ Auto: OnSentFromStageToWaitingRoom
     Question Return this card to hand ?
     If Yes
     {
-        Bounce
+        MoveCard Hand
         *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait MOVIE|Family)
     }
 }
