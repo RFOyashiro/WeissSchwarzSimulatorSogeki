@@ -122,7 +122,7 @@ Cont: GiveSelf
 {
     If AllYourCharacters HasTrait Music
     {
-        GainPower 2000
+        GainPower 1000
     }
 }
 Text Cont: If all your characters are «Music», this card gets +1000 power.

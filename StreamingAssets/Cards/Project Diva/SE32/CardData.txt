@@ -733,7 +733,7 @@ Trait1 Music
 Trait2 Mystery
 Auto: OnUseThisCardsBackup
 {
-    PayCost 2 Send 1 WaitingRoom Any
+    PayCost 2 Discard 1 Any
     {
         TargetLocation OpponentStage
         NarrowTargets CanBeChosen && EarlyPlay
