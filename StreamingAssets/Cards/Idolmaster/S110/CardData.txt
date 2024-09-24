@@ -1752,11 +1752,17 @@ Auto: OnAttack
 {
     If Climax Twinkling Star Girl && StageContains 1 Other && With ALARM || Other && With SHIFT
     {
-        Burn 1 
-        PayCost 3 Discard 2 Any
+        TargetLocation Stage
+        NarrowTargets Other
+        NarrowTargets With ALARM || With SHIFT
+        If Compare TargetCount 1 OrMore
         {
-            Burn 3
-            GainPower 1000
+            Burn 1 
+            PayCost 3 Discard 2 Any
+            {
+                Burn 3
+                GainPower 1000
+            }
         }
     }
 }
