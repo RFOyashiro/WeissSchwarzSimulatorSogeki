@@ -2555,7 +2555,7 @@ Trait2 Alstroemeria
 Combo Cutely! with us
 Auto: StartMyEncoreStep
 {
-    If Climax Cutely! with us && InLocation CenterStage && StageContains 1 Other && NameContains 甘奈 || Other && NameContains 千雪
+    If Climax Cutely! with us && InLocation CenterStage && LocationContainsSeparateCardsThatMeetConditions Other && NameContains 甘奈 , Other && NameContains 千雪
     {
         PayCost 1 Resonate Bath Time Mood, Tenka Osaki
         {
