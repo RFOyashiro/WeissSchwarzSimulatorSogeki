@@ -1750,7 +1750,7 @@ Auto: OnPlay
 Text Auto: When this card is placed on the stage from your hand, you may put the bottom card of your clock in the waiting room.
 Auto: OnAttack
 {
-    If Climax Twinkling Star Girl && StageContains 1 Other && With ALARM || Other && With SHIFT
+    If Climax Twinkling Star Girl
     {
         TargetLocation Stage
         NarrowTargets Other
