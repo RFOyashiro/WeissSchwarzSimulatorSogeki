@@ -2703,9 +2703,12 @@ Auto: OnAttack
 {
     If Climax floooat && StageContains 4 Other && HasTrait Music &&& LocationContains Memory 4 Any
     {
-        Repeat 3
+        PayCost 3 Discard 1 Any
         {
-            Burn 1
+            Repeat 3
+            {
+                Burn 1
+            }
         }
     }
 }
