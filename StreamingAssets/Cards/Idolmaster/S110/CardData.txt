@@ -1743,7 +1743,7 @@ Auto: OnPlay
 		If Yes
 		{
 			TargetBottom Clock
-            MoveCard WaitingRoom
+                        MoveCard WaitingRoom
 		}
 	}
 }
@@ -2182,7 +2182,7 @@ Trait1 Music
 Trait2 L'Antica
 Cont: GiveHand
 {
-    If LocationContainsSeparateCardsThatMeetConditions Backstage Not Other , NameEquals Fishes and Happy Wishes, Kiriko Yukoku
+    If LocationContainsSeparateCardsThatMeetConditions Backstage Not Other , NameEquals Fishes and Happy Wishes\, Kiriko Yukoku
     {
         If NameEquals Our Love is a Love Knot, Kogane Tsukioka || NameEquals Over and Over Again, Kiriko Yukoku
         {
@@ -3642,7 +3642,7 @@ Trait2 SHHis
 Combo STAGE
 Cont: GiveSelf
 {
-    If HasMarker
+    If StageContains 1 Other && HasMarker
     {
         GainPower 3000
     }
