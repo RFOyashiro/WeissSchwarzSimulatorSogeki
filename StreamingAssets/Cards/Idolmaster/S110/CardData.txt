@@ -2943,7 +2943,20 @@ Auto: StartClimaxPhase
     NarrowTargets SameNameAsSavedTarget
     GainEffect
     {
-        *GainPowerWhenAttackingLevel2(6000)
+        Auto: OnAttack
+        {
+            TargetFacing
+            If HasTarget
+            {
+                If Compare TargetCardsLevel 2 OrMore
+                {
+                    TargetSelf
+                    GainPower 6000
+                }
+            }
+        }
+        Quick
+        Text Auto: When this card attacks, if the level of the character facing this card is 2 or higher, this card gets +6000 power until end of turn.
     }
 }
 Alarm

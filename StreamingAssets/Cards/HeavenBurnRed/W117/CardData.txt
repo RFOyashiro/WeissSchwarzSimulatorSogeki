@@ -1288,13 +1288,13 @@ Auto: OnUseThisCardsBackup
             Question Put the top card of the opponent's clock into the waiting room to put the battle opponent into clock?
             If Yes
             {
+                TargetTop OpponentClock 1
+                MoveCard OpponentWaitingRoom
                 TargetLocation OpponentStage
                 NarrowTargets CanBeChosen && EarlyPlay
                 If HasTarget
                 {
-					TargetTop OpponentClock 1
-					MoveCard OpponentWaitingRoom
-                    ChooseCharacterFromTargets choose 1 of your opponent's characters whose level is higher than your opponent's level and put it in waiting room.
+                    ChooseCharacterFromTargets choose 1 of your opponent's characters whose level is higher than your opponent's level and put it in their clock.
 					MoveCard OpponentClock
 				}
             }

@@ -207,7 +207,16 @@ Soul 2
 Trait1 Lily
 Trait2 Gran Eple
 Combo Kind Twilight
-*OnPlayCheckX(Lily)
+Auto: OnPlay
+{
+    SetXToNumberOfCharacters HasTrait Lily
+    Peek Deck X
+    ChooseCardsFromTargets 0 1 Any
+    MoveCard Hand
+    PutTheRestIntoTheWaitingRoom
+    TargetSelf
+    GainPower 1500
+}
 Auto: OnEndOfAttack
 {
 	If Climax Kind Twilight
