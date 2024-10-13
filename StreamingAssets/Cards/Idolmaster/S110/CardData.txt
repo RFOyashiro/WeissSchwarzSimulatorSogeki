@@ -1743,7 +1743,7 @@ Auto: OnPlay
 		If Yes
 		{
 			TargetBottom Clock
-                        MoveCard WaitingRoom
+            MoveCard WaitingRoom
 		}
 	}
 }
@@ -1824,7 +1824,7 @@ Trait1 Music
 Trait2 Illumination Stars
 Cont: GiveSelf
 {
-    If LocationContains Level 2 ColorIs Yellow
+    If LocationContains Level 1 ColorIs Yellow
     {
         GainPower 2000
         GainEffect
@@ -2561,7 +2561,7 @@ Trait2 Alstroemeria
 Combo Cutely! with us
 Auto: StartMyEncoreStep
 {
-    If Climax Cutely! with us && InLocation CenterStage && LocationContainsSeparateCardsThatMeetConditions Other && NameContains 甘奈 , Other && NameContains 千雪
+    If Climax Cutely! with us && InLocation CenterStage && LocationContainsSeparateCardsThatMeetConditions Stage Other && NameContains 甘奈 , Other && NameContains 千雪
     {
         PayCost 1 Resonate Bath Time Mood, Tenka Osaki
         {
@@ -3363,6 +3363,7 @@ Level 1
 Cost 1
 Power 2500
 Soul 1
+Trigger Soul
 Trait1 Music
 Trait2 SHHis
 *LevelAssistTrait(Music)
