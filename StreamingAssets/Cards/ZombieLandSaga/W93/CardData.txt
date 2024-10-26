@@ -37,15 +37,21 @@ Auto: OnReverseOpponent
             PutTheRestIntoTheWaitingRoom
             TargetLocation OpponentStage
             NarrowTargets CanBeChosen && Compare ThatCardsLevel 1 OrMore
-            ChooseCharacterFromTargets Choose an opponent character.
-            *Downgrade
+            ChooseCharacterFromTargets_Optional You may choose 1 opponent character.
+            If HasTarget
+            {
+                *Downgrade
+            }
         }
         If Answer 1
         {
             TargetLocation OpponentStage
             NarrowTargets CanBeChosen && Compare ThatCardsLevel 1 OrMore
-            ChooseCharacterFromTargets Choose an opponent character.
-            *Downgrade
+            ChooseCharacterFromTargets_Optional You may choose 1 opponent character.
+            If HasTarget
+            {
+                *Downgrade
+            }
             RevealUpTo Deck 4
             ChooseCardsFromTargets 0 1 HasTrait Saga && IsCharacter || NameEquals Revenge on Fate
             RevealTargets
