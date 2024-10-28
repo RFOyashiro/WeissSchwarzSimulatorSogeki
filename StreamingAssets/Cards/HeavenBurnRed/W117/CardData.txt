@@ -2128,13 +2128,14 @@ JPName ルミとの最高の夏
 Color R
 Level 1
 Cost 0
+Counter
 Requirement StageContains 1 HasTrait Seraph
 Text If you have no «Seraph» characters, you cannot play this card from hand.
 Effect:
 {
     *Check4Add1(Seraph)
 }
-Text Look at up to the top 4 cards of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+Text COUNTER Look at up to the top 4 cards of your deck, choose up to 1 «Seraph» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
 Climax: HBR/W117-081
