@@ -2907,7 +2907,7 @@ Auto: OnAttack
     {
         MillOpponentBottom 3
         NarrowTargets Compare ThatCardsLevel 0 OrLess
-        Burn X
+        Burn TargetCount
     }
 }
 Text Auto: [(1) Put 2 cards from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, put the bottom 3 cards of your opponent's deck in the waiting room, and deal X damage to your opponent. X equals the number of level 0 or lower cards among those cards. 
