@@ -164,7 +164,7 @@ Trait2 Housewife
 Combo New Family
 Auto: OnSpecificClimaxPlay New Family
 {
-    If StageContains 2 Other && HasTrait Family|Kindergarten
+    If StageContains 2 Other && HasTrait Family
     {
         PayCost Discard 1 Any
         {
@@ -176,7 +176,7 @@ Auto: OnSpecificClimaxPlay New Family
         }
     }
 }
-Text Auto: CxCombo [Put 1 card from hand to the waiting room] When "New Family" is placed on your climax area, if the number of other «Famiyl» characters you have is 2 or more, you may pay the cost. If you do, choose up to 1 "Mischievous Child, Himawari" in your hand and put it in any position on the stage.
+Text Auto: CxCombo [Put 1 card from hand to the waiting room] When "New Family" is placed on your climax area, if the number of other «Family» characters you have is 2 or more, you may pay the cost. If you do, choose up to 1 "Mischievous Child, Himawari" in your hand and put it in any position on the stage.
 EndCard
 
 Character: CS/S28-010
