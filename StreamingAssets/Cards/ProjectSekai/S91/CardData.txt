@@ -2039,7 +2039,7 @@ Text Auto: MEMORY [(2)] At the beginning of your climax phase, If this card is i
 Act: 1 SendSelf Memory
 {
     RevealUpTo Deck 3
-	ChooseCardsFromTargets 0 1 Compare ThatCardsLevel 1 OrMore
+	ChooseCardsFromTargets 0 1 Compare ThatCardsLevel 1 OrLess && IsCharacter
 	RevealTargets
 	MoveCard Hand
 	PutTheRestIntoTheWaitingRoom
@@ -2815,7 +2815,7 @@ Auto: OnAttack
     {
         PayCost 1 Discard 1 Any
         {
-            TargetTop OpponentDeck 2
+            Peek OpponentDeck 2
             Message Choose cards to put on top of your opponent's deck.
             ChooseCardsFromTargets 0 2 Any
             MoveCard OpponentDeck
@@ -4250,7 +4250,7 @@ Auto: OnAttack
     {
         PayCost 1 Discard 1 Any
         {
-            TargetTop OpponentDeck 2
+            Peek OpponentDeck 2
             AIChoice If IsClimax
             Message Choose cards to put on top of your opponent's deck.
             ChooseCardsFromTargets 0 2 Any
