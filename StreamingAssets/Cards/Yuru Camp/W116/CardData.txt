@@ -2607,7 +2607,7 @@ Cont: GiveSelf
     MultiplyXValue 1500
     GainPower X
 }
-Text Cont: This card gets +1500 powe for each character in your opponent's back stage.
+Text Cont: This card gets +1500 power for each character in your opponent's back stage.
 
 EndCard
 
