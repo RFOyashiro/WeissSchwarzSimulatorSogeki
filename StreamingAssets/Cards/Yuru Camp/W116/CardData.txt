@@ -561,7 +561,7 @@ Auto: OnPlay
     Question Put a card from your hand to stock ?
     If Yes
     {
-        SearchLocationForTargets 0 1 Any
+        SearchLocationForTargets Hand 0 1 Any
         MoveCard Stock
     }
 }
@@ -1834,7 +1834,7 @@ Act: Discard 1 Any &&& SendSelf WaitingRoom
         SaveTargets
         SearchLocationForTargets WaitingRoom 1 1 NameEquals Easygoing Solo Camper, Rin
         MarkerTargetsUnderSavedTarget_FaceUp
-        SearchLocationForTargets IsCharacter && HasTrait Yuru Camp
+        SearchWaitingRoom IsCharacter && HasTrait Yuru Camp
     }
 }
 Text Act: [Put 1 card from your hand to the waiting room, put this card in the waiting room] Choose 1 of your characters with "Tent" in its card name, choose up to 1 "Easygoing Solo Camper, Rin" in your waiting room and put it face up underneath that character as a marker, and choose a «Yuru Camp» character in your waiting room and return it to your hand.
