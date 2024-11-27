@@ -3754,7 +3754,7 @@ Combo Akkai
 *GlobalPower(1500,Music)
 Auto: OnOtherAttacks
 {
-    If Climax Akkai
+    If Climax Bright Red
     {
         PayCost Discard 1 ColorIs Green
         {
@@ -3766,7 +3766,7 @@ Auto: OnOtherAttacks
         }
     }
 }
-Text Auto: CxCombo [Put a Green card from your hand to the waiting room] When your other character attacks, if "Akkai" is in your climax area, you may pay the cost. If you do, choose 1 of your "Silky Gem Silica, Nichika Nanakusa" and this card and exchange them.
+Text Auto: CxCombo [Put a Green card from your hand to the waiting room] When your other character attacks, if "Bright Red" is in your climax area, you may pay the cost. If you do, choose 1 of your "Silky Gem Silica, Nichika Nanakusa" and this card and exchange them.
 EndCard
 
 Climax: ISC/S110-T17
