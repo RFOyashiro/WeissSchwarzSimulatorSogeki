@@ -378,7 +378,7 @@ Auto: OnPlay
 {
     PayCost Discard 1 IsCharacter && HasTrait Music
     {
-        SearchLocationForTargets WaitingRoom IsCharacter && Compare ThatCardsLevel 0 OrLess
+        SearchLocationForTargets WaitingRoom 0 1 IsCharacter && Compare ThatCardsLevel 0 OrLess
         PlaceOnStage false true true false
     }
 }
