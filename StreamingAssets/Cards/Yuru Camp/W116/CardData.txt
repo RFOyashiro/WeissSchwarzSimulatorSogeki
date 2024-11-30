@@ -266,7 +266,7 @@ Auto: OnPlay
 {
     PayCost Discard 1 Any
     {
-        *PlayCharacterFromHand(Compare MyLevel OrLess)
+        *PlayCharacterFromHand(Compare ThatCardsLevel MyLevel OrLess && HasTrait Yuru Camp)
     }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 1 «Yuru Camp» character in your hand whose level is equal to or lower than your level and put it in any position on the stage.

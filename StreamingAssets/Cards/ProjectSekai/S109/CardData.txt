@@ -1081,22 +1081,15 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 MORE MORE JUMP!
-Auto: OnCardMoves
+Auto: OnCardEntersLocation LeftCenterStage|RightCenterStage
 {
-    IfOther Not Other
+    If StageContains 2 Other && HasTrait MORE MORE JUMP!
     {
-        If InLocation LeftCenterStage || InLocation RightCenterStage
-        {
-            GainPower 1000
-        }
-        Else
-        {
-            RefundTimesPerTurn
-        }
+        GainPower 1000
     }
 }
 TimesPerTurn 2
-Text Auto: This ability activates up to twice per turn. When this card is moved to the left-most position or the right-most position of your center stage, this card gets +1000 power until end of turn.
+Text Auto: This ability activates up to twice per turn. When this card is moved to the left-most position or the right-most position of your center stage, if the number of other «MORE MORE JUMP!» characters you have is 2 or more, this card gets +1000 power until end of turn.
 Auto: OnReverseOpponent
 {
     If PlayedThisTurn
