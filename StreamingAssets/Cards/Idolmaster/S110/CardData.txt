@@ -451,7 +451,7 @@ Cont: GiveSelfEverywhere
 {
     If LocationContains Climax 1 HasTrigger Shot
     {
-        GainTriggerIcon Shot
+        GainTriggerIcon LoneShot
     }
 }
 Text Cont: If there is a climax with a Shot trigger icon in your climax area, this card gets a Shot trigger icon while in all your areas.
