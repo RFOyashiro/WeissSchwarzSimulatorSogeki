@@ -671,6 +671,7 @@ JPName スヤスヤちくわ
 Color G
 Level 2
 Cost 2
+Counter
 Effect:
 {
     PayCost Send 1 WaitingRoom Any
@@ -682,7 +683,7 @@ Effect:
         ShuffleLocation Deck
     }
 }
-Text [Put 1 character from your stage in the waiting room] You may pay the cost. If you do, search your deck for up to 3 «Yuru Camp» characters, reveal them, put them in your hand, discard a card a card from your hand to the waiting room, and shuffle your deck.
+Text COUNTER [Put 1 character from your stage in the waiting room] You may pay the cost. If you do, search your deck for up to 3 «Yuru Camp» characters, reveal them, put them in your hand, discard a card a card from your hand to the waiting room, and shuffle your deck.
 EndCard
 
 Climax: YRC/W116-026
