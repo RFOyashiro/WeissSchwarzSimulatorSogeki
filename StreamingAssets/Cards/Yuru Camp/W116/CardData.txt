@@ -2474,7 +2474,7 @@ Effect:
     Brainstorm 3
     TargetBrainstormed
     NarrowTargets Other && HasTrait Yuru Camp
-    SearchWaitingRoom IsCharacter && HasTrait Yuru Camp && Compare ThatCardsLevel TargetCount
+    SearchWaitingRoom IsCharacter && HasTrait Yuru Camp && Compare ThatCardsLevel TargetCount OrLess
 }
 Text BRAINSTORM Flip over the top 3 cards of your deck and put them in the waiting room. Choose a level X or lower «Yuru Camp» character in your waiting room and return it to your hand. X equals the number of «Yuru Camp» characters among those cards.
 EndCard
