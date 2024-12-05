@@ -740,18 +740,20 @@ Auto: OnAttack
     {
         PayCost 2
         {
-            TargetTop OpponentDeck 3
-            AIChoice If IsClimax
-            ChooseCardsFromTargets 0 3 Any
-	        MoveCard OpponentDeck
-            Reorder
-            PutTheRestIntoTheWaitingRoom
-            TargetSelf
             GainPower 4000
+            Peek OpponentDeck 3
+            If HasTarget
+            {
+                Message Choose the cards to put back on top.
+                ChooseCardsFromTargets 0 3 Any
+                MoveCard OpponentDeck
+                Reorder
+                PutTheRestIntoTheWaitingRoom
+            }
         }
     }
 }
-Text Auto: CxCombo MEMORY [(2)] When this card attacks, if "The Me Who Isn't an Idol" is in your climax area, there are 2 or more «Music» characters in your memory, and all your characters are «MORE MORE JUMP!», you may pay the cost. If you do, look at up to the top 3 cards of your opponent's deck, choose up to 3 cards among them and put them on top of the deck in any order, put the rest into your waiting room, and this card gets +4000 power until end of turn.
+Text Auto: CxCombo MEMORY [(2)] When this card attacks, if "The Me Who Isn't an Idol" is in your climax area, there are 2 or more «Music» characters in your memory, and all your characters are «MORE MORE JUMP!», you may pay the cost. If you do, look at up to the top 3 cards of your opponent's deck, choose up to 3 cards among them and put them on top of the deck in any order, put the rest into your opponent's waiting room, and this card gets +4000 power until end of turn.
 EndCard
 
 Character: PJS/S91-036
