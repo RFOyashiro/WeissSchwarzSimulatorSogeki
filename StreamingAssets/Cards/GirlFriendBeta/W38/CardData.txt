@@ -1,0 +1,1767 @@
+Character: GF/W33-005SP
+Name Seeking Models, Koruri Tokitani
+JPName モデル探し 時谷小瑠璃
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Girl
+*MusashiEffect
+*OnReverseMayMemoryOpponent
+EndCard
+
+Climax: GF/W33-047SP
+Name Free Research
+JPName 自由研究
+*YellowStockSoul
+EndCard
+
+Character: GF/W33-059SP
+Name Sweets Decoration, Ichigo Kohinata
+JPName スィーツデコ 小日向いちご
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Girl
+Trait2 Sweets
+Cont:
+{
+
+}
+Text Cont: All your other Red characters get +500 power.
+*OnPlayScry
+EndCard
+
+Climax: GF/W33-109SP
+Name Chihaya Something
+JPName チハヤナントカ
+*DoorClimax
+EndCard
+
+Character: GF/W33-119SP
+Name Having Fun, Mutsumi Shigino
+JPName 楽しむ姿 鴫野睦
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Girl
+Trait2 Swimsuit
+Cont:
+{
+
+}
+Text Cont: This card gets +500 power for each of your other Blue characters
+EndCard
+
+Climax: GF/W33-159SP
+Name Cool Maid
+JPName クールメイド
+*GateClimax
+EndCard
+
+Character: GF/W38-001
+Name Farm Experience, Koruri Tokitani
+JPName 牧場体験 時谷小瑠璃
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Girl
+*500Assist
+Act:
+{
+
+}
+Text Act: [(2) Put a Yellow character from your hand, rest this card] Search your deck for up to 1 Yellow character and up to 1 Red character, reveal them, put them in your hand, and shuffle your deck.
+EndCard
+
+Character: GF/W38-002
+Name Tanabata, Michiru Tomura
+JPName 七夕 戸村美知留
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Girl
+*Healer
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, this card gets +2500 power and +1 soul until the end of your opponent's next turn.
+EndCard
+
+Character: GF/W38-003
+Name Kinoko Himejima
+JPName 姫島木乃子
+Color Y
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Girl
+Auto:
+{
+
+}
+Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 Blue character, reveal it, put it in your hand, and shuffle your deck.
+Auto:
+{
+
+}
+Text Auto: [Put 1 climax from your hand] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 Yellow character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: GF/W38-004
+Name Closing in for a Shot, Tugumi Harumi
+JPName 接近一射 春宮つぐみ
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Girl
+Trait2 Weapon
+Combo Good Friends "Mahiro & Tsugumi"
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: CxCombo When 'Good Friends "Mahiro & Tsugumi"' is placed on your climax area, if this card is in the center stage, search your deck for up to 1 "Everyone's Story, Mahiro Natsume", reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: GF/W38-005
+Name Tanabata, Yuzuko Hazuki
+JPName 七夕 葉月柚子
+Color Y
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Girl
+Cont:
+{
+
+}
+Text Cont: If the number of other «Girl» characters you have is 2 or more, this card gets +1000 power.
+*ClockEncore
+EndCard
+
+Character: GF/W38-006
+Name Bubble Interview, Akane Sakurai
+JPName バブルインタビュー 櫻井明音
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Girl
+Trait2 Swimsuit
+Combo Soap Bubbles
+Cont:
+{
+
+}
+Text Cont: If the number of other «Girl» characters you have is 2 or more, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo [(1)] When "Soap Bubbles" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, all your characters get the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may draw a card."
+EndCard
+
+Character: GF/W38-007
+Name Land of Fairy Tales, Remi Tamai
+JPName おとぎの国 玉井麗巳
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Girl
+Trait2 Play
+Combo Full-out Evasion
+Auto:
+{
+
+}
+Text Auto: CxCombo [(2)] When this card attacks, if "Full-out Evasion" is in your climax area, you may pay the cost. If you do, all your center stage characters get the following ability until end of turn. "Auto: This card ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
+EndCard
+
+Character: GF/W38-008
+Name Cooking Contest, Akari Amari
+JPName 料理コンテスト 甘利燈
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Girl
+Combo Good Friends "Akari & Yurara"
+*Healer
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if 'Good Friends "Akari & Yurara"' is in your climax area, search your deck for up to 1 «Girl» character, reveal it, and put it in your hand. Afterward, shuffle your deck, and this card gets +1500 power until the end of your opponent's next turn.
+EndCard
+
+Character: GF/W38-009
+Name Sound of Surprise, Risa Shinomiya
+JPName 驚愕の音 篠宮りさ
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Girl
+Cont:
+{
+
+}
+Text Cont: All your other "Culture Festival, Kanata Amatsu" get +500 power and "Auto: ENCORE [Put 1 character from your hand]".
+*BondClock(Culture Festival\, Kanata Amatsu)
+EndCard
+
+Character: GF/W38-010
+Name Sumire Yomogida
+JPName 蓬田菫
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Girl
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Girl» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: GF/W38-011
+Name Cheerleading Dance, Emi Sagara
+JPName チアダンス 相楽エミ
+Color Y
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Girl
+Cont:
+{
+
+}
+Text Cont: All your other «Girl» characters get +500 power.
+Auto:
+{
+
+}
+Text Auto: This card ability activates up to once per turn. When you use an Act: ability, choose 1 of your characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: GF/W38-012
+Name High-Speed Slide, Remi Tamai
+JPName 高速スライダー 玉井麗巳
+Color Y
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Girl
+Trait2 Swimsuit
+Cont:
+{
+
+}
+Text Cont: During your turn, all your other «Girl» characters get +1000 power.
+Auto:
+{
+
+}
+Text Auto: When your climax is placed on your climax area, choose 1 of your characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: GF/W38-013
+Name Southern Taste, Michiru Tomura
+JPName 南国の味覚 戸村美知留
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Girl
+Trait2 Swimsuit
+Combo Summer Preparation
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: CxCombo [(1)] When this card attacks, if "Summer Preparation" is in your climax area, you may pay the cost. If you do, this card gets +3000 power until end of turn, and your opponent cannot use "Auto: ENCORE" until end of turn. (This card includes "Auto: ENCORE [(3)]" provided by the rules)
+EndCard
+
+Character: GF/W38-014
+Name Day Trip to Hot Spring, Akane Sakurai
+JPName 日帰り温泉 櫻井明音
+Color Y
+Level 1
+Cost 1
+Trigger Soul
+Power 1000
+Soul 1
+Trait1 Girl
+Trait2 Yukata
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, if all your characters are Yellow, you may put the top card of your deck in your stock.
+Backup 2000
+EndCard
+
+Character: GF/W38-015
+Name Japanese Culture, Yuzuki Kiriyama
+JPName 日本文化 桐山優月
+Color Y
+Level 1
+Cost 1
+Power 6500
+Soul 1
+Trait1 Girl
+Trait2 Yukata
+Cont:
+{
+
+}
+Text Cont: During battles involving this card, no player may play BACKUP from hand.
+Cont:
+{
+
+}
+Text Cont: During your turn, this card gets +1000 power.
+EndCard
+
+Character: GF/W38-016
+Name Japanese Culture, Shuri Furuya
+JPName 日本文化 古谷朱里
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 5500
+Soul 1
+Trait1 Girl
+Trait2 Yukata
+Cont:
+{
+
+}
+Text Cont: All your other «Girl» characters get +1000 power.
+Auto:
+{
+
+}
+Text Auto: When your character's trigger check reveals a climax card, choose 1 of your characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: GF/W38-017
+Name Our Captain, Rino Suzukawa
+JPName 我らが大将 鈴河凜乃
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 6000
+Soul 1
+Trait1 Girl
+Cont:
+{
+
+}
+Text Cont: This card cannot be chosen as the target of opponent's effects.
+Cont:
+{
+
+}
+Text Cont: ASSIST Your level 3 and higher characters in front of this card get +2000 power.
+EndCard
+
+Character: GF/W38-018
+Name Rampaging Cleaner, Raimu Nejikawa
+JPName 暴走掃除機 螺子川来夢
+Color Y
+Level 2
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Girl
+Trait2 Swimsuit
+Auto:
+{
+
+}
+Text Auto: When this card attacks, put the top card of your stock in the waiting room.
+*HandEncore
+EndCard
+
+Character: GF/W38-019
+Name Touching the Sea, Kira Hayashida
+JPName 海に触れる 林田希羅
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Girl
+Trait2 Swimsuit
+*500Assist
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your «Girl» characters, and that character gets +500 power until end of turn.
+EndCard
+
+Character: GF/W38-020
+Name Performing a Duet, Remi Tamai
+JPName 二人で一曲 玉井麗巳
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Girl
+Trait2 Music
+Cont:
+{
+
+}
+Text Cont: During your turn, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: [(1)] When the damage dealt by this card is canceled, you may pay the cost. If you do, draw a card.
+EndCard
+
+Character: GF/W38-021
+Name Leave it to Me, Rui Takasaki
+JPName 私にお任せ 高崎瑠依
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Girl
+Cont:
+{
+
+}
+Text Cont: Your other character in the middle position of your center stage get +500 power.
+Act:
+{
+
+}
+Text Act: [Put this card in the waiting room] Choose 1 of your «Girl» characters, and that character gets +1 level and +1000 power until end of turn.
+EndCard
+
+Character: GF/W38-022
+Name Japanese Culture, Tomo Oshii
+JPName 日本文化 押井知
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Girl
+Trait2 Yukata
+Cont:
+{
+
+}
+Text Cont: During your turn, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose up to 2 of your «Girl» characters, and they get +500 power until end of turn.
+EndCard
+
+Character: GF/W38-023
+Name Cinderella Time, Mirei Ayanokoji
+JPName シンデレラタイム 綾小路美麗
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Girl
+Trait2 Dress
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a Yellow character, this card gets +2000 power until end of turn.
+EndCard
+
+Character: GF/W38-024
+Name Protecting the Treasure, Sonomi Kakei
+JPName 御宝死守 掛井園美
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Girl
+Cont:
+{
+
+}
+Text Cont: If you have 1 or less other characters, this card gets +1500 power.
+EndCard
+
+Character: GF/W38-025
+Name Wakana Yoshinaga
+JPName 吉永和花那
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Girl
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+EndCard
+
+Character: GF/W38-026
+Name High-Speed on Top of the Snow, Akane Sakurai
+JPName 雪上ハイスピード 櫻井明音
+Color Y
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Girl
+Trait2 Snow
+EndCard
+
+Character: GF/W38-027
+Name Doubting Wish, Nozomi Miyachi
+JPName 惑う願い 宮内希
+Color Y
+Level 0
+Cost 0
+Power 3500
+Soul 1
+Trait1 Girl
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's not a «Girl» character, put it in your clock.
+EndCard
+
+Character: GF/W38-028
+Name Touching Cheek, Shinobu Kokonoe
+JPName 頬を撫でる 九重忍
+Color Y
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Girl
+EndCard
+
+Character: GF/W38-029
+Name Best Praises, Mayuri Ooyama
+JPName 御褒美最高 大山真由里
+Color Y
+Level 1
+Cost 0
+Power 6000
+Soul 1
+Trait1 Girl
+Trait2 Sweets
+Auto:
+{
+
+}
+Text Auto: At the beginning of your climax phase, choose 1 of your standing characters and rest it.
+EndCard
+
+Character: GF/W38-030
+Name Databank, Chizuru Onodera
+JPName 資料宝庫 小野寺千鶴
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Girl
+Backup 3000
+EndCard
+
+Character: GF/W38-031
+Name Storm of Praises, Kazuha Kumada
+JPName 賞賛の嵐 熊田一葉
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Girl
+Trait2 Sports
+Cont:
+{
+
+}
+Text Cont: If the number of other Yellow characters you have is 4 or more, this card gets +2000 power and +1 soul.
+EndCard
+
+Character: GF/W38-032
+Name Mad Scientist, Kise Yukawa
+JPName マッドアルケミスト 湯川基世
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Girl
+Trait2 Science
+Auto:
+{
+
+}
+Text Auto: When this card attacks, reveal the top card of your deck. If it's a «Girl» character, this card gets +1 soul until end of turn.
+EndCard
+
+Character: GF/W38-033
+Name Here It is, Kurumi Eto
+JPName これでっす 江藤くるみ
+Color Y
+Level 2
+Cost 2
+Trigger Soul
+Power 8000
+Soul 2
+Trait1 Girl
+Cont:
+{
+
+}
+Text Cont: If the number of «Girl» characters you have is 4 or more, this card gets -1 level while in your hand.
+EndCard
+
+Climax: GF/W38-034
+Name Full-out Evasion
+JPName 渾身回避
+Color Y
+*DrawClimax
+EndCard
+
+Climax: GF/W38-035
+Name Good Friends "Akari & Yurara"
+JPName 仲良し【燈＆ゆらら】
+*WindClimax
+EndCard
+
+Climax: GF/W38-036
+Name Soap Bubbles
+JPName シャボン
+*ShotClimax
+EndCard
+
+Climax: GF/W38-037
+Name Summer Preparation
+JPName 夏準備
+*YellowStockSoul
+EndCard
+
+Character: GF/W38-038
+Name Tropical, Haruko Yumesaki
+JPName トロピカル 夢前春瑚
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Girl
+Trait2 Swimsuit
+*RedLevel0Bomb
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card is placed from stage to the waiting room, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
+EndCard
+
+Character: GF/W38-039
+Name Miss Contest, Chloe Lemaire
+JPName ミスコン クロエ・ルメール
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Girl
+Trait2 Dress
+Auto:
+{
+
+}
+Text Auto: When your other character becomes reversed, choose 1 of your characters, and that character gets +1000 power until end of turn.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1)] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, perform the following action. "Choose a «Girl» character in your waiting room and return it to your hand, and discard a card from your hand to the waiting room."
+EndCard
+
+Character: GF/W38-040
+Name Pumpkin Ghost, Nonoka Sasahara
+JPName オバケ南瓜 笹原野々花
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Girl
+Trait2 Pumpkin
+*Healer
+Auto:
+{
+
+}
+Text Auto: [(3) Put 1 card from your hand to the waiting room] When this card's battle opponent becomes reverse, if you have another "Mirror Girl, Kokomi Shiina", you may pay the cost. If you do, deal 5 damage to your opponent.
+EndCard
+
+Character: GF/W38-041
+Name Erena Mochizuki
+JPName 撮影コーチ 望月エレナ
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Girl
+Combo Summer Preparation
+Combo Summer Preparation
+Cont:
+{
+
+}
+Text Cont: CxCombo All your other "Summer Preparation, Fumio Murakami" gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo BOND/"Summer Preparation, Fumio Murakami" [Put the top card of your deck in your clock]
+EndCard
+
+Character: GF/W38-042
+Name Flustered, Ichigo Kohinata
+JPName あわてんぼう 小日向いちご
+Color R
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Girl
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, if the number of «Girl» characters you have is 2 or more, choose 1 of your characters in battle, and that character gets +X power until end of turn. X equals 500 times your level.
+Backup 1000
+EndCard
+
+Character: GF/W38-043
+Name Study Session, Matsuri Kagami
+JPName 勉強会 加賀美茉莉
+Color R
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Girl
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Girl» character in your waiting room and return it to your hand.
+EndCard
+
+Character: GF/W38-044
+Name Wishing for Something, Momoko Asahina
+JPName お願いごと 朝比奈桃子
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Girl
+Cont:
+{
+
+}
+Text Cont: If the number of other Blue characters you have is 2 or more, this card gets the following ability. "Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, you may reverse that character."
+*HandEncore
+EndCard
+
+Character: GF/W38-045
+Name Skill Issues?, Yurara Mishima
+JPName 腕の問題？ 三嶋ゆらら
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Girl
+Trait2 Animal
+Combo Good Friends "Akari & Yurara"
+Auto:
+{
+
+}
+Text Auto: CxCombo [(1) Return this card to your hand] When 'Good Friends "Akari & Yurara"' is placed on your climax area, you may pay the cost. If you do, choose up to 1 "Cooking Contest, Akari Amari" in your hand and put it in the position this card was in.
+Backup 3000
+EndCard
+
+Character: GF/W38-046
+Name Fiend Costume, Mei Morizono
+JPName 妖怪仮装 森園芽以
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Girl
+Trait2 Yukata
+Combo Good Friends "Mei & Akiho"
+Cont:
+{
+
+}
+Text Cont: This card gets +500 power for each of your other «Girl» characters
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if 'Good Friends "Mei & Akiho"' is in your climax area, you may choose a character in your waiting room and return it to your hand.
+EndCard
+
+Character: GF/W38-047
+Name Land of Fairy Tales, Haruka Kazemachi
+JPName おとぎの国 風町陽歌
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Girl
+Combo Thundering Beat
+Cont:
+{
+
+}
+Text Cont: The character facing this card gets -1 soul
+*OnPlayScry
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Thundering Beat" is in your climax area, you may deal 1 damage to your opponent.
+EndCard
+
+Character: GF/W38-048
+Name Nervously Rowing, Momoko Asahina
+JPName 緊張操船 朝比奈桃子
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Girl
+Trait2 Swimsuit
+Auto:
+{
+
+}
+Text Auto: [(3) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, oyu may pay the cost. If you do, choose up to 2 «Girl» characters in your waiting room and return them to your hand.
+EndCard
+
+Character: GF/W38-049
+Name Singing in the Rain, Haruka Kazemachi
+JPName 雨の歌声 風町陽歌
+Color R
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Girl
+Trait2 Umbrella
+Cont:
+{
+
+}
+Text Cont: All your other Red characters get +500 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your other characters, and that character gets +1500 power until end of turn.
+EndCard
+
+Character: GF/W38-050
+Name After the Portable Shine, Kodama Yamano
+JPName 神輿の後 山野こだま
+Color R
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Girl
+Trait2 Yukata
+*500Assist
+Act:
+{
+
+}
+Text Act: [Rest 2 of your characters] Choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When a level 1 or higher character of this card becomes reversed, choose a character in your Waiting room and return it to your hand, and discard a card from your hand to the waiting room."
+EndCard
+
+Character: GF/W38-051
+Name Photo Booth Together, Chloe Lemaire
+JPName 一緒にプリクラ クロエ・ルメール
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Girl
+Combo After School Date
+Auto:
+{
+
+}
+Text Auto: CxCombo [(1)] When this card attacks, if "After School Date" is in your climax area, you may pay the cost. If you do, this card gets +6000 power until end of turn.
+*ClockEncore
+EndCard
+
+Character: GF/W38-052
+Name Inside the Snow Hut, Hina Niigaki
+JPName カマクラの中で 新垣雛菜
+Color R
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 Girl
+Trait2 Snow
+Auto:
+{
+
+}
+Text Auto: When your other Red character attacks, this card gets +1500 power until end of turn.
+*HandEncore
+EndCard
+
+Character: GF/W38-053
+Name Culture Festival, Kanata Amatsu
+JPName 文化祭 天都かなた
+Color R
+Level 1
+Cost 1
+Power 8000
+Soul 1
+Trait1 Girl
+Auto:
+{
+
+}
+Text Auto: When this card is placed from hand ot the stage, if you don't have another "Sound of Surprise, Risa Shinomiya", rest this card.
+EndCard
+
+Character: GF/W38-054
+Name Meeting up, Nae Yuuki
+JPName 待ち合わせ 優木苗
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 5000
+Soul 1
+Trait1 Girl
+*LevelAssist
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your «Girl» characters, and that character gets +500 power until end of turn.
+EndCard
+
+Character: GF/W38-055
+Name Test of Courage, Kyoko Tachibana
+JPName 肝試し 橘響子
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 6500
+Soul 1
+Trait1 Girl
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the character facing this card is level 3 or higher, this card gets +6000 power.
+*HandEncore
+EndCard
+
+Character: GF/W38-056
+Name Wishing to be an Actress, Moeka Nitta
+JPName 女優大望 新田萌果
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Girl
+*500Assist
+Act:
+{
+
+}
+Text Act: [(1)] Choose 1 of your opponent's level 0 or lower characters in the center stage and put it in the waiting room.
+EndCard
+
+Character: GF/W38-057
+Name Sweetness of Success, Makoto Hiiragi
+JPName 成功甘美 柊真琴
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Girl
+Trait2 Sweets
+Cont:
+{
+
+}
+Text Cont: If the number of other «Girl» characters you have is 2 or more, this card gets +1000 power.
+EndCard
+
+Character: GF/W38-058
+Name Writing Girl, Tsuzuri Shirase
+JPName 書する少女 白瀬つづり
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Girl
+Cont:
+{
+
+}
+Text Cont: If this card is in the middle position of your center stage, this card gets +1000 power.
+EndCard
+
+Character: GF/W38-059
+Name Night Together, Saeko Arisugawa
+JPName 今宵は共に 有栖川小枝子
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Girl
+Auto:
+{
+
+}
+Text Auto: This card ability activates up to twice per turn. When your other «Girl» character is placed on the stage from your hand, this card gets +1000 power until end of turn.
+EndCard
+
+Character: GF/W38-060
+Name Snowing Day, Kei Asami
+JPName 雪の日 浅見景
+Color R
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Girl
+Trait2 Snow
+EndCard
+
+Character: GF/W38-061
+Name Snow Girl Kasha, Yulia Valkova
+JPName 雪娘カーシャ ユーリヤ・ヴャルコワ
+Color R
+Level 1
+Cost 0
+Power 6000
+Soul 1
+Trait1 Girl
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed in battle, your opponent may choose a character in your waiting room and put it on top of the deck.
+EndCard
+
+Character: GF/W38-062
+Name Welcoming New Students, Nanase Minamida
+JPName 新歓 南田七星
+Color R
+Level 1
+Cost 0
+Power 6000
+Soul 1
+Trait1 Girl
+Cont:
+{
+
+}
+Text Cont: If you have 2 or less «Girl» characters, you cannot play this card from your hand.
+EndCard
+
+Character: GF/W38-063
+Name Results of Practice, Momoko Asahina
+JPName 日頃の成果 朝比奈桃子
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Girl
+Trait2 Music
+Cont:
+{
+
+}
+Text Cont: If the number of other «Girl» characters you have is 2 or more, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room, rest 2 of your standing characters] When this card attacks, if "Ensemble Contest" is in your climax area, you may pay the cost. If you do, choose 1 of your opponent's level 2 or lower characters and put it in the waiting room.
+EndCard
+
+Character: GF/W38-064
+Name First Writing of the Year, Chloe Lemaire
+JPName 書初め クロエ・ルメール
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Girl
+Trait2 Animal
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card attacks, if the number of other Red characters you have is 4 or more, you may pay the cost. If you do, this card gets +3000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may pay that character on top of the deck."
+EndCard
+
+Character: GF/W38-065
+Name Having Fun Doing Sports, Marika Saeki
+JPName 楽しく運動 佐伯鞠香
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Girl
+Trait2 Sports
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed in battle, your opponent may choose a character in their waiting room and return it to their hand.
+EndCard
+
+Event: GF/W38-066
+Name Part-Time Job
+JPName アルバイト
+Color R
+Level 2
+Cost 2
+Effect:
+{
+
+}
+Text Choose up to 2 characters in your waiting room and return them to your hand.
+EndCard
+
+Climax: GF/W38-067
+Name Thundering Beat
+JPName 雷のビート
+*RedStockSoul
+EndCard
+
+Climax: GF/W38-068
+Name Good Friends "Mei & Akiho"
+JPName 仲良し【芽以＆秋穂】
+*DoorClimax
+EndCard
+
+Climax: GF/W38-069
+Name After School Date
+JPName 放課後デート
+Color R
+*2SoulClimax
+EndCard
+
+Climax: GF/W38-070
+Name Emsemble Contest
+JPName 合奏コンクール
+Color R
+When this card is placed from hand to your climax area, draw a card, choose 1 of oyur characters, and that character gets +2000 power and +1 soul until end of turn.
+EndCard
+
+Character: GF/W38-071
+Name Confirmed Capture, Kokomi Shiina
+JPName シッカリ確保 椎名心実
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Girl
+Trait2 Police
+Combo Cheerleading Dance
+Combo Cheerleading Dance
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Cheerleading Dance" is in your climax area and all your characters are Blue, this card gets +2000 power until the end of your opponent's next turn.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Cheerleading Dance" is in your climax area, this card gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, search your deck for up to 1 Blue character, reveal it, put it in your hand, and shuffle your deck."
+EndCard
+
+Character: GF/W38-072
+Name Everyone's Story, Mahiro Natsume
+JPName 皆の物語 夏目真尋
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Girl
+Combo Good Friends "Mahiro & Tsugumi"
+Cont:
+{
+
+}
+Text Cont: If the number of other Yellow characters and 2 or more other Blue characters you have is 2 or more, this card gets -1 level while in your hand.
+*Healer
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if 'Good Friends "Mahiro & Tsugumi"' is in your climax area, this card gets +2000 power and the following ability until the end of your opponent's next turn. "Cont: The character facing this card gets -1 soul."
+EndCard
+
+Character: GF/W38-073
+Name Flower of the Cherry Blossom Tree, Isuzu Shiranui
+JPName 花は桜木 不知火五十鈴
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Girl
+Trait2 Yukata
+*Healer
+Auto:
+{
+
+}
+Text Auto: [Put 1 character from your hand to the waiting room] When this card is placed on the stage from your hand, if the number of other Blue characters you have is 4 or more, you may pay the cost. If you do, search your deck for up to 1 climax card, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: GF/W38-074
+Name Mirror Girl, Nao Miyoshi
+JPName ミラーガール 見吉奈央
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Girl
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, all your other characters get +500 power.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest 2 of your characters] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 Blue character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: GF/W38-075
+Name Day with Strong Wind, Fumio Murakami
+JPName 風が強い日 村上文緒
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Girl
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck and put it either on top or bottom of the Lbirary.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Girl» character, put it in your hand and discard a card from your hand ot the waiting room.
+EndCard
+
+Character: GF/W38-076
+Name Rainy Day at the Archery Range, Akiho Shigeto
+JPName 弓場の雨情 重藤秋穂
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Girl
+Combo Good Friends "Mei & Akiho"
+Auto:
+{
+
+}
+Text Auto: When your other «Girl» character attacks, this card gets +1000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: CxCombo [(1)] When this card attacks, if 'Good Friends "Mei & Akiho"' is in your climax area, you may pay the cost. If you do, search your deck for up to 1 «Girl» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: GF/W38-077
+Name Summer Preparation, Fumio Murakami
+JPName 夏準備 村上文緒
+Color B
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Girl
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, if you have another character with "Erena" in its card name, this card gets +1 level and +1000 power.
+EndCard
+
+Character: GF/W38-078
+Name Free Research, Rui Kamijou
+JPName 自由研究 上条るい
+Color B
+Level 1
+Cost 0
+Power 6500
+Soul 1
+Trait1 Girl
+Cont:
+{
+
+}
+Text Cont: If the level of the character facing this card is 2 or higher, this card gets the following ability. "Cont: This card cannot frontal attack."
+EndCard
+
+Character: GF/W38-079
+Name Mirror Girl, Kokomi Shiina
+JPName ミラーガール 椎名心実
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 4000
+Soul 1
+Trait1 Girl
+*LevelAssist
+*BondDiscard(Pumpkin Ghost\, Nonoka Sasahara)
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your "Pumpkin Ghost, Nonoka Sasahara", and that character gets +2500 power until end of turn.
+EndCard
+
+Character: GF/W38-080
+Name Form of Appreciation, Saya Kagurazaka
+JPName 感謝の形 神楽坂砂夜
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 4000
+Soul 1
+Trait1 Girl
+Cont:
+{
+
+}
+Text Cont: ASSIST Your Blue characters in front of this card get +1500 power.
+Act:
+{
+
+}
+Text Act: [(1)] draw a card, and discard a card from your hand to the waiting room.
+EndCard
+
+Character: GF/W38-081
+Name Rocking Cat, Nagiko Kurokawa
+JPName ロックンキャット 黒川凪子
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Girl
+Trait2 Music
+Cont:
+{
+
+}
+Text Cont: All your other "Here It is, Kurumi Eto" get +1000 power.
+*BondClock(Here It is\, Kurumi Eto)
+EndCard
+
+Character: GF/W38-082
+Name Cheering GK, Chika Oribe
+JPName 激励GK 織部千華
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Girl
+Trait2 Sports
+*500Assist
+Act:
+{
+
+}
+Text Act: [Rest 2 of your characters] choose 1 of your «Girl» characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: GF/W38-083
+Name Sharing Food, Mai Masaoka
+JPName 分け合えば 正岡真衣
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Girl
+Trait2 Sweets
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your other Blue characters, and that character gets +1000 power until the end of your opponent's next turn.
+*HandEncore
+EndCard
+
+Character: GF/W38-084
+Name Lady's Akoto Performance, Yukie Yatsuka
+JPName 令嬢琴奏 八束由紀恵
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Girl
+Trait2 Yukata
+Cont:
+{
+
+}
+Text Cont: If all your characters are Blue, this card gets +1000 power.
+EndCard
+
+Character: GF/W38-085
+Name Gothic Band, Rei Shinonome
+JPName ゴスバンド 東雲レイ
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Girl
+Trait2 Music
+Cont:
+{
+
+}
+Text Cont: ASSIST Your characters in front this card get +X power. X equals 500 times the number of your characters with ASSIST.
+Act:
+{
+
+}
+Text Act: [Rest this card and 1 of your other characters] Choose 1 of your characters, and that character gets +1000 power until the end of your opponent's next turn.
+EndCard
+
+Character: GF/W38-086
+Name Eiko Hibara
+JPName 飛原鋭子
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 5500
+Soul 1
+Trait1 Girl
+Trait2 Weapon
+Cont:
+{
+
+}
+Text Cont: ASSIST If there's a Yellow card and a Blue card in your level, this card gets +4500 power.
+EndCard
+
+Character: GF/W38-087
+Name Glass Shoes, Fumio Murakami
+JPName 硝子の靴 村上文緒
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Girl
+Trait2 Dress
+Combo Land of Fairy Tales
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, this card gets +500 power for each of your «Girl» characters
+Auto:
+{
+
+}
+Text Auto: CxCombo [(1)] When this card attacks, if "Land of Fairy Tales" is in your climax area, you may pay the cost. If you do, put the top card of your clock in the waiting room.
+EndCard
+
+Character: GF/W38-088
+Name Performance at Sunset, Isuzu Shirauni
+JPName 夕景演出 不知火五十鈴
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Girl
+Trait2 Swimsuit
+Combo Unpredicted Accident
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Unpredicted Accident" is in your climax area, all your «Girl» characters gets +1500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, draw a card, and discard a card from your hand to the waiting room."
+EndCard
+
+Character: GF/W38-089
+Name Towards the Sky, Satoru Kimijima
+JPName 空へ向けて 君嶋里琉
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Girl
+Trait2 Plant
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, this card gets +2000 power.
+EndCard
+
+Character: GF/W38-090
+Name Sparkling Girl, Kokomi Shiina
+JPName キラ★ガール 椎名心実
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Girl
+EndCard
+
+Character: GF/W38-091
+Name Inside the Soap Bubble, Mutsumi Shigino
+JPName シャボンの中 鴫野睦
+Color B
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Girl
+Trait2 Swimsuit
+Backup 1500
+EndCard
+
+Character: GF/W38-092
+Name Flower under the Fireworkds, Ayame Chiyoura
+JPName 花火下の花 千代浦あやめ
+Color B
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Girl
+Trait2 Yukata
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, all your other Blue characters get +1000 power.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: GF/W38-093
+Name Noblewoman Look, Youko Tsukishiro
+JPName 貴婦人姿 月白陽子
+Color B
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Girl
+Trait2 Dress
+Auto:
+{
+
+}
+Text Auto: This card ability activates up to twice per turn. When your other Blue character is placed on the stage from your hand, this card gets +1000 power until end of turn.
+EndCard
+
+Character: GF/W38-094
+Name Charming Dance, Noriko Kiryu
+JPName 戸惑い舞い 霧生典子
+Color B
+Level 1
+Cost 1
+Power 7000
+Soul 1
+Trait1 Girl
+EndCard
+
+Character: GF/W38-095
+Name Mikoto Kanzaki
+JPName 神崎ミコト
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Girl
+Cont:
+{
+
+}
+Text Cont: This card gets +500 power for each of your other «Girl» characters
+*ClockEncore
+EndCard
+
+Event: GF/W38-096
+Name Putting Your Heart into It
+JPName 真心込めて
+Color B
+Level 1
+Cost 0
+Effect:
+{
+
+}
+Text Look at up to the top 4 cards of your deck, choose up to 1 Blue character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Climax: GF/W38-097
+Name Cheerleading Dance
+JPName チアダンス
+*BlueStockSoul
+EndCard
+
+Climax: GF/W38-098
+Name Good Friends "Mahiro & Tsugumi"
+JPName 仲良し【真尋＆つぐみ】
+*GateClimax
+EndCard
+
+Climax: GF/W38-099
+Name Unpredicted Accident
+JPName 不測の事態
+*BookClimax
+EndCard
+
+Climax: GF/W38-100
+Name Land of Fairy Tales
+JPName おとぎの国
+Color B
+*DrawClimax
+EndCard
+

@@ -1724,7 +1724,6 @@ Cont: GiveSelf
     TargetMarkersUnderTargets
     If Compare TargetCount 3 OrMore
     {
-        TargetSelf
         GainPower 2500
         GainEffect
         {
