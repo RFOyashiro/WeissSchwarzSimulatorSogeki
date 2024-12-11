@@ -112,8 +112,11 @@ Auto: OnSpecificClimaxPlay Read Admiration for You
         PayCost SendSelf Memory
         {
             SearchLocationForTargets Hand 0 1 NameEquals Ice Flower Hexerei, Adelheid Kanzaki
-            Change
-            GainPower 8000
+            If HasTarget
+            {
+                Change
+                GainPower 8000
+            }
         }
 
     }
