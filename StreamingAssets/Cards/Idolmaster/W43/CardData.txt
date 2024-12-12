@@ -1411,6 +1411,7 @@ Auto: OnReversed
 {
     OpponentMessage Choose up to 1 character to put on top of your opponent's deck.
     OpponentSearchLocationForTargets OpponentWaitingRoom 0 1 IsCharacter
+    RevealTargets
     MoveCard Deck
 }
 Text Auto: When this card becomes reversed in battle, your opponent may choose a character in your waiting room and put it on top of the deck.
