@@ -1081,11 +1081,22 @@ Power 4500
 Soul 1
 Trait1 Music
 Trait2 MORE MORE JUMP!
-Auto: OnCardEntersLocation LeftCenterStage|RightCenterStage
+Auto: OnCardMoves
 {
     If StageContains 2 Other && HasTrait MORE MORE JUMP!
     {
-        GainPower 1000
+        IfOther Not Other &&& InLocation LeftCenterStage || InLocation RightCenterStage
+        {
+            GainPower 1000
+        }
+        Else
+        {
+            RefundTimesPerTurn
+        }
+    }
+    Else
+    {
+        RefundTimesPerTurn
     }
 }
 TimesPerTurn 2
