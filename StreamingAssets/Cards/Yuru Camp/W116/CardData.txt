@@ -397,7 +397,7 @@ Trait2 Glasses
 *GlobalPower(500,Yuru Camp)
 Auto: OnPlay
 {
-    PayCost Send 1 WaitingRoom HasTrait Yuru Camp
+    PayCost Discard 1 HasTrait Yuru Camp && IsCharacter
     {
         SearchDeck NameEquals Enjoying Camping! Nadeshiko
     }
@@ -1278,7 +1278,7 @@ Soul 1
 Trait1 Yuru Camp
 Trait2 Hard Worker
 *OnPlayGainPowerForEach(500,Yuru Camp)
-Auto: OnFrontalAttack
+Auto: OnFrontalAttacked
 {
     PayCost 1 Discard 1 Any
     {

@@ -3085,7 +3085,8 @@ Trait1 Dragon
 Trait2 Demon
 Auto: OnAttack
 {
-    SetXToNumberOfCharacters InLocation OpponentStage
+    TargetLocation OpponentStage
+    SetXValue TargetCount
     MultiplyXValue 1500
     GainPower X
 }
