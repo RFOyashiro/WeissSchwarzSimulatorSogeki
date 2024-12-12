@@ -1032,14 +1032,22 @@ Power 9500
 Soul 2
 Trait1 Girl
 Trait2 Music
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters Other && ColorIs Red
+    MultiplyXValue 500
+    GainPower X
 }
 Text Cont: This card gets +500 power for each of your other Red characters
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If MyTurn
+    {
+        PayCost 1
+        {
+            Burn 1
+        }
+    }
 }
 Text Auto: [(1)] During your turn, when this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 1 damage to your opponent.
 EndCard
@@ -1056,9 +1064,17 @@ Soul 2
 Trait1 Girl
 Combo Chihaya Something
 *Healer
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If Climax Chihaya Something
+    {
+        PayCost 2
+        {
+            TargetLocation WaitingRoom
+            NarrowTargets IsClimax
+            Burn TargetCount
+        }
+    }
 }
 Text Auto: CxCombo [(2)] When this card's battle opponent becomes reverse, if "Chihaya Something" is in your climax area, you may pay the cost. If you do, deal X damage to your opponent. X equals the number of climax cards in your waiting room.
 EndCard
@@ -1075,17 +1091,28 @@ Soul 2
 Trait1 Girl
 Trait2 Camera
 Combo Strike!
-Combo Strike!
-Cont:
+Cont: InHand
 {
-
+    If StageContains 4 ColorIs Red
+    {
+        LoseLevel 1
+    }
 }
 Text Cont: If the number of Red characters you have is 4 or more, this card gets -1 level while in your hand.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Strike! && AllYourCharacters ColorIs Red
+    {
+        PayCost 1
+        {
+            SearchWaitingRoom IsCharacter
+            SearchWaitingRoom IsCharacter
+            UntilEndOfOpponentsTurn
+            GainPower 2500
+        }
+    }
 }
-Text Auto: CxCombo CxCombo [(1)] When this card attacks, if "Strike!" is in your climax area and all your characters are Red, you may pay the cost. If you do, choose up to 2 characters in your waiting room and return them to your hand, and this card gets +2500 power until the end of your opponent's next turn.
+Text Auto: CxCombo [(1)] When this card attacks, if "Strike!" is in your climax area and all your characters are Red, you may pay the cost. If you do, choose up to 2 characters in your waiting room and return them to your hand, and this card gets +2500 power until the end of your opponent's next turn.
 EndCard
 
 Character: GF/W33-054
@@ -1097,14 +1124,21 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Girl
-Cont:
+Cont: GiveAll
 {
-
+    If Other && InLocation MiddleCenterStage && ColorIs Red
+    {
+        GainPower 500
+    }
 }
 Text Cont: Your other Red character in the middle position of your center stage gets +500 power.
-Act:
+Act: 1 RestSelf
 {
-
+    Brainstorm 4
+    Repeat BrainstormedClimax
+    {
+        SearchWaitingRoom IsCharacter && ColorIs Red
+    }
 }
 Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 Red character in your waiting room and return it to your hand.
 EndCard
@@ -1119,14 +1153,16 @@ Power 4500
 Soul 1
 Trait1 Girl
 Combo Yell
-Auto:
+*ClimaxExchange
+Auto: OnAttack
 {
-
-}
-Text Auto: [(1) Put 1 climax from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 climax in your waiting room and return it to your hand.
-Auto:
-{
-
+    If Climax Yell
+    {
+        PayCost 1
+        {
+            SearchWaitingRoom IsCharacter
+        }
+    }
 }
 Text Auto: CxCombo [(1)] When this card attacks, if "Yell" is in your climax area, you may pay the cost. If you do, choose 1 character in your waiting room and return it to your hand.
 EndCard
@@ -1141,14 +1177,16 @@ Power 5500
 Soul 1
 Trait1 Girl
 Trait2 Dress
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters Other && ColorIs Red
+    MultiplyXValue 500
+    GainPower X
 }
 Text Cont: This card gets +500 power for each of your other Red characters
-Cont:
+Cont: GiveSelf
 {
-
+    GainSpecialEffect CannotBeReversedByAutoEffects
 }
 Text Cont: This card cannot be reversed by effects of Auto: abilities of your opponent's characters.
 EndCard
@@ -1163,9 +1201,12 @@ Trigger Soul
 Power 5000
 Soul 1
 Trait1 Girl
-Auto:
+Auto: OnReverseOpponent
 {
-
+    PayCost 2
+    {
+        Burn 1
+    }
 }
 Text Auto: [(2)] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 1 damage to your opponent.
 *RedLevel2Bomb
@@ -1182,9 +1223,28 @@ Power 10000
 Soul 2
 Trait1 Girl
 *Healer
-Auto:
+Auto: OnAttack
 {
-
+    PayCost 1
+    {
+        GainPower 1000
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                TargetBattleOpponent
+                IfTarget OnStage
+                {
+                    Question Put that character on top of your opponent's deck ?
+                    If Yes
+                    {
+                        MoveCard OpponentDeck
+                    }
+                }
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may put that character on top of the deck.
+        }
+    }
 }
 Text Auto: [(1)] When this card attacks, you may pay the cost. If you do, this card gets +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character on top of the deck."
 EndCard
@@ -1199,9 +1259,12 @@ Power 500
 Soul 1
 Trait1 Girl
 Trait2 Sweets
-Cont:
+Cont: GiveAll
 {
-
+    If Other && ColorIs Red
+    {
+        GainPower 500
+    }
 }
 Text Cont: All your other Red characters get +500 power.
 *OnPlayScry
@@ -1218,9 +1281,12 @@ Soul 1
 Trait1 Girl
 Trait2 Plant
 *RedLevel0Bomb
-Act:
+Act: 1
 {
-
+    TargetLocation OpponentCenterStage
+    NarrowTargets Compare ThatCardsLevel 0 OrLess && CanBeChosen
+    ChooseCharacterFromTargets Choose a character to put into waiting room.
+    MoveCard OpponentWaitingRoom
 }
 Text Act: [(1)] Choose 1 level 0 or lower character in your opponent's center stage and put it in the waiting room.
 EndCard

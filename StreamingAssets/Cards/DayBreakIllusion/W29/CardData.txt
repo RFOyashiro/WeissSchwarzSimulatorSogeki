@@ -730,10 +730,10 @@ Text Cont: All your other «Tarot» characters get "Auto: ENCORE [Put 1 characte
 Auto: OnPlay|PlacedBy Rookie Member, Luna
 {
     TargetLocation Stage
-    NarrowTargets HasTrait Tarot && Other
-    SetXToNumberOfCharacters
+    NarrowTargets HasTrait Tarot
+    SetXValue TargetCoun
     Peek Deck X
-    ChooseCard Choose a card to add to your hand.
+    ChooseCardsFromTargets 0 1 Any
     MoveCard Hand
     PutTheRestIntoTheWaitingRoom
 }
@@ -1954,7 +1954,7 @@ Trait1 Tarot
 Trait2 Weapon
 Cont: Assist
 {
-    SetXToNumberOfCharacters With Assist
+    SetXToNumberOfCharacters With ASSIST
     MultiplyXValue 500
     GainPower X
 }
