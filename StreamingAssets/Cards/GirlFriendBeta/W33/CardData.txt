@@ -1301,9 +1301,22 @@ Power 2500
 Soul 1
 Trait1 Girl
 Trait2 Music
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If LocationContainsOrLess WaitingRoom 1 IsClimax
+    {
+        TargetLocation Stage
+        NarrowTargets Other
+        ChooseCharacterFromTargets Choose a character to rest and move to an open position.
+        SaveTargets
+        Rest
+        TargetLocation Backstage
+        If TargetsContainOrLess 1 Any
+        {
+            LoadTargets
+            MoveToOpenPosition false true
+        }
+    }
 }
 Text Auto: When this card's battle opponent becomes reverse, if there is 1 or less climax in your waiting room, choose 1 of your other characters, rest that character and move it to an open position in the backstage.
 EndCard
@@ -1318,9 +1331,15 @@ Power 4500
 Soul 1
 Trait1 Girl
 Trait2 Camera
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 3 Other && ColorIs Red
+    {
+        GainEffect
+        {
+            *RedLevel1Bomb
+        }
+    }
 }
 Text Cont: If the number of other Red characters you have is 3 or more, this card gets the following ability. "Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, you may reverse that character."
 EndCard
@@ -1335,10 +1354,14 @@ Power 4500
 Soul 1
 Trait1 Girl
 Trait2 Book
-Auto:
+Auto: OnOtherAttacks
 {
-
+    IfOther ColorIs Red
+    {
+        GainPower 1000
+    }
 }
+Quick
 Text Auto: When your other Red character attacks, this card gets +1000 power until end of turn.
 *ClockEncore
 EndCard
@@ -1353,9 +1376,15 @@ Power 5000
 Soul 1
 Trait1 Girl
 Trait2 Sports
-Auto:
+Auto: OnAttack
 {
-
+    If LocationContains Climax 1 ColorIs Red
+    {
+        PayCost Discard 1 Any
+        {
+            SearchWaitingRoom IsCharacter && ColorIs Red
+        }
+    }
 }
 Text Auto: [Put 1 card from hand to the waiting room] When this card attacks, if there is a Red climax in your climax area, you may pay the cost. If you do, choose 1 Red character in your waiting room and return it to your hand.
 EndCard
@@ -1370,9 +1399,12 @@ Power 6000
 Soul 1
 Trait1 Girl
 Trait2 Swimsuit
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation Stage
+    NarrowTargets CardPosition Stand && ColorIs Red
+    ChooseCharacterFromTargets Choose a character to rest.
+    Rest
 }
 Text Auto: When this card is placed on the stage from your hand, choose 1 of your standing Red characters and rest it.
 EndCard
@@ -1388,9 +1420,15 @@ Soul 1
 Trait1 Girl
 Trait2 Swimsuit
 Combo Enjoy Summer
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Enjoy Summer
+    {
+        TargetLocation OpponentCenterStage
+        NarrowTargets EarlyPlay && CanBeChosen
+        ChooseCharacterFromTargets_Optional Choose up to 1 character to put into waiting room.
+        MoveCard OpponentWaitingRoom
+    }
 }
 Text Auto: CxCombo When this card attacks, if "Enjoy Summer" is in your climax area, you may choose 1 of your opponent's center stage characters whose level is higher than your opponent and put it in the waiting room.
 *HandEncore
@@ -1407,14 +1445,32 @@ Power 7000
 Soul 1
 Trait1 Girl
 Combo Cheering While on Break
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Cheering While on Break
+    {
+        GainPower 2000
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                SearchWaitingRoom IsCharacter
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand.
+        }
+    }
 }
+Quick
 Text Auto: CxCombo When this card attacks, if "Cheering While on Break" is in your climax area, this card gets +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand."
-Auto:
+Auto: StartMyEncoreStep
 {
-
+    If CardPosition Rest
+    {
+        PayCost 2 SendSelf WaitingRoom
+        {
+            *ChangeWaitingRoom(Pretty Doll\, Momoko Asahina)
+        }
+    }
 }
 Text Auto: CHANGE [(2) Put this card in the waiting room] At the beginning of your encore step, if this card is rest, you may pay the cost. If you do, choose 1 "Pretty Doll, Momoko Asahina" in your waiting room and put it in the position this card was in.
 EndCard
@@ -1430,9 +1486,12 @@ Soul 1
 Trait1 Girl
 Trait2 Pumpkin
 *500Assist
-Act:
+Act: RestSelf
 {
-
+    TargetLocation Stage
+    NarrowTargets ColorIs Red
+    ChooseCharacterFromTargets Choose a character to give +500 power.
+    GainPower 500
 }
 Text Act: [Rest this card] Choose 1 of your Red characters, and that character gets +500 power until end of turn.
 EndCard
@@ -1447,14 +1506,17 @@ Power 1000
 Soul 1
 Trait1 Girl
 Trait2 Sports
-Cont:
+Cont: GiveAll
 {
-
+    If LocationContains Stock 5 Any &&& Other && InLocation MiddleCenterStage
+    {
+        GainPower 1000
+    }
 }
-Text Cont: If there are 5 or more cards in your stock, your other character in your center stage Center position gets +1000 power.
-Act:
+Text Cont: If there are 5 or more cards in your stock, your other character in your middle position of your center stage gets +1000 power.
+Act: RestSelf
 {
-
+    *GiveCharacterPower(1000,Any)
 }
 Text Act: [Rest this card] Choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
@@ -1469,11 +1531,7 @@ Power 1500
 Soul 1
 Trait1 Girl
 Trait2 Yukata
-Auto:
-{
-
-}
-Text Auto: When this card attacks, choose 1 of your other characters, and that character gets +1500 power until end of turn.
+*OnAttackGiveOtherPower(1500,Any)
 *HandEncore
 EndCard
 
@@ -1487,11 +1545,7 @@ Power 2000
 Soul 1
 Trait1 Girl
 Trait2 Swimsuit
-Cont:
-{
-
-}
-Text Cont: All your other «Girl» characters get +500 power.
+*GlobalPower(500,Girl)
 EndCard
 
 Character: GF/W33-072
@@ -1504,9 +1558,12 @@ Power 2500
 Soul 1
 Trait1 Girl
 Trait2 Swimsuit
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains CenterStage 0 Other
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If you have no other center stage characters, this card gets +1500 power.
 EndCard
@@ -1521,9 +1578,15 @@ Power 2500
 Soul 1
 Trait1 Girl
 Trait2 Swimsuit
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget ColorIs Red
+    {
+        TargetSelf
+        GainPower 2000
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, put the top card of your deck in the waiting room. If it's a Red card, this card gets +2000 power until end of turn.
 EndCard
@@ -1538,9 +1601,12 @@ Power 2500
 Soul 1
 Trait1 Girl
 Trait2 Book
-Cont:
+Cont: GiveSelf
 {
-
+    TargetFacing
+    SetXValue TargetCardsLevel
+    MultiplyXValue 2000
+    GainPower X
 }
 Text Cont: This card gets +X power. X equals 2000 times level of the character facing this card.
 EndCard
@@ -1568,11 +1634,16 @@ Power 2000
 Soul 1
 Trait1 Girl
 Trait2 Plant
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    TargetMyCharacterInBattle
+    IfTarget ColorIs Red
+    {
+        GainPower 1000
+    }
 }
-Text Auto: When you use this card's BACKUP, choose 1 of your Red characters in battle, and that character gets +1000 power until end of turn.
+Quick
+Text Auto: When you use this card's "BACKUP", choose 1 of your Red characters in battle, and that character gets +1000 power until end of turn.
 Backup 1000
 EndCard
 
@@ -1586,16 +1657,15 @@ Power 4000
 Soul 1
 Trait1 Girl
 Trait2 Sports
-Auto:
+*OnPlayGainPower(1500)
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsClimax
+    {
+        SearchWaitingRoom IsCharacter && With BACKUP
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: [Put 1 climax from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 character with BACKUP in your waiting room and return it to your hand.
+Text Auto: [Put 1 climax from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 character with "BACKUP" in your waiting room and return it to your hand.
 EndCard
 
 Character: GF/W33-078
@@ -1608,11 +1678,13 @@ Power 4500
 Soul 1
 Trait1 Girl
 Trait2 Doll
-Auto:
+Auto: OnUseAct
 {
-
+    GainPower 1500
 }
-Text Auto: This card ability activates up to once per turn. When you use an Act: ability, this card gets +1500 power until end of turn.
+Quick
+TimesPerTurn 1
+Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, this card gets +1500 power until end of turn.
 *HandEncore
 EndCard
 
@@ -1627,16 +1699,28 @@ Power 2000
 Soul 1
 Trait1 Girl
 Trait2 Swimsuit
-Cont:
+Cont: Assist
 {
-
+    SetXToNumberOfCharacters With ASSIST
+    MultiplyXValue 500
+    GainPower X
 }
-Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times the number of your characters with ASSIST.
-Act:
+Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times the number of your characters with "ASSIST".
+Act: Rest 2 Any
 {
-
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 1 OrMore
+        {
+            SearchWaitingRoom IsCharacter
+            Discard 1 Any
+        }
+        Text Auto: When a level 1 or higher battle opponent of this card becomes reversed, choose a character in your waiting room and return it to your hand, and discard a card from your hand to the waiting room.
+    }
 }
-Text Act: [Rest 2 of your Charaaters] Choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When a level 1 or higher battle opponent of this card becomes reversed, choose a character in your waiting room and return it to your hand, and discard a card from your hand to the waiting room."
+Text Act: [Rest 2 of your characters] Choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When a level 1 or higher battle opponent of this card becomes reversed, choose a character in your waiting room and return it to your hand, and discard a card from your hand to the waiting room."
 EndCard
 
 Character: GF/W33-080
@@ -1649,9 +1733,12 @@ Power 7000
 Soul 1
 Trait1 Girl
 Trait2 Plant
-Auto:
+Auto: OnReversed
 {
-
+    OpponentMessage You may choose a card to put on top of your opponent's deck.
+    OpponentSearchLocationForTargets OpponentWaitingRoom 0 1 Any
+    RevealTargets
+    MoveCard Deck
 }
 Text Auto: When this card becomes reversed in battle, your opponent may choose a character in your waiting room and put it on top of the deck.
 *ClockEncore
@@ -1668,11 +1755,12 @@ Power 2500
 Soul 1
 Trait1 Girl
 *1000Assist
-Auto:
+Auto: OnUseAct
 {
-
+    *GiveCharacterPower(1000,Any)
 }
-Text Auto: This card ability activates up to once per turn. When you use an Act: ability, choose 1 of your characters, and that character gets +1000 power until end of turn.
+TimesPerTurn 1
+Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: GF/W33-082
@@ -1685,14 +1773,13 @@ Trigger Soul
 Power 5000
 Soul 1
 Trait1 Girl
-Cont:
+*LevelAssist
+Act: 1
 {
-
-}
-Text Cont: ASSIST All oyur characters in front of this card get +X power. X equals 500 times level of that character.
-Act:
-{
-
+    MillOpponent 1
+    SearchLocationForTargets OpponentWaitingRoom 0 1 Any
+    RevealTargets
+    MoveCard OpponentDeck
 }
 Text Act: [(1)] Put the top card of your opponent's deck in the waiting room, then choose a card from your opponent's waiting room and put it on top of the deck.
 EndCard
@@ -1708,14 +1795,22 @@ Power 7000
 Soul 1
 Trait1 Girl
 Trait2 Waitress
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation Stage
+    NarrowTargets Other && ColorIs Red
+    ChooseCharacterFromTargets Choose a character to give +X power.
+    SetXValue TargetCardsLevel
+    MultiplyXValue 1000
+    GainPower X
 }
 Text Auto: When this card is placed on the stage from your hand, choose 1 of your other Red characters, and that character gets +X power until end of turn. X equals 1000 times level of that character.
-Auto:
+Auto: OnReverseOpponent
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchWaitingRoom IsCharacter
+    }
 }
 Text Auto: [(1) Put 1 card from hand to the waiting room] When this card's battle opponent becomes reverse, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
 EndCard
@@ -1731,10 +1826,14 @@ Power 7500
 Soul 1
 Trait1 Girl
 Trait2 Doll
-Auto:
+Auto: OnOtherAttacks
 {
-
+    IfOther ColorIs Red
+    {
+        GainPower 1500
+    }
 }
+Quick
 Text Auto: When your other Red character attacks, this card gets +1500 power until end of turn.
 EndCard
 
@@ -1749,9 +1848,12 @@ Soul 1
 Trait1 Girl
 Trait2 Yukata
 *BondClock(Smiles And Beautiful Weather\, Yuzu Hazuki)
-Act:
+Act: 1 RestSelf
 {
-
+    TargetLocation Stage
+    NarrowTargets NameContains 柚子
+    ChooseCharacterFromTargets Choose a character to give +1500 power.
+    GainPower 1500
 }
 Text Act: [(1) Rest this card] Choose 1 of your characters with "Yuzu" in its card name, and that character gets +1500 power until end of turn.
 EndCard
@@ -1779,11 +1881,22 @@ Power 2500
 Soul 1
 Trait1 Girl
 Trait2 Plant
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        *GiveCharacterPower(1000,Any)
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                SearchWaitingRoom IsCharacter
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand.
+        }
+    }
 }
-Text Auto: [(1) Put a card form hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your characters, and that character gets +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand."
+Text Auto: [(1) Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your characters, and that character gets +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may choose a character in your waiting room and return it to your hand."
 EndCard
 
 Character: GF/W33-088
@@ -1817,9 +1930,13 @@ Cost 0
 Power 3500
 Soul 1
 Trait1 Girl
-Auto:
+Auto: OnPlay
 {
-
+    If LocationContains WaitingRoom 3 IsClimax
+    {
+        TargetTop Deck
+        MoveCard Clock
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, if there are 3 or more climax cards in your waiting room, put the top card of your deck in your clock.
 EndCard
@@ -1834,14 +1951,17 @@ Power 2500
 Soul 1
 Trait1 Girl
 Trait2 Sports
-Cont:
+Cont: GiveAll
 {
-
+    If Other && ColorIs Red
+    {
+        GainPower 500
+    }
 }
 Text Cont: All your other Red characters get +500 power.
-Auto:
+Auto: OnTriggerCheckClimax
 {
-
+    *GiveCharacterPower(2000,Any)
 }
 Text Auto: When your character's trigger check reveals a climax card, choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
@@ -1868,9 +1988,9 @@ Cost 0
 Power 5000
 Soul 1
 Trait1 Girl
-Act:
+Act: 1
 {
-
+    GainPower 2000
 }
 Text Act: [(1)] This card gets +2000 power until end of turn.
 EndCard
@@ -1886,9 +2006,16 @@ Soul 1
 Trait1 Girl
 Trait2 Yukata
 Combo Sports Training Camp
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Sports Training Camp && AllYourCharacters ColorIs Red
+    {
+        PayCost 1
+        {
+            UntilEndOfOpponentsTurn
+            GainPower 4000
+        }
+    }
 }
 Text Auto: CxCombo [(1)] When this card attacks, if "Sports Training Camp" is in your climax area and all your characters are Red, you may pay the cost. If you do, this card gets +4000 power until the end of your opponent's next turn.
 EndCard
@@ -1927,9 +2054,12 @@ Cost 1
 Power 6000
 Soul 1
 Trait1 Girl
-Cont:
+Cont: GiveAll
 {
-
+    If Other && NameEquals Lost Child by the Seaside, Koruri Tokitani
+    {
+        GainPower 2000
+    }
 }
 Text Cont: All your other "Lost Child by the Seaside, Koruri Tokitani" get +2000 power.
 EndCard
@@ -1969,9 +2099,12 @@ Power 6500
 Soul 1
 Trait1 Girl
 Trait2 Plant
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && NameContains 五十鈴
+    {
+        GainPower 3000
+    }
 }
 Text Cont: If you have another character with "Isuzu" in its card name, this card gets +3000 power.
 EndCard
@@ -1986,9 +2119,12 @@ Trigger Soul
 Power 7500
 Soul 1
 Trait1 Girl
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && NameContains 砂夜
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If you have another character with "Saya" in its card name, this card gets +1500 power.
 EndCard
@@ -2004,9 +2140,13 @@ Power 7000
 Soul 2
 Trait1 Girl
 Trait2 Dress
-Cont:
+Cont: GiveSelf
 {
-
+    TargetFacing
+    IfTarget Compare ThatCardsLevel 3 OrMore
+    {
+        GainPower 3000
+    }
 }
 Text Cont: If the level of the character facing this card is 3 or higher, this card gets +3000 power.
 *HandEncore
@@ -2036,9 +2176,15 @@ Power 10000
 Soul 2
 Trait1 Girl
 Trait2 Cosplay
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsCharacter
+    {
+    }
+    Else
+    {
+        MoveCard WaitingRoom
+    }
 }
 Text Auto: [Put 1 character from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If not, put this card in the waiting room.
 EndCard
@@ -2051,7 +2197,13 @@ Level 2
 Cost 0
 Effect:
 {
-
+    If StageContains 5 ColorIs Red
+    {
+        TargetLocation OpponentBackstage
+        NarrowTargets Compare ThatCardsLevel 2 OrLess && CanBeChosen
+        ChooseCharacterFromTargets Choose a character to put into waiitng room.
+        MoveCard OpponentWaitingRoom
+    }
 }
 Text If the number of Red characters you have is 5 or more, choose 1 level 2 or lower character in your opponent's backstage and put it in the waiting room.
 EndCard
@@ -2107,15 +2259,27 @@ Soul 2
 Trait1 Girl
 Trait2 Book
 Combo Cool Maid
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1
+    {
+        Message Choose up to 2 cards to not return to your opponent's deck.
+        SearchLocationForTargets OpponentWaitingRoom 0 2 Any
+        ReverseTargets OpponentWaitingRoom
+        MoveCard OpponentDeck
+        ShuffleLocation OpponentDeck
+    }
 }
 Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 2 cards in your opponent's waiting room, and return all but those cards from your opponent's waiting room to the deck, and your opponent shuffles their deck.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Cool Maid
+    {
+        UntilEndOfOpponentsTurn
+        GainPower 4500
+    }
 }
+Quick
 Text Auto: CxCombo When this card attacks, if "Cool Maid" is in your climax area, this card gets +4500 power until the end of your opponent's next turn.
 EndCard
 
@@ -2130,17 +2294,28 @@ Power 10000
 Soul 2
 Trait1 Girl
 Combo Nice Shoot
-Combo Nice Shoot
-Auto:
+Auto: OnSpecificClimaxPlay Nice Shoot
 {
-
+    PayCost 1 HandClock Any
+    {
+        GainPower 1000
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                Question_Obvious Stand this card ?
+                If Yes
+                {
+                    Stand
+                }
+            }
+            TimesPerTurn 1
+            Text Auto: This card ability activates up to once per turn. When this card's battle opponent becomes reverse, you may stand this card.
+        }
+    }
 }
-Text Auto: CxCombo CxCombo [(1) Put 1 card from your hand in clock] When "Nice Shoot" is placed on your climax area, you may pay the cost. If o, this card gets +1000 power and the following ability until end of turn. "Auto: This card ability activates up to once per turn. When this card's battle opponent becomes reverse, you may stand this card."
-Auto:
-{
-
-}
-Text Auto: When this card is frontal attacked, look at the top card of your deck and put it either on top of the deck or in the Waitiing Room.
+Text Auto: CxCombo [(1) Put 1 card from your hand in clock] When "Nice Shoot" is placed on your climax area, you may pay the cost. If you do, this card gets +1000 power and the following ability until end of turn. "Auto: This card ability activates up to once per turn. When this card's battle opponent becomes reverse, you may stand this card."
+*ScryWhenAttacked
 EndCard
 
 Character: GF/W33-114
@@ -2153,9 +2328,15 @@ Power 3500
 Soul 1
 Trait1 Girl
 Trait2 Yukata
-Auto:
+Auto: OnPlay
 {
-
+    Mill 2
+    NarrowTargets IsClimax
+    If HasTarget
+    {
+        TargetSelf
+        Rest
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there is at least 1 climax among them, rest this card.
 *HandEncore
@@ -2172,14 +2353,20 @@ Power 2000
 Soul 1
 Trait1 Girl
 Trait2 Yukata
-Cont:
+Cont: Assist
 {
-
+    If ColorIs Blue
+    {
+        SetXValue ThatCardsLevel
+        MultiplyXValue 500
+        GainPower X
+    }
 }
 Text Cont: ASSIST Your Blue characters in front of this card get +X power. X equals 500 times level of that character.
-Auto:
+Auto: OnPlay
 {
-
+    DrawCard
+    Discard 1 Any
 }
 Text Auto: When this card is placed on the stage from your hand, draw a card, and discard a card from your hand to the waiting room.
 EndCard
@@ -2195,21 +2382,21 @@ Power 10000
 Soul 2
 Trait1 Girl
 Trait2 Glasses
-Cont:
+Cont: InHand
 {
-
+    If StageContains 4 ColorIs Blue
+    {
+        LoseLevel 1
+    }
 }
 Text Cont: If the number of Blue characters you have is 4 or more, this card gets -1 level while in your hand.
-Auto:
+Auto: OnPlay
 {
-
+    LosePower 1500
 }
+Quick
 Text Auto: When this card is placed on the stage from your hand, this card gets -1500 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: At the beginning of your opponent's draw phase, if this card is in the center stage, choose 1 of your characters, and that character gets +4000 power until end of turn.
+*Give4000PowerAtStartOfOpponentsTurn
 EndCard
 
 Character: GF/W33-117
@@ -2221,9 +2408,12 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Girl
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchDeck IsCharacter && ColorIs Blue
+    }
 }
 Text Auto: [(1) Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 Blue character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -2237,14 +2427,26 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Girl
-Cont:
+Cont: GiveSelf
 {
-
+    If HasMarker
+    {
+        GainPower 1000
+    }
 }
 Text Cont: If there's a marker underneath this card, this card gets +1000 power.
-Auto:
+Auto: OnPlay
 {
-
+    Mill 1
+    IfTarget ColorIs Blue && IsCharacter
+    {
+        SearchLocationForTargets WaitingRoom 0 1 ColorIs Blue && IsCharacter
+        If HasTarget
+        {
+            RevealTargets
+            Marker_FaceDown
+        }
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, put the top card of your deck in the waiting room. If it's a Blue character, you may choose a Blue character in your waiting room and put it face down underneath this card as a marker.
 EndCard
@@ -2259,9 +2461,11 @@ Power 4500
 Soul 1
 Trait1 Girl
 Trait2 Swimsuit
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters Other && ColorIs Blue
+    MultiplyXValue 500
+    GainPower X
 }
 Text Cont: This card gets +500 power for each of your other Blue characters
 EndCard
@@ -2275,9 +2479,24 @@ Cost 0
 Power 5000
 Soul 1
 Trait1 Girl
-Auto:
+Auto: OnPlay
 {
-
+    Mill 1
+    IfTarget ColorIs Blue
+    {
+        TargetSelf
+        GainPower
+        {
+            Auto: OnReverseOpponent
+            {
+                PayCost 1
+                {
+                    DrawCard
+                }
+            }
+            Text Auto: [(1)] When this card's battle opponent becomes reverse, you may pay the cost. If you do, draw a card.
+        }
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, put the top card of your deck in the waiting room. If it's a Blue card, this card gets the following ability until end of turn. "Auto: [(1)] When this card's battle opponent becomes reverse, you may pay the cost. If you do, draw a card."
 EndCard
@@ -2292,9 +2511,17 @@ Power 6000
 Soul 1
 Trait1 Girl
 *ClockEncore
-Act:
+Act: Discard 1 IsClimax
 {
-
+    GainPower 1000
+    GainEffect
+    {
+        Auto: OnReverseOpponent
+        {
+            *OptionalDraw
+        }
+        Text Auto: When this card's battle opponent becomes reverse, you may draw a card.
+    }
 }
 Text Act: [Put 1 climax from hand to the waiting room] This card gets +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may draw a card."
 EndCard
@@ -2310,11 +2537,14 @@ Power 2500
 Soul 1
 Trait1 Girl
 Trait2 Swimsuit
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    If AllYourCharacters ColorIs Blue
+    {
+        *OptionalBlindStock
+    }
 }
-Text Auto: When you use this card's BACKUP, if all your characters are Blue, you may put the top card of your deck in stock.
+Text Auto: When you use this card's "BACKUP", if all your characters are Blue, you may put the top card of your deck in stock.
 Backup 2500
 EndCard
 
@@ -2328,14 +2558,16 @@ Trigger Soul
 Power 2000
 Soul 2
 Trait1 Girl
-Cont:
+*1500Assist
+Auto: OnPlay
 {
-
-}
-Text Cont: ASSIST Your characters in frotn of this card get +1500 power.
-Auto:
-{
-
+    TargetLocation Hand
+    SetXValue TargetCount
+    TargetLocation OpponentHand
+    If Compare X TargetCount LessThan
+    {
+        *OptionalBlindStock
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, if there are less cards in your hand than your opponent's hand, you may put the top card of your deck in stock.
 EndCard
@@ -2351,9 +2583,18 @@ Power 10000
 Soul 2
 Trait1 Girl
 *Healer
-Auto:
+Auto: OnAttack
 {
-
+    Question Put the top card of your deck into waiting room ?
+    If Yes
+    {
+        Mill 1
+        IfTarget IsClimax
+        {
+            DrawCard
+            Discard 1 Any
+        }
+    }
 }
 Text Auto: When this card attacks, you may put the top card of your deck in the waiting room. If it's a climax card, draw a card, and discard a card from your hand to the waiting room.
 EndCard
@@ -2369,11 +2610,8 @@ Soul 1
 Trait1 Girl
 Trait2 Sweets
 *500Assist
-Auto:
-{
-
-}
-Text Auto: [Put this card in the waiting room] When your other Blue character is placed in your waiting room from the stage, if this card is in the backstage, you may pay the cost. If you do, put that character rest in the position is was in.
+*SacrificeToSave(IsColor Blue)
+Text Auto: [Put this card in the waiting room] When your other Blue character is placed in your waiting room from the stage, if this card is in the backstage, you may pay the cost. If you do, put that character rest in the position it was in.
 EndCard
 
 Character: GF/W33-126
@@ -2386,16 +2624,21 @@ Power 1000
 Soul 1
 Trait1 Girl
 Trait2 Book
-Auto:
+Auto: OnUseAct
 {
-
+    TargetLocation Stage
+    NarrowTargets ColorIs Blue
+    ChooseCharacterFromTargets Choose a character to give +1000 power.
+    GainPower 1000
 }
-Text Auto: This card ability activates up to once per turn. When you use an Act: ability, choose 1 of your Blue characters, and that character gets +1000 power until end of turn.
-Act:
+TimesPerTurn 1
+Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, choose 1 of your Blue characters, and that character gets +1000 power until end of turn.
+Act: 1
 {
-
+    DrawCard
+    Discard 1 Any
 }
-Text Act: [(1)] draw a card, and discard a card from your hand to the waiting room.
+Text Act: [(1)] Draw a card, and discard a card from your hand to the waiting room.
 EndCard
 
 Character: GF/W33-127
@@ -2408,14 +2651,25 @@ Power 1000
 Soul 1
 Trait1 Girl
 Trait2 Sports
-Cont:
+Cont: GiveAll
 {
-
+    If Not MyTurn && Other
+    {
+        GainPower 500
+    }
 }
 Text Cont: During your opponent's turn, all your other characters get +500 power.
-Act:
+Act: 1
 {
-
+    Brainstorm 4
+    Repeat BrainstormedClimax
+    {
+        TargetLocation Stage
+        NarrowTargets ColorIs Blue
+        ChooseCharacterFromTargets Choose a character to give +1000 power.
+        UntilEndOfOpponentsTurn
+        GainPower 1000
+    }
 }
 Text Act: BRAINSTORM [(1)] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose 1 of your Blue characters, and that character gets +1000 power until the end of your opponent's next turn.
 EndCard
@@ -2429,14 +2683,10 @@ Cost 0
 Power 1000
 Soul 1
 Trait1 Girl
-Cont:
+*GiveMiddlePower(500,Any)
+Act: Rest 2 Any
 {
-
-}
-Text Cont: Your other character in the middle position of your center stage gets +500 power.
-Act:
-{
-
+    *ScryToBottom
 }
 Text Act: [Rest 2 of your characters] Look at the top card of your deck and put it either on top or bottom of the deck.
 EndCard
@@ -2450,11 +2700,18 @@ Cost 0
 Power 3000
 Soul 1
 Trait1 Girl
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    If StageContains 4 ColorIs Blue
+    {
+        PayCost 2
+        {
+            TargetBattleOpponent
+            LoseSoul 1
+        }
+    }
 }
-Text Auto: [(2)] When you use this card's BACKUP, if the number of Blue characters you have is 4 or more, you may pay the cost. If you do, choose 1 character in battle, and that character gets -1 soul until end of turn.
+Text Auto: [(2)] When you use this card's "BACKUP", if the number of Blue characters you have is 4 or more, you may pay the cost. If you do, choose 1 character in battle, and that character gets -1 soul until end of turn.
 Backup 1000
 EndCard
 
@@ -2467,16 +2724,22 @@ Cost 0
 Power 4000
 Soul 1
 Trait1 Girl
-Cont:
+Cont: GiveAll
 {
-
+    If Not MyTurn && Other && HasTrait Girl
+    {
+        GainPower 1000
+    }
 }
 Text Cont: During your opponent's turn, all your other «Girl» characters get +1000 power.
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchDeck IsCharacter && With BACKUP
+    }
 }
-Text Auto: [(1) Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with BACKUP, reveal it, put it in your hand, and shuffle your deck.
+Text Auto: [(1) Put 1 card from hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with "BACKUP", reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: GF/W33-131
@@ -2489,9 +2752,12 @@ Power 4500
 Soul 1
 Trait1 Girl
 Trait2 Swimsuit
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains Hand 5 Any
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If there are 5 or more cards in your hand, this card gets +2000 power.
 EndCard
@@ -2507,16 +2773,34 @@ Soul 1
 Trait1 Girl
 Trait2 Swimsuit
 Combo Confusion About Art
-Auto:
+*OnPlayGainPower(1500)
+Auto: OnAttack
 {
-
+    If Climax Confusion About Art
+    {
+        PayCost 1
+        {
+            GainPower 3500
+            GainEffect
+            {
+                Auto: OnReverseOpponent
+                {
+                    TargetBattleOpponent
+                    IfTarget OnStage
+                    {
+                        Question Put that character into the bottom of the deck ?
+                        If Yes
+                        {
+                            MoveCardToBottom OpponentDeck
+                        }
+                    }
+                }
+                Text Auto: When this card's battle opponent becomes reverse, you may put that character on the bottom of the deck.
+            }
+        }
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: CxCombo [(1)] When this card attacks, if "Confusion About Art" is in your climax area, you may pay the cost. If you do, this card gets +3500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put it on the bottom of the deck."
+Text Auto: CxCombo [(1)] When this card attacks, if "Confusion About Art" is in your climax area, you may pay the cost. If you do, this card gets +3500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character on the bottom of the deck."
 EndCard
 
 Character: GF/W33-133
@@ -2529,9 +2813,16 @@ Power 5000
 Soul 1
 Trait1 Girl
 Combo Memories of Stars
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Memories of Stars && AllYourCharacters IsColor Blue
+    {
+        PayCost 1 Clock
+        {
+            *OptionalDraw
+            *OptionalDraw
+        }
+    }
 }
 Text Auto: CxCombo [(1) Put the top card of your deck in your clock] When this card attacks, if "Memories of Stars" is in your climax area and all your characters are Blue, you may pay the cost. If you do, draw up to 2 cards.
 EndCard
@@ -2546,9 +2837,14 @@ Power 7000
 Soul 1
 Trait1 Girl
 Trait2 Cosplay
-Auto:
+Auto: OnAttack
 {
-
+    Mill 1
+    IfTarget IsClimax
+    {
+        TargetSelf
+        GainSoul 4
+    }
 }
 Text Auto: When this card attacks, put the top card of your deck in the waiting room. If it's a climax card, this card gets +4 soul until end of turn.
 EndCard
@@ -2564,14 +2860,23 @@ Power 2500
 Soul 1
 Trait1 Girl
 Trait2 Sports
-Cont:
+Cont: GiveAll
 {
-
+    If Other && ColorIs Blue
+    {
+        GainPower 1000
+    }
 }
 Text Cont: All your other Blue characters get +1000 power.
-Auto:
+Auto: OnAttack
 {
-
+    TargetLocation Stage
+    NarrowTargets Other
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        *FreeEncore
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, choose 1 of your other characters, and that character gets the following ability until end of turn. "Auto: When this card is placed in your waiting room from the stage, you may put this card rest in the position this card was in."
 EndCard
@@ -2586,16 +2891,22 @@ Trigger Soul
 Power 7000
 Soul 1
 Trait1 Girl
-Auto:
+Auto: StartMyEncoreStep
 {
-
+    If CardPosition Rest
+    {
+        PayCost 2 SendSelf WaitingRoom
+        {
+            *ChangeWaitingRoom(Her Normal Daily Life\, Kokomi Shiina)
+        }
+    }
 }
 Text Auto: CHANGE [(2) Put this card in the waiting room] At the beginning of your encore step, if this card is rest, you may pay the cost. If you do, choose 1 "Her Normal Daily Life, Kokomi Shiina" in your waiting room and put it in the position this card was in.
-Act:
+Act: Rest 2 ColorIs Blue
 {
-
+    GainSpecialEffect FreeSideAttack
 }
-Text Act: [Rest 2 of your Blue characters] This card may side attack without soul Penalty.
+Text Act: [Rest 2 of your Blue characters] This card's soul does not decrease by side attacking until end of turn.
 EndCard
 
 Character: GF/W33-137
@@ -2610,9 +2921,23 @@ Soul 1
 Trait1 Girl
 Trait2 Sports
 Combo Experiencing Coverage
-Auto:
+Auto: OnSpecificClimaxPlay Experiencing Coverage
 {
-
+    If InLocation CenterStage
+    {
+        PayCost 1
+        {
+            TargetLocation OpponentStage
+            If Compare TargetCount 4 OrLess
+            {
+                NarrowTargets CanBeChosen
+                ChooseCharacterFromTargets Choose a character to move to another position
+                MoveToOpenPosition true true
+            }
+            TargetSelf
+            GainPower 3000
+        }
+    }
 }
 Text Auto: CxCombo [(1)] When "Experiencing Coverage" is in your climax area, if this card is in the center stage, you may pay the cost. If you do, choose up to 1 of your opponent's characters and move it to another open position in your opponent's stage, and this card gets +3000 power until end of turn.
 EndCard
@@ -2640,9 +2965,12 @@ Power 1500
 Soul 1
 Trait1 Girl
 Trait2 Cosplay
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 2
+    {
+        SearchDeck IsCharacter && NameContains つぐみ
+    }
 }
 Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with "Tsugumi" in its card name, reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -2658,14 +2986,25 @@ Soul 1
 Trait1 Girl
 Trait2 Sports
 Combo Yell
-Cont:
+Cont: GiveSelf
 {
-
+    If Not MyTurn && LocationContainsOrLess OpponentStage 3 Any
+    {
+        GainLevel 1
+        GainPower 1500
+    }
 }
 Text Cont: During your opponent's turn, if your opponent has 3 or less characters, this card gets +1 level and +1500 power.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Yell
+    {
+        PayCost 1
+        {
+            UntilEndOfOpponentsTurn
+            *GiveOtherCharacterPower(2500,Any)
+        }
+    }
 }
 Text Auto: CxCombo [(1)] When this card attacks, if "Yell" is in your climax area, you may pay the cost. If you do, choose 1 of your other characters, and that character gets +2500 power until the end of your opponent's next turn.
 EndCard
@@ -2679,9 +3018,12 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Girl
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains Hand 6 Any
+    {
+        GainPower 1500
+    }
 }
 Text Cont: If there are 6 or more cards in your hand, this card gets +1500 power.
 EndCard
@@ -2696,9 +3038,16 @@ Power 2500
 Soul 1
 Trait1 Girl
 Trait2 Dress
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContainsOrLess 1 Other
+    {
+        GainPower 1000
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
 Text Cont: If you have 1 or less other characters, this card gets +1000 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
 EndCard
@@ -2712,9 +3061,13 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Girl
-Auto:
+Auto: OnAttack
 {
-
+    If LocationContains Climax 1 ColorIs Blue
+    {
+        DrawCard
+        Discard 1 Any
+    }
 }
 Text Auto: When this card attacks, if there's a Blue climax i nyour climax area, draw a card, and discard a card from your hand to the waiting room.
 EndCard
@@ -2752,9 +3105,15 @@ Cost 0
 Power 4000
 Soul 1
 Trait1 Girl
-Auto:
+Auto: StartClimaxPhase
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsClimax
+    {
+        TargetSelf
+        Rest
+    }
 }
 Text Auto: At the beginning of your climax phase, reveal the top card of your deck. If it's a climax card, rest this card.
 EndCard
@@ -2768,14 +3127,19 @@ Cost 0
 Power 4500
 Soul 1
 Trait1 Girl
-Auto:
+*OnPlayGainPower(1500)
+Act: Rest 2 Any
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
-Act:
-{
-
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        Auto: OnReverseOpponent
+        {
+            *OptionalDrawDiscard
+        }
+        Text Auto: When this card's battle opponent becomes reverse, you may draw a card. If you do, discard a card from your hand to the waiting room.
+    }
 }
 Text Act: [Rest 2 of your characters] Choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may draw a card. If you do, discard a card from your hand to the waiting room."
 EndCard
@@ -2790,9 +3154,12 @@ Power 5000
 Soul 1
 Trait1 Girl
 Trait2 Yukata
-Cont:
+Cont: GiveSelf
 {
-
+    If Not MyTurn
+    {
+        GainPower 1000
+    }
 }
 Text Cont: During your opponent's turn, this card gets +1000 power.
 EndCard
@@ -2807,9 +3174,12 @@ Power 5000
 Soul 1
 Trait1 Girl
 Trait2 Dress
-Cont:
+Cont: GiveSelf
 {
-
+    If Not MyTurn && StageContains 3 Other && ColorIs Blue
+    {
+        GainPower 2000
+    }
 }
 Text Cont: During your opponent's turn, if the number of other Blue characters you have is 3 or more, this card gets +2000 power.
 EndCard
@@ -2878,16 +3248,42 @@ Soul 1
 Trait1 Girl
 Trait2 Cosplay
 Combo Cats Need Breaks Too
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 3 Other && ColorIs Blue
+    {
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
-Text Cont: If the number of other Blue characters you have is 3 or more, this card gets "Auto: ENCORE
-Auto:
+Text Cont: If the number of other Blue characters you have is 3 or more, this card gets "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
+Auto: OnAttack
 {
-
+    If Climax Cats Need Breaks Too
+    {
+        GainPower 3500
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                TargetBattleOpponent
+                IfTarget OnStage
+                {
+                    Question Put that character into the bottom of the deck ?
+                    If Yes
+                    {
+                        MoveCardToBottom OpponentDeck
+                    }
+                }
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may put that character on the bottom of the deck.
+        }
+    }
 }
-Text Auto: CxCombo When this card attacks, if "Cats Need Breaks Too" is in your climax area, this card gets +3500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character on the bottom of hte deck."
+Quick
+Text Auto: CxCombo When this card attacks, if "Cats Need Breaks Too" is in your climax area, this card gets +3500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character on the bottom of the deck."
 EndCard
 
 Character: GF/W33-155
@@ -2901,10 +3297,13 @@ Power 8000
 Soul 1
 Trait1 Girl
 Trait2 Yukata
-Auto:
+Auto: OnPlay
 {
-
+    SetXToNumberOfCharacters ColorIs Blue
+    MultiplyXValue 500
+    GainPower X
 }
+Quick
 Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 500 times the number of your Blue characters.
 EndCard
 
@@ -2918,9 +3317,12 @@ Trigger Soul
 Power 8000
 Soul 1
 Trait1 Girl
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 3 Other && ColorIs Blue
+    {
+        GainPower 1000
+    }
 }
 Text Cont: If the number of other Blue characters you have is 3 or more, this card gets +1000 power.
 EndCard
@@ -2936,9 +3338,16 @@ Power 7000
 Soul 2
 Trait1 Girl
 Trait2 Yukata
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && NameContains 春瑚
+    {
+        GainPower 2000
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
 Text Cont: If you have another character with "Haruko" in its card name, this card gets +2000 power and "Auto: ENCORE [Put 1 character from your hand to the waiting room]".
 EndCard
@@ -2951,7 +3360,8 @@ Level 1
 Cost 1
 Effect:
 {
-
+    SearchDeck IsCharacter && HasTrait Girl
+    MoveCard Memory
 }
 Text Search your deck for up to 1 «Girl» character, reveal it, put it in your hand, and shuffle your deck. Put this card into memory.
 EndCard
@@ -2994,288 +3404,53 @@ JPName 猫も休憩
 *GateClimax
 EndCard
 
-Character: GF/W33-T01
-Name Amusement, Elena Mochizuki
-JPName アミューズメント 望月エレナ
-Color R
+Character: GF/W33-P01
+Name Christmas Party, Kokomi Shiina
+JPName クリスマスパーティ 椎名心実
+Color B
 Level 0
 Cost 0
-Power 1000
-Soul 1
-Trait1 Girl
-Trait2 Camera
-*500Assist
-EndCard
-
-Character: GF/W33-T02
-Name Wishing to Get Better, Nonoka Sasahara
-JPName 上達祈願 笹原野々花
-Color R
-Level 0
-Cost 0
-Power 3000
-Soul 1
-Trait1 Girl
-EndCard
-
-Character: GF/W33-T03
-Name Japanese Culture, Chloe Lemaire
-JPName 日本文化 クロエ・ルメール
-Color R
-Level 1
-Cost 0
-Power 5000
-Soul 1
-Trait1 Girl
-Trait2 Yukata
-*HandEncore
-EndCard
-
-Character: GF/W33-T04
-Name Stagehand as a Main Role, Nae Yuki
-JPName 裏方も主役 優木苗
-Color R
-Level 1
-Cost 0
-Power 5000
-Soul 1
-Trait1 Girl
-Act:
-{
-
-}
-Text Act: [(1)] This card gets +2000 power until end of turn.
-EndCard
-
-Character: GF/W33-T05
-Name Teaching you, Ichigo Kohinata
-JPName 教えます 小日向いちご
-Color R
-Level 1
-Cost 0
-Power 5500
-Soul 1
-Trait1 Girl
-EndCard
-
-Character: GF/W33-T06
-Name Fluffy Keyboard, Momoko Asahina
-JPName フワフワキーボード 朝比奈桃子
-Color R
-Level 1
-Cost 1
-Trigger Soul
 Power 2000
 Soul 1
 Trait1 Girl
-Trait2 Music
-Backup 2000
+*GlobalPower(500,Girl)
 EndCard
 
-Character: GF/W33-T07
-Name Reading, Matsuri Kagami
-JPName 読書中 加賀美茉莉
-Color R
-Level 2
-Cost 2
-Trigger Soul
-Power 9000
-Soul 2
-Trait1 Girl
-Trait2 Sports
-EndCard
-
-Climax: GF/W33-T08
-Name Chihaya Something
-JPName チハヤナントカ
-*DoorClimax
-EndCard
-
-Climax: GF/W33-T09
-Name Strike!
-JPName ストライク！
-Color R
-*DrawClimax
-EndCard
-
-Character: GF/W33-T10
-Name Childhood Friend's Bento Box, Rui Kamijou
-JPName 幼馴染弁当 上条るい
-Color B
-Level 0
-Cost 0
-Power 2500
-Soul 1
-Trait1 Girl
-Cont:
-{
-
-}
-Text Cont: If there are 6 or more cards in your hand, this card gets +1500 power.
-EndCard
-
-Character: GF/W33-T11
-Name Reverse Coverage, Saya Kagurazaka
-JPName 逆取材 神楽坂砂夜
-Color B
-Level 0
-Cost 0
-Power 3000
-Soul 1
-Trait1 Girl
-Trait2 Newspaper
-EndCard
-
-Character: GF/W33-T12
-Name Nervous Visit, Isuzu Shiranui
-JPName 緊張の訪問 不知火五十鈴
-Color B
-Level 1
-Cost 0
-Power 5000
-Soul 1
-Trait1 Girl
-Trait2 Yukata
-Cont:
-{
-
-}
-Text Cont: During your opponent's turn, this card gets +1000 power.
-EndCard
-
-Character: GF/W33-T13
-Name Sports Training Camp, Kokomi Shiina
-JPName 運動合宿 椎名心実
-Color B
+Character: GF/W33-P02
+Name White Day, Akane Sakurai
+JPName ホワイトデー 櫻井明音
+Color Y
 Level 1
 Cost 1
-Power 7000
+Power 6500
 Soul 1
 Trait1 Girl
-Trait2 Sports
+*ClockEncore
 EndCard
 
-Event: GF/W33-T14
-Name Return Gift of White Day
-JPName ホワイトデーのお返し
+Character: GF/W33-P03
+Name Good Chance, Kokomi Shiina
+JPName 好機到来 椎名心実
 Color B
-Level 1
-Cost 1
-Effect:
-{
-
-}
-Text Search your deck for up to 1 «Girl» character, reveal it, put it in your hand, and shuffle your deck. Put this card into memory.
-EndCard
-
-Climax: GF/W33-T15
-Name Nice Shoot
-JPName ナイスシュート
-*BookClimax
-EndCard
-
-Character: GF/W33-T16
-Name Looking Up at the Starry Sky, Fumio Murakami
-JPName 星空を仰ぐ 村上文緒
-Color B
-Level 3
-Cost 2
-Trigger Soul
-Power 10000
-Soul 2
-Trait1 Girl
-Trait2 Book
-Cont:
-{
-
-}
-Text Cont: If all your characters have «Girl», this card gets +1000 power.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, search your deck for up to 1 «Girl» character, reveal it, put it in your hand, and shuffle your deck.
-EndCard
-
-Character: GF/W33-T17
-Name After Class, Kokomi Shiina
-JPName 放課後 椎名心実
-Color B
-Level 3
-Cost 2
-Trigger Soul
-Power 10000
-Soul 2
-Trait1 Girl
-Trait2 After School
-*Healer
-Auto:
-{
-
-}
-Text Auto: When your climax is placed on your climax area, this card gets +1500 power until end of turn.
-EndCard
-
-Character: GF/W33-T18
-Name Fierce Shots on the Battlefield, Elena Mochizuki
-JPName 戦場激写 望月エレナ
-Color R
 Level 0
 Cost 0
 Power 1000
 Soul 1
 Trait1 Girl
-Trait2 Camera
-Auto:
+Cont: GiveAll
 {
-
+    If Not MyTurn && Other
+    {
+        GainPower 500
+    }
 }
-Text Auto: [(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 character in your waiting room and return it to your hand.
-Auto:
+Text Cont: During your opponent's turn, all your other characters get +500 power.
+Auto: OnPlay
 {
-
+    PayCost 1 Clock
+    {
+        DrawCard
+    }
 }
-Text Auto: When this card attacks, choose 1 of your characters, and that character gets +500 power until end of turn.
-EndCard
-
-Character: GF/W33-T19
-Name A Book to You, Fumio Murakami
-JPName 貴方への本 村上文緒
-Color B
-Level 1
-Cost 1
-Trigger Soul
-Power 2500
-Soul 1
-Trait1 Girl
-Trait2 Book
-Cont:
-{
-
-}
-Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times the number of your characters with ASSIST.
-Act:
-{
-
-}
-Text Act: [(1) Rest this card] Choose up to 2 of your characters, and those characters get "Auto: ENCORE [Put 1 character from your hand to the waiting room]" until the end of your opponent's next turn.
-EndCard
-
-Character: GF/W33-T20
-Name Everyone's Place, Chloe Lemaire
-JPName 皆の居場所 クロエ・ルメール
-Color R
-Level 2
-Cost 1
-Trigger Soul
-Power 8000
-Soul 1
-Trait1 Girl
-Combo Chihaya Something
-Combo Chihaya Something
-Auto:
-{
-
-}
-Text Auto: CxCombo CxCombo [Put the top card of your deck in your clock] When this card attacks, if "Chihaya Something" is in your climax area, you may pay the cost. If you do, deal 1 damage to your opponent, and this card gets +2000 power until end of turn.
+Text Auto: [(1) Put the top card of your deck into clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw a card.
 EndCard
