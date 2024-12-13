@@ -1,0 +1,7 @@
+Series: Girl Friend Beta
+Folder: GirlFriendBeta/W33
+Prefix: GF/W33
+SetName: Girl Friend Beta (W33)
+Folder: GirlFriendBeta/W38
+Prefix: GF/W38
+SetName: Girl Friend Beta Vol.2 (W38)

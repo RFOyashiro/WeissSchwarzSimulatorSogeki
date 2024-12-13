@@ -742,7 +742,7 @@ Auto: OnReverseOpponent
 {
     If StageContains 1 Other && NameEquals Mirror Girl, Kokomi Shiina
     {
-        PayCost 3 Discard 1
+        PayCost 3 Discard 1 Any
         {
             Burn 5
         }
@@ -1613,9 +1613,9 @@ Soul 1
 Trait1 Girl
 Trait2 Sports
 *500Assist
-Act:
+Act: Rest 2 Any
 {
-
+    *GiveCharacterPower(1000,Girl)
 }
 Text Act: [Rest 2 of your characters] choose 1 of your «Girl» characters, and that character gets +1000 power until end of turn.
 EndCard
@@ -1630,9 +1630,13 @@ Power 1500
 Soul 1
 Trait1 Girl
 Trait2 Sweets
-Auto:
+Auto: OnAttack
 {
-
+    TargetLocation Stage
+    NarrowTargets ColorIs Blue
+    ChooseCharacterFromTargets Choose a character to give +1000 power.
+    UntilEndOfOpponentsTurn
+    GainPower 1000
 }
 Text Auto: When this card attacks, choose 1 of your other Blue characters, and that character gets +1000 power until the end of your opponent's next turn.
 *HandEncore
@@ -1648,9 +1652,12 @@ Power 2500
 Soul 1
 Trait1 Girl
 Trait2 Yukata
-Cont:
+Cont: GiveSelf
 {
-
+    If AllYourCharacters IsColor Blue
+    {
+        GainPower 1000
+    }
 }
 Text Cont: If all your characters are Blue, this card gets +1000 power.
 EndCard
@@ -1666,16 +1673,19 @@ Power 2000
 Soul 1
 Trait1 Girl
 Trait2 Music
-Cont:
+Cont: Assist
 {
-
+    SetXToNumberOfCharacters With ASSIST
+    MultiplyXValue 500
+    GainPower X
 }
-Text Cont: ASSIST Your characters in front this card get +X power. X equals 500 times the number of your characters with ASSIST.
-Act:
+Text Cont: ASSIST Your characters in front of this card get +X power. X equals 500 times the number of your characters with "ASSIST".
+Act: RestSelf Rest 1 Other
 {
-
+    UntilEndOfOpponentsTurn
+    *GiveCharacterPower(1000,Any)
 }
-Text Act: [Rest this card and 1 of your other characters] Choose 1 of your characters, and that character gets +1000 power until the end of your opponent's next turn.
+Text Act: [Rest this card, rest 1 of your other characters] Choose 1 of your characters, and that character gets +1000 power until the end of your opponent's next turn.
 EndCard
 
 Character: GF/W38-086
@@ -1689,11 +1699,14 @@ Power 5500
 Soul 1
 Trait1 Girl
 Trait2 Weapon
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains Level 1 ColorIs Yellow &&& LocationContains Level 1 ColorIs Blue
+    {
+        GainPower 4500
+    }
 }
-Text Cont: ASSIST If there's a Yellow card and a Blue card in your level, this card gets +4500 power.
+Text Cont: EXPERIENCE If there's a Yellow card and a Blue card in your level, this card gets +4500 power.
 EndCard
 
 Character: GF/W38-087
@@ -1708,14 +1721,25 @@ Soul 1
 Trait1 Girl
 Trait2 Dress
 Combo Land of Fairy Tales
-Cont:
+Cont: GiveSelf
 {
-
+    If Not MyTurn
+    {
+        SetXToNumberOfCharacters Other && HasTrait Girl
+        MultiplyXValue 500
+        GainPower X
+    }
 }
 Text Cont: During your opponent's turn, this card gets +500 power for each of your «Girl» characters
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Land of Fairy Tales
+    {
+        PayCost 1
+        {
+            Heal
+        }
+    }
 }
 Text Auto: CxCombo [(1)] When this card attacks, if "Land of Fairy Tales" is in your climax area, you may pay the cost. If you do, put the top card of your clock in the waiting room.
 EndCard
@@ -1732,11 +1756,26 @@ Soul 1
 Trait1 Girl
 Trait2 Swimsuit
 Combo Unpredicted Accident
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Unpredicted Accident
+    {
+        TargetLocation Stage
+        NarrowTargets HasTrait Girl
+        GainPower 1500
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                DrawCard
+                Discard 1 Any
+            }
+            Text Auto: When this card's battle opponent becomes reverse, draw a card, and discard a card from your hand to the waiting room.
+        }
+    }
 }
-Text Auto: CxCombo When this card attacks, if "Unpredicted Accident" is in your climax area, all your «Girl» characters gets +1500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, draw a card, and discard a card from your hand to the waiting room."
+Quick
+Text Auto: CxCombo When this card attacks, if "Unpredicted Accident" is in your climax area, all your «Girl» characters get +1500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, draw a card, and discard a card from your hand to the waiting room."
 EndCard
 
 Character: GF/W38-089
@@ -1749,9 +1788,12 @@ Power 2000
 Soul 1
 Trait1 Girl
 Trait2 Plant
-Cont:
+Cont: GiveSelf
 {
-
+    If Not MyTurn
+    {
+        GainPower 2000
+    }
 }
 Text Cont: During your opponent's turn, this card gets +2000 power.
 EndCard
@@ -1790,16 +1832,15 @@ Power 2500
 Soul 1
 Trait1 Girl
 Trait2 Yukata
-Cont:
+Cont: GiveAll
 {
-
+    If Not MyTurn && Other && ColorIs Blue
+    {
+        GainPower 1000
+    }
 }
 Text Cont: During your opponent's turn, all your other Blue characters get +1000 power.
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your characters, and that character gets +1000 power until end of turn.
+*RestGivePower(1000,Any)
 EndCard
 
 Character: GF/W38-093
@@ -1812,10 +1853,18 @@ Power 5000
 Soul 1
 Trait1 Girl
 Trait2 Dress
-Auto:
+Auto: OnOtherPlacedOnStageFromHand
 {
-
+    IfOther ColorIs Blue
+    {
+        GainPower 1000
+    }
+    Else
+    {
+        RefundTimesPerTurn
+    }
 }
+TimesPerTurn 2
 Text Auto: This card ability activates up to twice per turn. When your other Blue character is placed on the stage from your hand, this card gets +1000 power until end of turn.
 EndCard
 
@@ -1840,11 +1889,7 @@ Trigger Soul
 Power 7000
 Soul 1
 Trait1 Girl
-Cont:
-{
-
-}
-Text Cont: This card gets +500 power for each of your other «Girl» characters
+*GainPowerForEachOther(500,Girl)
 *ClockEncore
 EndCard
 
@@ -1856,7 +1901,11 @@ Level 1
 Cost 0
 Effect:
 {
-
+    RevealUpTo Deck 4
+    ChooseCardsFromTargets 0 1 ColorIs Blue && IsCharacter
+    RevealTargets
+    MoveCard Hand
+    PutTheRestIntoTheWaitingRoom
 }
 Text Look at up to the top 4 cards of your deck, choose up to 1 Blue character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
@@ -1886,3 +1935,161 @@ Color B
 *DrawClimax
 EndCard
 
+Character: GF/W38-101
+Name Furisode, Remi Tamai
+JPName 振袖 玉井麗巳
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Girl
+Trait2 Yukata
+*GainPowerWithEnoughCharacters(1000,2,Girl)
+EndCard
+
+Character: GF/W38-102
+Name Records of Smiles, Erena Mochizuki
+JPName 笑顔の記録 望月エレナ
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Girl
+Trait2 Camera
+Act: 1
+{
+    GainPower 1000
+    GainEffect
+    {
+        Auto: OnReverseOpponent
+        {
+            TargetBattleOpponent
+            IfTarget OnStage
+            {
+                Question Put that character on top of your opponent's deck ?
+                If Yes
+                {
+                    MoveCard OpponentDeck
+                }
+            }
+        }
+        Text Auto: When this card's battle opponent becomes reverse, you may put that character on top of the deck.
+    }
+}
+Text Act: [(1)] This card gets +1000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put that character on top of the deck."
+EndCard
+
+Character: GF/W38-103
+Name Danger of Floating Rings, Isuzu Shiranui
+JPName 浮輪危機 不知火五十鈴
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Girl
+Trait2 Swimsuit
+Act: Rest 2 Any
+{
+    *ScryToBottom
+}
+Text Act: [Rest 2 of your characters] Look at the top card of your deck and put it either on top or bottom of the deck.
+Act: 1
+{
+    DrawCard
+    Discard 1 Any
+}
+Text Act: [(1)] Draw a card and put 1 card from your hand into waiting room.
+EndCard
+
+Character: GF/W38-P01
+Name Offering of the Nine-Tails, Saya Kagurazaka
+JPName 九尾の供物 神楽坂砂夜
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Girl
+Trait2 Yukata
+*OnAttackGiveOtherPower(1000,Girl)
+EndCard
+
+Character: GF/W38-P02
+Name Moment of Happiness, Nae Yuuki
+JPName 至福の時 優木苗
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Girl
+Trait2 Sweets
+Cont: Assist
+{
+    If HasTrait Girl
+    {
+        GainLevel 1
+        GainPower 500
+    }
+}
+Text Cont: ASSIST Your «Girl» characters in front of this card get +1 level and +500 power.
+EndCard
+
+Character: GF/W38-P03
+Name Addressing Herself, Kinoko Himejima
+JPName 我物申す 姫島木乃子
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Girl
+Trait2 Maid
+Cont: GiveSelf
+{
+    If LocationContainsOrLess Stock 3 Any
+    {
+        GainPower 1000
+    }
+}
+Text Cont: If you have 3 or less cards in stock, this card gets +1000 power.
+EndCard
+
+Character: GF/W38-P04
+Name A Moment of Dream, Fumio Murakami
+JPName 夢の一時を 村上文緒
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Girl
+Auto: StartOpponentAttackPhase
+{
+	If LocationContainsOrLess CenterStage 2 Any
+	{
+		TargetFacing
+		If HasTarget
+		{
+			TargetSelf
+			Question Move this card to another position?
+			If Yes
+			{
+				MoveToOpenPosition True False
+			}
+		}
+	}
+}
+Text Auto: At the beginning of your opponent's attack phase, if there is a character facing this card, you may move this card to an open position of your center stage.
+Auto: OnSentFromStageToWaitingRoom
+{
+	PayCost Discard 1 Any
+	{
+		*Check4Add1(Girl)
+	}
+}
+Text Auto: [Put 1 card from your hand into waiting room] When this card is placed from stage to the waiting room, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Girl» character among them, put it into your hand, and put the rest into your waiting room.
+EndCard

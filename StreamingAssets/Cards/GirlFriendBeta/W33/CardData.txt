@@ -2485,7 +2485,7 @@ Auto: OnPlay
     IfTarget ColorIs Blue
     {
         TargetSelf
-        GainPower
+        GainEffect
         {
             Auto: OnReverseOpponent
             {
