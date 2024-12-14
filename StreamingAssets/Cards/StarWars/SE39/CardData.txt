@@ -1,0 +1,594 @@
+Character: SW/SE39-001
+Name Jyn & Cassian & K-2SO
+JPName ジン・アーソ＆キャシアン・アンドー＆K-2SO
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Rogue One
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your other characters, this card turn, it gets +X power. X equals that character's soul times 1000.
+Auto:
+{
+
+}
+Text Auto: [Put the top card of your stock to clock, put this card into memory] When this card is reversed, you may pay the cost. If you do, choose 1 Yellow or «Rogue One» character in your waiting room, add it to hand.
+EndCard
+
+Character: SW/SE39-002
+Name Han Solo
+JPName “激情を秘めた無頼漢”ハン・ソロ
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 A New Hope
+Auto:
+{
+
+}
+Text Auto: When this card is placed on stage from hand, if the number of other Yellow or «A New Hope» characters you have is 2 or more, you may draw 1 card. If you do, put 1 card from your hand into waiting room.
+Act:
+{
+
+}
+Text Act: [(1) Put this card into waiting room] Look at up to 4 cards from the top of your deck, choose up to 1 level 1 or higher card among them, reveal it, add it to hand, and send the rest to waiting room.
+EndCard
+
+Character: SW/SE39-003
+Name Poe
+JPName “勇気あるリーダー”ポー・ダメロン
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 The Last Jedi
+Auto:
+{
+
+}
+Text Auto: When this card is placed on stage from hand, choose 1 of your other characters, this card turn, it gets +X power. X is equal to that character's level times 500.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on stage from hand, choose 1 other character, this card turn, it gets +1 level.
+EndCard
+
+Character: SW/SE39-004
+Name Finn
+JPName “レジスタンス”フィン
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 The Last Jedi
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand into waiting room] When this card placed on stage from hand, you may pay the cost. If you do, choose 1 "Lightsaber" (event) in your waiting room, add it to hand.
+EndCard
+
+Character: SW/SE39-005
+Name Chewbacca
+JPName “伝説のウーキーの戦士”チューバッカ
+Color Y
+Level 0
+Cost 0
+Power 4000
+Soul 1
+Trait1 Return of the Jedi
+Cont:
+{
+
+}
+Text Cont: All of your opponent's characters get "Auto: ENCORE (2)"
+EndCard
+
+Character: SW/SE39-006
+Name C-3PO & R2-D2
+JPName “いつも傍に”C-3PO＆R2-D2
+Color Y
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Return of the Jedi
+Cont:
+{
+
+}
+Text Cont: This card card can be played without meeting Color requirement.
+Act:
+{
+
+}
+Text Act: [Put 1 card from your hand into waiting room, put this card into waiting room] Choose 1 character in your waiting room, add it to hand.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your characters, until the end of your opponent's next turn, it gets +1000 power.
+EndCard
+
+Character: SW/SE39-007
+Name Leia
+JPName “強気な指導者”レイア
+Color Y
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 The Empire Strikes Back
+Cont:
+{
+
+}
+Text Cont: If you have another ""Scoundrel" Han Solo - SW/S49-005", this card gets +4000 power.
+Auto:
+{
+
+}
+Text Auto: (1) When this card attacks, you may pay the cost. If you do, during the trigger step of this card attack, perform trigger check twice
+EndCard
+
+Character: SW/SE39-008
+Name Han Solo
+JPName “反乱同盟軍将軍”ハン・ソロ
+Color Y
+Level 2
+Cost 1
+Power 4000
+Soul 1
+Trait1 Return of the Jedi
+Cont:
+{
+
+}
+Text Cont: ASSIST level x 500
+Auto:
+{
+
+}
+Text Auto: BOND [Put 1 card from your hand into waiting room] to ""Secret Mission" Leia - SW/S49-003".
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your ""Secret Mission" Leia - SW/S49-003", this card turn, it gets +2500 power.
+EndCard
+
+Character: SW/SE39-009
+Name Jabba
+JPName “タトゥイーンの犯罪王”ジャバ
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Return of the Jedi
+Cont:
+{
+
+}
+Text Cont: All of your other Green or «Return of the Jedi» characters get +500 power.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your characters, this card turn, it gets the following ability: "Auto: When this card's battle opponent is reversed, you may send the top card of your opponent's clock to waiting room. If you do, send that character to clock."
+EndCard
+
+Character: SW/SE39-010
+Name Darth Maul
+JPName “卓越した戦闘能力”ダース・モール
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 The Phantom Menace
+Cont:
+{
+
+}
+Text Cont: During your turn, if you have another Red or «The Phantom Menace» character, this card gets +3000 power.
+Auto:
+{
+
+}
+Text Auto: (1) When this card attacks, you may pay the cost. If you do, during the trigger step of this card attack, perform trigger check twice.
+EndCard
+
+Character: SW/SE39-011
+Name Kylo Ren
+JPName “スカイウォーカーの末裔”カイロ・レン
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 The Rise of Skywalker
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand into waiting room, put this card into memory] When this card is reversed, you may pay the cost. If you do, search your deck for up to 1 character "Rey" or "Leia" in its name, reveal it, add it to hand, and shuffle your deck afterwards.
+EndCard
+
+Character: SW/SE39-012
+Name Darth Vader
+JPName “究極の悪”ダース・ベイダー
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Return of the Jedi
+Cont:
+{
+
+}
+Text Cont: During your turn, this card gets +1000 power.
+Auto:
+{
+
+}
+Text Auto: When this card is sent from stage to waiting room, look at up to 4 cards from the top of your deck, choose up to 1 climax among them, add it to hand, and send the rest to waiting room. If you added a card to hand, put 1 card from your hand into waiting room.
+EndCard
+
+Character: SW/SE39-013
+Name Anakin
+JPName “選ばれし者”アナキン
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Attack of the Clones
+Auto:
+{
+
+}
+Text Auto: When this card is placed on stage from hand, this card turn, this card gets +1500 power.
+Auto:
+{
+
+}
+Text Auto: {climax Combo} When the Door climax (16) is placed in your climax Area, if the number of other characters you have is 3 or more, this card turn, this card gets the following 2 abilities, - "Auto: (1) When this card attacks, you may pay the cost. If you do, during the trigger step of this card attack, perform trigger check twice" - "Auto: At the end of this card's attack, reveal the top card of your deck, then choose 1 level X or lower character from your waiting room, and add it to hand. X equals the level of the revealed card."
+EndCard
+
+Character: SW/SE39-014
+Name Darth Vader
+JPName “帝国の指揮官”ダース・ベイダー
+Color R
+Level 1
+Cost 1
+Power 3500
+Soul 1
+Trait1 Revenge of the Sith
+Cont:
+{
+
+}
+Text Cont: All of your other "Scout Trooper - SW/S49-076" gets +1000 power.
+Cont:
+{
+
+}
+Text Cont: ASSIST level x 500 to Red or «Revenge of the Sith» characters.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your characters with "Trooper" in its name, send it to stock.
+EndCard
+
+Character: SW/SE39-015
+Name Anakin
+JPName “力への渇望”アナキン
+Color R
+Level 3
+Cost 2
+Power 9000
+Soul 2
+Trait1 Revenge of the Sith
+Cont:
+{
+
+}
+Text Cont: If the number of other characters you have is 3 or more, this card gets +1500 power and the following ability, "Auto: When this card's battle opponent is reversed, you may send it to memory."
+Auto:
+{
+
+}
+Text Auto: When this card is placed on stage from hand, you may Heal 1.
+Auto:
+{
+
+}
+Text Auto: [(3) Put 1 card from your hand into waiting room] When this card attacks, you may pay the cost. If you do, send the bottom 5 cards of your opponent's deck to waiting room, then deal X damage to your opponent, this card turn, this card gets +2000 power. X equals the number of climaxes sent to waiting room by this card effect.
+EndCard
+
+Climax: SW/SE39-016
+Name Attack of the Clones
+JPName Attack of the Clones
+Color R
+
+EndCard
+
+Character: SW/SE39-017
+Name Yoda
+JPName “グランド・マスター”ヨーダ
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Revenge of the Sith
+Auto:
+{
+
+}
+Text Auto: When this card is placed on stage from hand, if your opponent has 1 or less characters in their center stage, choose 1 cost 0 or lower character in your opponent's center stage, send it to the bottom of your opponent's deck.
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's draw phase, reveal the top card of your deck. If that card is level 1 or higher, you may return this card to hand.
+EndCard
+
+Character: SW/SE39-018
+Name BB-8
+JPName “強い忠誠心”BB-8
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 The Force Awakens
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on stage from hand, you may pay the cost. If you do, reveal the top card of your deck, then choose 1 level X or lower character from your waiting room, and add it to hand. X equals the level of the revealed card.
+EndCard
+
+Character: SW/SE39-019
+Name Yoda
+JPName “隠遁者”ヨーダ
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 The Empire Strikes Back
+Cont:
+{
+
+}
+Text Cont: MEMORY - While this card is in memory, all of your ""Dream-Chasing Youth" Luke - SW/S49-089" gets +500 power.
+Act:
+{
+
+}
+Text Act: [(1) send this card standing character to memory] Choose 1 ""Dream- Chasing Youth" Luke - SW/S49-089" in your waiting room, add it to hand.
+EndCard
+
+Character: SW/SE39-020
+Name Rey
+JPName “フォースの繋がり”レイ
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 The Last Jedi
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 climax] When this card is placed on stage from hand, you may pay the cost. If you do, choose 1 climax from your waiting room, and add it to hand.
+Act:
+{
+
+}
+Text Act: [Rest 2 of your Blue or «The Last Jedi» characters] Choose 1 of your characters, this card turn, it gets +2000 power.
+EndCard
+
+Character: SW/SE39-021
+Name Qui-Gon
+JPName “生けるフォース”クワイ=ガン
+Color B
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 The Phantom Menace
+Cont:
+{
+
+}
+Text Cont: During your turn, for each of your other blue characters or characters with "Anakin" in its name, this card gets +1000 power.
+EndCard
+
+Character: SW/SE39-022
+Name Luke
+JPName “真のジェダイ”ルーク
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Return of the Jedi
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your other Blue or «Return of the Jedi» characters, this card turn, it gets +X power. X equals the number of your other Blue or «Return of the Jedi» characters times 500.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, all of your characters get the following ability, until the end of the turn: "Auto: [Put 1 climax] When this card's trigger check reveals a climax, you may pay the cost. If you do, choose 1 Blue or «Return of the Jedi» character from your waiting room, and add it to hand." Image
+EndCard
+
+Character: SW/SE39-023
+Name Rey
+JPName レイ・スカイウォーカー
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 The Rise of Skywalker
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the number of other Blue or «The Rise of Skywalker» characters you have is 2 or more, this card turn, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent is reversed, if you have a climax in your climax Area, you may put the top card of your deck into stock.
+EndCard
+
+Character: SW/SE39-024
+Name Obi-Wan
+JPName “ソレスの熟練者”オビ=ワン
+Color B
+Level 2
+Cost 1
+Power 2500
+Soul 1
+Trait1 Attack of the Clones
+Auto:
+{
+
+}
+Text Auto: (2) When you use this card's BACKUP, you may pay the cost. If you do, shuffle all cards from your waiting room into your deck.
+Act:
+{
+
+}
+Text Act: BACKUP +2500
+EndCard
+
+Character: SW/SE39-025
+Name Luke
+JPName “生ける神話”ルーク
+Color B
+Level 2
+Cost 1
+Power 4000
+Soul 1
+Trait1 The Last Jedi
+Cont:
+{
+
+}
+Text Cont: ASSIST +2000 to level 3 or higher characters.
+Act:
+{
+
+}
+Text Act: [Rest this card] draw 1 card, put 1 card from your hand into waiting room.
+EndCard
+
+Character: SW/SE39-026
+Name Chirrut & Baze
+JPName チアルート＆ベイズ
+Color B
+Level 2
+Cost 2
+Power 7000
+Soul 2
+Trait1 Rogue One
+Cont:
+{
+
+}
+Text Cont: During this card's battle, you do not take damage from the Auto: effects of your opponent's characters.
+Cont:
+{
+
+}
+Text Cont: If the number of other Blue or «Rogue One» characters you have is 2 or more, this card gets +2500 power and "Auto: ENCORE [Put 1 Blue or «Rogue One» character]"
+EndCard
+
+Character: SW/SE39-027
+Name Luke
+JPName “ジェダイへの決意”ルーク
+Color B
+Level 3
+Cost 2
+Power 9000
+Soul 2
+Trait1 A New Hope
+Cont:
+{
+
+}
+Text Cont: If you have 2 or less climaxes in your waiting room, this card gets -1 level in hand.
+Cont:
+{
+
+}
+Text Cont: For each of your other Blue or «A New Hope» characters, this card gets +500 power.
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on stage from hand, you may pay the cost. If you do, put the top card of your clock into stock.
+EndCard
+
+Character: SW/SE39-028
+Name Obi-Wan
+JPName “伝説のジェダイ”オビ=ワン
+Color B
+Level 3
+Cost 2
+Power 10000
+Soul 2
+Trait1 Revenge of the Sith
+Auto:
+{
+
+}
+Text Auto: When this card is placed on stage from hand, look at up to 3 cards from the top of your deck, choose up to 1 card among them, add it to hand, and send the rest to waiting room.
+Auto:
+{
+
+}
+Text Auto: {climax Combo} (1) When this card attacks, if you have the Pants climax (30) in your climax Area, you may pay the cost. If you do, during the trigger step of this card attack, perform trigger check twice, and this card turn, this card gets the following ability, "Auto: This card ability activates up to once per turn. When this card's trigger check reveals a soul trigger, you may deal 3 damage to your opponent."
+EndCard
+
+Event: SW/SE39-029
+Name Lightsaber
+JPName Lightsaber
+Color B
+Level 1
+Cost 0
+Effect: 
+{
+
+}
+Text Mill 2, then choose up to 1 level X or lower Blue character from your waiting room, and add it to hand. X equals the sum of levels of cards milled by this card effect.
+EndCard
+
+Climax: SW/SE39-030
+Name Duel on Mustafar
+JPName Duel on Mustafar
+Color B
+
+EndCard
+

@@ -1,0 +1,2616 @@
+Character: SW/S49-001
+Name "Escape From First Order" Finn
+JPName “ファースト・オーダーからの脱出”フィン
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 The Force Awakens
+Cont: InHand
+{
+    If StageContains 1 NameEquals "Talent of Pilot" Rey &&& StageContains 1 NameEquals "Premonition of Friendship" BB-8
+    {
+        LoseLevel 1
+    }
+}
+Text Cont: If you have '"Talent of Pilot" Rey' and '"Premonition of Friendship" BB-8', this card gets -1 level while in your hand.
+*GainPowerForEachOther(500, The Force Awakens)
+*Healer
+EndCard
+
+Character: SW/S49-002
+Name "Smuggler" Han Solo
+JPName “密輸業者”ハン・ソロ
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 A New Hope
+Auto: OnAttack
+{
+    PayCost Discard 1 IsCharacter
+    {
+        GainPower 2000
+        GainSoul 1
+    }
+}
+Text Auto: [Put 1 character from your hand to the waiting room] When this card attacks, you may pay the cost. If you do, this card gets +2000 power and +1 soul until end of turn.
+*MusashiEffect
+EndCard
+
+Character: SW/S49-003
+Name "Secret Mission" Leia
+JPName “極秘任務”レイア
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 A New Hope
+Combo Medal Ceremony
+*Healer
+Auto: OnSpecificClimaxPlay Medal Ceremony
+{
+    If InLocation CenterStage
+    {
+        *GiveCharacterPower(1000,Any)
+        GainSoul 1
+        GainEffect
+        {
+            *OnCancelBurn1
+        }
+    }
+}
+Text Auto: CxCombo When "Medal Ceremony" is placed on your climax area, if this card is in the center stage, choose 1 of your characters and that character gets +1000 power, +1 soul and the following ability until end of turn. "Auto: This card ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
+EndCard
+
+Character: SW/S49-004
+Name "Lightsaber in Hand" Finn
+JPName “ライトセーバーを手に”フィン
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 The Force Awakens
+*OnPlayGivePower(1000,Any)
+*YellowLevel0Bomb
+EndCard
+
+Character: SW/S49-005
+Name "Scoundrel" Han Solo
+JPName “ならず者”ハン・ソロ
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 A New Hope
+Cont: GiveAll
+{
+    If MyTurn && InLocation MiddleCenterStage && Other
+    {
+        GainPower 1000
+    }
+}
+Text Cont: During your turn, your other character in the middle position of your center stage gets +1000 power.
+Act: 1 RestSelf
+{
+    Brainstorm 4
+    Repeat BrainstormedClimax
+    {
+        SearchDeck IsCharacter && ColorIs Yellow
+    }
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 Yellow character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SW/S49-006
+Name Han Solo
+JPName ハン・ソロ
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Return of the Jedi
+Auto: OnPlay
+{
+    If LocationContains WaitingRoom 3 IsClimax
+    {
+        TargetTop Deck 1
+        MoveCard Clock
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, if there are 3 or more climax cards in your waiting room, put the top card of your deck in your clock.
+*FreeRunner
+EndCard
+
+Character: SW/S49-007
+Name "Captain of the Millennium Falcon" Han Solo
+JPName “ミレニアム・ファルコンの船長”ハン・ソロ
+Color Y
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 The Empire Strikes Back
+Combo Mission!
+*PowerOnMyTurn(2000)
+Auto: OnReverseOpponent
+{
+    If Climax Mission! && StageContains 1 Other && NameEquals "Reversal of Situation" Chewbacca
+    {
+        *CheckAndAdd(3)
+    }
+}
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Mission!" is in your climax area and you have an other '"Reversal of Situation" Chewbacca', look at up to the top 3 cards of your deck, choose up to 1 card among them and put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: SW/S49-008
+Name "New Name" Finn
+JPName “新しい呼び名”フィン
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 The Force Awakens
+Combo I can do this!
+*GainPowerWithEnoughCharacters(1000,2,The Force Awakens)
+Auto: OnReverseOpponent
+{
+    If Climax I can do this!
+    {
+        SearchDeck IsCharacter && HasTrait The Force Awakens
+    }
+}
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "I can do this card!" is in your climax area, search your deck for up to 1 «The Force Awakens» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SW/S49-009
+Name "Starfighter Pilot" Poe
+JPName “スターファイター・パイロット”ポー
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 The Force Awakens
+*GainPowerForEachOther(500,The Force Awakens)
+EndCard
+
+Character: SW/S49-010
+Name "Roar of Wookie" Chewbacca
+JPName “ウーキーの咆哮”チューバッカ
+Color Y
+Level 1
+Cost 0
+Power 6500
+Soul 1
+Trait1 Return of the Jedi
+*CannotAttackHigherLevel
+EndCard
+
+Character: SW/S49-011
+Name "Bloodline of the Force" Leia
+JPName “フォースの家系”レイア
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Return of the Jedi
+*500Assist
+Act: 1 Clock RestSelf
+{
+    SearchDeck IsCharacter && Compare ThatCardsLevel 1 OrLess
+}
+Text Act: [(1) Put the top card of your deck in your clock, rest this card] Search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SW/S49-012
+Name "Reversal of Situation" Chewbacca
+JPName “形勢逆転”チューバッカ
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Return of the Jedi
+*GiveNamePower(1000,"Captain of the Millennium Falcon" Han Solo)
+*Bond1("Captain of the Millennium Falcon" Han Solo)
+EndCard
+
+Character: SW/S49-013
+Name Maz Kanata
+JPName マズ・カナタ
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 The Force Awakens
+Cont: GiveAll
+{
+    If MyTurn && Other && HasTrait The Force Awakens
+    {
+        GainPower 500
+    }
+}
+Text Cont: During your turn, all your other «The Force Awakens» characters get +500 power.
+Auto: OnPlay
+{
+    PayCost Discard 1 Any
+    {
+        SearchWaitingRoom NameEquals Lightsaber
+    }
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Lightsaber" in your waiting room and return it to your hand.
+Auto: OnUseEvent
+{
+    *GiveCharacterPower(1000,Any)
+}
+TimesPerTurn 1
+Text Auto: This card ability activates up to once per turn. When you play an event, choose 1 of your characters, and that character gets +1000 power until end of turn.
+EndCard
+
+Character: SW/S49-014
+Name "Rescue" Chewbacca
+JPName “救出”チューバッカ
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 The Force Awakens
+Auto: OnPlay
+{
+    If StageContains 2 Other && HasTrait The Force Awakens
+    {
+        GainPower 2000
+    }
+}
+Quick
+Text Auto: When this card is placed on the stage from your hand, if the number of other «The Force Awakens» characters you have is 2 or more, this card gets +2000 power until end of turn.
+*OnOtherAttackedSacrificeToGivePower(1500,The Force Awakens)
+EndCard
+
+Character: SW/S49-015
+Name Ewoks
+JPName イウォーク族
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Return of the Jedi
+Auto: OnAttack
+{
+    If StageContains 3 Other && IsColor Yellow
+    {
+        GainPower 2000
+    }
+}
+Quick
+Text Auto: When this card attacks, if the number of other Yellow characters you have is 3 or more, this card gets +2000 power until end of turn.
+EndCard
+
+Character: SW/S49-016
+Name Lando Calrissian
+JPName ランド・カルリジアン
+Color Y
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 The Empire Strikes Back
+Cont: GiveSelf
+{
+    If StageContains 3 Other && IsColor Yellow
+    {
+        GainPower 2000
+    }
+}
+Text Cont: If the number of other Yellow characters you have is 3 or more, this card gets +2000 power.
+Auto: Encore Discard 1 ColorIs Yellow
+{
+}
+Text Auto: ENCORE [Put a Yellow card from your hand to the waiting room]
+EndCard
+
+Character: SW/S49-017
+Name "Reunion" Poe
+JPName “再会”ポー
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 6500
+Soul 1
+Trait1 The Force Awakens
+Combo Brilliant battle
+Auto: OnSpecificClimaxPlay Brilliant battle
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait The Force Awakens
+    {
+        TargetLocation Stage
+        GainSoul 1
+    }
+}
+Text Auto: CxCombo When "Brilliant battle" is placed on your climax area, reveal the top card of your deck. If it's a «The Force Awakens» character, all your characters get +1 soul until end of turn.
+*YellowEarlyPlayBomb
+EndCard
+
+Character: SW/S49-018
+Name "Thinking of Their Son" Han Solo & Leia
+JPName “息子への思い”ハン・ソロ&レイア
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 The Force Awakens
+Auto: OnPlay
+{
+    Mill 2
+    NarrowTargets IsClimax
+    If HasTarget
+    {
+        GainPower 3000
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there were at least 1 climax among them, this card gets +3000 power until end of turn.
+Auto: OnSentFromStageToWaitingRoom
+{
+    PayCost 2
+    {
+        SearchDeck IsCharacter && HasTrait The Force Awakens
+    }
+}
+Text Auto: [(2)] When this card is placed in your waiting room from the stage, you may pay the cost. If you do, search your deck for up to 1 «The Force Awakens» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SW/S49-019
+Name Wicket
+JPName ウィケット
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Return of the Jedi
+*OnPlayGainPower(1500)
+*BondDiscard("Princess" Leia)
+EndCard
+
+Character: SW/S49-020
+Name Nien Nunb
+JPName ナイン・ナン
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Return of the Jedi
+Auto: OnPlay
+{
+    PayCost 1 Discard 1 Any
+    {
+        SearchDeck IsCharacter && ColorIs Yellow
+    }
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 Yellow character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SW/S49-021
+Name Lobot
+JPName ロボト
+Color Y
+Level 0
+Cost 0
+Power 3500
+Soul 1
+Trait1 The Empire Strikes Back
+Auto: OnReversed
+{
+    If StageContainsOrLess 1 Other && ColorIs Yellow
+    {
+        MoveCard Clock
+    }
+}
+Text Auto: When this card becomes reversed in battle, if you have 1 or less other Yellow characters, put this card in your clock.
+EndCard
+
+Character: SW/S49-022
+Name "Neck and Neck Battle" Han Solo
+JPName “一進一退の戦い”ハン・ソロ
+Color Y
+Level 0
+Cost 0
+Power 4000
+Soul 1
+Trait1 The Force Awakens
+Auto: OnPlay
+{
+    If LocationContains OpponentWaitingRoom 3 IsClimax
+    {
+        Rest
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, if there are 3 or more climax cards in your opponent's waiting room, rest this card.
+EndCard
+
+Character: SW/S49-023
+Name "Princess" Leia
+JPName “プリンセス”レイア
+Color Y
+Level 1
+Cost 0
+Power 2000
+Soul 1
+Trait1 The Empire Strikes Back
+Auto: OnUseThisCardsBackup
+{
+    If LocationContains Stock 4 Any
+    {
+        TargetMyCharacterInBattle
+        GainPower 1000
+    }
+}
+Quick
+Text Auto: When you use this card's "BACKUP", if there are 4 or more cards in your stock, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
+Backup 1000
+EndCard
+
+Character: SW/S49-024
+Name "Rescue Operation" Han Solo
+JPName “救出作戦”ハン・ソロ
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 4000
+Soul 1
+Trait1 A New Hope
+Cont: GiveSelf
+{
+    If StageContains 1 NameEquals "Wookie" Chewbacca
+    {
+        GainPower 3000
+        GainSoul 1
+    }
+}
+Text Cont: If you have another '"Wookie" Chewbacca', this card gets +3000 power and +1 soul.
+Cont: GiveSelf
+{
+    If LocationContains Memory 1 NameEquals Millennium Falcon
+    {
+        GainPower 3000
+    }
+}
+Text Cont: MEMORY If "Millennium Falcon" is in your memory, this card gets +3000 power.
+Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
+{
+    *OptionalBlindStock
+}
+Text Auto: When this card's level 2 or higher battle opponent becomes reversed, you may put the top card of your deck in your stock.
+EndCard
+
+Character: SW/S49-025
+Name "Wookie" Chewbacca
+JPName “ウーキー族”チューバッカ
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 5500
+Soul 1
+Trait1 Return of the Jedi
+Cont: GiveSelf
+{
+    If StageContains 1 NameEquals "Rescue Operation" Han Solo
+    {
+        GainPower 3000
+    }
+}
+Text Cont: If you have another '"Rescue Operation" Han Solo', this card gets +3000 power.
+Cont: GiveSelf
+{
+    If LocationContains Memory 1 NameEquals Millennium Falcon
+    {
+        GainPower 3000
+    }
+}
+Text Auto: MEMORY When this card attacks, if "Millennium Falcon" is in your memory, this card gets +3000 power until end of turn.
+Auto: Encore Discard 1 ColorIs Yellow
+{
+}
+Text Auto: ENCORE [Put a Yellow card from your hand to the waiting room]
+EndCard
+
+Character: SW/S49-026
+Name Admiral Ackbar
+JPName アクバー提督
+Color Y
+Level 2
+Cost 2
+Trigger Soul
+Power 3500
+Soul 2
+Trait1 Return of the Jedi
+*1500Assist
+Auto: OnPlay
+{
+    TargetLocation Hand
+    SetXValue TargetCount
+    TargetLocation OpponentHand
+    If Compare X TargetCount LessThan
+    {
+        *OptionalBlindStock
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, if there are less cards in your hand than your opponent's hand, you may put the top card of your deck in your stock.
+EndCard
+
+Event: SW/S49-027
+Name Jakku
+JPName Jakku
+Color Y
+Level 2
+Cost 1
+Counter
+Effect:
+{
+    SetXToNumberOfCharacters HasTrait The Force Awakens
+    MultiplyXValue 1000
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +X power.
+    GainPower X
+}
+Text COUNTER Choose 1 of your characters, and that character gets +X power until end of turn. X equals 1000 times the number of your «The Force Awakens» characters.
+EndCard
+
+Event: SW/S49-028
+Name Dajarik Holochess
+JPName Dajarik Holochess
+Color Y
+Level 2
+Cost 1
+Effect:
+{
+    Brainstorm 3
+    TargetBrainstormed
+    If TargetsContain 1 IsClimax
+    {
+        DrawCard
+    }
+    Else
+    {
+        DrawCard
+        DrawCard
+    }
+}
+Text BRAINSTORM Flip over the top 3 cards of your deck and put them in the waiting room. If at least 1 climax was revealed this way, draw a card. Otherwise, draw 2 cards.
+EndCard
+
+Event: SW/S49-029
+Name X-wing starfighter
+JPName X-wing starfighter
+Color Y
+Level 1
+Cost 0
+Counter
+Effect:
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget ColorIs Yellow && IsCharacter
+    {
+        MoveCard Hand
+        Discard 1 Any
+    }
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        *YellowEarlyPlayBomb
+    }
+}
+Text COUNTER Reveal the top card of your deck. If it's a Yellow character, put it in your hand and put 1 card from your hand to the waiting room.\nChoose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card becomes reversed in battle, if the level of the battle opponent of this card is higher than the level of your opponent, you may put that character in stock. If you do, put the bottom card of your opponent's stock in the waiting room."
+EndCard
+
+Event: SW/S49-030
+Name Millennium Falcon
+JPName Millennium Falcon
+Color Y
+Level 2
+Cost 2
+Requirement StageContains 1 ColorIs Yellow
+Text If you have no Yellow characters, you cannot play this card from hand.
+Effect:
+{
+    Message Choose up to 1 "Rescue Operation" Han Solo
+    SearchLocationForTargets Deck 0 1 NameEquals "Rescue Operation" Han Solo
+    SaveTargets
+    Message Choose up to 1 "Wookie" Chewbacca
+    SearchLocationForTargets Deck 0 1 NameEquals "Wookie" Chewbacca && Not InSavedTargets
+    AddSavedToCurrentTargets
+    PlaceOnStage false true true false
+    ShuffleLocation Deck
+    TargetSelf
+    MoveCard Memory
+}
+Text Search your deck for up to 1 '"Rescue Operation" Han Solo' and up to 1 '"Wookie" Chewbacca', put them in separate positions on the stage, and shuffle your deck. Put this card into memory.
+EndCard
+
+Climax: SW/S49-031
+Name Mission!
+JPName Mission!
+*ShotClimax
+EndCard
+
+Climax: SW/S49-032
+Name Medal Ceremony
+JPName Medal Ceremony
+*YellowStockSoul
+EndCard
+
+Climax: SW/S49-033
+Name I can do this!
+JPName I can do this!
+*WindClimax
+EndCard
+
+Climax: SW/S49-034
+Name Brilliant battle
+JPName Brilliant battle
+Color Y
+*DrawClimax
+EndCard
+
+Character: SW/S49-035
+Name "Boushh's True Form" Leia
+JPName “ブーシの正体”レイア
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Return of the Jedi
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
+*GreenLevel0Bomb
+EndCard
+
+Character: SW/S49-036
+Name Jabba the Hut
+JPName ジャバ・ザ・ハット
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 3500
+Soul 2
+Trait1 A New Hope
+Cont:
+{
+
+}
+Text Cont: ASSIST Your Green characters in front of this card get +2000 power and the following ability. "Auto: When this card's trigger check reveals a climax card, this card gets +4000 power and +1 soul until end of turn."
+*Healer
+Auto:
+{
+
+}
+Text Auto: [(4)] At the beginning of your encore step, you may pay the cost. If you do, choose up to 4 of your other characters and put them in the waiting room, then deal X damage to your opponent. X equals the number of characters put in the waiting room with this card effect.
+EndCard
+
+Character: SW/S49-037
+Name Boba Fett
+JPName ボバ・フェット
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 The Empire Strikes Back
+Combo Bounty hunter
+Cont:
+{
+
+}
+Text Cont: If you have another level 3 or higher character, this card gets +2000 power.
+*OnPlayDraw2Discard1
+Auto:
+{
+
+}
+Text Auto: CxCombo [(2) Put 1 card from your hand to the waiting room] When "Bounty hunter" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, this card gets the following 2 abilities until end of turn. "Cont: When this card attacks, you may choose a character in your opponent's backstage and frontal attack that character instead." "Auto: When this card's battle opponent becomes reverse, you may put that character in clock."
+EndCard
+
+Character: SW/S49-038
+Name "Message And Present" Jabba
+JPName “メッセージと贈り物”ジャバ
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Return of the Jedi
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters in the center stage, and that character gets -1000 power until end of turn.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 Green character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SW/S49-039
+Name Bib Fortuna
+JPName ビブ・フォーチュナ
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Return of the Jedi
+Cont:
+{
+
+}
+Text Cont: All your other Green characters get +500 power.
+Act:
+{
+
+}
+Text Act: [(2) Rest this card] Search your deck for up to 1 Green character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SW/S49-040
+Name "Crime Lord of the Desert" Jabba
+JPName “砂漠の犯罪王”ジャバ
+Color G
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Return of the Jedi
+Combo Jabba's Palace
+Auto:
+{
+
+}
+Text Auto: CxCombo [(1) Put the top card of your deck in your clock, put this card in the waiting room] When "Jabba's Palace" is placed on your climax area, you may pay the cost. If you do, search your deck for up to 3 cards that are either "Gamorrean" or "Max Rebo Band" and put them in separate positions on the stage. Afterwards, shuffle your deck, choose 1 of your characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: SW/S49-041
+Name "Battle Professional" Boba Fett
+JPName “戦闘のプロフェッショナル”ボバ・フェット
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 5000
+Soul 1
+Trait1 Return of the Jedi
+Cont:
+{
+
+}
+Text Cont: If all your characters are Green, this card gets +1000 power and +1 soul.
+Cont:
+{
+
+}
+Text Cont: This card gets +1000 power for each of your other Green characters
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put a Green card from your hand to the waiting room]
+EndCard
+
+Character: SW/S49-042
+Name Gamorrean
+JPName ガモーリアン
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Return of the Jedi
+Army
+Cont:
+{
+
+}
+Text Cont: This card gets +1000 power for each of your other "Gamorrean" in the center stage
+Cont:
+{
+
+}
+Text Cont: All your other "Gamorrean" get +500 power.
+EndCard
+
+Character: SW/S49-043
+Name "Hidden Mission" R2-D2
+JPName “秘めた任務”R2-D2
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Return of the Jedi
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a Green character in your clock and return it to your hand, and put the top card of your deck in your clock.
+EndCard
+
+Character: SW/S49-044
+Name Unkar Plutt
+JPName アンカー・プラット
+Color G
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 The Force Awakens
+Cont:
+{
+
+}
+Text Cont: All your other characters get the following ability. "Cont: This card cannot side attack."
+Act:
+{
+
+}
+Text Act: [Rest 2 of your characters] This card gets +2000 power until end of turn.
+EndCard
+
+Character: SW/S49-045a
+Name Max Rebo Band
+JPName マックス・レボ・バンド
+Color G
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 Return of the Jedi
+Cont:
+{
+
+}
+Text Cont: You may have up to 13 copies of cards with the same name as this card in your deck.
+*GreenCost0Bomb
+EndCard
+
+Character: SW/S49-046
+Name "Rookie Translator" C-3PO
+JPName “新米翻訳係”C-3PO
+Color G
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Return of the Jedi
+Auto:
+{
+
+}
+Text Auto: This card ability activates up to once per turn. When you use an Act: ability, this card gets +3000 power until end of turn.
+Act:
+{
+
+}
+Text Act: [Rest 2 of your characters] Choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
+EndCard
+
+Character: SW/S49-047
+Name "Eager" Lando
+JPName “虎視眈々”ランド
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Return of the Jedi
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, look at the top card of your deck and put it either on top or bottom of the deck.
+Backup 2500
+EndCard
+
+Event: SW/S49-048
+Name Cantina Band
+JPName Cantina Band
+Color G
+Level 2
+Cost 0
+Effect:
+{
+
+}
+Text If you have 2 or less Green characters, you cannot play this card from hand. You may choose a Green character in your waiting room and put it in your stock. Choose 1 of your characters, and that character gets +2000 power until end of turn. Put this card in your stock.
+EndCard
+
+Event: SW/S49-049
+Name Carbon Freezing
+JPName Carbon Freezing
+Color G
+Level 2
+Cost 1
+Effect:
+{
+
+}
+Text Choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card is placed in your waiting room from the stage, you may put this card rest in the position this card was in." Choose 1 of your opponent's characters in battle. That character does not stand during your opponent's next stand phase.
+EndCard
+
+Event: SW/S49-050
+Name The Sarlacc Pitt
+JPName The Sarlacc Pit
+Color G
+Level 1
+Cost 1
+Effect:
+{
+
+}
+Text Choose 1 of your Green characters, and that character gets +3500 power until end of turn.
+EndCard
+
+Climax: SW/S49-051
+Name Jabba's Palace
+JPName Jabba's Palace
+*BagClimax
+EndCard
+
+Climax: SW/S49-052
+Name Bounty hunter
+JPName Bounty hunter
+*BarClimax
+EndCard
+
+Character: SW/S49-053
+Name "Reunion And Duel" Darth Vader
+JPName “再会と死闘”ダース・ベイダー
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 8500
+Soul 2
+Trait1 A New Hope
+*EarlyPlay2OrLessClimax
+Cont:
+{
+
+}
+Text Cont: If the number of other Red characters you have is 3 or more, this card gets +1500 power and you do not take damage from effects of your opponent's characters' Auto: abilities during battles involving this card.
+*Healer
+Auto:
+{
+
+}
+Text Auto: [(2) Put 1 card from your hand to the waiting room] When this card is frontal attacked, you may pay the cost. If you do, deal 1 damage to your opponent.
+EndCard
+
+Character: SW/S49-054
+Name Kylo Ren
+JPName カイロ・レン
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 The Force Awakens
+Cont:
+{
+
+}
+Text Cont: This card gets +500 power for each of your other Red characters
+Cont:
+{
+
+}
+Text Cont: The character facing this card gets -1 soul.
+Auto:
+{
+
+}
+Text Auto: [(2)] When this card's battle opponent becomes reverse, you may pay the cost. If you do, deal 1 damage to your opponent.
+Auto:
+{
+
+}
+Text Auto: FORCE [(1) Put 1 character from your hand to the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose 2 of your opponent's characters, then stand and exchange them.
+EndCard
+
+Character: SW/S49-055
+Name "Dark Sith Lord" Darth Vader
+JPName “シスの暗黒卿”ダース・ベイダー
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 The Empire Strikes Back
+Combo I am your father.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, draw up to 2 cards and discard a card from your hand to the waiting room.
+Auto:
+{
+
+}
+Text Auto: CxCombo [(2) Put 1 card from your hand to the waiting room] When this card attacks, if "I am your father." is in your climax area, you may pay the cost. If you do, deal 1 damage to your opponent, and this card gets +2500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent."
+Auto:
+{
+
+}
+Text Auto: FORCE [(1) Put 1 character from your hand to the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose 2 of your opponent's characters, then stand and exchange them.
+EndCard
+
+Character: SW/S49-056
+Name "Dark Side" Darth Vader
+JPName “ダークサイド”ダース・ベイダー
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Return of the Jedi
+Auto:
+{
+
+}
+Text Auto: When your other character becomes reversed in battle, choose 1 of your characters, and that character gets +500 power until end of turn.
+*Act1RestSelfSalvageBrainstorm(Any)
+EndCard
+
+Character: SW/S49-057
+Name "Mask Off" Kylo Ren
+JPName “外されたマスク”カイロ・レン
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 The Force Awakens
+Auto:
+{
+
+}
+Text Auto: [(1) Put the top card of your deck in your clock] When this card's battle opponent becomes reverse, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
+*RedLevel0Bomb
+EndCard
+
+Character: SW/S49-058
+Name "Dark Commander" Kylo Ren
+JPName “闇の指揮官”カイロ・レン
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 The Force Awakens
+Cont:
+{
+
+}
+Text Cont: If the number of other Red characters you have is 3 or more, this card gets the following ability. "Auto: When this card becomes reversed, if the level of the battle opponent of this card is 1 or lower, you may reverse that character."
+Auto:
+{
+
+}
+Text Auto: FORCE [Put a Red character from your hand to the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose the character facing this card and 1 of your opponent's other level 1 or lower characters, then stand and exchange them.
+EndCard
+
+Character: SW/S49-059
+Name "Blitz" Darth Vader
+JPName “急襲”ダース・ベイダー
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 The Empire Strikes Back
+Cont:
+{
+
+}
+Text Cont: This card gets +500 power for each of your other Red characters
+Auto:
+{
+
+}
+Text Auto: When this card becomes reversed in battle, your opponent may choose a character in your waiting room and put it on top of your deck.
+Auto:
+{
+
+}
+Text Auto: FORCE [Put a Red character from your hand to the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose the character facing this card and 1 of your opponent's other level 1 or lower characters, then stand and exchange them.
+EndCard
+
+Character: SW/S49-060
+Name "Tainted by Darkness" Darth Vader
+JPName “悪に染まりし者”ダース・ベイダー
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 A New Hope
+Combo You are beaten.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "You are beaten." is in your climax area, you may choose a character in your waiting room and return it to your hand.
+EndCard
+
+Character: SW/S49-061
+Name Supreme Leader Snoke
+JPName 最高指導者スノーク
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 The Force Awakens
+*LevelAssist
+Auto:
+{
+
+}
+Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a character with FORCE in your waiting room and return it to your hand.
+EndCard
+
+Character: SW/S49-062
+Name Emperor
+JPName 皇帝
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 5000
+Soul 2
+Trait1 Return of the Jedi
+Cont:
+{
+
+}
+Text Cont: If the number of Red characters you have is 4 or more, this card gets -1 level while in your hand.
+Cont:
+{
+
+}
+Text Cont: ASSIST Your Red characters in front of this card get +2000 power and the following ability. "Auto: During your turn, when this card's battle opponent becomes reverse, look at the top card of your deck and put it either on top of the deck or in the waiting room."
+Auto:
+{
+
+}
+Text Auto: [(1) Rest this card] When you use FORCE, if this card is standing, you may pay the cost. If you do, deal 1 damage to your opponent.
+EndCard
+
+Character: SW/S49-063
+Name Stormtrooper
+JPName ストームトルーパー
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 A New Hope
+Cont:
+{
+
+}
+Text Cont: All your other Red characters get +500 power.
+Act:
+{
+
+}
+Text Act: [(2) Rest this card] Search your deck for up to 1 character with "Trooper" in its card name, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SW/S49-064
+Name Captain Phasma
+JPName キャプテン・ファズマ
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 The Force Awakens
+Cont:
+{
+
+}
+Text Cont: All your other Red characters get +500 power.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your characters, and that character gets +500 power until end of turn.
+EndCard
+
+Character: SW/S49-065
+Name "Skillful Strategy" Darth Vader
+JPName “巧みな謀略”ダース・ベイダー
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 The Empire Strikes Back
+Cont:
+{
+
+}
+Text Cont: If all your characters are Red, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: FORCE [Put a Red character from your hand to the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose the character facing this card and 1 of your opponent's other level 0 or lower characters, then stand and exchange them.
+EndCard
+
+Character: SW/S49-066
+Name "Persistent About the Outcome" Kylo Ren
+JPName “勝負への固執”カイロ・レン
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 The Force Awakens
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top 3 cards of your deck in the waiting room.
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a Red character in your waiting room and return it to your hand.
+EndCard
+
+Character: SW/S49-067
+Name General Hux
+JPName ハックス将軍
+Color R
+Level 1
+Cost 1
+Trigger Soul
+Power 1500
+Soul 1
+Trait1 The Force Awakens
+Auto:
+{
+
+}
+Text Auto: Wen you use the BACKUP of this card, choose 1 of your Red characters in battle, and that character gets +1000 power until end of turn.
+Backup 1500
+EndCard
+
+Character: SW/S49-068
+Name "Don't Be Overconfident" Darth Vader
+JPName “過信は禁物” ダース・ベイダー
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 The Empire Strikes Back
+Auto:
+{
+
+}
+Text Auto: [(2) Choose 1 of your characters on stage and put it in the waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
+Backup 2500
+EndCard
+
+Character: SW/S49-069
+Name "Carrying Out the Dying Wish" Kylo Ren
+JPName “遺志を継ぐもの”カイロ・レン
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 The Force Awakens
+Combo Show me
+Auto:
+{
+
+}
+Text Auto: CxCombo [Put this card in the waiting room] When this card's battle opponent becomes reverse, if "Show me" is in your climax area, you may pay the cost. If you do, choose up to 1 character in your waiting room and return it to your hand, and choose up to 1 "Kylo Ren" in your hand and put it rest in the position this card was in.
+*RedEarlyPlayBomb
+EndCard
+
+Character: SW/S49-070
+Name "FN-2187" Stormtrooper
+JPName “FN-2187”ストームトルーパー
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 The Force Awakens
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card is placed in your waiting room from the stage, you may pay the cost. If you do, search your deck for up to 1 '"New Name" Finn' and put it rest in any position on the stage, and shuffle your deck.
+EndCard
+
+Character: SW/S49-071
+Name "Crowd Tactics" Stormtrooper
+JPName “多勢の兵”ストームトルーパー
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 The Force Awakens
+Army
+Cont:
+{
+
+}
+Text Cont: This card gets +2000 power for each of your other '"Crowd Tactics" Stormtrooper' in the center stage
+EndCard
+
+Character: SW/S49-072
+Name First Order Stormtrooper
+JPName ファースト・オーダー ストームトルーパー
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 The Force Awakens
+Army
+Cont:
+{
+
+}
+Text Cont: This card gets +2000 power for each of your other "First Order Stormtrooper" in the center stage
+EndCard
+
+Character: SW/S49-073
+Name Admiral Piett
+JPName ピエット提督
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Return of the Jedi
+Auto:
+{
+
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 Red character, reveal it, put it in your hand, and shuffle your deck.
+Auto:
+{
+
+}
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed in your waiting room from the stage, you may pay the cost. If you do, choose a "Star Destroyer" in your waiting room and return it to your hand.
+EndCard
+
+Character: SW/S49-074
+Name Grand Moff Wilhuff Tarkin
+JPName グランドモフ・ウィルハフ・ターキン
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 A New Hope
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your other Red characters, and that character gets +X power until end of turn. X equals 500 times the number of your other Red characters.
+EndCard
+
+Character: SW/S49-075
+Name "New Vanguard" Stormtrooper
+JPName “新たなる先兵”ストームトルーパー
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 The Force Awakens
+Army
+Auto:
+{
+
+}
+Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 500 times the number of your other Red characters.
+EndCard
+
+Character: SW/S49-076
+Name Scout Trooper
+JPName スカウト・トルーパー
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Return of the Jedi
+Auto:
+{
+
+}
+Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 500 times the number of your other Red characters.
+EndCard
+
+Character: SW/S49-077
+Name "Threat of Darkness" Darth Vader
+JPName “漆黒の脅威”ダース・ベイダー
+Color R
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Return of the Jedi
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the number of other Red characters you have is 3 or more, this card gets +2000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: ENCORE [Put a Red card from your hand to the waiting room]
+EndCard
+
+Character: SW/S49-078
+Name "Dictator of the Dark Side" Emperor
+JPName “暗黒面の支配者”皇帝
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Return of the Jedi
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the level of the character facing this card is 3 or higher, this card gets +X power until end of turn. X equals 1000 times the number of your Red characters.
+Auto:
+{
+
+}
+Text Auto: FORCE [(1) Put 1 card from your hand to the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose the character facing this card and 1 of your opponent's other characters, then stand and exchange them.
+EndCard
+
+Event: SW/S49-079
+Name Star Destroyer
+JPName Star Destroyer
+Color R
+Level 1
+Cost 2
+Effect:
+{
+
+}
+Text Choose 2 of your standing characters and rest them. If you Rest 2 characters this way, choose up to 2 cost 0 or lower characters with "Trooper" in its card name in your waiting room and put them in separate positions on the stage, and all your characters get +1000 power until end of turn.
+EndCard
+
+Event: SW/S49-080
+Name The Dark Side
+JPName The Dark Side
+Color R
+Level 3
+Cost 3
+Effect:
+{
+
+}
+Text CxCombo deal X damage to your opponent. Choose 1 of your Red characters, and that character gets +2000 power until end of turn. X equals 1 plus the number of "Starkiller" in your waiting room.
+EndCard
+
+Event: SW/S49-081
+Name Death Star
+JPName Death Star
+Color R
+Level 3
+Cost 4
+Effect:
+{
+
+}
+Text If there are 4 or more climax cards in your waiting room, you may discard a Red character from your hand to the waiting room. If you do, put all characters in the waiting room.
+EndCard
+
+Event: SW/S49-082
+Name Lightsaber Duel
+JPName Lightsaber Duel
+Color R
+Level 2
+Cost 2
+Effect:
+{
+
+}
+Text Look at the top card of your deck and put it either on top of the deck or in the waiting room, choose up to 1 character in your waiting room with "Luke" in its card name and up to 1 character in your waiting room with either "Vader" or "Anakin" in its card name and return them to your hand.
+EndCard
+
+Climax: SW/S49-083
+Name I am your father.
+JPName I am your father.
+*RedStockSoul
+EndCard
+
+Climax: SW/S49-084
+Name You are beaten.
+JPName You are beaten.
+*DoorClimax
+EndCard
+
+Climax: SW/S49-085
+Name Show me
+JPName Show me
+Color R
+*DrawClimax
+EndCard
+
+Climax: SW/S49-086
+Name Starkiller
+JPName Starkiller
+Color R
+*2SoulClimax
+EndCard
+
+Character: SW/S49-087
+Name R2-D2
+JPName R2-D2
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 A New Hope
+Auto:
+{
+
+}
+Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, put it in your hand, and shuffle your deck.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your characters, and that character gets +500 power until end of turn.
+EndCard
+
+Character: SW/S49-088
+Name "Awakening" Rey
+JPName “覚醒”レイ
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 The Force Awakens
+Cont:
+{
+
+}
+Text Cont: If there is a marker underneath this card, this card gets +2000 power and The character facing this card gets -1 soul.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose a "Lightsaber" in your waiting room and put it face up underneath this card as a marker.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "The Force Awakens" is in your climax area, look at up to the top 2 cards of your deck, choose up to 1 cards among them and put it in your hand, put the rest into your waiting room, and this card gets the following ability until the end of your opponent's next turn. "Cont: The character facing this card gets -1 soul."
+EndCard
+
+Character: SW/S49-089
+Name "Dream-Chasing Youth" Luke
+JPName “夢を追う若者”ルーク
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 A New Hope
+Combo A New Hope
+*Healer
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose a "Lightsaber" in your waiting room and put it face up underneath this card as a marker.
+Auto:
+{
+
+}
+Text Auto: CxCombo [(2) Put a Blue character from your hand to the waiting room] This card ability activates up to once per turn. When this card's battle opponent becomes reverse, if "A New Hope" is in your climax area and there's a marker underneath this card, you may pay the cost. If you do, stand this card.
+EndCard
+
+Character: SW/S49-090
+Name "Jedi Training" Luke
+JPName “ジェダイの訓練”ルーク
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 The Empire Strikes Back
+Auto:
+{
+
+}
+Text Auto: When you use FORCE, choose 1 of your characters, and that character gets +2000 power until end of turn.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 Blue character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SW/S49-091
+Name "Talent of Pilot" Rey
+JPName “パイロットの資質”レイ
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 The Force Awakens
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, your other character in the middle position of your center stage gets +1000 power.
+Act:
+{
+
+}
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 «The Force Awakens» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SW/S49-092
+Name "Brave Supporter" C-3PO
+JPName “勇敢なサポーター”C-3PO
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 The Empire Strikes Back
+*CannotSideAttack
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until the end of your opponent's next turn.
+EndCard
+
+Character: SW/S49-093
+Name "Astromech Droid" R2-D2
+JPName “アストロメク・ドロイド”R2-D2
+Color B
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 A New Hope
+*500Assist
+Auto:
+{
+
+}
+Text Auto: [Rest this card] When you play an event, if this card is standing, you may pay the cost. If you do, choose 1 of your characters, and that character gets +1500 power until end of turn.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your '"Dream-Chasing Youth" Luke', and that character gets +2000 power until end of turn, and if that character does not have a marker, search your deck for up to 1 "Lightsaber", reveal it, put it face up underneath that character as a marker, and shuffle your deck.
+EndCard
+
+Character: SW/S49-094
+Name "Moment of Counterattack" Luke
+JPName “反撃の瞬間”ルーク
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Return of the Jedi
+Combo Return of the Jedi
+Auto:
+{
+
+}
+Text Auto: When this card is placed fro hand to the stage, this card gets +1500 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: CxCombo When this card attacks, if "Return of the Jedi" is in your climax area, reveal the top card of your deck. If it's either a Blue character or "Lightsaber", put it in your hand.
+EndCard
+
+Character: SW/S49-095
+Name Yoda
+JPName ヨーダ
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 5000
+Soul 2
+Trait1 The Empire Strikes Back
+Cont:
+{
+
+}
+Text Cont: ASSIST Your Blue characters in front of this card get +2000 power and the following ability. "Cont: During battles involving this card, your opponent cannot play BACKUP from hand."
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, look at up to X cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your Blue characters.
+Auto:
+{
+
+}
+Text Auto: When you use FORCE, choose 1 of your characters, and that character gets +1000 power until the end of your opponent's next turn.
+EndCard
+
+Character: SW/S49-096
+Name "Teaching of the Sage" Obi-Wan
+JPName “賢者の教え”オビ=ワン
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 6500
+Soul 2
+Trait1 A New Hope
+Cont:
+{
+
+}
+Text Cont: This card gets +X power. X equals 1000 times level of the character facing this card.
+Cont:
+{
+
+}
+Text Cont: During your opponent's turn, if the number of other Blue characters you have is 3 or more, this card gets the following ability. "Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent."
+Auto:
+{
+
+}
+Text Auto: At the beginning of your opponent's draw phase, if this card is in the center stage, choose 1 of your characters, and that character gets +4000 power until end of turn.
+EndCard
+
+Character: SW/S49-097
+Name "Encounter of Fate" Luke
+JPName “運命の出会い”ルーク
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 A New Hope
+Cont:
+{
+
+}
+Text Cont: If "R2-D2" is in your clock, this card gets -1 level while in your hand.
+Cont:
+{
+
+}
+Text Cont: During battles involving this card, You do not take damage from effects of your opponent's characters' Auto: abilities.
+*OnPlayDraw2Discard2BlindStock
+Auto:
+{
+
+}
+Text Auto: FORCE [(1) Put 1 character from your hand to the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose 2 of your opponent's characters, then stand and exchange them.
+EndCard
+
+Character: SW/S49-098
+Name "Desert Hermit" Ben Kenobi
+JPName “砂漠の隠居者”ベン・ケノービ
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 A New Hope
+Auto:
+{
+
+}
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Lightsaber" in your waiting room and return it to your hand.
+*BondDiscard("Moment of Counterattack" Luke)
+EndCard
+
+Character: SW/S49-099
+Name "The Good News Bringer" R2-D2
+JPName “待ち望んでいた吉報”R2-D2
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 The Force Awakens
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «The Force Awakens» character, put it in your hand and discard a card from your hand to the waiting room.
+*BondDiscard("Jedi Master" Luke)
+EndCard
+
+Character: SW/S49-100
+Name "Beloved Partner" C-3PO
+JPName “愛すべきパートナー”C-3PO
+Color B
+Level 0
+Cost 0
+Power 4000
+Soul 1
+Trait1 The Force Awakens
+*OnPlayMill2RestIfClimax
+EndCard
+
+Character: SW/S49-101
+Name Obi-Wan Kenobi
+JPName オビ=ワン・ケノービ
+Color B
+Level 1
+Cost 1
+Power 4500
+Soul 1
+Trait1 A New Hope
+Cont:
+{
+
+}
+Text Cont: If the number of other Blue characters you have is 3 or more, this card gets +1000 power.
+*CannotBeReversedByCost0
+Auto:
+{
+
+}
+Text Auto: FORCE [Put a Blue character from your hand to the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose the character facing this card and 1 of your opponent's other level 1 or lower characters, then stand and exchange them.
+EndCard
+
+Character: SW/S49-102
+Name "Jedi Master" Luke
+JPName “ジェダイ・マスター”ルーク
+Color B
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 The Force Awakens
+Cont:
+{
+
+}
+Text Cont: If the number of other «The Force Awakens» characters you have is 2 or more, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: FORCE [Put a «The Force Awakens» character from your hand to the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose the character facing this card and 1 of your opponent's other level 1 or lower characters, then stand and exchange them.
+EndCard
+
+Character: SW/S49-103
+Name "Premonition of Friendship" BB-8
+JPName “友情の予感”BB-8
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 6000
+Soul 1
+Trait1 The Force Awakens
+*Level3Assist
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If it's level 1 or lower, put it in your stock. (. climax cards are considered level 0 for this card effect)
+EndCard
+
+Character: SW/S49-104
+Name "Jedi Master" Yoda
+JPName “ジェダイ・マスター”ヨーダ
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 The Empire Strikes Back
+Auto:
+{
+
+}
+Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with FORCE, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SW/S49-105
+Name "Jedi Knight" Luke
+JPName “ジェダイ・ナイト”ルーク
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Return of the Jedi
+Cont:
+{
+
+}
+Text Cont: All your other Blue characters get +500 power.
+Auto:
+{
+
+}
+Text Auto: When you use FORCE, you may draw a card. If you do, discard a card from your hand to the waiting room.
+EndCard
+
+Character: SW/S49-106
+Name "Comrade" BB-8
+JPName “戦友”BB-8
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 The Force Awakens
+Auto:
+{
+
+}
+Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 500 times the number of your other «The Force Awakens» characters.
+*Bond1("Starfighter Pilot" Poe)
+EndCard
+
+Character: SW/S49-107
+Name "Light Side" Luke
+JPName “ライトサイド”ルーク
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Return of the Jedi
+Auto:
+{
+
+}
+Text Auto: When this card's battle opponent becomes reverse, if there are 3 or less cards in your stock, choose 1 of your other characters, rest it, and move it to an open position in the backstage.
+Auto:
+{
+
+}
+Text Auto: FORCE [Put a Blue character from your hand to the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose the character facing this card and 1 of your opponent's other level 0 or lower characters, then stand and exchange them.
+EndCard
+
+Character: SW/S49-108
+Name Luke Skywalker
+JPName ルーク・スカイウォーカー
+Color B
+Level 1
+Cost 0
+Power 6500
+Soul 1
+Trait1 A New Hope
+*CannotSideAttack
+Cont:
+{
+
+}
+Text Cont: If there is 1 or less character in your backstage, this card cannot attack.
+EndCard
+
+Character: SW/S49-109
+Name C-3PO
+JPName C-3PO
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 500
+Soul 1
+Trait1 The Empire Strikes Back
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your characters, and that character gets +1000 power until the end of your opponent's next turn.
+Backup 3000
+EndCard
+
+Character: SW/S49-110
+Name "Sudden Attack" Luke
+JPName “突然の襲撃”ルーク
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 The Empire Strikes Back
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the level of the character facing this card is 3 or higher, this card gets +6000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: FORCE [(1) Put 1 card from your hand to the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose the character facing this card and 1 of your opponent's other characters, then stand and exchange them.
+EndCard
+
+Character: SW/S49-111
+Name "Shooting Skill" Rey
+JPName “射撃の腕前”レイ
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 The Force Awakens
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 1000 times the number of your «The Force Awakens» characters.
+Auto:
+{
+
+}
+Text Auto: [(1)] When a level 2 or higher battle opponent of this card becomes reversed, you may pay the cost. If you do, search your deck for up to 1 «The Force Awakens» character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SW/S49-112
+Name "Jedi Master" Obi-wan
+JPName “ジェダイ・マスター”オビ=ワン
+Color B
+Level 2
+Cost 2
+Trigger Soul
+Power 6000
+Soul 2
+Trait1 A New Hope
+Combo Great Mentor
+Cont:
+{
+
+}
+Text Cont: If there are 5 or more cards in your stock, this card gets +2500 power and "Auto: ENCORE [Put a Blue card from your hand to the waiting room]".
+Auto:
+{
+
+}
+Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 1000 times level of the character facing this card.
+Auto:
+{
+
+}
+Text Auto: CxCombo [Put 1 card from your hand to the waiting room] When this card attacks, if "Great Mentor" is in your climax area, you may pay the cost. If you do, choose up to 2 Blue characters in your waiting room and put them in your stock in any order, and this card gets +2000 power until the end of your opponent's next turn.
+EndCard
+
+Event: SW/S49-113
+Name Lightsaber
+JPName Lightsaber
+Color B
+Level 1
+Cost 0
+Effect:
+{
+
+}
+Text If you have 2 or less Blue characters, you cannot play this card from hand. You may draw 2 cards. If you do, discard 2 cards from your hand to the waiting room. Choose 1 of your characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Event: SW/S49-114
+Name Lightsaber
+JPName Lightsaber
+Color B
+Level 1
+Cost 0
+Effect:
+{
+
+}
+Text If you have 2 or less «The Force Awakens» characters, you cannot play this card from hand. You may draw 2 cards. If you do, discard 2 cards from your hand to the waiting room. Choose 1 of your characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Event: SW/S49-115
+Name AT-AT
+JPName AT-AT
+Color B
+Level 2
+Cost 1
+Effect:
+{
+
+}
+Text Choose 1 of your characters, and that character gets +1500 power until end of turn. Put the top card of your deck in the waiting room. If it's level 1 or higher, choose 1 of your opponent's characters and put it on the bottom of the deck.
+EndCard
+
+Event: SW/S49-116
+Name Rey's Speeder
+JPName Rey's Speeder
+Color B
+Level 2
+Cost 2
+Effect:
+{
+
+}
+Text If you have no «The Force Awakens» characters, you cannot play this card from hand. Choose a card in your clock and return it to your hand. Put this card into memory.
+EndCard
+
+Climax: SW/S49-117
+Name A New Hope
+JPName A New Hope
+*GateClimax
+EndCard
+
+Climax: SW/S49-118
+Name The Force Awakens
+JPName The Force Awakens
+*GateClimax
+EndCard
+
+Climax: SW/S49-119
+Name Great Mentor
+JPName Great Mentor
+*BookClimax
+EndCard
+
+Climax: SW/S49-120
+Name Return of the Jedi
+JPName Return of the Jedi
+*BlueStockSoul
+EndCard
+
+Character: SW/S49-P01
+Name "Encounter of Fate" Rey & BB-8
+JPName “運命の出会い”レイ＆BB‐8
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 The Force Awakens
+Auto:
+{
+
+}
+Text Auto: This card ability activates up to once per turn. When you play an event, this card gets +2000 power until end of turn.
+Auto:
+{
+
+}
+Text Auto: When this card attacks, if the number of other «The Force Awakens» characters you have is 2 or more, this card gets +2000 power until end of turn.
+EndCard
+
+Character: SW/S49-121
+Name "STAR WARS" Chewbacca
+JPName “STAR WARS”チューバッカ
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 The Force Awakens
+Backup 3000
+EndCard
+
+Character: SW/S49-122
+Name "STAR WARS" Kylo Ren
+JPName “STAR WARS”カイロ・レン
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 The Force Awakens
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck in the waiting room. If there were at least 1 climax among them, this card gets +3000 power until end of turn.
+EndCard
+
+Character: SW/S49-123
+Name "STAR WARS" Stormtrooper
+JPName “STAR WARS”ストームトルーパー
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 The Force Awakens
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your other Red characters, and that character gets +X power until end of turn. X equals 500 times the number of your other Red characters.
+EndCard
+
+Character: SW/S49-124
+Name "STAR WARS" Rey
+JPName “STAR WARS”レイ
+Color B
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 The Force Awakens
+Backup 1500
+EndCard
+
+Character: SW/S49-125
+Name "STAR WARS" C-3PO &BB‐8 &R2‐D2
+JPName “STAR WARS”C-3PO＆BB‐8＆R2‐D2
+Color B
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 The Force Awakens
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 500 times the number of your Blue characters.
+EndCard
+
+Character: SW/S49-T01
+Name "The Jacket Left Behind" Finn
+JPName “残されたジャケット”フィン
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 The Force Awakens
+*BondDiscard("attack by the Resistance" Poe)
+EndCard
+
+Character: SW/S49-T02
+Name "Hero" Han Solo
+JPName “英雄”ハン・ソロ
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 The Force Awakens
+Auto:
+{
+
+}
+Text Auto: When this card attacks, choose 1 of your «The Force Awakens» characters, and that character gets +1 level and +1000 power until end of turn.
+EndCard
+
+Character: SW/S49-T03
+Name "Captured Pilot" Poe
+JPName “捕らわれのパイロット”ポー
+Color Y
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 The Force Awakens
+EndCard
+
+Character: SW/S49-T04
+Name "Attack by the Resistance" Poe
+JPName “レジスタンスの来襲”ポー
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 The Force Awakens
+Auto:
+{
+
+}
+Text Auto: When you use this card's BACKUP, if you have a «The Force Awakens» character, choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
+Backup 2500
+EndCard
+
+Character: SW/S49-T05
+Name "Stubborn Tracing" Finn
+JPName “執拗な追跡”フィン
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 The Force Awakens
+*LevelAssist
+Auto:
+{
+
+}
+Text Auto: When your climax is placed on your climax area, choose 1 of your characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Character: SW/S49-T06
+Name "New Determination Within Him" Han Solo
+JPName “新たなる決意を胸に”ハン・ソロ
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 The Force Awakens
+*CannotSideAttack
+Cont:
+{
+
+}
+Text Cont: If you have another '"New Determination Within Him" Chewbacca', this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: [Put a «The Force Awakens» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a '"New Determination Within Him" Chewbacca' in your waiting room and put it in any position on the stage.
+EndCard
+
+Character: SW/S49-T07
+Name "New Determination Within Him" Chewbacca
+JPName “新たなる決意を胸に”チューバッカ
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 The Force Awakens
+Cont:
+{
+
+}
+Text Cont: If you have another '"New Determination Within Him" Han Solo', this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: When this card is placed on the stage from your hand or by effect of Auto: ability of '"New Determination Within Him" Han Solo' to the stage, this card gets +X power until end of turn. X equals 500 times the number of your «The Force Awakens» characters.
+EndCard
+
+Climax: SW/S49-T08
+Name Duel in the Forest
+JPName 森の中の死闘
+*WindClimax
+EndCard
+
+Character: SW/S49-T09
+Name "Beginning of Adventure" Rey
+JPName “冒険のはじまり”レイ
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 The Force Awakens
+Auto:
+{
+
+}
+Text Auto: When this card attacks, you may put the top card of your deck in the waiting room. If it's a climax card, draw a card, and discard a card from your hand to the waiting room.
+*BlueLevel0Bomb
+EndCard
+
+Character: SW/S49-T10
+Name Lor San Tekka
+JPName ロア・サン・テッカ
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 The Force Awakens
+Cont:
+{
+
+}
+Text Cont: All your other '"Captured Pilot" Poe' get +1000 power.
+*Bond1("Captured Pilot" Poe)
+EndCard
+
+Character: SW/S49-T11
+Name "To Jakku" BB-8
+JPName “ジャクーの地へ”BB-8
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 The Force Awakens
+Cont:
+{
+
+}
+Text Cont: All your other «The Force Awakens» characters get +500 power.
+Act:
+{
+
+}
+Text Act: [Rest this card] Choose 1 of your characters, and that character gets +500 power until end of turn.
+EndCard
+
+Character: SW/S49-T12
+Name "Reunion" C-3PO
+JPName “再会”C-3PO
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 The Force Awakens
+*OnPlayScryToBottom
+*Act1RestSelfDrawBrainstorm
+EndCard
+
+Character: SW/S49-T13
+Name "Long Sleep" R2-D2
+JPName “長い眠り”R2-D2
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 The Force Awakens
+Cont:
+{
+
+}
+Text Cont: If there are no other characters in your center stage, this card gets +1500 power.
+*RunToCenter
+EndCard
+
+Character: SW/S49-T14
+Name "For a Small Amount of Food" Rey
+JPName “ささやかな食事の為に”レイ
+Color B
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 The Force Awakens
+Combo Escape From Jakku
+Cont:
+{
+
+}
+Text Cont: If the number of other «The Force Awakens» characters you have is 2 or more, this card gets +2000 power.
+Auto:
+{
+
+}
+Text Auto: CxCombo [(1)] When this card attacks, if "Escape From Jakku" is in your climax area, you may pay the cost. If you do, this card gets +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may draw a card."
+EndCard
+
+Character: SW/S49-T15
+Name "Scavenger Days" Rey
+JPName “廃品回収の日々”レイ
+Color B
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 The Force Awakens
+Auto:
+{
+
+}
+Text Auto: When your other «The Force Awakens» character attacks, this card gets +1000 power until end of turn.
+*HandEncore
+EndCard
+
+Character: SW/S49-T16
+Name "Something to Protect" Rey
+JPName “守るべき存在”レイ
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 The Force Awakens
+Cont:
+{
+
+}
+Text Cont: If the number of other «The Force Awakens» characters you have is 2 or more, this card gets +1000 power.
+*Healer
+EndCard
+
+Event: SW/S49-T17
+Name BB Unit
+JPName BBユニット
+Color B
+Level 2
+Cost 1
+Effect:
+{
+
+}
+Text Search your deck for up to 1 «The Force Awakens» character, reveal it, put it in your hand, and shuffle your deck. Choose 1 of your characters, and that character gets +3000 power until end of turn.
+EndCard
+
+Climax: SW/S49-T18
+Name Escape From Jakku
+JPName ジャクーからの脱出
+*BlueStockSoul
+EndCard
+
+Climax: SW/S49-T19
+Name Force Wielder
+JPName フォースを持つ者
+Color B
+*2SoulClimax
+EndCard
+
