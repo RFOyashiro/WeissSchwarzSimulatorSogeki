@@ -601,6 +601,8 @@ Auto: OnClimaxPlay
 Text Auto: [Put the top card of your deck in your clock] When your climax is placed on your climax area, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card among them, reveal it, put it in your hand, and put the rest into your waiting room. 
 Act: RestSelf
 {
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give the effect.
     GainEffect
     {
         Auto: OnReverseOpponent

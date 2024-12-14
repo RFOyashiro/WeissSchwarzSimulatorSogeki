@@ -685,9 +685,16 @@ Cost 0
 Power 1000
 Soul 1
 Trait1 Return of the Jedi
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchLocationForTargets Clock 1 1 Any
+        RevealTargets
+        MoveCard Hand
+        TargetTop Deck 1
+        MoveCard Clock
+    }
 }
 Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a card in your clock and return it to your hand, and put the top card of your deck in your clock.
 *GreenLevel0Bomb
@@ -703,15 +710,37 @@ Trigger Soul
 Power 3500
 Soul 2
 Trait1 A New Hope
-Cont:
+Cont: Assist
 {
-
+    If ColorIs Green
+    {
+        GainPower 2000
+        GainEffect
+        {
+            Auto: OnThisTriggerCheck
+            {
+                IfOther IsClimax
+                {
+                    GainPower 4000
+                    GainSoul 1
+                }
+            }
+            Text Auto: When this card's trigger check reveals a climax card, this card gets +4000 power and +1 soul until end of turn.
+        }
+    }
 }
-Text Cont: ASSIST Your Green characters in front of this card get +2000 power and the following ability. "Auto: When this card's trigger check reveals a climax card, this card gets +4000 power and +1 soul until end of turn."
+Text Cont: ASSIST Your Green characters in front of this card get +2000 power and the following ability. "Auto: When this card's trigger check reveals a climax, this card gets +4000 power and +1 soul until end of turn."
 *Healer
-Auto:
+Auto: StartMyEncoreStep
 {
-
+    PayCost 4
+    {
+        TargetLocation Stage
+        NarrowTargets Other
+        ChooseCharactersFromTargets 0 4 Choose up to 4 characters to put in waiting room.
+        MoveCard WaitingRoom
+        Burn TargetCount
+    }
 }
 Text Auto: [(4)] At the beginning of your encore step, you may pay the cost. If you do, choose up to 4 of your other characters and put them in the waiting room, then deal X damage to your opponent. X equals the number of characters put in the waiting room with this card effect.
 EndCard
@@ -727,15 +756,47 @@ Power 9000
 Soul 2
 Trait1 The Empire Strikes Back
 Combo Bounty hunter
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Compare ThatCardsLevel 3 OrMore && Other
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If you have another level 3 or higher character, this card gets +2000 power.
 *OnPlayDraw2Discard1
-Auto:
+Auto: OnSpecificClimaxPlay
 {
-
+    If InLocation CenterStage
+    {
+        PayCost 2 Discard 1 Any
+        {
+            GainEffect
+            {
+                Cont: GiveSelf
+                {
+                    GainSpecialEffect CanAttackBackstage
+                }
+                Text Cont: When this card attacks, you may choose a character in your opponent's backstage and frontal attack that character instead.
+            }
+            GainEffect
+            {
+                Auto: OnReverseOpponent
+                {
+                    TargetBattleOpponent
+                    IfTarget OnStage
+                    {
+                        Question_Obvious Put that character in clock ?
+                        If Yes
+                        {
+                            MoveCard OpponentClock
+                        }
+                    }
+                }
+                Text Auto: When this card's battle opponent becomes reverse, you may put that character in clock.
+            }
+        }
+    }
 }
 Text Auto: CxCombo [(2) Put 1 card from your hand to the waiting room] When "Bounty hunter" is placed on your climax area, if this card is in the center stage, you may pay the cost. If you do, this card gets the following 2 abilities until end of turn. "Cont: When this card attacks, you may choose a character in your opponent's backstage and frontal attack that character instead." "Auto: When this card's battle opponent becomes reverse, you may put that character in clock."
 EndCard
@@ -749,14 +810,21 @@ Cost 0
 Power 500
 Soul 1
 Trait1 Return of the Jedi
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation OpponentCenterStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to give -1000 power.
+    LosePower 1000
 }
 Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters in the center stage, and that character gets -1000 power until end of turn.
-Act:
+Act: 1 RestSelf
 {
-
+    Brainstorm 4
+    Repeat BrainstormedClimax
+    {
+        SearchDeck IsCharacter && ColorIs Green
+    }
 }
 Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 Green character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -770,14 +838,17 @@ Cost 0
 Power 500
 Soul 1
 Trait1 Return of the Jedi
-Cont:
+Cont: GiveAll
 {
-
+    If Other && ColorIs Green
+    {
+        GainPower 500
+    }
 }
 Text Cont: All your other Green characters get +500 power.
-Act:
+Act: 2 RestSelf
 {
-
+    SearchDeck IsCharacter && ColorIs Green
 }
 Text Act: [(2) Rest this card] Search your deck for up to 1 Green character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
@@ -792,11 +863,17 @@ Power 5000
 Soul 1
 Trait1 Return of the Jedi
 Combo Jabba's Palace
-Auto:
+Auto: OnSpecificClimaxPlay Jabba's Palace
 {
-
+    PayCost 1 Clock SendSelf WaitingRoom
+    {
+        SearchLocationForTargets Deck 0 3 NameEquals Gamorrean || NameEquals Max Rebo Band
+        PlaceOnStage false true true false
+        ShuffleLocation Deck
+        *GiveCharacterPower(2000,Any)
+    }
 }
-Text Auto: CxCombo [(1) Put the top card of your deck in your clock, put this card in the waiting room] When "Jabba's Palace" is placed on your climax area, you may pay the cost. If you do, search your deck for up to 3 cards that are either "Gamorrean" or "Max Rebo Band" and put them in separate positions on the stage. Afterwards, shuffle your deck, choose 1 of your characters, and that character gets +2000 power until end of turn.
+Text Auto: CxCombo [(1) Put the top card of your deck in your clock, put this card in the waiting room] When "Jabba's Palace" is placed on your climax area, you may pay the cost. If you do, search your deck for up to 3 "Gamorrean" or "Max Rebo Band", put them in separate positions on the stage, shuffle your deck, choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: SW/S49-041
@@ -809,19 +886,24 @@ Trigger Soul
 Power 5000
 Soul 1
 Trait1 Return of the Jedi
-Cont:
+Cont: GiveSelf
 {
-
+    If AllYourCharacters ColorIs Green
+    {
+        GainPower 1000
+        GainSoul 1
+    }
 }
 Text Cont: If all your characters are Green, this card gets +1000 power and +1 soul.
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters Other && ColorIs Green
+    MultiplyXValue 1000
+    GainPower X
 }
 Text Cont: This card gets +1000 power for each of your other Green characters
-Auto:
+Auto: Encore Discard 1 ColorIs Green
 {
-
 }
 Text Auto: ENCORE [Put a Green card from your hand to the waiting room]
 EndCard
@@ -836,14 +918,19 @@ Power 1500
 Soul 1
 Trait1 Return of the Jedi
 Army
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters Other && NameEquals Gamorrean && InLocation CenterStage
+    MultiplyXValue 1000
+    GainPower X
 }
 Text Cont: This card gets +1000 power for each of your other "Gamorrean" in the center stage
-Cont:
+Cont: GiveAll
 {
-
+    If Other && NameEquals Gamorrean
+    {
+        GainPower 500
+    }
 }
 Text Cont: All your other "Gamorrean" get +500 power.
 EndCard
@@ -857,9 +944,16 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Return of the Jedi
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchLocationForTargets Clock 1 1 IsColor Green && IsCharacter
+        RevealTargets
+        MoveCard Hand
+        TargetTop Deck 1
+        MoveCard Clock
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a Green character in your clock and return it to your hand, and put the top card of your deck in your clock.
 EndCard
@@ -873,14 +967,10 @@ Cost 0
 Power 3000
 Soul 1
 Trait1 The Force Awakens
-Cont:
+*OthersCannotSideAttack
+Act: Rest 2 Any
 {
-
-}
-Text Cont: All your other characters get the following ability. "Cont: This card cannot side attack."
-Act:
-{
-
+    GainPower 2000
 }
 Text Act: [Rest 2 of your characters] This card gets +2000 power until end of turn.
 EndCard
@@ -894,10 +984,7 @@ Cost 0
 Power 3000
 Soul 1
 Trait1 Return of the Jedi
-Cont:
-{
-
-}
+DeckLimit 13
 Text Cont: You may have up to 13 copies of cards with the same name as this card in your deck.
 *GreenCost0Bomb
 EndCard
@@ -911,14 +998,25 @@ Cost 0
 Power 3500
 Soul 1
 Trait1 Return of the Jedi
-Auto:
+Auto: OnUseAct
 {
-
+    GainPower 3000
 }
-Text Auto: This card ability activates up to once per turn. When you use an Act: ability, this card gets +3000 power until end of turn.
-Act:
+Quick
+TimesPerTurn 1
+Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, this card gets +3000 power until end of turn.
+Act: Rest 2 Any
 {
-
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        Auto: OnReverseOpponent
+        {
+            *OptionalBlindStock
+        }
+        Text Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock.
+    }
 }
 Text Act: [Rest 2 of your characters] Choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
 EndCard
