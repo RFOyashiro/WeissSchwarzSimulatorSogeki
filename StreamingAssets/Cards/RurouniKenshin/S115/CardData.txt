@@ -403,7 +403,7 @@ Auto: OnDamageCanceled
     }
 }
 TimesPerTurn 1
-Text Auto: RESONATE [Reveal 2 "Hitokiri Battousai, Kenshin Himura" from your hand] This card ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when damage dealt by this card is canceled, if you have another «Meiji Swordsman Romantic Story» character, you may pay the cost. If you do, put the top card of your deck in the waiting room, and deal X damage to your opponent. X equals level of that card +2.
+Text Auto: RESONATE [Reveal 2 "Hitokiri Battousai, Kenshin Himura" from your hand] This ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when damage dealt by this card is canceled, if you have another «Meiji Swordsman Romantic Story» character, you may pay the cost. If you do, put the top card of your deck in the waiting room, and deal X damage to your opponent. X equals level of that card +2.
 EndCard
 
 Character: RKN/S115-013
@@ -431,7 +431,7 @@ Auto: OnReverseOpponent
     }
 }
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, put the top card of your deck in the waiting room. If that card has a Soul trigger icon, stand this card.
+Text Auto: This ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, put the top card of your deck in the waiting room. If that card has a Soul trigger icon, stand this card.
 Auto: OnAttack
 {
     If Climax Full-Powered Special Move

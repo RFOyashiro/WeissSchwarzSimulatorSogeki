@@ -169,7 +169,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo [(2)] When this card attacks, if "Full-out Evasion" is in your climax area, you may pay the cost. If you do, all your center stage characters get the following ability until end of turn. "Auto: This card ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
+Text Auto: CxCombo [(2)] When this card attacks, if "Full-out Evasion" is in your climax area, you may pay the cost. If you do, all your center stage characters get the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
 EndCard
 
 Character: GF/W38-008
@@ -247,7 +247,7 @@ Auto: OnUseAct
     *GiveCharacterPower(1000,Any)
 }
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, choose 1 of your characters, and that character gets +1000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: GF/W38-012
@@ -1134,7 +1134,7 @@ Auto: OnOtherPlacedOnStageFromHand
     }
 }
 TimesPerTurn 2
-Text Auto: This card ability activates up to twice per turn. When your other «Girl» character is placed on the stage from your hand, this card gets +1000 power until end of turn.
+Text Auto: This ability activates up to twice per turn. When your other «Girl» character is placed on the stage from your hand, this card gets +1000 power until end of turn.
 EndCard
 
 Character: GF/W38-060
@@ -1865,7 +1865,7 @@ Auto: OnOtherPlacedOnStageFromHand
     }
 }
 TimesPerTurn 2
-Text Auto: This card ability activates up to twice per turn. When your other Blue character is placed on the stage from your hand, this card gets +1000 power until end of turn.
+Text Auto: This ability activates up to twice per turn. When your other Blue character is placed on the stage from your hand, this card gets +1000 power until end of turn.
 EndCard
 
 Character: GF/W38-094

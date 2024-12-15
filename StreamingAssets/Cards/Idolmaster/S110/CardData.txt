@@ -269,7 +269,7 @@ Auto: OnCardEntersLevel
     }
 }
 TimesPerTurn 1
-Text Auto: [(1)] This card ability activates up to once per turn. When your card is placed in the level, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Music» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+Text Auto: [(1)] This ability activates up to once per turn. When your card is placed in the level, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Music» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
 Act: RestSelf
 {
     *ExchangeCardInLevelWithWaitingRoom(Any,IsCharacter && HasTrait Music)
@@ -1148,7 +1148,7 @@ Auto: OnEndOfAttack
     }
 }
 TimesPerTurn 1
-Text Auto: CxCombo [(2) Put 2 cards from your hand to the waiting room] This card ability activates up to once per turn. At the end of this card's attack, if "Grown Make Up!" is in your climax area, you may pay the cost. If you do, stand this card.
+Text Auto: CxCombo [(2) Put 2 cards from your hand to the waiting room] This ability activates up to once per turn. At the end of this card's attack, if "Grown Make Up!" is in your climax area, you may pay the cost. If you do, stand this card.
 EndCard
 
 Character: ISC/S110-041
@@ -1587,7 +1587,7 @@ Auto: OnUseChange
         Text Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock.
     }
 }
-Text Auto: This card ability activates up to once per turn. When you use "CHANGE", this card gets +1500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
+Text Auto: This ability activates up to once per turn. When you use "CHANGE", this card gets +1500 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck in your stock."
 EndCard
 
 Climax: ISC/S110-056

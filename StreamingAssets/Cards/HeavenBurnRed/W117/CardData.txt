@@ -76,7 +76,7 @@ Auto: OnEndOfAttack
     }
 }
 TimesPerTurn 1
-Text Auto: CxCombo MEMORY [(6) Put 3 cards from your hand to the waiting room, put another «Seraph» character from your stage in the waiting room] This card ability activates up to once per turn. At the end of this card's attack, if "Read Admiration for You" is in your climax area, all your characters are «Seraph», and there are 2 or more "Assassin Ninjutsu On Sale, Mari Satsuki" in your memory, you may pay the cost. If you do, choose up to 1 «Unit 31C» character in your waiting room, put it in any position on the stage, and stand this card.
+Text Auto: CxCombo MEMORY [(6) Put 3 cards from your hand to the waiting room, put another «Seraph» character from your stage in the waiting room] This ability activates up to once per turn. At the end of this card's attack, if "Read Admiration for You" is in your climax area, all your characters are «Seraph», and there are 2 or more "Assassin Ninjutsu On Sale, Mari Satsuki" in your memory, you may pay the cost. If you do, choose up to 1 «Unit 31C» character in your waiting room, put it in any position on the stage, and stand this card.
 EndCard
 
 Character: HBR/W117-004
@@ -319,7 +319,7 @@ Auto: OnEndOfAttack
     }
 }
 TimesPerTurn 1
-Text Auto: [(4) Put 1 card from your hand to the waiting room] This card ability activates up to once per turn. During the turn this card is placed on the stage from your hand, at the end of this card's attack, you may pay the cost. If you do, stand this card.
+Text Auto: [(4) Put 1 card from your hand to the waiting room] This ability activates up to once per turn. During the turn this card is placed on the stage from your hand, at the end of this card's attack, you may pay the cost. If you do, stand this card.
 EndCard
 
 Character: HBR/W117-012
@@ -1234,11 +1234,11 @@ Auto: OnSpecificClimaxPlay Beauty Hot Spring Story - Steam of Many Colors
             }
             Quick
             TimesPerTurn 1
-            Text Auto: This card ability activates up to once per turn. When this card attacks, perform trigger check twice during this card attack's trigger step.
+            Text Auto: This ability activates up to once per turn. When this card attacks, perform trigger check twice during this card attack's trigger step.
         }
     }
 }
-Text Auto: CxCombo When "Beauty Hot Spring Story - Steam of Many Colors" is placed on your climax area, if the number of other «Seraph» characters you have is 3 or more, choose 1 of your «Seraph» characters, and that character gets the following ability until end of turn. "Auto: This card ability activates up to once per turn. When this card attacks, perform trigger check twice during this card attack's trigger step."
+Text Auto: CxCombo When "Beauty Hot Spring Story - Steam of Many Colors" is placed on your climax area, if the number of other «Seraph» characters you have is 3 or more, choose 1 of your «Seraph» characters, and that character gets the following ability until end of turn. "Auto: This ability activates up to once per turn. When this card attacks, perform trigger check twice during this card attack's trigger step."
 Act: 1 Discard 1 Any &&& RestSelf
 {
     SearchWaitingRoom IsCharacter
@@ -1517,11 +1517,11 @@ Auto: OnAttack
                 *OptionalBurn(1)
             }
             TimesPerTurn 2
-            Text Auto: This card ability activates up to twice per turn. When damage dealt by this card isn't canceled, you may deal 1 damage to your opponent.
+            Text Auto: This ability activates up to twice per turn. When damage dealt by this card isn't canceled, you may deal 1 damage to your opponent.
         }
     }
 }
-Text Auto: CxCombo When this card attacks, if "Overflowing Emotions" is in your climax area, this card gets the following ability until end of turn. "Auto: This card ability activates up to twice per turn. When damage dealt by this card isn't canceled, you may deal 1 damage to your opponent."
+Text Auto: CxCombo When this card attacks, if "Overflowing Emotions" is in your climax area, this card gets the following ability until end of turn. "Auto: This ability activates up to twice per turn. When damage dealt by this card isn't canceled, you may deal 1 damage to your opponent."
 Auto: OnAttack
 {
     PayCost 2 Discard 2 Any

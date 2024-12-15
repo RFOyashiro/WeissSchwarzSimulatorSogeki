@@ -27,7 +27,7 @@ Auto: OnAttack
     }
 }
 Quick
-Text Auto: CxCombo When this card attacks, if "Heated Live Commentary" is in your climax area, this card gets +3000 power and the following ability until end of turn. "Auto: This card ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
+Text Auto: CxCombo When this card attacks, if "Heated Live Commentary" is in your climax area, this card gets +3000 power and the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
 EndCard
 
 Character: GF/W33-002
@@ -112,7 +112,7 @@ Auto: OnPlay
         }
     }
 }
-Text Auto: When this card is placed on the stage from your hand, if the number of other Yellow characters you have is 3 or more and there are 5 or less cards in your deck, return all cards from your waiting room to your deck. If you do, shuffle your deck, choose 1 of your characters, and that character gets +2000 power and the following ability until end of turn. "Auto: This card ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
+Text Auto: When this card is placed on the stage from your hand, if the number of other Yellow characters you have is 3 or more and there are 5 or less cards in your deck, return all cards from your waiting room to your deck. If you do, shuffle your deck, choose 1 of your characters, and that character gets +2000 power and the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
 EndCard
 
 Character: GF/W33-005
@@ -1684,7 +1684,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, this card gets +1500 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, this card gets +1500 power until end of turn.
 *HandEncore
 EndCard
 
@@ -1760,7 +1760,7 @@ Auto: OnUseAct
     *GiveCharacterPower(1000,Any)
 }
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, choose 1 of your characters, and that character gets +1000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: GF/W33-082
@@ -2310,11 +2310,11 @@ Auto: OnSpecificClimaxPlay Nice Shoot
                 }
             }
             TimesPerTurn 1
-            Text Auto: This card ability activates up to once per turn. When this card's battle opponent becomes reverse, you may stand this card.
+            Text Auto: This ability activates up to once per turn. When this card's battle opponent becomes reverse, you may stand this card.
         }
     }
 }
-Text Auto: CxCombo [(1) Put 1 card from your hand in clock] When "Nice Shoot" is placed on your climax area, you may pay the cost. If you do, this card gets +1000 power and the following ability until end of turn. "Auto: This card ability activates up to once per turn. When this card's battle opponent becomes reverse, you may stand this card."
+Text Auto: CxCombo [(1) Put 1 card from your hand in clock] When "Nice Shoot" is placed on your climax area, you may pay the cost. If you do, this card gets +1000 power and the following ability until end of turn. "Auto: This ability activates up to once per turn. When this card's battle opponent becomes reverse, you may stand this card."
 *ScryWhenAttacked
 EndCard
 
@@ -2632,7 +2632,7 @@ Auto: OnUseAct
     GainPower 1000
 }
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, choose 1 of your Blue characters, and that character gets +1000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, choose 1 of your Blue characters, and that character gets +1000 power until end of turn.
 Act: 1
 {
     DrawCard

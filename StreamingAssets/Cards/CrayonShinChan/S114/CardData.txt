@@ -96,7 +96,7 @@ Auto: OnDamageCanceled
     }
 }
 TimesPerTurn 1
-Text Auto: CxCombo This card ability activates up to once per turn. When damage dealt by this card is canceled, if "Noisy Chasing" is in your climax area, choose up to 2 «MOVIE» or «Family» characters in your waiting room and put them in your stock in any order, and perform the following action up to 3 times. "Draw a card, and discard a card from your hand to the waiting room."
+Text Auto: CxCombo This ability activates up to once per turn. When damage dealt by this card is canceled, if "Noisy Chasing" is in your climax area, choose up to 2 «MOVIE» or «Family» characters in your waiting room and put them in your stock in any order, and perform the following action up to 3 times. "Draw a card, and discard a card from your hand to the waiting room."
 EndCard
 
 Character: CS/S114-004
@@ -843,7 +843,7 @@ Auto: OnDamageCanceled
     }
 }
 TimesPerTurn 1
-Text Auto: CxCombo This card ability activates up to once per turn. When damage dealt by this card is canceled, if "Butt Walk March" is in your climax area and the number of other «MOVIE» or «Family» characters you have is 2 or more, you may deal 5 damage to your opponent.
+Text Auto: CxCombo This ability activates up to once per turn. When damage dealt by this card is canceled, if "Butt Walk March" is in your climax area and the number of other «MOVIE» or «Family» characters you have is 2 or more, you may deal 5 damage to your opponent.
 EndCard
 
 Character: CS/S114-032
@@ -2330,7 +2330,7 @@ Auto: OnEndOfAttack
         }
     }
 }
-Text Auto: CxCombo [(3) Put 2 «MOVIE» or «Family» characters from your hand to the waiting room] This card ability activates up to once per turn. At the end of this card's attack, if "Partners of Justice Formed!" is in your climax area, you may pay the cost. If you do, deal 1 damage to your opponent, stand this card, choose up to 1 card in your opponent's waiting room and put it on top of the deck.
+Text Auto: CxCombo [(3) Put 2 «MOVIE» or «Family» characters from your hand to the waiting room] This ability activates up to once per turn. At the end of this card's attack, if "Partners of Justice Formed!" is in your climax area, you may pay the cost. If you do, deal 1 damage to your opponent, stand this card, choose up to 1 card in your opponent's waiting room and put it on top of the deck.
 EndCard
 
 Character: CS/S114-089

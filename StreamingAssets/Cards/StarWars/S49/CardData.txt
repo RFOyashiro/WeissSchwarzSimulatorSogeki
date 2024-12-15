@@ -66,7 +66,7 @@ Auto: OnSpecificClimaxPlay Medal Ceremony
         }
     }
 }
-Text Auto: CxCombo When "Medal Ceremony" is placed on your climax area, if this card is in the center stage, choose 1 of your characters and that character gets +1000 power, +1 soul and the following ability until end of turn. "Auto: This card ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
+Text Auto: CxCombo When "Medal Ceremony" is placed on your climax area, if this card is in the center stage, choose 1 of your characters and that character gets +1000 power, +1 soul and the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
 EndCard
 
 Character: SW/S49-004
@@ -257,7 +257,7 @@ Auto: OnUseEvent
     *GiveCharacterPower(1000,Any)
 }
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When you play an event, choose 1 of your characters, and that character gets +1000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you play an event, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: SW/S49-014
@@ -1004,7 +1004,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, this card gets +3000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, this card gets +3000 power until end of turn.
 Act: Rest 2 Any
 {
     TargetLocation Stage
@@ -2047,7 +2047,7 @@ Auto: OnReverseOpponent
     }
 }
 TimesPerTurn 1
-Text Auto: CxCombo [(2) Put a Blue character from your hand to the waiting room] This card ability activates up to once per turn. When this card's battle opponent becomes reverse, if "A New Hope" is in your climax area and there's a marker underneath this card, you may pay the cost. If you do, stand this card.
+Text Auto: CxCombo [(2) Put a Blue character from your hand to the waiting room] This ability activates up to once per turn. When this card's battle opponent becomes reverse, if "A New Hope" is in your climax area and there's a marker underneath this card, you may pay the cost. If you do, stand this card.
 EndCard
 
 Character: SW/S49-090
@@ -2804,7 +2804,7 @@ Auto: OnUseEvent
 }
 Quick
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When you play an event, this card gets +2000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you play an event, this card gets +2000 power until end of turn.
 Auto: OnAttack
 {
     If StageContains 2 Other && HasTrait The Force Awakens

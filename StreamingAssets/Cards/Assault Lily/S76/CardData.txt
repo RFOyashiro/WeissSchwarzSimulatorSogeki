@@ -2377,7 +2377,7 @@ Auto: OnSentFromStageToWaitingRoom
 		*Check4Add1Level1OrHigher
 	}
 }
-Text Auto: [Put 1 card from your hand into your waiting room] When this card is put into the waiting room from the stage, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card to add to your hand, and put the rest into the waiting room. (Climax are regarded as level 0)
+Text Auto: [Put 1 card from your hand into your waiting room] When this card is put into the waiting room from the stage, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card to add to your hand, and put the rest into the waiting room.
 EndCard
 
 Character: ALL/S76-072

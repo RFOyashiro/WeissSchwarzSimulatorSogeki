@@ -84,7 +84,7 @@ Auto: OnOtherPlacedOnStageFromHand|OnOtherPlacedBy CHANGE
     }
 }
 TimesPerTurn 1
-Text Auto: This card ability may be played up to once per turn. When your other '"Singing Is Life" Sheryl' is placed to the stage by "CHANGE", you may put the top card of your deck in your stock.
+Text Auto: This ability may be played up to once per turn. When your other '"Singing Is Life" Sheryl' is placed to the stage by "CHANGE", you may put the top card of your deck in your stock.
 Act: RestSelf
 {
     TargetLocation Stage
@@ -742,7 +742,7 @@ Auto: OnOtherPlacedOnStageFromHand
 }
 Quick
 TimesPerTurn 2
-Text Auto: This card ability may be played up to twice per turn. When another of your «Vajra» characters is placed on the stage from your hand, this card gets +1000 power until end of turn.
+Text Auto: This ability may be played up to twice per turn. When another of your «Vajra» characters is placed on the stage from your hand, this card gets +1000 power until end of turn.
 Auto: OnSentFromStageToWaitingRoom
 {
     PayCost 2

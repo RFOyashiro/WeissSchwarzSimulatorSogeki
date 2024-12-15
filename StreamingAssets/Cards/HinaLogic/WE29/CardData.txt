@@ -91,7 +91,7 @@ Auto: OnUseBackup
 }
 Quick
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When you use "BACKUP", choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use "BACKUP", choose 1 of your characters in battle, and that character gets +1000 power until end of turn.
 *BondDiscard(Preparing for the School Festival\, Karin)
 EndCard
 

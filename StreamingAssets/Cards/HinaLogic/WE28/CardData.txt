@@ -623,7 +623,7 @@ Auto: OnReverseOpponent
     }
 }
 TimesPerTurn 1
-Text Auto: CxCombo [(3) Put 1 card from your hand to the waiting room] This card ability activates up to once per turn. When this card's battle opponent becomes reverse, if '"Gate Access!! Disfia!"' is in your climax area, you may pay the cost. If you do, stand this card.
+Text Auto: CxCombo [(3) Put 1 card from your hand to the waiting room] This ability activates up to once per turn. When this card's battle opponent becomes reverse, if '"Gate Access!! Disfia!"' is in your climax area, you may pay the cost. If you do, stand this card.
 EndCard
 
 Character: HLL/WE28-28
@@ -1212,7 +1212,7 @@ Auto: OnOtherOpponentReversed
 }
 Quick
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When the battle opponent of your other character with either «Logicalist» or «Foreigner» becomes reversed, this card gets +2000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When the battle opponent of your other character with either «Logicalist» or «Foreigner» becomes reversed, this card gets +2000 power until end of turn.
 EndCard
 
 Character: HLL/WE28-P02

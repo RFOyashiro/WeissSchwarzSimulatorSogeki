@@ -59,7 +59,7 @@ Auto: OnUseEvent
 }
 Quick
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When you play an event, this card gets +2000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you play an event, this card gets +2000 power until end of turn.
 EndCard
 
 Character: GG/S23-003
@@ -110,7 +110,7 @@ Auto: OnUseEvent
 }
 Quick
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When you play an event, this card gets +2000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you play an event, this card gets +2000 power until end of turn.
 EndCard
 
 Character: GG/S23-006
@@ -136,11 +136,11 @@ Auto: OnAttack
                 *OptionalBlindStock
             }
             TimesPerTurn 1
-            Text Auto: This card ability activates up to once per turn. When damage dealt by this card is canceled, you may put the top card of your deck in stock.
+            Text Auto: This ability activates up to once per turn. When damage dealt by this card is canceled, you may put the top card of your deck in stock.
         }
     }
 }
-Text Auto: CxCombo When this card attacks, if "Whomever Catches Fish Gets Fresh Water" is in your climax area, all your other characters get the following ability until end of turn. "Auto: This card ability activates up to once per turn. When damage dealt by this card is canceled, you may put the top card of your deck in stock."
+Text Auto: CxCombo When this card attacks, if "Whomever Catches Fish Gets Fresh Water" is in your climax area, all your other characters get the following ability until end of turn. "Auto: This ability activates up to once per turn. When damage dealt by this card is canceled, you may put the top card of your deck in stock."
 EndCard
 
 Character: GG/S23-007
@@ -378,7 +378,7 @@ Auto: OnUseEvent
 }
 Quick
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When you play an event, this card gets +2000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you play an event, this card gets +2000 power until end of turn.
 EndCard
 
 Character: GG/S23-020
@@ -994,7 +994,7 @@ Auto: OnUseAct
     *GiveCharacterPower(1000,Any)
 }
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When you use "Act:", choose 1 of your characters, and that character gets +1000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use "Act:", choose 1 of your characters, and that character gets +1000 power until end of turn.
 Act: 2 RestSelf
 {
     SearchWaitingRoom IsCharacter && HasTrait Letter
@@ -1072,7 +1072,7 @@ Auto: OnUseAct
     *GiveCharacterPower(2000,Any)
 }
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When you use "Act:", choose 1 of your characters, and that character gets +2000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use "Act:", choose 1 of your characters, and that character gets +2000 power until end of turn.
 Auto: OnSpecificClimaxPlay Thus, Come Back!
 {
     PayCost SendSelf WaitingRoom
@@ -1104,7 +1104,7 @@ Auto: OnUseAct
     *GiveCharacterPower(1000,Any)
 }
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When you use Act:, choose 1 of your characters, and that character gets +1000 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use Act:, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: GG/S23-058

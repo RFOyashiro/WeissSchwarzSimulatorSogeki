@@ -92,7 +92,7 @@ Act: Discard 1 NameEquals Smitten Sweetie Summer, Shin Sato
     Bounce
 }
 TimesPerTurn 1
-Text Act: [Put a "Smitten Sweetie Summer, Shin Sato" from your hand to the waiting room] This card ability is can be activated up to once per turn. Choose 1 of your opponent's characters and return it to their hand.
+Text Act: [Put a "Smitten Sweetie Summer, Shin Sato" from your hand to the waiting room] This ability is can be activated up to once per turn. Choose 1 of your opponent's characters and return it to their hand.
 EndCard
 
 Character: IMC/W115-004
@@ -127,7 +127,7 @@ Auto: OnEndOfAttack
     }
 }
 TimesPerTurn 1
-Text Auto: CxCombo [(2) Put 2 cards from your hand to the waiting room] This card ability activates up to once per turn. At the end of this card's attack, if "MOTTO!" is in your climax area and you have another «Music» character, you may pay the cost. If you do, stand this card, look at up to the top 3 cards of your opponent's deck, choose up to 3 cards among them and put them in the waiting room, put the rest to the deck, and your opponent shuffles that deck.
+Text Auto: CxCombo [(2) Put 2 cards from your hand to the waiting room] This ability activates up to once per turn. At the end of this card's attack, if "MOTTO!" is in your climax area and you have another «Music» character, you may pay the cost. If you do, stand this card, look at up to the top 3 cards of your opponent's deck, choose up to 3 cards among them and put them in the waiting room, put the rest to the deck, and your opponent shuffles that deck.
 EndCard
 
 Character: IMC/W115-005
@@ -821,12 +821,12 @@ Auto: OnAttack
                     ShuffleLocation OpponentDeck
                 }
                 TimesPerTurn 1
-                Text Auto: This card ability activates up to once per turn. When damage dealt by this card is canceled, choose up to 3 cards in your opponent's waiting room, return them to the deck, and your opponent shuffles that deck.
+                Text Auto: This ability activates up to once per turn. When damage dealt by this card is canceled, choose up to 3 cards in your opponent's waiting room, return them to the deck, and your opponent shuffles that deck.
             }
         }
     }
 }
-Text Auto: [Put 2 cards from your hand to the waiting room] When this card attacks, if the number of other Yellow characters you have is 4 or more, you may pay the cost. If you do, all your other characters get the following ability. "Auto: This card ability activates up to once per turn. When damage dealt by this card is canceled, choose up to 3 cards in your opponent's waiting room, return them to the deck, and your opponent shuffles that deck."
+Text Auto: [Put 2 cards from your hand to the waiting room] When this card attacks, if the number of other Yellow characters you have is 4 or more, you may pay the cost. If you do, all your other characters get the following ability. "Auto: This ability activates up to once per turn. When damage dealt by this card is canceled, choose up to 3 cards in your opponent's waiting room, return them to the deck, and your opponent shuffles that deck."
 EndCard
 
 Character: IMC/W115-031
@@ -2744,7 +2744,7 @@ Auto: OnOtherPlacedOnStageFromHand
     }
 }
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When your other "A Page of the Sea Breeze, Fumika Sagisawa" is placed on the stage from your hand, you may choose 1 «Music» character in your waiting room and put it to stock.
+Text Auto: This ability activates up to once per turn. When your other "A Page of the Sea Breeze, Fumika Sagisawa" is placed on the stage from your hand, you may choose 1 «Music» character in your waiting room and put it to stock.
 Auto: OnTriggerCheckClimax
 {
     IfOther HasTrigger Gate
@@ -2820,7 +2820,7 @@ Auto: OnEndOfAttack
     }
 }
 TimesPerTurn 1
-Text Auto: [(3) Put 1 card from your hand to the waiting room, put 1 of your other characters from the stage in the waiting room] This card ability activates up to once per turn. During the turn this card is placed on the stage from your hand, at the end of this card's attack, you may pay the cost. If you do, stand this card.
+Text Auto: [(3) Put 1 card from your hand to the waiting room, put 1 of your other characters from the stage in the waiting room] This ability activates up to once per turn. During the turn this card is placed on the stage from your hand, at the end of this card's attack, you may pay the cost. If you do, stand this card.
 EndCard
 
 Character: IMC/W115-112
@@ -4245,7 +4245,7 @@ Auto: OnOtherPlacedOnStageFromWaitingRoom
     GainSoul 1
 }
 TimesPerTurn 3
-Text Auto: This card ability activates up to 3 times per turn. When your other character is placed to the stage from waiting room, choose 1 of your characters, and that character gets +1 soul until end of turn.
+Text Auto: This ability activates up to 3 times per turn. When your other character is placed to the stage from waiting room, choose 1 of your characters, and that character gets +1 soul until end of turn.
 EndCard
 
 Character: IMC/W115-T42
@@ -4785,12 +4785,12 @@ Auto: OnAttack
                     *OptionalBurn(3)
                 }
                 TimesPerTurn 1
-                Text Auto: This card ability activates up to once per turn. When damage dealt by this card is canceled, you may deal 3 damage to your opponent.
+                Text Auto: This ability activates up to once per turn. When damage dealt by this card is canceled, you may deal 3 damage to your opponent.
             }
         }
     }
 }
-Text Auto: CxCombo [(1)] When this card attacks, if "Kimi ni Ippai" is in your climax area, you may pay the cost. If you do, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: This card ability activates up to once per turn. When damage dealt by this card is canceled, you may deal 3 damage to your opponent." 
+Text Auto: CxCombo [(1)] When this card attacks, if "Kimi ni Ippai" is in your climax area, you may pay the cost. If you do, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: This ability activates up to once per turn. When damage dealt by this card is canceled, you may deal 3 damage to your opponent." 
 EndCard
 
 Event: IMC/W115-T67

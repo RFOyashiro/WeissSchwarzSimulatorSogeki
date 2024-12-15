@@ -177,7 +177,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: CxCombo [(2)] When this card attacks, if "Now, It's My Turn! Be Prepared!" is in your climax area and the number of other Yellow characters you have is 4 or more, you may pay the cost. If you do, all your center stage characters get the following ability until end of turn. "Auto: This card ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
+Text Auto: CxCombo [(2)] When this card attacks, if "Now, It's My Turn! Be Prepared!" is in your climax area and the number of other Yellow characters you have is 4 or more, you may pay the cost. If you do, all your center stage characters get the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
 EndCard
 
 Character: SGS/S37-007
@@ -339,7 +339,7 @@ Auto: OnDamageCanceled
     }
 }
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when the damage dealt by this card is canceled, you may deal 1 damage to your opponent.
+Text Auto: This ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when the damage dealt by this card is canceled, you may deal 1 damage to your opponent.
 Auto: OnReverseOpponent
 {
     TargetBattleOpponent
@@ -2425,7 +2425,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto: [Put 2 «Striker» character cards from your hand to the waiting room, put 1 of your other characters from your stage in the waiting room] This card ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, choose a "A Summer Moment, Hotaru" in your waiting room and put it in any position on the stage.
+Text Auto: [Put 2 «Striker» character cards from your hand to the waiting room, put 1 of your other characters from your stage in the waiting room] This ability activates up to once per turn. During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, choose a "A Summer Moment, Hotaru" in your waiting room and put it in any position on the stage.
 EndCard
 
 Character: SGS/S37-107
@@ -3694,7 +3694,7 @@ Auto: OnUseAct
 }
 Quick
 TimesPerTurn 1
-Text Auto: This card ability activates up to once per turn. When you use an "Act:" ability, this card gets +1500 power until end of turn.
+Text Auto: This ability activates up to once per turn. When you use an "Act:" ability, this card gets +1500 power until end of turn.
 EndCard
 
 Character: SGS/S37-163
