@@ -1757,10 +1757,11 @@ Auto: OnAttack
         NarrowTargets With ALARM || With SHIFT
         If Compare TargetCount 1 OrMore
         {
-            Burn 1 
+            Burn 1
             PayCost 3 Discard 2 Any
             {
                 Burn 3
+                TargetSelf
                 GainPower 1000
             }
         }
