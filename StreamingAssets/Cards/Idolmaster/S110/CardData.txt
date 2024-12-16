@@ -2873,6 +2873,7 @@ Auto: StartClimaxPhase
     TargetTop Clock 1
     IfTarget With ALARM || With SHIFT
     {
+        TargetSelf
         UntilEndOfOpponentsTurn
         GainPower 1500
         UntilEndOfOpponentsTurn
