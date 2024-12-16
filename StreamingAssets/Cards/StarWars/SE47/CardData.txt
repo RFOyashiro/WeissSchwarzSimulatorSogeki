@@ -1,5 +1,5 @@
 Character: SW/SE47-01
-Name Mandalorian & Grogu
+Name "Reunion of the Two" Mandalorian & Grogu
 JPName “再会を果たした二人”マンダロリアン＆グローグー
 Color Y
 Level 0
@@ -7,20 +7,33 @@ Cost 0
 Power 500
 Soul 1
 Trait1 Mandalorian
-Auto:
+Auto: OnPlay
 {
-
-}
-Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on stage from hand, you may pay the cost. If you do, reveal the top card of your deck, then choose 1 level X or lower character from your waiting room, and add it to hand. X equals the level of the revealed card.
-Auto:
+	PayCost Discard 1 Any
+	{
+		TargetTop Deck 1
+		Reveal
+		SetXValue TotalLevel
+		SearchWaitingRoom IsCharacter && Compare ThatCardsLevel X OrLess
+	}
+}	
+Text Auto: [Put 1 card from your hand into your waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck, choose 1 level X or lower character in your waiting room, and return it to your hand. X is equal to the level of the revealed card.
+Auto: OnCancel
 {
-
+    If InBattle
+    {
+        Question Return this card to your hand ?
+        If Yes
+        {
+            Bounce
+        }
+    }
 }
-Text Auto: During this card's battle, when the damage you take is cancelled, you may return this card to your hand.
+Text Auto: During battles involving this card, if damage you receive is canceled, you may return this card to your hand.
 EndCard
 
 Character: SW/SE47-02
-Name Bo-Katan Kryze
+Name "Leader of the Night Owls" Bo-Katan Kryze
 JPName “ナイト・アウルの指導者”ボ=カターン・クライズ
 Color Y
 Level 0
@@ -28,16 +41,13 @@ Cost 0
 Power 500
 Soul 1
 Trait1 Mandalorian
-Auto:
+Auto: StartClimaxPhase
 {
-
+    Peek Deck 1
+    EndPeek
 }
 Text Auto: At the beginning of your climax phase, you may look at the top card of your deck.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck, then send them to waiting room. For each climax among them repeat the following effect: "Look at up to 3 cards from the top of your deck, choose up to 1 card among them, add it to hand, and send the rest to waiting room."
+*Act1RestSelfCheck3Add1Brainstorm
 EndCard
 
 Character: SW/SE47-03
@@ -49,20 +59,13 @@ Cost 0
 Power 500
 Soul 1
 Trait1 Mandalorian
-Auto:
-{
-
-}
-Text Auto: [Put this card into waiting room] When your other character is sent from stage to waiting room, if this card is in your backstage, you may pay the cost. If you do, return that character to stage in its former slot rest
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your characters, this card turn, it gets +1500 power.
+*SacrificeToSave(Any)
+Text Auto: [Put this card in the waiting room] When your other character is placed from the stage to the waiting room, if this card is in the backstage, you may pay the cost. If you do, put that character rest in the position it was in.
+*RestGivePower(1500,Any)
 EndCard
 
 Character: SW/SE47-04
-Name Mandalorian
+Name "Gunfight" The Mandalorian
 JPName “銃撃戦”マンダロリアン
 Color Y
 Level 0
@@ -70,20 +73,28 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Mandalorian
-Cont:
+*PowerOnMyTurn(2000)
+Auto: StartOpponentAttackPhase
 {
-
+    If LocationContainsOrLess CenterStage 2 Any
+    {
+        TargetFacing
+        If HasTarget
+        {
+            TargetSelf
+            Question Move ""Gunfight" The Mandalorian" to another position?
+            If Yes
+            {
+                MoveToOpenPosition True False
+            }
+        }
+    }
 }
-Text Cont: During your turn, this card gets +2000 power.
-Auto:
-{
-
-}
-Text Auto: At the beginning of your opponent's attack phase, if there is a character in the slot across from this card, you may move this card to an empty center stage slot.
+Text Auto: At the beginning of your opponent's attack phase, if there is a character facing this card, you may move this card to an open position of your center stage.
 EndCard
 
 Character: SW/SE47-05
-Name Cassian Andor
+Name "Oath of Rebellion" Cassian Andor
 JPName “反乱の宣誓”キャシアン・アンドー
 Color Y
 Level 0
@@ -91,20 +102,19 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Cassian Andor
-Auto:
+*OnPlayScryToBottom
+Auto: OnSentFromStageToWaitingRoom
 {
-
+	PayCost Discard 1 Any
+	{
+		*Check4Add1Level1OrHigher
+	}
 }
-Text Auto: When this card is sent from stage to waiting room, look at the top card of your deck, and put it on top or bottom of your deck.
-Auto:
-{
-
-}
-Text Auto: [Put 1 card from your hand into waiting room] When this card is sent from stage to waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck, choose up to 1 level 1 or higher card among them, reveal it, add it to hand, and send the rest to waiting room.
+Text Auto: [Put 1 card from your hand into your waiting room] When this card is put into the waiting room from the stage, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card to add to your hand, and put the rest into the waiting room.
 EndCard
 
 Character: SW/SE47-06
-Name Bo-Katan Kryze
+Name Din Djarin & Bo-Katan Kryze
 JPName ディン・ジャリン＆ボ=カターン・クライズ
 Color Y
 Level 0
@@ -112,20 +122,21 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Mandalorian
-Auto:
+Auto: OnPlay
 {
-
+    Question Put a card from your hand to stock ?
+    If Yes
+    {
+        SearchLocationForTargets Hand 0 1 Any
+        MoveCard Stock
+    }
 }
-Text Auto: When this card is placed on stage from hand, choose 1 card from your hand, you may send it to stock.
-Auto:
-{
-
-}
-Text Auto: [(1) Put 1 climax] When this card is placed on stage from hand, you may pay the cost. If you do, choose 1 climax from your waiting room, and add it to hand.
+Text Auto: When this card is placed on the stage from your hand, you may choose a card in your hand and put it in your stock.
+*ClimaxExchange
 EndCard
 
 Character: SW/SE47-07
-Name Boba Fett
+Name "Rancor Ruler" Boba Fett
 JPName “ランコアを駆る統治者”ボバ・フェット
 Color Y
 Level 0
@@ -133,20 +144,29 @@ Cost 0
 Power 3000
 Soul 1
 Trait1 Boba Fett
-Cont:
+Cont: GiveFacing
 {
-
+    GainEffect
+    {
+        Auto: Encore 2
+        {
+        }
+        Text Auto: ENCORE [(2)]
+    }
 }
-Text Cont: The character across from this card gets “Auto: ENCORE (2).”
-Auto:
+Text Cont: The character facing this card gets "Auto: ENCORE [(2)]"
+Auto: OnSentFromStageToWaitingRoom
 {
-
+	PayCost 1 Clock
+	{
+		*Check4Add1Level1OrHigher
+	}
 }
-Text Auto: [(1) Put the top card of your deck into clock] When this card is sent from stage to waiting room, you may pay the cost. If you do, look at up to 4 cards from the top of your deck, choose up to 1 level 1 or higher card among them, reveal it, add it to hand, and send the rest to waiting room.
+Text Auto: [(1) Put the top card of your deck into clock] When this card is put into the waiting room from the stage, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card to add to your hand, and put the rest into the waiting room.
 EndCard
 
 Character: SW/SE47-08
-Name Mandalorian
+Name "Beskar Armor" Mandalorian
 JPName “ベスカーの鎧”マンダロリアン
 Color Y
 Level 1
@@ -154,20 +174,27 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Mandalorian
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    PayCost Discard 2 Any
+    {
+        TargetLocation OpponentStage
+		NarrowTargets EarlyPlay && CanBeChosen
+		ChooseCharacterFromTargets Choose a character to put to your opponent's stock
+        If HasTarget
+        {
+		    MoveCard OpponentStock
+            TargetBottom OpponentStock
+            MoveCard OpponentWaitingRoom
+        }
+    }
 }
-Text Auto: [Put 2 cards] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent's level, and send it to waiting room.
-Act:
-{
-
-}
-Text Act: BACKUP +1000
+Text Auto: [Put 2 cards from your hand to the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it on the bottom of your opponent's deck.
+Backup 1000
 EndCard
 
 Character: SW/SE47-09
-Name Boba Fett
+Name "Lord of the Throne" Boba Fett
 JPName “玉座の支配者”ボバ・フェット
 Color Y
 Level 1
@@ -175,20 +202,20 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Boba Fett
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        SearchLocationForTargets WaitingRoom 0 1 IsCharacter && Compare ThatCardsLevel 0 OrLess
+        PlaceOnStage false true true false
+    }
 }
-Text Auto: [Put 1 Card] When this card is placed on the stage from your hand, you may pay the cost, if you do, choose a level 0 or lower character in your waiting room, place it on stage in any slot.
-Auto:
-{
-
-}
-Text Auto: When this card is reversed, if the battle opponent's cost is 0 or lower, you may send that character to stock. If you do, put the bottom card of your opponent's stock into waiting room.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 1 level 0 or lower character in your waiting room, and put it in any position on the stage.
+*YellowCost0Bomb
 EndCard
 
 Character: SW/SE47-10
-Name Bo-Katan Kryze
+Name "To reclaim Mandalore" Bo-Katan Kryze
 JPName “マンダロアを取り戻すために”ボ=カターン・クライズ
 Color Y
 Level 1
@@ -196,20 +223,20 @@ Cost 0
 Power 3000
 Soul 1
 Trait1 Mandalorian
-Auto:
+Combo Great Warriors
+*OnPlayGainPower(3000)
+Auto: OnAttack
 {
-
+    If Climax Great Warriors && StageContains 2 Other
+    {
+        *Check4Add1Level1OrHigher
+    }
 }
-Text Auto: When this card is placed on stage from hand, this card turn, this card gets +3000 power.
-Auto:
-{
-
-}
-Text Auto: {climax Combo} When this card attacks, if the number of other characters you have is the Choice climax (20) in your climax Area, and you have 2 or more, look at up to 4 cards from the top of your deck, choose up to 1 level 1 or higher card among them, reveal it, add it to hand, send the rest to waiting room.
+Text Auto: CxCombo When this card attacks, if "Great Warriors" is in your climax area and the number of other characters you have is 2 or more, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card to add to your hand, and put the rest into the waiting room.
 EndCard
 
 Character: SW/SE47-11
-Name Boba Fett
+Name "Armor Reclaimed" Boba Fett
 JPName “取り戻したアーマー”ボバ・フェット
 Color Y
 Level 1
@@ -217,20 +244,23 @@ Cost 0
 Power 3000
 Soul 1
 Trait1 Boba Fett
-Cont:
+*PowerOnMyTurn(4000)
+Auto: OnCancel
 {
-
+    If InBattle
+    {
+        Question Return this card to your hand ?
+        If Yes
+        {
+            Bounce
+        }
+    }
 }
-Text Cont: During your turn, this card gets +4000 power.
-Auto:
-{
-
-}
-Text Auto: During this card's battle, when the damage you take is cancelled, you may return this card to your hand.
+Text Auto: During battles involving this card, if damage you receive is canceled, you may return this card to your hand.
 EndCard
 
 Character: SW/SE47-12
-Name Mandalorian & Grogu
+Name "A New Mission" Mandalorian & Grogu
 JPName “新たな使命の旅”マンダロリアン＆グローグー
 Color Y
 Level 1
@@ -238,20 +268,32 @@ Cost 0
 Power 4500
 Soul 1
 Trait1 Mandalorian
-Auto:
+Auto: OnPlay
 {
-
+    If StageContains 1 Other && ColorIs Yellow
+    {
+        GainPower 2000
+    }
 }
-Text Auto: When this card is placed on stage from hand, if you have another Yellow character, this card turn, this card gets +2000 power.
-Auto:
+Quick
+Text Auto: When this card is placed on the stage from your hand, if you have another Yellow character, this card gets +2000 power until end of turn.
+Auto: OnAttack
 {
-
+    If LocationContains Climax 1 Any
+    {
+        TargetTop Deck 1
+        Reveal
+        IfTarget Compare ThatCardsLevel 1 OrMore
+        {
+            MoveCard Stock
+        }
+    }
 }
-Text Auto: When this card attacks, if you have a climax in your climax Area, reveal the top card of your deck. If that card is level 1 or higher, send it to stock.
+Text Auto: When this card attacks, if there's a climax in your climax area, reveal the top card of your deck. If it's level 1 or higher, put it in your stock.
 EndCard
 
 Character: SW/SE47-13
-Name Syndulla
+Name General Syndulla
 JPName シンドゥーラ将軍
 Color Y
 Level 2
@@ -259,20 +301,16 @@ Cost 1
 Power 3000
 Soul 1
 Trait1 Ahsoka
-Cont:
+*PowerOnMyTurn(10000)
+Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
 {
-
+    *OptionalBlindStock
 }
-Text Cont: During your turn, this card gets +10000 power.
-Auto:
-{
-
-}
-Text Auto: When this card's level 2 or higher battle opponent is reversed, you may put the top card of your deck into stock.
+Text Auto: When this card's level 2 or higher battle opponent becomes reverse, you may put the top card of your deck into stock.
 EndCard
 
 Character: SW/SE47-14
-Name Cassian Andor
+Name "The Agent" Cassian Andor
 JPName “工作員”キャシアン・アンドー
 Color Y
 Level 2
@@ -280,20 +318,19 @@ Cost 1
 Power 4500
 Soul 1
 Trait1 Cassian Andor
-Cont:
+*LevelAssist
+Act: RestSelf
 {
-
+    TargetLocation Stage
+    NarrowTargets Other
+    ChooseCharacterFromTargets Choose a character to put into stock.
+    MoveCard Stock
 }
-Text Cont: ASSIST level x 500.
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your other characters, send it to stock.
+Text Act: [Rest this card] Choose 1 of your other characters and put it into stock.
 EndCard
 
 Character: SW/SE47-15
-Name Mandalorian & Grogu
+Name "The Journey of Two" Mandalorian & Grogu
 JPName “二人になった旅”マンダロリアン＆グローグー
 Color Y
 Level 2
@@ -301,16 +338,21 @@ Cost 1
 Power 5000
 Soul 1
 Trait1 Mandalorian
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +1 soul.
+    GainSoul 1
 }
-Text Auto: When this card is placed on stage from hand, choose 1 of your characters, this card turn, it gets +1 soul.
-Act:
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your characters and that character gets +1 soul until end of turn.
+Act: SendSelf WaitingRoom
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to return to hand.
+    Bounce
 }
-Text Act: [Put this card into waiting room] Choose 1 of your opponent's characters, return it to hand.
+Text Act: [Put this card in the waiting room] Choose 1 of your opponent's characters and return it to their hand.
 EndCard
 
 Character: SW/SE47-16
@@ -322,20 +364,41 @@ Cost 1
 Power 5500
 Soul 1
 Trait1 Boba Fett
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains CenterStage 1 NameEquals "Final Battle" Boba Fett
+    {
+        GainPower 5500
+        GainEffect
+        {
+            Auto: Encore Discard 1 ColorIs Yellow
+            {
+            }
+            Text Auto: ENCORE [Put 1 Yellow card from your hand into waiting room]
+        }
+    }
 }
-Text Cont: If you have another front row {3/2 Boba Fett 17}, this card gets +5500 power and “Auto: ENCORE [Put 1 Yellow card]”.
-Cont:
+Text Cont: If you have another ""Final Battle" Boba Fett" in center stage, this card gets +5500 power and "Auto: ENCORE [Put 1 Yellow card from your hand into waiting room]".
+Cont: GiveAll
 {
-
+    If Other && NameEquals "Final Battle" Boba Fett
+    {
+        GainPower 1500
+        GainEffect
+        {
+            *HexProof
+        }
+        GainEffect
+        {
+            *OnAttackPay1ToDoubleTrigger
+        }
+    }
 }
-Text Cont: All of your other {3/2 Boba Fett 17} gets +1500 power and the following 2 abilities, - “Cont: This card cannot be targeted by your opponent's effects.” - “Auto: (1) When this card attacks, you may pay the cost. If you do, during the trigger step of this card attack, perform trigger check twice.”
+Text Cont: All of your other ""Final Battle" Boba Fett" gets +1500 power and the following 2 abilities. "Cont: This card cannot be chosen by your opponent's effects." "Auto: [(1)] When this card attacks, you may pay the cost, if you do, during that attack, perform a trigger check 2 times on the trigger step."
 EndCard
 
 Character: SW/SE47-17
-Name Boba Fett
+Name "Final Battle" Boba Fett
 JPName “決別の戦い”ボバ・フェット
 Color Y
 Level 3
@@ -343,25 +406,41 @@ Cost 2
 Power 9500
 Soul 2
 Trait1 Boba Fett
-Cont:
+*EarlyPlay2OrLessClimax
+Auto: OnPlay
 {
-
+    UntilEndOfOpponentsTurn
+    GainPower 4500
+    UntilEndOfOpponentsTurn
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            GainSpecialEffect NoBackupInBattle
+        }
+        Text Cont: During battles involving this card, no players may use "BACKUP" from hand. 
+    }
 }
-Text Cont: If you have 2 or less climaxes in your waiting room, this card gets -1 level in hand.
-Auto:
+Text Auto: When this card is placed on the stage from your hand, this card gets +4500 power and the following ability until the end of your opponent's next turn. "Cont: During battles involving this card, no players may use "BACKUP" from hand."
+Auto: OnReverseOpponent
 {
-
+    If Compare Experience 4 OrMore
+    {
+        PayCost 2 Discard 1 Any
+        {
+            TargetBattleOpponent
+            IfTarget OnStage
+            {
+                MoveCard OpponentClock
+            }
+        }
+    }
 }
-Text Auto: When this card is placed on stage from hand, until the end of your opponent's next turn, this card gets +4500 power and the following ability, "Cont: - During this card's battle, all players cannot play BACKUPs from hand."
-Auto:
-{
-
-}
-Text Auto: EXPERIENCE 4 [(2) Put 1 card from your hand into waiting room] When this card's battle opponent is reversed, if the sum of levels of cards in your level is 4 or more, you may pay the cost. If you do, send that character to clock.
+Text Auto: EXPERIENCE [(2) Put 1 card from your hand into waiting room] When this card's battle opponent becomes reverse, if the total level of the cards in your level is 4 or higher, you may pay the cost. If you do, put that character into clock.
 EndCard
 
 Character: SW/SE47-18
-Name Mandalorian
+Name "Duel for the Darksaber" The Mandalorian
 JPName “ダークセーバーを賭けた決闘”マンダロリアン
 Color Y
 Level 3
@@ -369,20 +448,34 @@ Cost 2
 Power 10000
 Soul 2
 Trait1 Boba Fett
-Auto:
+Combo Their Bond
+Auto: OnPlay
 {
-
+    TargetLocation OpponentStage
+    SetXValue TargetCount
+    Peek Deck X
+    ChooseCardsFromTargets 0 1 Any
+    MoveCard Hand
+    PutTheRestIntoTheWaitingRoom
 }
-Text Auto: When this card is placed on stage from hand, look at up to X cards from the top of your deck, choose up to 1 card among them, add it to hand, and send the rest to waiting room. X equals the number of your opponent's characters.
-Auto:
+Text Auto: When this card is placed on the stage from your hand, look at up to the top X cards of your deck, choose up to 1 card among them, put it in your hand, and put the rest into your waiting room. X equals the number of your opponent's characters.
+Auto: OnAttack
 {
-
+    If Climax Their Bond && StageContains 3 Other
+    {
+        PayCost Discard 2 Any
+        {
+            SearchLocationForTargets OpponentWaitingRoom 0 1 Any
+            MoveCard OpponentDeck
+            Burn 4
+        }
+    }
 }
-Text Auto: {climax Combo} [Put 2 card] When this card attacks, if the number of other characters you have is the Choice climax (21) in your climax Area, and you have 3 or more, you may pay the cost. If you do, choose up to 1 card in your opponent's waiting room, place it on top of their deck, then deal 4 damage to your opponent.
+Text Auto: CxCombo [Put 2 cards from your hand to the waiting room] When this card attacks, if "Their Bond" is in your climax area and the number of other characters you have is 3 or more, you may pay the cost. If you do, choose up to 1 card in your opponent's waiting room and put it on top of the deck, and deal 4 damage to your opponent.
 EndCard
 
 Character: SW/SE47-19
-Name Mandalorian
+Name "Oath to the Faith" The Mandalorian
 JPName “教義への誓い”マンダロリアン
 Color Y
 Level 3
@@ -390,30 +483,42 @@ Cost 2
 Power 10500
 Soul 2
 Trait1 Mandalorian
-Auto:
+Auto: OnPlay
 {
-
+	PayCost Rest 1 CardPosition Stand
+	{
+		OpponentMessage Choose a climax to keep in your waiting room.
+		OpponentSearchLocationForTargets WaitingRoom 1 1 IsClimax
+		ReverseTargets OpponentWaitingRoom
+		MoveCard OpponentDeck
+		ShuffleLocation OpponentDeck
+	}
 }
-Text Auto: [Rest 1 of your standing characters] When this card is placed on stage from hand, you may pay the cost. If you do, your opponent chooses 1 climax from their waiting room, and shuffles all other cards from their waiting room into their deck.
-Auto:
+Text Auto: [Rest 1 of your standing characters] When this card is placed on the stage from your hand, you may pay the cost. If you do, your opponent chooses a climax in their waiting room, return all cards but the chosen card from the waiting room to their deck, and shuffles their deck.
+Auto: OnAttack
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        TargetLocation Stage
+        NarrowTargets ColorIs Yellow
+        ChooseCharactersFromTargets 0 3 Choose up to 3 characters to give +500 power and +1 soul.
+        GainPower 500
+        GainSoul 1
+    }
 }
-Text Auto: [(1) Put 1 card from your hand into waiting room] When this card attacks, you may pay the cost. If you do, choose up to 3 of your Yellow characters, this card turn, they get +500 power and +1 soul.
+Text Auto: [(1) Put 1 card from your hand into waiting room] When this card attacks, you may pay the cost. If you do, choose up to 3 of your Yellow characters, and those characters get +500 power and +1 soul until end of turn.
 EndCard
 
 Climax: SW/SE47-20
 Name Great Warriors
 JPName Great Warriors
-Color Y
-
+*ChoiceClimax
 EndCard
 
 Climax: SW/SE47-21
 Name Their Bond
 JPName Their Bond
-Color Y
-
+*ChoiceClimax
 EndCard
 
 Character: SW/SE47-22
@@ -434,7 +539,7 @@ Auto:
 {
 
 }
-Text Auto: When this card's battle opponent is reversed, choose 1 of your other characters, rest it, and move it to an empty backstage slot.
+Text Auto: When this card's battle opponent becomes reverse, choose 1 of your other characters, rest it, and move it to an empty backstage slot.
 EndCard
 
 Character: SW/SE47-23
@@ -455,7 +560,7 @@ Cont:
 {
 
 }
-Text Cont: ASSIST All of your characters in front of this card gets the following ability, "Auto: When this card attacks, look at up to 2 cards from the top of your deck, choose 1 card among them, put it back on top of your deck, and send the rest to waiting room."
+Text Cont: ASSIST All of your characters in front of this card gets the following ability, "Auto: When this card attacks, look at up to the top 2 cards of your deck, choose 1 card among them, put it back on top of your deck, and put the rest to waiting room."
 EndCard
 
 Character: SW/SE47-24
@@ -488,7 +593,7 @@ Flavor: --
 TEXT:
 [S] [(2) Rest this] Heal 1.
 [S] BRAINSTORM [(1) Rest this] Flip over the top 4 cards of your deck,
-then send them to Waiting Room. For each CX among them, choose up to 1
+then put them to Waiting Room. For each CX among them, choose up to 1
 character from your Waiting Room, and add it to hand.: SW/SE47-25
 Name Grogu
 JPName Card No.: SW/SE47-25 Rarity: N
@@ -507,7 +612,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, look at the top card of your deck, and put it on top or bottom of your deck or into your waiting room.
+Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck, and put it on top or bottom of your deck or into your waiting room.
 Auto:
 {
 
@@ -528,7 +633,7 @@ Auto:
 {
 
 }
-Text Auto: [Put 1 climax] When this card is placed on stage from hand or sent from stage to waiting room, you may pay the cost. If you do, choose 1 level 1 or higher character from your waiting room, and add it to hand.
+Text Auto: [Put 1 climax] When this card is placed on the stage from your hand or sent from stage to waiting room, you may pay the cost. If you do, choose 1 level 1 or higher character from your waiting room, and add it to hand.
 EndCard
 
 Character: SW/SE47-28
@@ -544,7 +649,7 @@ Auto:
 {
 
 }
-Text Auto: [(1) Put the top card of your deck into clock] When this card is placed on stage from hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, add it to hand, and shuffle your deck afterwards.
+Text Auto: [(1) Put the top card of your deck into clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, add it to hand, and shuffle your deck afterwards.
 Auto:
 {
 
@@ -586,12 +691,12 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, look at up to 2 cards from the top of your deck, and put them back on top in any order.
+Text Auto: When this card is placed on the stage from your hand, look at up to 2 cards from the top of your deck, and put them back on top in any order.
 Auto:
 {
 
 }
-Text Auto: [(1) Put 1 card from your hand into waiting room] When this card is placed on stage from hand, you may pay the cost. If you do, choose 1 character from your waiting room, add it to hand.
+Text Auto: [(1) Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 character from your waiting room, add it to hand.
 EndCard
 
 Character: SW/SE47-31
@@ -607,7 +712,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, you may reveal up to 4 cards from the top of your deck. If you revealed 1 or more, choose up to 1 level 0 or lower character among them, add it to hand, send the rest to waiting room, and put 1 card from your hand into waiting room.
+Text Auto: When this card is placed on the stage from your hand, you may reveal up to 4 cards from the top of your deck. If you revealed 1 or more, choose up to 1 level 0 or lower character among them, add it to hand, put the rest to waiting room, and put 1 card from your hand into waiting room.
 EndCard
 
 Character: SW/SE47-32
@@ -623,7 +728,7 @@ Cont:
 {
 
 }
-Text Cont: For each of your opponent's back row characters, this card gets +2000 power.
+Text Cont: This card gets +2000 power for each of your opponent's back row characters
 Act:
 {
 
@@ -644,12 +749,12 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, this card turn, this card gets +1500 power.
+Text Auto: When this card is placed on the stage from your hand, this card turn, this card gets +1500 power.
 Auto:
 {
 
 }
-Text Auto: This card ability activates up to once per turn. When you use an Act:, this card turn, this card gets the following ability, "Auto: (1) When this card's battle opponent is reversed, you may pay the cost. If you do, choose 1 character in your waiting room, add it to hand."
+Text Auto: This card ability activates up to once per turn. When you use an Act:, this card turn, this card gets the following ability, "Auto: (1) When this card's battle opponent becomes reverse, you may pay the cost. If you do, choose 1 character in your waiting room, add it to hand."
 EndCard
 
 Character: SW/SE47-34
@@ -670,7 +775,7 @@ Auto:
 {
 
 }
-Text Auto: {climax Combo} When this card attacks, if the number of other characters you have is the Pants climax (44) in your climax Area, and you have 3 or more, look at up to 2 cards from the top of your deck, put them back on top in any order. then choose 1 of your characters, this card turn, it gets the following ability, "Auto: When this card's battle opponent is reversed, choose 1 character in your waiting room, you may add it to hand."
+Text Auto: {climax Combo} When this card attacks, if the number of other characters you have is the Pants climax (44) in your climax Area, and you have 3 or more, look at up to the top 2 cards of your deck, put them back on top in any order. then choose 1 of your characters, this card turn, it gets the following ability, "Auto: When this card's battle opponent becomes reverse, choose 1 character in your waiting room, you may add it to hand."
 EndCard
 
 Character: SW/SE47-35
@@ -686,7 +791,7 @@ Auto:
 {
 
 }
-Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on stage from hand, you may pay the cost. If you do, choose 1 of your opponent's level 1 or higher characters, your opponent chooses 1 level X or lower character from their waiting room, and exchanges the two characters. X equals the level of the character chosen by you -1.
+Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your opponent's level 1 or higher characters, your opponent chooses 1 level X or lower character from their waiting room, and exchanges the two characters. X equals the level of the character chosen by you -1.
 EndCard
 
 Character: SW/SE47-36
@@ -702,12 +807,12 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, choose 1 of your opponent's characters, this card turn, it gets the following ability: "Cont: This card card cannot return to hand or be sent to memory."
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters, this card turn, it gets the following ability: "Cont: This card card cannot return to hand or be sent to memory."
 Auto:
 {
 
 }
-Text Auto: When this card is reversed, if the battle opponent's level is higher than your opponent's level, you may send that character to the bottom of your opponent's deck.
+Text Auto: When this card becomes reverse, if the battle opponent's level is higher than your opponent's level, you may put that character to the bottom of your opponent's deck.
 EndCard
 
 Character: SW/SE47-37
@@ -728,7 +833,7 @@ Act:
 {
 
 }
-Text Act: [Rest this card] Choose 1 of your characters, this card turn, it gets +2000 power and the following ability, "Auto: When this card's battle opponent is reversed, you may send that character to the top of your opponent's deck." This card does not stand during your next stand phase.
+Text Act: [Rest this card] Choose 1 of your characters, this card turn, it gets +2000 power and the following ability, "Auto: When this card's battle opponent becomes reverse, you may put that character to the top of your opponent's deck." This card does not stand during your next stand phase.
 EndCard
 
 Character: SW/SE47-38
@@ -744,7 +849,7 @@ Auto:
 {
 
 }
-Text Auto: When you use this card's BACKUP, choose 1 of your battling characters, this card turn, it gets the following ability: "Auto: When this card's battle opponent is reversed, send it to memory."
+Text Auto: When you use this card's BACKUP, choose 1 of your battling characters, this card turn, it gets the following ability: "Auto: When this card's battle opponent becomes reverse, put it to memory."
 Act:
 {
 
@@ -770,12 +875,12 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, choose the bottom card of your clock and 1 Blue character in your waiting room, you may exchange them.
+Text Auto: When this card is placed on the stage from your hand, choose the bottom card of your clock and 1 Blue character in your waiting room, you may exchange them.
 Auto:
 {
 
 }
-Text Auto: [Put 1 Blue character] When this card is placed on stage from hand, you may pay the cost. If you do, search your deck for up to 1 ""Encounter of Fate" Luke SW/S49-097", reveal it, add it to hand, and shuffle your deck afterwards.
+Text Auto: [Put 1 Blue character] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 ""Encounter of Fate" Luke SW/S49-097", reveal it, add it to hand, and shuffle your deck afterwards.
 EndCard
 
 Character: SW/SE47-40
@@ -796,7 +901,7 @@ Auto:
 {
 
 }
-Text Auto: (1) When this card's level 2 or higher battle opponent is reversed, you may pay the cost. If you do, choose 1 character in your waiting room, add it to hand.
+Text Auto: (1) When this card's level 2 or higher battle opponent becomes reverse, you may pay the cost. If you do, choose 1 character in your waiting room, add it to hand.
 EndCard
 
 Character: SW/SE47-41
@@ -822,7 +927,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, choose 1 of the following 2 effects and resolve it, a) "Look at up to X cards from the top of your deck, choose up to 1 card among them, add it to hand, and send the rest to waiting room. X equals the number of your opponent's characters." b) "You may Heal 1."
+Text Auto: When this card is placed on the stage from your hand, choose 1 of the following 2 effects and resolve it, a) "Look at up to X cards from the top of your deck, choose up to 1 card among them, add it to hand, and put the rest to waiting room. X equals the number of your opponent's characters." b) "You may Heal 1."
 EndCard
 
 Character: SW/SE47-42
@@ -838,7 +943,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, you may Heal 1.
+Text Auto: When this card is placed on the stage from your hand, you may Heal 1.
 Auto:
 {
 
@@ -859,12 +964,12 @@ Auto:
 {
 
 }
-Text Auto: [send 1 of your other characters on stage to waiting room] When this card is placed on stage from hand, you may pay the cost. If you do, choose 1 climax from your waiting room, and add it to hand.
+Text Auto: [put 1 of your other characters on stage to waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 climax from your waiting room, and add it to hand.
 Auto:
 {
 
 }
-Text Auto: [(2) Put 1 card from your hand into waiting room] When this card's battle opponent is reversed, if the number of other characters you have is 3 or more, you may pay the cost. If you do, deal 2 damage to your opponent.
+Text Auto: [(2) Put 1 card from your hand into waiting room] When this card's battle opponent becomes reverse, if the number of other characters you have is 3 or more, you may pay the cost. If you do, deal 2 damage to your opponent.
 EndCard
 
 Climax: SW/SE47-44
@@ -894,10 +999,10 @@ Auto:
 {
 
 }
-Text Auto: When your other battling character is reversed, choose 1 of your characters, this card turn, it gets +500 power.
+Text Auto: When your other battling character becomes reverse, choose 1 of your characters, this card turn, it gets +500 power.
 Act:
 {
 
 }
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck, then send them to waiting room. For each climax among them, choose up to 1 character from your waiting room, and add it to hand.
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck, then put them to waiting room. For each climax among them, choose up to 1 character from your waiting room, and add it to hand.
 EndCard
