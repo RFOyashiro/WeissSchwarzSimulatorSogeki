@@ -69,6 +69,39 @@ Auto: OnSpecificClimaxPlay Medal Ceremony
 Text Auto: CxCombo When "Medal Ceremony" is placed on your climax area, if this card is in the center stage, choose 1 of your characters and that character gets +1000 power, +1 soul and the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 1 damage to your opponent."
 EndCard
 
+Character: SW/S49-003re
+Name "Secret Mission" Leia
+JPName “極秘任務”レイア
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 A New Hope
+Combo Medal Ceremony
+*Healer
+Auto: OnAttack
+{
+    If Climax Medal Ceremony
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give +1 soul and the effect.
+        GainSoul 1
+        GainEffect
+        {
+            Auto: OnDamageCanceled
+            {
+                *OptionalBurn(2)
+            }
+            TimesPerTurn 1
+            Text Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 2 damage to your opponent.
+        }
+    }
+}
+Text Auto: CxCombo When this card attacks, if "Medal Ceremony" is in your climax area, choose 1 of your characters and that character gets +1 soul and the following ability until end of turn. "Auto: This ability activates up to once per turn. When the damage dealt by this card is canceled, you may deal 2 damage to your opponent."
+EndCard
+
 Character: SW/S49-004
 Name "Lightsaber in Hand" Finn
 JPName “ライトセーバーを手に”フィン
@@ -108,6 +141,19 @@ Act: 1 RestSelf
     }
 }
 Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 Yellow character, reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SW/S49-005re
+Name "Scoundrel" Han Solo
+JPName “ならず者”ハン・ソロ
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 A New Hope
+*GiveMiddlePower(500,Any)
+*Act1RestSelfSalvageBrainstorm(Any)
 EndCard
 
 Character: SW/S49-006
@@ -195,6 +241,28 @@ Power 6500
 Soul 1
 Trait1 Return of the Jedi
 *CannotAttackHigherLevel
+EndCard
+
+Character: SW/S49-010re
+Name "Roar of Wookie" Chewbacca
+JPName “ウーキーの咆哮”チューバッカ
+Color Y
+Level 3
+Cost 2
+Power 9000
+Soul 2
+Trigger Soul
+Trait1 Return of the Jedi
+*EarlyPlay2OrLessClimax
+Cont: GiveSelf
+{
+    If StageContains 1 NameEquals "Scoundrel" Han Solo
+    {
+        GainPower 2000
+    }
+}
+Text Cont: If you have another '"Scoundrel" Han Solo', this card gets +2000 power.
+*Healer
 EndCard
 
 Character: SW/S49-011
@@ -661,6 +729,12 @@ Climax: SW/S49-032
 Name Medal Ceremony
 JPName Medal Ceremony
 *YellowStockSoul
+EndCard
+
+Climax: SW/S49-032re
+Name Medal Ceremony
+JPName Medal Ceremony
+*ChoiceClimax
 EndCard
 
 Climax: SW/S49-033
@@ -1184,6 +1258,40 @@ Auto: StartClimaxPhase
 Text Auto: FORCE [(1) Put 1 character from your hand to the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose 2 of your opponent's characters, then stand and exchange them.
 EndCard
 
+Character: SW/S49-054re
+Name Kylo Ren
+JPName カイロ・レン
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 The Force Awakens
+Auto: OnPlay
+{
+	PayCost 1 Discard 1 Any
+	{
+		OpponentMessage Choose a climax to keep in your waiting room.
+		OpponentSearchLocationForTargets WaitingRoom 1 1 IsClimax
+		ReverseTargets OpponentWaitingRoom
+		MoveCard OpponentDeck
+		ShuffleLocation OpponentDeck
+	}
+}
+Text Auto: [(1) Put 1 card from your hand into your waiting room] When this card is placed on the stage from your hand, you may pay the cost. Then, your opponent chooses 1 climax in their waiting room, returns all cards except that card from their waiting room to their deck, and shuffles their deck.
+Auto: OnSentFromStageToWaitingRoom
+{
+    Question Return this card to your hand ?
+    If Yes
+    {
+        MoveCard Hand
+        *PutCardFromWaitingRoomIntoStock(ColorIs Red)
+    }
+}
+Text Auto: When this card is placed in your waiting room from the stage, you may return this card to your hand. If you do, choose up to 1 Red card in your waiting room and put it in your stock.
+EndCard
+
 Character: SW/S49-055
 Name "Dark Sith Lord" Darth Vader
 JPName “シスの暗黒卿”ダース・ベイダー
@@ -1223,6 +1331,54 @@ Auto: StartClimaxPhase
     }
 }
 Text Auto: FORCE [(1) Put 1 character from your hand to the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose 2 of your opponent's characters, then stand and exchange them.
+EndCard
+
+Character: SW/S49-055re
+Name "Dark Sith Lord" Darth Vader
+JPName “シスの暗黒卿”ダース・ベイダー
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 The Empire Strikes Back
+Combo I am your father.
+Auto: OnPlay
+{
+    TargetLocation OpponentStage
+    SetXValue TargetCount
+    Peek Deck X
+    ChooseCardsFromTargets 0 1 Any
+    MoveCard Hand
+    PutTheRestIntoTheWaitingRoom
+}
+Text Auto: When this card is placed on the stage from your hand, look at up to the top X cards of your deck, choose up to 1 card among them, put it in your hand, and put the rest into your waiting room. X equals the number of your opponent's characters.
+Auto: OnAttack
+{
+    If Climax I am your father.
+    {
+        Peek OpponentDeck 2
+        If HasTarget
+        {
+            Message Choose the cards to put back on top.
+            ChooseCardsFromTargets 0 2 Any
+            MoveCard OpponentDeck
+            Reorder
+            PutTheRestIntoTheWaitingRoom
+        }
+        Peek Deck 2
+        If HasTarget
+        {
+            Message Choose the cards to put back on top.
+            ChooseCardsFromTargets 0 2 Any
+            MoveCard Deck
+            Reorder
+            PutTheRestIntoTheWaitingRoom
+        }
+    }
+}
+Text Auto: CxCombo When this card attacks, if "I am your father." is in your climax area, look at up to 2 cards from the top of your opponent's deck, put up to 2 from among them on top of their deck in any order, put the remaining cards in their waiting room, look at up to the top 2 cards of your deck, choose up to 2 cards among them, put them on top of your deck in any order and put the rest in the waiting room.
 EndCard
 
 Character: SW/S49-056
@@ -1365,6 +1521,28 @@ Auto: OnReverseOpponent
     }
 }
 Text Auto: CxCombo When this card's battle opponent becomes reverse, if "You are beaten." is in your climax area, you may choose a character in your waiting room and return it to your hand.
+EndCard
+
+Character: SW/S49-060re
+Name "Tainted by Darkness" Darth Vader
+JPName “悪に染まりし者”ダース・ベイダー
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 A New Hope
+Combo You are beaten.
+*PowerOnMyTurn(2000)
+Auto: OnAttack
+{
+    If Climax You are beaten. && StageContains 1 Other && ColorIs Red
+    {
+        Mill 2
+        SearchWaitingRoom IsCharacter && ColorIs Red && Compare ThatCardsLevel TotalLevel OrLess
+    }
+}
+Text Auto: CxCombo When this card attacks, if "You are beaten." is in your climax area and you have another Red character, put the top 2 cards of your deck in the waiting room, choose up to 1 level X or lower Red character in your waiting room and return it to your hand. X equals sum of levels of cards put in the waiting room by this card effect.
 EndCard
 
 Character: SW/S49-061
@@ -1751,6 +1929,26 @@ Quick
 Text Auto: When this card attacks, this card gets +X power until end of turn. X equals 500 times the number of your other Red characters.
 EndCard
 
+Character: SW/S49-075re
+Name "New Vanguard" Stormtrooper
+JPName “新たなる先兵”ストームトルーパー
+Color R
+Level 1
+Cost 0
+Power 3000
+Trigger Soul
+Soul 1
+Trait1 The Force Awakens
+Army
+Cont: GiveSelf
+{
+    SetXToNumberOfCharacters InLocation CenterStage && Other && NameEquals "New Vanguard" Stormtrooper
+    MultiplyXValue 2000
+    GainPower X
+}
+Text Cont: This card gets +2000 power for each of your other ""New Vanguard" Stormtrooper" in the center stage
+EndCard
+
 Character: SW/S49-076
 Name Scout Trooper
 JPName スカウト・トルーパー
@@ -1921,6 +2119,12 @@ JPName I am your father.
 *RedStockSoul
 EndCard
 
+Climax: SW/S49-083re
+Name I am your father.
+JPName I am your father.
+*DoorClimax
+EndCard
+
 Climax: SW/S49-084
 Name You are beaten.
 JPName You are beaten.
@@ -2015,6 +2219,40 @@ Auto: OnAttack
 Text Auto: CxCombo When this card attacks, if "The Force Awakens" is in your climax area, look at up to the top 2 cards of your deck, choose up to 1 cards among them and put it in your hand, put the rest into your waiting room, and this card gets the following ability until the end of your opponent's next turn. "Cont: The character facing this card gets -1 soul."
 EndCard
 
+Character: SW/S49-088re
+Name "Awakening" Rey
+JPName “覚醒”レイ
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 The Force Awakens
+Combo The Force Awakens
+*OnPlayGainPower(1500)
+Auto: OnPlay
+{
+    PayCost MarkerFromWaitingRoom 1 NameEquals Lightsaber
+    {
+        Burn 1
+    }
+}
+Text Auto: [Put a "Lightsaber" from your waiting room underneath this card as a face-up marker] When this card is placed on the stage from your hand, you may pay the cost. If you do, deal 1 damage to your opponent.
+Auto: OnEndOfAttack
+{
+    If Climax The Force Awakens
+    {
+        PayCost 2 Discard 2 Any
+        {
+            Stand
+        }
+    }
+}
+TimesPerTurn 1
+Text Auto: CxCombo [(2) Put 2 cards from your hand to the waiting room] This ability activates up to once per turn. At the end of this card's attack, if "The Force Awakens" is in your climax area, you may pay the cost. If you do, stand this card.
+EndCard
+
 Character: SW/S49-089
 Name "Dream-Chasing Youth" Luke
 JPName “夢を追う若者”ルーク
@@ -2048,6 +2286,46 @@ Auto: OnReverseOpponent
 }
 TimesPerTurn 1
 Text Auto: CxCombo [(2) Put a Blue character from your hand to the waiting room] This ability activates up to once per turn. When this card's battle opponent becomes reverse, if "A New Hope" is in your climax area and there's a marker underneath this card, you may pay the cost. If you do, stand this card.
+EndCard
+
+Character: SW/S49-089re
+Name "Dream-Chasing Youth" Luke
+JPName “夢を追う若者”ルーク
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 A New Hope
+Combo A New Hope
+Auto: OnPlay
+{
+    *OptionalHeal
+    SearchLocationForTargets WaitingRoom 0 1 NameEquals Lightsaber
+    If HasTarget
+    {
+        Marker_FaceUp
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock into waiting room, you may choose a "Lightsaber" in your waiting room and put it face up underneath this card as a marker.
+Auto: OnEndOfAttack
+{
+    If Climax A New Hope
+    {
+        PayCost SendMarker WaitingRoom
+        {
+            MillOpponentBottom 4
+            NarrowTargets IsClimax
+            SetXValue TargetCount
+            Repeat X
+            {
+                Burn 1
+            }
+        }
+    }
+}
+Text Auto: CxCombo [Put a marker from underneath this card in the waiting room] At the end of this card's attack, if "A New Hope" is in your climax area, you may pay the cost. If you do, put the bottom 4 cards of your opponent's deck into their waiting room, and deal 1 damage to your opponent X times. X is equal to the number of climax among those cards. 
 EndCard
 
 Character: SW/S49-090
@@ -2179,6 +2457,31 @@ Auto: OnAttack
     }
 }
 Text Auto: CxCombo When this card attacks, if "Return of the Jedi" is in your climax area, reveal the top card of your deck. If it's either a Blue character or "Lightsaber", put it in your hand.
+EndCard
+
+Character: SW/S49-094re
+Name "Moment of Counterattack" Luke
+JPName “反撃の瞬間”ルーク
+Color B
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Return of the Jedi
+Combo Return of the Jedi
+*CannotSideAttack
+Auto: OnAttack  
+{
+    If Climax Return of the Jedi
+    {
+        RevealUpTo Deck 4
+        ChooseCardsFromTargets 0 1 ColorIs Blue && IsCharacter || NameEquals Lightsaber
+        RevealTargets
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
+}
+Text Auto: CxCombo When this card attacks, if "Return of the Jedi" is in your climax area, look at up to the top 4 cards of your deck, choose up to 1 Blue character or 1 "Lightsaber" among those cards, reveal it, add it to your hand and put the rest into waiting room.
 EndCard
 
 Character: SW/S49-095
@@ -2344,6 +2647,19 @@ Trait1 The Force Awakens
 *OnPlayMill2RestIfClimax
 EndCard
 
+Character: SW/S49-100re
+Name "Beloved Partner" C-3PO
+JPName “愛すべきパートナー”C-3PO
+Color B
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 The Force Awakens
+*PowerOnMyTurn(4000)
+*GainPowerWhenAttackingLevel2(6000)
+EndCard
+
 Character: SW/S49-101
 Name Obi-Wan Kenobi
 JPName オビ=ワン・ケノービ
@@ -2452,6 +2768,26 @@ Auto: OnPlay
     }
 }
 Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with "FORCE", reveal it, put it in your hand, and shuffle your deck.
+EndCard
+
+Character: SW/S49-104re
+Name "Jedi Master" Yoda
+JPName “ジェダイ・マスター”ヨーダ
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 The Empire Strikes Back
+*PowerOnMyTurn(1500)
+Auto: OnSentFromStageToWaitingRoom
+{
+	PayCost Discard 1 Any
+	{
+		*Check4Add1Level1OrHigher
+	}
+}
+Text Auto: [Put 1 card from your hand into your waiting room] When this card is put into the waiting room from the stage, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card to add to your hand, and put the rest into the waiting room.
 EndCard
 
 Character: SW/S49-105
@@ -2702,6 +3038,29 @@ Effect:
 Text COUNTER You may draw 2 cards. If you do, discard 2 cards from your hand to the waiting room.\nChoose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
 
+Event: SW/S49-113re
+Name Lightsaber
+JPName Lightsaber
+Color B
+Level 1
+Cost 0
+Effect:
+{
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        Auto: OnAttack
+        {
+            GainSpecialEffect DoubleTrigger
+        }
+        Quick
+        Text Auto: When this card attacks, perform trigger check twice during this card attack's trigger Step.
+    }
+}
+Text Choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card attacks, perform trigger check twice during this card attack's trigger Step."
+EndCard
+
 Event: SW/S49-114
 Name Lightsaber
 JPName Lightsaber
@@ -2723,6 +3082,22 @@ Effect:
     *GiveCharacterPower(2000,Any)
 }
 Text COUNTER You may draw 2 cards. If you do, discard 2 cards from your hand to the waiting room.\nChoose 1 of your characters, and that character gets +2000 power until end of turn.
+EndCard
+
+Event: SW/S49-114re
+Name Lightsaber
+JPName Lightsaber
+Color B
+Level 2
+Cost 0
+Counter
+Effect:
+{
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to return to hand.
+    Bounce
+}
+Text COUNTER Choose 1 of your character and return it to your hand.
 EndCard
 
 Event: SW/S49-115
@@ -2787,6 +3162,12 @@ Climax: SW/S49-120
 Name Return of the Jedi
 JPName Return of the Jedi
 *BlueStockSoul
+EndCard
+
+Climax: SW/S49-120re
+Name Return of the Jedi
+JPName Return of the Jedi
+*GateClimax
 EndCard
 
 Character: SW/S49-P01
@@ -3155,6 +3536,39 @@ Auto: OnAttack
 Text Auto: CxCombo [(1)] When this card attacks, if "Escape From Jakku" is in your climax area, you may pay the cost. If you do, this card gets +2000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may draw a card."
 EndCard
 
+Character: SW/S49-T14re
+Name "For a Small Amount of Food" Rey
+JPName “ささやかな食事の為に”レイ
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 The Force Awakens
+Combo Escape From Jakku
+Cont: GiveSelf
+{
+    If StageContains 2 Other && ColorIs Blue
+    {
+        GainPower 2000
+    }
+}
+Text Cont: If the number of other Blue characters you have is 2 or more, this card gets +2000 power.
+Auto: OnSpecificClimaxPlay Escape From Jakku
+{
+    If StageContains 1 Other && ColorIs Blue
+    {
+        UntilEndOfOpponentsTurn
+        GainEffect
+        {
+            *OnAttackPay1ToDoubleTrigger
+        }
+        *GainBounceWhenFrontalAttacked
+    }
+}
+Text Auto: CxCombo When "Escape From Jakku" is placed in your climax area, if you have another Blue character, this card gets the following 2 abilities until the end of your opponent's next turn. "Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform the trigger check twice during this attack." "Auto: When this card is frontal attacked, you may return this card to your hand."
+EndCard
+
 Character: SW/S49-T15
 Name "Scavenger Days" Rey
 JPName “廃品回収の日々”レイ
@@ -3200,6 +3614,12 @@ Climax: SW/S49-T18
 Name Escape From Jakku
 JPName ジャクーからの脱出
 *BlueStockSoul
+EndCard
+
+Climax: SW/S49-T18re
+Name Escape From Jakku
+JPName ジャクーからの脱出
+*GateClimax
 EndCard
 
 Climax: SW/S49-T19
