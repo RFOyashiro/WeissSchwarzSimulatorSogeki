@@ -760,7 +760,7 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Ahsoka
-Auto:
+Auto: OnPlay
 {
     RevealUpTo Deck 4
     If HasTarget
