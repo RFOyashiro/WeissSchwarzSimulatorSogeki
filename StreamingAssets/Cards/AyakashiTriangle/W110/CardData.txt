@@ -543,7 +543,7 @@ Power 1000
 Soul 1
 Trait1 Omiko City
 Trait2 Exorcist Ninja
-Auto: OnPlay
+Auto: OnPlay|OnSentFromStageToWaitingRoom
 {
     PayCost SendFromHand 1 Clock IsCharacter && HasTrait Omiko City
     {
