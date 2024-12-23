@@ -2289,7 +2289,7 @@ Trait1 Music
 Trait2 L'Antica
 Cont: Alarm
 {
-    If Compare MyLevel 2 OrMore && StageContains 4 HasTrait Music
+    If Not Other && Compare MyLevel 2 OrMore && StageContains 4 HasTrait Music
     {
         GainEffect
         {

@@ -1380,7 +1380,7 @@ Trait1 Yuru Camp
 Trait2 Hard Worker
 Cont: Alarm
 {
-    If HasTrait Yuru Camp
+    If HasTrait Yuru Camp && InLocation Stage
     {
         GainEffect
         {

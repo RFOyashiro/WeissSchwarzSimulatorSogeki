@@ -810,7 +810,7 @@ Trait1 Gensokyo
 Trait2 Ghost
 Cont: Alarm
 {
-    If HasTrait Ghost
+    If HasTrait Ghost && InLocation Stage
     {
         GainEffect
         {
