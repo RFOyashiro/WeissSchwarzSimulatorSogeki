@@ -1082,13 +1082,14 @@ Text Auto: CxCombo [(1) Put 1 card from your hand into waiting room] When this c
 EndCard
 
 Character: SW/SE47-43
-Name "The controls are Perfect!" Grogu
+Name "The Controls are Perfect!" Grogu
 JPName “操縦はばっちり！”グローグー
 Color B
 Level 3
 Cost 2
 Power 10500
 Soul 2
+Trigger Soul
 Trait1 Mandalorian
 Auto: OnPlay
 {

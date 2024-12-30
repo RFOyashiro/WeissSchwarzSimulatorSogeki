@@ -591,6 +591,7 @@ Auto: OnAttack
     NarrowTargets ColorIs Blue || HasTrait The Rise of Skywalker
     If Compare TargetCount 2 OrMore
     {
+        TargetSelf
         GainPower 2000
     }
 }
