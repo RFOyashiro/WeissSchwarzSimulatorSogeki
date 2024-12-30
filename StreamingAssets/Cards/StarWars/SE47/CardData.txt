@@ -739,7 +739,7 @@ Text Auto: At the beginning of your opponent's attack phase, you may choose 1 ch
 EndCard
 
 Character: SW/SE47-30
-Name Obi-Wan
+Name "To Survive" Obi-Wan
 JPName “生き残るために”オビ=ワン
 Color B
 Level 0

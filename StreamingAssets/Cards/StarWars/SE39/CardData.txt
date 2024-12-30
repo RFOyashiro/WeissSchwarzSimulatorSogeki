@@ -705,7 +705,7 @@ Text Cont: This card gets +500 power for each of your other Blue or «A New Hope
 EndCard
 
 Character: SW/SE39-028
-Name Obi-Wan
+Name "Legendary Jedi" Obi-Wan
 JPName “伝説のジェダイ”オビ=ワン
 Color B
 Level 3
