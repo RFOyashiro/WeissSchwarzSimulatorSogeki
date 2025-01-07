@@ -2483,7 +2483,7 @@ Soul 1
 Trait1 Dragon
 Auto: OnUseThisCardsBackup
 {
-    TaretLocation OpponentStage
+    TargetLocation OpponentStage
     SetXValue TargetCount
     TargetBottom OpponentDeck X
     MoveCard WaitingRoom
