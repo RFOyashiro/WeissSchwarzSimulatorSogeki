@@ -1470,7 +1470,7 @@ Trait2 Magic
 Combo Magic Mirror Mephisto
 Auto: OnPlay
 {
-    SearchWaitingRoom IsCharacter && HasTrait Adventurer || NameEquals "Item" Knight Armor
+    SearchWaitingRoom IsCharacter && HasTrait Adventurer || NameEquals "Item" Knight's Armor
     TargetTop Deck 1
     Reveal
     IfTarget Compare ThatCardsLevel 0 OrLess && IsCharacter
@@ -1478,7 +1478,7 @@ Auto: OnPlay
         MoveCard Stock
     }
 }
-Text Auto: When this card is placed on the stage from your hand, choose up to 1 «Adventurer» character or '"Item" Knight Armor' in your waiting room, return it to hand, reveal the top card of your deck. If that card is a level 0 or lower character, put it into stock.
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 «Adventurer» character or '"Item" Knight's Armor' in your waiting room, return it to hand, reveal the top card of your deck. If that card is a level 0 or lower character, put it into stock.
 Auto: OnSpecificClimaxPlay Magic Mirror Mephisto
 {
     If InLocation CenterStage && HasMarkerWhere ColorIs Blue
@@ -1947,7 +1947,7 @@ Trait1 Adventurer
 Trait2 Exploration
 Cont: GiveAll
 {
-    If Not MyTurn && Other && InLocation CenterStage && HasTrait Adventurer
+    If Not MyTurn && Other && InLocation MiddleCenterStage && HasTrait Adventurer
     {
         GainPower 1000
     }
