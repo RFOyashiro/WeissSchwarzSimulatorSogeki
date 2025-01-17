@@ -2333,7 +2333,10 @@ Cont: Global
 Text Cont: This card's battle opponent does not become reverse.
 Auto: OnOpponentCardSentFromWaitingRoomToHand
 {
-    *OptionalBlindStock
+    IfOther IsCharacter
+    {
+        *OptionalBlindStock
+    }
 }
 Text Auto: When your opponent's character is returned from waiting room to their hand, you may put the top card of your deck in your stock.
 Act: 4 Discard 3 Any

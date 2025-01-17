@@ -1283,7 +1283,7 @@ Auto: OnFrontalAttacked
     PayCost 1 Discard 1 Any
     {
         TargetLocation Stage
-        NarrowTargets NameContains でしこ && Other
+        NarrowTargets NameContains なでしこ && Other
         ChooseCharacterFromTargets Choose a character to return to hand.
         AddSelfToTargets
         Bounce
