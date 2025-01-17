@@ -1357,17 +1357,17 @@ Trait1 Seraph
 Trait2 Unit 31A
 Auto: OnTriggerCheckClimax
 {
-    IfOther HasTrigger Gate
+    IfOther HasTrigger Door
     {
         *OptionalDrawDiscard
     }
 }
-Text Auto: When your character's trigger check reveals a climax with a gate trigger icon, you may draw 1 card. If you do, put 1 card from your hand into waiting room.
+Text Auto: When your character's trigger check reveals a climax with a Door trigger icon, you may draw 1 card. If you do, put 1 card from your hand into waiting room.
 Act: 1 RestSelf
 {
     Brainstorm 4
     TargetBrainstormed
-    NarrowTargets HasTrigger Gate
+    NarrowTargets HasTrigger Door
     SetXValue TargetCount
     Repeat X
     {
@@ -1377,7 +1377,7 @@ Act: 1 RestSelf
         MoveCard Hand
     }
 }
-Text Act: BRAINSTORM [(1) Rest this card] Flip over 4 cards from the top of your deck, and put them into your waiting room. For each climax with a gate trigger icon revealed, choose up to 1 character in your waiting room and return it to your hand.
+Text Act: BRAINSTORM [(1) Rest this card] Flip over 4 cards from the top of your deck, and put them into your waiting room. For each climax with a Door trigger icon revealed, choose up to 1 character in your waiting room and return it to your hand.
 EndCard
 
 Character: HBR/W103-057

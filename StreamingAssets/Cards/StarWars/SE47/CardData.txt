@@ -173,6 +173,7 @@ Level 1
 Cost 0
 Power 1500
 Soul 1
+Trigger Soul
 Trait1 Mandalorian
 Auto: OnUseThisCardsBackup
 {
@@ -201,6 +202,7 @@ Level 1
 Cost 0
 Power 1500
 Soul 1
+Trigger Soul
 Trait1 Boba Fett
 Auto: OnPlay
 {
@@ -222,6 +224,7 @@ Level 1
 Cost 0
 Power 3000
 Soul 1
+Trigger Soul
 Trait1 Mandalorian
 Combo Great Warriors
 *OnPlayGainPower(3000)
@@ -300,6 +303,7 @@ Level 2
 Cost 1
 Power 3000
 Soul 1
+Trigger Soul
 Trait1 Ahsoka
 *PowerOnMyTurn(10000)
 Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
@@ -317,6 +321,7 @@ Level 2
 Cost 1
 Power 4500
 Soul 1
+Trigger Soul
 Trait1 Cassian Andor
 *LevelAssist
 Act: RestSelf
@@ -337,6 +342,7 @@ Level 2
 Cost 1
 Power 5000
 Soul 1
+Trigger Soul
 Trait1 Mandalorian
 Auto: OnPlay
 {
@@ -363,6 +369,7 @@ Level 2
 Cost 1
 Power 5500
 Soul 1
+Trigger Soul
 Trait1 Boba Fett
 Cont: GiveSelf
 {
@@ -405,6 +412,7 @@ Level 3
 Cost 2
 Power 9500
 Soul 2
+Trigger Soul
 Trait1 Boba Fett
 *EarlyPlay2OrLessClimax
 Auto: OnPlay
@@ -447,6 +455,7 @@ Level 3
 Cost 2
 Power 10000
 Soul 2
+Trigger Soul
 Trait1 Boba Fett
 Combo Their Bond
 Auto: OnPlay
@@ -482,6 +491,7 @@ Level 3
 Cost 2
 Power 10500
 Soul 2
+Trigger Soul
 Trait1 Mandalorian
 Auto: OnPlay
 {
@@ -549,6 +559,7 @@ Level 1
 Cost 1
 Power 1500
 Soul 1
+Trigger Soul
 Trait1 Obi-Wan Kenobi
 Cont: GiveSelfEverywhere
 {
@@ -905,6 +916,7 @@ Level 1
 Cost 1
 Power 3500
 Soul 1
+Trigger Soul
 Trait1 Mandalorian
 Auto: OnPlay
 {
@@ -933,6 +945,7 @@ Level 2
 Cost 1
 Power 1000
 Soul 1
+Trigger Soul
 Trait1 Mandalorian
 *LevelAssist
 Act: RestSelf
@@ -968,6 +981,7 @@ Level 2
 Cost 1
 Power 2500
 Soul 1
+Trigger Soul
 Trait1 Boba Fett
 *MemoryBackup
 Backup 3000
@@ -981,6 +995,7 @@ Level 2
 Cost 1
 Power 4500
 Soul 1
+Trigger Soul
 Trait1 Mandalorian
 *LevelAssist
 Auto: OnPlay
@@ -1014,6 +1029,7 @@ Level 2
 Cost 1
 Power 7000
 Soul 1
+Trigger Soul
 Trait1 Obi-Wan Kenobi
 *GainPowerWhenAttackingLevel3(6000)
 Auto: OnReverseOpponent_Conditional Compare ThatCardsLevel 2 OrMore
@@ -1034,6 +1050,7 @@ Level 3
 Cost 2
 Power 9000
 Soul 2
+Trigger Soul
 Trait1 Ahsoka
 *EarlyPlay2OrLessClimax
 *GainPowerWithEnoughCharacters(1000,3,Any)
@@ -1065,6 +1082,7 @@ Level 3
 Cost 2
 Power 10000
 Soul 2
+Trigger Soul
 Trait1 Ahsoka
 Combo Meeting of Force Wielder
 *Healer
@@ -1132,6 +1150,7 @@ Level 1
 Cost 0
 Power 2500
 Soul 1
+Trigger Soul
 Trait1 Mandalorian
 *OnPlayGainPower(3000)
 *GainPowerWhenAttackingLevel2(6000)
