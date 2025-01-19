@@ -4777,7 +4777,7 @@ Auto: OnAttack
         PayCost 1
         {
             TargetLocation Stage
-            ChooseCardsFromTargets Choose a character to give the effect.
+            ChooseCharacterFromTargets Choose a character to give the effect.
             GainEffect
             {
                 Auto: OnDamageCanceled
