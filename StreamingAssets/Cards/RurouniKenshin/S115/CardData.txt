@@ -2345,10 +2345,7 @@ Act: 4 Discard 3 Any
     {
         Cont: GiveSelf
         {
-            If CardPosition Stand && InLocation Backstage
-            {
-                GainSpecialEffect CanDirectAttackFromBackstage
-            }
+            GainSpecialEffect CanDirectAttackFromBackstage
         }
     }
 }
