@@ -684,7 +684,7 @@ Power 2000
 Soul 1
 Trait1 Logicalist
 Trait2 Book
-Auto: OnPlay
+Auto: OnSentFromStageToWaitingRoom
 {
     PayCost Discard 1 Any
     {
