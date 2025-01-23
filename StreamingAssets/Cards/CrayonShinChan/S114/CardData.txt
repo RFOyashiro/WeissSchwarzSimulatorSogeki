@@ -1266,6 +1266,7 @@ Auto: StartOpponentAttackPhase
 }
 InMemory
 Text Auto: MEMORY [Turn this card face up card face down] If this card is in memory, at the beginning of your opponent's attack phase, you may pay the cost. IF so, choose 1 of your characters, that characters gets +1500 power until end of turn, choose 1 of your opponent's characters, and that character gets the following ability until end of turn. "Cont: This card cannot deal damage to players."
+Text <color=red> * This card is limited to 1 in JP format. </color>
 EndCard
 
 Climax: CS/S114-048

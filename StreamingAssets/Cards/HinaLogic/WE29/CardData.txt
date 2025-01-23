@@ -291,7 +291,7 @@ Auto: OnCustomEvent FusionActivated
 }
 Alarm
 Text Auto: ALARM If this card is on top of the clock and you are level 2 or higher, when you use "FUSION", search your deck for up to 1 character with either «Logicalist» or «Foreigner», reveal it, put it in your hand, and shuffle your deck.
-Text <color=red> * This card is banned in JP format. </color>
+Text <color=red> * This card is limited to 1 in JP format. </color>
 EndCard
 
 Character: HLL/WE29-12
