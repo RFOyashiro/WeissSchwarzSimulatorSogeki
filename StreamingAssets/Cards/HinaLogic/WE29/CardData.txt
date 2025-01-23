@@ -61,6 +61,7 @@ Auto: StartOpponentDrawPhase
     {
         TargetLocation Stage
         NarrowTargets HasTrait Logicalist|Foreigner
+        ChooseCharacterFromTargets Choose a character to give the effect.
         GainEffect
         {
             Cont: GiveFacing
