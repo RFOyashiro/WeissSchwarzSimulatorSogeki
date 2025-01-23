@@ -182,6 +182,7 @@ Act: MarkerOtherUnderThis 1 NameEquals Nina's New Foreigner, Michael
     SearchLocationForTargets Deck 0 1 NameEquals Proof of power, Nina
 	Fusion
 	ShuffleLocation Deck
+    TriggerCustomEvent FusionActivated
 }
 Text Act: FUSION [Put a "Nina's New Foreigner, Michael" from your stage face up underneath this card as a marker] Search your deck for up to 1 "Proof of power, Nina", put it in the position this card is in, put all markers from under this card as well as this card face up underneath that "Proof of power, Nina" as markers in any order, and shuffle your deck.
 EndCard
@@ -281,7 +282,7 @@ Power 2500
 Soul 1
 Trait1 Foreigner
 Trait2 Teacher
-Auto: OnUse FUSION
+Auto: OnCustomEvent FusionActivated
 {
     If Compare MyLevel 2 OrMore
     {
@@ -311,7 +312,7 @@ Cont: GiveAll
     }
 }
 Text Cont: During your turn, all your other characters with either «Logicalist» or «Foreigner» get +1000 power.
-Auto: OnUse FUSION
+Auto: OnCustomEvent FusionActivated
 {
     *OptionalDrawDiscard
 }
@@ -878,6 +879,7 @@ Act: MarkerOtherUnderThis 1 NameEquals Mahiro's New Foreigner, Dread
     SearchLocationForTargets Deck 0 1 NameEquals Firing All Shots!, Mahiro
 	Fusion
 	ShuffleLocation Deck
+    TriggerCustomEvent FusionActivated
 }
 Text Act: FUSION [Put a "Mahiro's New Foreigner, Dread" from your stage face up underneath this card as a marker] Search your deck for up to 1 "Firing All Shots!, Mahiro", put it in the position this card is in, put all markers from under this card as well as this card face up underneath that "Firing All Shots!, Mahiro" as markers in any order, and shuffle your deck.
 EndCard
@@ -907,6 +909,7 @@ Act: MarkerOtherUnderThis 1 NameEquals Yuko's New Foreigner, Styx
     SearchLocationForTargets Deck 0 1 NameEquals Yuko's Hospitality
 	Fusion
 	ShuffleLocation Deck
+    TriggerCustomEvent FusionActivated
 }
 Text Act: FUSION [Put a "Yuko's New Foreigner, Styx" from your stage face up underneath this card as a marker] Search your deck for up to 1 "Yuko's Hospitality", put it in the position this card is in, put all markers from under this card as well as this card face up underneath that "Yuko's Hospitality" as markers in any order, and shuffle your deck.
 EndCard
@@ -982,6 +985,7 @@ Act: MarkerOtherUnderThis 1 NameEquals Moment of Oath, Bel
     SearchLocationForTargets Deck 0 1 NameEquals Light of Healing, Lion
 	Fusion
 	ShuffleLocation Deck
+    TriggerCustomEvent FusionActivated
 }
 Text Act: FUSION [Put a "Moment of Oath, Bel" from your stage face up underneath this card as a marker] Search your deck for up to 1 "Light of Healing, Lion", put it in the position this card is in, put all markers from under this card as well as this card face up underneath that "Light of Healing, Lion" as markers in any order, and shuffle your deck.
 EndCard
@@ -1159,7 +1163,7 @@ Soul 1
 Trait1 Logicalist
 Trait2 Student Council
 *LevelAssistTrait(Logicalist|Foreigner)
-Auto: OnUse FUSION
+Auto: OnCustomEvent FusionActivated
 {
     *OptionalDrawDiscard
 }

@@ -238,6 +238,7 @@ Act: MarkerOtherUnderThis 1 NameEquals Foreigner Watching Over the Girl, Rosa
     SearchLocationForTargets Deck 0 1 NameEquals Full of Smiles, Lion
 	Fusion
 	ShuffleLocation Deck
+    TriggerCustomEvent FusionActivated
 }
 Text Act: FUSION [Put a "Foreigner Watching Over the Girl, Rosa" from your stage face up underneath this card as a marker] Search your deck for up to 1 "Full of Smiles, Lion", put it in the position this card is in, put all markers from underneath this card and this card face up underneath that "Full of Smiles, Lion" as markers in any order, and shuffle your deck.
 EndCard
@@ -750,6 +751,7 @@ Act: MarkerOtherUnderThis 1 NameEquals Sexy Foreigner, Qipao
     SearchLocationForTargets Deck 0 1 NameEquals Aiming for the Apex, Yayoi
 	Fusion
 	ShuffleLocation Deck
+    TriggerCustomEvent FusionActivated
 }
 Text Act: FUSION [Put a "Sexy Foreigner, Qipao" from your stage face up underneath this card as a marker] Search your deck for up to 1 "Aiming for the Apex, Yayoi", put it in the position this card is in, put all markers from underneath this card and this card face up underneath that "Aiming for the Apex, Yayoi" as markers in any order, and shuffle your deck.
 EndCard

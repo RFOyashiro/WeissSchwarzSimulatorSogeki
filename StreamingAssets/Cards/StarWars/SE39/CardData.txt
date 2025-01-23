@@ -816,6 +816,7 @@ Auto: StartClimaxPhase
         AddSavedToCurrentTargets
         Stand
         Exchange
+        TriggerCustomEvent ForceActivated
     }
 }
 Text Auto: FORCE [Put a Red character from your hand to the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose the character facing this card and 1 of your opponent's other level 0 or lower characters, then stand and exchange them.

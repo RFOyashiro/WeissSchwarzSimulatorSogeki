@@ -2735,6 +2735,7 @@ Auto: StartClimaxPhase
 				AddSavedToCurrentTargets
 				Stand
 				Exchange
+				TriggerCustomEvent ForceActivated
 			}
 		}
 	}
