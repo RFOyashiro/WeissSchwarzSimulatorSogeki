@@ -376,7 +376,7 @@ Cont: GiveSelf
     {
         GainEffect
         {
-            *GlobalPower(Knocker Up, 1000)
+            *GlobalPower(1000, Knocker Up)
         }
     }
 }
