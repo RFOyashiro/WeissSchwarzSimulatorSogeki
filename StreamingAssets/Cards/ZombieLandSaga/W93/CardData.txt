@@ -2382,14 +2382,14 @@ Counter
 Requirement StageContains 1 HasTrait Saga
 Effect: 
 {
-    PayCost Discard 1 Climax
+    PayCost Discard 1 IsClimax
     {
         TargetLocation AnyInBattle
-        ChooseCharacterFromTargets Choose a character in battle to give the following effect. "[C] This card cannot deal damage to players."
+        ChooseCharacterFromTargets Choose a character to give the effect.
         GainSpecialEffect CannotDealDamage
     }
 }
-Text [Counter] If you don't have a «Saga» Character, this card cannot be played from hand. You may choose a Climax from your hand and place it in the Waiting Room. If so, choose a Character in Battle, and for the turn that Character gains the following ability. "Cont:This card cannot deal damage to players."
+Text COUNTER If you don't have a «Saga» character, this card cannot be played from hand. You may choose 1 climax from your hand and put ut into waiting room. If you do, choose a character in battle, and that charcter gets the following ability until end of turn. "Cont: This card cannot deal damage to players."
 EndCard
 
 Event: ZLS/W93-096
