@@ -1159,6 +1159,26 @@ Soul 1
 Trait1 Music
 Trait2 Vivid BAD SQUAD
 Combo A Broken Bond
+Auto: OnPlay
+{
+    ScheduleEffectUntil StartClimaxPhase EndOfTurn
+    {
+        Effect:
+        {
+            TargetLocation Stage
+            NarrowTargets NameEquals In Order to Exceed "Rad Weekend", Akito Shinonome
+            ForEachTarget
+            {
+                PayCost 1 Send 1 Hand NameEquals In Order to Exceed "Rad Weekend", Akito Shinonome
+                {
+                    SearchWaitingRoom HasTrait Music
+                }
+            }
+        }
+        Text Auto: [(1) Return this card to your hand] During your turn when your other "Someday, Once Again......, Toya Aoyagi" is placed on the stage from your hand, at the beginning of your climax phase, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
+    }
+}
+Quick
 Auto: OnSpecificClimaxPlay A Broken Bond
 {
     GainPower 2500
@@ -1353,18 +1373,6 @@ Power 3500
 Soul 1
 Trait1 Music
 Trait2 Vivid BAD SQUAD
-Auto: StartClimaxPhase
-{
-    TargetLocation Stage
-    NarrowTargets NameEquals Someday, Once Again......, Toya Aoyagi
-    IfTarget PlayedThisTurn
-    {
-        PayCost 1 SendSelf Hand
-        {
-            SearchWaitingRoom HasTrait Music
-        }
-    }
-}
 Text Auto: [(1) Return this card to your hand] During your turn when your other "Someday, Once Again......, Toya Aoyagi" is placed on the stage from your hand, at the beginning of your climax phase, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
 *BondDiscard(Someday\, Once Again......\, Toya Aoyagi)
 EndCard

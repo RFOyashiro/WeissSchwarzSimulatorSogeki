@@ -2015,6 +2015,7 @@ Auto: OnClimaxPlay
     {
         TargetLocation Stage
         ChooseCharactersFromTargets 0 2 Choose up to 2 characters to give the effect.
+        GainPower 1000
         GainEffect
         {
             Auto: OnAttack
