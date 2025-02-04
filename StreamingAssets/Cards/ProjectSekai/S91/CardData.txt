@@ -1910,20 +1910,26 @@ Auto: OnAttack
 {
     If Climax Severed Strings
     {
-        TargetTop OpponentDeck 2
-    	ChooseCardsFromTargets 0 2 Any
-	    MoveCard OpponentDeck
-        Reorder
-        PutTheRestIntoTheWaitingRoom
-        Peek Deck 2
-		If HasTarget
-		{
-			Message Choose cards to put back on top.
-			ChooseCardsFromTargets 0 2 Any
-			MoveCard Deck
+        Peek OpponentDeck 2
+        If HasTarget
+        {
+            Message Choose the cards to put back on top.
+            AIChoice If Not IsClimax
+            ChooseCardsFromTargets 0 2 Any
+            MoveCard OpponentDeck
             Reorder
-			PutTheRestIntoTheWaitingRoom
-		}
+            PutTheRestIntoTheWaitingRoom
+        }
+        Peek Deck 2
+        If HasTarget
+        {
+            Message Choose the cards to put back on top.
+            AIChoice If Not IsClimax
+            ChooseCardsFromTargets 0 2 Any
+            MoveCard Deck
+            Reorder
+            PutTheRestIntoTheWaitingRoom
+        }
     }
 }
 Text Auto: CxCombo When this card attacks, if "Severed Strings" is in your climax area, look at up to the top 2 cards of your opponent's deck, choose up to 2 cards among them and put them on top of the deck in any order, put the rest in their waiting room, look at up to the top 2 cards of your deck, choose up to 2 cards among them and put them on top of your deck in any order, and put the rest into your waiting room.
