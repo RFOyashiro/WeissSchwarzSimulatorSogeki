@@ -3000,6 +3000,7 @@ Cont: GiveSelf
                     Change
                 }
             }
+            Text Act: [(1) Put 1 card from your hand into waiting room, put this card into waiting room] Choose up to 1 'Uneven Sisters, Yohane & Lailaps' from your hand and put it in the position this card was in.
         }
     }
 }
@@ -3008,7 +3009,7 @@ Auto: OnSentFromStageToWaitingRoom
 {
     PayCost Discard 1 Any
     {
-        *Check4Add1Level1OrHigher
+        *Check4Add1(Sound of Heart)
     }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed from the stage to the waiting room, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Sound of Heart» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
@@ -3363,7 +3364,7 @@ Auto: OnPlay|PlacedBy Joy of Meeting Friends, Yohane
 Text Auto: When this card is placed on the stage from your hand or placed by the effect of the CxCombo of "Joy of Meeting Friends, Yohane" to the stage, you may put the top card of your clock in the waiting room.
 Auto: OnSpecificClimaxPlay We Will Always Be Together
 {
-    If Compare MyLevel 2 OrMore && StageContains 1 NameEquals Joy of Meeting Friends, Yohane
+    If Compare MyLevel 2 OrMore && StageContains 1 NameEquals Uneven Sisters, Yohane & Lailaps
     {
         PayCost 1 Discard 1 IsCharacter && HasTrait Sound of Heart
         {

@@ -1330,7 +1330,7 @@ Auto: OnClimaxPlay
             *PutCardFromWaitingRoomIntoStock(HasTrait Music)
             TargetTop Deck 1
             Reveal
-            IfTarget Compare ThatCardsLevel 0 OrLess
+            IfTarget Compare ThatCardsLevel 0 OrLess && IsCharacter
             {
                 MoveCard Stock
             }
