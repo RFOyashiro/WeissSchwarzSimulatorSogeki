@@ -813,7 +813,7 @@ Auto: OnSpecificClimaxPlay Dyeing Everything in Black
         }
     }
 }
-Text Auto: CxCombo When "Dyeing Everything in Black" is placed on your climax area, if this card is in the center stage, put the top 3 cards of your deck in the waiting room. For each "Black Soldier" put in the waiting room this way, choose up to 3 cards in your opponent's waiting room and return them to the deck, and your opponent shuffles that deck.
+Text Auto: CxCombo When "Dyeing Everything in Black" is placed on your climax area, if this card is in the center stage, put the top 3 cards of your deck in the waiting room. For each "Black Soldier" put in the waiting room this way, choose up to 3 cards in your opponent's waiting room and return them to their deck, and your opponent shuffles that deck.
 Auto: OnOtherOpponentReversed
 {
     If MyTurn

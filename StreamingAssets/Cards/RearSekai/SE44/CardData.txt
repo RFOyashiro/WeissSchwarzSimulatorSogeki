@@ -16,7 +16,7 @@ Auto: OnPlay
         SearchDeck IsCharacter && Compare ThatCardsLevel 1 OrLess
     }
 }
-Text Auto: [(1) Put the top card of your deck into clock] When this card is placed on stage from hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, add it to hand, and shuffle your deck afterwards.
+Text Auto: [(1) Put the top card of your deck into clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it, add it to your hand, and shuffle your deck.
 EndCard
 
 Character: RSK/SE44-02
@@ -29,6 +29,7 @@ Power 4000
 Soul 1
 Trait1 Melvania
 Trait2 Elf
+Combo Spiritual Bow
 Cont: GiveSelf
 {
     If MyTurn && AllYourCharacters HasTrait Melvania|Rear
@@ -39,7 +40,7 @@ Cont: GiveSelf
 Text Cont: During your turn, if all of your characters are «Melvania» or «Rear», this card gets +2000 power.
 Auto: StartEncoreStep
 {
-    If Climax 027 && InLocation CenterStage && StageContains 2 Other
+    If Climax Spiritual Bow && InLocation CenterStage && StageContains 2 Other
     {
         PayCost Resonate Adventurer, Narumi
         {
@@ -47,7 +48,7 @@ Auto: StartEncoreStep
         }
     }
 }
-Text Auto: CxCombo RESONATE [Reveal {3/2 Narumi - 04 or 31} from your hand] At the beginning of your encore step, if "027" is in your climax area, this card is in your center stage, and the number of other characters you have is have 2 or more you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 card among them, add it to hand, and send the rest to waiting room.
+Text Auto: CxCombo RESONATE [Reveal a "Adventurer, Narumi" from your hand] At the beginning of your encore step, if "Spiritual Bow" is in your climax area, this card is in your center stage, and the number of other characters you have is 2 or more, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 card among them, add it to hand, and put the rest into waiting room.
 EndCard
 
 Character: RSK/SE44-03
@@ -61,21 +62,17 @@ Power 7500
 Soul 2
 Trait1 Melvania
 Trait2 Older Sister
-Cont:
+*EarlyPlay4OrMore(Melvania|Rear)
+Auto: OnPlay
 {
-
+    If StageContains 2 Other && HasTrait Melvania|Rear
+    {
+        GainPower 4000
+        *OptionalDrawDiscard
+    }
 }
-Text Cont: If the number of «Melvania» or «Rear» characters you have is 4 or more, this card gets -1 level in hand.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on stage from hand, if you have 2 or more other «Melvania» or «Rear» charaters, this card turn, this card gets +4000 power, then you may draw 1 card. If you do, put 1 card from your hand into waiting room.
-Auto:
-{
-
-}
-Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on stage from hand, you may pay the cost. If you do, put the top card of your clock into stock.
+Text Auto: When this card is placed on the stage from your hand, if you have 2 or more other «Melvania» or «Rear» charaters, this card gets +4000 power until end of turn and you may draw 1 card. If you do, put 1 card from your hand into waiting room.
+*StockHealer
 EndCard
 
 Character: RSK/SE44-04
@@ -89,16 +86,38 @@ Power 10000
 Soul 2
 Trait1 Melvania
 Trait2 Weapon
-Auto:
+Combo Her Adventures
+*Healer
+Auto: OnAttack
 {
-
+    If Climax Her Adventures && StageContains 2 Other
+    {
+        TargetLocation Level
+        NarrowTargets IsCharacter
+        SaveTargets
+        If LocationContains Hand 2 Any &&& LocationContains Hand 1 Not NameNotInSavedTargets
+        {
+            PayCost 0
+            {
+                Message Choose the character to reveal.
+                SearchLocationForTargets Hand 1 1 Not NameNotInSavedTargets
+                SaveTargets
+                Message Choose the card to discard.
+                SearchLocationForTargets Hand 1 1 Not InSavedTargets
+                MoveCard WaitingRoom
+                LoadTargets
+                RevealTargets
+                Message Choose up to 2 cards to put into deck.
+                SearchLocationForTargets OpponentWaitingRoom 0 2 Any
+                RevealTargets
+                MoveCard OpponentDeck
+                ShuffleLocation OpponentDeck
+                Burn 1
+            }
+        }
+    }
 }
-Text Auto: When this card is placed on stage from hand, you may heal 1.
-Auto:
-{
-
-}
-Text Auto: CxCombo EXPERIENCE RESONATE [Put 1 card from your hand into waiting room, Reveal 1 character from your hand with the same card name as a character in your level] When this card attacks, if the number of other characters you have is the Choice climax (28) in your climax Area, and you have 2 or more, you may pay the cost. If you do, choose up to 2 cards in your opponent’s waiting room, your opponent shuffles them into their deck, then deal 1 damage to your opponent. *Note: Same card name as Blue 3/2
+Text Auto: CxCombo EXPERIENCE RESONATE [Put 1 card from your hand into waiting room, reveal 1 character from your hand with the same card name as a character in your level] When this card attacks, if "Her Adventures" is in your climax area and the number of other characters you have is 2 or more, you may pay the cost. If you do, choose up to 2 cards in your opponent's waiting room, return them to their deck, your opponent shuffles that deck and deal 1 damage to your opponent.
 EndCard
 
 Character: RSK/SE44-05
@@ -111,16 +130,12 @@ Power 1500
 Soul 1
 Trait1 Melvania
 Trait2 Farmer
-Auto:
+Auto: StartClimaxPhase
 {
-
+    *GiveCharacterPower(500, Melvania|Rear)
 }
-Text Auto: At the beginning of your climax phase, choose 1 of your «Melvania» or «Rear» characters, this card turn, it gets +500 power.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck, then send them to waiting room. For each climax among them, search your deck for up to 1 «Melvania» or «Rear» character, reveal it, add it to hand, and shuffle your deck afterwards.
+Text Auto: At the beginning of your climax phase, choose 1 of your «Melvania» or «Rear» characters, and that character gets +500 power until end of turn.
+*Act1RestSelfSearchBrainstorm(Melvania|Rear)
 EndCard
 
 Character: RSK/SE44-06
@@ -133,16 +148,31 @@ Power 4000
 Soul 1
 Trait1 Melvania
 Trait2 Alchemist
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn && StageContains 2 Other && HasTrait Melvania|Rear
+    {
+        GainPower 2000
+        GainEffect
+        {
+            *GainPowerWhenAttackingLevel2(6000)
+        }
+    }
 }
-Text Cont: During your turn, if the number of other «Melvania» or «Rear» characters you have is 2 or more, this card gets +2000 power and the following ability, "Auto: When this card attacks, if the level of the character across from this card is 2, this card turn, this card gets +6000 power."
-Auto:
-{
-
+Text Cont: During your turn, if the number of other «Melvania» or «Rear» characters you have is 2 or more, this card gets +2000 power and the following ability, "Auto: When this card attacks, if the character facing this card is level 2, this card gets +6000 power until end of turn."
+Auto: OnPlay
+{ 
+    PayCost Send 1 WaitingRoom Other && HasTrait Melvania|Rear
+    {
+        TargetTop Deck 1
+        Reveal
+        IfTarget IsCharacter && HasTrait Melvania|Rear || NameEquals Mirror of the Law Demon
+        {
+            MoveCard Hand
+        }
+    }
 }
-Text Auto: [send 1 of your other «Melvania» or «Rear» characters on stage to waiting room] When this card is placed on stage from hand, you may pay the cost. If you do, reveal the top card of your deck. If that card is a «Melvania» or «Rear» character or {Unknown event}, add it to hand.
+Text Auto: [Put 1 of your other «Melvania» or «Rear» characters into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck. If that card is a «Melvania» or «Rear» character or a "Mirror of the Law Demon", put it in your hand.
 EndCard
 
 Character: RSK/SE44-07
@@ -155,11 +185,14 @@ Power 5000
 Soul 1
 Trait1 Melvania
 Trait2 Merchant
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any &&& Resonate Adventurer, Narumi
+    {
+        *Check4Add1(Melvania|Rear)
+    }
 }
-Text Auto: RESONATE [Put 1 card from your hand into waiting room, Reveal {3/2 Narumi - 04 or 31} from your hand] When this card is placed on stage from hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Melvania» or «Rear» character among them, reveal it, add it to hand, send the rest to waiting room.
+Text Auto: RESONATE [Put 1 card from your hand into waiting room, reveal a "Adventurer, Narumi" from your hand] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Melvania» or «Rear» character among them, reveal it, add it to hand, put the rest into waiting room.
 EndCard
 
 Character: RSK/SE44-08
@@ -173,21 +206,23 @@ Power 4000
 Soul 1
 Trait1 Melvania
 Trait2 Older Sister
-Cont:
+*GlobalPower(1000,Melvania|Rear)
+Auto: StartOpponentAttackPhase
 {
-
+    PayCost 2 Discard 1 Any
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen
+        ChooseCharacterFromTargets Choose a character to give -2 souls.
+        LoseSoul 2
+    }
 }
-Text Cont: All of your other «Melvania» or «Rear» characters get +1000 power.
-Auto:
+Text Auto: [(2) Put 1 card from your hand into waiting room] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your opponent's characters, and that character gets -2 soul until end of turn.
+Act: Resonate Adventurer, Narumi &&& RestSelf
 {
-
+    *GiveCharacterPower(2000,Any)
 }
-Text Auto: [(2) Put 1 card from your hand into waiting room] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your opponent's characters, this card turn, it gets -2 soul.
-Act:
-{
-
-}
-Text Act: RESONATE [Reveal {3/2 Narumi - 04 or 31} from your hand, rest this card] Choose 1 of your characters, this card turn, it gets +2000 power.
+Text Act: RESONATE [Reveal a "Adventurer, Narumi" from your hand, rest this card] Choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: RSK/SE44-09
@@ -201,16 +236,54 @@ Power 5000
 Soul 1
 Trait1 Melvania
 Trait2 Weapon
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 2 Other && HasTrait Melvania|Rear
+    {
+        GainPower 5000
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
-Text Cont: If the number of other «Melvania» or «Rear» characters you have is 2 or more, this card gets +5000 power and "Auto: ENCORE [Put 1 character]".
-Auto:
+Text Cont: If the number of other «Melvania» or «Rear» characters you have is 2 or more, this card gets +5000 power and "Auto: ENCORE [Put 1 character from your hand into waiting room]".
+Auto: StartClimaxPhase
 {
-
+    TargetLocation Level
+    NarrowTargets IsCharacter
+    SaveTargets
+    If LocationContains Hand 1 Not NameNotInSavedTargets
+    {
+        PayCost 0
+        {
+            Message Choose the character to reveal.
+            SearchLocationForTargets Hand 1 1 Not NameNotInSavedTargets
+            RevealTargets
+            TargetSelf
+            GainPower 1000
+            GainEffect
+            {
+                Auto: OnReverseOpponent
+                {
+                    TargetBattleOpponent
+                    IfTarget OnStage
+                    {
+                        Question Put the battle opponent into your opponent's stock?
+                        If Yes
+                        {
+                            MoveCard OpponentStock
+                            TargetBottom OpponentStock 1
+                            MoveCard OpponentWaitingRoom
+                        }
+                    }
+                }
+                Text Auto: When this card is card's battle opponent becomes reverse, you may put that character into stock. If you do, put the bottom card of your opponent's stock into waiting room.
+            }
+        }
+    }
 }
-Text Auto: EXPERIENCE RESONATE [Reveal 1 character from your hand with the same card name as a character in your level] At the beginning of your climax phase, you may pay the cost. If you do, this card turn, this card gets +1000 power and the following ability, "Auto: When this card is card’s battle opponent is reversed, you may send that character to stock. If you do, put the bottom card of your opponent's stock into waiting room.
+Text Auto: EXPERIENCE RESONATE [Reveal 1 character from your hand with the same card name as a character in your level] At the beginning of your climax phase, you may pay the cost. If you do, this card turn, this card gets +1000 power and the following ability, "Auto: When this card is card's battle opponent becomes reverse, you may put that character into stock. If you do, put the bottom card of your opponent's stock into waiting room."
 EndCard
 
 Character: RSK/SE44-10
@@ -224,16 +297,31 @@ Power 9000
 Soul 2
 Trait1 Melvania
 Trait2 Elf
-Auto:
+Auto: OnPlay
 {
-
+    *OptionalHeal
+    GainPower 1500
 }
-Text Auto: When this card is placed on stage from hand, you may Heal 1, then this card turn, this card gets +1500 power.
-Auto:
+Text Auto: When this card is placed on the stage from your hand, you may put the top card of your clock into the waiting room and this card gets +1500 power until end of turn.
+Auto: OnAttack
 {
-
+    If StageContains 1 Other && HasTrait Melvania|Rear
+    {
+        PayCost 1 Discard 1 Any
+        {
+            Peek OpponentDeck 2
+            If HasTarget
+            {
+                Message Choose the cards to put back on top.
+                ChooseCardsFromTargets 0 2 Any
+                MoveCard OpponentDeck
+                Reorder
+                PutTheRestIntoTheWaitingRoom
+            }
+        }
+    }
 }
-Text Auto: [(1) Put 1 card from your hand into waiting room] When this card attacks, if you have another «Melvania» or «Rear» character, you may pay the cost. If you do, look at up to the top 2 cards of your opponent's deck, choose up to 2 cards among them, put them back on top of your opponent's deck in any order, then send the rest to waiting room.
+Text Auto: [(1) Put 1 card from your hand into waiting room] When this card attacks, if you have another «Melvania» or «Rear» character, you may pay the cost. If you do, look at up to the top 2 cards of your opponent's deck, choose up to 2 cards among them, put them back on top of your opponent's deck in any order, and put the rest into waiting room.
 EndCard
 
 Character: RSK/SE44-11
@@ -246,16 +334,22 @@ Power 1500
 Soul 1
 Trait1 Rear
 Trait2 Student
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContainsOrLess Stock 3 Any
+    {
+        GainPower 2000
+    }
 }
-Text Cont: If you have 3 or less stock, this card gets +2000 power.
-Auto:
+Text Cont: If you have 3 or less cards in stock, this card gets +2000 power.
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsCharacter && HasTrait Melvania|Rear
+    {
+        SearchDeck NameEquals Adventurer, Narumi && ColorIs Yellow
+    }
 }
-Text Auto: [Put 1 «Melvania» or «Rear» character] When this card is placed on stage from hand, you may pay the cost. If you do, search your deck for up to 1 Yellow {3/2 Narumi - 04}, reveal it, add it to hand, and shuffle your deck afterwards.
+Text Auto: [Put 1 «Melvania» or «Rear» character from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 Yellow "Adventurer, Narumi", reveal it, add it in your hand, and shuffle your deck.
 EndCard
 
 Character: RSK/SE44-12
@@ -268,16 +362,15 @@ Power 1500
 Soul 1
 Trait1 Melvania
 Trait2 Merchant
-Auto:
+*OnPlayCheckTopAddDiscard(Melvania|Rear)
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsCharacter && HasTrait Melvania|Rear
+    {
+        DrawCard
+    }
 }
-Text Auto: When this card is placed on stage from hand, reveal the top card of your deck. If that card is a «Melvania» or «Rear» character, add it to hand and put 1 card from your hand into waiting room.
-Auto:
-{
-
-}
-Text Auto: [Put 1 «Melvania» or «Rear» character] When this card placed on stage from hand, you may pay the cost. If you do, draw 1 card.
+Text Auto: [Put 1 «Melvania» or «Rear» character from your hand into waiting room] When this card placed on stage from hand, you may pay the cost. If you do, draw 1 card.
 EndCard
 
 Character: RSK/SE44-13
@@ -299,7 +392,7 @@ Act:
 {
 
 }
-Text Act: [(1) Put 1 card from your hand into waiting room, rest this card] Look at up to the top 3 cards of your deck, choose up to 1 card among them, add it to hand, and send the rest to waiting room.
+Text Act: [(1) Put 1 card from your hand into waiting room, rest this card] Look at up to the top 3 cards of your deck, choose up to 1 card among them, add it to hand, and put the rest into waiting room.
 EndCard
 
 Character: RSK/SE44-14
@@ -316,12 +409,12 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, if you have another «Melvania» or «Rear» character, this card turn, this card gets +2000 power.
+Text Auto: When this card is placed on the stage from your hand, if you have another «Melvania» or «Rear» character, this card turn, this card gets +2000 power.
 Auto:
 {
 
 }
-Text Auto: [(1) Rest 1 of your other standing «Melvania» or «Rear» characters] During the turn this card is placed on stage from hand, when this card's battle opponent is reversed, you may pay the cost. If you do, search your deck for up to 1 «Melvania» or «Rear» character, reveal it, add it to hand, and shuffle your deck afterwards.
+Text Auto: [(1) Rest 1 of your other standing «Melvania» or «Rear» characters] During the turn this card is placed on stage from hand, when this card's battle opponent is reversed, you may pay the cost. If you do, search your deck for up to 1 «Melvania» or «Rear» character, reveal it, add it to hand, and shuffle your deck.
 EndCard
 
 Character: RSK/SE44-15
@@ -362,7 +455,7 @@ Auto:
 {
 
 }
-Text Auto: [(1) Put 1 card from your hand into waiting room, and send 1 of your characters from stage to waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent's level, and send it to stock. If you do, put the bottom card of your opponent's stock into waiting room.
+Text Auto: [(1) Put 1 card from your hand into waiting room, and put 1 of your characters from stage to waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than your opponent's level, and put it to stock. If you do, put the bottom card of your opponent's stock into waiting room.
 Act:
 {
 
@@ -429,7 +522,7 @@ Auto:
 {
 
 }
-Text Auto: [(1) Put 1 «Melvania» or «Rear» character] When this card is placed on stage from hand or sent from stage to waiting room, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 card among them, add it to hand, and send the rest to waiting room.
+Text Auto: [(1) Put 1 «Melvania» or «Rear» character] When this card is placed on the stage from your hand or sent from stage to waiting room, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 card among them, add it to hand, and put the rest into waiting room.
 EndCard
 
 Character: RSK/SE44-20
@@ -446,7 +539,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, choose 1 of your «Melvania» or «Rear» characters, this card turn, it gets +1500 power.
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your «Melvania» or «Rear» characters, this card turn, it gets +1500 power.
 Act:
 {
 
@@ -468,12 +561,12 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, mill 2, and this card turn, this card gets +X power. X equals the number of «Melvania» or «Rear» characters milled times 1000.
+Text Auto: When this card is placed on the stage from your hand, mill 2, and this card turn, this card gets +X power. X equals the number of «Melvania» or «Rear» characters milled times 1000.
 Auto:
 {
 
 }
-Text Auto: [(1) Put 1 card from your hand into waiting room] When this card is placed on stage from hand, you may pay the cost. If you do, choose 1 «Melvania» or «Rear» character from your waiting room, add it to hand, then choose 1 of your other «Melvania» or «Rear» characters, this card turn, it gets +1000 power.
+Text Auto: [(1) Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 «Melvania» or «Rear» character from your waiting room, add it to hand, then choose 1 of your other «Melvania» or «Rear» characters, this card turn, it gets +1000 power.
 EndCard
 
 Character: RSK/SE44-22
@@ -490,7 +583,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, you may mill 3.
+Text Auto: When this card is placed on the stage from your hand, you may mill 3.
 Auto:
 {
 
@@ -512,7 +605,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is reversed, you may reveal up to 3 cards from the top of your deck. If you revealed 1 or more, choose up to 1 «Melvania» or «Rear» character among them, add it to hand, send the rest to waiting room, and put 1 card from your hand into waiting room.
+Text Auto: When this card is reversed, you may reveal up to 3 cards from the top of your deck. If you revealed 1 or more, choose up to 1 «Melvania» or «Rear» character among them, add it to hand, put the rest into waiting room, and put 1 card from your hand into waiting room.
 EndCard
 
 Character: RSK/SE44-24
@@ -529,7 +622,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, choose up to 1 of your opponent's characters, send it to memory, then your opponent places that character on stage in any slot.
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 of your opponent's characters, put it to memory, then your opponent places that character on stage in any slot.
 Auto:
 {
 
@@ -552,12 +645,12 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, if you have another «Melvania» or «Rear» character, this card turn, this card gets +4000 power.
+Text Auto: When this card is placed on the stage from your hand, if you have another «Melvania» or «Rear» character, this card turn, this card gets +4000 power.
 Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, if the number of other «Melvania» or «Rear» characters you have is 4 or more, choose 1 «Melvania» or «Rear» character in your waiting room, you may send it to stock.
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Melvania» or «Rear» characters you have is 4 or more, choose 1 «Melvania» or «Rear» character in your waiting room, you may put it to stock.
 EndCard
 
 Event: RSK/SE44-26
@@ -604,7 +697,7 @@ Act:
 {
 
 }
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck, then send them to waiting room. For each climax among them, choose up to 1 character from your waiting room, and add it to hand.
+Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck, then put them to waiting room. For each climax among them, choose up to 1 character from your waiting room, and add it to hand.
 EndCard
 
 Character: RSK/SE44-30
@@ -621,7 +714,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, this card turn, this card gets +1500 power.
+Text Auto: When this card is placed on the stage from your hand, this card turn, this card gets +1500 power.
 Auto:
 {
 
@@ -644,7 +737,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, you may heal 1.
+Text Auto: When this card is placed on the stage from your hand, you may heal 1.
 Auto:
 {
 
@@ -733,7 +826,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, choose up to 1 «Melvania» or «Rear» character in your waiting room, send it to stock, then choose up to 1 of your opponent's characters, send it to memory, then at the beginning of the encore step, your opponent places that character on stage in any slot.
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 «Melvania» or «Rear» character in your waiting room, put it to stock, then choose up to 1 of your opponent's characters, put it to memory, then at the beginning of the encore step, your opponent places that character on stage in any slot.
 EndCard
 
 Character: RSK/SE44-36
@@ -761,7 +854,7 @@ Auto:
 {
 
 }
-Text Auto: During the turn this card is placed on stage from hand, when this card's battle opponent is reversed, look at up to the top 4 cards of your deck, choose up to 2 «Melvania» or «Rear» characters among them, reveal them, add them to hand, and send the rest to waiting room.
+Text Auto: During the turn this card is placed on stage from hand, when this card's battle opponent is reversed, look at up to the top 4 cards of your deck, choose up to 2 «Melvania» or «Rear» characters among them, reveal them, add them to hand, and put the rest into waiting room.
 EndCard
 
 Character: RSK/SE44-37
@@ -784,7 +877,7 @@ Auto:
 {
 
 }
-Text Auto: [(3) Put 1 card from your hand into waiting room, send 1 of your other characters from stage to waiting room] This card ability activates up to once per turn. During the turn this card is placed on stage from hand, at the end of this card's attack, you may pay the cost. If you do, stand this card.
+Text Auto: [(3) Put 1 card from your hand into waiting room, put 1 of your other characters from stage to waiting room] This card ability activates up to once per turn. During the turn this card is placed on stage from hand, at the end of this card's attack, you may pay the cost. If you do, stand this card.
 EndCard
 
 Character: RSK/SE44-38
@@ -806,7 +899,7 @@ Auto:
 {
 
 }
-Text Auto: [Put 1 «Melvania» or «Rear» character] When this card is placed on stage from hand, you may pay the cost. If you do, search your deck for up to 1 Blue {3/2 Narumi - 31}, reveal it, add it to hand, and shuffle your deck afterwards.
+Text Auto: [Put 1 «Melvania» or «Rear» character] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 Blue {3/2 Narumi - 31}, reveal it, add it to hand, and shuffle your deck .
 EndCard
 
 Character: RSK/SE44-39
@@ -850,12 +943,12 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, this card turn, this card gets +X power. X equals the number of your «Melvania» or «Rear» characters times 500.
+Text Auto: When this card is placed on the stage from your hand, this card turn, this card gets +X power. X equals the number of your «Melvania» or «Rear» characters times 500.
 Auto:
 {
 
 }
-Text Auto: [(1) Put 1 climax] When this card is placed on stage from hand, you may pay the cost. If you do, choose 1 climax from your waiting room, and add it to hand.
+Text Auto: [(1) Put 1 climax] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 climax from your waiting room, and add it to hand.
 EndCard
 
 Character: RSK/SE44-41
@@ -873,7 +966,7 @@ Auto:
 {
 
 }
-Text Auto: When you use this card's BACKUP, send X cards from the bottom of your opponent's deck to waiting room. X equals the number of your «Melvania» or «Rear» characters.
+Text Auto: When you use this card's BACKUP, put X cards from the bottom of your opponent's deck to waiting room. X equals the number of your «Melvania» or «Rear» characters.
 Act:
 {
 
@@ -901,12 +994,12 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, if the number of other «Melvania» or «Rear» characters you have is 2 or more, you may draw 2 cards. If you do, discard 2 cards.
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Melvania» or «Rear» characters you have is 2 or more, you may draw 2 cards. If you do, discard 2 cards.
 Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, if the number of other «Melvania» or «Rear» characters you have is 4 or more, choose 1 «Melvania» or «Rear» character in your waiting room, you may send it to stock.
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Melvania» or «Rear» characters you have is 4 or more, choose 1 «Melvania» or «Rear» character in your waiting room, you may put it to stock.
 EndCard
 
 Character: RSK/SE44-43
@@ -947,7 +1040,7 @@ Auto:
 {
 
 }
-Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on stage from hand, if the number of other «Melvania» or «Rear» characters you have is 4 or more, you may pay the cost. If you do, your opponent chooses 1 climax from their waiting room, and shuffles all other cards from their waiting room into their deck.
+Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, if the number of other «Melvania» or «Rear» characters you have is 4 or more, you may pay the cost. If you do, your opponent chooses 1 climax from their waiting room, and shuffles all other cards from their waiting room into their deck.
 EndCard
 
 Character: RSK/SE44-45
@@ -964,7 +1057,7 @@ Auto:
 {
 
 }
-Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on stage from hand, you may pay the cost. If you do, reveal the top card of your deck, then choose 1 level X or lower character from your waiting room, and add it to hand. X equals the level of the revealed card.
+Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck, then choose 1 level X or lower character from your waiting room, and add it to hand. X equals the level of the revealed card.
 EndCard
 
 Character: RSK/SE44-46
@@ -981,12 +1074,12 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, look at up to 2 cards from the top of your deck, and put them back on top in any order.
+Text Auto: When this card is placed on the stage from your hand, look at up to 2 cards from the top of your deck, and put them back on top in any order.
 Auto:
 {
 
 }
-Text Auto: [(1) Put 1 card from your hand into waiting room] When this card is placed on stage from hand, you may pay the cost. If you do, search your deck for up to 1 «Melvania» or «Rear» character, reveal it, add it to hand, and shuffle your deck afterwards.
+Text Auto: [(1) Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Melvania» or «Rear» character, reveal it, add it to hand, and shuffle your deck .
 EndCard
 
 Character: RSK/SE44-47
@@ -1003,12 +1096,12 @@ Auto:
 {
 
 }
-Text Auto: (1) When this card is placed on stage from hand, you may pay the cost. If you do, choose 1 card from your hand and 1 card from your level, and exchange them.
+Text Auto: (1) When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 card from your hand and 1 card from your level, and exchange them.
 Act:
 {
 
 }
-Text Act: [(1) Put this card into waiting room] Look at up to the top 4 cards of your deck, choose up to 1 «Melvania» or «Rear» character among them, reveal it, add it to hand, and send the rest to waiting room.
+Text Act: [(1) Put this card into waiting room] Look at up to the top 4 cards of your deck, choose up to 1 «Melvania» or «Rear» character among them, reveal it, add it to hand, and put the rest into waiting room.
 EndCard
 
 Character: RSK/SE44-48
@@ -1047,12 +1140,12 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, choose 1 of your opponent's characters, until the end of your opponent's next turn, it gets the following ability: "Cont: This card cannot move to other slots."
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters, until the end of your opponent's next turn, it gets the following ability: "Cont: This card cannot move to other slots."
 Auto:
 {
 
 }
-Text Auto: When this card is reversed, if the battle opponent's cost is 0 or lower, you may send that character to the bottom of your opponent's deck.
+Text Auto: When this card is reversed, if the battle opponent's cost is 0 or lower, you may put that character to the bottom of your opponent's deck.
 EndCard
 
 Character: RSK/SE44-50
@@ -1074,7 +1167,7 @@ Auto:
 {
 
 }
-Text Auto: [Put 1 climax] When this card is placed on stage from hand, you may pay the cost. If you do, choose 1 «Melvania» or «Rear» character from your waiting room, and add it to hand.
+Text Auto: [Put 1 climax] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 «Melvania» or «Rear» character from your waiting room, and add it to hand.
 EndCard
 
 Character: RSK/SE44-51
@@ -1091,7 +1184,7 @@ Auto:
 {
 
 }
-Text Auto: [Put 1 «Melvania» or «Rear» character] When this card is placed on stage from hand, you may pay the cost. If you do, search your deck for up to 1 {RR 1/0 Hikari climaxC - 30}, reveal it, add it to hand, and shuffle your deck afterwards.
+Text Auto: [Put 1 «Melvania» or «Rear» character] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 {RR 1/0 Hikari climaxC - 30}, reveal it, add it to hand, and shuffle your deck .
 EndCard
 
 Character: RSK/SE44-52
@@ -1108,7 +1201,7 @@ Auto:
 {
 
 }
-Text Auto: [send 1 of your other «Melvania» or «Rear» characters on stage to waiting room] When this card attacks, you may pay the cost. If you do, reveal the top card of your deck. If that card is a «Melvania» or «Rear» character, add it to hand.
+Text Auto: [put 1 of your other «Melvania» or «Rear» characters on stage to waiting room] When this card attacks, you may pay the cost. If you do, reveal the top card of your deck. If that card is a «Melvania» or «Rear» character, add it to hand.
 EndCard
 
 Character: RSK/SE44-53
@@ -1126,12 +1219,12 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, look at the top card of your deck, and put it on top or bottom of your deck.
+Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck, and put it on top or bottom of your deck.
 Auto:
 {
 
 }
-Text Auto: When this card is reversed, if the battle opponent's level is higher than your opponent's level, you may send that character to the bottom of your opponent's deck.
+Text Auto: When this card is reversed, if the battle opponent's level is higher than your opponent's level, you may put that character to the bottom of your opponent's deck.
 EndCard
 
 Character: RSK/SE44-54
@@ -1154,7 +1247,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on stage from hand, this card gets +4500 power and the following ability, "Auto: At the end of your turn, put this card into waiting room."
+Text Auto: When this card is placed on the stage from your hand, this card gets +4500 power and the following ability, "Auto: At the end of your turn, put this card into waiting room."
 Auto:
 {
 
