@@ -21,11 +21,17 @@ Soul 2
 Trait1 Music
 *GainPowerWithEnoughCharacters(1000,3,Music)
 *HexProof
-Auto: OnPlay|PlacedBy Gungnir
+Auto: PlacedBy Gungnir
 {
-	GainEffect
+	TempLabel GetBurnCancel
+}
+Quick
+TimesPerTurn 1
+Auto: OnDamageCanceled
+{
+	If PlayedThisTurn | HasTempLabel GetBurnCancel
 	{
-		*OnCancelBurn1
+		*OptionalBurn(1)
 	}
 }
 TimesPerTurn 1
@@ -1464,6 +1470,7 @@ Auto: OnPlay|PlacedBy Ame-no-Habakiri
 {
 	*OptionalHeal
 }
+TimesPerTurn 1
 Text Auto: When this card is placed on the stage from your hand or by the effect of "Ame-no-Habakiri", you may put the top card of your clock in the waiting room.
 Auto: OnAttack
 {

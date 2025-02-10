@@ -23,6 +23,7 @@ Auto: OnPlay|PlacedBy Gungnir
 {
 	*OptionalHeal
 }
+TimesPerTurn 1
 Text Auto: When this card is placed on stage from your hand or via the effect of "Gungnir", you may put the top card of your clock into your waiting room.
 Auto: OnAttack
 {
@@ -442,7 +443,8 @@ Auto: OnPlay|PlacedBy Ichaival
 	TargetLocation Stage
 	GainPower 2000
 }
-Text Auto: When this card is placed on stage from your hand or via the effect of "Ichaival", all of your characters gain +2000 power until end of turn.
+TimesPerTurn 1
+Text Auto: When this card is placed on stage from your hand or via the effect of "Ichaival", all your characters get +2000 power until end of turn.
 Auto: OnSpecificClimaxPlay Chris' Dream
 {
 	If InLocation CenterStage
