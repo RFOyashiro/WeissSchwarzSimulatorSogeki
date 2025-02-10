@@ -1,0 +1,5 @@
+Series: Rear Sekai
+Folder: RearSekai/SE44
+Prefix: RSK/SE44
+SetName: Rear Sekai (SE44)
+

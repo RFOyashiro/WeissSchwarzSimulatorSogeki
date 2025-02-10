@@ -370,7 +370,7 @@ Auto: OnPlay
         DrawCard
     }
 }
-Text Auto: [Put 1 «Melvania» or «Rear» character from your hand into waiting room] When this card placed on stage from hand, you may pay the cost. If you do, draw 1 card.
+Text Auto: [Put 1 «Melvania» or «Rear» character from your hand into waiting room] When this card placed on the stage from hand, you may pay the cost. If you do, draw 1 card.
 EndCard
 
 Character: RSK/SE44-13
@@ -426,7 +426,7 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto: [(1) Rest 1 of your other standing «Melvania» or «Rear» characters] During the turn this card is placed on stage from hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, search your deck for up to 1 «Melvania» or «Rear» character, reveal it, put it in your hand, and shuffle your deck.
+Text Auto: [(1) Rest 1 of your other standing «Melvania» or «Rear» characters] During the turn this card is placed on the stage from hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, search your deck for up to 1 «Melvania» or «Rear» character, reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: RSK/SE44-15
@@ -634,7 +634,7 @@ Text Auto: [Return this card to your hand] When a climax is placed in your clima
 EndCard
 
 Character: RSK/SE44-23
-Name Miyabi in real life, Masashi Ayase
+Name Miyabi in real life, Miyabi Ayase
 JPName リアルでのミヤビ 綾瀬 雅
 Color Y
 Level 0
@@ -757,16 +757,13 @@ Power 1500
 Soul 1
 Trait1 Melvania
 Trait2 Treasure Hunter
-Act:
+Act: 1 Discard 1 Any &&& SendSelf WaitingRoom
 {
-
+    SearchWaitingRoom IsCharacter && HasTrait Melvania|Rear
+    *GiveCharacterPower(3000,Any)
 }
-Text Act: [(1) Put 1 card from your hand into waiting room, put this card into waiting room] Choose 1 «Melvania» or «Rear» character in your waiting room, put it in your hand, then choose 1 of your characters, this card turn, it gets +3000 power.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck, then put them to waiting room. For each climax among them, choose up to 1 character from your waiting room, and put it in your hand.
+Text Act: [(1) Put 1 card from your hand into waiting room, put this card into waiting room] Choose 1 «Melvania» or «Rear» character in your waiting room, return it to your hand, choose 1 of your characters, and that character gets +3000 power until end of turn.
+*Act1RestSelfSalvageBrainstorm(Any)
 EndCard
 
 Character: RSK/SE44-30
@@ -779,16 +776,29 @@ Power 4500
 Soul 1
 Trait1 Melvania
 Trait2 Saint
-Auto:
+Combo Sacred Light
+*OnPlayGainPower(1500)
+Auto: OnAttack
 {
-
+    If Climax Sacred Light
+    {
+        PayCost Resonate Adventurer, Narumi
+        {
+            UntilEndOfOpponentsTurn
+            GainEffect
+            {
+                Auto: OnDamageCanceled
+                {
+                    *OptionalHeal
+                }
+                TimesPerTurn 1
+                Text Auto: This ability activates up to once per turn. When this card's damage is cancelled, you may put the top card of your clock into waiting room.
+            }
+            *GainBounceWhenFrontalAttacked
+        }
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, this card turn, this card gets +1500 power.
-Auto:
-{
-
-}
-Text Auto: CxCombo RESONATE [Reveal {3/2 Narumi - 04 or 31} from your hand] When this card attacks, if you have the Pants climax (55) in your climax Area, you may pay the cost. If you do, until the end of your opponent's next turn, this card gets the following 2 abilities, - "Auto: This card ability activates up to once per turn. When this card's damage is cancelled, you may Heal 1." - "Auto: When this card is frontal attacked, you may return this card to your hand."
+Text Auto: CxCombo RESONATE [Reveal "Adventurer, Narumi" from your hand] When this card attacks, if "Sacred Light" in your climax area, you may pay the cost. If you do, this card gets the following 2 abilities until the end of your opponent's next turn. "Auto: This ability activates up to once per turn. When this card's damage is cancelled, you may put the top card of your clock into waiting room." "Auto: When this card is frontal attacked, you may return this card to your hand."
 EndCard
 
 Character: RSK/SE44-31
@@ -802,16 +812,41 @@ Power 11000
 Soul 1
 Trait1 Melvania
 Trait2 Weapon
-Auto:
+Combo His Adventures
+*Healer
+Auto: OnAttack
 {
-
+    If Climax His Adventures && StageContains 2 Other
+    {
+        TargetLocation Level
+        NarrowTargets IsCharacter
+        SaveTargets
+        If LocationContains Hand 2 Any &&& LocationContains Hand 1 Not NameNotInSavedTargets
+        {
+            PayCost 1
+            {
+                Message Choose the character to reveal.
+                SearchLocationForTargets Hand 1 1 Not NameNotInSavedTargets
+                SaveTargets
+                Message Choose the card to discard.
+                SearchLocationForTargets Hand 1 1 Not InSavedTargets
+                MoveCard WaitingRoom
+                LoadTargets
+                RevealTargets
+                TargetSelf
+                LoseSoul 10
+                MultipleChoiceQuestion Choose the amount of damage to deal twice.|3|4
+                SetXValue Answer
+                AddToXValue 3
+                Repeat 2
+                {
+                    Burn X
+                }
+            }
+        }
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, you may heal 1.
-Auto:
-{
-
-}
-Text Auto: CxCombo EXPERIENCE RESONATE [(1) Put 1 card from your hand into waiting room, Reveal 1 character from your hand with the same card name as a character in your level] When this card attacks, if the number of other «Melvania» or «Rear» characters you have is the Pants climax (56) in your climax Area, and you have 2 or more, you may pay the cost. If you do, this card turn, this card gets -10 soul, then choose 1 of the following 2 effects and resolve it twice, a) "deal 3 damage to your opponent." b) "deal 4 damage to your opponent." *Note: Same card name as Yellow 3/2
+Text Auto: CxCombo EXPERIENCE RESONATE [(1) Put 1 card from your hand into waiting room, reveal 1 character from your hand with the same card name as a character in your level] When this card attacks, if "His Adventures" is in your climax area and the number of other «Melvania» or «Rear» characters you have is 2 or more, you may pay the cost. If you do, this card gets -10 souls until end of turn, and choose 1 of the following 2 effects and perform it twice. "Deal 3 damage to your opponent." "Deal 4 damage to your opponent."
 EndCard
 
 Character: RSK/SE44-32
@@ -824,11 +859,17 @@ Power 2000
 Soul 1
 Trait1 Melvania
 Trait2 Treasure Hunter
-Auto:
+Auto: StartClimaxPhase
 {
-
+    TargetLocation Stage
+    NarrowTargets Melvania|Rear
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        *MillRunner(Melvania|Rear)
+    }
 }
-Text Auto: At the beginning of your climax phase, choose 1 of your «Melvania» or «Rear» chracters, until the end of your opponent's next turn, it gets the following ability, "Auto: At the beginning of your opponent's attack phase, you may mill 1. If that card is a «Melvania» or «Rear» character, you may move this card to an open position in your center stage."
+Text Auto: At the beginning of your climax phase, choose 1 of your «Melvania» or «Rear» chracters, and that character gets the following ability until the end of your opponent's next turn. "Auto: At the beginning of your opponent's attack phase, you may put the top card of your deck into the waiting room, if it is a «Melvania» or «Rear» character, you may move this card to an open position of your center stage."
 EndCard
 
 Character: RSK/SE44-33
@@ -841,11 +882,32 @@ Power 5000
 Soul 1
 Trait1 Melvania
 Trait2 Weapon
-Auto:
+Auto: StartClimaxPhase
 {
-
+    TargetLocation Level
+    NarrowTargets IsCharacter
+    SaveTargets
+    If LocationContains Hand 1 Not NameNotInSavedTargets &&& StageContains 3 Other
+    {
+        PayCost 0
+        {
+            Message Choose the character to reveal.
+            SearchLocationForTargets Hand 1 1 Not NameNotInSavedTargets
+            RevealTargets
+            TargetSelf
+            GainPower 1500
+            GainEffect
+            {
+                Auto: OnReverseOpponent
+                {
+                    *OptionalBlindStock
+                }
+                Text Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck into stock.
+            }
+        }
+    }
 }
-Text Auto: EXPERIENCE RESONATE [Reveal 1 character from your hand with the same card name as a character in your level] At the beginning of your climax phase, if oyu have 3 or more other characters, you may pay the cost. If you do, this card turn, this card gets +1500 power and the following ability, "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck into stock."
+Text Auto: EXPERIENCE RESONATE [Reveal 1 character from your hand with the same card name as a character in your level] At the beginning of your climax phase, if the number of other characters you have is 3 or more, you may pay the cost. If you do, this card gets +1500 power and the following ability until end of turn "Auto: When this card's battle opponent becomes reverse, you may put the top card of your deck into stock."
 EndCard
 
 Character: RSK/SE44-34
@@ -858,16 +920,18 @@ Power 6000
 Soul 1
 Trait1 Melvania
 Trait2 Muscle
-Auto:
+Auto: OnOtherAttacks
 {
-
+    IfOther HasTrait Melvania|Rear
+    {
+        SetXToNumberOfCharacters Other && HasTrait Melvania|Rear
+        MultiplyXValue 500
+        GainPower X
+    }
 }
-Text Auto: When your other «Melvania» or «Rear» character attacks, this card turn, this card gets +X power. X equals the number of your other «Melvania» or «Rear» characters times 500.
-Auto:
-{
-
-}
-Text Auto: ENCORE [Put 1 character]
+Quick
+Text Auto: When your other «Melvania» or «Rear» character attacks, this card gets +X power until end of turn. X equals 500 times the number of your other «Melvania» or «Rear» characters.
+*HandEncore
 EndCard
 
 Character: RSK/SE44-35
@@ -881,21 +945,41 @@ Power 8500
 Soul 2
 Trait1 Melvania
 Trait2 Saint
-Cont:
+Cont: InHand
 {
-
+    If LocationContains OpponentStage 1 Compare ThatCardsLevel 3 OrMore
+    {
+        LoseLevel 1
+    }
 }
 Text Cont: If your opponent has a level 3 or higher character, this card gets -1 level in hand.
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters Other && HasTrait Melvania|Rear && InLocation CenterStage
+    MultiplyXValue 1500
+    GainPower X
 }
-Text Cont: This card gets +1500 power for each of your other front row «Melvania» or «Rear» characters
-Auto:
+Text Cont: This card gets +1500 power for each of your other «Melvania» or «Rear» characters in your center stage.
+Auto: OnPlay
 {
-
+    *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait Melvania|Rear)
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets_Optional Choose up to 1 character to put into memory.
+    MoveCard OpponentMemory
+    ScheduleEffectForTargets StartEncorePhase
+    {
+        Effect:
+        {
+            IfTarget InLocation Memory
+            {
+                PlaceOnStage False True True False
+            }
+        }
+        Text: At the beginning of the encore step, your opponent puts that character from their memory on any position of their stage.
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, choose up to 1 «Melvania» or «Rear» character in your waiting room, put it to stock, then choose up to 1 of your opponent's characters, put it to memory, then at the beginning of the encore step, your opponent places that character on stage in any slot.
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 «Melvania» or «Rear» character in your waiting room, put it into stock, choose up to 1 of your opponent's characters and put it into memory. At the beginning of the encore step, your opponent puts that character from their memory on any position of their stage.
 EndCard
 
 Character: RSK/SE44-36
@@ -909,21 +993,29 @@ Power 10000
 Soul 2
 Trait1 Melvania
 Trait2 Fortune Teller
-Cont:
+*EarlyPlay2OrLessClimax
+Cont: GiveSelf
 {
-
+    If MyTurn
+    {
+        SetXToNumberOfCharacters Other && HasTrait Melvania|Rear
+        MultiplyXValue 500
+        GainPower X
+    }
 }
-Text Cont: If you have 2 or less climaxes in your waiting room, this card gets -1 level in hand.
-Cont:
+Text Cont: During your turn, this card gets +500 power for each of your other «Melvania» or «Rear» characters.
+Auto: OnReverseOpponent
 {
-
+    If PlayedThisTurn
+    {
+        RevealUpTo Deck 4
+        ChooseCardsFromTargets 0 2 IsCharacter && HasTrait Melvania|Rear
+        RevealTargets
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
 }
-Text Cont: During your turn, this card gets +500 power for each of your other «Melvania» or «Rear» characters
-Auto:
-{
-
-}
-Text Auto: During the turn this card is placed on stage from hand, when this card's battle opponent becomes reverse, look at up to the top 4 cards of your deck, choose up to 2 «Melvania» or «Rear» characters among them, reveal them, add them to your hand, and put the rest into waiting room.
+Text Auto: During the turn this card is placed on the stage from hand, when this card's battle opponent becomes reverse, look at up to the top 4 cards of your deck, choose up to 2 «Melvania» or «Rear» characters among them, reveal them, add them to your hand, and put the rest into waiting room.
 EndCard
 
 Character: RSK/SE44-37
@@ -937,16 +1029,27 @@ Power 11000
 Soul 2
 Trait1 Melvania
 Trait2 Darkness
-Auto:
+Auto: OnAttack
 {
-
+    If Not StageContains 1 Other && NameContains ナルミ
+    {
+        TargetTop Deck 1
+        MoveCard Clock
+    }
 }
-Text Auto: When this card attacks, if you do not have another character whose name includes "Narumi", put the top card of your deck into clock.
-Auto:
+Text Auto: When this card attacks, if you have no other character with "Narumi" in its card name, put the top card of your deck into clock.
+Auto: OnEndOfAttack
 {
-
+    If PlayedThisTurn
+    {
+        PayCost 3 Discard 1 Any &&& Send 1 WaitingRoom Other
+        {
+            Stand
+        }
+    }
 }
-Text Auto: [(3) Put 1 card from your hand into waiting room, put 1 of your other characters from stage to waiting room] This card ability activates up to once per turn. During the turn this card is placed on stage from hand, at the end of this card's attack, you may pay the cost. If you do, stand this card.
+TimesPerTurn 1
+Text Auto: [(3) Put 1 card from your hand into waiting room, put 1 of your other characters from stage to waiting room] This card ability activates up to once per turn. During the turn this card is placed on the stage from hand, at the end of this card's attack, you may pay the cost. If you do, stand this card.
 EndCard
 
 Character: RSK/SE44-38
@@ -959,16 +1062,22 @@ Power 1500
 Soul 1
 Trait1 Rear
 Trait2 Student
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContainsOrLess Stock 3 Any
+    {
+        GainPower 2000
+    }
 }
-Text Cont: If you have 3 or less stock, this card gets +2000 power.
-Auto:
+Text Cont: If you have 3 or less cards in stock, this card gets +2000 power.
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsCharacter && HasTrait Melvania|Rear
+    {
+        SearchDeck NameEquals Adventurer, Narumi && ColorIs Blue
+    }
 }
-Text Auto: [Put 1 «Melvania» or «Rear» character] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 Blue {3/2 Narumi - 31}, reveal it, put it in your hand, and shuffle your deck .
+Text Auto: [Put 1 «Melvania» or «Rear» character from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 Blue "Adventurer, Narumi", reveal it, add it in your hand, and shuffle your deck.
 EndCard
 
 Character: RSK/SE44-39
@@ -981,21 +1090,33 @@ Power 1500
 Soul 1
 Trait1 Melvania
 Trait2 Fortune Teller
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn
+    {
+        SetXToNumberOfCharacters Other && HasTrait Melvania|Rear
+        MultiplyXValue 500
+        GainPower X
+    }
 }
-Text Cont: During your turn, all of your other «Melvania» or «Rear» characters get +500 power.
-Auto:
+Text Cont: During your turn, this card gets +500 power for each of your other «Melvania» or «Rear» characters.
+Auto: OnOtherPlacedOnStageFromHand
 {
-
+    IfOther HasTrait Melvania|Rear
+    {
+        Peek Deck 1
+        EndPeek
+    }
 }
-Text Auto: When your other «Melvania» or «Rear» characters are placed on stage from hand, you may look at the top card of your deck.
-Auto:
+Text Auto: When your other «Melvania» or «Rear» characters are placed on the stage from hand, you may look at the top card of your deck.
+Auto: OnClimaxPlay
 {
-
+    PayCost 1
+    {
+        SearchWaitingRoom NameEquals Mirror of the Law Demon
+    }
 }
-Text Auto: (1) When a climax is placed in your climax Area, you may pay the cost. If you do, choose 1 {Unknown event - ???} from your waiting room, and put it in your hand.
+Text Auto: [(1)] When a climax is placed in your climax area, you may pay the cost. If you do, choose 1 "Mirror of the Law Demon" from your waiting room, and return it in your hand.
 EndCard
 
 Character: RSK/SE44-40
@@ -1008,16 +1129,8 @@ Power 4500
 Soul 1
 Trait1 Melvania
 Trait2 Darkness
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card turn, this card gets +X power. X equals the number of your «Melvania» or «Rear» characters times 500.
-Auto:
-{
-
-}
-Text Auto: [(1) Put 1 climax] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 climax from your waiting room, and put it in your hand.
+*OnPlayGainPowerForEach(500,Melvania|Rear)
+*ClimaxExchange
 EndCard
 
 Character: RSK/SE44-41
@@ -1031,16 +1144,14 @@ Power 1500
 Soul 1
 Trait1 Melvania
 Trait2 Muscle
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+	SetXToNumberOfCharacters HasTrait Lily
+	TargetBottom OpponentDeck X
+	MoveCard OpponentWaitingRoom
 }
-Text Auto: When you use this card's BACKUP, put X cards from the bottom of your opponent's deck to waiting room. X equals the number of your «Melvania» or «Rear» characters.
-Act:
-{
-
-}
-Text Act: BACKUP +3000
+Text Auto: When you use this card's "BACKUP", put X cards from the bottom of your opponent's deck into their waiting room. X is equal to the number of your «Melvania» or «Rear» characters.
+Backup 3000
 EndCard
 
 Character: RSK/SE44-42
@@ -1054,21 +1165,29 @@ Power 4000
 Soul 1
 Trait1 Melvania
 Trait2 Treasure Hunter
-Cont:
+*GainPowerWithEnoughCharacters(6000,4,Melvania|Rear)
+Auto: OnPlay
 {
-
+    If StageContains 2 Other && HasTrait Melvania|Rear
+    {
+        Question_Obvious Draw 2 cards and put 2 cards from your hand into waiting room ?
+        If Yes
+        {
+            DrawCard
+            DrawCard
+            Discard 2 Any
+        }
+    }
 }
-Text Cont: If the number of other «Melvania» or «Rear» characters you have is 4 or more, this card gets +6000 power.
-Auto:
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Melvania» or «Rear» characters you have is 2 or more, you may draw 2 cards. If you do, put 2 cards from your hand into waiting room.
+Auto: OnPlay
 {
-
+    If StageContains 4 Other && HasTrait Melvania|Rear
+    {
+        *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait Melvania|Rear)
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, if the number of other «Melvania» or «Rear» characters you have is 2 or more, you may draw 2 cards. If you do, discard 2 cards.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, if the number of other «Melvania» or «Rear» characters you have is 4 or more, choose 1 «Melvania» or «Rear» character in your waiting room, you may put it to stock.
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Melvania» or «Rear» characters you have is 4 or more, choose up to 1 «Melvania» or «Rear» character in your waiting room, and put it into stock.
 EndCard
 
 Character: RSK/SE44-43
@@ -1082,15 +1201,21 @@ Power 6000
 Soul 1
 Trait1 Melvania
 Trait2 Weapon
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters Other && HasTrait Melvania|Rear && InLocation Backstage
+    MultiplyXValue 2000
+    GainPower X
 }
-Text Cont: This card gets +2000 power for each of your other backrow «Melvania» or «Rear» characters
-Auto:
+Text Cont: This card gets +2000 power for each of your other «Melvania» or «Rear» characters in backstage.
+Auto: StartMainPhase
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        Refresh
+    }
 }
+Alarm
 Text Auto: ALARM [(1) Put 1 card from your hand into waiting room] If this card is on top of your clock, at the beginning of your main phase, you may pay the cost. If you do, put all cards from your waiting room into your deck, and shuffle your deck.
 EndCard
 
@@ -1105,11 +1230,21 @@ Power 7500
 Soul 1
 Trait1 Melvania
 Trait2 Saint
-Auto:
+Auto: OnPlay
 {
-
+    If StageContains 4 Other && HasTrait Melvania|Rear
+    {
+        PayCost Discard 1 Any
+        {
+            OpponentMessage Choose a climax to keep in your waiting room.
+            OpponentSearchLocationForTargets WaitingRoom 1 1 IsClimax
+            ReverseTargets OpponentWaitingRoom
+            MoveCard OpponentDeck
+            ShuffleLocation OpponentDeck
+        }
+    }
 }
-Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, if the number of other «Melvania» or «Rear» characters you have is 4 or more, you may pay the cost. If you do, your opponent chooses 1 climax from their waiting room, and shuffles all other cards from their waiting room into their deck.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, if the number of other «Melvania» or «Rear» characters you have is 4 or more, you may pay the cost. If you do, your opponent chooses 1 climax in their waiting room, return all other cards from their waiting room to their deck, and shuffles their deck.
 EndCard
 
 Character: RSK/SE44-45
@@ -1122,11 +1257,16 @@ Power 1000
 Soul 1
 Trait1 Rear
 Trait2 Outdoor
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 Any
+    {
+        TargetTop Deck 1
+        Reveal
+        SearchWaitingRoom IsCharacter && Compare ThatCardsLevel TargetCardsLevel OrLess
+    }
 }
-Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck, then choose 1 level X or lower character from your waiting room, and put it in your hand. X equals the level of the revealed card.
+Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, reveal the top card of your deck, choose up to 1 level X or lower character in your waiting room and add it to your hand. X equals the level of the card revealed by this effect.
 EndCard
 
 Character: RSK/SE44-46
@@ -1139,16 +1279,8 @@ Power 1500
 Soul 1
 Trait1 Rear
 Trait2 Fortune Teller
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, look at up to 2 cards from the top of your deck, and put them back on top in any order.
-Auto:
-{
-
-}
-Text Auto: [(1) Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Melvania» or «Rear» character, reveal it, put it in your hand, and shuffle your deck .
+*OnPlayReorderTop2
+*DropSearch(Melvania|Rear)
 EndCard
 
 Character: RSK/SE44-47
@@ -1161,16 +1293,24 @@ Power 2000
 Soul 1
 Trait1 Rear
 Trait2 Vice President
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1
+    {
+        SearchLocationForTargets Hand 1 1 Any
+        SaveTargets
+        SearchLocationForTargets Level 1 1 Any
+        AddSavedToCurrentTargets
+        RevealTargets
+        Exchange
+    }
 }
-Text Auto: (1) When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 card from your hand and 1 card from your level, and exchange them.
-Act:
+Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 card from your hand, choose 1 card from your level, and exchange them.
+Act: 1 SendSelf WaitingRoom
 {
-
+    *Check4Add1(Melvania|Rear)
 }
-Text Act: [(1) Put this card into waiting room] Look at up to the top 4 cards of your deck, choose up to 1 «Melvania» or «Rear» character among them, reveal it, put it in your hand, and put the rest into waiting room.
+Text Act: [(1) Put this card in the waiting room] Look at up to the top 4 cards of your deck, choose up to 1 character with either «Melvania» or «Rear» among them, reveal it, put it in your hand and put the rest in the waiting room.
 EndCard
 
 Character: RSK/SE44-48
@@ -1183,16 +1323,8 @@ Power 2000
 Soul 1
 Trait1 Melvania
 Trait2 Saint
-Auto:
-{
-
-}
-Text Auto: When you use this card's BACKUP, if you have an «Melvania» or «Rear» character, choose 1 of your battling characters, this card turn, it gets +1000 power.
-Act:
-{
-
-}
-Text Act: BACKUP +1000
+*BackupBonus1000(Melvania|Rear)
+Backup 1000
 EndCard
 
 Character: RSK/SE44-49
@@ -1205,16 +1337,23 @@ Power 2000
 Soul 1
 Trait1 Melvania
 Trait2 Treasure Hunter
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to give the effect
+    UntilEndOfOpponentsTurn
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            GainSpecialEffect CannotMove
+        }
+        Text Cont: This card cannot move to another position.
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters, until the end of your opponent's next turn, it gets the following ability: "Cont: This card cannot move to other slots."
-Auto:
-{
-
-}
-Text Auto: When this card becomes reverse, if the battle opponent's cost is 0 or lower, you may put that character to the bottom of your opponent's deck.
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters, and that character gets the following ability until the end of your opponent's next turn. "Cont: This card cannot move to another position."
+*BlueCost0Bomb
 EndCard
 
 Character: RSK/SE44-50
@@ -1227,20 +1366,12 @@ Power 3500
 Soul 1
 Trait1 Rear
 Trait2 Student
-Cont:
-{
-
-}
-Text Cont: If this card is in the middle position of your center stage, this card gets +2000 power.
-Auto:
-{
-
-}
-Text Auto: [Put 1 climax] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 «Melvania» or «Rear» character from your waiting room, and put it in your hand.
+*PowerInMiddle(2000)
+*OnPlayTradeClimaxForCharacter(Melvania|Rear)
 EndCard
 
 Character: RSK/SE44-51
-Name Hikari in Real Life, Kori Amakase
+Name Hikari in Real Life, Hikari Amakase
 JPName リアルでのヒカリ 天ケ瀬 光璃
 Color B
 Level 1
@@ -1249,11 +1380,14 @@ Power 5000
 Soul 1
 Trait1 Rear
 Trait2 Chairman
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsCharacter && HasTrait Melvania|Rear
+    {
+        SearchDeck NameEquals Willingness to Help, Hikari
+    }
 }
-Text Auto: [Put 1 «Melvania» or «Rear» character] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 {RR 1/0 Hikari climaxC - 30}, reveal it, put it in your hand, and shuffle your deck .
+Text Auto: [Put 1 «Melvania» or «Rear» character from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Willingness to Help, Hikari", reveal it, put it in your hand, and shuffle your deck.
 EndCard
 
 Character: RSK/SE44-52
@@ -1266,11 +1400,19 @@ Power 5000
 Soul 1
 Trait1 Melvania
 Trait2 Darkness
-Auto:
+Auto: OnAttack
 {
-
+    PayCost Send 1 WaitingRoom Other && HasTrait Melvania|Rear
+    {
+        TargetTop Deck 1
+        Reveal
+        IfTarget IsCharacter && HasTrait Melvania|Rear
+        {
+            MoveCard Hand
+        }
+    }
 }
-Text Auto: [put 1 of your other «Melvania» or «Rear» characters on stage to waiting room] When this card attacks, you may pay the cost. If you do, reveal the top card of your deck. If that card is a «Melvania» or «Rear» character, put it in your hand.
+Text Auto: [Put 1 of your other «Melvania» or «Rear» characters into waiting room] When this card attacks, you may pay the cost. If you do, reveal the top card of your deck. If that card is a «Melvania» or «Rear» character, put it in your hand.
 EndCard
 
 Character: RSK/SE44-53
@@ -1284,20 +1426,12 @@ Power 3500
 Soul 1
 Trait1 Melvania
 Trait2 Fortune Teller
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck, and put it on top or bottom of your deck.
-Auto:
-{
-
-}
-Text Auto: When this card becomes reverse, if the battle opponent's level is higher than your opponent's level, you may put that character to the bottom of your opponent's deck.
+*OnPlayScryToBottom
+*BlueEarlyPlayBomb
 EndCard
 
 Character: RSK/SE44-54
-Name Lovinf Muscle Training, Hibiki
+Name Loving Muscle Training, Hibiki
 JPName 筋トレ大好き ヒビキ
 Color B
 Level 2
@@ -1307,21 +1441,21 @@ Power 6000
 Soul 1
 Trait1 Melvania
 Trait2 Muscle
-Cont:
+*EarlyPlay4OrMore(Melvania|Rear)
+Auto: OnPlay
 {
-
+    GainPower 4500
+    GainEffect
+    {
+        Auto: EndOfMyTurn
+        {
+            MoveCard WaitingRoom
+        }
+        Text Auto: At the end of your turn, put this card into waiting room.
+    }
 }
-Text Cont: If the number of «Melvania» or «Rear» characters you have is 4 or more, this card gets -1 level in hand.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +4500 power and the following ability, "Auto: At the end of your turn, put this card into waiting room."
-Auto:
-{
-
-}
-Text Auto: When this card attacks, if the level of the character across from this card is 3 or higher, this card turn, this card gets +6000 power.
+Text Auto: When this card is placed on the stage from your hand, this card gets +4500 power and the following ability until end of turn. "Auto: At the end of your turn, put this card into waiting room."
+*GainPowerWhenAttackingLevel3(6000)
 EndCard
 
 Climax: RSK/SE44-55
@@ -1334,4 +1468,53 @@ Climax: RSK/SE44-56
 Name His Adventures
 JPName 僕の冒険譚
 *GateClimax
+EndCard
+
+Character: RSK/SE44-P01
+Name Rear Sekai
+JPName リアセカイ
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Melvania
+*OnAttackGivePower(2000,Any)
+EndCard
+
+Character: RSK/SE44-P02
+Name Swimsuits, Masashi Ayase & Hikari Amakase
+JPName 水着姿 綾瀬 雅 & 天ケ瀬 光璃
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Rear
+Auto: OnOtherPlacedOnStageFromHand
+{
+    IfOther HasTrait Melvania|Rear
+    {
+        GainPower 1000
+    }
+    Else
+    {
+        RefundTimesPerTurn
+    }
+}
+Quick
+TimesPerTurn 2
+Text Auto: This ability activates up to twice per turn. When your other «Melvania» or «Rear» character is placed on the stage from your hand, this card gets +1000 power until end of turn.
+Auto: OnOtherFrontalAttacked
+{
+    IfOther HasTrait Melvania|Rear
+    {
+        PayCost 1 SendSelf WaitingRoom
+        {
+            TargetOther
+            Bounce
+        }
+    }
+}
+Text Auto: [(1) Put this card in the waiting room] When your other «Melvania» or «Rear» character is frontal attacked, you may pay the cost. If you do, return that character to hand.
 EndCard
