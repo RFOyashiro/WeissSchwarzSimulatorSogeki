@@ -1332,7 +1332,8 @@ Auto: OnAttack
 {
     If Climax Cheerleading Dance && AllYourCharacters ColorIs Blue
     {
-        UntilEndOfOpponentsTurn GainPower 2000
+        UntilEndOfOpponentsTurn
+        GainPower 2000
     }
 }
 Quick
