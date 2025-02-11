@@ -1251,6 +1251,7 @@ Auto: OnSpecificClimaxPlay Training Under the Cherry Tree
     {
         *Check3Add1(Meiji Swordsman Romantic Story)
         *GiveCharacterPower(500,Any)
+        GainSoul 1
     }
 }
 Text Auto: CxCombo [Return this card to your hand, put a "Training Under the Cherry Tree" from your climax area in the waiting room] When "Training Under the Cherry Tree" is placed on your climax area, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 «Meiji Swordsman Romantic Story» among them, reveal it, put it in your hand, put the rest into your waiting room, choose 1 of your characters, and that character gets +500 power and +1 soul until end of turn.
