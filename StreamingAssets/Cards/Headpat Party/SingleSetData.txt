@@ -1,5 +1,0 @@
-DLC: Headpat Party
-Series: Headpat Party
-Folder: Headpat Party/Wh01
-Prefix: HP/Wh01
-SetName: <Headpat Party!>
