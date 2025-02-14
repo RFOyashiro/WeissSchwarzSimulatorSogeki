@@ -2152,7 +2152,7 @@ Auto: OnUseThisCardsBackup
         }
     }
 }
-Text Auto: [(2)] When you use this card's BACKUP, if the number of «Yuru Camp» characters you have is 4 or more, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
+Text Auto: [(2)] When you use this card's "BACKUP", if the number of «Yuru Camp» characters you have is 4 or more, you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in the waiting room.
 Backup 2500
 EndCard
 

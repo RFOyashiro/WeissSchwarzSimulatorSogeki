@@ -1956,7 +1956,7 @@ Auto: OnOpponentClimaxPlay
         MoveCard Stock
     }
 }
-Text Auto: When your opponent's climax is placed on your climax area, you may put this card in your stock.
+Text Auto: When your opponent's climax is placed on their climax area, you may put this card in your stock.
 EndCard
 
 Character: PRD/W84-085
