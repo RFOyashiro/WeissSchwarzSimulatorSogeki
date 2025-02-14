@@ -5020,20 +5020,13 @@ Cont: GiveSelf
     }
 }
 Text Cont: MEMORY If there are 2 or more «Music» characters in your memory, this card gets +1000 power.
-Auto: OnOtherAttacks
+Auto: OnMiddleCharacterAttacks
 {
     If PlayedThisTurn
     {
-        IfOther InLocation MiddleCenterStage
+        PayCost 2 Discard 2 IsCharacter && HasTrait Music
         {
-            PayCost 2 Discard 2 IsCharacter && HasTrait Music
-            {
-                Stand
-            }
-        }
-        Else
-        {
-            RefundTimesPerTurn
+            Stand
         }
     }
 }
