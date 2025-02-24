@@ -2167,14 +2167,7 @@ Soul 1
 Trait1 Music
 Trait2 25-ji, Nightcord de.
 Combo Fragility And Beauty
-Cont: InHand
-{
-    If Compare ClimaxInWaitingRoom 3 OrLess
-    {
-        LoseLevel 1
-    }
-}
-Text Cont: If the number of climax in your waiting room is 3 or less, this card gets -1 level in your hand.
+*EarlyPlay2OrLessClimax
 *GainPowerForEachOther(1000,Music)
 Auto: OnSpecificClimaxPlay Fragility And Beauty
 {
