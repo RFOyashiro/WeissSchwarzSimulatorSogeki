@@ -360,7 +360,7 @@ Auto: OnPlay
 		*Downgrade
     }
 }
-Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your opponent's level 1 or higher characters, your opponent chooses a level X or lower character in their waiting room and exchange the chosen characters. X equals level of the character you chose this way -1.
+Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your opponent's level 1 or higher characters, your opponent chooses a level X or lower character in their waiting room and exchange the chosen characters. X equals level of the character you chose this way - 1.
 EndCard
 
 Character: CS/S114-013
