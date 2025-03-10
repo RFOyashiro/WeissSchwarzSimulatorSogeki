@@ -8,16 +8,27 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Cont:
+*PowerInMiddle(3000)
+Auto: OnOtherReversed
 {
-
+    IfOther NameEquals Running Through Kawasaki, Momoka
+    {
+        IfOther OnStage
+        {
+            PayCost 1
+            {
+                TargetOther
+                Rest
+            }
+        }
+    }
+    Else
+    {
+        RefundTimesPerTurn
+    }
 }
-Text Cont: If this card is in the middle position of your center stage, this card gets +3000 power.
-Auto:
-{
-
-}
-Text Auto: [(1)] This card ability activates up to once per turn. When your other "Running Through Kawasaki, Momoka" becomes reversed, you may pay the cost. If you do, rest that character.
+TimesPerTurn 1
+Text Auto: [(1)] This card ability activates up to once per turn. When your other "Running Through Kawasaki, Momoka" becomes reverse, you may pay the cost. If you do, rest that character.
 EndCard
 
 Character: GCR/SE48-02
@@ -30,14 +41,20 @@ Power 500
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Send 1 WaitingRoom Other && HasTrait Music
+    {
+        DrawCard
+    }
 }
 Text Auto: [Put another «Music» character from your stage in the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw a card.
-Act:
+Act: SendSelf WaitingRoom
 {
-
+    TargetLocation Stage
+    NarrowTargets HasTrait Music
+    ChooseCharacterFromTargets Choose a character to give +1 soul.
+    GainSoul 1
 }
 Text Act: [Put this card in the waiting room] Choose 1 of your «Music» characters, and that character gets +1 soul until end of turn.
 EndCard
@@ -52,14 +69,28 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Cont:
+*PowerOnMyTurn(2500)
+Auto: OnReverseOpponent
 {
-
-}
-Text Cont: During your turn, this card gets +2500 power.
-Auto:
-{
-
+    MultipleChoiceQuestion Choose 1 of the following 2 effects and perform it.\n1: Choose 1 of your other «Music» characters, rest it and move it to an open position in the backstage.\n2: [(1) Put the top card of your clock in the waiting room] You may pay the cost. If you do, choose a character in your waiting room and return it to your hand.|1|2
+    If Answer 0
+    {
+        TargetLocation Stage
+        NarrowTargets Other && HasTrait Music
+        ChooseCharacterFromTargets Choose a character to rest and move to backstage.
+        Rest
+        If LocationContainsOrLess Backstage 1 Any
+        {
+            MoveToOpenPosition false true
+        }
+    }
+    If Answer 1
+    {
+        PayCost 1 Clock
+        {
+            SearchWaitingRoom IsCharacter
+        }
+    }
 }
 Text Auto: When this card's battle opponent becomes reverse, choose 1 of the following 2 effects and perform it. "Choose 1 of your other «Music» characters, rest it and move it to an open position in the backstage." "[(1) Put the top card of your clock in the waiting room] You may pay the cost. If you do, choose a character in your waiting room and return it to your hand."
 EndCard
@@ -74,9 +105,16 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Auto:
+Auto: OnPlay
 {
-
+    PayCost HandClock Any
+    {
+        SetXToNumberOfCharacters Other && HasTrait Music
+        Peek Deck X
+        ChooseCardsFromTargets 0 1 Any
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
 }
 Text Auto: [Put 1 card from your hand in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at to up to X cards from the top of your deck, choose up to 1 of them and put it in your hand, and put the rest into your waiting room. X equals the number of your other «Music» characters.
 *RedLevel0Bomb
@@ -93,9 +131,20 @@ Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
 *OnPlayReorderTop2
-Auto:
+Auto: OnAttack
 {
-
+    If LocationContainsOrLess Backstage 0 Any
+    {
+        Question Put the top card of your deck into waitiing room ?
+        If Yes
+        {
+            Mill 1
+            IfTarget IsCharacter && Compare ThatCardsLevel 0 OrLess
+            {
+                PlaceOnStage false false true false
+            }
+        }
+    }
 }
 Text Auto: When this card attacks, if there are no other characters in your backstage, you may put the top card of your deck in the waiting room. If it's a level 0 or lower character, put that character in any position in the backstage.
 EndCard
@@ -110,14 +159,10 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Auto:
+*OnPlayGivePower(1500,Music)
+Act: 1 SendSelf WaitingRoom
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your «Music» characters, and that character gets +1500 power until end of turn.
-Act:
-{
-
+    SearchWaitingRoom NameEquals Proof of Not Being Wrong, Nina || NameEquals Doing It Her Way, Momoka
 }
 Text Act: [(1) Put this card in the waiting room] Choose 1 "Proof of Not Being Wrong, Nina" or "Doing It Her Way, Momoka" in your waiting room and return it to your hand.
 EndCard
@@ -132,16 +177,17 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Auto:
+*OnPlayScry
+Act: 1
 {
-
+    Brainstorm 4
+    PerClimax
+    {
+        *CheckAndAdd(3)
+        Discard 1 Any
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, look at the top card of your deck and put it either on top of your deck or in the waiting room.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1)] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, perform the following action. "Look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, and discard a card from your hand to the waiting room."
+Text Act: BRAINSTORM [(1)] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, perform the following action. "Look at up to the top 3 cards of your deck, choose up to 1 card among them, put it in your hand, put the rest into your waiting room, and put a card from your hand into the waiting room."
 EndCard
 
 Character: GCR/SE48-08
@@ -154,16 +200,15 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Auto:
+Auto: OnPlay
 {
-
+    If StageContains 2 Other && HasTrait Music
+    {
+        *OptionalDrawDiscard
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, if the number of other «Music» characters you have is 2 or more, you may draw a card. If you do, discard a card from your hand to the waiting room.
-Auto:
-{
-
-}
-Text Auto: [Put 1 climax from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand.
+Text Auto: When this card is placed on the stage from your hand, if the number of other «Music» characters you have is 2 or more, you may draw a card. If you do, put a card from your hand to the waiting room.
+*OnPlayTradeClimaxForCharacter(Music)
 EndCard
 
 Character: GCR/SE48-09
@@ -176,14 +221,28 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains Hand 5 Any
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If there are 5 or more cards in your hand, this card gets +2000 power.
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If LocationContainsOrLess Stock 4 Any
+    {
+        TargetBattleOpponent
+        IfTarget OnStage
+        {
+            Question Put that character to bottom deck ?
+            If Yes
+            {
+                MoveCardToBottom OpponentDeck
+            }
+        }
+    }
 }
 Text Auto: When this card's battle opponent becomes reverse, if there are 4 or less cards in your stock, you may put that character on the bottom of the deck.
 EndCard
@@ -198,15 +257,29 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsCharacter && HasTrait Music
+    {
+        SearchLocationForTargets Deck 0 1 NameEquals Running Through Kawasaki, Nina
+        PlaceOnStage false true true false
+        GainPower 1000
+        ShuffleLocation Deck
+    }
 }
 Text Auto: [Put a «Music» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "Running Through Kawasaki, Nina", put it in any position on the stage, shuffle your deck, and that character gets +1000 power until end of turn.
-Auto:
+Auto: OnAttack
 {
-
+    If AllYourCharacters HasTrait Music
+    {
+        TargetLocation OpponentStage
+        SetXValue TargetCount
+        MultiplyXValue 1000
+        TargetSelf
+        GainPower X
+    }
 }
+Quick
 Text Auto: When this card attacks, if all your characters are «Music», this card gets +X power until end of turn. X equals 1000 times the number of your opponent's characters.
 EndCard
 
@@ -220,9 +293,24 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Auto:
+Auto: OnTriggerCheckClimax
 {
-
+    IfOther HasTrigger Door
+    {
+        PayCost 1 Discard 1 NameEquals Liar's Truth, Subaru
+        {
+            RevealUpTo Deck 2
+            SaveTargets
+            Message Choose a card to put into stock.
+            ChooseCardsFromTargets 1 1 Any
+            RevealTargets
+            MoveCard Stock
+            RemoveCurrentFromSavedTargets
+            LoadTargets
+            RevealTargets
+            MoveCard Hand
+        }
+    }
 }
 Text Auto: [(1) Put a "Liar's Truth, Subaru" from your hand to the waiting room] When your climax with a Door trigger icon is triggered, you may pay the cost. If you do, reveal up to 2 cards from the top of your deck, choose 1 of them and put it in your stock, and put the rest in your hand
 *Act1RestSelfSalvageBrainstorm(Any)
@@ -238,16 +326,8 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Auto:
-{
-
-}
-Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «Music» character, reveal it, put it in your hand, and shuffle your deck.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, choose 1 of your «Music» characters, and that character gets +1500 power until end of turn.
+*DropSearch(Music)
+*OnAttackGivePower(1500,Music)
 EndCard
 
 Character: GCR/SE48-13
@@ -260,16 +340,20 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Auto:
+*OnPlayGivePower(1500,Music)
+Auto: OnPlay
 {
-
+    RevealUpTo Deck 3
+    If HasTarget
+    {
+        ChooseCardsFromTargets 0 1 IsCharacter && HasTrait Music
+        RevealTargets
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+        Discard 1 Any
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your «Music» characters, and that character gets +1500 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: When this card is placed in your waiting room from the stage, you may reveal up to 3 cards from the top of your deck. If you reveal at least 1 card this way, choose up to 1 «Music» character among them and put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
+Text Auto: When this card is placed in your waiting room from the stage, you may reveal up to 3 cards from the top of your deck. If you reveal at least 1 card this way, choose up to 1 «Music» character among them and put it in your hand, put the rest into your waiting room, and put a card from your hand to the waiting room.
 EndCard
 
 Character: GCR/SE48-14
@@ -282,14 +366,20 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation OpponentCenterStage
+    NarrowTargets CanBeChosen && Compare ThatCardsLevel 0 OrLess
+    ChooseCharacterFromTargets_Optional Choose up to 1 character to return to hand.
+    Bounce
 }
 Text Auto: When this card is placed on the stage from your hand, you may choose 1 level 0 or lower character in your opponent's center stage and return it to their hand.
-Auto:
+Auto: OnPlay|OnSentFromStageToWaitingRoom
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchWaitingRoom IsCharacter
+    }
 }
 Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand or when this card is placed in your waiting room from the stage, you may pay the cost. If you do, choose a character in your waiting room and return it to your hand.
 EndCard
@@ -305,14 +395,30 @@ Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
 Combo Lonely Fate to Be Destined
-Auto:
+Auto: OnSpecificClimaxPlay Lonely Fate to Be Destined
 {
-
+    If StageContains 1 Other && HasTrait Music
+    {
+        PayCost SendSelf Hand
+        {
+            TargetLocation Stage
+            ChooseCharacterFromTargets Choose a character to give the effect.
+            GainEffect
+            {
+                Auto: OnAttack
+                {
+                    GainSpecialEffect DoubleTrigger
+                }
+                Quick
+                Text Auto: When this card attacks, perform trigger check twice during this card attack's trigger step.
+            }
+        }
+    }
 }
 Text Auto: CxCombo [Return this card to your hand] When "Lonely Fate to Be Destined" is placed on your climax area, if you have another «Music» character, you may pay the cost. If you do, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card attacks, perform trigger check twice during this card attack's trigger step."
-Act:
+Act: RestSelf
 {
-
+    *GiveCharacterPower(1500,Music)
 }
 Text Act: [Rest this card] Choose 1 of your «Music» characters, and that character gets +1500 power until end of turn.
 EndCard
@@ -327,14 +433,15 @@ Power 1500
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Cont:
+*GlobalPower(500,Music)
+Auto: OnClimaxPlay
 {
-
-}
-Text Cont: All your other «Music» characters get +500 power.
-Auto:
-{
-
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        *OnAttackCheck2ChooseTrigger
+    }
 }
 Text Auto: When your climax is placed on your climax area, choose 1 of your characters, and that character gets the following ability until end of turn. "Auto: When this card attacks, look at up to the top 2 cards of your deck, choose 1 of them and put it on top of your deck, and put the rest into your waiting room."
 EndCard
@@ -349,9 +456,13 @@ Power 2000
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContainsOrLess 1 Other
+    {
+        GainLevel 1
+        GainPower 2500
+    }
 }
 Text Cont: If you have 1 or less other character, this card gets +1 level and +2500 power.
 EndCard
@@ -366,9 +477,13 @@ Power 2000
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Auto:
+Auto: OnPlay
 {
-
+    Question Put the top 3 cards of your deck in to waiting room ?
+    If Yes
+    {
+        Mill 3
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, you may put the top 3 cards of your deck in the waiting room.
 *ClimaxExchange
@@ -398,9 +513,29 @@ Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
 *Bond1(Togenashi Togeari\, Tomo)
-Auto:
+Auto: StartClimaxPhase
 {
-
+    PayCost Resonate Togenashi Togeari, Tomo
+    {
+        GainPower 3500
+        GainEffect
+        {
+            Auto: OnAttack
+            {
+                GainSpecialEffect DoubleTrigger
+                ScheduleEffectUntilEndOfTurnForTargets OnTriggerCheck
+                {
+                    Effect:
+                    {
+                        TargetTop Stock 1
+                        MoveCard WaitingRoom
+                    }
+                    Quick
+                }
+            }
+            Text Auto: When this card attacks, perform trigger check twice during this card attack's trigger step. After 2 checks are made, put the top card of your stock in the waiting room.
+        }
+    }
 }
 Text Auto: RESONATE [Reveal a "Togenashi Togeari, Tomo" from your hand] At the beginning of your climax phase, you may pay the cost. If you do, this card gets +3500 power and the following ability until end of turn. "Auto: When this card attacks, perform trigger check twice during this card attack's trigger step. After 2 checks are made, put the top card of your stock in the waiting room."
 EndCard
@@ -415,7 +550,14 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Backup X
+Act_Backup: 0
+{
+    SetXToNumberOfCharacters HasTrait Music
+    MultiplyXValue 500
+    TargetMyCharacterInBattle
+    GainPower X
+}
+Text BACKUP X, level 1 [Put this card from your hand into waiting room] X equals 500 times the number of your «Music» characters.
 EndCard
 
 Character: GCR/SE48-22
@@ -428,16 +570,21 @@ Power 3000
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Cont:
+Cont: GiveAll
 {
-
+    If Other && HasTrait Music && Not MyTurn
+    {
+        GainPower 1000
+    }
 }
 Text Cont: During your turn, all your other «Music» characters get +1000 power.
-Act:
+Act: 1 SendSelf WaitingRoom
 {
-
+    Mill 2
+    SetXValue TotalLevel
+    SearchWaitingRoom IsCharacter && Compare ThatCardsLevel X OrLess
 }
-Text Act: [(1) Put this card in the waiting room] Put the top 2 cards of your deck in the waiting room, choose a level X or lower character in your waiting room and return it to your hand. X equals sum of levels of those cards.
+Text Act: [(1) Put this card in the waiting room] Put the top 2 cards of your deck in the waiting room, choose a level X or lower character in your waiting room and return it to your hand. X equals sum of levels of those cards. 
 EndCard
 
 Character: GCR/SE48-23
@@ -450,9 +597,12 @@ Power 3500
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Auto:
+Auto: OnAttack
 {
-
+    TargetLocation Stage
+    NarrowTargets HasTrait Music
+    ChooseCharactersFromTargets 0 2 Choose up to 2 characters to give +1500 power.
+    GainPower 1500
 }
 Text Auto: When this card attacks, choose up to 2 of your «Music» characters, and those characters get +1500 power until end of turn.
 EndCard
@@ -468,9 +618,16 @@ Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
 *BondDiscard(Togenashi Togeari\, Rupa)
-Auto:
+Auto: StartClimaxPhase
 {
-
+    PayCost Resonate Togenashi Togeari, Rupa
+    {
+        GainPower 3000
+        GainEffect
+        {
+            *OnAttackCheck2ChooseTrigger
+        }
+    }
 }
 Text Auto: RESONATE [Reveal a "Togenashi Togeari, Rupa" from your hand] At the beginning of your climax phase, you may pay the cost. If you do, this card gets +3000 power and the following ability until end of turn. "Auto: When this card attacks, look at up to the top 2 cards of your deck, choose 1 of them and put it on top of your deck, and put the rest into your waiting room."
 EndCard
@@ -486,14 +643,24 @@ Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
 Combo VOID
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn && AllYourCharacters HasTrait Music
+    {
+        GainPower 2000
+    }
 }
 Text Cont: During your turn, if all your characters are «Music», this card gets +2000 power.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax VOID && StageContains 1 Other && HasTrait Music
+    {
+        PayCost Discard 1 Any
+        {
+            SearchWaitingRoom IsCharacter && HasTrait Music
+            SearchWaitingRoom IsCharacter && HasTrait Music
+        }
+    }
 }
 Text Auto: CxCombo [Put 1 card from your hand to the waiting room] When this card attacks, if "VOID" is in your climax area and you have another «Music» character, you may pay the cost. If you do, choose up to 2 «Music» characters in your waiting room and return them to your hand.
 EndCard
@@ -508,14 +675,20 @@ Power 4000
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn && AllYourCharacters HasTrait Music
+    {
+        GainPower 2000
+    }
 }
 Text Cont: During your turn, if all your characters are «Music», this card gets +2000 power.
-Auto:
+Auto: OnSentFromStageToWaitingRoom
 {
-
+    PayCost Discard 1 Any
+    {
+        *Check4Add1Level1OrHigher
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When this card is placed in your waiting room from the stage, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 level 1 or higher card among them, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
@@ -530,16 +703,15 @@ Power 4000
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn && StageContains 1 Other && HasTrait Music
+    {
+        GainPower 1500
+    }
 }
 Text Cont: During your turn, if you have another «Music» character, this card gets +1500 power.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, if the character facing this card is level 2, this card gets +6000 power until end of turn.
+*GainPowerWhenAttackingLevel2(6000)
 EndCard
 
 Character: GCR/SE48-28
@@ -553,19 +725,24 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Cont:
+*LevelAssistTrait(Music)
+Auto: OnTriggerCheckClimax
 {
-
-}
-Text Cont: ASSIST Your «Music» characters in front of this card get +X power. X equals 500 times level of that character.
-Auto:
-{
-
+    IfOther HasTrigger Door
+    {
+        PayCost Discard 1 Any
+        {
+            TargetLocation OpponentStage
+            NarrowTargets CanBeChosen
+            ChooseCharacterFromTargets Choose a character to return to hand.
+            Bounce
+        }
+    }
 }
 Text Auto: [Put 1 card from your hand to the waiting room] When your climax with a Door trigger icon is triggered, you may pay the cost. If you do, choose 1 of your opponent's characters and return it to their hand.
-Act:
+Act: RestSelf
 {
-
+    *GiveCharacterPower(2000,Any)
 }
 Text Act: [Rest This card] Choose 1 of your characters, and that character gets +2000 power until end of turn.
 EndCard
@@ -581,9 +758,12 @@ Power 2500
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation OpponentCenterStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to give -1000 power.
+    LosePower 1000
 }
 Text Auto: When this card is placed on the stage from your hand, choose a character in your opponent's center stage, and that character gets -1000 power until end of turn.
 *BlueEarlyPlayBomb
@@ -600,9 +780,24 @@ Power 4000
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn && StageContains 2 Other && HasTrait Music
+    {
+        GainPower 3500
+        GainEffect
+        {
+            *GainPowerWhenAttackingLevel2(4000)
+        }
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait Music)
+            }
+            Text Auto: When this card's battle opponent becomes reverse, you may choose a «Music» character in your waiting room and put it in your stock.
+        }
+    }
 }
 Text Cont: During your turn, if the number of other «Music» characters you have is 2 or more, this card gets +3500 power and the following 2 abilities. "Auto: When this card attacks, if the level of the character facing this card is 2 or higher, this card gets +4000 power until end of turn." "Auto: When this card's battle opponent becomes reverse, you may choose a «Music» character in your waiting room and put it in your stock."
 EndCard
@@ -617,14 +812,31 @@ Power 5500
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Cont:
+Cont: GiveSelf
 {
-
+    If AllYourCharacters HasTrait Togenashi Togeari
+    {
+        GainEffect
+        {
+            *PowerOnMyTurn(3000)
+        }
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
 }
 Text Cont: If all your characters are «Togenashi Togeari», this card gets the following 2 abilities. "Cont: During your turn, this card gets +3000 power." "Auto: ENCORE [Put 1 character from your hand to the waiting room]"
-Auto:
+Auto: OnClimaxPlay
 {
-
+    If LocationContains Climax 1 HasTrigger Door
+    {
+        GainPower 1000
+        GainEffect
+        {
+            *OnAttackPay1ToDoubleTrigger
+        }
+    }
 }
 Text Auto: When your climax with a Door trigger icon is placed on your climax area, this card gets +1000 power and the following ability until end of turn. "Auto: [(1) When this card attacks, you may pay the cost. If you do, perform trigger check twice during this card attack's trigger step."
 EndCard
@@ -640,9 +852,32 @@ Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
 Combo Answer to Extreme
-Auto:
+Auto: OnSpecificClimaxPlay Answer to Extreme
 {
-
+    If LocationContainsOrLess Hand 5 Any &&& AllYourCharacters HasTrait Music
+    {
+        GainEffect
+        {
+            Auto: OnDamageCanceled
+            {
+                TargetLocation OpponentBackstage
+                NarrowTargets CanBeChosen && Compare ThatCardsLevel 2 OrLess
+                ChooseCharacterFromTargets_Optional Choose up to 1 character to put in waiting room.
+                MoveCard OpponentWaitingRoom
+            }
+            TimesPerTurn 1
+            Text Auto: This card ability activates up to once per turn. When damage dealt by this card is canceled, you may choose a level 2 or lower character in your opponent's backstage and put it in the waiting room.
+        }
+        GainEffect
+        {
+            Auto: OnDamageNotCanceled
+            {
+                SearchDeck IsCharacter && HasTrait Music || NameEquals Throw in All the Anger, Joy, and Sadness.
+                GainPower 3000
+            }
+            Text Auto: This card ability activates up to once per turn. When damage dealt by this card is not canceled, search your deck for up to 1 «Music» character or 'Throw in All the Anger, Joy, and Sadness.', reveal it, put it in your hand, shuffle your deck, and this card gets +3000 power until end of turn."
+        }
+    }
 }
 Text Auto: CxCombo When "Answer to Extreme" is placed on your climax area, if there are 5 or less cards in your hand and all your characters are «Music», this card gets the following 2 abilities until end of turn. "Auto: This card ability activates up to once per turn. When damage dealt by this card is canceled, you may choose a level 2 or lower character in your opponent's backstage and put it in the waiting room." "Auto: This card ability activates up to once per turn. When damage dealt by this card is not canceled, search your deck for up to 1 «Music» character or 'Throw in All the Anger, Joy, and Sadness.', reveal it, put it in your hand, shuffle your deck, and this card gets +3000 power until end of turn."
 EndCard
@@ -673,11 +908,20 @@ Power 3000
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+	PayCost 1 Discard 1 Any
+	{
+		TargetLocation OpponentStage
+		NarrowTargets CanBeChosen && EarlyPlay
+		ChooseCharacterFromTargets Choose a character to send to your opponent's stock
+		If HasTarget
+        {
+            MoveCard OpponentHand
+        }
+	}
 }
-Text Auto: [(1) Put 1 card from your hand to the waiting room] When you use this card's BACKUP, you may pay the cost. IF so, choose 1 of your opponent's characters whose level is higher than the level of the opponent and return it to their hand.
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of the opponent and return it to their hand.
 Backup 2500
 EndCard
 
@@ -844,9 +1088,39 @@ Trait1 Music
 Trait2 Togenashi Togeari
 Combo Emptiness and Catharsis
 *OnPlayDraw2Discard1
-Auto:
+Auto: OnSpecificClimaxPlay Emptiness and Catharsis
 {
-
+    If InLocation CenterStage && StageContains 1 Other && HasTrait Music
+    {
+        Burn 1
+        GainEffect
+        {
+            Auto: StartEncoreStep
+            {
+                PayCost 0
+                {
+                    TargetLocation Stock
+                    SetXValue TargetCount
+                    MoveCard WaitingRoom
+                    TargetLocation Hand
+                    AddToXValue TargetCount
+                    MoveCard WaitingRoom
+                    If Compare X 5 OrMore
+                    {
+                        Repeat 10 //10 is the maximum value possible with a deck of 50 cards
+                        {
+                            SubtractFromXValue 5
+                            Burn 2
+                            If Compare X 0 OrLess
+                            {
+                                StopLoop
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 Text Auto: CxCombo When "Emptiness and Catharsis" is placed on your climax area, if this card is in the center stage and you have another «Music» character, deal 1 damage to your opponent, and this card gets the following ability until end of turn. "Auto: [Put all cards from your hand and stock in the waiting room] At the beginning of your encore step, you may pay the cost. For every 5 cards put in the waiting room for the cost of this card ability, deal 2 damage to your opponent."
 EndCard
@@ -1234,7 +1508,7 @@ Auto:
 {
 
 }
-Text Auto: [(1)] When your climax with a Gate trigger icon is triggered, you may pay the cost. If you do, put the top card of your deck in your stock and draw up to 1 card. If you draw a card this way, discard a card from your hand to the waiting room.
+Text Auto: [(1)] When your climax with a Gate trigger icon is triggered, you may pay the cost. If you do, put the top card of your deck in your stock and draw up to 1 card. If you draw a card this way, put a card from your hand to the waiting room.
 EndCard
 
 Character: GCR/SE48-64

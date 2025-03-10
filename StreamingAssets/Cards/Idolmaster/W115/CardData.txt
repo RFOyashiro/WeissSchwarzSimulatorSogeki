@@ -2058,7 +2058,7 @@ Act: 1
         Discard 1 Any
     }
 }
-Text Act: BRAINSTORM [(1)] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, perform the following action. "Look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room."
+Text Act: BRAINSTORM [(1)] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, perform the following action. "Look at up to the top 3 cards of your deck, choose up to 1 card among them, put it in your hand, put the rest into your waiting room, and put a card from your hand into the waiting room."
 EndCard
 
 Character: IMC/W115-080
