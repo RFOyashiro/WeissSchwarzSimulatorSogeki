@@ -534,8 +534,15 @@ Auto: OnPlay
 Text Auto: [Put 1 climax from your hand into your waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 «Lily» character from your waiting room, and return it to your hand.
 Auto: OnOtherPlacedOnStageFromHand
 {
-	TargetSelf
-	GainPower 1000
+    IfOther HasTrait Lily
+    {
+	    TargetSelf
+	    GainPower 1000
+    }
+    Else
+    {
+        RefundTimesPerTurn
+    }
 }
 TimesPerTurn 2
 Text Auto: This ability activates up to 2 times per turn. When your other «Lily» character is placed on the stage from your hand, this card gets +1000 power until end of turn.

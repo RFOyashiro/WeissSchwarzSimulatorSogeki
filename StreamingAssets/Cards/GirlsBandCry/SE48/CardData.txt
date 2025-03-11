@@ -1856,7 +1856,7 @@ JPName ETERNAL FLAME 〜空の箱〜
 EndCard
 
 Character: GCR/SE48-T01
-Name Rupa
+Name Opening Lights, Rupa
 JPName 開戦の灯 ルパ
 Color R
 Level 0
@@ -1880,7 +1880,7 @@ Text Auto: When a climax is placed in your climax area, reveal the top card of y
 EndCard
 
 Character: GCR/SE48-T02
-Name Nina
+Name Confession, Nina
 JPName 告白 仁菜
 Color R
 Level 0
@@ -1905,7 +1905,7 @@ Text Cont: All of your other "Confession, Momoka" gets +1500 power and "Auto: EN
 EndCard
 
 Character: GCR/SE48-T03
-Name Subaru
+Name First Session, Subaru
 JPName 初セッション すばる
 Color R
 Level 0
@@ -1925,8 +1925,197 @@ Text Cont: During your turn, if you have another «Music» character, this card 
 *OnAttackPay1ToDoubleTrigger
 EndCard
 
+Character: GCR/SE48-P01
+Name Remain Wrong, Togenashi Togeari
+JPName 正しくないままで トゲナシトゲアリ
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Togenashi Togeari
+Auto: OnPlay
+{
+	Question Put 1 card from your hand into your stock?
+	If Yes
+	{
+		TargetLocation Hand
+		AIChoice Random
+		ChooseCard Put 1 card from your hand into your stock
+		If HasTarget
+		{
+			MoveCard Stock
+		}
+	}
+}
+Text Auto: When this card is placed on the stage from your hand, you may choose 1 card from your hand and put it into your stock.
+Act: 1 SendSelf WaitingRoom
+{
+    *Check4Add1(Music)
+}
+Text Act: [(1) Put this card in the waiting room] Look at up to the top 4 cards of your deck, choose up to 1 «Music» character among them, reveal it, put it in your hand, and put the rest into your waiting room.
+EndCard
+
+Character: GCR/SE48-P03
+Name "Avoid Note" Nina
+JPName “Avoid Note”仁菜
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Togenashi Togeari
+*OnAttackPay1ToDoubleTrigger
+Auto: OnSentFromStageToWaitingRoom
+{
+	Question Put 1 card from your hand into your stock?
+	If Yes
+	{
+		TargetLocation Hand
+		AIChoice Random
+		ChooseCard Put 1 card from your hand into your stock
+		If HasTarget
+		{
+			MoveCard Stock
+		}
+	}
+}
+Text Auto: When this card is placed in waiting room from your stage, you may choose 1 card from your hand and put it into your stock.
+EndCard
+
+Character: GCR/SE48-P04
+Name "Avoid Note" Momoka
+JPName “Avoid Note”桃香
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Togenashi Togeari
+Auto: OnPlay
+{
+    PayCost 1 Discard 1 Any
+    {
+        *CheckAndAdd(3)
+    }
+}
+Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
+Auto: OnPlay
+{
+    PayCost Discard 1 IsCharacter && HasTrait Music
+    {
+        DrawCard
+    }
+}
+Text Auto: [Put 1 «Music» character from your hand into waiitng room] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw 1 card.
+EndCard
+
+Character: GCR/SE48-P05
+Name "Avoid Note" Subaru
+JPName “Avoid Note”すばる
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Togenashi Togeari
+Auto: OnOtherPlacedOnStageFromHand
+{
+    IfOther HasTrait Music
+    {
+	    TargetSelf
+	    GainPower 1000
+    }
+    Else
+    {
+        RefundTimesPerTurn
+    }
+}
+TimesPerTurn 2
+Text Auto: This ability activates up to 2 times per turn. When your other «Music» character is placed on the stage from your hand, this card gets +1000 power until end of turn.
+Auto: OnOtherFrontalAttacked
+{
+	IfOther HasTrait Music
+	{
+		PayCost 1 SendSelf WaitingRoom
+		{
+			TargetOther
+			IfTarget OnStage
+			{
+				MoveCard Hand
+			}
+		}
+	}
+}
+Text Auto: [(1) Put this card in the waiting room] When your other «Music» character is frontal attacked, you may pay the cost. If you do, return that character to your hand.
+EndCard
+
+Character: GCR/SE48-P
+Name 
+JPName 
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Togenashi Togeari
+EndCard
+
+Character: GCR/SE48-P
+Name 
+JPName 
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Togenashi Togeari
+EndCard
+
+Character: GCR/SE48-P
+Name 
+JPName 
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Togenashi Togeari
+EndCard
+
+Character: GCR/SE48-P
+Name 
+JPName 
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Togenashi Togeari
+EndCard
+
+Character: GCR/SE48-P
+Name 
+JPName 
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Togenashi Togeari
+EndCard
+
 Character: GCR/SE48-T04
-Name Tomo
+Name To Witness the Beginning, Tomo
 JPName 始まりの目撃者へ 智
 Color R
 Level 0
@@ -1947,7 +2136,7 @@ Text Auto: [Put 1 «Music» character from your hand into waiitng room] When thi
 EndCard
 
 Character: GCR/SE48-T05
-Name Tomo
+Name Place to Go, Tomo
 JPName 帰る場所 智
 Color R
 Level 0
@@ -1969,7 +2158,7 @@ Text Auto: When your climax with a Door trigger icon is triggered, choose 1 of y
 EndCard
 
 Character: GCR/SE48-T06
-Name Nina
+Name Opening Lights, Nina
 JPName 開戦の灯 仁菜
 Color R
 Level 0
@@ -1999,7 +2188,7 @@ Text Auto: When your opponent places a climax in their climax area, you may put 
 EndCard
 
 Character: GCR/SE48-T07
-Name Momoka
+Name To Witness the Beginning, Momoka
 JPName 始まりの目撃者へ 桃香
 Color R
 Level 0
@@ -2029,7 +2218,7 @@ Text Auto: At the beginning of your opponent's attack phase, if there is a chara
 EndCard
 
 Character: GCR/SE48-T08
-Name Subaru
+Name To Witness the Beginning, Subaru
 JPName 始まりの目撃者へ すばる
 Color R
 Level 1
@@ -2060,7 +2249,7 @@ Text Cont: If this card is in the middle positiong of your center stage, this ca
 EndCard
 
 Character: GCR/SE48-T09
-Name Momoka
+Name Opening Lights, Momoka
 JPName 開戦の灯 桃香
 Color R
 Level 1
@@ -2069,10 +2258,11 @@ Power 5500
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
+Combo Crowded, Our Town
 *CannotSideAttack
 Auto: OnReverseOpponent
 {
-    If Climax
+    If Climax Crowded, Our Town
     {
         RevealUpTo Deck 4
         Message Choose up to 2 cards.
@@ -2089,11 +2279,11 @@ Auto: OnReverseOpponent
         PutTheRestIntoTheWaitingRoom
     }
 }
-Text Auto: CxCombo When this card's battle opponent is reversed, if "Door climax (T17)" is in your climax area, look at up to the top 4 cards of your deck, choose up to 2 level 1 of higher cards among them, reveal them, choose 1 of them and put it in your hand, choose 1 of them and put it in your stock, and put the rest into your waiting room.
+Text Auto: CxCombo When this card's battle opponent is reversed, if "Crowded, Our Town" is in your climax area, look at up to the top 4 cards of your deck, choose up to 2 level 1 of higher cards among them, reveal them, choose 1 of them and put it in your hand, choose 1 of them and put it in your stock, and put the rest into your waiting room.
 EndCard
 
 Character: GCR/SE48-T10
-Name Rupa
+Name Fanservice, Rupa
 JPName ファンサービス ルパ
 Color R
 Level 1
@@ -2108,7 +2298,7 @@ Backup 2000
 EndCard
 
 Character: GCR/SE48-T11
-Name Momoka Vanilla
+Name Confession, Momoka
 JPName 告白 桃香
 Color R
 Level 1
@@ -2118,7 +2308,7 @@ Soul 1
 EndCard
 
 Character: GCR/SE48-T12
-Name Tomo
+Name Opening Lights, Tomo
 JPName 開戦の灯 智
 Color R
 Level 2
@@ -2146,7 +2336,7 @@ Text Auto: When this card is placed on the stage from your hand, if the number o
 EndCard
 
 Character: GCR/SE48-T13
-Name Subaru
+Name Opening Lights, Subaru
 JPName 開戦の灯 すばる
 Color R
 Level 2
@@ -2178,7 +2368,7 @@ Text Act: [Put this card into the bottom of your deck] Choose 1 of your opponent
 EndCard
 
 Character: GCR/SE48-T14
-Name Nina
+Name To Witness the Beginning, Nina
 JPName 始まりの目撃者へ 仁菜
 Color R
 Level 3
@@ -2188,6 +2378,7 @@ Power 9500
 Soul 2
 Trait1 Music
 Trait2 Togenashi Togeari
+Combo Flower of Fate
 Auto: OnPlay
 {
     *OptionalHeal
@@ -2197,7 +2388,7 @@ Auto: OnPlay
 Text Auto: When this card is placed on the stage from your hand, put up to 1 card from the top of your clock in the waiting room, and this card gets +1500 power until end of turn.
 Auto: OnReverseOpponent
 {
-    If Climax
+    If Climax Flower of Fate
     {
         PayCost 1
         {
@@ -2219,11 +2410,11 @@ Auto: OnReverseOpponent
         }
     }
 }
-Text Auto: CxCombo [(1)] When this card's battle opponent becomes reverse, if "Door climax (T18)" is in your climax area, you may pay the cost. If you do, put that character to clock, look at the top card of your opponent's deck, and put it on top or bottom of their deck.
+Text Auto: CxCombo [(1)] When this card's battle opponent becomes reverse, if "Flower of Fate" is in your climax area, you may pay the cost. If you do, put that character to clock, look at the top card of your opponent's deck, and put it on top or bottom of their deck.
 EndCard
 
 Character: GCR/SE48-T15
-Name Rupa
+Name To Witness the Beginning, Rupa
 JPName 始まりの目撃者へ ルパ
 Color R
 Level 3
@@ -2247,7 +2438,7 @@ Text Auto: [Put 2 cards from your hand into waiting room] When this card attacks
 EndCard
 
 Event: GCR/SE48-T16
-Name Event
+Name Give the Middle Finger!
 JPName 中指立ててけ！
 Color R
 Level 1
@@ -2260,19 +2451,19 @@ Text Search your deck for up to 1 climax, reveal it, put it in your hand and shu
 EndCard
 
 Climax: GCR/SE48-T17
-Name 雑踏、僕らの街
+Name Crowded, Our Town
 JPName 雑踏、僕らの街
 *DoorClimax
 EndCard
 
 Climax: GCR/SE48-T18
-Name 運命の華
+Name Flower of Fate
 JPName 運命の華
 *DoorClimax
 EndCard
 
 Climax: GCR/SE48-T19
-Name 名もなき何もかも
+Name Everything Without a Name
 JPName 名もなき何もかも
 Color R
 *2SoulClimax

@@ -1,0 +1,4 @@
+Series: Girls Band Cry
+Folder: GirlsBandCry/SE48
+Prefix: GCR/SE48
+SetName: Girls Band Cry Premium Booster (SE48)
