@@ -1777,7 +1777,7 @@ Combo VOID
 Combo ETERNAL FLAME (VOID)
 Auto: OnPlay
 {
-    PayCost Send 1 Other && HasTrait Music
+    PayCost Send 1 WaitingRoom Other && HasTrait Music
     {
         Peek Deck 3
         SaveTargets
