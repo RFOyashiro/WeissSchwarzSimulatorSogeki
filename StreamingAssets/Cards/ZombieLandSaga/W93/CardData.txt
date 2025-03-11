@@ -848,7 +848,13 @@ Auto: OnPlay
 {
     If LocationContains Memory 2 NameEquals Revenge on Fate
     {
-    	*Downgrade
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen && Compare ThatCardsLevel 1 OrMore
+        ChooseCharacterFromTargets_Optional Choose up to 1 character.
+        If HasTarget
+        {
+            *Downgrade
+        }
     }
 }
 Text Auto: Memory When this card is placed on the stage from your hand, if you have 2 or more "Revenge on Fate" in your memory, you may choose 1 of your opponent's level 1 or higher characters. If you do, your opponent chooses 1 level X or lower character in their waiting room, and exchanges them. X is equal to the level of the character you chose -1.
