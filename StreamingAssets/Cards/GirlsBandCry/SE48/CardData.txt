@@ -2508,7 +2508,7 @@ Act: SendSelf BottomOfDeck
     TargetLocation OpponentStage
     If Compare TargetCount 4 OrLess
     {
-        NarrowTargets CanBeChosen
+        NarrowTargets CanBeChosen && CanMove
         ChooseCharacterFromTargets Choose a character to move to an open position.
         MoveToOpenPosition true true
     }
