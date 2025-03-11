@@ -956,8 +956,7 @@ Combo True Intention to Conceal
 Auto: OnPlay
 {
 	TargetLocation OpponentStage
-	AIChoice Bounce
-	ChooseCharacterFromTargets Choose a character to return to the hand.
+	ChooseCharacterFromTargets_Optional Choose up to 1 character to return to the hand.
 	Bounce
 	TargetSelf
 	GainPower 2000

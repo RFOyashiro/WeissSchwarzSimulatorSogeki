@@ -1855,76 +1855,6 @@ JPName ETERNAL FLAME 〜空の箱〜
 *GateClimax
 EndCard
 
-Character: GCR/SE48-T01
-Name Opening Lights, Rupa
-JPName 開戦の灯 ルパ
-Color R
-Level 0
-Cost 0
-Power 500
-Soul 1
-Trait1 Music
-Trait2 Togenashi Togeari
-Auto: OnClimaxPlay
-{
-    TargetTop Deck 1
-    Reveal
-    IfTarget IsCharacter && HasTrait Music
-    {
-        MoveCard Hand
-        Discard 1 Any
-    }
-}
-Text Auto: When a climax is placed in your climax area, reveal the top card of your deck. If that card is a «Music» character, add it to your hand and put 1 card from your hand into waiting room.
-*Act1RestSelfDrawBrainstorm5
-EndCard
-
-Character: GCR/SE48-T02
-Name Confession, Nina
-JPName 告白 仁菜
-Color R
-Level 0
-Cost 0
-Power 1000
-Soul 1
-Trait1 Music
-Trait2 Togenashi Togeari
-Cont: GiveAll
-{
-    If Other && NameEquals Confession, Momoka
-    {
-        GainPower 1500
-        GainEffect
-        {
-            *HandEncore
-        }
-    }
-}
-Text Cont: All of your other "Confession, Momoka" gets +1500 power and "Auto: ENCORE [Put 1 character from your hand into waiting room]".
-*BondDiscard(Confession\, Momoka)
-EndCard
-
-Character: GCR/SE48-T03
-Name First Session, Subaru
-JPName 初セッション すばる
-Color R
-Level 0
-Cost 0
-Power 1000
-Soul 1
-Trait1 Music
-Trait2 Togenashi Togeari
-Cont: GiveSelf
-{
-    If MyTurn && StageContains 1 Other && HasTrait Music
-    {
-        GainPower 3000
-    }
-}
-Text Cont: During your turn, if you have another «Music» character, this card gets +3000 power.
-*OnAttackPay1ToDoubleTrigger
-EndCard
-
 Character: GCR/SE48-P01
 Name Remain Wrong, Togenashi Togeari
 JPName 正しくないままで トゲナシトゲアリ
@@ -2054,57 +1984,242 @@ Auto: OnOtherFrontalAttacked
 Text Auto: [(1) Put this card in the waiting room] When your other «Music» character is frontal attacked, you may pay the cost. If you do, return that character to your hand.
 EndCard
 
-Character: GCR/SE48-P
-Name 
-JPName 
+Character: GCR/SE48-P06
+Name "Avoid Note" Tomo
+JPName “Avoid Note”智
 Color R
-Level 0
-Cost 0
-Power 1000
-Soul 1
+Level 3
+Cost 2
+Power 9500
+Soul 2
+Trigger Soul
 Trait1 Music
 Trait2 Togenashi Togeari
+Auto: OnPlay
+{
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+	ChooseCharacterFromTargets_Optional Choose up to 1 character to return to the hand.
+	Bounce
+    PayCost Discard 1 Any
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen
+        ChooseCharacterFromTargets Choose a character to return to the hand.
+        Bounce
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 of your opponent's characters, return it to their hand, and you may discard a card. If you do, choose 1 of your opponent's characters, return it to their hand.
+Auto: StartClimaxPhase
+{
+    PayCost Discard 1 Any
+    {
+        TargetLocation OpponentStage
+        NarrowTargets Compare ThatCardsLevel 1 OrHigher
+        ChooseCharacterFromTargets Choose 1 character to downgrade.
+        *Downgrade
+    }
+}
+Alarm
+Text Auto: ALARM [Put 1 card from your hand into waiting room] At the beginning of your climax phase, if this card is on top of your clock, you may pay the cost. If you do, choose 1 of your opponent's level 1 or higher characters, your opponent chooses a level X or lower character in their waiting room and exchange the chosen characters. X equals level of the character you chose this way -1.
 EndCard
 
-Character: GCR/SE48-P
-Name 
-JPName 
+Character: GCR/SE48-P07
+Name "Avoid Note" Rupa
+JPName “Avoid Note”ルパ
 Color R
 Level 0
 Cost 0
-Power 1000
+Power 1500
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
+Auto: OnPlay
+{
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen && EarlyPlay
+    ChooseCharacterFromTargets Choose a character to not stand.
+    DontStand
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's character whose level is higher than your opponent's level and that character doesn't stand during your opponent's next stand phase.
+Auto: OnPlay
+{
+    PayCost 1 Discard 1 Any
+    {
+        SearchWaitingRoom IsCharacter && HasTrait Music
+        *GiveOtherCharacterPower(1000,Music)
+    }
+}
+Text Auto: [(1) Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 «Music» character from your waiting room, return it to your hand, choose 1 of your other «Music» characters, and that character gets +1000 power until end of turn.
 EndCard
 
-Character: GCR/SE48-P
-Name 
-JPName 
+Character: GCR/SE48-P08
+Name Band of a Lifetime, Nina
+JPName 一生のバンド 仁菜
 Color R
-Level 0
-Cost 0
-Power 1000
+Level 2
+Cost 1
+Power 5000
 Soul 1
+Trigger Soul
 Trait1 Music
 Trait2 Togenashi Togeari
+Auto: OnPlay
+{
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +1 soul.
+    GainSoul 1
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your characters and that character gets +1 soul until end of turn.
+Act: SendSelf WaitingRoom
+{
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to return to hand.
+    Bounce
+}
+Text Act: [Put this card in the waiting room] Choose 1 of your opponent's characters and return it to their hand.
 EndCard
 
-Character: GCR/SE48-P
-Name 
-JPName 
+Character: GCR/SE48-P09
+Name Band of a Lifetime, Momoka
+JPName 一生のバンド 桃香
 Color R
-Level 0
-Cost 0
-Power 1000
+Level 2
+Cost 1
+Power 5000
 Soul 1
+Trigger Soul
 Trait1 Music
 Trait2 Togenashi Togeari
+Auto: OnPlay
+{
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +1 soul.
+    GainSoul 1
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your characters and that character gets +1 soul until end of turn.
+Act: SendSelf WaitingRoom
+{
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to return to hand.
+    Bounce
+}
+Text Act: [Put this card in the waiting room] Choose 1 of your opponent's characters and return it to their hand.
 EndCard
 
-Character: GCR/SE48-P
-Name 
-JPName 
+Character: GCR/SE48-P10
+Name Band of a Lifetime, Subaru
+JPName 一生のバンド すばる
+Color R
+Level 2
+Cost 1
+Power 5000
+Soul 1
+Trigger Soul
+Trait1 Music
+Trait2 Togenashi Togeari
+Auto: OnPlay
+{
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +1 soul.
+    GainSoul 1
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your characters and that character gets +1 soul until end of turn.
+Act: SendSelf WaitingRoom
+{
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to return to hand.
+    Bounce
+}
+Text Act: [Put this card in the waiting room] Choose 1 of your opponent's characters and return it to their hand.
+EndCard
+
+Character: GCR/SE48-P11
+Name Band of a Lifetime, Tomo
+JPName 一生のバンド 智
+Color R
+Level 2
+Cost 1
+Power 5000
+Soul 1
+Trigger Soul
+Trait1 Music
+Trait2 Togenashi Togeari
+Auto: OnPlay
+{
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +1 soul.
+    GainSoul 1
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your characters and that character gets +1 soul until end of turn.
+Act: SendSelf WaitingRoom
+{
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to return to hand.
+    Bounce
+}
+Text Act: [Put this card in the waiting room] Choose 1 of your opponent's characters and return it to their hand.
+EndCard
+
+Character: GCR/SE48-P09
+Name Band of a Lifetime, Rupa
+JPName 一生のバンド ルパ
+Color R
+Level 2
+Cost 1
+Power 5000
+Soul 1
+Trigger Soul
+Trait1 Music
+Trait2 Togenashi Togeari
+Auto: OnPlay
+{
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +1 soul.
+    GainSoul 1
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your characters and that character gets +1 soul until end of turn.
+Act: SendSelf WaitingRoom
+{
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to return to hand.
+    Bounce
+}
+Text Act: [Put this card in the waiting room] Choose 1 of your opponent's characters and return it to their hand.
+EndCard
+
+Character: GCR/SE48-T01
+Name Opening Lights, Rupa
+JPName 開戦の灯 ルパ
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Togenashi Togeari
+Auto: OnClimaxPlay
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait Music
+    {
+        MoveCard Hand
+        Discard 1 Any
+    }
+}
+Text Auto: When a climax is placed in your climax area, reveal the top card of your deck. If that card is a «Music» character, add it to your hand and put 1 card from your hand into waiting room.
+*Act1RestSelfDrawBrainstorm5
+EndCard
+
+Character: GCR/SE48-T02
+Name Confession, Nina
+JPName 告白 仁菜
 Color R
 Level 0
 Cost 0
@@ -2112,6 +2227,40 @@ Power 1000
 Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
+Cont: GiveAll
+{
+    If Other && NameEquals Confession, Momoka
+    {
+        GainPower 1500
+        GainEffect
+        {
+            *HandEncore
+        }
+    }
+}
+Text Cont: All of your other "Confession, Momoka" gets +1500 power and "Auto: ENCORE [Put 1 character from your hand into waiting room]".
+*BondDiscard(Confession\, Momoka)
+EndCard
+
+Character: GCR/SE48-T03
+Name First Session, Subaru
+JPName 初セッション すばる
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Togenashi Togeari
+Cont: GiveSelf
+{
+    If MyTurn && StageContains 1 Other && HasTrait Music
+    {
+        GainPower 3000
+    }
+}
+Text Cont: During your turn, if you have another «Music» character, this card gets +3000 power.
+*OnAttackPay1ToDoubleTrigger
 EndCard
 
 Character: GCR/SE48-T04
