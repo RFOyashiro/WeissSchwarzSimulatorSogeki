@@ -1144,7 +1144,7 @@ Cont: GiveAll
             {
                 TargetTop Deck 1
                 Reveal
-                IfTarget Compare ThatCardsLevel 1
+                IfTarget Compare ThatCardsLevel 1 OrMore
                 {
                     Question Return this card to your hand ?
                     If Yes
