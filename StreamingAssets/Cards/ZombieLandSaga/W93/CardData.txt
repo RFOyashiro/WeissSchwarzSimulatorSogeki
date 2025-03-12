@@ -1514,7 +1514,7 @@ Auto: OnPlay
 		PayCost Discard 1 Compare ThatCardsLevel 1 OrMore
 		{
 			SetXValue MyLevel
-			SearchLocationForTargets WaitingRoom 1 1 && Compare ThatCardsLevel X OrLess
+			SearchLocationForTargets WaitingRoom 1 1 && Compare ThatCardsLevel X OrLess && IsCharacter
 			SaveTargets
 			If Compare TargetCardsCost CardsInStock OrLess
 			{
