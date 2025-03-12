@@ -1355,7 +1355,7 @@ Auto: OnAttack
 {
     If Climax Kiss Between the Two of Us && LocationContainsOrLess Hand 5 Any &&& StageContains 3 Other
     {
-        PayCost 1 Discard 1 Any
+        PayCost 1 Discard 1 IsCharacter && HasTrait Adolescence
         {
             SetXValue 2
             If LocationContainsWithDifferentNames Memory 4 Any
