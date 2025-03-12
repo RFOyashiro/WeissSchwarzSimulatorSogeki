@@ -442,8 +442,6 @@ Auto: OnPlay
 
 }
 Text Auto: When this card is placed on the stage from your hand, put up to 2 cards from the top of your deck in the waiting room.
-Auto:
-{
 Auto: OnPlay
 {
 	If Phase Main
@@ -465,7 +463,6 @@ Auto: OnPlay
 		}
 	}
 }
-}
 Text Auto: [Put a level 1 or higher card from your hand to the waiting room] During your main phase, when this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «KAN-SEN» character in your waiting room whose level is equal to or lower than your level, during this main phase, you may play that card from waiting room without meeting color requirements. (If cost is needed to play the card, pay the cost)
 EndCard
 
@@ -479,14 +476,26 @@ Power 3500
 Soul 1
 Trait1 KAN-SEN
 Trait2 Royal Navy
-Cont:
+Cont: GiveSelf
 {
-
+    GainSpecialEffect CannotUseEvents
+    GainSpecialEffect CannotUseBackup
 }
-Text Cont: You cannot play events or BACKUP from hand.
-Auto:
+Text Cont: You cannot play events or "BACKUP" from hand.
+Auto: OnPlay
 {
-
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            GainSpecialEffect CannotReturnToHand
+            GainSpecialEffect CannotGoToMemory
+        }
+        Text Cont: This card cannot be returned to hand or sent to memory.
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters, and that character gets the following ability until end of turn. "Cont: This card cannot be returned to hand or sent to memory."
 EndCard
@@ -501,14 +510,18 @@ Power 2000
 Soul 1
 Trait1 KAN-SEN
 Trait2 Royal Navy
-Cont:
+Cont: GiveAllYourCards
 {
-
+    If Climax && HasTrigger Choice
+    {
+        GainTriggerIcon Soul
+    }
 }
-Text Cont: climax with a Choice trigger icon in all your other Zones get a Soul trigger icon.
-Act:
+Text Cont: All climax with a Choice trigger icon in all your areas get a Soul trigger icon.
+Act: RestSelf
 {
-
+    *Scry
+    ChooseCharacterFromTargets(1000,KAN-SEN)
 }
 Text Act: [Rest this card] Look at the top card of your deck, put it either on top of the deck or in the waiting room, choose 1 of your «KAN-SEN» characters, and that character gets +1000 power until end of turn.
 EndCard
@@ -525,19 +538,36 @@ Soul 1
 Trait1 KAN-SEN
 Trait2 Vichya Dominion
 Combo You Think You Can Beat Us?
-Cont:
+*PowerOnMyTurn(4000)
+Auto: OnAttack
 {
-
-}
-Text Cont: During your turn, this card gets +4000 power.
-Auto:
-{
-
+    If Climax You Think You Can Beat Us?
+    {
+        UntilEndOfOpponentsTurn
+        GainEffect
+        {
+            Auto: OnFrontalAttacked
+            {
+                PayCost 2
+                {
+                    TargetFacing
+                    IfTarget CanBeChosen
+                    {
+                        GainSoul 6
+                    }
+                }
+            }
+            Text Auto: [(2)] When this card is frontal attacked, you may pay the cost. If you do, choose the character facing this card, and that character gets +6 soul until end of turn.
+        }
+    }
 }
 Text Auto: CxCombo When this card attacks, if "You Think You Can Beat Us?" is in your climax area, this card gets the following ability until the end of your opponent's next turn. "Auto: [(2)] When this card is frontal attacked, you may pay the cost. If you do, choose the character facing this card, and that character gets +6 soul until end of turn."
-Auto:
+Auto: OnCancel
 {
-
+    If InBattle && Compare Experience 5 OrMore
+    {
+        Burn 1
+    }
 }
 Text Auto: EXPERIENCE During battles involving this card, when damage taken by you is canceled, if the sum of levels of cards in your level is 5 or higher, deal 1 damage to your opponent. 
 EndCard
@@ -552,16 +582,15 @@ Power 1000
 Soul 1
 Trait1 KAN-SEN
 Trait2 Royal Navy
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation OpponentCenterStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to give -1000 power.
+    LosePower 1000
 }
 Text Auto: When this card is placed on the stage from your hand, choose a character in your opponent's center stage, and that character gets -1000 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, choose 1 of your other «KAN-SEN» characters, and that character gets +1000 power until end of turn.
+*OnAttackGiveOtherPower(1000,KAN-SEN)
 EndCard
 
 Character: AZL/S119-020
@@ -574,14 +603,13 @@ Power 1000
 Soul 1
 Trait1 KAN-SEN
 Trait2 Royal Navy
-Cont:
+*PowerInMiddle(3000)
+Auto: OnPlay
 {
-
-}
-Text Cont: If this card is in the middle position of your center stage, this card gets +3000 power.
-Auto:
-{
-
+    PayCost 2
+    {
+        SearchWaitingRoom IsCharacter && HasTrait KAN-SEN
+    }
 }
 Text Auto: [(2)] When this card is placed in your waiting room from the stage, you may pay the cost. If you do, choose a «KAN-SEN» character in your waiting room and return it to your hand.
 EndCard
@@ -596,14 +624,10 @@ Power 1000
 Soul 1
 Trait1 KAN-SEN
 Trait2 Royal Navy
-Cont:
+*GlobalPower(500,KAN-SEN)
+Act: RestSelf
 {
-
-}
-Text Cont: All your other «KAN-SEN» characters get +500 power.
-Act:
-{
-
+    *ExchangeCardInLevelWithWaitingRoom(Any,IsCharacter && HasTrait KAN-SEN)
 }
 Text Act: [Rest this card] Choose a card in your level and a «KAN-SEN» character in your waiting room and exchange them.
 EndCard
@@ -618,14 +642,29 @@ Power 1500
 Soul 1
 Trait1 KAN-SEN
 Trait2 Royal Navy
-Auto:
+Auto: OnPlay
 {
-
+    TargetLocation OpponentStage
+    SetXValue TargetCount
+    MultiplyXValue 1000
+    TargetSelf
+    GainPower X
 }
+Quick
 Text Auto: When this card is placed on the stage from your hand, this card gets +X power until end of turn. X equals 1000 times the number of your opponent's characters.
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If PlayedThisTurn
+    {
+        PayCost 1
+        {
+            TargetTop Deck 2
+            RevealTargets
+            OpponentChooseCardsFromTargets 1 1 IsCharacter || IsEvent
+            MoveCard Hand
+            PutTheRestIntoTheWaitingRoom
+        }
+    }
 }
 Text Auto: [(1)] During the turn this card is placed on the stage from your hand, when this card's battle opponent becomes reverse, you may pay the cost. If you do, reveal the top 2 cards of your deck, your opponent chooses a character or an event among those cards and put it in your hand, then put the rest into your waiting room.
 EndCard
@@ -640,16 +679,12 @@ Power 3000
 Soul 1
 Trait1 KAN-SEN
 Trait2 Iris Libre
-Auto:
+Auto: OnClimaxPlay
 {
-
+    *GiveCharacterPower(3000,Any)
 }
 Text Auto: When your climax is placed on your climax area, choose 1 of your characters, and that character gets +3000 power until end of turn.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, if the character facing this card is level 2, this card gets +6000 power until end of turn.
+*GainPowerWhenAttackingLevel2(6000)
 EndCard
 
 Character: AZL/S119-024
@@ -663,9 +698,13 @@ Soul 1
 Trait1 KAN-SEN
 Trait2 Dragon Empery
 *Act1RestSelfSalvageBrainstorm(Any)
-Act:
+Act: 1 Rest 2 Any
 {
-
+    Brainstorm 4
+    TargetBrainstormed
+    NarrowTargets IsClimax
+    SetXValue TargetCount
+    Burn X
 }
 Text Act: BRAINSTORM [(1) Rest 2 of your characters] Flip over the top 4 cards of your deck and put them in the waiting room. deal X damage to your opponent. X equals the number of climax among those cards. 
 EndCard
@@ -680,14 +719,36 @@ Power 4500
 Soul 1
 Trait1 KAN-SEN
 Trait2 Royal Navy
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn
+    {
+        SetXToNumberOfCharacters Other && HasTrait KAN-SEN
+        MultiplyXValue 500
+        GainPower X
+    }
 }
 Text Cont: During your turn, for each of your other «KAN-SEN» characters, this card gets +500 power.
-Auto:
+*ExchangeOpponentsCharactersOrMoveToOpenPosition
+Auto: StartClimaxPhase
 {
-
+    PayCost Discard 1 IsCharacter && HasTrait KAN-SEN
+    {
+        TargetFacing
+        If CanMove
+        {
+            SaveTargets
+            TargetLocation OpponentStage
+            NarrowTargets CanMove && CanBeChosen && Not InSavedTargets && Compare ThatCardsLevel 1 OrMore
+            ChooseCharacterFromTargets Choose a character to exchange.
+            If HasTarget
+            {
+                AddSavedToCurrentTargets
+                Stand
+                Exchange
+            }
+        }
+    }
 }
 Text Auto: [Put a «KAN-SEN» character from your hand to the waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose the character facing this card and 1 of your opponents other character that is level 1 or lower, then stand and exchange them.
 EndCard
@@ -718,11 +779,17 @@ Power 3000
 Soul 1
 Trait1 KAN-SEN
 Trait2 Royal Navy
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    If Compare Experience 3 OrLess
+    {
+        PayCost 1 Discard 1 Any
+        {
+            Heal
+        }
+    }
 }
-Text Auto: EXPERIENECE [(1) Put 1 card from your hand to the waiting room] When you use this card's BACKUP, if the sum of levels of cards in your level is 3 or higher, you may pay the cost. If you do, put the top card of your clock in the waiting room.
+Text Auto: EXPERIENECE [(1) Put 1 card from your hand to the waiting room] When you use this card's "BACKUP", if the sum of levels of cards in your level is 3 or higher, you may pay the cost. If you do, put the top card of your clock in the waiting room.
 Backup 2500
 EndCard
 
@@ -738,11 +805,7 @@ Soul 1
 Trait1 KAN-SEN
 Trait2 Royal Navy
 *Level3Assist
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your characters, and that character gets +1500 power until end of turn.
+*RestGivePower(1500,Any)
 EndCard
 
 Event: AZL/S119-029
@@ -751,11 +814,23 @@ JPName Curia of Vichya
 Color Y
 Level 1
 Cost 1
+Counter
+Requirement StageContains 1 HasTrait KAN-SEN
+Text If you don't have a «KAN-SEN» character, you cannot play this card from hand.
 Effect: 
 {
-
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            GainSpecialEffect CannotBeReversed
+        }
+        Text Cont: This card cannot be reversed.
+    }
 }
-Text If you don't have a «KAN-SEN» character, you cannot play this card from hand. Choose 1 of your characters, and that character gets the following ability until end of turn. "Cont: This card does not reverse."
+Text COUNTER Choose 1 of your characters, and that character gets the following ability until end of turn. "Cont: This card cannot be reversed."
 EndCard
 
 Event: AZL/S119-030
@@ -766,7 +841,17 @@ Level 2
 Cost 0
 Effect: 
 {
-
+    Mill 3
+    NarrowTargets IsCharacter && Compare ThatCardsLevel 1 OrLess
+    SetXValue TargetCount
+    MillOpponent 3
+    NarrowTargets IsCharacter && Compare ThatCardsLevel 0 OrLess
+    If Compare X TargetCount GreaterThan
+    {
+        *OptionalDraw
+    }
+    TargetSelf
+    MoveCard Stock
 }
 Text All players put the top 3 cards of their respective libraries in their respective waiting rooms. If the number of your level 1 or lower characters put in the waiting room this way is more than the number of your opponent's level 0 or lower characters put in the waiting room this way, you may draw a card. Put this card in your stock.
 EndCard
@@ -779,9 +864,17 @@ Level 3
 Cost 1
 Effect: 
 {
-
+    *GiveCharacterPower(4000,Any)
+    GainEffect
+    {
+        Auto: OnReverseOpponent
+        {
+            *OptionalBurn(1)
+        }
+        Text Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent.
+    }
 }
-Text When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent." 
+Text Choose 1 of your characters, and that character gets +4000 power and the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may deal 1 damage to your opponent." 
 EndCard
 
 Climax: AZL/S119-032
@@ -812,19 +905,21 @@ Power 500
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains Hand 4 Any &&& StageContainsOrLess 0 Other
+    {
+        GainSpecialEffect CannotBeReversed
+    }
 }
-Text Cont: If there are 4 or more cards in your hand and you have no other characters, this card does not reverse.
-Cont:
+Text Cont: If there are 4 or more cards in your hand and you have no other characters, this card cannot be reversed.
+*PowerOnMyTurn(3000)
+Auto: OnPlay
 {
-
-}
-Text Cont: During your turn, this card gets +3000 power.
-Auto:
-{
-
+    PayCost Discard 1 IsCharacter && HasTrait KAN-SEN
+    {
+        DrawCard
+    }
 }
 Text Auto: [Put a «KAN-SEN» character from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw a card.
 EndCard
@@ -839,14 +934,20 @@ Power 2000
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Auto:
+*OnPlayGainPower(1500)
+Auto: OnAttack
 {
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +1500 power until end of turn.
-Auto:
-{
-
+    If PlayedThisTurn
+    {
+        PayCost Discard 2 Any
+        {
+            RevealUpTo Deck 4
+            ChooseCardsFromTargets 0 2 IsCharacter && HasTrait KAN-SEN
+            RevealTargets
+            MoveCard Hand
+            PutTheRestIntoTheWaitingRoom
+        }
+    }
 }
 Text Auto: [Put 2 cards from your hand to the waiting room] During the turn this card is placed on the stage from your hand, when this card attacks, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 2 «KAN-SEN» characters, reveal them, put them in your hand, and put the rest into your waiting room.
 EndCard
@@ -862,16 +963,30 @@ Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
 Combo Sisters Fighting Together
-Cont:
+Cont: GiveSelf
 {
-
+    If AllYourCharacters HasTrait KAN-SEN
+    {
+        GainPower 2000
+    }
 }
 Text Cont: If all your characters are «KAN-SEN», this card gets +2000 power.
-Auto:
+Auto: OnReverseOpponent
 {
-
+    If Climax Sisters Fighting Together
+    {
+        Repeat 2
+        {
+            TargetTop Deck 1
+            Reveal
+            IfTarget IsCharacter && HasTrait KAN-SEN || IsEvent
+            {
+                MoveCard Hand
+            }
+        }
+    }
 }
-Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Sisters Fighting Together" is in your climax area, perform the following action twice. Reveal the top card of your deck. If it's either a «KAN-SEN» character or an event, put it in your hand." 
+Text Auto: CxCombo When this card's battle opponent becomes reverse, if "Sisters Fighting Together" is in your climax area, perform the following action twice. "Reveal the top card of your deck. If it's either a «KAN-SEN» character or an event, put it in your hand." 
 EndCard
 
 Character: AZL/S119-038
@@ -885,14 +1000,22 @@ Power 7500
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Auto:
+Auto: OnPlay
 {
-
+    If LocationContainsOrLess Deck 6 Any
+    {
+        Question_Obvious Put all cards in your waiting room to your deck ?
+        If Yes
+        {
+            Refresh
+        }
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, if there are 6 or less cards in your deck, you may return all cards in your waiting room to your deck. If you do, shuffle your deck.
-Act:
+Act: Discard 1 NameEquals Aircraft Carrier Shinano &&& Rest 1 Any
 {
-
+    *OptionalBlindStock
+    *OptionalBlindStock
 }
 Text Act: [Put an "Aircraft Carrier Shinano" from your hand to the waiting room, rest 2 of your characters] Put up to 2 cards from the top of your deck in your stock.
 EndCard
@@ -909,15 +1032,36 @@ Soul 2
 Trait1 KAN-SEN
 Trait2 Sakura Empire
 Combo Learning to Dance?
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 7 OrMore
+    {
+        GainPower 3000
+        GainEffect
+        {
+            Cont: GiveSelf
+            {
+                If InBattle
+                {
+                    GainSpecialEffect OpponentCannotUseEvents
+                }
+            }
+            Text Cont: During battles involving this card, your opponent cannot play events from hand.
+        }
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 7 or higher, this card gets +3000 power and the following ability. "Cont: During battles involving this card, your opponent cannot play events from hand."
-Auto:
+Auto: OnEndOfAttack
 {
-
+    If Climax Learning to Dance?
+    {
+        PayCost 1 Discard 1 Any
+        {
+            Stand
+        }
+    }
 }
+TimesPerTurn 1
 Text Auto: CxCombo [(1) Put 1 card from your hand to the waiting room] This card ability activates up to once per turn. At the end of this card's attack, if "Learning to Dance?" is in your climax area, you may pay the cost. If you do, stand this card.
 EndCard
 
@@ -931,14 +1075,20 @@ Power 500
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Cont:
+Cont: GiveSelf
 {
-
+    If AllYourCharacters HasTrait KAN-SEN
+    {
+        GainPower 3000
+    }
 }
 Text Cont: If all your characters are «KAN-SEN», this card gets +3000 power.
-Auto:
+Auto: OnAttack
 {
-
+    If StageContains 2 Other && HasTrait KAN-SEN
+    {
+        *OptionalDrawDiscard
+    }
 }
 Text Auto: When this card attacks, if the number of other «KAN-SEN» characters you have is 2 or more, you may draw a card. If you do, discard a card from your hand to the waiting room.
 EndCard
@@ -953,14 +1103,21 @@ Power 1500
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Auto:
+Auto: OnPlay|OnAttack
 {
-
+    If AllYourCharacters HasTrait KAN-SEN
+    {
+        *GiveCharacterPower(1000,Any)
+    }
 }
 Text Auto: When this card is placed on the stage from your hand or when this card attacks, if all your characters are «KAN-SEN», choose 1 of your characters, and that character gets +1000 power until end of turn.
-Auto:
+Auto: OnPlay
 {
-
+    PayCost 1 Discard 1 Any
+    {
+        SearchWaitingRoom IsCharacter && HasTrait KAN-SEN
+        *GiveOtherCharacterPower(1000,KAN-SEN)
+    }
 }
 Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «KAN-SEN» character in your waiting room and return it to your hand, choose 1 of your other «KAN-SEN» characters, and that character gets +1000 power until end of turn.
 EndCard
@@ -976,11 +1133,14 @@ Power 1000
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Auto:
+Auto: OnUseThisCardsBackup
 {
-
+    If StageContains 1 HasTrait KAN-SEN
+    {
+        MillOpponent 3
+    }
 }
-Text Auto: When you use this card's BACKUP, if you have a «KAN-SEN» character, put the top 3 cards of your or your opponent's deck in the waiting room.
+Text Auto: When you use this card's "BACKUP", if you have a «KAN-SEN» character, put the top 3 cards of your or your opponent's deck in the waiting room.
 Backup 2000
 EndCard
 
@@ -996,16 +1156,32 @@ Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
 Combo Divine Presence
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn && StageContains 1 Other && HasTrait KAN-SEN
+    {
+        GainPower 6000
+    }
 }
 Text Cont: During your turn, if you have another «KAN-SEN» character, this card gets +6000 power.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Divine Presence && Compare Experience 5 OrMore && StageContains 4 Other && HasTrait KAN-SEN
+    {
+        MultipleChoiceQuestion Choose 1 of the following 2 effects and perform it.\n1: Deal 1 damage to your opponent, and put the top 4 cards of your opponent's deck in the waiting room.\n2: Choose up to 2 level 1 or higher characters in your waiting room and return them to your hand.|1|2
+        If Answer 0
+        {
+            Burn 1
+            MillOpponent 4
+        }
+        If Answer 2
+        {
+            SearchWaitingRoom IsCharacter && Compare ThatCardsLevel 1 OrMore
+            SearchWaitingRoom IsCharacter && Compare ThatCardsLevel 1 OrMore
+        }
+    }
 }
-Text Auto: CxCombo EXPERIENCE When this card attacks, if "Divine Presence" is in your climax area, the sum of levels of cards in your level is 5 or higher, and the number of other «KAN-SEN» characters you have is 4 or more, choose 1 of the following 2 effects and perform it. "deal 1 damage to your opponent, and put the top 4 cards of your opponent's deck in the waiting room." "Choose up to 2 level 1 or higher characters in your waiting room and return them to your hand."
+Text Auto: CxCombo EXPERIENCE When this card attacks, if "Divine Presence" is in your climax area, the sum of levels of cards in your level is 5 or higher, and the number of other «KAN-SEN» characters you have is 4 or more, choose 1 of the following 2 effects and perform it. "Deal 1 damage to your opponent, and put the top 4 cards of your opponent's deck in the waiting room." "Choose up to 2 level 1 or higher characters in your waiting room and return them to your hand."
 EndCard
 
 Character: AZL/S119-044
@@ -1021,9 +1197,22 @@ Trait1 KAN-SEN
 Trait2 Sakura Empire
 Combo Exorcism for the Mortal Realm
 *Healer
-Auto:
+Auto: OnAttack
 {
-
+    If Climax Exorcism for the Mortal Realm
+    {
+        Peek Deck 3
+        Message Choose up to 3 cards to put on top of your deck.
+        ChooseCardsFromTargets 0 3 Any
+        MoveCard Deck
+        Reorder
+        PutTheRestIntoTheWaitingRoom
+        GainPower 1000
+        GainEffect
+        {
+            *OnCancelBurn1
+        }
+    }
 }
 Text Auto: CxCombo When this card attacks, if "Exorcism for the Mortal Realm" is in your climax area, look at up to 3 cards from the top of your deck, choose up to 3 of them and put them on top of your deck in any order, put the rest into your waiting room, and this card gets +1000 power and the following ability until end of turn. "Auto: This card ability activates up to once per turn. When damage dealt by this card is canceled, you may deal 1 damage to your opponent." 
 EndCard
@@ -1040,9 +1229,16 @@ Soul 2
 Trait1 KAN-SEN
 Trait2 Sakura Empire
 *StockHealer
-Auto:
+Auto: OnOtherFrontalAttacked
 {
-
+    IfOther HasTrait KAN-SEN
+    {
+        PayCost SendSelf WaitingRoom
+        {
+            TargetMyCharacterInBattle
+            GainPower 4500
+        }
+    }
 }
 Text Auto: [Put this card in the waiting room] When your other «KAN-SEN» character is frontal attacked, you may pay the cost. If you do, choose 1 of your characters in battle, and that character gets +4500 power until end of turn.
 EndCard
@@ -1057,14 +1253,20 @@ Power 1000
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains CenterStage 1 NameEquals Chiyoda && Other
+    {
+        GainPower 4000
+    }
 }
 Text Cont: If there is another "Chiyoda" in your center stage, this card gets +4000 power.
-Cont:
+Cont: GiveAll
 {
-
+    If MyTurn && Other && NameEquals Chiyoda
+    {
+        GainPower 4000
+    }
 }
 Text Cont: During your turn, all your other "Chiyoda" get +4000 power.
 EndCard
@@ -1079,11 +1281,7 @@ Power 1000
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Auto:
-{
-
-}
-Text Auto: When this card attacks, choose 1 of your other «KAN-SEN» characters, and that character gets +X power until end of turn. X equals 500 times the number of your other «KAN-SEN» characters.
+*OnAttackGivePowerForEachOther(500,KAN-SEN)
 *GreenLevel0Bomb
 EndCard
 
@@ -1097,16 +1295,33 @@ Power 2000
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Auto:
+Auto: StartOpponentAttackPhase
 {
-
+    PayCost 1 Clock SendSelf Hand
+    {
+        TargetLocation Deck
+        NarrowTargets NameEquals Chitose && Other
+        ChooseCharacterFromTargets Choose a character to return to your hand.
+        Bounce
+    }
 }
-Text Auto: [(1) Put the top card of your deck in your clock, return this card to your hand] At the beginning of your opponent's attack phase, you may pay the cost. IF so, choose 1 of your other "Chitose" and return it to your hand.
-Act:
+Text Auto: [(1) Put the top card of your deck in your clock, return this card to your hand] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your other "Chitose" and return it to your hand.
+Act: Rest 2 Any
 {
-
+    GainPower 500
+    GainEffect
+    {
+        Cont: GiveAllYourCards
+        {
+            If NameEquals Chitose || NameEquals Chiyoda
+            {
+                GainTriggerIcon Soul
+            }
+        }
+        Text Cont: All "Chitose" and "Chiyoda" in all your areas get a Soul trigger icon.
+    }
 }
-Text Act: [Rest 2 of your characters] This card gets +500 power and the following ability until end of turn. "Cont: 'Chitose' and 'Chiyoda' in all your other Zones get a Soul trigger icon."
+Text Act: [Rest 2 of your characters] This card gets +500 power and the following ability until end of turn. "Cont: All "Chitose" and "Chiyoda" in all your areas get a Soul trigger icon."
 EndCard
 
 Character: AZL/S119-049
@@ -1119,9 +1334,16 @@ Power 2000
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Auto:
+Auto: OnSentFromStageToWaitingRoom
 {
-
+    PayCost 1 Clock
+    {
+        RevealUpTo Deck 2
+        ChooseCardsFromTargets 0 2 IsCharacter && HasTrait KAN-SEN
+        RevealTargets
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
 }
 Text Auto: [(1) Put the top card of your deck in your clock] When this card is placed from stage to the waiting room, you may pay the cost. If you do, look at up to 2 cards from the top of your deck and search for up to 2 «KAN-SEN» characters, reveal them, put them in your hand, and put the rest into your waiting room.
 EndCard
@@ -1137,14 +1359,32 @@ Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
 Combo Sisters Fighting Together
-Auto:
+Auto: OnSpecificClimaxPlay Sisters Fighting Together
 {
-
+    If StageContains 4 Other && HasTrait KAN-SEN
+    {
+        TargetTop Deck 2
+        RevealTargets
+        OpponentChooseCardsFromTargets 1 1 IsCharacter || IsEvent
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
 }
 Text Auto: CxCombo When "Sisters Fighting Together" is placed on your climax area, if the number of other «KAN-SEN» characters you have is 4 or more, reveal the top 2 cards of your deck, your opponent chooses a character or an event among them and put it in your hand, and put the rest into your waiting room.
-Act:
+Act: RestSelf
 {
-
+    MultipleChoiceQuestion Choose 1 of the following 2 effects and perform it.\n1: Choose 1 of your characters, and that character gets +1000 power until end of turn.\n2: [Put 1 card from your hand to the waiting room, rest 1 of your other characters] You may pay the cost. If you do, search your deck for up to 1 'Light Cruiser, Noshiro', reveal it, put it in your hand, and shuffle your deck.|1|2
+    If Answer 0
+    {
+        *GiveCharacterPower(1000,Any)
+    }
+    If Any 1
+    {
+        PayCost Discard 1 Any &&& Rest 1 Other
+        {
+            SearchDeck NameEquals Light Cruiser Noshiro
+        }
+    }
 }
 Text Act: [Rest this card] Choose 1 of the following 2 effects and perform it. "Choose 1 of your characters, and that character gets +1000 power until end of turn." "[Put 1 card from your hand to the waiting room, rest 1 of your other characters] You may pay the cost. If you do, search your deck for up to 1 'Light Cruiser, Noshiro', reveal it, put it in your hand, and shuffle your deck."
 EndCard
@@ -1159,16 +1399,17 @@ Power 4000
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Cont:
+Cont: GiveSelf
 {
-
+    If Compare Experience 2 OrMore
+    {
+        SetXToNumberOfCharacters Other && HasTrait KAN-SEN
+        MultiplyXValue 500
+        GainPower X
+    }
 }
 Text Cont: EXPERIENCE If the sum of levels of cards in your level is 2 or higher, for each of your other «KAN-SEN» characters, this card gets +500 power.
-Auto:
-{
-
-}
-Text Auto: When this card attacks, if the character facing this card is level 2, this card gets +6000 power until end of turn.
+*GainPowerWhenAttackingLevel2(6000)
 EndCard
 
 Character: AZL/S119-052
@@ -1182,11 +1423,7 @@ Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
 *OnPlayMax4Memory
-Auto:
-{
-
-}
-Text Auto: When this card attacks, choose 1 of your other «KAN-SEN» characters, and that character gets +X power until end of turn. X equals 500 times the number of your other «KAN-SEN» characters.
+*OnAttackGivePowerForEachOther(500,KAN-SEN)
 EndCard
 
 Character: AZL/S119-053
@@ -1200,16 +1437,13 @@ Power 2500
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Auto:
+Auto: OnClimaxPlay
 {
-
+    UntilEndOfOpponentsTurn
+    *GiveCharacterPower(2500,Any)
 }
 Text Auto: When your climax is placed on your climax area, choose 1 of your characters, and that character gets +2500 power until the end of your opponent's next turn.
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your characters, and that character gets +1000 power until end of turn.
+*RestGivePower(1000,Any)
 EndCard
 
 Character: AZL/S119-054
@@ -1223,14 +1457,26 @@ Power 7000
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Cont:
+Cont: GiveAllYourCards
 {
-
+    If LocationContains Climax 1 HasTrigger Bar
+    {
+        If NameEquals Shinano
+        {
+            GainTriggerIcon Bar
+        }
+    }
 }
-Text Cont: If there's a climax with a Bar trigger icon in your climax area, "Shinano" in all your other Zones get a Bar trigger icon.
-Cont:
+Text Cont: If there's a climax with a Bar trigger icon in your climax area, all your "Shinano" in all your areas get a Bar trigger icon.
+Cont: GiveAll
 {
-
+    If Other && NameEquals Shinano
+    {
+        GainEffect
+        {
+            *OnAttackCheck2ChooseTrigger
+        }
+    }
 }
 Text Cont: All your other "Shinano" get the following ability "Auto: When this card attacks, look at up to 2 cards from the top of your deck, choose 1 of them and put it on top of the deck, and put the rest into your waiting room."
 EndCard
@@ -1245,16 +1491,8 @@ Power 1000
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Cont:
-{
-
-}
-Text Cont: All your other «KAN-SEN» characters get +500 power.
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your «KAN-SEN» characters, and that character gets +1500 power until end of turn.
+*GlobalPower(500,KAN-SEN)
+*RestGivePower(1500,KAN-SEN)
 EndCard
 
 Character: AZL/S119-056
@@ -1267,16 +1505,12 @@ Power 1500
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Auto:
+Auto: StartOpponentAttackPhase
 {
-
+    *GiveCharacterPower(500,KAN-SEN)
 }
 Text Auto: At the beginning of your opponent's attack phase, choose 1 of your «KAN-SEN» characters, and that character gets +500 power until end of turn.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, search your deck for up to 1 «KAN-SEN» character, reveal it, put it in your hand, and shuffle your deck.
+*Act1RestSelfSearchBrainstorm(KAN-SEN)
 EndCard
 
 Character: AZL/S119-057
@@ -1289,15 +1523,21 @@ Power 1500
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Auto:
+*DropSearch(KAN-SEN)
+Auto: StartMainPhase
 {
-
+    Question Exchange this card with a character in waiting room ?
+    If Yes
+    {
+        SearchLocationForTargets WaitingRoom 1 1 IsCharacter && HasTrait KAN-SEN
+        If HasTarget
+        {
+            AddSelfToTargets
+            Exchange
+        }
+    }
 }
-Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 «KAN-SEN» character, reveal it, put it in your hand, and shuffle your deck.
-Auto:
-{
-
-}
+InLevel
 Text Auto: EXPERIENCE If this card is in your level, at the beginning of your main phase, you may choose 1 «KAN-SEN» character in your waiting room and this card and exchange them.
 EndCard
 
@@ -1311,9 +1551,18 @@ Power 2500
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Auto:
+Auto: OnAttack
 {
-
+    If LocationContains Climax 1 ColorIs Green
+    {
+        RevealUpTo Deck 4
+        ChooseCardsFromTargets 0 1 ColorIs Green && IsCharacter
+        RevealTargets
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+        TargetSelf
+        GainPower 1000
+    }
 }
 Text Auto: [(1)] When this card attacks, if there's a Green climax in your climax area, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search for up to 1 Green character, reveal it, put it in your hand, put the rest into your waiting room, and this card gets +1000 power until end of turn.
 EndCard
@@ -1328,16 +1577,15 @@ Power 4000
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn && StageContains 1 Other && HasTrait KAN-SEN
+    {
+        GainPower 3000
+    }
 }
 Text Cont: During your turn, if you have another «KAN-SEN» character, this card gets +3000 power.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest 2 of your characters] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 character in your waiting room and return it to your hand.
+*Act1Rest2SalvageBrainstorm(Any)
 EndCard
 
 Character: AZL/S119-060
@@ -1350,9 +1598,19 @@ Power 5500
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 2 Other && HasTrait KAN-SEN
+    {
+        If MyTurn
+        {
+            GainPower 2500
+        }
+        If Not MyTurn
+        {
+            GainPower 1500
+        }
+    }
 }
 Text Cont: If the number of other «KAN-SEN» characters you have is 2 or more, during your turn, this card gets +2500 power, and during your opponent's turn, this card gets +1500 power.
 *HandEncore
@@ -1369,15 +1627,26 @@ Power 5500
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains CenterStage 1 NameEquals Kii
+    {
+        GainPower 4000
+    }
 }
 Text Cont: If there is another "Kii" in your center stage, this card gets +4000 power.
-Auto:
+Auto: OnOtherPlacedOnStageFromHand
 {
-
+    IfOther NameEquals Kii
+    {
+        *Check4Add1(KAN-SEN)
+    }
+    Else
+    {
+        RefundTimesPerTurn
+    }
 }
+TimesPerTurn 1
 Text Auto: [Put 1 card from your hand to the waiting room] This card ability activates up to once per turn. When your other "Kii" is placed on the stage from your hand, you may pay the cost. If you do, look at up to 4 cards from the top of your deck and search up to 1 «KAN-SEN» character, reveal it, put it in your hand, and put the rest into your waiting room.
 EndCard
 
@@ -1392,9 +1661,12 @@ Power 6500
 Soul 1
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn && Compare Experience 3 OrMore
+    {
+        GainPower 8000
+    }
 }
 Text Cont: EXPERIENCE During your turn, if the sum of levels of cards in your level is 3 or higher, this card gets +8000 power.
 EndCard
@@ -1433,16 +1705,17 @@ Power 1000
 Soul 1
 Trait1 KAN-SEN
 Trait2 Iron Blood
-Auto:
+Auto: StartMainPhase
 {
-
+    TargetLocation Level
+    NarrowTargets Compare ThatCardsLevel 2 OrLess
+    NarrowTargets IsCharacter || IsEvent
+    ChooseCharactersFromTargets 0 3 Choose up to 3 cards to give +1 level.
+    UntilEndOfOpponentsTurn
+    GainLevel 1
 }
 Text Auto: At the beginning of your main phase, choose up to 3 level 2 or lower characters or events in your level, and they get +1 level until the end of your opponent's next turn.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck and put them in the waiting room. For each climax revealed this way, choose up to 1 «KAN-SEN» character in your waiting room and return it to your hand.
+*Act1RestSelfSalvageBrainstorm(KAN-SEN)
 EndCard
 
 Character: AZL/S119-068
