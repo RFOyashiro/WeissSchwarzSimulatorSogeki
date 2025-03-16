@@ -1174,7 +1174,7 @@ Auto: OnAttack
             Burn 1
             MillOpponent 4
         }
-        If Answer 2
+        If Answer 1
         {
             SearchWaitingRoom IsCharacter && Compare ThatCardsLevel 1 OrMore
             SearchWaitingRoom IsCharacter && Compare ThatCardsLevel 1 OrMore
@@ -1378,7 +1378,7 @@ Act: RestSelf
     {
         *GiveCharacterPower(1000,Any)
     }
-    If Any 1
+    If Answer 1
     {
         PayCost Discard 1 Any &&& Rest 1 Other
         {
