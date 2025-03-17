@@ -40,7 +40,7 @@ Trait1 KAN-SEN
 Trait2 Royal Navy
 Cont: GiveSelf
 {
-    If Compare Experience 2 OrMore
+    If MyTurn && Compare Experience 2 OrMore
     {
         GainPower 6000
     }
