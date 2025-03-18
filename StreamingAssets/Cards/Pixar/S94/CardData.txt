@@ -1,5 +1,5 @@
 Character: PXR/S94-001
-Name Remy & Linguini
+Name "Dream Recipe", Remy & Linguini
 JPName “夢のレシピ”レミー＆リングイニ
 Color Y
 Level 0
@@ -35,7 +35,7 @@ Text Auto: At the beginning of your opponent's draw phase, put the top 2 cards o
 EndCard
 
 Character: PXR/S94-002
-Name Woody & Buzz
+Name To Infinite and Beyond, Woody & Buzz
 JPName 僕らはいける。無限の彼方へ ウッディ＆バズ
 Color Y
 Level 3
@@ -96,7 +96,7 @@ Text Cont: This card gets +1000 power for each of your opponent's backstage char
 EndCard
 
 Character: PXR/S94-004
-Name Slinky Dog
+Name Toy Friends, Slinky Dog
 JPName おもちゃの仲間達 スリンキー・ドッグ
 Color Y
 Level 0
@@ -134,7 +134,7 @@ Text Auto: When this card attacks, if there are no other characters in your back
 EndCard
 
 Character: PXR/S94-005
-Name Miguel & Hector & Dante
+Name A Fantastic Adventure, Miguel & Hector & Dante
 JPName 奇想天外な冒険 ミゲル＆ヘクター＆ダンテ
 Color Y
 Level 0
@@ -153,7 +153,7 @@ Text Auto: [Put 1 card from your hand into clock, put this card into memory] Whe
 EndCard
 
 Character: PXR/S94-006
-Name Woody
+Name Leader of the Toys, Woody Pride
 JPName おもちゃ達のリーダー ウッディ・プライド
 Color Y
 Level 0
@@ -187,7 +187,7 @@ Text Auto: When this card is placed on the stage from your hand, choose 1 charac
 EndCard
 
 Character: PXR/S94-007
-Name Forky
+Name Bonnie's Favorites, Forky
 JPName ボニーのお気に入り フォーキー
 Color Y
 Level 1
@@ -210,7 +210,7 @@ Text Auto: At the beginning of your encore step, put this card into waiting room
 EndCard
 
 Character: PXR/S94-008
-Name Hamm
+Name Toy Friends, Hamm
 JPName おもちゃの仲間達 ハム
 Color Y
 Level 1
@@ -239,7 +239,7 @@ Text Auto: When this card attacks, choose 1 of your other «PIXAR» characters, 
 EndCard
 
 Character: PXR/S94-009
-Name Jessie
+Name Toy Friends, Jessie
 JPName おもちゃの仲間達 ジェシー
 Color Y
 Level 1
@@ -294,7 +294,7 @@ Text Auto: This card ability activates up to once per turn. When you use an "Act
 EndCard
 
 Character: PXR/S94-011
-Name Bullseye
+Name Toy Friends, Bullseye
 JPName おもちゃの仲間達 ブルズアイ
 Color Y
 Level 0
@@ -321,7 +321,7 @@ Text Auto: [Put this card face up underneath your character in battle as a marke
 EndCard
 
 Character: PXR/S94-012
-Name Joy & Bing Bong
+Name The World Inside My Head, Joy & Bing Bong
 JPName “頭の中の世界” ヨロコビ＆ビンボン
 Color Y
 Level 0
@@ -344,7 +344,7 @@ Text Auto: [Put 1 card from your hand into waiting room] At the beginning of you
 EndCard
 
 Character: PXR/S94-013
-Name Miguel & Coco
+Name Strong Family Ties, Miguel & Coco
 JPName 家族の強い絆 ミゲル＆ココ
 Color Y
 Level 1
@@ -393,7 +393,7 @@ Text Auto: CxCombo At the beginning of your encore step, if "Choice climax (027)
 EndCard
 
 Character: PXR/S94-014
-Name Remy
+Name Culinary Genius, Remy
 JPName 料理の天才 レミー
 Color Y
 Level 1
@@ -427,7 +427,7 @@ Text Auto: During this card's battle, if damage you receive is canceled, you may
 EndCard
 
 Character: PXR/S94-015
-Name Miguel
+Name A Boy Who Loves Music, Miguel
 JPName 音楽を愛する少年 ミゲル
 Color Y
 Level 0
@@ -459,7 +459,7 @@ Text Auto: When this card is put into your waiting room from the stage, if you h
 EndCard
 
 Character: PXR/S94-016
-Name Remy & Gusteau
+Name Object of Admiration, Remy & Gusteau
 JPName 憧れの存在 レミー＆グストー
 Color Y
 Level 0
@@ -482,7 +482,7 @@ Text Auto: [(1) Put this card into memory] When your other «PIXAR» character i
 EndCard
 
 Character: PXR/S94-017
-Name Joy & Sadness
+Name A World Full of Surprises and Colors, Joy & Sadness
 JPName 驚きと色彩に満ちた世界 ヨロコビ＆カナシミ
 Color Y
 Level 1
@@ -495,7 +495,7 @@ Trait1 PIXAR
 EndCard
 
 Character: PXR/S94-018
-Name Linguini & Colette
+Name Chef, Linguini & Colette
 JPName シェフ リングイニ＆コレット
 Color Y
 Level 2
@@ -521,7 +521,7 @@ Text Act: <b>BACKUP 3500 Level 1</b> [(1) Reveal this card from hand, put this c
 EndCard
 
 Character: PXR/S94-019
-Name Remy
+Name Dreaming of Being a Chef, Remy
 JPName シェフを夢見る レミー
 Color Y
 Level 2
@@ -530,20 +530,20 @@ Trigger Soul
 Power 4500
 Soul 1
 Trait1 PIXAR
-Auto:
+Auto: OnOtherOpponentReversed
 {
-
+    *GiveCharacterPower(3000,PIXAR)
 }
-Text Auto: When your other character's battle opponent becomes reversed, choose 1 of your «PIXAR» characters, it gets +3000 power until end of turn.
-Act:
+Text Auto: When the battle opponent of your other character becomes reversed, choose 1 of your «PIXAR» characters, and that character gets +3000 power until end of turn.
+Act: 2 RestSelf
 {
-
+    Heal
 }
-Text Act: [(2) Rest this card] Heal 1.
+Text Act: [(2) Rest this card] Put the top card of your clock in the waiting room.
 EndCard
 
 Character: PXR/S94-020
-Name Woody
+Name We Can Do It, Woody Pride
 JPName 僕らはいける。 ウッディ・プライド
 Color Y
 Level 2
@@ -552,25 +552,31 @@ Trigger Soul
 Power 5500
 Soul 1
 Trait1 PIXAR
-Cont:
+Cont: GiveSelf
 {
-
+    TargetLocation OpponentBackstage
+    SetXValue TargetCount
+    MultiplyXValue 2500
+    GainPower X
 }
 Text Cont: This card gets +2500 power for each of your opponent's backstage characters
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsCharacter && HasTrait PIXAR
+    {
+        SearchDeck NameEquals {2/1 Buzz 043}
+    }
 }
-Text Auto: [Put 1 «PIXAR» character] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 {2/1 Buzz 043}, reveal it to your opponent, add it to hand, and shuffle your deck afterwards.
-Auto:
+Text Auto: [Put 1 «PIXAR» character from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "{2/1 Buzz 043}", reveal it to your opponent, add it to hand, and shuffle your deck.
+Auto: OnReversed
 {
-
+    MoveCard Memory
 }
 Text Auto: When this card becomes reversed, put this card into memory.
 EndCard
 
 Character: PXR/S94-021
-Name Miguel & Hector
+Name Miracle Song, Miguel & Hector
 JPName 奇跡の歌 ミゲル＆ヘクター
 Color Y
 Level 2
@@ -579,15 +585,22 @@ Trigger Soul
 Power 6000
 Soul 1
 Trait1 PIXAR
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains Memory 2 IsCharacter && HasTrait PIXAR
+    {
+        GainPower 4500
+        GainEffect
+        {
+            *HandEncoreTrait(PIXAR)
+        }
+    }
 }
-Text Cont: MEMORY - If the number of «PIXAR» characters in your memory you have is 2 or more, this card gets +4500 power and "Auto: ENCORE [Put 1 «PIXAR» character]"
+Text Cont: MEMORY If you have 2 or more «PIXAR» characters in your memory, this card gets +4500 power and "Auto: ENCORE [Put 1 «PIXAR» character from your hand into waiitng room]"
 EndCard
 
 Character: PXR/S94-022
-Name Hector & Coco
+Name Lost Memories, Hector & Coco
 JPName 失いかけた記憶 ヘクター＆ココ
 Color Y
 Level 3
@@ -596,73 +609,144 @@ Trigger Soul
 Power 10500
 Soul 2
 Trait1 PIXAR
-Auto:
+Auto: OnPlay|OnPlacedOnStageFromMemory
 {
-
+    GainPower 4500
+    GainEffect
+    {
+        Cont: GiveSelf
+        {
+            If InBattle
+            {
+                GainSpecialEffect NoBackupInBattle
+            }
+        }
+        Text Cont: During battles involving this card, no players may use "BACKUP" from hand.
+    }
 }
-Text Auto: When this card is placed on the stage from your hand or memory,.until the end of your opponent's next turn$3"
-Auto:
+Text Auto: When this card is placed on the stage from your hand or memory, this card gets +4500 power and the following ability until the end of your opponent's next turn. "Cont: During battles involving this card, no players may use "BACKUP" from hand."
+Auto: OnReversed
 {
-
+    MoveCard Memory
 }
 Text Auto: When this card becomes reversed, put this card into memory.
-Auto:
+Auto: StartClimaxPhase
 {
-
+    If Compare MyLevel 3 OrMore
+    {
+        PayCost Discard 2 Any
+        {
+            PlaceOnStage false true true false
+        }
+    }
 }
-Text Auto: MEMORY - [Put 2 cards] If this card is in memory, at the beginning of your climax phase, if you are level 3 or higher, you may pay the cost. If you do, place this card on an open position on your stage.
+InMemory
+Text Auto: MEMORY [Put 2 cards from your hand into waiting room] At the beginning of your climax phase, if this card is in your memory and you are level 3 or higher, you may pay the cost. If you do, place this card on an open position on your stage.
 EndCard
 
 Event: PXR/S94-023
-Name Event
-JPName If you have 5 or more ::PIXAR:: characters, choose 1 of the following 5
+Name Inside Out
+JPName インサイド・ヘッド
 Color Y
 Level 2
 Cost 0
 Effect:
 {
-
+    If StageContains 5 HasTrait PIXAR 
+    {
+        MultipleChoiceQuestion Choose 1 of the following 5 effects and perform it.\n1: Draw up to 3 cards and put 3 cards from your hand into waiting room.\n2: All your characters get +1500 power and the following ability until end of turn. "Cont: This card cannot be chosen as target of your opponent's effects."\n3: All your characters get +1 soul until end of turn.\n4: Choose up to 1 of your opponent's character and return it to hand.\n5: Choose up to 1 «PIXAR» characters in your waiting room and return it to your hand.|1|2|3|4|5
+        If Answer 0
+        {
+            *OptionalDraw
+            *OptionalDraw
+            *OptionalDraw
+            Discard 3 Any
+        }
+        If Answer 1
+        {
+            TargetLocation Stage
+            GainPower 1500
+            GainEffect
+            {
+                *HexProof
+            }
+        }
+        If Answer 2
+        {
+            TargetLocation Stage
+            GainSoul 1
+        }
+        If Answer 3
+        {
+            TargetLocation OpponentStage
+            NarrowTargets CanBeChosen
+            ChooseCharacterFromTargets_Optional Choose a character to return to hand.
+            Bounce
+        }
+        If Answer 4
+        {
+            SearchWaitingRoom IsCharacter && HasTrait PIXAR
+        }
+    }
+    TargetSelf
+    MoveCardToBottom Deck
 }
-Text
+Text If you the number of «PIXAR» characters you have is 5 or more, choose 1 of the following 5 effects and perform it. Put this card to the bottom of your deck.\n"Draw up to 3 cards and put 3 cards from your hand into waiting room."\n"All your characters get +1500 power and the following ability until end of turn. "Cont: This card cannot be chosen as target of your opponent's effects.""\n"All your characters get +1 soul until end of turn."\n"Choose up to 1 of your opponent's character and return it to hand."\n"Choose up to 1 «PIXAR» character in your waiting room and return it to your hand."
 EndCard
 
 Event: PXR/S94-024
-Name Event
-JPName Your opponent sends all of their Stock to Waiting Room, then puts an equal
+Name Ratatouille
+JPName レミーのおいしいレストラン
 Color Y
 Level 2
 Cost 3
 Effect:
 {
-
+    StockSwap
+    SearchWaitingRoom IsCharacter
 }
-Text
+Text Your opponent puts all of their stock in the waiting room, and then puts the same number of cards from top of their deck in their stock. Choose up to 1 character in your waiting room and return it to your hand.
 EndCard
 
-/S94-025 Rarity: C
-Color: Side:
-Level: 1 Cost: 0 Power: Soul: 0
-Trait 1: Trait 2:
-Triggers: None
-Flavor: --
-TEXT:: PXR/S94-025
-Name Event
-JPName Choose 1 of your Standing ::PIXAR:: characters, Rest it. If you do, choose 1
+Event: PXR/S94-025
+Name How to Deal With Toys
+JPName おもちゃとの向き合い方
+Color Y
+Level 1
+Cost 0
+Effect:
+{
+    PayCost Rest 1 HasTrait PIXAR && CardPosition Stand
+    {
+        MultipleChoiceQuestion Choose 1 of the following 3 effects and perform it.\n1: Search your deck for up to 1 level 0 or lower «PIXAR» character, place it into any position on your stage and shuffle your deck.\n2: Choose up to 1 "PXR/S94-T04" in your waiting room and return it to your hand.\n3: During this turn, your opponent may not use events and "Auto: ENCORE".|1|2|3
+        If Answer 0
+        {
+            SearchLocationForTargets Deck 0 1 IsCharacter && HasTrait PIXAR && Compare ThatCardsLevel 0 OrLess
+            PlaceOnStage false true true false
+            ShuffleLocation Deck
+        }
+        If Answer 1
+        {
+            SearchWaitingRoom NameEquals PXR/S94-T04
+        }
+        If Answer 2
+        {
+            BlockOpponentEncore
+            BlockOpponentEvents
+        }
+    }
+}
+Text Choose 1 of your stand «PIXAR» character and rest it. If you do, choose 1 of the following 3 effects and perform it.\n"Search your deck for up to 1 level 0 or lower «PIXAR» character, place it into any position on your stage and shuffle your deck."\n"Choose up to 1 "PXR/S94-T04" in your waiting room and return it to your hand."\n"During this turn, your opponent may not use events and "Auto: ENCORE"."
 EndCard
 
-/S94-026 Rarity: CR
-Color: Side:
-Level: Choice Cost: Power: Soul: 0
-Trait 1: Trait 2:
-Triggers: None
-Flavor: --
-TEXT:: PXR/S94-026
-Name aze
-JPName aze
+Climax: PXR/S94-026
+Name Farewell and Departure
+JPName 別れと出発
+*ChoiceClimax
 EndCard
 
 Climax: PXR/S94-027
-Name リメンバー・ミー
+Name Remember Me
 JPName リメンバー・ミー
 *ChoiceClimax
 EndCard

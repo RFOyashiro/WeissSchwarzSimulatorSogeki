@@ -2450,7 +2450,7 @@ Auto: OnAttack
         }
     }
 }
-Text Auto: When this card attacks, if you have 2 or more other «KAN-SEN» characters, choose 1 of the following effects and perform it. "This card gets +6000 power until end of turn." "Choose 1 of your other «KAN-SEN» characters, it gets +3000 power until the end of your opponent's next turn."
+Text Auto: When this card attacks, if you have 2 or more other «KAN-SEN» characters, choose 1 of the following 2 effects and perform it. "This card gets +6000 power until end of turn." "Choose 1 of your other «KAN-SEN» characters, it gets +3000 power until the end of your opponent's next turn."
 Auto: OnReverseOpponent
 {
     *GiveCharacterPower(2000,KAN-SEN)
