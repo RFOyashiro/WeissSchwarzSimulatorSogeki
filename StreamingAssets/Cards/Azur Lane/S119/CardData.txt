@@ -1012,7 +1012,7 @@ Auto: OnPlay
     }
 }
 Text Auto: When this card is placed on the stage from your hand, if there are 6 or less cards in your deck, you may return all cards in your waiting room to your deck. If you do, shuffle your deck.
-Act: Discard 1 NameEquals Aircraft Carrier Shinano &&& Rest 1 Any
+Act: Discard 1 NameEquals Aircraft Carrier Shinano &&& Rest 2 Any
 {
     *OptionalBlindStock
     *OptionalBlindStock
