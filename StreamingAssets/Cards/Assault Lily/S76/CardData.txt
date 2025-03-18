@@ -1049,7 +1049,7 @@ Auto: OnPlay
     Question Put a card from your hand to stock ?
     If Yes
     {
-        SearchLocationForTargets 0 1 Any
+        SearchLocationForTargets Hand 0 1 Any
         MoveCard Stock
     }
 }
@@ -1149,7 +1149,7 @@ Auto: OnSpecificClimaxPlay A Little Warmth
     {
         SearchWaitingRoom NameEquals Blooming Dignifiedly, Tazusa
         Message Choose a «Lily» character to put in stock.
-        SearchLocationForTargets 0 1 HasTrait Lily
+        SearchLocationForTargets Hand 0 1 HasTrait Lily
         MoveCard Stock
     }
 }

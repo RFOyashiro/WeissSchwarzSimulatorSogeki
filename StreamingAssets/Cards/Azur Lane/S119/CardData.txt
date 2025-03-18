@@ -2791,7 +2791,7 @@ Auto: OnPlay
     Question Put a card from your hand to stock ?
     If Yes
     {
-        SearchLocationForTargets 0 1 Any
+        SearchLocationForTargets Hand 0 1 Any
         MoveCard Stock
     }
 }

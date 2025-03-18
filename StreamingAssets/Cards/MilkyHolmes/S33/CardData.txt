@@ -469,9 +469,9 @@ Cost 3
 Counter
 Effect:
 {
-    SearchLocationForTargets 0 2 IsCharacter && NameContains アリス
+    SearchLocationForTargets WaitingRoom 0 2 IsCharacter && NameContains アリス
     SaveTargets
-    SearchLocationForTargets 0 2 IsCharacter && NameContains カズミ && Not InSavedTargets
+    SearchLocationForTargets WaitingRoom 0 2 IsCharacter && NameContains カズミ && Not InSavedTargets
     AddSavedToCurrentTargets
     RevealTargets
     MoveCard Deck
