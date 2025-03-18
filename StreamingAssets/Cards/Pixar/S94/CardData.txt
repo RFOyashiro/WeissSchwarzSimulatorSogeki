@@ -304,7 +304,7 @@ Soul 1
 Trait1 PIXAR
 Auto: OnOtherReversed
 {
-    IfOther NameEquals {0/0 Woody - 006} || NameEquals {1/0 Jessie - 009}
+    IfOther NameEquals {0/0 Woody006} || NameEquals {1/0 Jessie009}
     {
         If InLocation Backstage
         {
@@ -316,7 +316,7 @@ Auto: OnOtherReversed
         }
     }
 }
-Text Auto: [Put this card face up underneath your character in battle as a marker] When your other "{0/0 Woody - 006}" or "{1/0 Jessie - 009}" becomes reversed, if this card is in your backstage, you may pay the cost. If you do, rest that character.
+Text Auto: [Put this card face up underneath your character in battle as a marker] When your other "{0/0 Woody006}" or "{1/0 Jessie009}" becomes reversed, if this card is in your backstage, you may pay the cost. If you do, rest that character.
 *Act1RestSelfSearchBrainstorm(PIXAR)
 EndCard
 
@@ -451,11 +451,11 @@ Auto: OnSentFromStageToWaitingRoom
 {
     If LocationContainsOrLess Memory 2 Any
     {
-        SearchLocationForTargets WaitingRoom 0 1 NameEquals {3/2 Hector & Coco - 022}
+        SearchLocationForTargets WaitingRoom 0 1 NameEquals {3/2 Hector & Coco022}
         MoveCard Memory
     }
 }
-Text Auto: When this card is put into your waiting room from the stage, if you have 2 or less cards in memory, you may choose 1 "{3/2 Hector & Coco - 022}" from your waiting room, and put it to memory.
+Text Auto: When this card is put into your waiting room from the stage, if you have 2 or less cards in memory, you may choose 1 "{3/2 Hector & Coco022}" from your waiting room, and put it to memory.
 EndCard
 
 Character: PXR/S94-016
@@ -803,15 +803,11 @@ Act: RestSelf
     MoveCard Stock
 }
 Text Act: [Rest this card] Choose 1 card in your hand and put it to stock.
-Act:
-{
-
-}
-Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 4 cards of your deck, put them to waiting room. For each climax among them, choose up to 1 «PIXAR» character from your waiting room, and add it to hand.
+*Act1RestSelfSalvageBrainstorm(PIXAR)
 EndCard
 
 Character: PXR/S94-030
-Name Bo Peep
+Name Toy Friends, Bo Peep
 JPName おもちゃの仲間達 ボー・ピープ
 Color G
 Level 0
@@ -819,20 +815,23 @@ Cost 0
 Power 500
 Soul 1
 Trait1 PIXAR
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains Level 1 NameEquals Toy Friends, Bo Peep
+    {
+        GainPower 6500
+        GainEffect
+        {
+            *CannotSideAttack
+        }
+    }
 }
-Text Cont: EXPERIENCE - If you have {another copy of this card} in your level, this card gets +6500 power and the following ability, "Cont: This card cannot side attack."
-Act:
-{
-
-}
-Text Act: [Rest this card] Choose 1 of your «PIXAR» characters, it gets +1000 power until end of turn.
+Text Cont: EXPERIENCE If you have "Toy Friends, Bo Peep" in your level, this card gets +6500 power and the following ability. "Cont: This card cannot side attack."
+*RestGivePower(1000,PIXAR)
 EndCard
 
 Character: PXR/S94-031
-Name Rex
+Name Toy Friends, Rex
 JPName おもちゃの仲間達 レックス
 Color G
 Level 0
@@ -840,37 +839,32 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 PIXAR
-Auto:
+Auto: OnPlay
 {
-
+    PayCost Clock Discard 1 IsClimax
+    {
+        SearchWaitingRoom IsClimax
+    }
 }
-Text Auto: [Put the top card of your deck into clock, discard 1 climax] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 climax from your waiting room, and add it to hand.
+Text Auto: [Put the top card of your deck into clock, put 1 climax from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 climax in your waiting room and return it to your hand.
 EndCard
 
 Character: PXR/S94-032
-Name 1 Flik
+Name To Protect His Friends, Flik
 JPName 仲間を守るため フリック
 Color G
-Level
-Cost
+Level 2
+Cost 1
 Trigger Soul
 Power 2500
 Soul 1
 Trait1 PIXAR
-Auto:
-{
-
-}
-Text Auto: When you use this card's BACKUP, choose 1 of your battling characters, that charcter gets the following ability. "Auto: When this card's battle opponent becomes reversed, put it to memory until end of turn."
-Act:
-{
-
-}
-Text Act: BACKUP +3000
+*MemoryBackup
+Backup 3000
 EndCard
 
 Character: PXR/S94-033
-Name Mike
+Name Scarester, Mike Wazowski
 JPName 怖がらせ屋 マイク・ワゾウスキ
 Color G
 Level 2
@@ -879,20 +873,38 @@ Trigger Soul
 Power 5500
 Soul 1
 Trait1 PIXAR
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains CenterStage 1 Other && NameEquals {3/2 Sullivan077}
+    {
+        GainPower 5500
+        GainEffect
+        {
+            *HandEncoreTrait(PIXAR)
+        }
+    }
 }
-Text Cont: If you have another center stage {3/2 Sullivan - 077}, this card gets +5500 power and "Auto: ENCORE [Put 1 «PIXAR» character]"
-Cont:
+Text Cont: If you have another "{3/2 Sullivan077}" in your center stage, this card gets +5500 power and "Auto: ENCORE [Put 1 «PIXAR» character from your hand into waiting room]"
+Cont: GiveAll
 {
-
+    If Other && NameEquals {3/2 Sullivan077}
+    {
+        GainPower 1500
+        GainEffect
+        {
+            *HexProof
+        }
+        GainEffect
+        {
+            *OnAttackPay1ToDoubleTrigger
+        }
+    }
 }
-Text Cont: All of your other {3/2 Sullivan - 077} gets +1500 power and the following 2 abilities, - "Cont: This card cannot be targeted by your opponent's effects." - "Auto: (1) When this card attacks, you may pay the cost. If you do, during the trigger step of this card attack, perform trigger check twice."
+Text Cont: All your other "{3/2 Sullivan077}" gets +1500 power and the following 2 abilities. "Cont: This card cannot be chosen as target of your opponent's effects." "Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform the trigger check twice during this attack."
 EndCard
 
 Character: PXR/S94-034
-Name Arlo & Spot
+Name "First Time" Friendship, Arlo & Spot
 JPName “初めて”の友情 アーロ＆スポット
 Color G
 Level 3
@@ -902,20 +914,19 @@ Power 8500
 Soul 2
 Trait1 PIXAR
 *Healer
-Auto:
+*OnPlayGainPowerForEach(1000,PIXAR)
+Auto: OnFrontalAttacked
 {
-
+    PayCost 1
+    {
+        Bounce
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, this card gets +X power. X equals the number of your «PIXAR» characters times 1000 until end of turn.
-Auto:
-{
-
-}
-Text Auto: (1) When this card is frontal attacked, you may pay the cost. If you do, return this card to your hand.
+Text Auto: [(1)] When this card is frontal attacked, you may pay the cost. If you do, return this card to your hand.
 EndCard
 
 Character: PXR/S94-035
-Name Buzz Lightyear
+Name Latest Action Figure, Buzz Lightyear
 JPName 最新型アクションフィギュア バズ・ライトイヤー
 Color G
 Level 3
@@ -924,25 +935,42 @@ Trigger Soul
 Power 9500
 Soul 2
 Trait1 PIXAR
-Cont:
+Cont: GiveSelf
 {
-
+    If PlayedThisTurn
+    {
+        GainSpecialEffect CanAttackBackstage
+    }
 }
-Text Cont: During the turn this card is placed on stage from hand, when this card attacks, you may choose 1 of your opponent's backstage characters, this card may frontal attack that character as the Defending character.
-Auto:
+Text Cont: During the turn this card is placed on the stage from hand, when this card attacks, you may choose a character in your opponent's backstage and frontal attack that character instead.
+Auto: OnReverseOpponent
 {
-
+	If Climax Bar climax (046)
+	{
+        TargetBattleOpponent 
+        IfTarget InLocation OpponentStage
+        {
+            Question Put that character into clock ?
+            If Yes
+            {
+                MoveCard OpponentClock 
+            }
+        }
+	}
 }
-Text Auto: CxCombo When this card's battle opponent becomes reversed, if Bar climax (046) is in your climax area, you may put that character to clock.
-Auto:
+Text Auto: CxCombo When this card's battle opponent becomes reversed, if "Bar climax (046)" is in your climax area, you may put that character into your opponent's clock. 
+Auto: OnEndOfAttack
 {
-
+    PayCost 5 Discard 2 Any
+    {
+        Stand
+    }
 }
-Text Auto: [(5) Put 2 cards] This card ability can only be activated up to once per turn. At the end of this card's attack, you may pay the cost. If you do, stand this card
+Text Auto: [(5) Put 2 cards from your hand into waiting room] This ability activates up to once per turn. At the end of this card's attack, you may pay the cost. If you do, stand this card
 EndCard
 
 Character: PXR/S94-036
-Name Mike
+Name Mike Wazowski
 JPName スクール・ライフ マイク
 Color G
 Level 0
@@ -950,15 +978,19 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 PIXAR
-Act:
+Act: Discard 2 Any &&& SendSelf BottomOfDeck
 {
-
+    SearchLocationForTargets WaitingRoom 1 1 IsCharacter && HasTrait PIXAR && Compare ThatCardsLevel MyLevel OrLess
+    If HasTarget
+    {
+        Change
+    }
 }
-Text Act: [Put 2 cards and put this card into the bottom of your Deck] Choose 1 «PIXAR» character in your waiting room who's level is equal to or lower than your level, and place it on stage in this card's former position.
+Text Act: [Put 2 cards from your hand into waiting room, put this card on the bottom of the deck] Choose 1 «PIXAR» character in your waiting room whose level is equal to or lower than your level and put it in the position this card was in.
 EndCard
 
 Character: PXR/S94-037
-Name Buzz & Zurg
+Name To Protect Peace in the Galaxy, Buzz & Zurg
 JPName 銀河の平和を守るため バズ＆ザーグ
 Color G
 Level 1
@@ -966,20 +998,21 @@ Cost 0
 Power 4500
 Soul 1
 Trait1 PIXAR
-Auto:
+Auto: OnPlay
 {
-
+    Question Put a card from your hand to stock ?
+    If Yes
+    {
+        SearchLocationForTargets Hand 0 1 Any
+        MoveCard Stock
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, choose 1 card in your hand, you may put it to stock.
-Auto:
-{
-
-}
-Text Auto: When this card is placed on the stage from your hand, this card gets +X power. X equals the number of your «PIXAR» characters times 500 until end of turn.
+Text Auto: When this card is placed on the stage from your hand, you may choose a card in your hand and put it in your stock.
+*OnPlayGainPowerForEach(500,PIXAR)
 EndCard
 
 Character: PXR/S94-038
-Name Wall-E
+Name Someday I'll Hold Hands With Someone, Wall-E
 JPName いつか誰かと手をつなぐこと WALL・E
 Color G
 Level 1
@@ -987,15 +1020,29 @@ Cost 0
 Power 4500
 Soul 1
 Trait1 PIXAR
-Cont:
+Cont: GiveSelf
 {
-
+    If StageContains 1 Other && NameEquals {1/0 Eve041}
+    {
+        GainEffect
+        {
+            Cont: GiveSelf
+            {
+                If LocationContains Memory 1 NameEquals {1/1 event045}
+                {
+                    GainPower 3000
+                    GainSoul 1
+                }
+            }
+            Text Cont: MEMORY If you have a {1/1 event045} in memory, this card gets +3000 power and +1 soul.
+        }
+    }
 }
-Text Cont: If you have another {1/0 Eve - 041}, this card gets the following ability, "Cont: MEMORY - If you have a {1/1 event - 045} in your memory, this card gets +3000 power and +1 soul."
+Text Cont: If you have another "{1/0 Eve041}", this card gets the following ability. "Cont: MEMORY If you have a {1/1 event045} in memory, this card gets +3000 power and +1 soul."
 EndCard
 
 Character: PXR/S94-039
-Name Alien
+Name Toy Friends, Alien
 JPName おもちゃの仲間達 エイリアン
 Color G
 Level 1
@@ -1003,15 +1050,17 @@ Cost 0
 Power 5000
 Soul 1
 Trait1 PIXAR
-Cont:
+Cont: GiveSelf
 {
-
+    SetXToNumberOfCharacters Other && InLocation CenterStage && NameEquals Toy Friends, Alien
+    MultiplyXValue 2000
+    GainPower X
 }
-Text Cont: This card gets +2000 power for each of your other {copy of this card} in the front row
+Text Cont: This card gets +2000 power for each of your other "Toy Friends, Alien" in the front row
 EndCard
 
 Character: PXR/S94-040
-Name Arlo & Spot
+Name Apatosaurus, Arlo & Spot
 JPName アパトサウルス アーロ＆スポット
 Color G
 Level 0
@@ -1146,12 +1195,12 @@ Cont:
 {
 
 }
-Text Cont: MEMORY If you have a {0/0 Doc Hudson - 060} in your memory, this card gets +3000 power.
+Text Cont: MEMORY If you have a {0/0 Doc Hudson060} in your memory, this card gets +3000 power.
 Auto:
 {
 
 }
-Text Auto: CxCombo RESONATE [Put 1 «PIXAR» character, reveal {3/2 McQueen & Mater - 050} from your hand] When the Door climax (067) is placed in your climax area, if this card is in the center stage, and the number of other «PIXAR» characters you have is 2 or more, you may pay the cost. If you do, search your deck for up to 2 «PIXAR» characters, reveal it to your opponent, add it to hand, and shuffle your deck afterwards.
+Text Auto: CxCombo RESONATE [Put 1 «PIXAR» character, reveal {3/2 McQueen & Mater050} from your hand] When the Door climax (067) is placed in your climax area, if this card is in the center stage, and the number of other «PIXAR» characters you have is 2 or more, you may pay the cost. If you do, search your deck for up to 2 «PIXAR» characters, reveal it to your opponent, add it to hand, and shuffle your deck afterwards.
 EndCard
 
 Character: PXR/S94-049
@@ -1309,7 +1358,7 @@ Act:
 {
 
 }
-Text Act: RESONATE [(1) Reveal {3/2 McQueen & Mater - 050} from your hand, rest this card] Look at up to the top 3 cards of your deck, choose up to 1 «PIXAR» character among them, reveal it to your opponent, put it into your hand, and put the rest into the waiting room.
+Text Act: RESONATE [(1) Reveal {3/2 McQueen & Mater050} from your hand, rest this card] Look at up to the top 3 cards of your deck, choose up to 1 «PIXAR» character among them, reveal it to your opponent, put it into your hand, and put the rest into the waiting room.
 EndCard
 
 Character: PXR/S94-057
@@ -1348,7 +1397,7 @@ Cont:
 {
 
 }
-Text Cont: If you have {0/0 Elastigirl & Violet - 055} in your clock, this card gets -1 level in hand.
+Text Cont: If you have {0/0 Elastigirl & Violet055} in your clock, this card gets -1 level in hand.
 Auto:
 {
 
@@ -1396,7 +1445,7 @@ Act:
 {
 
 }
-Text Act: [(1) Put this card into memory] Choose 1 {1/0 McQueen & Doc - 048} in your waiting room, add it to hand.
+Text Act: [(1) Put this card into memory] Choose 1 {1/0 McQueen & Doc048} in your waiting room, add it to hand.
 EndCard
 
 /S94-061 Rarity: C
@@ -1478,7 +1527,7 @@ Auto:
 {
 
 }
-Text Auto: CHANGE [Put this card into waiting room] At the beginning of your encore step, if this card is rest, you may pay the cost. If you do, choose 1 {2/2 Cruz Ramirez - 065} in your hand, and place it on stage in this card's former position.
+Text Auto: CHANGE [Put this card into waiting room] At the beginning of your encore step, if this card is rest, you may pay the cost. If you do, choose 1 {2/2 Cruz Ramirez065} in your hand, and place it on stage in this card's former position.
 EndCard
 
 Character: PXR/S94-065
@@ -1599,7 +1648,7 @@ Auto:
 {
 
 }
-Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. if you do, choose 1 {1/1 Blue Onward event - 095} in your waiting room, add it to hand.
+Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. if you do, choose 1 {1/1 Blue Onward event095} in your waiting room, add it to hand.
 Auto:
 {
 
@@ -1620,7 +1669,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on the stage from your hand, if you 2 or less cards in memory, you may choose 1 {2/2 Joe & 22 - 094} from your waiting room, and put it to memory.
+Text Auto: When this card is placed on the stage from your hand, if you 2 or less cards in memory, you may choose 1 {2/2 Joe & 22094} from your waiting room, and put it to memory.
 Auto:
 {
 
@@ -1684,7 +1733,7 @@ Cont:
 {
 
 }
-Text Cont: If you have 2 or more {RR 1/0 Mike & Sully - 072} in your waiting room, this card gets -1 level in hand.
+Text Cont: If you have 2 or more {RR 1/0 Mike & Sully072} in your waiting room, this card gets -1 level in hand.
 Cont:
 {
 
@@ -2025,7 +2074,7 @@ Act:
 {
 
 }
-Text Act: MEMORY [(4) Put 1 card from your hand into waiting room] If the number of «PIXAR» characters in your memory you have is 2 or more, reveal the top card of your deck. If that card is a «PIXAR» character or event, this card gets the following ability, "Cont: - If this card standing card is in your backstage, you may choose this card to attack with. If you do, this card's attack is a Direct attack until end of turn."
+Text Act: MEMORY [(4) Put 1 card from your hand into waiting room] If the number of «PIXAR» characters in your memory you have is 2 or more, reveal the top card of your deck. If that card is a «PIXAR» character or event, this card gets the following ability. "Cont:If this card standing card is in your backstage, you may choose this card to attack with. If you do, this card's attack is a Direct attack until end of turn."
 EndCard
 
 Character: PXR/S94-094
@@ -2070,7 +2119,7 @@ EndCard
 
 Event: PXR/S94-096
 Name Event
-JPName COUNTER - Choose 1 of your characters, return it to hand.
+JPName COUNTERChoose 1 of your characters, return it to hand.
 Color B
 Level 2
 Cost 0
@@ -2466,7 +2515,7 @@ EndCard
 
 Event: PXR/S94-T09
 Name Event
-JPName BRAINSTORM - Flip over the top 3 cards of your deck, put them to
+JPName BRAINSTORMFlip over the top 3 cards of your deck, put them to
 Color Y
 Level 1
 Cost 0
@@ -2530,12 +2579,12 @@ Auto:
 {
 
 }
-Text Auto: BOND (1) to {TD 1/0 Rex - T18}
+Text Auto: BOND (1) to {TD 1/0 RexT18}
 Act:
 {
 
 }
-Text Act: [Rest this card] Choose 1 of your {TD 1/0 Rex - T18}, it gets +500 power and the following ability, "Auto: When this card's battle opponent becomes reversed, you may put the top card of your deck into stock until end of turn."
+Text Act: [Rest this card] Choose 1 of your {TD 1/0 RexT18}, it gets +500 power and the following ability. "Auto: When this card's battle opponent becomes reversed, you may put the top card of your deck into stock until end of turn."
 EndCard
 
 Character: PXR/S94-T15
@@ -2698,10 +2747,10 @@ Level: 0 Cost: 0 Power: Soul: 0
 Traits: 1 (1)
 Triggers: None
 Flavor: --
-TEXT: to {1/0 Mike Vanilla - T27}: PXR/S94-T23
+TEXT: to {1/0 Mike VanillaT27}: PXR/S94-T23
 20
 Name Celia Mae
-JPName AUTO - [Discard 1 card] This ability can only be activated up to once per
+JPName AUTO[Discard 1 card] This ability can only be activated up to once per
 EndCard
 
 Character: PXR/S94-T24
@@ -3166,7 +3215,7 @@ Act:
 {
 
 }
-Text Act: [Rest 2 of your characters] This card turn, this card gets the following ability, "Auto: When this card's battle opponent becomes reversed, you may put the top card of your deck into stock."
+Text Act: [Rest 2 of your characters] This card turn, this card gets the following ability. "Auto: When this card's battle opponent becomes reversed, you may put the top card of your deck into stock."
 EndCard
 
 Character: PXR/S94-T51
@@ -3270,12 +3319,12 @@ Cont:
 {
 
 }
-Text Cont: All of your other {1/0 Ramone Vanilla - T49} gets the following ability, "Auto: When this card attacks, look at the top card of your deck, and put it on top of your deck or into your waiting room, then this turn, this card gets +1000 power."
+Text Cont: All of your other {1/0 Ramone VanillaT49} gets the following ability. "Auto: When this card attacks, look at the top card of your deck, and put it on top of your deck or into your waiting room, then this turn, this card gets +1000 power."
 Auto:
 {
 
 }
-Text Auto: BOND [Put 1 card from your hand into waiting room] to {1/0 Ramone Vanilla - T49}
+Text Auto: BOND [Put 1 card from your hand into waiting room] to {1/0 Ramone VanillaT49}
 EndCard
 
 Character: PXR/S94-T57
@@ -3357,7 +3406,7 @@ Auto:
 {
 
 }
-Text Auto: ACCELERATE [Put the top card of your deck into clock] At the beginning of your climax phase, you may pay the cost. If you do, this card gets +3000 power and the following ability, "Auto: When this card's battle opponent becomes reversed, you may put that character to the bottom of your opponent's deck until end of turn."
+Text Auto: ACCELERATE [Put the top card of your deck into clock] At the beginning of your climax phase, you may pay the cost. If you do, this card gets +3000 power and the following ability. "Auto: When this card's battle opponent becomes reversed, you may put that character to the bottom of your opponent's deck until end of turn."
 EndCard
 
 Character: PXR/S94-T61
@@ -3384,7 +3433,7 @@ EndCard
 
 Event: PXR/S94-T62
 Name Event
-JPName COUNTER - Choose 1 of your battling ::PIXAR:: characters, put it to
+JPName COUNTERChoose 1 of your battling ::PIXAR:: characters, put it to
 Color B
 Level 2
 Cost 1
