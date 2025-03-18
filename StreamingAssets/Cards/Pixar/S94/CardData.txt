@@ -402,16 +402,28 @@ Trigger Soul
 Power 3000
 Soul 1
 Trait1 PIXAR
-Cont:
+Cont: GiveSelf
 {
-
+    If MyTurn
+    {
+        SetXToNumberOfCharacters Other && HasTrait PIXAR
+        MultiplyXValue 1000
+        GainPower X
+    }
 }
 Text Cont: During your turn, this card gets +1000 power for each of your other «PIXAR» characters.
-Auto:
+Auto: OnCancel
 {
-
+    If InBattle
+    {
+        Question Put this card into stock ?
+        If Yes
+        {
+            MoveCard Stock
+        }
+    }
 }
-Text Auto: During this card's battle, when the damage you take is cancelled, you may put this card into stock.
+Text Auto: During this card's battle, if damage you receive is canceled, you may put this card into stock.
 EndCard
 
 Character: PXR/S94-015
