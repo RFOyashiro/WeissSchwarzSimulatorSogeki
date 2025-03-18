@@ -1834,7 +1834,7 @@ Auto: OnClimaxPlay
     PayCost 1
     {
         RevealUpTo Deck 4
-        ChooseCardsFromTargets 0 1 IsCharacter && ColorIs Yellow
+        ChooseCardsFromTargets 0 1 IsCharacter && HasTrait KAN-SEN
         RevealTargets
         MoveCard Hand
         PutTheRestIntoTheWaitingRoom
