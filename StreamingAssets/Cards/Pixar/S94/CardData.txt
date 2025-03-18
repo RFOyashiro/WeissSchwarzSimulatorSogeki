@@ -414,7 +414,7 @@ Cont: GiveSelf
 Text Cont: During your turn, this card gets +1000 power for each of your other «PIXAR» characters.
 Auto: OnCancel
 {
-    If InBattle
+    If InBattle && OnStage
     {
         Question Put this card into stock ?
         If Yes
@@ -435,16 +435,27 @@ Cost 0
 Power 1000
 Soul 1
 Trait1 PIXAR
-Auto:
+Auto: OnDamageCanceled
 {
-
+    If OnStage
+    {
+        Question Return this card to your hand ?
+        If Yes
+        {
+            Bounce
+        }
+    }
 }
-Text Auto: When this card's damage is cancelled, you may return this card to your hand.
-Auto:
+Text Auto: When damage dealt by this card is canceled, you may return this card to your hand.
+Auto: OnSentFromStageToWaitingRoom
 {
-
+    If LocationContainsOrLess Memory 2 Any
+    {
+        SearchLocationForTargets WaitingRoom 0 1 NameEquals {3/2 Hector & Coco - 022}
+        MoveCard Memory
+    }
 }
-Text Auto: When this card is sent from stage to waiting room, if you 2 or less cards in memory, you may choose 1 {3/2 Hector & Coco - 022} from your waiting room, and put it to memory.
+Text Auto: When this card is put into your waiting room from the stage, if you have 2 or less cards in memory, you may choose 1 "{3/2 Hector & Coco - 022}" from your waiting room, and put it to memory.
 EndCard
 
 Character: PXR/S94-016
@@ -456,11 +467,18 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 PIXAR
-Auto:
+Auto: OnOtherFrontalAttacked
 {
-
+    IfOther HasTrait Lily
+    {
+        PayCost 1 SendSelf Memory
+        {
+            TargetOther
+            GainPower 2000
+        }
+    }
 }
-Text Auto: [(1) Put this card into memory] When your other «PIXAR» character is frontal attacked, you may pay the cost. If you do, choose 1 of your battling characters, it gets +2000 power until end of turn.
+Text Auto: [(1) Put this card into memory] When your other «PIXAR» character is frontal attacked, you may pay the cost. If you do, choose 1 of your characters in battle, and that character gets +2000 power until end of turn.
 EndCard
 
 Character: PXR/S94-017
@@ -473,11 +491,7 @@ Trigger Soul
 Power 4500
 Soul 1
 Trait1 PIXAR
-Auto:
-{
-
-}
-Text Auto: When this card becomes reversed, if the battle opponent's level is higher than your opponent's level, you may put that character to stock. If you do, put the bottom card of your opponent's stock to waiting room.
+*YellowEarlyPlayBomb
 EndCard
 
 Character: PXR/S94-018
@@ -490,11 +504,20 @@ Trigger Soul
 Power 2500
 Soul 1
 Trait1 PIXAR
-Act:
+Auto: OnUseThisCardsBackup
 {
-
+    TargetSelf
+    MoveCardToBottom Deck
 }
-Text Act: BACKUP +3500 [(1) Reveal this card from you hand and place this card on the bottom of your deck]
+Quick
+Act_Backup: 1
+{
+    TargetMyCharacterInBattle
+    GainPower 3500
+}
+Quick
+ActivationRequirement Compare MyLevel 1 OrMore
+Text Act: <b>BACKUP 3500 Level 1</b> [(1) Reveal this card from hand, put this card at the bottom of your deck]
 EndCard
 
 Character: PXR/S94-019

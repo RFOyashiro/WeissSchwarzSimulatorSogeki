@@ -2306,6 +2306,7 @@ Act_Backup: 0
     TargetMyCharacterInBattle
     GainPower X
 }
+ActivationRequirement Compare MyLevel 1 OrMore
 Text BACKUP X, level 1 [Put this card from your hand into waiting room] X equals 500 times the number of your «KAN-SEN» characters.
 EndCard
 
