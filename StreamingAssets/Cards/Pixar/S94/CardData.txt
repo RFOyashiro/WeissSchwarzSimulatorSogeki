@@ -44,7 +44,7 @@ Trigger Soul
 Power 8000
 Soul 2
 Trait1 PIXAR
-Combo Choice climax (026)
+Combo Farewell and Departure
 Cont: GiveSelf
 {
     If AllYourCharacters HasTrait PIXAR
@@ -56,7 +56,7 @@ Text Cont: If all of your characters are «PIXAR», this card gets +3000 power.
 *Healer
 Auto: OnEndOfAttack
 {
-    If Climax Choice climax (026) && StageContains 2 Other && HasTrait PIXAR
+    If Climax Farewell and Departure && StageContains 2 Other && HasTrait PIXAR
     {
         PayCost 1 Discard 1 IsCharacter && HasTrait PIXAR
         {
@@ -70,7 +70,7 @@ Auto: OnEndOfAttack
         }
     }
 }
-Text Auto: CxCombo [(1) Put 1 «PIXAR» character from your hand into waiting room] At the end of this cards attack, if "Choice climax (026)" is in your climax area, and you have 2 or more other «PIXAR» character, you may pay the cost. if you do, your opponent reveals the top 6 cards of their deck, shuffles their deck, put the top X cards of their deck to clock. X equals the number of climax revealed.
+Text Auto: CxCombo [(1) Put 1 «PIXAR» character from your hand into waiting room] At the end of this cards attack, if "Farewell and Departure" is in your climax area, and you have 2 or more other «PIXAR» character, you may pay the cost. if you do, your opponent reveals the top 6 cards of their deck, shuffles their deck, put the top X cards of their deck to clock. X equals the number of climax revealed.
 EndCard
 
 Character: PXR/S94-003
@@ -172,7 +172,7 @@ Text Cont: This card gets +1000 power for each marker underneath this card.
 Auto: OnPlay
 {
     TargetLocation Stage
-    NarrowTargets NameEquals {1/0 Jessie 009} || Not Other
+    NarrowTargets NameEquals Toy Friends, Jessie || Not Other
     ChooseCharacterFromTargets Choose a character to put a marker underneath.
     SaveTargets
     Message Choose a card to put as marker
@@ -183,7 +183,7 @@ Auto: OnPlay
         MarkerTargetsUnderSavedTarget_FaceUp
     }
 }
-Text Auto: When this card is placed on the stage from your hand, choose 1 character with a soul trigger icon in your waiting room, and put it face up underneath a {1/0 Jessie 009} or this card as a marker.
+Text Auto: When this card is placed on the stage from your hand, choose 1 character with a soul trigger icon in your waiting room, and put it face up underneath a "Toy Friends, Jessie" or this card as a marker.
 EndCard
 
 Character: PXR/S94-007
@@ -235,7 +235,7 @@ Auto: OnAttack
     MultiplyXValue 1000
     GainPower X
 }
-Text Auto: When this card attacks, choose 1 of your other «PIXAR» characters, it gets +X power until end of turn. X equals 1000 times that character's soul.
+Text Auto: When this card attacks, choose 1 of your other «PIXAR» characters, and that character gets +X power until end of turn. X equals 1000 times that character's soul.
 EndCard
 
 Character: PXR/S94-009
@@ -304,7 +304,7 @@ Soul 1
 Trait1 PIXAR
 Auto: OnOtherReversed
 {
-    IfOther NameEquals {0/0 Woody006} || NameEquals {1/0 Jessie009}
+    IfOther NameEquals Leader of the Toys, Woody Pride || NameEquals Toy Friends, Jessie
     {
         If InLocation Backstage
         {
@@ -316,7 +316,7 @@ Auto: OnOtherReversed
         }
     }
 }
-Text Auto: [Put this card face up underneath your character in battle as a marker] When your other "{0/0 Woody006}" or "{1/0 Jessie009}" becomes reversed, if this card is in your backstage, you may pay the cost. If you do, rest that character.
+Text Auto: [Put this card face up underneath your character in battle as a marker] When your other "Leader of the Toys, Woody Pride" or "Toy Friends, Jessie" becomes reversed, if this card is in your backstage, you may pay the cost. If you do, rest that character.
 *Act1RestSelfSearchBrainstorm(PIXAR)
 EndCard
 
@@ -353,6 +353,7 @@ Trigger Soul
 Power 2500
 Soul 1
 Trait1 PIXAR
+Combo Remember Me
 Auto: OnPlay|OnPlacedOnStageFromMemory
 {
     GainPower 4500
@@ -361,7 +362,7 @@ Quick
 Text Auto: When this card is placed on the stage from your hand or from memory, this card gets +4500 power until end of turn.
 Auto: StartEncoreStep
 {
-    If Climax Choice climax (027)
+    If Climax Remember Me
     {
         Question Put this card into memory ?
         If Yes
@@ -372,11 +373,11 @@ Auto: StartEncoreStep
                 Effect:
                 {
 					TargetLocation Memory
-					NarrowTargets NameEquals PXR/S94-013
+					NarrowTargets NameEquals Strong Family Ties, Miguel & Coco
 					FirstTarget
 					If HasTarget
 					{
-						Message PXR/S94-013 returns from memory.
+						Message "Strong Family Ties, Miguel & Coco" returns from memory.
 						PlaceOnStage False True True False
 						GainPower 1500
                         GainSoul 1
@@ -384,12 +385,12 @@ Auto: StartEncoreStep
                         GainTrait Family
 					}
                 }
-                Text at the beginning of your next draw phase, choose 1 "PXR/S94-013" in your memory, put it in any position on the stage and this card gets +1500 power, +1 soul, «Music» and «Family» until end of turn.
+                Text at the beginning of your next draw phase, choose 1 "Strong Family Ties, Miguel & Coco" in your memory, put it in any position on the stage and this card gets +1500 power, +1 soul, «Music» and «Family» until end of turn.
             }
         }
     }
 }
-Text Auto: CxCombo At the beginning of your encore step, if "Choice climax (027)" is in your climax area, you may put this card into memory. If you do, at the beginning of your next draw phase, choose 1 "PXR/S94-013" in your memory, put it in any position on the stage and this card gets +1500 power, +1 soul, «Music» and «Family» until end of turn.
+Text Auto: CxCombo At the beginning of your encore step, if "Remember Me" is in your climax area, you may put this card into memory. If you do, at the beginning of your next draw phase, choose 1 "Strong Family Ties, Miguel & Coco" in your memory, put it in any position on the stage and this card gets +1500 power, +1 soul, «Music» and «Family» until end of turn.
 EndCard
 
 Character: PXR/S94-014
@@ -451,11 +452,11 @@ Auto: OnSentFromStageToWaitingRoom
 {
     If LocationContainsOrLess Memory 2 Any
     {
-        SearchLocationForTargets WaitingRoom 0 1 NameEquals {3/2 Hector & Coco022}
+        SearchLocationForTargets WaitingRoom 0 1 NameEquals Lost Memories, Hector & Coco
         MoveCard Memory
     }
 }
-Text Auto: When this card is put into your waiting room from the stage, if you have 2 or less cards in memory, you may choose 1 "{3/2 Hector & Coco022}" from your waiting room, and put it to memory.
+Text Auto: When this card is put into your waiting room from the stage, if you have 2 or less cards in memory, you may choose 1 "Lost Memories, Hector & Coco" from your waiting room, and put it to memory.
 EndCard
 
 Character: PXR/S94-016
@@ -564,10 +565,10 @@ Auto: OnPlay
 {
     PayCost Discard 1 IsCharacter && HasTrait PIXAR
     {
-        SearchDeck NameEquals {2/1 Buzz 043}
+        SearchDeck NameEquals To Infinity and Beyond, Buzz Lightyear
     }
 }
-Text Auto: [Put 1 «PIXAR» character from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "{2/1 Buzz 043}", reveal it to your opponent, add it to hand, and shuffle your deck.
+Text Auto: [Put 1 «PIXAR» character from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "To Infinity and Beyond, Buzz Lightyear", reveal it to your opponent, add it to hand, and shuffle your deck.
 Auto: OnReversed
 {
     MoveCard Memory
@@ -718,7 +719,7 @@ Effect:
 {
     PayCost Rest 1 HasTrait PIXAR && CardPosition Stand
     {
-        MultipleChoiceQuestion Choose 1 of the following 3 effects and perform it.\n1: Search your deck for up to 1 level 0 or lower «PIXAR» character, place it into any position on your stage and shuffle your deck.\n2: Choose up to 1 "PXR/S94-T04" in your waiting room and return it to your hand.\n3: During this turn, your opponent may not use events and "Auto: ENCORE".|1|2|3
+        MultipleChoiceQuestion Choose 1 of the following 3 effects and perform it.\n1: Search your deck for up to 1 level 0 or lower «PIXAR» character, place it into any position on your stage and shuffle your deck.\n2: Choose up to 1 "Bonds of Friendship, Woody & Buzz" in your waiting room and return it to your hand.\n3: During this turn, your opponent may not use events and "Auto: ENCORE".|1|2|3
         If Answer 0
         {
             SearchLocationForTargets Deck 0 1 IsCharacter && HasTrait PIXAR && Compare ThatCardsLevel 0 OrLess
@@ -727,7 +728,7 @@ Effect:
         }
         If Answer 1
         {
-            SearchWaitingRoom NameEquals PXR/S94-T04
+            SearchWaitingRoom NameEquals Bonds of Friendship, Woody & Buzz
         }
         If Answer 2
         {
@@ -736,7 +737,7 @@ Effect:
         }
     }
 }
-Text Choose 1 of your stand «PIXAR» character and rest it. If you do, choose 1 of the following 3 effects and perform it.\n"Search your deck for up to 1 level 0 or lower «PIXAR» character, place it into any position on your stage and shuffle your deck."\n"Choose up to 1 "PXR/S94-T04" in your waiting room and return it to your hand."\n"During this turn, your opponent may not use events and "Auto: ENCORE"."
+Text Choose 1 of your stand «PIXAR» character and rest it. If you do, choose 1 of the following 3 effects and perform it.\n"Search your deck for up to 1 level 0 or lower «PIXAR» character, place it into any position on your stage and shuffle your deck."\n"Choose up to 1 "Bonds of Friendship, Woody & Buzz" in your waiting room and return it to your hand."\n"During this turn, your opponent may not use events and "Auto: ENCORE"."
 EndCard
 
 Climax: PXR/S94-026
@@ -875,7 +876,7 @@ Soul 1
 Trait1 PIXAR
 Cont: GiveSelf
 {
-    If LocationContains CenterStage 1 Other && NameEquals {3/2 Sullivan077}
+    If LocationContains CenterStage 1 Other && NameEquals Scarester, James P. Sullivan
     {
         GainPower 5500
         GainEffect
@@ -884,10 +885,10 @@ Cont: GiveSelf
         }
     }
 }
-Text Cont: If you have another "{3/2 Sullivan077}" in your center stage, this card gets +5500 power and "Auto: ENCORE [Put 1 «PIXAR» character from your hand into waiting room]"
+Text Cont: If you have another "Scarester, James P. Sullivan" in your center stage, this card gets +5500 power and "Auto: ENCORE [Put 1 «PIXAR» character from your hand into waiting room]"
 Cont: GiveAll
 {
-    If Other && NameEquals {3/2 Sullivan077}
+    If Other && NameEquals Scarester, James P. Sullivan
     {
         GainPower 1500
         GainEffect
@@ -900,7 +901,7 @@ Cont: GiveAll
         }
     }
 }
-Text Cont: All your other "{3/2 Sullivan077}" gets +1500 power and the following 2 abilities. "Cont: This card cannot be chosen as target of your opponent's effects." "Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform the trigger check twice during this attack."
+Text Cont: All your other "Scarester, James P. Sullivan" gets +1500 power and the following 2 abilities. "Cont: This card cannot be chosen as target of your opponent's effects." "Auto: [(1)] When this card attacks, you may pay the cost. If you do, perform the trigger check twice during this attack."
 EndCard
 
 Character: PXR/S94-034
@@ -935,6 +936,7 @@ Trigger Soul
 Power 9500
 Soul 2
 Trait1 PIXAR
+Combo Toy Story
 Cont: GiveSelf
 {
     If PlayedThisTurn
@@ -945,7 +947,7 @@ Cont: GiveSelf
 Text Cont: During the turn this card is placed on the stage from hand, when this card attacks, you may choose a character in your opponent's backstage and frontal attack that character instead.
 Auto: OnReverseOpponent
 {
-	If Climax Bar climax (046)
+	If Climax Toy Story
 	{
         TargetBattleOpponent 
         IfTarget InLocation OpponentStage
@@ -958,7 +960,7 @@ Auto: OnReverseOpponent
         }
 	}
 }
-Text Auto: CxCombo When this card's battle opponent becomes reversed, if "Bar climax (046)" is in your climax area, you may put that character into your opponent's clock. 
+Text Auto: CxCombo When this card's battle opponent becomes reversed, if "Toy Story" is in your climax area, you may put that character into your opponent's clock. 
 Auto: OnEndOfAttack
 {
     PayCost 5 Discard 2 Any
@@ -1022,23 +1024,23 @@ Soul 1
 Trait1 PIXAR
 Cont: GiveSelf
 {
-    If StageContains 1 Other && NameEquals {1/0 Eve041}
+    If StageContains 1 Other && NameEquals Shiny White Robot, EVE
     {
         GainEffect
         {
             Cont: GiveSelf
             {
-                If LocationContains Memory 1 NameEquals {1/1 event045}
+                If LocationContains Memory 1 NameEquals Wally
                 {
                     GainPower 3000
                     GainSoul 1
                 }
             }
-            Text Cont: MEMORY If you have a {1/1 event045} in memory, this card gets +3000 power and +1 soul.
+            Text Cont: MEMORY If you have a "Wally" in memory, this card gets +3000 power and +1 soul.
         }
     }
 }
-Text Cont: If you have another "{1/0 Eve041}", this card gets the following ability. "Cont: MEMORY If you have a {1/1 event045} in memory, this card gets +3000 power and +1 soul."
+Text Cont: If you have another "Shiny White Robot, EVE", this card gets the following ability. "Cont: MEMORY If you have a "Wally" in memory, this card gets +3000 power and +1 soul."
 EndCard
 
 Character: PXR/S94-039
@@ -1068,20 +1070,32 @@ Cost 0
 Power 500
 Soul 1
 Trait1 PIXAR
-Auto:
+Auto: OnPlay
 {
-
+	If LocationContainsOrLess OpponentCenterStage 1 Any
+	{
+		TargetLocation OpponentCenterStage
+		NarrowTargets CanBeChosen && Compare ThatCardsCost 0 OrLower
+		MoveCardToBottom OpponentDeck
+	}
 }
-Text Auto: When this card is placed on the stage from your hand, if your opponent has 1 or less characters in their center stage, choose 1 character in your opponent's center stage, it gets -3000 power until end of turn.
-Auto:
+Text Auto: When this card is placed on the stage from your hand, if your opponent has 1 or less characters in their center stage, choose 1 character in your opponent's center stage, and that character gets -3000 power.
+Auto: OnDamageCanceled
 {
-
+    If OnStage
+    {
+        Question Put this card into stock ?
+        If Yes
+        {
+            MoveCard Stock
+        }
+    }
 }
-Text Auto: When this card's damage is cancelled, you may put this card into stock.
+Text Auto: When damage dealt by this card is canceled, you may put this card into stock.
 EndCard
 
 Character: PXR/S94-041
-Name EVE
+Name Shiny White Robot, EVE
 JPName 真っ白に輝くロボット EVE
 Color G
 Level 1
@@ -1114,16 +1128,16 @@ Auto:
 {
 
 }
-Text Auto: When a climax is placed in your climax area, choose 1 of your «PIXAR» characters, it gets +1500 power until end of turn.
+Text Auto: When a climax is placed in your climax area, choose 1 of your «PIXAR» characters, and that character gets +1500 power until end of turn.
 Auto:
 {
 
 }
-Text Auto: CxCombo When this card attacks, if Bar climax (047) is in your climax area, and you have another «PIXAR» character, choose 1 of your characters,.until the end of your opponent's next turn$3"
+Text Auto: CxCombo When this card attacks, if "A Bug's Life" is in your climax area, and you have another «PIXAR» character, choose 1 of your characters,.until the end of your opponent's next turn$3"
 EndCard
 
 Character: PXR/S94-043
-Name Buzz
+Name To Infinity and Beyond, Buzz Lightyear
 JPName 無限の彼方へ バズ・ライトイヤー
 Color G
 Level 2
@@ -1141,12 +1155,12 @@ Auto:
 {
 
 }
-Text Auto: [Put 1 «PIXAR» character] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 {2/1 Woody 020}, reveal it to your opponent, add it to hand, and shuffle your deck afterwards.
+Text Auto: [Put 1 «PIXAR» character] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "We Can Do It, Woody Pride", reveal it to your opponent, add it to hand, and shuffle your deck afterwards.
 EndCard
 
 Event: PXR/S94-044
-Name Event
-JPName Look at up to 2 cards from the top of your deck, and put them back on top in
+Name The Good Dinosaur
+JPName アーロと少年
 Color G
 Level 1
 Cost 0
@@ -1158,8 +1172,8 @@ Text
 EndCard
 
 Event: PXR/S94-045
-Name Event
-JPName Choose 1 ::PIXAR:: character from your Waiting Room, and add it to hand.
+Name Wally
+JPName ウォーリー
 Color G
 Level 1
 Cost 1
@@ -1171,19 +1185,19 @@ Text
 EndCard
 
 Climax: PXR/S94-046
-Name トイ・ストーリー
+Name Toy Story
 JPName トイ・ストーリー
 *BarClimax
 EndCard
 
 Climax: PXR/S94-047
-Name バグズ・ライフ
+Name A Bug's Life
 JPName バグズ・ライフ
 *BarClimax
 EndCard
 
 Character: PXR/S94-048
-Name McQueen & Doc
+Name Bond Between Teacher and Student, McQueen & Doc
 JPName 師弟の絆 マックィーン＆ドック
 Color R
 Level 1
@@ -1191,16 +1205,17 @@ Cost 0
 Power 3500
 Soul 1
 Trait1 PIXAR
+Combo Cars
 Cont:
 {
 
 }
-Text Cont: MEMORY If you have a {0/0 Doc Hudson060} in your memory, this card gets +3000 power.
+Text Cont: MEMORY If you have a "Mysterious Past, Doc Hudson" in your memory, this card gets +3000 power.
 Auto:
 {
 
 }
-Text Auto: CxCombo RESONATE [Put 1 «PIXAR» character, reveal {3/2 McQueen & Mater050} from your hand] When the Door climax (067) is placed in your climax area, if this card is in the center stage, and the number of other «PIXAR» characters you have is 2 or more, you may pay the cost. If you do, search your deck for up to 2 «PIXAR» characters, reveal it to your opponent, add it to hand, and shuffle your deck afterwards.
+Text Auto: CxCombo RESONATE [Put 1 «PIXAR» character, reveal "Strongest Teamwork, McQueen & Mater" from your hand] When the "Cars" is placed in your climax area, if this card is in the center stage, and the number of other «PIXAR» characters you have is 2 or more, you may pay the cost. If you do, search your deck for up to 2 «PIXAR» characters, reveal it to your opponent, add it to hand, and shuffle your deck afterwards.
 EndCard
 
 Character: PXR/S94-049
@@ -1226,7 +1241,7 @@ Text Auto: [Put 2 cards] When this card attacks, you may pay the cost. If you do
 EndCard
 
 Character: PXR/S94-050
-Name McQueen & Mater
+Name Strongest Teamwork, McQueen & Mater
 JPName 最強のチームワーク マックィーン＆メーター
 Color R
 Level 3
@@ -1244,11 +1259,11 @@ Auto:
 {
 
 }
-Text Auto: CxCombo [(1) Put 2 cards] When this card attacks, if Door climax (068) is is in your climax area, you may pay the cost. If you do, deal 3 damage to your opponent, choose up to 1 card in your opponent's waiting room, place it on top of their deck.
+Text Auto: CxCombo [(1) Put 2 cards] When this card attacks, if "Radiator Springs Friends" is is in your climax area, you may pay the cost. If you do, deal 3 damage to your opponent, choose up to 1 card in your opponent's waiting room, place it on top of their deck.
 EndCard
 
 Character: PXR/S94-051
-Name Mater
+Name Always in a Good Mood, Mater
 JPName いつもゴキゲン メーター
 Color R
 Level 0
@@ -1269,7 +1284,7 @@ Text Auto: [Put 1 card from your hand into waiting room] At the beginning of you
 EndCard
 
 Character: PXR/S94-052
-Name Dunbroch Royal Family
+Name Merida's Beloved Family, Dunbroch Royal Family
 JPName メリダの愛する家族達 ダンブロッホ王家
 Color R
 Level 0
@@ -1286,11 +1301,11 @@ Auto:
 {
 
 }
-Text Auto: CxCombo [Return this card to hand] When the standby climax (069) is placed in your climax area, you may pay the cost. If you do, reveal the top card of your deck. if that card is a «PIXAR» character, add it to hand.
+Text Auto: CxCombo [Return this card to hand] When the "Brave" is placed in your climax area, you may pay the cost. If you do, reveal the top card of your deck. if that card is a «PIXAR» character, add it to hand.
 EndCard
 
 Character: PXR/S94-053
-Name Lightning McQueen
+Name Star Racer, Lightning McQueen
 JPName スターレーサー ライトニング・マックィーン
 Color R
 Level 0
@@ -1305,18 +1320,21 @@ Auto:
 Text Auto: ACCELERATE [Put 1 «PIXAR» character from your waiting room on the bottom of your clock] At the beginning of your climax phase, if this card is in your center stage, you may pay the cost. If you do, search your deck for up to 1 «PIXAR» character, reveal it to your opponent, add it to hand, put 1 card from your hand into waiting room, and shuffle your deck afterwards.
 EndCard
 
-/S94-054 Rarity: R
-Color: Side:
-Level: 1 Cost: 1 Power: Soul: 0
-Traits: PIXAR (PIXAR)
-Triggers: None
-Flavor: --
-TEXT:
-[C] If you have 2 or more other ::PIXAR:: characters, this gets +2000
-power.
-[A] ENCORE [Discard 1 character]: PXR/S94-054
-Name The Incredibles
-JPName Card No.: PXR/S94-054 Rarity: R
+Character: PXR/S94-054
+Name Family Ties, The Incredibles
+JPName 家族の絆 インクレディブルズ
+Color R
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 PIXAR
+Cont:
+{
+
+}
+Text
+*HandEncore
 EndCard
 
 Character: PXR/S94-055
@@ -1341,7 +1359,7 @@ Text Act: [(1) Put this card into waiting room] Look at up to the top 4 cards of
 EndCard
 
 Character: PXR/S94-056
-Name Sally & McQueen
+Name Talking About Dreams, Sally & McQueen
 JPName 夢を語る サリー＆マックィーン
 Color R
 Level 0
@@ -1358,11 +1376,11 @@ Act:
 {
 
 }
-Text Act: RESONATE [(1) Reveal {3/2 McQueen & Mater050} from your hand, rest this card] Look at up to the top 3 cards of your deck, choose up to 1 «PIXAR» character among them, reveal it to your opponent, put it into your hand, and put the rest into the waiting room.
+Text Act: RESONATE [(1) Reveal "Strongest Teamwork, McQueen & Mater" from your hand, rest this card] Look at up to the top 3 cards of your deck, choose up to 1 «PIXAR» character among them, reveal it to your opponent, put it into your hand, and put the rest into the waiting room.
 EndCard
 
 Character: PXR/S94-057
-Name Merida
+Name Freedom-Loving Princess, Merida
 JPName 自由を愛する王女 メリダ
 Color R
 Level 2
@@ -1397,16 +1415,16 @@ Cont:
 {
 
 }
-Text Cont: If you have {0/0 Elastigirl & Violet055} in your clock, this card gets -1 level in hand.
+Text Cont: If you have "Elastigirl & Violet" in your clock, this card gets -1 level in hand.
 Auto:
 {
 
 }
-Text Auto: CxCombo When the standby climax (070) is placed in your climax area, if this card is in your center stage, and all of your characters are «PIXAR», choose 1 of the following 3 effects and perform it, a) "Search your deck for up to 1 {copy of this card}, place it on stage in any position, and shuffle your deck afterwards." b) "Choose 1 of your other «PIXAR» characters, stand it." c) "Choose 1 character in your waiting room, add it to hand."
+Text Auto: CxCombo When the "Mr. Incredible" is placed in your climax area, if this card is in your center stage, and all of your characters are «PIXAR», choose 1 of the following 3 effects and perform it, a) "Search your deck for up to 1 {copy of this card}, place it on stage in any position, and shuffle your deck afterwards." b) "Choose 1 of your other «PIXAR» characters, stand it." c) "Choose 1 character in your waiting room, add it to hand."
 EndCard
 
 Character: PXR/S94-059
-Name McQueen & Cruz
+Name New Companion, McQueen & Cruz
 JPName 新たな相棒 マックィーン＆クルーズ
 Color R
 Level 2
@@ -1424,11 +1442,11 @@ Auto:
 {
 
 }
-Text Auto: [Put this card into waiting room] When your other «PIXAR» character is frontal attacked, you may pay the cost. If you do, choose 1 of your battling characters, it gets +4000 power until end of turn.
+Text Auto: [Put this card into waiting room] When your other «PIXAR» character is frontal attacked, you may pay the cost. If you do, choose 1 of your battling characters, and that character gets +4000 power until end of turn.
 EndCard
 
 Character: PXR/S94-060
-Name Doc Hudson
+Name Mysterious Past, Doc Hudson
 JPName 謎に包まれた過去 ドック・ハドソン
 Color R
 Level 0
@@ -1445,45 +1463,33 @@ Act:
 {
 
 }
-Text Act: [(1) Put this card into memory] Choose 1 {1/0 McQueen & Doc048} in your waiting room, add it to hand.
+Text Act: [(1) Put this card into memory] Choose 1 "Bond Between Teacher and Student, McQueen & Doc" in your waiting room, add it to hand.
 EndCard
 
-/S94-061 Rarity: C
-Color: Side:
-Level: 1 Cost: 0 Power: Soul: 0
-Traits: PIXAR (PIXAR)
-Triggers: None
-Flavor: --
-TEXT:
-[A] When this is placed on stage from hand, reveal the top card of your
-deck. If that card is a ::PIXAR:: character, choose 1 of your opponent's
-characters, it gets -1 Level until end of turn.
-[A] When this is Reversed, if the battle opponent's Level is 1 or lower,
-you may Reverse that character.: PXR/S94-061
-Name Mater
-JPName Card No.: PXR/S94-061 Rarity: C
+Character: PXR/S94-061
+Name Voice-Controlled Disguise, Mater
+JPName 音声操作の変装 メーター
+Color R
+Level 1
+Cost 0
+Power 2000
+Soul 1
+Trait1 PIXAR
 EndCard
 
-/S94-062 Rarity: C
-Color: Side:
-Level: 1 Cost: 0 Power: Soul: 0
-Traits: PIXAR (PIXAR)
-Triggers: None
-Flavor: --
-TEXT:
-[C] If there are 2 or more Markers underneath this card, this gets
-::Witch's Magic:: and cannot Stand during your Stand Phase.
-[A] At the start of your Draw Phase, if there is 1 or less Marker
-underneath this card, look at the top card of your deck, place it underneath
-this card Face-down as a Marker.
-[S] [Rest this] Choose 1 of your ::PIXAR:: characters, this turn, it gets
-+3500 power.: PXR/S94-062
-Name Merida & Elinor
-JPName Card No.: PXR/S94-062 Rarity: C
+Character: PXR/S94-062
+Name Princess and Queen, Merida & Elinor
+JPName 王女と王妃 メリダ＆エリノア
+Color R
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 PIXAR
 EndCard
 
 Character: PXR/S94-063
-Name Guido
+Name Amazing Quick Technique, Guido
 JPName 驚異の早技 グイド
 Color R
 Level 1
@@ -1505,7 +1511,7 @@ Text Auto: When this card is placed on the stage from your hand. return up to 4 
 EndCard
 
 Character: PXR/S94-064
-Name Lightning McQueen
+Name Crossroads in Life, Lightning McQueen
 JPName 人生の岐路 ライトニング・マックィーン
 Color R
 Level 1
@@ -1527,11 +1533,11 @@ Auto:
 {
 
 }
-Text Auto: CHANGE [Put this card into waiting room] At the beginning of your encore step, if this card is rest, you may pay the cost. If you do, choose 1 {2/2 Cruz Ramirez065} in your hand, and place it on stage in this card's former position.
+Text Auto: CHANGE [Put this card into waiting room] At the beginning of your encore step, if this card is rest, you may pay the cost. If you do, choose 1 "Dream of Becoming a Racer, Cruz Ramirez" in your hand, and place it on stage in this card's former position.
 EndCard
 
 Character: PXR/S94-065
-Name Cruz Ramirez
+Name Dream of Becoming a Racer, Cruz Ramirez
 JPName レーサーになる夢 クルーズ・ラミレス
 Color R
 Level 2
@@ -1552,43 +1558,38 @@ Auto:
 Text Auto: ENCORE [Put 1 «PIXAR» character]
 EndCard
 
-/S94-066 Rarity: C
-Color: Side:
-Level: 3 Cost: 2 Power: Soul: 0
-Traits: PIXAR (PIXAR)
-Triggers: None
-Flavor: --
-TEXT:
-[C] If you have 2 or less Climaxes in your Waiting Room, this gets -1
-Level in hand.
-[A] When this is placed on stage from hand, you may Heal 1.
-[A] When this attacks, choose 1 of your opponent's Front Row
-characters, it gets -X power until end of turn. X equals the number of your other
-::PIXAR:: characters times 1000.: PXR/S94-066
+Character: PXR/S94-066
 Name Merida & Harris & Hubert & Hamish
-JPName Card No.: PXR/S94-066 Rarity: C
+JPName メリダ＆ハリス＆ヒューバート＆ヘイミッシュ
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 7000
+Soul 2
+Trait1 PIXAR
 EndCard
 
 Climax: PXR/S94-067
-Name カーズ
+Name Cars
 JPName カーズ
 *DoorClimax
 EndCard
 
 Climax: PXR/S94-068
-Name ラジエーター・スプリングスの仲間たち
+Name Radiator Springs Friends
 JPName ラジエーター・スプリングスの仲間たち
 *DoorClimax
 EndCard
 
 Climax: PXR/S94-069
-Name メリダとおそろしの森
+Name Brave
 JPName メリダとおそろしの森
 *StandbyClimax
 EndCard
 
 Climax: PXR/S94-070
-Name Mr.インクレディブル
+Name Mr. Incredible
 JPName Mr.インクレディブル
 *StandbyClimax
 EndCard
@@ -1615,7 +1616,7 @@ Text Auto: When this card attacks, look at up to the top 2 cards of your deck, c
 EndCard
 
 Character: PXR/S94-072
-Name Sully & Mike
+Name Funny Monsters, Sully & Mike
 JPName ゆかいなモンスター サリー＆マイク
 Color B
 Level 1
@@ -1623,6 +1624,7 @@ Cost 0
 Power 3000
 Soul 1
 Trait1 PIXAR
+Combo Monster Inc.
 Auto:
 {
 
@@ -1632,11 +1634,11 @@ Auto:
 {
 
 }
-Text Auto: {CxCombo} When this card attacks, if you have the Pants climax (097) in the climax area, put the top 2 cards of your deck into waiting room, then choose up to 1 level X or lower «PIXAR» character from your waiting room, and add it to hand. X equals the sum of levels of cards milled by this card effect.
+Text Auto: {CxCombo} When this card attacks, if you have the "Monster Inc." in the climax area, put the top 2 cards of your deck into waiting room, then choose up to 1 level X or lower «PIXAR» character from your waiting room, and add it to hand. X equals the sum of levels of cards milled by this card effect.
 EndCard
 
 Character: PXR/S94-073
-Name Ian & Barley
+Name Journey to Find Magic, Ian & Barley
 JPName 魔法を探す旅 イアン＆バーリー
 Color B
 Level 0
@@ -1648,7 +1650,7 @@ Auto:
 {
 
 }
-Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. if you do, choose 1 {1/1 Blue Onward event095} in your waiting room, add it to hand.
+Text Auto: [Put 1 card from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. if you do, choose 1 "Half the Magic" in your waiting room, add it to hand.
 Auto:
 {
 
@@ -1657,7 +1659,7 @@ Text Auto: When this card becomes reversed, if the battle opponent's level is 0 
 EndCard
 
 Character: PXR/S94-074
-Name Joe & 22
+Name Sparkle of Life, Joe & 22
 JPName 人生のきらめき ジョー＆22番
 Color B
 Level 0
@@ -1669,7 +1671,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on the stage from your hand, if you 2 or less cards in memory, you may choose 1 {2/2 Joe & 22094} from your waiting room, and put it to memory.
+Text Auto: When this card is placed on the stage from your hand, if you 2 or less cards in memory, you may choose 1 "Soulful World, Joe & 22" from your waiting room, and put it to memory.
 Auto:
 {
 
@@ -1678,7 +1680,7 @@ Text Auto: At the beginning of your opponent's draw phase, put the top 2 cards o
 EndCard
 
 Character: PXR/S94-075
-Name Luca & Alberto & Giulia
+Name Adventure and Friendship, Luca & Alberto & Giulia
 JPName 冒険と友情 ルカ＆アルベルト＆ジュリア
 Color B
 Level 0
@@ -1699,7 +1701,7 @@ Text Auto: (2) When this card is placed on the stage from your hand, you may pay
 EndCard
 
 Character: PXR/S94-076
-Name Carl & Russel & Dug & Kevin
+Name The Best Adventure, Carl & Russel & Dug & Kevin
 JPName 最高の冒険 カール＆ラッセル＆ダグ＆ケヴィン
 Color B
 Level 1
@@ -1720,7 +1722,7 @@ Text Auto: [Put 1 card from your hand into waiting room] When this card is place
 EndCard
 
 Character: PXR/S94-077
-Name Sullivan
+Name Scarester, James P. Sullivan
 JPName 怖がらせ屋 ジェームズ・P・サリバン
 Color B
 Level 3
@@ -1747,7 +1749,7 @@ Text Auto: ENCORE [Put 1 «PIXAR» character]
 EndCard
 
 Character: PXR/S94-078
-Name Sully
+Name School Life, Sully
 JPName スクール・ライフ サリー
 Color B
 Level 0
@@ -1768,7 +1770,7 @@ Text Auto: [Put 1 card from your hand into waiting room, put 1 of your other cha
 EndCard
 
 Character: PXR/S94-079
-Name Crush & Squirt
+Name Surfer Family, Crush & Squirt
 JPName サーファー親子 クラッシュ＆スクワート
 Color B
 Level 0
@@ -1800,7 +1802,7 @@ Text Cont: If your opponent has 3 or less characters, this card gets +3000 power
 EndCard
 
 Character: PXR/S94-081
-Name Carl & Ellie
+Name Reasons to Travel, Carl & Ellie
 JPName 旅に出る理由 カール＆エリー
 Color B
 Level 0
@@ -1812,7 +1814,7 @@ Auto:
 {
 
 }
-Text Auto: When this card attacks, choose 1 of your other «PIXAR» characters, it gets +X power. X equals the number of your other «PIXAR» characters times 500 until end of turn.
+Text Auto: When this card attacks, choose 1 of your other «PIXAR» characters, and that character gets +X power. X equals the number of your other «PIXAR» characters times 500 until end of turn.
 Auto:
 {
 
@@ -1820,24 +1822,20 @@ Auto:
 Text Auto: When this card becomes reversed, if you have 2 or less memory, you may put this card into memory.
 EndCard
 
-/S94-082 Rarity: U
-Color: Side:
-Level: 1 Cost: 0 Power: Soul: 0
-Traits: PIXAR (PIXAR)
-Triggers: None
-Flavor: --
-TEXT:
-[A] When this is placed on stage from hand, reveal the top card of your
-deck. If that card is a ::PIXAR:: character or Event, add it to hand and discard
-1 card.
-[A] When this is Reversed, if the battle opponent's cost is 0 or lower,
-you may put that character to the bottom of your opponent's deck.: PXR/S94-082
-Name Gill & The Tank Gang
-JPName Card No.: PXR/S94-082 Rarity: U
+Character: PXR/S94-082
+Name Gill & His Aquarium Friends
+JPName ギル＆水槽の仲間達
+Color B
+Level 1
+Cost 0
+Power 500
+Soul 1
+Trigger Soul
+Trait1 PIXAR
 EndCard
 
 Character: PXR/S94-083
-Name Ian & Barley & Wilden
+Name Only "Half", Ian & Barley & Wilden
 JPName “半分”だけの姿 イアン＆バーリー＆ウィルデン
 Color B
 Level 2
@@ -1854,7 +1852,7 @@ Text Auto: When this card is placed on the stage from your hand, look at up to t
 EndCard
 
 Character: PXR/S94-084
-Name Sully & Boo
+Name Stange Feelings, Sully & Boo
 JPName 不思議な感情 サリー＆ブー
 Color B
 Level 2
@@ -1876,7 +1874,7 @@ Text Auto: When this card attacks, if the level of the character across from thi
 EndCard
 
 Character: PXR/S94-085
-Name Dory & Hank
+Name Marine Biological Research Institute, Dory & Hank
 JPName 海洋生物研究所 ドリー＆ハンク
 Color B
 Level 2
@@ -1899,11 +1897,11 @@ Auto:
 {
 
 }
-Text Auto: When this card attacks, if the number of other «PIXAR» characters you have is 4 or more, choose 1 of your characters, it gets +3000 power until end of turn.
+Text Auto: When this card attacks, if the number of other «PIXAR» characters you have is 4 or more, choose 1 of your characters, and that character gets +3000 power until end of turn.
 EndCard
 
 Character: PXR/S94-086
-Name Nemo & Marlin
+Name Clownfish, Nemo & Marlin
 JPName カクレクマノミ ニモ＆マーリン
 Color B
 Level 3
@@ -1921,11 +1919,11 @@ Auto:
 {
 
 }
-Text Auto: CxCombo When this card attacks, if Pants climax (098) is in your climax area, and you have another «PIXAR» character, you may pay the cost. If you do, your opponent mills 20 cards, then look at up to the top 2 cards of your opponent's deck, choose up to 1 card among them, put it to the bottom of your opponent's deck, put the rest on top in any order.
+Text Auto: CxCombo When this card attacks, if "Finding Nemo" is in your climax area, and you have another «PIXAR» character, you may pay the cost. If you do, your opponent mills 20 cards, then look at up to the top 2 cards of your opponent's deck, choose up to 1 card among them, put it to the bottom of your opponent's deck, put the rest on top in any order.
 EndCard
 
 Character: PXR/S94-087
-Name Mike & Sully
+Name Two People From School Days, Mike & Sully
 JPName 学生時代の二人 サリー＆マイク
 Color B
 Level 0
@@ -1972,7 +1970,7 @@ Text Act: [(1) Put this card into waiting room] Look at up to the top 4 cards of
 EndCard
 
 Character: PXR/S94-089
-Name Ian & Barley
+Name Time Left, Ian & Barley
 JPName 彼らに残された時間 イアン＆バーリー
 Color B
 Level 1
@@ -1993,7 +1991,7 @@ Text Act: BACKUP +1000
 EndCard
 
 Character: PXR/S94-090
-Name Marlin & Dory
+Name Partner, Marlin & Dory
 JPName 相棒 マーリン＆ドリー
 Color B
 Level 1
@@ -2014,7 +2012,7 @@ Text Auto: At the beginning of your attack phase, if this card is standing, and 
 EndCard
 
 Character: PXR/S94-091
-Name Luca
+Name New World, Luca
 JPName 新しい世界 ルカ
 Color B
 Level 1
@@ -2022,6 +2020,7 @@ Cost 0
 Power 3000
 Soul 1
 Trait1 PIXAR
+Combo Luka that summer
 Cont:
 {
 
@@ -2031,11 +2030,11 @@ Auto:
 {
 
 }
-Text Auto: CxCombo When the Book climax (099) is placed in your climax area, if you have 1 or less other characters in your center stage, choose up to 2 «PIXAR» characters in your waiting room, place them in stock in any order, then look at up to the top 4 cards of your deck, choose up to 1 «PIXAR» character among them, reveal it to your opponent, add it to hand, and put the rest into waiting room.
+Text Auto: CxCombo When the "Luka that summer" is placed in your climax area, if you have 1 or less other characters in your center stage, choose up to 2 «PIXAR» characters in your waiting room, place them in stock in any order, then look at up to the top 4 cards of your deck, choose up to 1 «PIXAR» character among them, reveal it to your opponent, add it to hand, and put the rest into waiting room.
 EndCard
 
 Character: PXR/S94-092
-Name Boo
+Name Full of Curiosity, Boo
 JPName 好奇心いっぱい ブー
 Color B
 Level 1
@@ -2056,7 +2055,7 @@ Text Auto: When this card attacks, if the level of the character across from thi
 EndCard
 
 Character: PXR/S94-093
-Name Carl
+Name Into the Sky, Carl Fredricksen
 JPName 大空へ カール・フレドリクセン
 Color B
 Level 2
@@ -2078,7 +2077,7 @@ Text Act: MEMORY [(4) Put 1 card from your hand into waiting room] If the number
 EndCard
 
 Character: PXR/S94-094
-Name Joe & 22
+Name Soulful World, Joe & 22
 JPName ソウルフル・ワールド ジョー＆22番
 Color B
 Level 2
@@ -2087,6 +2086,7 @@ Trigger Soul
 Power 6000
 Soul 2
 Trait1 PIXAR
+Combo Soulful World
 Cont:
 {
 
@@ -2101,12 +2101,12 @@ Auto:
 {
 
 }
-Text Auto: CxCombo MEMORY (1) When this card is in memory, and the Book climax (100) is placed in your climax area, if you are level 2 or higher, you may pay the cost. If you do, place this card on an open position on your stage.
+Text Auto: CxCombo MEMORY (1) When this card is in memory, and the "Soulful World" is placed in your climax area, if you are level 2 or higher, you may pay the cost. If you do, place this card on an open position on your stage.
 EndCard
 
 Event: PXR/S94-095
-Name Event
-JPName If you have 5 or more ::PIXAR:: characters, perform the following effect
+Name Half the Magic
+JPName 2分の1の魔法
 Color B
 Level 1
 Cost 1
@@ -2131,36 +2131,31 @@ Text
 EndCard
 
 Climax: PXR/S94-097
-Name モンスターズ・インク
+Name Monster Inc.
 JPName モンスターズ・インク
 *GateClimax
 EndCard
 
 Climax: PXR/S94-098
-Name ファインディング・ニモ
+Name Finding Nemo
 JPName ファインディング・ニモ
 *GateClimax
 EndCard
 
-/S94-099 Rarity: CC
-Color: Side:
-Level: Book Cost: Power: Soul: 0
-Trait 1: Trait 2:
-Triggers: None
-Flavor: --
-TEXT:: PXR/S94-099
-Name aze
-JPName aze
+Climax: PXR/S94-099
+Name Luka That Summer
+JPName あの夏のルカ
+*BookClimax
 EndCard
 
 Climax: PXR/S94-100
-Name ソウルフル・ワールド
+Name Soulful World
 JPName ソウルフル・ワールド
 *BookClimax
 EndCard
 
 Character: PXR/S94-101
-Name Woody
+Name New Journey, Woody Pride
 JPName 新たな旅立ち ウッディ・プライド
 Color Y
 Level 0
@@ -2181,7 +2176,7 @@ Text Auto: When this card becomes reversed, if you have 2 or less memory, you ma
 EndCard
 
 Character: PXR/S94-102
-Name WALL-E
+Name Into the Unknown Universe, WALL-E
 JPName 未知なる宇宙へ WALL・E
 Color G
 Level 0
@@ -2202,7 +2197,7 @@ Text Cont: If you have 1 or less other characters, all of your other characters 
 EndCard
 
 Character: PXR/S94-103
-Name Buzz
+Name New Journey, Buzz Lightyear
 JPName 新たな旅立ち バズ・ライトイヤー
 Color G
 Level 1
@@ -2223,7 +2218,7 @@ Text Auto: When this card becomes reversed, if the battle opponent's cost is 0 o
 EndCard
 
 Character: PXR/S94-104
-Name Mike
+Name Monster University, Mike
 JPName モンスターズ・ユニバーシティ マイク
 Color G
 Level 2
@@ -2245,7 +2240,7 @@ Text Auto: When this card becomes reversed, if the battle opponent's level is hi
 EndCard
 
 Character: PXR/S94-105
-Name McQueen & Cruz
+Name Crossroads, McQueen & Cruz
 JPName クロスロード マックィーン＆クルーズ
 Color R
 Level 1
@@ -2266,7 +2261,7 @@ Text Auto: [Put 1 card from your hand into waiting room] When this card attacks,
 EndCard
 
 Character: PXR/S94-106
-Name Mr. Incredible
+Name Adventure Beyond Imagination, Mr. Incredible
 JPName 想像を超えた冒険 Mr. インクレディブル
 Color R
 Level 3
@@ -2288,7 +2283,7 @@ Text Auto: When this card is placed on the stage from your hand, choose 1 «PIXA
 EndCard
 
 Character: PXR/S94-107
-Name Dory
+Name Emotional Adventure, Dory
 JPName 感動の冒険 ドリー
 Color B
 Level 0
@@ -2309,7 +2304,7 @@ Text Act: [(1) put 1 «PIXAR» character from memory to waiting room] This card 
 EndCard
 
 Character: PXR/S94-108
-Name Sully & Mike
+Name Beginning of Friendship, Sully & Mike
 JPName 友情の始まり サリー＆マイク
 Color B
 Level 0
@@ -2330,7 +2325,7 @@ Text Auto: When your other «PIXAR» character attacks, this card gets +1500 pow
 EndCard
 
 Character: PXR/S94-109
-Name Marlin and Dory
+Name Miracle Adventure, Marlin & Dory
 JPName 奇跡の冒険 マーリン＆ドリー
 Color B
 Level 0
@@ -2347,29 +2342,21 @@ Auto:
 {
 
 }
-Text Auto: At the beginning of your opponent's draw phase, reveal the top card of your deck. If that card is level 1 or higher, you may return this card to your hand. No./22:
+Text Auto: At the beginning of your opponent's draw phase, reveal the top card of your deck. If that card is level 1 or higher, you may return this card to your hand.
 EndCard
 
-/S94-T01
-22 Rarity: TD
-Color: Side:
-Level: 0 Cost: 0 Power: Soul: 0
-Traits: PIXAR (PIXAR)
-Triggers: None
-Flavor: --
-TEXT:
-[C] During your turn, all of your other ::PIXAR:: characters get +500
-Power.
-[S] BRAINSTORM [(1) Rest this] Flip over the top 5 cards of your deck,
-put them to Waiting Room. For each Climax among them, draw up to
-1 card.: PXR/S94-T01
-22
-Name Jessie
-JPName Card No.: PXR/S94-T01
+Character: PXR/S94-T01
+Name Cowgirl Doll, Jessie
+JPName カウガール人形 ジェシー
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
 EndCard
 
 Character: PXR/S94-T02
-Name Woody
+Name Cowboy Doll, Woody Pride
 JPName カウボーイ人形 ウッディ・プライド
 Color Y
 Level 0
@@ -2406,7 +2393,7 @@ Text Auto: At the beginning of your opponent's attack phase, you may move this c
 EndCard
 
 Character: PXR/S94-T04
-Name Woody & Buzz
+Name Bonds of Friendship, Woody & Buzz
 JPName 友情の絆 ウッディ＆バズ
 Color Y
 Level 1
@@ -2428,7 +2415,7 @@ Text Auto: CxCombo When this card attacks, if Choice climax (T10) is in your cli
 EndCard
 
 Character: PXR/S94-T05
-Name Mr. Picklepants
+Name Baron Sea, Mr. Picklepants
 JPName シー男爵 ミスター・プリックルパンツ
 Color Y
 Level 1
@@ -2449,7 +2436,7 @@ Text Auto: When this card attacks, if the number of other «PIXAR» characters y
 EndCard
 
 Character: PXR/S94-T06
-Name Slinky Dog
+Name Flexible, Slinky Dog
 JPName 伸縮自在 スリンキー・ドッグ
 Color Y
 Level 1
@@ -2470,7 +2457,7 @@ Text Auto: ENCORE [Put 1 character]
 EndCard
 
 Character: PXR/S94-T07
-Name Dolly
+Name Ragdoll Dolly
 JPName ラグドール ドリー
 Color Y
 Level 2
@@ -2488,11 +2475,11 @@ Act:
 {
 
 }
-Text Act: [Rest this card] Choose 1 of your characters, it gets +1000 power until end of turn.
+Text Act: [Rest this card] Choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: PXR/S94-T08
-Name Hamm
+Name Pig Money, Hamm
 JPName ブタの貯金箱 ハム
 Color Y
 Level 2
@@ -2514,8 +2501,8 @@ Text Auto: When this card or this card's battle opponent becomes reversed, that 
 EndCard
 
 Event: PXR/S94-T09
-Name Event
-JPName BRAINSTORMFlip over the top 3 cards of your deck, put them to
+Name Run Like the Wind, Bullseye!
+JPName 走れ、風のように、ブルズアイ！
 Color Y
 Level 1
 Cost 0
@@ -2542,11 +2529,11 @@ Climax: PXR/S94-T12
 Name おもちゃのルール
 JPName おもちゃのルール
 Color Y
-
+*2SoulClimax
 EndCard
 
 Character: PXR/S94-T13
-Name Wheezy
+Name Singing a Song, Wheezy
 JPName 歌を熱唱 ウィージー
 Color G
 Level 0
@@ -2567,7 +2554,7 @@ Text Auto: When this card is placed on the stage from your hand, reveal the top 
 EndCard
 
 Character: PXR/S94-T14
-Name Trixie
+Name Herbivorous Dinosaur, Trixie
 JPName 草食恐竜 トリクシー
 Color G
 Level 0
@@ -2584,7 +2571,7 @@ Act:
 {
 
 }
-Text Act: [Rest this card] Choose 1 of your {TD 1/0 RexT18}, it gets +500 power and the following ability. "Auto: When this card's battle opponent becomes reversed, you may put the top card of your deck into stock until end of turn."
+Text Act: [Rest this card] Choose 1 of your {TD 1/0 RexT18}, and that character gets +500 power and the following ability. "Auto: When this card's battle opponent becomes reversed, you may put the top card of your deck into stock until end of turn."
 EndCard
 
 Character: PXR/S94-T15
@@ -2604,7 +2591,7 @@ Text Auto: When this card is placed on the stage from your hand, put the top 2 c
 EndCard
 
 Character: PXR/S94-T16
-Name Buzz & Zurg
+Name Arch-Rival, Buzz & Zurg
 JPName 宿敵 バズ&ザーグ
 Color G
 Level 0
@@ -2642,11 +2629,11 @@ Auto:
 {
 
 }
-Text Auto: When this card attacks, choose 1 of your «PIXAR» characters, it gets +1500 power until end of turn.
+Text Auto: When this card attacks, choose 1 of your «PIXAR» characters, and that character gets +1500 power until end of turn.
 EndCard
 
 Character: PXR/S94-T18
-Name Rex vanilla
+Name Tyrannosaurus Rex
 JPName ティラノザウルス レックス
 Color G
 Level 1
@@ -2657,7 +2644,7 @@ Trait1 PIXAR
 EndCard
 
 Character: PXR/S94-T19
-Name Alien
+Name We are Eternally Grateful, Alien
 JPName 受けた恩は忘れない エイリアン
 Color G
 Level 2
@@ -2701,7 +2688,7 @@ Text Auto: ENCORE [(1) put 1 of your characters on stage to waiting room]
 EndCard
 
 Character: PXR/S94-T21
-Name Bo Peep
+Name Fateful Reunion, Bo Peep
 JPName 運命の再会 ボー・ピープ
 Color G
 Level 3
@@ -2715,11 +2702,11 @@ Auto:
 {
 
 }
-Text Auto: When this card attacks, choose 1 of your «PIXAR» characters, it gets +X power. X equals the number of your «PIXAR» characters times 500 until end of turn.
+Text Auto: When this card attacks, choose 1 of your «PIXAR» characters, and that character gets +X power. X equals the number of your «PIXAR» characters times 500 until end of turn.
 EndCard
 
 Character: PXR/S94-T22
-Name Buzz
+Name Space Ranger, Buzz Lightyear
 JPName スペース・レンジャー バズ・ライトイヤー
 Color G
 Level 3
@@ -2737,24 +2724,23 @@ Auto:
 {
 
 }
-Text Auto: [Put 2 characters] When this card's battle opponent becomes reversed, you may pay the cost. If you do, put that character to clock. No./20:
+Text Auto: [Put 2 characters] When this card's battle opponent becomes reversed, you may pay the cost. If you do, put that character to clock.
 EndCard
 
-/S94-T23
-20 Rarity: TD
-Color: Side:
-Level: 0 Cost: 0 Power: Soul: 0
-Traits: 1 (1)
-Triggers: None
-Flavor: --
-TEXT: to {1/0 Mike VanillaT27}: PXR/S94-T23
-20
+Character: PXR/S94-T23
 Name Celia Mae
-JPName AUTO[Discard 1 card] This ability can only be activated up to once per
+JPName セリア・メイ
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 PIXAR
 EndCard
 
 Character: PXR/S94-T24
-Name Mike
+Name Joker, Mike Wazowski
 JPName お調子者 マイク・ワゾウスキ
 Color G
 Level 0
@@ -2775,7 +2761,7 @@ Text Auto: [Put 1 climax] When this card is placed on the stage from your hand, 
 EndCard
 
 Character: PXR/S94-T25
-Name Randall
+Name Scare Department, Randall
 JPName 怖がらせ学部 ランディ
 Color G
 Level 0
@@ -2796,7 +2782,7 @@ Text Auto: (1) At the beginning of your opponent's attack phase, you may pay the
 EndCard
 
 Character: PXR/S94-T26
-Name Randall
+Name Randall Boggs
 JPName ランドール・ボッグス
 Color G
 Level 1
@@ -2812,7 +2798,7 @@ Text Auto: When this card's battle opponent becomes reversed, if you have a clim
 EndCard
 
 Character: PXR/S94-T27
-Name Mike
+Name Scare Department, Mike
 JPName 怖がらせ学部 マイク
 Color G
 Level 1
@@ -2845,7 +2831,7 @@ Text Act: BACKUP +2000
 EndCard
 
 Character: PXR/S94-T29
-Name Roz
+Name Mysterious Monsters, Roz
 JPName 謎の多いモンスター ロズ
 Color G
 Level 2
@@ -2863,12 +2849,12 @@ Act:
 {
 
 }
-Text Act: [Rest this card] Choose 1 of your «PIXAR» characters, it gets +3000 power until end of turn.
+Text Act: [Rest this card] Choose 1 of your «PIXAR» characters, and that character gets +3000 power until end of turn.
 EndCard
 
 Event: PXR/S94-T30
-Name Event
-JPName Choose 1 of the following 2 effects and perform it,
+Name Child Detection Agency
+JPName Child Detection Agency
 Color G
 Level 1
 Cost 1
@@ -2880,21 +2866,21 @@ Text
 EndCard
 
 Climax: PXR/S94-T31
-Name 未来の“怖がらせ屋”
+Name Scarer of the Future
 JPName 未来の“怖がらせ屋”
 Color G
-
+*2SoulClimax
 EndCard
 
 Climax: PXR/S94-T32
-Name ウーズマ・カッパ (OK)
+Name Oozma Kappa (OK)
 JPName ウーズマ・カッパ (OK)
 Color G
 
 EndCard
 
 Character: PXR/S94-T33
-Name Boo
+Name Human Girl, Boo
 JPName 人間の女の子 ブー
 Color B
 Level 0
@@ -2915,7 +2901,7 @@ Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 5 cards of your deck
 EndCard
 
 Character: PXR/S94-T34
-Name Sullivan
+Name Top Elite, James P. Sullivan
 JPName トップエリート ジェームズ・P・サリバン
 Color B
 Level 0
@@ -2936,7 +2922,7 @@ Text Auto: When this card becomes reversed, you may reveal up to 3 cards from th
 EndCard
 
 Character: PXR/S94-T35
-Name Python Nu Kappa
+Name Python Nu Kappa (PNK)
 JPName パイソン・ニュー・カッパ (PNK)
 Color B
 Level 0
@@ -2953,11 +2939,11 @@ Act:
 {
 
 }
-Text Act: [put 1 marker from underneath this card to waiting room] Choose 1 of your «PIXAR» characters, it gets +1000 power until end of turn.
+Text Act: [put 1 marker from underneath this card to waiting room] Choose 1 of your «PIXAR» characters, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: PXR/S94-T36
-Name Sully & Mike
+Name Ultimate Scarer Duo, Sully & Mike
 JPName 最強の怖がらせ屋コンビ サリー&マイク
 Color B
 Level 0
@@ -2973,7 +2959,7 @@ Text Auto: At the beginning of your opponent's attack phase, you may put the top
 EndCard
 
 Character: PXR/S94-T37
-Name Eta Hiss Hiss
+Name Eta Hiss Hiss (HSS)
 JPName エータ・ヒス・ヒス (HSS)
 Color B
 Level 1
@@ -2994,7 +2980,7 @@ Text Auto: ENCORE [Put 1 character]
 EndCard
 
 Character: PXR/S94-T38
-Name Slugma Slugma Kappa
+Name Slugma Slugma Kappa (EEK)
 JPName スルグマ・スルグマ・カッパ (EEK)
 Color B
 Level 1
@@ -3010,7 +2996,7 @@ Text Cont: If the number of other «PIXAR» characters you have is 2 or more, th
 EndCard
 
 Character: PXR/S94-T39
-Name Roar Omega Roar
+Name Roar Omega Roar (ROR)
 JPName ロアー・オメガ・ロアー (ROR)
 Color B
 Level 2
@@ -3027,7 +3013,7 @@ Text Cont: This card gets +2500 power for each of your other backstage «PIXAR»
 EndCard
 
 Character: PXR/S94-T40
-Name Jaws Theta Chi
+Name Jaws Theta Chi (JOX)
 JPName ジョーズ・シータ・カイ (JOX)
 Color B
 Level 2
@@ -3049,7 +3035,7 @@ Text Auto: ENCORE [Put 1 «PIXAR» character]
 EndCard
 
 Character: PXR/S94-T41
-Name Sully
+Name Scare Department, Sully
 JPName 怖がらせ学部 サリー
 Color B
 Level 3
@@ -3089,32 +3075,24 @@ Text Auto: CxCombo [(2) Put 2 cards] When this card attacks, if Pants climax (T4
 EndCard
 
 Climax: PXR/S94-T43
-Name 父親のような愛情
+Name Fatherly Love
 JPName 父親のような愛情
 *GateClimax
 EndCard
 
-/S94-T44
-21 Rarity: TD
-Color: Side:
-Level: 0 Cost: 0 Power: Soul: 0
-Traits: PIXAR (PIXAR)
-Triggers: None
-Flavor: --
-TEXT:
-[A] When this is placed on stage from hand, this turn, this gets +1500
-power.
-[A] [Discard 1 card] When this is placed on stage from hand, you may
-pay cost. If you do, reveal the top card of your deck, then choose 1 Level X
-or lower character from your Waiting Room, and add it to hand. X equals the
-Level of the revealed card.: PXR/S94-T44
-21
-Name Mater
-JPName Card No.: PXR/S94-T44
+Character: PXR/S94-T44
+Name Friendly Tow Truck, Mater
+JPName やさしいレッカー車 メーター
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 PIXAR
 EndCard
 
 Character: PXR/S94-T45
-Name Lightning McQueen
+Name Genius Racer, Lightning McQueen
 JPName 天才レーサー ライトニング・マックィーン
 Color R
 Level 0
@@ -3135,7 +3113,7 @@ Text Auto: [(1) Put 1 card from your hand into waiting room] When this card is p
 EndCard
 
 Character: PXR/S94-T46
-Name Mater
+Name Radiator Springs Residents, Mater
 JPName ラジエーター・スプリングスの住人 メーター
 Color R
 Level 0
@@ -3151,7 +3129,7 @@ Text Cont: You cannot play events or BACKUPs from hand.
 EndCard
 
 Character: PXR/S94-T47
-Name Sarge
+Name Radiator Springs Residents, Sarge
 JPName ラジエーター・スプリングスの住人 サージ
 Color R
 Level 1
@@ -3167,7 +3145,7 @@ Text Auto: When your other «PIXAR» character attacks, this card gets +2000 pow
 EndCard
 
 Character: PXR/S94-T48
-Name Red
+Name Radiator Springs Residents, Red
 JPName ラジエーター・スプリングスの住人 レッド
 Color R
 Level 1
@@ -3179,7 +3157,7 @@ Auto:
 {
 
 }
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your other «PIXAR» characters, it gets +2000 power until end of turn.
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your other «PIXAR» characters, and that character gets +2000 power until end of turn.
 Auto:
 {
 
@@ -3188,7 +3166,7 @@ Text Auto: (2) When this card is sent from stage to waiting room, you may pay th
 EndCard
 
 Character: PXR/S94-T49
-Name Ramone vanilla
+Name Radiator Springs Residents, Ramone vanilla
 JPName ラジエーター・スプリングスの住人 ラモーン
 Color R
 Level 1
@@ -3198,7 +3176,7 @@ Soul 1
 EndCard
 
 Character: PXR/S94-T50
-Name Luigi
+Name Awesome Pit Crew, Luigi
 JPName 凄腕ピット・クルー ルイジ
 Color R
 Level 1
@@ -3219,7 +3197,7 @@ Text Act: [Rest 2 of your characters] This card turn, this card gets the followi
 EndCard
 
 Character: PXR/S94-T51
-Name Mack
+Name Trailer, Mack
 JPName トレーラー マック
 Color R
 Level 2
@@ -3241,7 +3219,7 @@ Text Auto: (2) When this card is placed on the stage from your hand, you may pay
 EndCard
 
 Character: PXR/S94-T52
-Name Cruz Ramirez
+Name New Friends, Cruz Ramirez
 JPName 新たな仲間 クルーズ・ラミレス
 Color R
 Level 3
@@ -3259,13 +3237,13 @@ Text Auto: CxCombo When this card attacks, if the number of other «PIXAR» char
 EndCard
 
 Climax: PXR/S94-T53
-Name 再起をかけた挑戦
+Name Challenge to Make a Comeback
 JPName 再起をかけた挑戦
 *DoorClimax
 EndCard
 
 Character: PXR/S94-T54
-Name Sally Carrera
+Name Cool Beauty, Sally Carrera
 JPName クールな美女 サリー・カレラ
 Color B
 Level 0
@@ -3286,7 +3264,7 @@ Text Act: BRAINSTORM [(1) Rest this card] Flip over the top 5 cards of your deck
 EndCard
 
 Character: PXR/S94-T55
-Name Fillmore
+Name Radiator Springs Residents, Fillmore
 JPName ラジエーター・スプリングスの住人 フィルモア
 Color B
 Level 0
@@ -3303,11 +3281,11 @@ Auto:
 {
 
 }
-Text Auto: When a climax is placed in your climax area, choose 1 of your characters, it gets +1000 power until end of turn.
+Text Auto: When a climax is placed in your climax area, choose 1 of your characters, and that character gets +1000 power until end of turn.
 EndCard
 
 Character: PXR/S94-T56
-Name Flo
+Name Radiator Springs Residents, Flo
 JPName ラジエーター・スプリングスの住人 フロー
 Color B
 Level 0
@@ -3328,7 +3306,7 @@ Text Auto: BOND [Put 1 card from your hand into waiting room] to {1/0 Ramone Van
 EndCard
 
 Character: PXR/S94-T57
-Name Lizzie
+Name Radiator Springs Residents, Lizzie
 JPName ラジエーター・スプリングスの住人 リジー
 Color B
 Level 0
@@ -3366,7 +3344,7 @@ Text Act: BACKUP +3000
 EndCard
 
 Character: PXR/S94-T59
-Name Sheriff
+Name Radiator Springs Residents, Sheriff
 JPName ラジエーター・スプリングスの住人 シェリフ
 Color B
 Level 2
@@ -3388,7 +3366,7 @@ Text Auto: (1) When this card's level 2 or higher battle opponent becomes revers
 EndCard
 
 Character: PXR/S94-T60
-Name Jackson Storm
+Name Strongest Rival, Jackson Storm
 JPName 最強のライバル ジャクソン・ストーム
 Color B
 Level 2
@@ -3410,7 +3388,7 @@ Text Auto: ACCELERATE [Put the top card of your deck into clock] At the beginnin
 EndCard
 
 Character: PXR/S94-T61
-Name Doc Hudson
+Name Legendary Racer, Doc Hudson
 JPName 伝説のレーサー ドック・ハドソン
 Color B
 Level 3
@@ -3432,8 +3410,8 @@ Text Auto: (1) When this card is placed on the stage from your hand, you may pay
 EndCard
 
 Event: PXR/S94-T62
-Name Event
-JPName COUNTERChoose 1 of your battling ::PIXAR:: characters, put it to
+Name Talented Pit Crw Member, Guido
+JPName 凄腕ピット・クルー グイド
 Color B
 Level 2
 Cost 1
@@ -3445,15 +3423,15 @@ Text
 EndCard
 
 Climax: PXR/S94-T63
-Name フィン・マックミサイル
+Name Finn McMissile
 JPName フィン・マックミサイル
 *GateClimax
 EndCard
 
 Climax: PXR/S94-T64
-Name ピストン・カップ
+Name Piston Cup
 JPName ピストン・カップ
 Color B
-
+*2SoulClimax
 EndCard
 
