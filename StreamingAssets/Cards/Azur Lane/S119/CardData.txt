@@ -2695,7 +2695,7 @@ Auto: OnPlay
 	If Yes
 	{
 		TargetLocation Clock
-		NarrowTargets HasTrait Seraph
+		NarrowTargets HasTrait KAN-SEN
 		ChooseCharacterFromTargets Choose a character to send to the bottom of the deck.
 		MoveCardToBottom Deck
 	}
