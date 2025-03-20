@@ -1103,16 +1103,41 @@ Cost 0
 Power 3000
 Soul 1
 Trait1 PIXAR
-Auto:
+Auto: OnClimaxPlay
 {
-
+    UntilEndOfOpponentsTurn
+    *GiveCharacterPower(2000,Any)
 }
-Text Auto: When your climax is placed on the climax area, choose 1 of your characters,.until the end of your opponent's next turn$3
-Act:
+Text Auto: When a climax is placed in your climax area, choose 1 of your characters, and that character gets +2000 power until the end of your opponent's next turn.
+Act: RestSelf
 {
-
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give the effect.
+    GainEffect
+    {
+        Auto: OnReverseOpponent
+        {
+            TargetFacing
+            IfTarget OnStage
+            {
+                TargetLocation OpponentClock
+                If HasTarget
+                {
+                    Question Put that top card of your opponent's clock to waiting room ?
+                    If Yes
+                    {
+                        TargetTop OpponentClock 1
+                        MoveCard OpponentWaitingRoom
+                        TargetFacing
+                        MoveCard OpponentClock
+                    }
+                }
+            }
+        }
+        Text Auto: When this card's battle opponent becomes reverse, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock.
+    }
 }
-Text Act: [Rest this card] Choose 1 of your characters, that charcter gets the following ability. "Auto: When this card's battle opponent becomes reversed, you may put the top card of your opponent's clock to waiting room. If you do, put that character to clock until end of turn."
+Text Act: [Rest this card] Choose 1 of your characters, and that charcter gets the following ability until end of turn. "Auto: When this card's battle opponent becomes reverse, you may put the top card of your opponent's clock in the waiting room. If you do, put that character in clock."
 EndCard
 
 Character: PXR/S94-042
@@ -1124,16 +1149,22 @@ Cost 0
 Power 4500
 Soul 1
 Trait1 PIXAR
-Auto:
+Combo A Bug's Life
+Auto: OnClimaxPlay
 {
-
+    *GiveCharacterPower(1500,PIXAR)
 }
 Text Auto: When a climax is placed in your climax area, choose 1 of your «PIXAR» characters, and that character gets +1500 power until end of turn.
-Auto:
+Auto: OnAttack
 {
-
+    If Climax A Bug's Life && StageContains 1 Other && HasTrait PIXAR
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give the effect.
+        *GainBounceWhenFrontalAttacked
+    }
 }
-Text Auto: CxCombo When this card attacks, if "A Bug's Life" is in your climax area, and you have another «PIXAR» character, choose 1 of your characters,.until the end of your opponent's next turn$3"
+Text Auto: CxCombo When this card attacks, if "A Bug's Life" is in your climax area, and you have another «PIXAR» character, choose 1 of your characters, and that character gets the following ability until the end of your opponent's next turn. "Auto: When this card is frontal attacked, you may return this card to your hand."
 EndCard
 
 Character: PXR/S94-043
@@ -1146,16 +1177,22 @@ Trigger Soul
 Power 6500
 Soul 1
 Trait1 PIXAR
-Cont:
+Cont: Assist
 {
-
+    If HasTrait PIXAR
+    {
+        GainPower 1500
+    }
 }
-Text Cont: ASSIST +1500 to «PIXAR» characters.
-Auto:
+Text Cont: ASSIST Your «PIXAR» characters in front of this card get +1500 power.
+Auto: OnPlay
 {
-
+    PayCost Discard 1 IsCharacter && HasTrait PIXAR
+    {
+        SearchDeck NameEquals We Can Do It, Woody Pride
+    }
 }
-Text Auto: [Put 1 «PIXAR» character] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "We Can Do It, Woody Pride", reveal it to your opponent, add it to hand, and shuffle your deck afterwards.
+Text Auto: [Put 1 «PIXAR» character from your hand into waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 "We Can Do It, Woody Pride", reveal it to your opponent, add it to hand, and shuffle your deck.
 EndCard
 
 Event: PXR/S94-044
@@ -1166,9 +1203,19 @@ Level 1
 Cost 0
 Effect:
 {
-
+    TargetTop Deck 2
+    If Compare TargetCount 2 OrMore
+    {
+        Reorder
+    }
+    Else
+    {
+        View
+    }
+    TargetSelf
+    MoveCard Stock
 }
-Text
+Text Look at the top 2 cards of your deck and put them on top of your deck in any order. Put this card into stock.
 EndCard
 
 Event: PXR/S94-045
@@ -1179,9 +1226,16 @@ Level 1
 Cost 1
 Effect:
 {
-
+    SearchWaitingRoom IsCharacter && HasTrait PIXAR
+    MoveCard Memory
+    TargetTop Deck 1
+    Reveal
+    IfTarget Compare ThatCardsLevel 2 OrMore
+    {
+        MoveCard Stock
+    }
 }
-Text
+Text Choose 1 «PIXAR» character in your waiting room and return it to your hand.\nPut this card into memory.\nReveal the top card of your deck. If that card is level 2 or higher, put that card into stock.
 EndCard
 
 Climax: PXR/S94-046
@@ -1206,20 +1260,32 @@ Power 3500
 Soul 1
 Trait1 PIXAR
 Combo Cars
-Cont:
+Cont: GiveSelf
 {
-
+    If LocationContains Memory 1 NameEquals Mysterious Past, Doc Hudson
+    {
+        GainPower 3000
+    }
 }
 Text Cont: MEMORY If you have a "Mysterious Past, Doc Hudson" in your memory, this card gets +3000 power.
-Auto:
+Auto: OnSpecificClimaxPlay Cars
 {
-
+    If InLocation CenterStage && StageContains 2 Other && HasTrait PIXAR
+    {
+        PayCost Discard 1 IsCharacter && HasTrait PIXAR &&& Resonate Strongest Teamwork, McQueen & Mater
+        {
+            SearchLocationForTargets Deck 0 2 IsCharacter && HasTrait PIXAR
+            RevealTargets
+            MoveCard Hand
+            ShuffleLocation Deck
+        }
+    }
 }
-Text Auto: CxCombo RESONATE [Put 1 «PIXAR» character, reveal "Strongest Teamwork, McQueen & Mater" from your hand] When the "Cars" is placed in your climax area, if this card is in the center stage, and the number of other «PIXAR» characters you have is 2 or more, you may pay the cost. If you do, search your deck for up to 2 «PIXAR» characters, reveal it to your opponent, add it to hand, and shuffle your deck afterwards.
+Text Auto: CxCombo RESONATE [Put 1 «PIXAR» character from your hand into waiting room, reveal "Strongest Teamwork, McQueen & Mater" from your hand] When "Cars" is placed in your climax area, if this card is in your center stage, and the number of other «PIXAR» characters you have is 2 or more, you may pay the cost. If you do, search your deck for up to 2 «PIXAR» characters, reveal it to your opponent, add it to hand, and shuffle your deck afterwards.
 EndCard
 
 Character: PXR/S94-049
-Name Incredible Family
+Name Superheroes, Incredible Family
 JPName スーパーヒーロー インクレディブル・ファミリー
 Color R
 Level 3
@@ -1228,16 +1294,24 @@ Trigger Soul
 Power 10000
 Soul 2
 Trait1 PIXAR
-Auto:
+Auto: OnPlay
 {
-
+    TargetTop Deck 1
+    Reveal
+    IfTarget IsCharacter && HasTrait PIXAR || IsEvent
+    {
+        *OptionalBurn(1)
+    }
 }
-Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is a «PIXAR» character or event, you may deal 1 damage to your opponent.
-Auto:
+Text Auto: When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is a «PIXAR» character or an event, you may deal 1 damage to your opponent.
+Auto: OnAttack
 {
-
+    PayCost Discard 2 Any
+    {
+        Burn 1
+    }
 }
-Text Auto: [Put 2 cards] When this card attacks, you may pay the cost. If you do, deal 1 damage to your opponent.
+Text Auto: [Put 2 cards from your hand into waiting room] When this card attacks, you may pay the cost. If you do, deal 1 damage to your opponent.
 EndCard
 
 Character: PXR/S94-050
@@ -1250,16 +1324,26 @@ Trigger Soul
 Power 10500
 Soul 2
 Trait1 PIXAR
-Auto:
+Auto: OnPlay
 {
-
+	*PlayCharacterFromHand(Compare ThatCardsLevel MyLevel OrLess)
+    TargetSelf
+	GainPower 2000
 }
-Text Auto: When this card is placed on the stage from your hand, choose up to 1 character from your hand whose level is equal or lower than your level, place it on stage in any position, and this turn, this card gets +2000 power.
-Auto:
+Text Auto: When this card is placed on the stage from your hand, choose up to 1 character in your hand whose level is equal to or lower than your level and put it in any position on the stage, and this card gets +2000 power until end of turn.
+Auto: OnAttack
 {
-
+    If Climax Radiator Springs Friends
+    {
+        PayCost 1 Discard 2 Any
+        {
+            Burn 3
+            SearchLocationForTargets OpponentWaitingRoom 0 1 Any
+            MoveCard OpponentDeck
+        }
+    }
 }
-Text Auto: CxCombo [(1) Put 2 cards] When this card attacks, if "Radiator Springs Friends" is is in your climax area, you may pay the cost. If you do, deal 3 damage to your opponent, choose up to 1 card in your opponent's waiting room, place it on top of their deck.
+Text Auto: CxCombo [(1) Put 2 cards from your hand into waiting room] When this card attacks, if "Radiator Springs Friends" is is in your climax area, you may pay the cost. If you do, deal 3 damage to your opponent, choose up to 1 card in your opponent's waiting room, and put it on top of their deck.
 EndCard
 
 Character: PXR/S94-051
@@ -1271,11 +1355,19 @@ Cost 0
 Power 500
 Soul 1
 Trait1 PIXAR
-Auto:
+Auto: StartOpponentAttackPhase
 {
-
+    PayCost 1
+    {
+        TargetLocation Backstage
+        If Compare TargetCount 1 OrLess
+        {
+            TargetSelf
+            MoveToOpenPosition False True
+        }
+    }
 }
-Text Auto: (1) At the beginning of your opponent's attack phase, you may pay the cost. If you do, move this card to an open position in your backstage.
+Text Auto: [(1)] At the beginning of your opponent's attack phase, you may pay the cost. If you do, move this card to an open position in your backstage.
 Auto:
 {
 
@@ -1301,7 +1393,7 @@ Auto:
 {
 
 }
-Text Auto: CxCombo [Return this card to hand] When the "Brave" is placed in your climax area, you may pay the cost. If you do, reveal the top card of your deck. if that card is a «PIXAR» character, add it to hand.
+Text Auto: CxCombo [Return this card to hand] When "Brave" is placed in your climax area, you may pay the cost. If you do, reveal the top card of your deck. if that card is a «PIXAR» character, add it to hand.
 EndCard
 
 Character: PXR/S94-053
@@ -1420,7 +1512,7 @@ Auto:
 {
 
 }
-Text Auto: CxCombo When the "Mr. Incredible" is placed in your climax area, if this card is in your center stage, and all of your characters are «PIXAR», choose 1 of the following 3 effects and perform it, a) "Search your deck for up to 1 {copy of this card}, place it on stage in any position, and shuffle your deck afterwards." b) "Choose 1 of your other «PIXAR» characters, stand it." c) "Choose 1 character in your waiting room, add it to hand."
+Text Auto: CxCombo When "Mr. Incredible" is placed in your climax area, if this card is in your center stage, and all of your characters are «PIXAR», choose 1 of the following 3 effects and perform it, a) "Search your deck for up to 1 {copy of this card}, place it on stage in any position, and shuffle your deck afterwards." b) "Choose 1 of your other «PIXAR» characters, stand it." c) "Choose 1 character in your waiting room, add it to hand."
 EndCard
 
 Character: PXR/S94-059
@@ -1957,11 +2049,17 @@ Auto:
 
 }
 Text Auto: When this card is placed on the stage from your hand, choose 1 of your opponent's characters,.until the end of your opponent's next turn$3"
-Auto:
+Auto: StartOpponentAttackPhase
 {
-
+    PayCost Send 1 WaitingRoom Other && HasTrait PIXAR
+    {
+        If LocationContainsOrLess Backstage 1 Any
+        {
+            MoveToOpenPosition false true
+        }
+    }
 }
-Text Auto: [put 1 of your other «PIXAR» characters on stage to waiting room] At the beginning of your opponent's attack phase, you may pay the cost. If you do, move this card to an open position in your backstage.
+Text Auto: [Put 1 of your other «PIXAR» characters on stage to waiting room] At the beginning of your opponent's attack phase, you may pay the cost. If you do, move this card to an open position in your backstage.
 Act:
 {
 
@@ -2030,7 +2128,7 @@ Auto:
 {
 
 }
-Text Auto: CxCombo When the "Luka that summer" is placed in your climax area, if you have 1 or less other characters in your center stage, choose up to 2 «PIXAR» characters in your waiting room, place them in stock in any order, then look at up to the top 4 cards of your deck, choose up to 1 «PIXAR» character among them, reveal it to your opponent, add it to hand, and put the rest into waiting room.
+Text Auto: CxCombo When "Luka that summer" is placed in your climax area, if you have 1 or less other characters in your center stage, choose up to 2 «PIXAR» characters in your waiting room, place them in stock in any order, then look at up to the top 4 cards of your deck, choose up to 1 «PIXAR» character among them, reveal it to your opponent, add it to hand, and put the rest into waiting room.
 EndCard
 
 Character: PXR/S94-092
@@ -2774,11 +2872,19 @@ Auto:
 
 }
 Text Auto: When this card attacks, if the number of other «PIXAR» characters you have is 2 or more, this card gets +2000 power until end of turn.
-Auto:
+Auto: StartOpponentAttackPhase
 {
-
+    PayCost 1
+    {
+        TargetLocation Backstage
+        If Compare TargetCount 1 OrLess
+        {
+            TargetSelf
+            MoveToOpenPosition False True
+        }
+    }
 }
-Text Auto: (1) At the beginning of your opponent's attack phase, you may pay the cost. If you do, move this card to an open position in your backstage.
+Text Auto: [(1)] At the beginning of your opponent's attack phase, you may pay the cost. If you do, move this card to an open position in your backstage.
 EndCard
 
 Character: PXR/S94-T26
