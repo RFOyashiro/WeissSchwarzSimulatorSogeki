@@ -11,9 +11,15 @@ Trait1 KAN-SEN
 Trait2 Royal Navy
 Cont: GiveSelf
 {
-    If MyTurn && AllYourCharacters IsColor Yellow || IsColor Blue
+    If MyTurn
     {
-        GainPower 1500
+        TargetLocation Stage
+        SetXValue TargetCount
+        NarrowTargets ColorIs Yellow || ColorIs Blue
+        If Compare TargetCount X Exactly
+        {
+            GainPower 1500
+        }
     }
 }
 Text Cont: During your turn, if all your characters are either Yellow or Blue, this card gets +1500 power.
@@ -2629,7 +2635,7 @@ Cont: GiveSelf
     }
 }
 Text Cont: If there are 5 or more cards in your hand, this card gets +1000 power.
-Auto: OnPlay
+Auto: OnSentFromStageToWaitingRoom
 {
 	RevealUpTo Deck 3
 	ChooseCardsFromTargets 0 1 IsCharacter && With EXPERIENCE
