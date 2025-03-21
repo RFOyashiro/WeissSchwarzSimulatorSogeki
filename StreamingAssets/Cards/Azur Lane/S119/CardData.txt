@@ -322,6 +322,7 @@ Auto: OnAttack
     TargetFacing
     If Compare TargetCardsLevel 3 OrMore
     {
+        TargetSelf
         GainPower 6000
         GainSoul 2
     }
@@ -2925,10 +2926,13 @@ Auto: OnSpecificClimaxPlay Mid-Autumn Moon
     {
         SearchLocationForTargets Deck 0 2 IsCharacter && HasTrait KAN-SEN
         RevealTargets
-        OpponentMessage Choose 1 character to add to your opponent's hand among those cards.
+        SaveTargets
+        OpponentMessage Choose 1 character to add to your opponent's waiting room among those cards.
         OpponentChooseCardsFromTargets 1 1 IsCharacter
+        MoveCard WaitingRoom
+        RemoveCurrentFromSavedTargets
+        LoadTargets
         MoveCard Hand
-        PutTheRestIntoTheWaitingRoom
         ShuffleLocation Deck
     }
 }
