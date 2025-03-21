@@ -82,7 +82,7 @@ Trait2 Royal Navy
 *StockHealer
 Cont: GiveSelf
 {
-    If Compare Experience 6 OrMore
+    If MyTurn && Compare Experience 6 OrMore
     {
         GainPower 3500
         GainEffect
