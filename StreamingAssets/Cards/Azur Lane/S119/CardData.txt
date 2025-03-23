@@ -1306,7 +1306,7 @@ Auto: StartOpponentAttackPhase
 {
     PayCost 1 Clock SendSelf Hand
     {
-        TargetLocation Deck
+        TargetLocation Stage
         NarrowTargets NameEquals Chitose && Other
         ChooseCharacterFromTargets Choose a character to return to your hand.
         Bounce
