@@ -186,14 +186,14 @@ Trait2 Vichya Dominion
 Auto: OnPlay
 {
     RevealUpTo Deck 3
-	If HasTarget
-	{
-		ChooseCardsFromTargets 0 1 IsColor Yellow && IsCharacter
+    If HasTarget
+    {
+        ChooseCardsFromTargets 0 1 IsColor Yellow && IsCharacter
         RevealTargets
-		MoveCard Hand
-		Discard 1 Any
-		PutTheRestIntoTheWaitingRoom
-	}
+        MoveCard Hand
+        Discard 1 Any
+        PutTheRestIntoTheWaitingRoom
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, you may reveal up to 3 cards from the top of your deck. If you reveal 1 or more cards this way, choose up to 1 Yellow character among them and put it in your hand, put the rest into your waiting room, and discard a card from your hand to the waiting room.
 EndCard
@@ -452,24 +452,24 @@ Auto: OnPlay
 Text Auto: When this card is placed on the stage from your hand, put up to 2 cards from the top of your deck in the waiting room.
 Auto: OnPlay
 {
-	If Phase Main
-	{
-		PayCost Discard 1 Compare ThatCardsLevel 1 OrMore
-		{
-			SetXValue MyLevel
-			SearchLocationForTargets WaitingRoom 1 1 && Compare ThatCardsLevel X OrLess && IsCharacter && HasTrait KAN-SEN
-			SaveTargets
-			If Compare TargetCardsCost CardsInStock OrLess
-			{
-				LoadTargets
-				SetXValue TargetCardsCost
-				TargetTop Stock X
-				MoveCard WaitingRoom
-				LoadTargets
-				PlaceOnStage False True True False
-			}
-		}
-	}
+    If Phase Main
+    {
+        PayCost Discard 1 Compare ThatCardsLevel 1 OrMore
+        {
+            SetXValue MyLevel
+            SearchLocationForTargets WaitingRoom 1 1 && Compare ThatCardsLevel X OrLess && IsCharacter && HasTrait KAN-SEN
+            SaveTargets
+            If Compare TargetCardsCost CardsInStock OrLess
+            {
+                LoadTargets
+                SetXValue TargetCardsCost
+                TargetTop Stock X
+                MoveCard WaitingRoom
+                LoadTargets
+                PlaceOnStage False True True False
+            }
+        }
+    }
 }
 Text Auto: [Put a level 1 or higher card from your hand to the waiting room] During your main phase, when this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «KAN-SEN» character in your waiting room whose level is equal to or lower than your level, during this main phase, you may play that card from waiting room without meeting color requirements. (If cost is needed to play the card, pay the cost)
 EndCard
@@ -1922,10 +1922,10 @@ Auto: OnPlay
     PayCost 0
     {
         OpponentMessage Choose a climax to keep in your waiting room.
-		OpponentSearchLocationForTargets WaitingRoom 1 1 IsClimax
-		ReverseTargets OpponentWaitingRoom
-		MoveCard OpponentDeck
-		ShuffleLocation OpponentDeck
+    OpponentSearchLocationForTargets WaitingRoom 1 1 IsClimax
+    ReverseTargets OpponentWaitingRoom
+    MoveCard OpponentDeck
+    ShuffleLocation OpponentDeck
     }
 }
 Text Auto: When this card is placed form hand to the stage, you may perform the following effect. "Your opponent chooses a climax in their waiting room, returns all cards other than the chosen card from their waiting room to their deck, and shuffle your deck."
@@ -1963,21 +1963,28 @@ Cont: GiveFacing
 Text Cont: The character facing this card gets -1 soul.
 Auto: OnAttack
 {
-    If Climax This Is Your Choice Alone to Make && AllYourCharacters IsColor Green || IsColor Red
+    If Climax This Is Your Choice Alone to Make
     {
-        PayCost 2 Discard 4 Any
+        TargetLocation Stage
+        NarrowTargets IsColor Green || IsColor Red
+        SetXValue TargetCount
+        TargetLocation Stage
+        If Compare X TargetCount Exactly
         {
-            GainPower 4000
-            TargetTop OpponentDeck 3
-            RevealTargets
-            If TargetsContain 2 IsClimax
+            PayCost 2 Discard 4 Any
             {
-                MoveCard OpponentWaitingRoom
-            }
-            Else
-            {
-                MoveCard OpponentClock
-                OpponentReorder
+                GainPower 4000
+                TargetTop OpponentDeck 3
+                RevealTargets
+                If TargetsContain 2 IsClimax
+                {
+                    MoveCard OpponentWaitingRoom
+                }
+                Else
+                {
+                    MoveCard OpponentClock
+                    OpponentReorder
+                }
             }
         }
     }
@@ -2548,12 +2555,12 @@ Trait1 KAN-SEN
 Trait2 Eagle Union
 Auto: OnPlay
 {
-	If LocationContainsOrLess OpponentCenterStage 1 Any
-	{
-		TargetLocation OpponentCenterStage
-		NarrowTargets CanBeChosen && Compare ThatCardsCost 0 OrLower
-		MoveCardToBottom OpponentDeck
-	}
+    If LocationContainsOrLess OpponentCenterStage 1 Any
+    {
+        TargetLocation OpponentCenterStage
+        NarrowTargets CanBeChosen && Compare ThatCardsCost 0 OrLower
+        MoveCardToBottom OpponentDeck
+    }
 }
 Text Auto: When this card is placed on the stage from your hand, if there is 1 or less characters in your opponent's center stage, you may choose a cost 0 or lower character in your opponent's center stage and put it on the bottom of the deck.
 Auto: OnPlay
@@ -2638,16 +2645,16 @@ Cont: GiveSelf
 Text Cont: If there are 5 or more cards in your hand, this card gets +1000 power.
 Auto: OnSentFromStageToWaitingRoom
 {
-	RevealUpTo Deck 3
-	ChooseCardsFromTargets 0 1 IsCharacter && With EXPERIENCE
-	If HasTarget
-	{
-		RevealTargets
-		MoveCard Hand
-		PutTheRestIntoTheWaitingRoom
-		Discard 1 Any
-	}
-	PutTheRestIntoTheWaitingRoom
+    RevealUpTo Deck 3
+    ChooseCardsFromTargets 0 1 IsCharacter && With EXPERIENCE
+    If HasTarget
+    {
+        RevealTargets
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+        Discard 1 Any
+    }
+    PutTheRestIntoTheWaitingRoom
 }
 Text Auto: When this card is placed in your waiting room from the stage, look at up to the top 3 cards of your deck, choose up to 1 character with "EXPERIENCE" among them, reveal it, put it in your hand, and put the rest into your waiting room. If you put a card in your hand this way, discard a card from your hand to the waiting room.
 EndCard
@@ -2699,13 +2706,13 @@ Trait2 Eagle Union
 Auto: OnPlay
 {
     Question_Obvious Send a character in your clock to the bottom of the deck?
-	If Yes
-	{
-		TargetLocation Clock
-		NarrowTargets HasTrait KAN-SEN
-		ChooseCharacterFromTargets Choose a character to send to the bottom of the deck.
-		MoveCardToBottom Deck
-	}
+    If Yes
+    {
+        TargetLocation Clock
+        NarrowTargets HasTrait KAN-SEN
+        ChooseCharacterFromTargets Choose a character to send to the bottom of the deck.
+        MoveCardToBottom Deck
+    }
     TargetSelf
     GainPower 4500
 }
@@ -3085,19 +3092,19 @@ Trait2 Eagle Union
 *OnAttackCheck2ChooseTrigger
 Auto: StartOpponentAttackPhase
 {
-	If LocationContainsOrLess CenterStage 2 Any
-	{
-		TargetFacing
-		If HasTarget
-		{
-			TargetSelf
-			Question Move this card to another position?
-			If Yes
-			{
-				MoveToOpenPosition True False
-			}
-		}
-	}
+    If LocationContainsOrLess CenterStage 2 Any
+    {
+        TargetFacing
+        If HasTarget
+        {
+            TargetSelf
+            Question Move this card to another position?
+            If Yes
+            {
+                MoveToOpenPosition True False
+            }
+        }
+    }
 }
 Text Auto: At the beginning of your opponent's attack phase, if there's a character facing this card, you may move this card to an open position in your center stage.
 EndCard
