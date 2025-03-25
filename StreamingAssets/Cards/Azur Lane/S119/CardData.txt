@@ -1973,6 +1973,7 @@ Auto: OnAttack
         {
             PayCost 2 Discard 4 Any
             {
+                TargetSelf
                 GainPower 4000
                 TargetTop OpponentDeck 3
                 RevealTargets
