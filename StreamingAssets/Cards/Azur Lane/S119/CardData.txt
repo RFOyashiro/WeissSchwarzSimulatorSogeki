@@ -458,16 +458,7 @@ Auto: OnPlay
         {
             SetXValue MyLevel
             SearchLocationForTargets WaitingRoom 1 1 && Compare ThatCardsLevel X OrLess && IsCharacter && HasTrait KAN-SEN
-            SaveTargets
-            If Compare TargetCardsCost CardsInStock OrLess
-            {
-                LoadTargets
-                SetXValue TargetCardsCost
-                TargetTop Stock X
-                MoveCard WaitingRoom
-                LoadTargets
-                PlaceOnStage False True True False
-            }
+            GainSpecialEffect CanBePlayedFromWaitingRoom
         }
     }
 }

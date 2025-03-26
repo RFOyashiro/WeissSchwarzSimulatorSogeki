@@ -1515,20 +1515,11 @@ Auto: OnPlay
 		{
 			SetXValue MyLevel
 			SearchLocationForTargets WaitingRoom 1 1 && Compare ThatCardsLevel X OrLess && IsCharacter
-			SaveTargets
-			If Compare TargetCardsCost CardsInStock OrLess
-			{
-				LoadTargets
-				SetXValue TargetCardsCost
-				TargetTop Stock X
-				MoveCard WaitingRoom
-				LoadTargets
-				PlaceOnStage False True True False
-			}
+			GainSpecialEffect CanBePlayedFromWaitingRoom
 		}
 	}
 }
-Text Auto: [Discard 1 level 1 or higher card] During your main phase, when this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 character with level equal to or lower than your level in your waiting room and, during this main phase, you may play that card from your waiting room without fulfilling color requirements (If cost is needed to play the card, pay the cost).
+Text Auto: [Put a level 1 or higher card from your hand to the waiting room] During your main phase, when this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 character with level equal to or lower than your level in your waiting room and, during this main phase, you may play that card from your waiting room without fulfilling color requirements (If cost is needed to play the card, pay the cost).
 EndCard
 
 Character: ZLS/W93-059
