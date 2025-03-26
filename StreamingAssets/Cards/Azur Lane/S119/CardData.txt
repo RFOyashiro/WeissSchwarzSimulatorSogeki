@@ -3121,7 +3121,7 @@ Soul 1
 Trait1 KAN-SEN
 Trait2 Eagle Union
 *OnPlayMill2GainPowerForEachCharacter(1000,KAN-SEN)
-Auto: OnPlay
+Auto: OnSentFromStageToWaitingRoom
 {
     PayCost 1 SendFromWaitingRoomToBottom 1 Clock IsCharacter && HasTrait KAN-SEN
     {

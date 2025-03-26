@@ -1528,7 +1528,7 @@ Auto: OnPlay
 		}
 	}
 }
-Text Auto: [Discard 1 level 1 or higher card] During your main phase, when this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 character with level equal to or lower than your level in your waiting room and, during that main phase, you may play that card from your waiting room without fulfilling color requirements (If cost is needed to play the card, pay the cost).
+Text Auto: [Discard 1 level 1 or higher card] During your main phase, when this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 character with level equal to or lower than your level in your waiting room and, during this main phase, you may play that card from your waiting room without fulfilling color requirements (If cost is needed to play the card, pay the cost).
 EndCard
 
 Character: ZLS/W93-059
