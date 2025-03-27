@@ -1732,7 +1732,7 @@ Power 7000
 Soul 1
 Trait1 MOVIE
 Trait2 Weapon
-Trait3 Yukata
+Trait2 Japanese Clothes
 Auto: OnPlay
 {
     If StageContains 4 Other && HasTrait MOVIE

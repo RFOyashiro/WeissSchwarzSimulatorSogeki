@@ -1393,12 +1393,12 @@ Cont: GiveSelf
 {
     If Not MyTurn
     {
-        SetXToNumberOfCharacters Other && HasTrait Family|Yukata
+        SetXToNumberOfCharacters Other && HasTrait Family|Japanese Clothes
         MultiplyXValue 500
         GainPower X
     }
 }
-Text Cont: During your opponent's turn, this card gets +500 power for each of your other characters with either «Family» or «Yukata»
+Text Cont: During your opponent's turn, this card gets +500 power for each of your other characters with either «Family» or «Japanese Clothes»
 Auto: OnPlay|PlacedBy CHANGE
 {
     *Check4Add1(Family)
@@ -1418,7 +1418,7 @@ Power 500
 Soul 1
 Trait1 Family
 Trait2 Salaryman
-*GlobalPower(500,Family|Yukata)
+*GlobalPower(500,Family|Japanese Clothes)
 *BondDiscard(Not Afraid of Anything\, Shinnosuke)
 EndCard
 
@@ -1432,7 +1432,7 @@ Power 2500
 Soul 1
 Trait1 Family
 Trait2 Kindergarten
-*MillRunner(Family|Yukata)
+*MillRunner(Family|Japanese Clothes)
 EndCard
 
 Character: CS/S28-080
@@ -1444,9 +1444,9 @@ Cost 0
 Power 4500
 Soul 1
 Trait1 Weapon
-Trait2 Yukata
+Trait2 Japanese Clothes
 Combo Uncontainable Feelings
-*GainPowerWhenOtherAttacks(1000,Family|Yukata)
+*GainPowerWhenOtherAttacks(1000,Family|Japanese Clothes)
 Auto: OnReverseOpponent
 {
     If Climax Uncontainable Feelings
@@ -1506,12 +1506,12 @@ Cont: GiveSelf
 {
     If Not MyTurn
     {
-        SetXToNumberOfCharacters Other && HasTrait Family|Yukata
+        SetXToNumberOfCharacters Other && HasTrait Family|Japanese Clothes
         MultiplyXValue 500
         GainPower X
     }
 }
-Text Cont: During your opponent's turn, this card gets +500 power for each of your other characters with either «Family» or «Yukata»
+Text Cont: During your opponent's turn, this card gets +500 power for each of your other characters with either «Family» or «Japanese Clothes»
 EndCard
 
 Character: CS/S28-083
@@ -1542,8 +1542,8 @@ Level 1
 Cost 0
 Power 5000
 Soul 1
-Trait1 Yukata
-*OnAttackGiveOtherPower(1000,Family|Yukata)
+Trait1 Japanese Clothes
+*OnAttackGiveOtherPower(1000,Family|Japanese Clothes)
 EndCard
 
 Character: CS/S28-085
@@ -1555,7 +1555,7 @@ Cost 1
 Trigger Soul
 Power 3000
 Soul 1
-Trait1 Yukata
+Trait1 Japanese Clothes
 Trait2 Love
 Auto: StartOpponentAttackPhase
 {
@@ -1574,7 +1574,7 @@ Trigger Soul
 Power 8000
 Soul 1
 Trait1 Weapon
-Trait2 Yukata
+Trait2 Japanese Clothes
 Auto: OnPlay
 {
     PayCost 1
@@ -1662,8 +1662,8 @@ Level 0
 Cost 0
 Power 2000
 Soul 1
-Trait1 Yukata
-*OnAttackGiveOtherPower(1000,Family|Yukata)
+Trait1 Japanese Clothes
+*OnAttackGiveOtherPower(1000,Family|Japanese Clothes)
 Act: 1
 {
     DrawCard
@@ -1680,7 +1680,7 @@ Level 0
 Cost 0
 Power 2500
 Soul 1
-Trait1 Yukata
+Trait1 Japanese Clothes
 Auto: OnOtherOpponentReversed
 {
     IfOther NameContains しんのすけ
@@ -1779,7 +1779,7 @@ Cost 1
 Trigger Soul
 Power 8000
 Soul 1
-Trait1 Yukata
+Trait1 Japanese Clothes
 Auto: OnReceiveDamage
 {
     If InBattle
@@ -1799,16 +1799,16 @@ Level 1
 Cost 1
 Effect:
 {
-    PayCost Rest 1 HasTrait Family|Yukata
+    PayCost Rest 1 HasTrait Family|Japanese Clothes
     {
-        SearchLocationForTargets Deck 0 2 IsCharacter && HasTrait Family|Yukata
+        SearchLocationForTargets Deck 0 2 IsCharacter && HasTrait Family|Japanese Clothes
         RevealTargets
         MoveCard Hand
         ShuffleLocation Deck
         Discard 1 Any
     }
 }
-Text Rest 1 of your standing characters with either «Family» or «Yukata». If you do, search your deck for up to 2 characters with either «Family» or «Yukata», reveal them, put them in your hand, shuffle your deck, and discard a card from your hand to the waiting room.
+Text Rest 1 of your standing characters with either «Family» or «Japanese Clothes». If you do, search your deck for up to 2 characters with either «Family» or «Japanese Clothes», reveal them, put them in your hand, shuffle your deck, and discard a card from your hand to the waiting room.
 EndCard
 
 Event: CS/S28-097
@@ -1824,13 +1824,13 @@ Effect:
     ChooseCharacterFromTargets Choose a character to give +2500 power.
     SaveTargets
     TargetLocation Stage
-    NarrowTargets HasTrait Yukata && Not InSavedTargets
+    NarrowTargets HasTrait Japanese Clothes && Not InSavedTargets
     ChooseCharacterFromTargets Choose a character to give +2500 power.
     AddSavedToCurrentTargets
     UntilEndOfOpponentsTurn
     GainPower 2500
 }
-Text Choose 1 of your «Family» characters and 1 of your «Yukata» characters and those characters get +2500 power until the end of your opponent's next turn.
+Text Choose 1 of your «Family» characters and 1 of your «Japanese Clothes» characters and those characters get +2500 power until the end of your opponent's next turn.
 EndCard
 
 Climax: CS/S28-098

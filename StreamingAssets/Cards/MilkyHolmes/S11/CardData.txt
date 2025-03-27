@@ -123,7 +123,7 @@ Cost 0
 Power 5000
 Soul 1
 Trait1 Detective
-Trait2 Yukata
+Trait2 Japanese Clothes
 Combo First Encounter with Opera
 Auto: OnAttack
 {
@@ -358,7 +358,7 @@ Cost 0
 Power 3000
 Soul 1
 Trait1 Detective
-Trait2 Yukata
+Trait2 Japanese Clothes
 EndCard
 
 Character: MK/S11-017
@@ -782,7 +782,7 @@ Cost 0
 Power 1000
 Soul 1
 Trait1 Detective
-Trait2 Yukata
+Trait2 Japanese Clothes
 *500Assist
 EndCard
 

@@ -312,7 +312,7 @@ Trigger Soul
 Power 1000
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 Auto: OnUseThisCardsBackup
 {
     If AllYourCharacters IsColor Yellow
@@ -333,7 +333,7 @@ Cost 1
 Power 6500
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 Cont: GiveSelf
 {
     GainSpecialEffect NoBackupInBattle
@@ -352,7 +352,7 @@ Trigger Soul
 Power 5500
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 *GlobalPower(1000,Girl)
 Auto: OnTriggerCheckClimax
 {
@@ -461,7 +461,7 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 *PowerOnMyTurn(1000)
 Auto: OnAttack
 {
@@ -867,7 +867,7 @@ Trigger Soul
 Power 7000
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 Combo Good Friends "Mei & Akiho"
 *GainPowerForEachOther(500,Girl)
 Auto: OnAttack
@@ -958,7 +958,7 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 *500Assist
 Act: Rest 2 Any
 {
@@ -1406,7 +1406,7 @@ Trigger Soul
 Power 10000
 Soul 2
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 *Healer
 Auto: OnPlay
 {
@@ -1652,7 +1652,7 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 Cont: GiveSelf
 {
     If AllYourCharacters IsColor Blue
@@ -1832,7 +1832,7 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 Cont: GiveAll
 {
     If Not MyTurn && Other && ColorIs Blue
@@ -1945,7 +1945,7 @@ Cost 0
 Power 5000
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 *GainPowerWithEnoughCharacters(1000,2,Girl)
 EndCard
 
@@ -2014,7 +2014,7 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 *OnAttackGiveOtherPower(1000,Girl)
 EndCard
 

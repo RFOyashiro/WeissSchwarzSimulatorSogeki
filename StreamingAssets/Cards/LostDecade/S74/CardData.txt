@@ -942,7 +942,7 @@ Cost 0
 Power 4000
 Soul 1
 Trait1 Adventurer
-Trait2 Yukata
+Trait2 Japanese Clothes
 Cont: GiveSelf
 {
     If HasMarkerWhere Not FaceDown

@@ -724,7 +724,7 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Music
-Trait2 ESP
+Trait2 Psychic Ability
 Cont: GiveSelf
 {
     If LocationContains Climax 1 IsColor Yellow
@@ -1528,7 +1528,7 @@ Cost 0
 Power 500
 Soul 1
 Trait1 Music
-Trait2 Yukata
+Trait2 Japanese Clothes
 *GlobalPower(500,Music)
 Act: Send 1 WaitingRoom Any
 {

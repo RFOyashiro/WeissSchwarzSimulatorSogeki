@@ -369,7 +369,7 @@ Cost 0
 Power 3500
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 Auto: OnPlay
 {
     TargetTop Deck 1
@@ -587,7 +587,7 @@ Cost 0
 Power 500
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 *500Assist
 Act: RestSelf
 {
@@ -808,7 +808,7 @@ Cost 0
 Power 5000
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 Auto: OnPlay
 {
     Mill 1
@@ -1530,7 +1530,7 @@ Cost 0
 Power 1500
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 *OnAttackGiveOtherPower(1500,Any)
 *HandEncore
 EndCard
@@ -1846,7 +1846,7 @@ Cost 0
 Power 500
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 *BondClock(Smiles And Beautiful Weather\, Yuzu Hazuki)
 Act: 1 RestSelf
 {
@@ -1975,7 +1975,7 @@ Cost 0
 Power 5000
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 *HandEncore
 EndCard
 
@@ -2004,7 +2004,7 @@ Cost 0
 Power 5000
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 Combo Sports Training Camp
 Auto: OnAttack
 {
@@ -2327,7 +2327,7 @@ Cost 0
 Power 3500
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 Auto: OnPlay
 {
     Mill 2
@@ -2352,7 +2352,7 @@ Trigger Soul
 Power 2000
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 Cont: Assist
 {
     If ColorIs Blue
@@ -3153,7 +3153,7 @@ Cost 0
 Power 5000
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 Cont: GiveSelf
 {
     If Not MyTurn
@@ -3296,7 +3296,7 @@ Trigger Soul
 Power 8000
 Soul 1
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 Auto: OnPlay
 {
     SetXToNumberOfCharacters ColorIs Blue
@@ -3337,7 +3337,7 @@ Trigger Soul
 Power 7000
 Soul 2
 Trait1 Girl
-Trait2 Yukata
+Trait2 Japanese Clothes
 Cont: GiveSelf
 {
     If StageContains 1 Other && NameContains 春瑚

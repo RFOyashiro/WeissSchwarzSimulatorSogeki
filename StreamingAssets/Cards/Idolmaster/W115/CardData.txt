@@ -294,7 +294,7 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Music
-Trait2 ESP
+Trait2 Psychic Ability
 Cont: GiveSelf
 {
     If MyTurn && StageContains 1 Other && HasTrait Music
@@ -769,7 +769,7 @@ Trigger Soul
 Power 6000
 Soul 1
 Trait1 Music
-Trait2 ESP
+Trait2 Psychic Ability
 Combo Chikara! Is! Power!!
 *GainPowerWithEnoughCharacters(4000,3,Any)
 Auto: OnAttack
@@ -3466,7 +3466,7 @@ Cost 0
 Power 1000
 Soul 1
 Trait1 Music
-Trait2 Yukata
+Trait2 Japanese Clothes
 *GiveMiddlePower(500,Music)
 *Act1RestSelfSalvageBrainstorm(Any)
 EndCard
@@ -4699,7 +4699,7 @@ Trigger Soul
 Power 7000
 Soul 2
 Trait1 Music
-Trait2 ESP
+Trait2 Psychic Ability
 *GainPowerWithEnoughCharacters(4500,4,Music)
 *EncoreStepIfNoneRestedPayToRest
 EndCard

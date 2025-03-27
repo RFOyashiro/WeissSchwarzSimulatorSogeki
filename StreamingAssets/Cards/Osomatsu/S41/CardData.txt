@@ -1685,7 +1685,7 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Animal
-Trait2 ESP
+Trait2 Psychic Ability
 Auto: OnPlay
 {
     PayCost Discard 1 IsClimax

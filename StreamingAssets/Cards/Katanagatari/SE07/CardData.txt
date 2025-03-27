@@ -7,7 +7,7 @@ Cost 0
 Power 500
 Soul 1
 Trait1 Fan
-Trait2 Yukata
+Trait2 Japanese Clothes
 *500Assist
 Auto: OnPlay
 {
@@ -28,7 +28,7 @@ Cost 0
 Power 2500
 Soul 1
 Trait1 Weapon
-Trait2 Yukata
+Trait2 Japanese Clothes
 Auto: OnUseThisCardsBackup
 {
     PayCost Clock
@@ -49,7 +49,7 @@ Cost 1
 Power 6500
 Soul 1
 Trait1 Weapon
-Trait2 Yukata
+Trait2 Japanese Clothes
 Act: 1
 {
     Brainstorm 4
@@ -155,7 +155,7 @@ Cost 0
 Power 5000
 Soul 1
 Trait1 Fan
-Trait2 Yukata
+Trait2 Japanese Clothes
 Combo Princess Hitei's Tricks
 Auto: OnSentFromStageToWaitingRoom
 {
@@ -236,7 +236,7 @@ Trigger Soul
 Power 8500
 Soul 2
 Trait1 Fan
-Trait2 Yukata
+Trait2 Japanese Clothes
 Cont: GiveSelf
 {
     SetXValue ThisCardsMarkers
@@ -542,7 +542,7 @@ Level 0
 Cost 0
 Power 500
 Soul 1
-Trait1 Yukata
+Trait1 Japanese Clothes
 *GlobalPower(500,Weapon)
 Auto: OnPlay
 {
@@ -562,7 +562,7 @@ Level 1
 Cost 1
 Power 6500
 Soul 1
-Trait1 Yukata
+Trait1 Japanese Clothes
 *HandEncore
 EndCard
 
@@ -575,7 +575,7 @@ Cost 1
 Trigger Soul
 Power 4500
 Soul 1
-Trait1 Yukata
+Trait1 Japanese Clothes
 Combo End of Travels
 *LevelAssist
 Auto: OnSpecificClimaxPlay End of Travels
@@ -627,16 +627,16 @@ Cost 2
 Trigger Soul
 Power 9000
 Soul 2
-Trait1 Yukata
+Trait1 Japanese Clothes
 Trait2 Weapon
 Auto: OnPlay
 {
     TargetLocation Stage
-    NarrowTargets CardPosition Stand && HasTrait Yukata
+    NarrowTargets CardPosition Stand && HasTrait Japanese Clothes
     ChooseCharacterFromTargets Choose a character to rest.
     Rest
 }
-Text Auto: When this card is placed on the stage from your hand, choose 1 of your standing «Yukata» characters and rest it.
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your standing «Japanese Clothes» characters and rest it.
 Auto: OnReverseOpponent
 {
     PayCost 2
@@ -657,7 +657,7 @@ Trigger Soul
 Power 10000
 Soul 2
 Trait1 Weapon
-Trait2 Yukata
+Trait2 Japanese Clothes
 *Healer
 Auto: OnReverseOpponent
 {
@@ -679,7 +679,7 @@ Trigger Soul
 Power 10000
 Soul 2
 Trait1 Weapon
-Trait2 Yukata
+Trait2 Japanese Clothes
 Combo Clash: Nanami versus Shichika
 Auto: OnPlay
 {
@@ -721,7 +721,7 @@ Level 0
 Cost 0
 Power 500
 Soul 1
-Trait1 Yukata
+Trait1 Japanese Clothes
 *OnPlayGivePower(500,Weapon)
 *Bond1("First Move 'Suzuran'" Shichika Yasuri)
 EndCard
@@ -735,7 +735,7 @@ Cost 0
 Power 2000
 Soul 1
 Trait1 Weapon
-Trait2 Yukata
+Trait2 Japanese Clothes
 Cont: GiveSelf
 {
     If StageContainsOrLess 0 Other
@@ -759,7 +759,7 @@ Level 0
 Cost 0
 Power 3000
 Soul 1
-Trait1 Yukata
+Trait1 Japanese Clothes
 EndCard
 
 Character: KG/SE07-37
@@ -791,7 +791,7 @@ Cost 0
 Power 4500
 Soul 1
 Trait1 Weapon
-Trait2 Yukata
+Trait2 Japanese Clothes
 Cont: GiveSelf
 {
     SetXValue ThisCardsMarkers
@@ -847,7 +847,7 @@ Level 1
 Cost 0
 Power 5000
 Soul 1
-Trait1 Yukata
+Trait1 Japanese Clothes
 Combo Cheerio-!
 Auto: OnAttack
 {
@@ -873,7 +873,7 @@ Cost 1
 Trigger Soul
 Power 2500
 Soul 1
-Trait1 Yukata
+Trait1 Japanese Clothes
 Trait2 Weapon
 Backup 3000
 EndCard
@@ -914,7 +914,7 @@ Cost 2
 Trigger Soul
 Power 8000
 Soul 2
-Trait1 Yukata
+Trait1 Japanese Clothes
 Trait2 Weapon
 *HandEncore
 EndCard
@@ -927,7 +927,7 @@ Level 0
 Cost 0
 Power 2500
 Soul 1
-Trait1 Yukata
+Trait1 Japanese Clothes
 Trait2 Weapon
 Cont: GiveSelf
 {
@@ -948,7 +948,7 @@ Level 0
 Cost 0
 Power 2500
 Soul 1
-Trait1 Yukata
+Trait1 Japanese Clothes
 Cont: GiveSelf
 {
     If LocationContainsOrLess CenterStage 1 Other

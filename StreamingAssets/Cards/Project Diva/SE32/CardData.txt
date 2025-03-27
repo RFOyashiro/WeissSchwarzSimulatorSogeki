@@ -842,7 +842,7 @@ Cost 1
 Power 5500
 Soul 1
 Trait1 Music
-Trait2 Yukata
+Trait2 Japanese Clothes
 Combo A Single Red Leaf
 Cont: GiveSelf
 {

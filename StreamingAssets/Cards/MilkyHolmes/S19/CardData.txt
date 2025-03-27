@@ -2235,7 +2235,7 @@ Cost 0
 Power 5000
 Soul 1
 Trait1 Detective
-Trait2 Yukata
+Trait2 Japanese Clothes
 Auto: OnPlay
 {
     If StageContains 2 Other && HasTrait Detective
