@@ -787,7 +787,7 @@ Auto: OnUseThisCardsBackup
         }
     }
 }
-Text Auto: EXPERIENECE [(1) Put 1 card from your hand to the waiting room] When you use this card's "BACKUP", if the sum of levels of cards in your level is 3 or higher, you may pay the cost. If you do, put the top card of your clock in the waiting room.
+Text Auto: EXPERIENCE [(1) Put 1 card from your hand to the waiting room] When you use this card's "BACKUP", if the sum of levels of cards in your level is 3 or higher, you may pay the cost. If you do, put the top card of your clock in the waiting room.
 Backup 2500
 EndCard
 

@@ -1789,7 +1789,7 @@ Trait2 Mask
 Combo Color the Phantom
 Cont: GiveSelf
 {
-    If StageContains 1 Other NameEquals Black Phantom Thief "Darkside Revolution"
+    If StageContains 1 Other && NameEquals Black Phantom Thief "Darkside Revolution"
     {
         GainPower 4000
         GainEffect
@@ -1869,6 +1869,7 @@ Auto: StartEncoreStep
         NarrowTargets Other
         NarrowTargets HasTrait Phantom Thief || NameContains アリス
         ChooseCharactersFromTargets 0 2 Choose up to 2 characters to put into memory during your opponent's turn.
+        MoveCard Memory
         ScheduleEffectWithTargets StartDrawPhase
         {
             Effect:
@@ -2000,7 +2001,7 @@ Trait2 Mask
 Combo Color the Phantom
 Cont: GiveSelf
 {
-    If StageContains 1 Other NameEquals White Phantom Thief "Great White Fallen Angel"
+    If StageContains 1 Other && NameEquals White Phantom Thief "Great White Fallen Angel"
     {
         GainPower 4000
         GainEffect
@@ -2008,8 +2009,7 @@ Cont: GiveSelf
             Auto: EndOfTurn
             {
                 MoveCard WaitingRoom
-            }
-            Quick
+            }            
             Text Auto: At the end of the turn, put this card in the waiting room.
         }
     }
