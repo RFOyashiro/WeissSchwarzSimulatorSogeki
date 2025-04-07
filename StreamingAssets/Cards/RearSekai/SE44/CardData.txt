@@ -106,7 +106,7 @@ Auto: OnAttack
                 SearchLocationForTargets Hand 1 1 Not InSavedTargets
                 MoveCard WaitingRoom
                 LoadTargets
-                RevealTargets
+                Reveal
                 Message Choose up to 2 cards to put into deck.
                 SearchLocationForTargets OpponentWaitingRoom 0 2 Any
                 RevealTargets
@@ -480,7 +480,7 @@ Auto: OnUseThisCardsBackup
         }
     }
 }
-Text Auto: [(1) Put 1 card from your hand into waiting room, put 1 of your characters from stage to waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it on the bottom of your opponent's deck.
+Text Auto: [(1) Put 1 card from your hand into waiting room, put 1 of your characters from stage to waiting room] When you use this card's "BACKUP", you may pay the cost. If you do, choose 1 of your opponent's characters whose level is higher than the level of your opponent and put it in their stock. If you do, put the bottom card of your opponent's stock in the waiting room.
 Backup 2500
 EndCard
 
