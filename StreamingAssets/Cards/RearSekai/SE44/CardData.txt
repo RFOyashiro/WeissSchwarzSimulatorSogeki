@@ -259,7 +259,7 @@ Auto: StartClimaxPhase
         {
             Message Choose the character to reveal.
             SearchLocationForTargets Hand 1 1 Not NameNotInSavedTargets
-            RevealTargets
+            Reveal
             TargetSelf
             GainPower 1000
             GainEffect
@@ -832,7 +832,7 @@ Auto: OnAttack
                 SearchLocationForTargets Hand 1 1 Not InSavedTargets
                 MoveCard WaitingRoom
                 LoadTargets
-                RevealTargets
+                Reveal
                 TargetSelf
                 LoseSoul 10
                 MultipleChoiceQuestion Choose the amount of damage to deal twice.|3|4
@@ -893,7 +893,7 @@ Auto: StartClimaxPhase
         {
             Message Choose the character to reveal.
             SearchLocationForTargets Hand 1 1 Not NameNotInSavedTargets
-            RevealTargets
+            Reveal
             TargetSelf
             GainPower 1500
             GainEffect
