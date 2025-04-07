@@ -341,7 +341,7 @@ Soul 1
 Trait1 Music
 Trait2 Togenashi Togeari
 *OnPlayGivePower(1500,Music)
-Auto: OnPlay
+Auto: OnSentFromStageToWaitingRoom
 {
     RevealUpTo Deck 3
     If HasTarget
