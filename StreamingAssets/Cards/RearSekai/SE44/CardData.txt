@@ -862,7 +862,7 @@ Trait2 Treasure Hunter
 Auto: StartClimaxPhase
 {
     TargetLocation Stage
-    NarrowTargets Melvania|Rear
+    NarrowTargets HasTrait Melvania|Rear
     ChooseCharacterFromTargets Choose a character to give the effect.
     GainEffect
     {
