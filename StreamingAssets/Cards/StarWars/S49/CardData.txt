@@ -1311,6 +1311,7 @@ Auto: OnAttack
     {
         PayCost 2 Discard 1 Any
         {
+            Burn 1
             GainPower 2500
             GainEffect
             {
