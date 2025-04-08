@@ -1199,7 +1199,7 @@ Auto: OnSpecificClimaxPlay Emptiness and Catharsis
                         {
                             SubtractFromXValue 5
                             Burn 2
-                            If Compare X 0 OrLess
+                            If Compare X 5 LessThan
                             {
                                 StopLoop
                             }
