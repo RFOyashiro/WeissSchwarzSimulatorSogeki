@@ -1410,7 +1410,7 @@ Act: RestSelf
 Text Act: [Rest this card] Choose a card in your level and a «Music» character in your waiting room and exchange them.
 Act: 1 SendSelf WaitingRoom
 {
-    If Compare Experience 2 OrMore && Compare MyLevel 3 OrMore
+    If Compare Experience 3 OrMore && Compare MyLevel 2 OrMore
     {
         SearchLocationForTargets WaitingRoom 1 1 NameEquals In a Brilliant Way, Ai
         If HasTarget
