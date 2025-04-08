@@ -1410,10 +1410,13 @@ Act: RestSelf
 Text Act: [Rest this card] Choose a card in your level and a «Music» character in your waiting room and exchange them.
 Act: 1 SendSelf WaitingRoom
 {
-    If Compare Experience 3 OrMore && Compare MyLevel 2 OrMore
+    If Compare Experience 2 OrMore && Compare MyLevel 3 OrMore
     {
-        SearchWaitingRoom NameEquals In a Brilliant Way, Ai
-        Change
+        SearchLocationForTargets WaitingRoom 1 1 NameEquals In a Brilliant Way, Ai
+        If HasTarget
+        {
+            Change
+        }
     }
 }
 Text Act: EXPERIENCE [(1) Put this card in the waiting room] If you are level 2 or higher and the sum of levels of cards in your level is 3 or higher, choose 1 "In a Brilliant Way, Ai" in your waiting room and put it in the position this card was in.
