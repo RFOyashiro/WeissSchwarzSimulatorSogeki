@@ -1311,10 +1311,11 @@ JPName 怒りも喜びも哀しさも全部ぶちこめ。
 Color R
 Level 1
 Cost 1
+Counter
 Effect:
 {
     RevealUpTo Deck 3
-    ChooseCardsFromTargets IsCharacter && HasTrait Music || NameEquals Throw in All the Anger, Joy, and Sadness.
+    ChooseCardsFromTargets 0 1 IsCharacter && HasTrait Music || NameEquals Throw in All the Anger, Joy, and Sadness.
     RevealTargets
     MoveCard Hand
     PutTheRestIntoTheWaitingRoom
