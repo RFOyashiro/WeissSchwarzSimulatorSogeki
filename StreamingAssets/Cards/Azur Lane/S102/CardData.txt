@@ -2992,7 +2992,10 @@ Cont: GiveSelf
         GainPower 1500
         GainEffect
         {
-            *HandEncore
+            Auto: Encore Discard 1 Any
+            {
+            }
+            Text Auto: ENCORE [Put 1 card from your hand into your waiting room]
         }
     }
 }
