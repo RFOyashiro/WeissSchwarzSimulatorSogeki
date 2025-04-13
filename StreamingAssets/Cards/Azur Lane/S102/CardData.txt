@@ -1145,8 +1145,6 @@ Auto: OnUseThisCardsBackup
             If Yes
             {
                 MoveCard OpponentWaitingRoom
-                TargetBattleOpponent
-                MoveCard OpponentClock
                 TargetLocation OpponentStage
                 NarrowTargets EarlyPlay
                 ChooseCharacterFromTargets Choose a card to put into their clock.
