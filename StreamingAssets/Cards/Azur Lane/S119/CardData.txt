@@ -779,7 +779,7 @@ Trait1 KAN-SEN
 Trait2 Royal Navy
 Auto: OnUseThisCardsBackup
 {
-    If Compare Experience 3 OrLess
+    If Compare Experience 3 OrMore
     {
         PayCost 1 Discard 1 Any
         {
