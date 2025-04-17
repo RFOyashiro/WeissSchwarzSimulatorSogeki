@@ -564,9 +564,12 @@ Auto: OnAttack
     {
         Auto: OnThisTriggerCheck
         {
-            PayCost Discard 1 IsClimax
+            IfOther IsClimax
             {
-                SearchWaitingRoom IsCharacter && HasTrait Return of the Jedi || IsCharacter && ColorIs Blue
+                PayCost Discard 1 IsClimax
+                {
+                    SearchWaitingRoom IsCharacter && HasTrait Return of the Jedi || IsCharacter && ColorIs Blue
+                }
             }
         }
         Text Auto: [Put 1 climax from your hand to the waiting room] When trigger check of this card reveals a climax, you may pay the cost. If you do, choose a «Yuru Camp» character in your waiting room and return it to your hand.
