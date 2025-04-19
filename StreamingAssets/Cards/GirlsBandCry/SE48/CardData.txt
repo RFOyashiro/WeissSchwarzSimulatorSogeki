@@ -1342,6 +1342,7 @@ Auto: StartClimaxPhase
         }
     }
 }
+InMemory
 Text Auto: MEMORY [(1) Put 1 card from your hand to the Waiting room] If this card is in memory, at the beginning of your climax phase, you may pay the cost. If you do, choose up to 1 climax with a Door trigger icon in your hand and reveal it, then choose a climax with a Door trigger icon in your waiting room and exchange them.
 EndCard
 
