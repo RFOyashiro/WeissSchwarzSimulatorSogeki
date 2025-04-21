@@ -1331,12 +1331,11 @@ Auto: StartClimaxPhase
         If HasTarget
         {
             SaveTargets
-            RevealTargets
             SearchLocationForTargets WaitingRoom 1 1 IsClimax && HasTrigger Door
             If HasTarget
             {
                 AddSavedToCurrentTargets
-                RevealTargets
+                Reveal
                 Exchange
             }
         }
