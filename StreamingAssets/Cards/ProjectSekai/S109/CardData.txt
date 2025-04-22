@@ -2401,14 +2401,14 @@ Soul 1
 Trait1 Music
 Trait2 25-ji, Nightcord de.
 Combo Holding a Stray Hand
-Auto: OnAttack
+Auto: StartAttackPhase
 {
     If Climax Holding a Stray Hand || LocationContains WaitingRoom 1 NameEquals Holding a Stray Hand
     {
         GainPower 7500
     }
 }
-Text Auto: CxCombo When this card attacks, if "Holding a Stray Hand" is in your climax area or waiting room, this card gets +7500 power until end of turn.
+Text Auto: CxCombo At the beginning of your attack phase, if "Holding a Stray Hand" is in your climax area or waiting room, this card gets +7500 power until end of turn.
 EndCard
 
 Character: PJS/S109-102
