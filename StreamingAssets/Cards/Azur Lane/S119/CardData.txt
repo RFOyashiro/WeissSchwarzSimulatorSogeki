@@ -2705,8 +2705,11 @@ Auto: OnPlay
         ChooseCharacterFromTargets Choose a character to send to the bottom of the deck.
         MoveCardToBottom Deck
     }
-    TargetSelf
-    GainPower 4500
+    If Compare Experience 6 OrMore
+    {
+        TargetSelf
+        GainPower 4500
+    }
 }
 Text Auto: EXPERIENCE When this card is placed on the stage from your hand, you may choose 1 «KAN-SEN» character in your clock and put it on the bottom of your deck, and if the sum of levels of cards in your level is 6 or higher, this card gets +4500 power until end of turn.
 Auto: OnReversed
