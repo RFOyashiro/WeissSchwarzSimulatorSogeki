@@ -1357,22 +1357,47 @@ Soul 1
 Trait1 PIXAR
 Auto: StartOpponentAttackPhase
 {
-    PayCost 1
-    {
-        TargetLocation Backstage
+	PayCost 1
+	{
+		TargetLocation Backstage
         If Compare TargetCount 1 OrLess
         {
             TargetSelf
             MoveToOpenPosition False True
         }
-    }
+	}
 }
-Text Auto: [(1)] At the beginning of your opponent's attack phase, you may pay the cost. If you do, move this card to an open position in your backstage.
-Auto:
+Text Auto: [(1)] At the beginning of your opponent's attack phase, you may pay the cost. If you do, move this card to an open position of your back stage.
+Auto: StartOpponentAttackPhase
 {
-
+	PayCost Discard 1 Any
+	{
+		TargetLocation Stage
+		NarrowTargets Other
+		ChooseCharacterFromTargets Choose a character to marker.
+		If HasTarget
+		{
+			Marker_FaceUp
+			TargetSelf
+			ScheduleEffectForTargets StartDrawPhase
+			{
+				Effect:
+				{
+					TargetLocation Marker
+					NarrowTargets IsCharacter
+					If Compare TargetCount 2 OrHigher
+					{
+						Message Choose a character to place on the stage.
+						ChooseCardsFromTargets 1 1 IsCharacter
+					}
+					PlaceOnStage False True True False
+				}
+				Text Choose 1 character from the markers underneath this card, and put it in any position of your stage.
+			}
+		}
+	}
 }
-Text Auto: [Put 1 card from your hand into waiting room] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your other characters, put it underneath this card Face-Up as a marker, and at the beginning of your next draw phase, choose 1 character underneath this card as a marker, place it on stage in any position.
+Text Auto: [Put 1 card from your hand into waiting room] At the beginning of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your other characters, put it face up underneath this card as a marker, at the beginning of your next draw phase, choose 1 character from the markers underneath this card, and put it in any position of your stage.
 EndCard
 
 Character: PXR/S94-052
@@ -1388,12 +1413,12 @@ Auto:
 {
 
 }
-Text Auto: [Put 1 «PIXAR» character] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw 1 card.
+Text Auto: [Put 1 «PIXAR» character from your hand in waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, draw 1 card.
 Auto:
 {
 
 }
-Text Auto: CxCombo [Return this card to hand] When "Brave" is placed in your climax area, you may pay the cost. If you do, reveal the top card of your deck. if that card is a «PIXAR» character, add it to hand.
+Text Auto: CxCombo [Return this card to your hand] When "Brave" is placed in your climax area, you may pay the cost. If you do, reveal the top card of your deck. if that card is a «PIXAR» character, add it to hand.
 EndCard
 
 Character: PXR/S94-053
