@@ -585,7 +585,7 @@ Soul 2
 Trait1 Alchemy
 Cont: GiveSelf
 {
-	If LocationContains Memory 1 NameEquals Autoscorer Leiur &&& LocationContains Memory 1 NameEquals Autoscorer Phara &&& LocationContains Memory 1 NameEquals Autoscorer Micha &&& LocationContains Memory 1 NameEquals Autoscorer Galie
+    If LocationContainsSeparateCardsThatMeetConditions Memory NameEquals Autoscorer Leiur, NameEquals Autoscorer Phara , NameEquals Autoscorer Micha , NameEquals Autoscorer Galie
 	{
 		GainPower 2500
 		GainEffect
