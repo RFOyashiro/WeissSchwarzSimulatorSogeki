@@ -737,7 +737,7 @@ Auto: StartClimaxPhase
         {
             SaveTargets
             TargetLocation OpponentStage
-            NarrowTargets CanMove && CanBeChosen && Not InSavedTargets && Compare ThatCardsLevel 1 OrMore
+            NarrowTargets CanMove && CanBeChosen && Not InSavedTargets && Compare ThatCardsLevel 1 OrLess
             ChooseCharacterFromTargets Choose a character to exchange.
             If HasTarget
             {
