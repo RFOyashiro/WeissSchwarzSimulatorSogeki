@@ -516,10 +516,7 @@ Effect:
     PayCost Discard 1 IsClimax
     {
         TargetBattleOpponent
-        GainEffect
-        {
-			*HexProof
-        }
+        GainSpecialEffect CannotDealDamage
     }
 }
 Text COUNTER You may put a climax from your hand into waiting room. If you do, choose a character in battle, and that character gets the following ability until end of turn. "Cont: This card cannot deal damage to players."
