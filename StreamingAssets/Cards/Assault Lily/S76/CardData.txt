@@ -1149,8 +1149,7 @@ Auto: OnSpecificClimaxPlay A Little Warmth
     {
         SearchWaitingRoom NameEquals Blooming Dignifiedly, Tazusa
         Message Choose a «Lily» character to put in stock.
-        SearchLocationForTargets Hand 0 1 HasTrait Lily
-        MoveCard Stock
+        *PutCardFromWaitingRoomIntoStock(IsCharacter && HasTrait Lily)
     }
 }
 Text Auto: CxCombo When "A Little Warmth" is placed on your climax area, if this card is in the center stage, choose up to 1 "Blooming Dignifiedly, Tazusa" your waiting room and return it to hand, and choose up to 1 «Lily» character in your waiting room and put it in stock.
