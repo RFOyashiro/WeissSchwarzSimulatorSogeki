@@ -479,7 +479,10 @@ Quick
 Text Auto: When you level-Up, put this card in the waiting room.
 Auto: OnOpponentClimaxPlay
 {
-    MoveCard WaitingRoom
+    If OnStage
+    {
+        MoveCard WaitingRoom
+    }
 }
 Quick
 Text Auto: When your opponent's climax is placed on your climax area, put this card in the waiting room.

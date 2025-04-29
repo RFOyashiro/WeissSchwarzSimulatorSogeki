@@ -1038,10 +1038,13 @@ Auto: OnPlay
 Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a «Music» character in your waiting room and return it to your hand, choose 1 of your other «Music» characters, and that character gets +1000 power until end of turn.
 Auto: OnOpponentClimaxPlay
 {
-    Question Put this card into stock ?
-    If Yes
+    If OnStage
     {
-        MoveCard Stock
+        Question Put this card to your stock?
+        If Yes
+        {
+            MoveCard Stock
+        }
     }
 }
 Text Auto: When your opponent's climax is placed on your climax area, you may put this card in your stock.

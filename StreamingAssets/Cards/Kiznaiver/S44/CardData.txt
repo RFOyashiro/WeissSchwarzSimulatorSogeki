@@ -1760,7 +1760,10 @@ Auto: OnPlay
 Text Auto: [Put the top card of your deck in your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a "Dangerous Woodcutting" in your waiting room and return it to your hand.
 Auto: OnOpponentClimaxPlay
 {
-    MoveCard WaitingRoom
+    If OnStage
+    {
+        MoveCard WaitingRoom
+    }
 }
 Quick
 Text Auto: When your opponent's climax is placed on your climax area, put this card in the waiting room.

@@ -1090,10 +1090,13 @@ Trait1 Music
 Trait2 Daughter
 Auto: OnOpponentClimaxPlay
 {
-    Question Put this card into stock ?
-    If Yes
+    If OnStage
     {
-        MoveCard Stock
+        Question Put this card to your stock?
+        If Yes
+        {
+            MoveCard Stock
+        }
     }
 }
 Text Auto: When your opponent's climax is placed on your climax area, you may put this card in your stock.
@@ -2984,7 +2987,10 @@ Soul 1
 Trait1 Music
 Auto: OnOpponentClimaxPlay
 {
-    MoveCard WaitingRoom
+    If OnStage
+    {
+        MoveCard WaitingRoom
+    }
 }
 Text Auto: When your opponent's climax is placed on your climax area, put this card in the waiting room.
 EndCard

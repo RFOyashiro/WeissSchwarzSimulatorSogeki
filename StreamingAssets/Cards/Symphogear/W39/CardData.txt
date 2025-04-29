@@ -1321,8 +1321,10 @@ Trait1 Music
 Trait2 Weapon
 Auto: OnOpponentClimaxPlay|OnClimaxPlay
 {
-    TargetSelf
-    MoveCard WaitingRoom
+    If OnStage
+    {
+        MoveCard WaitingRoom
+    }
 }
 Quick
 Text Auto: When your or your opponent's climax card is placed on your climax area, put this card in the waiting room.

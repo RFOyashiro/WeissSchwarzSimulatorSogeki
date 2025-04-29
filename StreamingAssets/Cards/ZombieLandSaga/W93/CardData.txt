@@ -1893,11 +1893,13 @@ Auto: OnPlay
 Text Auto: [(1) Put the top card of your deck into your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 cost 0 or less «Saga» character whose level is equal or lower than yours, put it in any position of your stage and shuffle your deck.
 Auto: OnOpponentClimaxPlay
 {
-    Question Put this card in stock ?
-    If Yes
+    If OnStage
     {
-        TargetSelf
-        MoveCard Stock
+        Question Put this card to your stock?
+        If Yes
+        {
+            MoveCard Stock
+        }
     }
 }
 Text Auto: When your opponent places a climax card in their climax area, you may put this card in your stock.

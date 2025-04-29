@@ -1335,10 +1335,13 @@ Auto: OnPlay
 Text Auto: [(1) Put 1 card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose up to 1 cards among them and put it in your hand, and put the rest into your waiting room.
 Auto: OnOpponentClimaxPlay
 {
-    Question Put this card in stock ?
-    If Yes
+    If OnStage
     {
-        MoveCard Stock
+        Question Put this card to your stock?
+        If Yes
+        {
+            MoveCard Stock
+        }
     }
 }
 Text Auto: When your opponent's climax is placed on your climax area, you may put this card in your stock.

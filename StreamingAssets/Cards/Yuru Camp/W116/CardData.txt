@@ -2285,10 +2285,13 @@ Trait2 My Pace
 *OnPlayFlicker
 Auto: OnOpponentClimaxPlay
 {
-    Question Put this card into stock ?
-    If Yes
+    If OnStage
     {
-        MoveCard Stock
+        Question Put this card to your stock?
+        If Yes
+        {
+            MoveCard Stock
+        }
     }
 }
 Text Auto: When your opponent's climax is placed on your climax area, you may put this card in your stock.

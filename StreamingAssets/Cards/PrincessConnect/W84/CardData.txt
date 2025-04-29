@@ -1949,11 +1949,13 @@ Auto: OnPlay
 Text Auto: [(1)] When this card is placed on the stage from your hand, you may pay the cost. If you do, look at up to the top 3 cards of your deck, choose a card among them, place it to your clock, and put the rest into waiting room. If you placed a card to clock with this effect, choose a «Landosol» character in your waiting room and return it to hand.
 Auto: OnOpponentClimaxPlay
 {
-    Question Put this card in stock ?
-    If Yes
+    If OnStage
     {
-        TargetSelf
-        MoveCard Stock
+        Question Put this card to your stock?
+        If Yes
+        {
+            MoveCard Stock
+        }
     }
 }
 Text Auto: When your opponent's climax is placed on their climax area, you may put this card in your stock.

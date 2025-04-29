@@ -2907,11 +2907,13 @@ Trait1 Music
 Trait2 Houkago Climax Girls
 Auto: OnOpponentClimaxPlay
 {
-    Question Put this card in stock ?
-    If Yes
+    If OnStage
     {
-        TargetSelf
-        MoveCard Stock
+        Question Put this card to your stock?
+        If Yes
+        {
+            MoveCard Stock
+        }
     }
 }
 Text Auto: When your opponent's climax is placed on their climax area, you may put this card in your stock.

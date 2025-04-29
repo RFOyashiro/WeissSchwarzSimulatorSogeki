@@ -3526,11 +3526,14 @@ Trait2 Hitotsuyanagi Corps
 *GlobalPower(500,Lily)
 Auto: OnOpponentClimaxPlay
 {
-    Question Put this card in stock ?
-    If Yes
+    If OnStage
     {
-        TargetSelf
-        MoveCard Stock
+        Question Put this card in stock ?
+        If Yes
+        {
+            TargetSelf
+            MoveCard Stock
+        }
     }
 }
 Text Auto: When your opponent's climax is placed in their climax area, you may put this card in stock.
