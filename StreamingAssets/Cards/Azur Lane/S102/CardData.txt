@@ -4756,7 +4756,16 @@ Cost 0
 Power 1500
 Trait1 KAN-SEN
 Trait2 Sakura Empire
-*OnPlayGiveOtherPower(500,KAN-SEN)
+Auto: OnPlay
+{
+    SetXToNumberOfCharacters HasTrait KAN-SEN
+    MultiplyXValue 500
+    TargetLocation Stage
+    NarrowTargets HasTrait KAN-SEN
+    ChooseCharacterFromTargets Choose a character to give +X power.
+    GainPower X
+}
+Text Auto: When this card is placed on the stage from your hand, choose 1 of your «KAN-SEN» characters, and that character gets +X power until end of turn. X is equal to the number of «KAN-SEN» character you have x500 
 Auto: OnAttack
 {
     If StageContains 1 Other && HasTrait KAN-SEN
