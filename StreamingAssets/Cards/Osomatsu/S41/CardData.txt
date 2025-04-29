@@ -799,7 +799,7 @@ Combo Hedgehog's Dilemma
 Cont: GiveSelf
 {
     TargetFacing
-    SetXValue ThatCardsLevel
+    SetXValue TargetCardsLevel
     AddToXValue ThisCardsLevel
     If Compare X 6 OrMore
     {
