@@ -783,7 +783,7 @@ Auto: OnTriggerCheckClimax
     IfOther HasTrigger Choice
     {
         UntilEndOfOpponentsTurn
-        *GiveCharacterPower(100,Any)
+        *GiveCharacterPower(1000,Any)
     }
 }
 Text Auto: When your character's trigger check reveals a climax with Choice in its trigger icon, choose 1 of your characters, it gets +1000 power until the end of your opponent's next turn.
