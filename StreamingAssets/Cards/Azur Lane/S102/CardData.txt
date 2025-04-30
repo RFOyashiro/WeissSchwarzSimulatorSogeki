@@ -2990,14 +2990,11 @@ Cont: GiveSelf
         GainPower 1500
         GainEffect
         {
-            Auto: Encore Discard 1 Any
-            {
-            }
-            Text Auto: ENCORE [Put 1 card from your hand into your waiting room]
+            *HandEncore
         }
     }
 }
-Text Cont: If all of your characters are «KAN-SEN», this card gets +1500 power and "Auto: ENCORE [Put 1 card from your hand into your waiting room]."
+Text Cont: If all of your characters are «KAN-SEN», this card gets +1500 power and "Auto: ENCORE [Put 1 character from your hand into your waiting room]."
 Auto: OnReverseOpponent
 {
     If LocationContains Climax 1 HasTrigger Gate

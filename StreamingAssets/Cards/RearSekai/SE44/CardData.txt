@@ -864,6 +864,7 @@ Auto: StartClimaxPhase
     TargetLocation Stage
     NarrowTargets HasTrait Melvania|Rear
     ChooseCharacterFromTargets Choose a character to give the effect.
+    UntilEndOfOpponentsTurn
     GainEffect
     {
         *MillRunner(Melvania|Rear)

@@ -2100,7 +2100,7 @@ EndCard
 Character: MF/S13-109
 Name Chibi Alto
 JPName ちびアルト
-Color Y
+Color R
 Level 0
 Cost 0
 Power 1000
